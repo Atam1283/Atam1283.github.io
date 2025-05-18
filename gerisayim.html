@@ -3,139 +3,235 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Geri Sayım</title>
-  <link rel="stylesheet" href="css/style.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet"/>
+  <title>Geri Sayım - Atatürk</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
-      padding: 0;
-      overflow: hidden;
-      font-family: 'Orbitron', sans-serif;
+      font-family: 'Rubik', sans-serif;
+      transition: background-color 0.3s, color 0.3s;
       color: white;
-      background-color: black;
+      overflow-x: hidden;
     }
 
-    #particles-js {
+    .light-theme {
+      background-color: #ffffff;
+      color: #222;
+    }
+
+    .dark-theme {
+      background-color: #1a1a1a;
+      color: #f5f5f5;
+    }
+
+    header {
+      background: rgba(255, 0, 0, 0.85);
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      position: relative;
+      z-index: 10;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+      background: rgba(0,0,0,0.2);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    #sozu {
+      font-size: 1.5rem;
+      margin-top: 3rem;
+      text-align: center;
+      padding: 0 2rem;
+    }
+
+    .tema-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 0.5rem 1rem;
+      background-color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    canvas {
       position: fixed;
-      width: 100%;
-      height: 100%;
+      top: 0;
+      left: 0;
       z-index: -1;
     }
 
-    .content {
+    footer {
       text-align: center;
-      margin-top: 20vh;
+      padding: 2rem;
+      margin-top: 3rem;
+      background: rgba(0,0,0,0.5);
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    #countdown {
+    #gerisayim {
+      text-align: center;
       font-size: 2rem;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 1rem 2rem;
-      border-radius: 15px;
-      display: inline-block;
-    }
-
-    a {
-      color: #ff4d4d;
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      text-decoration: none;
-      font-weight: bold;
+      margin-top: 2rem;
     }
   </style>
 </head>
-<body>
-  <div id="particles-js"></div>
-  <a href="index.html">← Ana Sayfa</a>
-  <div class="content">
-    <h1>En Yakın Tarihi Olay İçin Geri Sayım</h1>
-    <div id="event-name"></div>
-    <div id="countdown"></div>
-  </div>
+<body class="dark-theme">
+  <button class="tema-btn" onclick="temaDegistir()">Temayı Değiştir</button>
+  <header>Geri Sayım</header>
+  <nav>
+    <a href="index.html">Ana Sayfa</a>
+    <a href="hayatı.html">Hayatı</a>
+    <a href="zaman.html">Zaman Çizelgesi</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="geri-sayim.html">Geri Sayım</a>
+  </nav>
 
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <div id="sozu">"Yurtta sulh, cihanda sulh."</div>
+  <div id="gerisayim">Yükleniyor...</div>
+
+  <footer>© 2025 EFE | Atatürk'ü Anma Sitesi</footer>
+
+  <canvas id="parcaciklar"></canvas>
+
   <script>
-    // Atatürk'ün önemli olayları
-    const events = [
-      { name: "19 Mayıs - Atatürk'ün Samsun'a çıkışı", date: "2025-05-19" },
-      { name: "23 Temmuz - Erzurum Kongresi", date: "2025-07-23" },
-      { name: "30 Ağustos - Zafer Bayramı", date: "2025-08-30" },
-      { name: "29 Ekim - Cumhuriyet Bayramı", date: "2025-10-29" },
-      { name: "10 Kasım - Atatürk'ün Ölüm Yıldönümü", date: "2025-11-10" }
+    // Atatürk sözleri
+    const sozler = [
+      "Yurtta sulh, cihanda sulh.",
+      "Hayatta en hakiki mürşit ilimdir.",
+      "Egemenlik, kayıtsız şartsız milletindir.",
+      "Benim naçiz vücudum elbet bir gün toprak olacaktır.",
+      "Milletin bağımsızlığını yine milletin azim ve kararı kurtaracaktır."
+    ];
+    document.getElementById("sozu").textContent =
+      `"${sozler[Math.floor(Math.random() * sozler.length)]}"`;
+
+    // Tarih listesi
+    const tarihler = [
+      "1881-05-19", "1893-09-01", "1895-09-01", "1899-09-01", "1902-06-01",
+      "1905-01-11", "1906-10-01", "1907-09-01", "1911-09-13", "1912-01-09",
+      "1912-11-25", "1913-10-27", "1915-04-25", "1915-08-09", "1916-04-01",
+      "1916-08-06", "1918-10-31", "1919-04-30", "1919-05-16", "1919-05-19",
+      "1919-07-08", "1919-07-23", "1919-09-04", "1919-12-27", "1920-04-23",
+      "1920-05-11", "1921-08-05", "1921-08-23", "1921-09-19", "1922-08-26",
+      "1922-08-30", "1922-09-10", "1922-11-01", "1923-01-14", "1923-10-29",
+      "1924-08-24", "1928-08-09", "1931-04-12", "1932-07-12", "1934-06-16",
+      "1938-11-10"
     ];
 
-    const now = new Date();
-    let upcomingEvent = events.find(e => new Date(e.date) > now);
+    // En yakın tarihi bul
+    function enYakinTarih() {
+      const simdi = new Date();
+      let enYakin = null;
+      let enKucukFark = Infinity;
 
-    // Eğer bu yılki tüm tarihler geçtiyse, ilkini al (gelecek yıl için)
-    if (!upcomingEvent) {
-      const nextYear = now.getFullYear() + 1;
-      upcomingEvent = {
-        name: events[0].name,
-        date: `${nextYear}-${events[0].date.slice(5)}`
-      };
+      tarihler.forEach(t => {
+        const hedef = new Date(t);
+        hedef.setFullYear(simdi.getFullYear());
+        if (hedef < simdi) hedef.setFullYear(simdi.getFullYear() + 1);
+        const fark = hedef - simdi;
+
+        if (fark < enKucukFark) {
+          enKucukFark = fark;
+          enYakin = hedef;
+        }
+      });
+
+      return enYakin;
     }
 
-    document.getElementById('event-name').innerText = upcomingEvent.name;
+    // Geri sayımı başlat
+    const hedefTarih = enYakinTarih();
 
-    const countdownEl = document.getElementById('countdown');
-    const targetDate = new Date(upcomingEvent.date).getTime();
+    function geriSayim() {
+      const simdi = new Date().getTime();
+      const fark = hedefTarih - simdi;
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
+      const gun = Math.floor(fark / (1000 * 60 * 60 * 24));
+      const saat = Math.floor((fark % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const dakika = Math.floor((fark % (1000 * 60 * 60)) / (1000 * 60));
+      const saniye = Math.floor((fark % (1000 * 60)) / 1000);
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      document.getElementById("gerisayim").innerHTML =
+        `📅 ${hedefTarih.toLocaleDateString('tr-TR')} tarihine kalan süre:<br><br>
+        ⏳ ${gun} gün ${saat} saat ${dakika} dakika ${saniye} saniye`;
 
-      countdownEl.innerText = `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye kaldı`;
+      setTimeout(geriSayim, 1000);
+    }
 
-      if (distance < 0) {
-        countdownEl.innerText = "Etkinlik zamanı geldi!";
+    geriSayim();
+
+    // Tema değiştir
+    function temaDegistir() {
+      document.body.classList.toggle("light-theme");
+      document.body.classList.toggle("dark-theme");
+    }
+
+    // Parçacık efekti
+    const canvas = document.getElementById("parcaciklar");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = Math.random() * 1 - 0.5;
+        this.speedY = Math.random() * 1 - 0.5;
+        this.color = "rgba(255,0,0,0.8)";
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+        }
+      }
+
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
       }
     }
 
-    setInterval(updateCountdown, 1000);
+    function initParticles() {
+      for (let i = 0; i < 120; i++) {
+        particles.push(new Particle());
+      }
+    }
 
-    // Particles.js kırmızı efektler
-    particlesJS("particles-js", {
-      particles: {
-        number: { value: 80 },
-        color: { value: "#ff0000" },
-        shape: { type: "circle" },
-        opacity: { value: 0.6 },
-        size: { value: 3 },
-        line_linked: {
-          enable: true,
-          distance: 150,
-          color: "#ff0000",
-          opacity: 0.4,
-          width: 1
-        },
-        move: { enable: true, speed: 3 }
-      },
-      interactivity: {
-        detect_on: "canvas",
-        events: {
-          onhover: { enable: true, mode: "repulse" },
-          onclick: { enable: true, mode: "push" }
-        },
-        modes: {
-          repulse: { distance: 100 },
-          push: { particles_nb: 4 }
-        }
-      },
-      retina_detect: true
-    });
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    initParticles();
+    animate();
   </script>
 </body>
 </html>
