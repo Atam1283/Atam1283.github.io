@@ -3,20 +3,132 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Galerisi - Atatürk</title>
+<title>Galerisi - Atatürk Sitesi</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap');
   body {
-    margin: 0; padding: 0;
-    font-family: 'Roboto', sans-serif;
-    background-color: #ffe6e6;
-    color: #660000;
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    transition: background-color 0.5s, color 0.5s;
+    margin:0; padding:0; font-family: 'Montserrat', sans-serif;
+    background: #1a0000; color: white;
+    overflow-x: hidden;
   }
-  header {
-    background-color: #b30000;
-    color: white;
+  nav {
+    background: #660000; padding: 15px;
+    display: flex; gap: 20px;
+  }
+  nav a {
+    color: white; text-decoration: none; font-weight: 600;
+  }
+  nav a:hover {
+    text-decoration: underline;
+  }
+  .container {
+    padding: 20px; max-width: 900px; margin: auto;
+  }
+  h1 {
+    font-weight: 700; margin-bottom: 10px;
     text-align: center;
-   
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    gap: 15px;
+  }
+  .gallery img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #ff0000a0;
+  }
+  #themeToggle {
+    position: fixed; top: 20px; right: 20px;
+    background: #990000; border: none; padding: 10px 20px;
+    color: white; font-weight: bold; cursor: pointer;
+    border-radius: 5px;
+    z-index: 10;
+  }
+  body.dark {
+    background: #1a0000;
+    color: white;
+  }
+  body.light {
+    background: #fff0f0;
+    color: #660000;
+  }
+  body.light nav {
+    background: #ffcccc;
+  }
+  body.light #themeToggle {
+    background: #cc0000;
+    color: white;
+  }
+  #particles-js {
+    position: fixed;
+    width: 100%; height: 100%;
+    top: 0; left: 0; z-index: 0;
+  }
+  .content {
+    position: relative;
+    z-index: 1;
+  }
+</style>
+</head>
+<body class="dark">
+
+<button id="themeToggle">Tema Değiştir</button>
+
+<nav>
+  <a href="index.html">Ana Sayfa</a>
+  <a href="hayati.html">Hayatı</a>
+  <a href="galeri.html">Galerisi</a>
+  <a href="zaman.html">Zaman Çizelgesi</a>
+  <a href="gerisayim.html">Geri Sayım</a>
+</nav>
+
+<div id="particles-js"></div>
+
+<div class="container content">
+  <h1>Atatürk Galerisi</h1>
+  <div class="gallery">
+    <img src="images/ataturk1.jpg" alt="Atatürk 1" />
+    <img src="images/ataturk2.jpg" alt="Atatürk 2" />
+    <img src="images/ataturk3.jpg" alt="Atatürk 3" />
+    <img src="images/ataturk4.jpg" alt="Atatürk 4" />
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+  particlesJS('particles-js', {
+    particles: {
+      number: { value: 60, density: { enable: true, value_area: 800 } },
+      color: { value: '#ff0000' },
+      shape: { type: 'circle' },
+      opacity: { value: 0.6 },
+      size: { value: 4, random: true },
+      move: { enable: true, speed: 2, direction: 'none', out_mode: 'out' }
+    },
+    interactivity: {
+      detect_on: 'canvas',
+      events: {
+        onhover: { enable: true, mode: 'repulse' },
+        onclick: { enable: true, mode: 'push' }
+      },
+      modes: {
+        repulse: { distance: 100 },
+        push: { particles_nb: 4 }
+      }
+    },
+    retina_detect: true
+  });
+
+  const toggleBtn = document.getElementById('themeToggle');
+  toggleBtn.addEventListener('click', () => {
+    if(document.body.classList.contains('dark')){
+      document.body.classList.replace('dark', 'light');
+    } else {
+      document.body.classList.replace('light', 'dark');
+    }
+  });
+</script>
+
+</body>
+</html>
