@@ -1,139 +1,161 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Zaman Çizelgesi</title>
-  <link rel="stylesheet" href="css/style.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet"/>
-  <style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Atatürk Zaman Çizelgesi</title>
+
+<!-- Google Fonts: Orbitron ve Roboto Condensed -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto+Condensed&display=swap" rel="stylesheet" />
+
+<style>
+  /* Genel Ayarlar */
+  body {
+    background-color: #0a0a0a; /* Çok koyu siyah */
+    color: #ddd; /* Açık gri */
+    font-family: 'Roboto Condensed', Arial, sans-serif;
+    margin: 0;
+    padding: 40px 20px;
+  }
+
+  h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 3rem;
+    color: #ff4d4d;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  /* Zaman Çizelgesi Konteyner */
+  .timeline {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: 30px;
+    border-left: 4px solid #ff4d4d;
+  }
+
+  /* Her bir olay kutusu */
+  .event {
+    position: relative;
+    margin-bottom: 35px;
+    padding-left: 25px;
+    cursor: default;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 8px;
+  }
+
+  /* Nokta */
+  .event::before {
+    content: '';
+    position: absolute;
+    left: -14px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    background-color: #ff4d4d;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #ff4d4d99;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Tarih */
+  .date {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #ff4d4d;
+    margin-bottom: 6px;
+  }
+
+  /* Olay açıklaması */
+  .description {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #eee;
+  }
+
+  /* Hover efektleri */
+  .event:hover {
+    background-color: #1e1e1e;
+    box-shadow: 0 0 12px #ff4d4dcc;
+  }
+  .event:hover::before {
+    background-color: #ff9999;
+    box-shadow: 0 0 16px #ff999999;
+  }
+
+  /* Önemli tarih vurgusu (ör: Atatürk'ün ölüm günü gibi) */
+  .important .date {
+    font-size: 1.6rem;
+    color: #ff0000;
+    text-shadow: 0 0 8px #ff0000bb;
+  }
+  .important:hover {
+    background-color: #330000;
+    box-shadow: 0 0 18px #ff0000cc;
+  }
+  .important:hover::before {
+    background-color: #ff4d4d;
+    box-shadow: 0 0 20px #ff4d4dbb;
+  }
+
+  /* Responsive: küçük ekranlarda padding ve font küçült */
+  @media (max-width: 600px) {
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Orbitron', sans-serif;
-      background-color: black;
-      color: white;
-      overflow-x: hidden;
+      padding: 20px 10px;
     }
-
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-
-    header {
-      padding: 1rem;
-      text-align: center;
-    }
-
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+      font-size: 2rem;
+      margin-bottom: 30px;
     }
-
-    .timeline {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem;
+    .date {
+      font-size: 1.1rem;
     }
-
-    .event {
-      background-color: rgba(255, 255, 255, 0.1);
-      margin: 1rem 0;
-      padding: 1rem;
-      border-left: 4px solid #ff4d4d;
-      border-radius: 5px;
+    .description {
+      font-size: 1rem;
     }
-
-    .event strong {
-      display: block;
-      font-size: 1.2rem;
-      color: #ff4d4d;
-    }
-
-    a {
-      color: #ff4d4d;
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    a[href="index.html"] {
-      color: white !important;
-    }
-
-    @media screen and (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-
-      .timeline {
-        padding: 1rem;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <div id="particles-js"></div>
-  <a href="index.html">← Ana Sayfa</a>
 
-  <header>
-    <h1>Atatürk'ün Hayatındaki Önemli Olaylar</h1>
-  </header>
+  <h1>Atatürk Zaman Çizelgesi</h1>
 
   <section class="timeline">
-    <div class="event"><strong>1881</strong> Mustafa Selânik'te doğdu.</div>
-    <div class="event"><strong>1893</strong> Askerî Hazırlık Okuluna başladı, “Kemâl” ismini aldı.</div>
-    <div class="event"><strong>1895</strong> Manastır Askerî Lisesi'ne girdi.</div>
-    <div class="event"><strong>1905</strong> Harp Akademisi’nden Kurmay Yüzbaşı olarak mezun oldu.</div>
-    <div class="event"><strong>1915</strong> Çanakkale Savaşı'nda büyük başarılar gösterdi.</div>
-    <div class="event"><strong>1919</strong> 19 Mayıs'ta Samsun’a çıkarak Kurtuluş Savaşı’nı başlattı.</div>
-    <div class="event"><strong>1920</strong> TBMM’yi açtı.</div>
-    <div class="event"><strong>1923</strong> Cumhuriyeti ilan etti, ilk Cumhurbaşkanı seçildi.</div>
-    <div class="event"><strong>1934</strong> "Atatürk" soyadını aldı.</div>
-    <div class="event"><strong>1938</strong> 10 Kasım’da vefat etti.</div>
+
+    <article class="event">
+      <div class="date">27 Aralık 1919</div>
+      <div class="description">Atatürk’ün Ankara’ya gelişi</div>
+    </article>
+
+    <article class="event">
+      <div class="date">19 Mayıs 1919</div>
+      <div class="description">Atatürk'ün Samsun’a çıkarak Milli Mücadeleyi başlatması</div>
+    </article>
+
+    <article class="event">
+      <div class="date">23 Nisan 1920</div>
+      <div class="description">Türkiye Büyük Millet Meclisi’nin açılışı</div>
+    </article>
+
+    <article class="event">
+      <div class="date">1 Kasım 1922</div>
+      <div class="description">Saltanatın kaldırılması</div>
+    </article>
+
+    <article class="event important">
+      <div class="date">10 Kasım 1938</div>
+      <div class="description">Atatürk’ün vefatı</div>
+    </article>
+
+    <article class="event">
+      <div class="date">29 Ekim 1923</div>
+      <div class="description">Türkiye Cumhuriyeti’nin ilanı</div>
+    </article>
+
   </section>
 
-  <!-- Particles.js -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <script>
-    // Kırmızı parçacıklı arka plan
-    particlesJS("particles-js", {
-      particles: {
-        number: { value: 90 },
-        color: { value: "#ff0000" },
-        shape: { type: "circle" },
-        opacity: { value: 0.5 },
-        size: { value: 3 },
-        line_linked: {
-          enable: true,
-          distance: 120,
-          color: "#ff0000",
-          opacity: 0.4,
-          width: 1
-        },
-        move: {
-          enable: true,
-          speed: 2
-        }
-      },
-      interactivity: {
-        detect_on: "canvas",
-        events: {
-          onhover: { enable: true, mode: "repulse" },
-          onclick: { enable: true, mode: "push" }
-        },
-        modes: {
-          repulse: { distance: 100 },
-          push: { particles_nb: 4 }
-        }
-      },
-      retina_detect: true
-    });
-  </script>
 </body>
 </html>
