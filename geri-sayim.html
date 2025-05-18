@@ -1,132 +1,191 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Özel Günlere Geri Sayım</title>
-  <style>
-    body {
-      background-color: black;
-      color: white;
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 40px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      justify-content: center;
-    }
-    a#anasayfa {
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      color: white;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 18px;
-      z-index: 10;
-    }
-    a#anasayfa:hover {
-      color: #ff4d4d;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>En Yakın Özel Güne Geri Sayım</title>
+<style>
+  /* Genel düzen */
+  body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  a#anasayfa {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+    z-index: 100;
+  }
+  a#anasayfa:hover {
+    color: #ccc;
+  }
+  h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #fff;
+    text-align: center;
+    text-shadow:
+      0 0 10px #fff,
+      0 0 20px #fff,
+      0 0 30px #ff4d4d,
+      0 0 40px #ff4d4d,
+      0 0 50px #ff4d4d,
+      0 0 60px #ff4d4d,
+      0 0 70px #ff4d4d;
+    margin-bottom: 15px;
+  }
+  .countdown-container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 30px 40px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow:
+      0 0 10px rgba(255, 77, 77, 0.7),
+      0 0 20px rgba(255, 77, 77, 0.5);
+    text-align: center;
+  }
+  .event-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ff4d4d;
+    margin-bottom: 25px;
+  }
+  .countdown {
+    display: flex;
+    justify-content: space-around;
+    font-weight: 700;
+  }
+  .countdown div {
+    flex: 1;
+  }
+  .countdown div span {
+    display: block;
+    font-size: 3.5rem;
+    color: white;
+    text-shadow: 0 0 10px #ff4d4d;
+  }
+  .countdown div small {
+    display: block;
+    font-size: 1rem;
+    color: #ccc;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  footer {
+    margin-top: 50px;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  @media (max-width: 450px) {
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: white;
-      text-align: center;
-      text-shadow: 0 0 10px #ff4d4d;
+      font-size: 2.2rem;
     }
-    #countdown {
-      display: flex;
-      gap: 20px;
-      font-size: 1.8rem;
-      font-weight: 700;
-      justify-content: center;
-      margin-bottom: 10px;
-      color: white;
-      text-shadow: 0 0 5px #ff4d4d;
+    .countdown-container {
+      padding: 20px 25px;
     }
-    #event-name {
-      font-size: 1.5rem;
-      color: white;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 20px;
+    .countdown div span {
+      font-size: 2.8rem;
     }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
+<a id="anasayfa" href="index.html">← Ana Sayfa</a>
 
-  <h1>En Yakın Özel Güne Geri Sayım</h1>
-  <div id="event-name"></div>
-  <div id="countdown">
-    <span id="days">00</span> Gün 
-    <span id="hours">00</span> Saat 
-    <span id="minutes">00</span> Dakika 
-    <span id="seconds">00</span> Saniye
+<h1>En Yakın Özel Güne Geri Sayım</h1>
+
+<div class="countdown-container">
+  <div class="event-name" id="eventName">Yükleniyor...</div>
+  <div class="countdown">
+    <div><span id="days">00</span><small>Gün</small></div>
+    <div><span id="hours">00</span><small>Saat</small></div>
+    <div><span id="minutes">00</span><small>Dakika</small></div>
+    <div><span id="seconds">00</span><small>Saniye</small></div>
   </div>
+</div>
 
-  <script>
-    const events = [
-      { name: "Yılbaşı", date: "01-01" },
-      { name: "Ulusal Egemenlik ve Çocuk Bayramı", date: "04-23" },
-      { name: "Emek ve Dayanışma Günü", date: "05-01" },
-      { name: "Atatürk'ü Anma, Gençlik ve Spor Bayramı", date: "05-19" },
-      { name: "Milli Birlik ve Demokrasi Günü", date: "07-15" },
-      { name: "Zafer Bayramı", date: "08-30" },
-      { name: "Cumhuriyet Bayramı", date: "10-29" },
-      { name: "Atatürk'ü Anma Günü", date: "11-10" }
-    ];
+<footer>© 2025 Atatürk ve Cumhuriyet Özel Günleri</footer>
 
-    function getNextEvent() {
-      const now = new Date();
-      const thisYear = now.getFullYear();
+<script>
+  const events = [
+    { name: "Yılbaşı", date: "01-01" },
+    { name: "Ulusal Egemenlik ve Çocuk Bayramı", date: "04-23" },
+    { name: "Emek ve Dayanışma Günü", date: "05-01" },
+    { name: "Atatürk'ü Anma, Gençlik ve Spor Bayramı", date: "05-19" },
+    { name: "Milli Birlik ve Demokrasi Günü", date: "07-15" },
+    { name: "Zafer Bayramı", date: "08-30" },
+    { name: "Cumhuriyet Bayramı", date: "10-29" }
+  ];
 
-      let upcomingEvents = events.map(e => {
-        let eventDate = new Date(`${thisYear}-${e.date}T00:00:00`);
-        if (eventDate < now) {
-          eventDate = new Date(`${thisYear + 1}-${e.date}T00:00:00`);
-        }
-        return {...e, eventDate};
-      });
+  function getNextEvent() {
+    const now = new Date();
+    let year = now.getFullYear();
+    let closestEvent = null;
+    let minDiff = Infinity;
 
-      upcomingEvents.sort((a, b) => a.eventDate - b.eventDate);
+    for (const event of events) {
+      const [month, day] = event.date.split("-");
+      let eventDate = new Date(year, month - 1, day);
 
-      return upcomingEvents[0];
-    }
-
-    function updateCountdown() {
-      const event = getNextEvent();
-      const now = new Date();
-      const diff = event.eventDate - now;
-
-      if (diff <= 0) {
-        document.getElementById("event-name").textContent = `${event.name} bugün!`;
-        document.getElementById("days").textContent = "00";
-        document.getElementById("hours").textContent = "00";
-        document.getElementById("minutes").textContent = "00";
-        document.getElementById("seconds").textContent = "00";
-        return;
+      // Eğer bu yılın tarihi geçmişse, bir sonraki yıla kaydır
+      if (eventDate < now) {
+        eventDate = new Date(year + 1, month - 1, day);
       }
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
+      const diff = eventDate - now;
+      if (diff < minDiff) {
+        minDiff = diff;
+        closestEvent = { ...event, eventDate };
+      }
+    }
+    return closestEvent;
+  }
 
-      document.getElementById("event-name").textContent = `Sıradaki Özel Gün: ${event.name}`;
-      document.getElementById("days").textContent = days.toString().padStart(2, "0");
-      document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
-      document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
-      document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0");
+  function updateCountdown() {
+    const event = getNextEvent();
+    const now = new Date();
+    const diff = event.eventDate - now;
+
+    if (diff <= 0) {
+      document.getElementById("eventName").textContent = event.name + " başladı!";
+      document.getElementById("days").textContent = "00";
+      document.getElementById("hours").textContent = "00";
+      document.getElementById("minutes").textContent = "00";
+      document.getElementById("seconds").textContent = "00";
+      return;
     }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("eventName").textContent = event.name;
+    document.getElementById("days").textContent = days.toString().padStart(2, "0");
+    document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
+    document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
+    document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0");
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
 
 </body>
 </html>
