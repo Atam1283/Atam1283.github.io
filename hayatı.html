@@ -3,70 +3,77 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Atatürk'ün Hayatı</title>
+<title>Hayatı - Atatürk</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap');
   body {
     margin: 0; padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: white;
-    color: #222;
+    font-family: 'Roboto', sans-serif;
+    background-color: #ffe6e6;
+    color: #660000;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
     transition: background-color 0.5s, color 0.5s;
   }
   header {
     background-color: #b30000;
     color: white;
-    padding: 15px 20px;
     text-align: center;
-    font-weight: bold;
-    font-size: 28px;
+    padding: 20px 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: 1.5px;
     position: sticky;
     top: 0;
     z-index: 10;
   }
   nav {
-    background-color: #ff1a1a;
+    background-color: #ff4d4d;
     display: flex;
     justify-content: center;
-    gap: 20px;
-    padding: 12px 0;
+    gap: 30px;
+    padding: 15px 0;
   }
   nav a {
     color: white;
     text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    font-size: 18px;
-    padding: 6px 12px;
-    border-radius: 6px;
+    font-size: 1.2rem;
+    padding: 8px 16px;
+    border-radius: 8px;
     transition: background-color 0.3s;
   }
   nav a:hover {
     background-color: #800000;
   }
   main {
+    flex-grow: 1;
+    padding: 40px 20px;
     max-width: 900px;
-    margin: 40px auto 60px auto;
-    padding: 0 20px;
+    margin: 0 auto;
+    line-height: 1.7;
   }
   h1 {
-    text-align: center;
-    margin-bottom: 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.8rem;
+    margin-bottom: 20px;
     color: #b30000;
-    text-shadow: 1px 1px 3px #660000;
   }
   p {
-    line-height: 1.6;
-    font-size: 18px;
-    text-align: justify;
+    font-size: 1.2rem;
   }
   #themeBtn {
     position: fixed;
     top: 15px; right: 15px;
     background-color: #b30000;
-    color: white;
     border: none;
-    padding: 8px 14px;
-    border-radius: 5px;
-    font-weight: 600;
+    color: white;
+    padding: 10px 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    border-radius: 6px;
     cursor: pointer;
     box-shadow: 0 0 8px #b30000;
     transition: background-color 0.3s;
@@ -75,10 +82,11 @@
   #themeBtn:hover {
     background-color: #800000;
   }
-  /* Koyu tema */
+
+  /* Dark theme */
   body.dark-theme {
-    background-color: #1a0000;
-    color: #f0dede;
+    background-color: #330000;
+    color: #ffdede;
   }
   body.dark-theme header {
     background-color: #ff1a1a;
@@ -86,24 +94,17 @@
   body.dark-theme nav {
     background-color: #800000;
   }
-  body.dark-theme nav a {
-    color: #ffdede;
-  }
   body.dark-theme nav a:hover {
     background-color: #ff4d4d;
   }
-  body.dark-theme h1 {
-    color: #ff4d4d;
-    text-shadow: 1px 1px 5px #330000;
+  body.dark-theme nav a {
+    color: #ffdede;
   }
 </style>
 </head>
 <body>
-
 <button id="themeBtn">Tema Değiştir</button>
-
-<header>Mustafa Kemal Atatürk - Hayatı</header>
-
+<header>Mustafa Kemal Atatürk'ün Hayatı</header>
 <nav>
   <a href="index.html">Ana Sayfa</a>
   <a href="hayati.html">Hayatı</a>
@@ -111,25 +112,19 @@
   <a href="zaman.html">Zaman Çizelgesi</a>
   <a href="gerisayim.html">Geri Sayım</a>
 </nav>
-
 <main>
-  <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
+  <h1>Hayatı</h1>
   <p>
-    Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğmuştur. Askeri eğitim aldıktan sonra Osmanlı İmparatorluğu'nun çeşitli cephelerinde görev yapmıştır. 
-    I. Dünya Savaşı'nın ardından, 19 Mayıs 1919'da Samsun'a çıkarak Türk Kurtuluş Savaşı'nı başlatmıştır. 
-  </p>
-  <p>
-    1923 yılında Türkiye Cumhuriyeti'nin kuruluşunu gerçekleştirmiş, pek çok reform ve yeniliğe öncülük etmiştir. 
-    10 Kasım 1938'de İstanbul'da vefat etmiştir. Atatürk, hem Türkiye'nin hem de dünya tarihinin en önemli liderlerinden biridir.
+    Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğmuştur. Eğitim hayatına mahalle mektebinde başlayan Atatürk, ardından 
+    Askeri Rüştiye ve Harp Okulu eğitimlerini tamamlamıştır. Osmanlı ordusunda çeşitli görevlerde bulunmuş, I. Dünya Savaşı'nda 
+    önemli başarılara imza atmıştır. 1919 yılında Samsun'a çıkarak Kurtuluş Savaşı'nı başlatmış ve Türkiye Cumhuriyeti'nin kuruluşuna öncülük etmiştir.
   </p>
 </main>
-
 <script>
   const themeBtn = document.getElementById('themeBtn');
   themeBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark-theme');
   });
 </script>
-
 </body>
 </html>
