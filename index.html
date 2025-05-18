@@ -3,194 +3,244 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Atatürk Sitesi - Ana Sayfa</title>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Playfair+Display&display=swap" rel="stylesheet" />
+<title>Mustafa Kemal Atatürk - Modern Site</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Merriweather:ital,wght@0,400;1,700&display=swap" rel="stylesheet" />
+
 <style>
-  /* Tema ve stil burada */
+  /* Reset ve temel */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
   body {
-    font-family: 'Merriweather', serif;
-    background-color: var(--bg-color, #fff);
-    color: var(--text-color, #222);
-    margin: 0; padding-top: 70px;
-    transition: background-color 0.5s, color 0.5s;
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: background 0.5s ease, color 0.5s ease;
+    overflow-x: hidden;
     min-height: 100vh;
   }
   :root {
-    --bg-color: #fff;
-    --text-color: #222;
-    --primary-color: #b22222;
+    --bg: #fdf6f0;
+    --text: #2b2b2b;
+    --primary: #b22222;
+    --secondary: #f5c6c6;
+    --shadow: rgba(178, 34, 34, 0.3);
   }
-  body.dark-theme {
-    --bg-color: #121212;
-    --text-color: #eee;
-    --primary-color: #ff6347;
+  body.dark {
+    --bg: #121212;
+    --text: #e0e0e0;
+    --primary: #ff6347;
+    --secondary: #b34747;
+    --shadow: rgba(255, 99, 71, 0.4);
   }
+
+  /* Navbar */
   nav {
     position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 60px;
-    background: var(--primary-color);
+    width: 100%;
+    background: var(--primary);
+    padding: 15px 40px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    z-index: 999;
+    z-index: 1000;
+    box-shadow: 0 3px 10px var(--shadow);
   }
   nav .logo {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    font-size: 1.7rem;
     color: white;
-    font-weight: bold;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
+    letter-spacing: 2px;
   }
   nav ul {
-    margin-left: auto;
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 25px;
   }
   nav ul li a {
     color: white;
     text-decoration: none;
     font-weight: 600;
-    font-family: 'Merriweather', serif;
+    font-size: 1rem;
+    transition: color 0.3s ease;
   }
   nav ul li a:hover {
-    color: #ffdede;
+    color: var(--secondary);
   }
-  #theme-selector {
-    margin-left: 20px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: none;
-    font-weight: bold;
+
+  /* Tema butonu */
+  #theme-toggle {
+    background: transparent;
+    border: 2px solid white;
+    border-radius: 30px;
+    padding: 6px 14px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  #theme-toggle:hover {
+    background: white;
+    color: var(--primary);
+  }
+
+  /* Ana kapsayıcı */
+  main {
+    max-width: 900px;
+    margin: 100px auto 60px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Başlık */
+  h1 {
+    font-family: 'Merriweather', serif;
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: var(--primary);
+    text-shadow: 2px 2px 6px var(--shadow);
+  }
+  h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 2rem;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    color: var(--primary);
+    border-bottom: 3px solid var(--primary);
+    display: inline-block;
+    padding-bottom: 6px;
+  }
+  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  /* Sözler bölümü */
+  .quotes {
+    font-style: italic;
+    background: var(--secondary);
+    border-left: 6px solid var(--primary);
+    padding: 15px 20px;
+    margin: 30px 0;
+    border-radius: 8px;
+    color: var(--primary);
+    box-shadow: 2px 2px 8px var(--shadow);
+  }
+
+  /* Galeri */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 20px;
+  }
+  .gallery img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px var(--shadow);
+    transition: transform 0.3s ease;
     cursor: pointer;
   }
-  #random-quote {
-    background: var(--primary-color);
-    color: white;
-    border-radius: 10px;
-    padding: 15px 20px;
-    margin: 30px auto;
-    max-width: 700px;
-    font-style: italic;
-    font-size: 1.3rem;
-    text-align: center;
+  .gallery img:hover {
+    transform: scale(1.05);
   }
-  /* Parçacık efekt (basit) */
+
+  /* Sosyal medya */
+  footer {
+    text-align: center;
+    padding: 30px 10px 20px;
+    background: var(--primary);
+    color: white;
+    position: relative;
+    z-index: 10;
+  }
+  footer a {
+    color: white;
+    margin: 0 12px;
+    font-size: 1.4rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  footer a:hover {
+    color: var(--secondary);
+  }
+
+  /* Parçacıklar canvas */
   #particle-canvas {
     position: fixed;
-    top: 60px; left: 0;
-    width: 100%;
-    height: calc(100% - 60px);
-    pointer-events: none;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
     z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 2.2rem;
+    }
+    nav {
+      padding: 12px 20px;
+    }
+    nav ul {
+      gap: 15px;
+    }
   }
 </style>
 </head>
 <body>
+
 <nav>
-  <div class="logo">Atatürk Sitesi</div>
+  <div class="logo">Mustafa Kemal Atatürk</div>
   <ul>
-    <li><a href="index.html">Ana Sayfa</a></li>
-    <li><a href="hayati.html">Hayatı</a></li>
-    <li><a href="galeri.html">Galerisi</a></li>
-    <li><a href="zaman.html">Zaman Çizelgesi</a></li>
-    <li><a href="gerisayim.html">Geri Sayım</a></li>
+    <li><a href="#hakkinda">Hakkında</a></li>
+    <li><a href="#hayati">Hayatı</a></li>
+    <li><a href="#sozleri">Sözleri</a></li>
+    <li><a href="#galeri">Galeri</a></li>
   </ul>
-  <select id="theme-selector" title="Tema Seçin">
-    <option value="light">Açık Tema</option>
-    <option value="dark">Koyu Tema</option>
-  </select>
+  <button id="theme-toggle" aria-label="Tema değiştir">Koyu Tema</button>
 </nav>
 
 <canvas id="particle-canvas"></canvas>
 
 <main>
-  <h1>Mustafa Kemal Atatürk</h1>
-  <div id="random-quote">Yükleniyor...</div>
+  <section id="hakkinda">
+    <h1>Mustafa Kemal Atatürk</h1>
+    <p>Türkiye Cumhuriyeti'nin kurucusu ve ilk Cumhurbaşkanı Mustafa Kemal Atatürk, modern Türkiye'nin şekillenmesinde öncü bir liderdir. Askeri dehası, inkılapları ve vizyonu ile dünya tarihine adını altın harflerle yazdırmıştır.</p>
+  </section>
+
+  <section id="hayati">
+    <h2>Hayatı</h2>
+    <p>1881 yılında Selanik'te doğan Atatürk, eğitim hayatını Askeri okullarda tamamladıktan sonra Osmanlı ordusunda çeşitli görevlerde bulunmuş, Birinci Dünya Savaşı'nda önemli başarılara imza atmıştır. Kurtuluş Savaşı'nın lideri olarak Türkiye'nin bağımsızlığını sağlamış, Cumhuriyet'i ilan etmiştir.</p>
+    <p>1923'ten sonra yaptığı reformlarla Türkiye'nin modernleşme sürecini başlatmıştır.</p>
+  </section>
+
+  <section id="sozleri">
+    <h2>Ünlü Sözleri</h2>
+    <div class="quotes">"Egemenlik, kayıtsız şartsız milletindir."</div>
+    <div class="quotes">"Hayatta en hakiki mürşit ilimdir."</div>
+    <div class="quotes">"Ne mutlu Türküm diyene!"</div>
+    <div class="quotes">"Yurtta sulh, cihanda sulh."</div>
+    <div class="quotes">"Beni görmek demek mutlaka yüzümü görmek değildir."</div>
+  </section>
+
+  <section id="galeri">
+    <h2>Fotoğraf Galerisi</h2>
+    <div class="gallery">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Atat%C3%BCrk1925.jpg/440px-Atat%C3%BCrk1925.jpg" alt="Atatürk 1925" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Atat%C3%BCrk_in_1930s.jpg" alt="Atatürk 1930s" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Atat%C3%BCrk_and_Nurettin_Pasha_1921.jpg" alt="Atatürk ve Nurettin Paşa 1921" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Atatürk_and_Safahat_Poem_1917.jpg" alt="Atatürk Safahat 1917" />
+    </div>
+  </section>
 </main>
 
-<script>
-  // Tema yönetimi
-  const themeSelector = document.getElementById('theme-selector');
-  function setTheme(theme) {
-    if(theme === 'dark') document.body.classList.add('dark-theme');
-    else document.body.classList.remove('dark-theme');
-    localStorage.setItem('siteTheme', theme);
-  }
-  const savedTheme = localStorage.getItem('siteTheme') || 'light';
-  themeSelector.value = savedTheme;
-  setTheme(savedTheme);
-  themeSelector.addEventListener('change', e => setTheme(e.target.value));
-
-  // Rastgele Atatürk sözleri
-  const quotes = [
-    "Egemenlik, kayıtsız şartsız milletindir.",
-    "Hayatta en hakiki mürşit ilimdir.",
-    "Ne mutlu Türküm diyene!",
-    "Yurtta sulh, cihanda sulh.",
-    "Beni görmek demek mutlaka yüzümü görmek değildir. Benim düşüncelerimi, benim duygularımı anlıyorsanız bu kafidir.",
-    "İstikbal göklerdedir."
-  ];
-  const quoteEl = document.getElementById('random-quote');
-  function showRandomQuote() {
-    const q = quotes[Math.floor(Math.random() * quotes.length)];
-    quoteEl.textContent = `"${q}"`;
-  }
-  showRandomQuote();
-
-  // Basit kırmızı parçacık efekti
-  const canvas = document.getElementById('particle-canvas');
-  const ctx = canvas.getContext('2d');
-  let particlesArray = [];
-
-  function initCanvas(){
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight - 60;
-  }
-  window.addEventListener('resize', initCanvas);
-  initCanvas();
-
-  class Particle {
-    constructor(){
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.size = Math.random() * 3 + 1;
-      this.speedX = (Math.random() - 0.5) * 1.5;
-      this.speedY = (Math.random() - 0.5) * 1.5;
-      this.color = 'rgba(178,34,34,0.7)';
-    }
-    update(){
-      this.x += this.speedX;
-      this.y += this.speedY;
-      if(this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-      if(this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-    }
-    draw(){
-      ctx.fillStyle = this.color;
-      ctx.beginPath();
-      ctx.shadowColor = 'rgba(255,0,0,0.7)';
-      ctx.shadowBlur = 10;
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
-  function initParticles(){
-    particlesArray = [];
-    for(let i=0; i<50; i++){
-      particlesArray.push(new Particle());
-    }
-  }
-  function animate(){
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particlesArray.forEach(p => {
-      p.update();
-      p.draw();
-    });
-    requestAnimationFrame(animate);
-  }
-  initParticles();
-  animate();
-</script>
-</body>
-</html>
+<footer>
+  <p>© 2025 Atatürk Temalı Modern Site</p>
+  <a href="https://www.facebook.com/ataturk" target="_blank" rel="noopener" aria-label="Facebook"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.592 0 0 .592 0 1.326v21.348C0 23.408.592 24 1.325 24h11.495v-9.294H9.691v-3.622h3.129V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.463.099 2.795.142v3.24l-1.918.001c-1.505 0-1.797.716-1.797 1.766v2.314h3.59l-.467 3.622h-3.123V24h6.116C23.408 24 24 23.408 24 22.674V1.326C24 .592 23.408 0 22.675 0z"/></svg></a>
+  <a
