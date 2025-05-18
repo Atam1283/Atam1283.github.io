@@ -17,10 +17,112 @@
         }
 
         /* Üst menü */
-        header {
-            background-color: #7a0b0b;
-            color: white;
-            padding: 1rem 2rem;
+        header {<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mustafa Kemal Atatürk</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#fff0f0; color:#7a0b0b; }
+    header {
+      background:#7a0b0b; color:#fff; padding:1rem 2rem; position: sticky; top: 0; z-index: 10;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    nav ul {
+      list-style:none; margin:0; padding:0; display:flex; gap:1.5rem;
+    }
+    nav ul li a {
+      color:#fff; text-decoration:none; font-weight:600; cursor:pointer;
+    }
+    nav ul li a:hover {
+      color:#ff3b3b;
+    }
+    main {
+      max-width: 900px; margin: 2rem auto; padding: 0 1rem; min-height: 400px;
+    }
+    section {
+      display: none; /* Tüm bölümler gizli */
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(122, 11, 11, 0.15);
+    }
+    section.active {
+      display: block; /* Aktif bölüm görünür */
+    }
+    h2 {
+      border-bottom: 3px solid #ff3b3b;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    img.hero-image {
+      display: block;
+      max-width: 100%;
+      margin: 0 auto 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(122, 11, 11, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Mustafa Kemal Atatürk</h1>
+  <nav>
+    <ul>
+      <li><a onclick="showSection('anasayfa')">Ana Sayfa</a></li>
+      <li><a onclick="showSection('hayati')">Hayatı</a></li>
+      <li><a onclick="showSection('inkilaplar')">İnkılaplar</a></li>
+      <li><a onclick="showSection('sozleri')">Sözleri</a></li>
+      <li><a onclick="showSection('miras')">Mirası</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section id="anasayfa" class="active">
+    <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Mustafa_Kemal_Atat%C3%BCrk_1930s.jpg/800px-Mustafa_Kemal_Atat%C3%BCrk_1930s.jpg" alt="Mustafa Kemal Atatürk" />
+    <h2>Ana Sayfa</h2>
+    <p>Hoşgeldiniz! Bu site Mustafa Kemal Atatürk'ün hayatı ve eserlerini anlatmaktadır.</p>
+  </section>
+
+  <section id="hayati">
+    <h2>Mustafa Kemal Atatürk'ün Hayatı</h2>
+    <p>1881 yılında Selanik'te doğmuş, Osmanlı İmparatorluğu'nun son dönemlerinde yetişmiş büyük bir asker ve devlet adamıdır...</p>
+  </section>
+
+  <section id="inkilaplar">
+    <h2>İnkılaplar</h2>
+    <p>Atatürk, modern Türkiye'nin temellerini atmak için kapsamlı reformlar yapmıştır...</p>
+  </section>
+
+  <section id="sozleri">
+    <h2>Atatürk'ün Sözleri</h2>
+    <p>"Yurtta sulh, cihanda sulh."</p>
+    <p>"Egemenlik, kayıtsız şartsız milletindir."</p>
+    <p>"Hayatta en hakiki mürşit ilimdir."</p>
+  </section>
+
+  <section id="miras">
+    <h2>Atatürk'ün Mirası</h2>
+    <p>Atatürk, Türkiye Cumhuriyeti'nin çağdaş, demokratik ve laik bir devlet olarak yoluna devam etmesini sağlamıştır...</p>
+  </section>
+</main>
+
+<script>
+  function showSection(id) {
+    const sections = document.querySelectorAll('main section');
+    sections.forEach(section => {
+      section.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
+  }
+</script>
+
+</body>
+</html>
+
             position: sticky;
             top: 0;
             z-index: 10;
