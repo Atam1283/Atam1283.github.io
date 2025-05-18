@@ -3,112 +3,254 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Atatürk Ana Sayfa</title>
-  <style>
-    /* Google Font Montserrat */
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+  <title>Ana Sayfa - Atatürk Sitesi</title>
 
-    /* Temel renkler */
-    :root {
-      --primary-red: #d10000;
-      --secondary-red: #ff4d4d;
-      --bg-light: #fff5f5;
-      --text-dark: #3b0a0a;
+  <!-- Google Fonts: Elegant yazı tipi -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Temel sıfırlamalar */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body, html {
+      height: 100%;
+      font-family: 'Roboto', sans-serif;
+      background: #0a0a0a; /* koyu arka plan */
+      color: #eee;
+      overflow-x: hidden;
+    }
+    /* Partiküller için tam ekran canvas */
+    #particles-js {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
     }
 
-    body {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, var(--bg-light), #ffe5e5);
-      color: var(--text-dark);
-      min-height: 100vh;
+    /* Menü */
+    nav {
+      width: 100%;
+      background: rgba(20, 20, 20, 0.85);
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0; left: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(255,0,0,0.3);
+    }
+    nav a {
+      color: #f44336; /* kırmızı vurgu */
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+      letter-spacing: 0.05em;
+      font-family: 'Playfair Display', serif;
+    }
+    nav a:hover {
+      color: #fff;
+    }
+
+    /* Ana içerik ortalanacak */
+    .container {
+      height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      padding: 1rem 2rem;
+      align-items: center;
+      padding: 0 1rem;
       text-align: center;
-    }
-
-    header {
-      font-weight: 700;
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-      color: var(--primary-red);
       user-select: none;
     }
 
-    hr {
-      border: none;
-      border-bottom: 2px solid var(--secondary-red);
-      width: 120px;
-      margin: 1rem auto 2rem;
+    /* Başlık */
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      margin-bottom: 0.2rem;
+      color: #f44336;
+      text-shadow: 0 0 10px #f44336;
     }
 
-    .quote-container {
-      max-width: 700px;
-      font-size: 1.4rem;
+    /* Alttaki slogan/söz */
+    #quote {
       font-style: italic;
-      line-height: 1.6;
+      font-size: 1.6rem;
+      max-width: 700px;
+      color: #fff;
+      text-shadow: 0 0 5px #f44336bb;
       margin-bottom: 2rem;
-      user-select: text;
+      min-height: 2.5rem;
+      transition: opacity 0.8s ease;
     }
 
-    .author {
+    /* Tema değiştirme butonu */
+    #themeToggle {
+      background: transparent;
+      border: 2px solid #f44336;
+      padding: 0.5rem 1.5rem;
+      color: #f44336;
+      font-size: 1rem;
       font-weight: 700;
-      margin-top: 1rem;
-      font-size: 1.2rem;
-      color: var(--primary-red);
+      border-radius: 30px;
+      cursor: pointer;
+      font-family: 'Roboto', sans-serif;
+      transition: all 0.4s ease;
+      user-select: none;
+    }
+    #themeToggle:hover {
+      background: #f44336;
+      color: #111;
     }
 
     /* Responsive */
-    @media (max-width: 600px) {
-      header {
-        font-size: 1.8rem;
+    @media(max-width: 600px) {
+      h1 {
+        font-size: 2.2rem;
       }
-      .quote-container {
+      #quote {
         font-size: 1.1rem;
+        max-width: 90%;
+      }
+      nav a {
+        font-size: 1rem;
+        margin: 0 8px;
       }
     }
-
   </style>
 </head>
 <body>
 
-  <header>Mustafa Kemal Atatürk</header>
-  <hr />
-  <div class="quote-container" id="quote">
-    <!-- JS ile rastgele Atatürk sözü gelecek -->
+  <!-- Partiküller için canvas -->
+  <div id="particles-js"></div>
+
+  <!-- Menü -->
+  <nav>
+    <a href="index.html">Ana Sayfa</a>
+    <a href="hayati.html">Hayatı</a>
+    <a href="zaman.html">Zaman Çizelgesi</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="geri-sayim.html">Geri Sayım</a>
+  </nav>
+
+  <!-- Ana içerik -->
+  <div class="container">
+    <h1>Mustafa Kemal Atatürk</h1>
+    <div id="quote">Yüce Atatürk'ün sözleri burada değişecek...</div>
+    <button id="themeToggle">Temayı Değiştir</button>
   </div>
-  <div class="author">- Atatürk</div>
+
+  <!-- Particles.js Kütüphanesi CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
   <script>
-    // Atatürk'ten özlü sözler listesi
+    // Quotes listesi: Sayfa yenilenince rastgele gösterilecek
     const quotes = [
-      "Yurtta sulh, cihanda sulh.",
       "Egemenlik, kayıtsız şartsız milletindir.",
-      "Hayatta en hakiki mürşit ilimdir, fendir.",
-      "Beni görmek demek mutlaka yüzümü görmek değildir. Benim düşüncelerimi, benim duygularımı anlıyorsanız ve hissediyorsanız bu yeterlidir.",
-      "Milletin bağımsızlığı tehlikedeyse, mücadele etmek her Türk’ün hakkı ve görevidir.",
+      "Yurtta sulh, cihanda sulh.",
+      "Hayatta en hakiki mürşit ilimdir.",
       "İstikbal göklerdedir.",
-      "Benim naçiz vücudum elbet bir gün toprak olacaktır, fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır.",
-      "Küçük olsun benim olsun.",
-      "Hayal etmek, bilgiden daha önemlidir.",
-      "Türk gençliği! Birinci vazifen, Türk istiklâlini, Türk cumhuriyetini, ilelebet, muhafaza ve müdafaa etmektir."
+      "Beni görmek demek mutlaka yüzümü görmek değildir.",
+      "Muasır medeniyet seviyesinin üstüne çıkmak bizim asli hedefimizdir."
     ];
 
-    function changeQuote() {
-      const quoteEl = document.getElementById('quote');
+    const quoteElement = document.getElementById('quote');
+
+    // Rastgele söz seç ve göster
+    function showRandomQuote() {
       const randomIndex = Math.floor(Math.random() * quotes.length);
-      quoteEl.textContent = quotes[randomIndex];
+      quoteElement.style.opacity = 0;
+      setTimeout(() => {
+        quoteElement.textContent = quotes[randomIndex];
+        quoteElement.style.opacity = 1;
+      }, 400);
     }
+    showRandomQuote();
 
-    // Sayfa yüklendiğinde ilk söz
-    changeQuote();
+    // Tema değiştirme işlevi
+    const themeToggle = document.getElementById('themeToggle');
+    let darkTheme = true; // varsayılan tema: koyu
 
-    // Her 10 saniyede bir değiştir (isteğe bağlı)
-    setInterval(changeQuote, 10000);
-  </script>
+    themeToggle.addEventListener('click', () => {
+      if(darkTheme) {
+        // Açık tema
+        document.body.style.background = '#fff';
+        document.body.style.color = '#111';
+        document.querySelector('nav').style.background = 'rgba(255, 255, 255, 0.9)';
+        document.querySelectorAll('nav a').forEach(a => {
+          a.style.color = '#f44336';
+          a.style.textShadow = 'none';
+        });
+        quoteElement.style.color = '#111';
+        quoteElement.style.textShadow = 'none';
+        themeToggle.style.background = 'transparent';
+        themeToggle.style.color = '#f44336';
+        themeToggle.style.borderColor = '#f44336';
+        darkTheme = false;
+      } else {
+        // Koyu tema
+        document.body.style.background = '#0a0a0a';
+        document.body.style.color = '#eee';
+        document.querySelector('nav').style.background = 'rgba(20, 20, 20, 0.85)';
+        document.querySelectorAll('nav a').forEach(a => {
+          a.style.color = '#f44336';
+          a.style.textShadow = 'none';
+        });
+        quoteElement.style.color = '#fff';
+        quoteElement.style.textShadow = '0 0 5px #f44336bb';
+        themeToggle.style.background = 'transparent';
+        themeToggle.style.color = '#f44336';
+        themeToggle.style.borderColor = '#f44336';
+        darkTheme = true;
+      }
+    });
 
-</body>
-</html>
+    // Particles.js ayarları - kırmızı parçacıklar ve mouse etkileşimi
+    particlesJS('particles-js',
+      {
+        "particles": {
+          "number": {
+            "value": 60,
+            "density": {
+              "enable": true,
+              "value_area": 800
+            }
+          },
+          "color": {
+            "value": "#f44336"  // kırmızı parçacıklar
+          },
+          "shape": {
+            "type": "circle",
+            "stroke": {
+              "width": 0,
+              "color": "#000000"
+            }
+          },
+          "opacity": {
+            "value": 0.7,
+            "random": true,
+            "anim": {
+              "enable": true,
+              "speed": 1,
+              "opacity_min": 0.1,
+              "sync": false
+            }
+          },
+          "size": {
+            "value": 4,
+            "random": true,
+            "anim": {
+              "enable": true,
+              "speed": 6,
+              "size_min": 0.3,
+              "sync": false
+            }
+          },
+          "line_linked": {
+            "enable": true,
+            "distance": 140,
+            "color": "#f44336",
+            "opacity": 0.3,
+            "width
