@@ -3,147 +3,81 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Zaman Çizelgesi - Atatürk</title>
-<!-- Modern fontlar -->
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Slab&display=swap" rel="stylesheet" />
+<title>Zaman Çizelgesi - Atatürk Sitesi</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap');
   body {
-    margin: 0; padding: 0;
-    font-family: 'Montserrat', sans-serif;
-    background-color: #fff0f0;
-    color: #660000;
-    min-height: 100vh;
+    margin:0; padding:0; font-family: 'Montserrat', sans-serif;
+    background: #1a0000; color: white;
     overflow-x: hidden;
-    position: relative;
   }
-
-  #particle-canvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    z-index: 0;
-    pointer-events: none;
-    background: transparent;
-  }
-
-  header {
-    background: linear-gradient(90deg, #b30000, #800000);
-    color: white;
-    text-align: center;
-    padding: 25px 15px;
-    font-weight: 700;
-    font-size: 2.7rem;
-    font-family: 'Roboto Slab', serif;
-    letter-spacing: 2px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    box-shadow: 0 4px 12px rgba(179,0,0,0.6);
-  }
-
   nav {
-    background-color: #ff4d4d;
-    display: flex;
-    justify-content: center;
-    gap: 28px;
-    padding: 15px 0;
-    position: sticky;
-    top: 74px;
-    z-index: 10;
-    box-shadow: 0 3px 8px rgba(255,77,77,0.7);
+    background: #660000; padding: 15px;
+    display: flex; gap: 20px;
   }
-
   nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.15rem;
-    padding: 10px 18px;
-    border-radius: 10px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    color: white; text-decoration: none; font-weight: 600;
   }
   nav a:hover {
-    background-color: #660000;
-    transform: scale(1.1);
+    text-decoration: underline;
   }
-
-  main {
-    padding: 60px 20px 120px;
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
+  .container {
+    padding: 20px; max-width: 900px; margin: auto;
   }
-
   h1 {
-    font-family: 'Roboto Slab', serif;
-    font-size: 3.4rem;
-    margin-bottom: 45px;
-    font-weight: 700;
+    font-weight: 700; margin-bottom: 10px;
     text-align: center;
-    letter-spacing: 1.2px;
   }
-
   ul.timeline {
     list-style: none;
     padding-left: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px 40px;
   }
-
   ul.timeline li {
-    background: white;
-    border-radius: 14px;
-    box-shadow: 0 6px 18px rgba(179,0,0,0.15);
-    padding: 22px 26px;
-    position: relative;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    cursor: default;
+    background: rgba(255,0,0,0.3);
+    margin: 10px 0;
+    padding: 10px 15px;
+    border-left: 6px solid #cc0000;
+    border-radius: 4px;
   }
-
-  ul.timeline li:hover {
-    box-shadow: 0 10px 24px rgba(179,0,0,0.35);
-    transform: translateY(-6px);
-  }
-
   ul.timeline li strong {
-    display: block;
     font-weight: 700;
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-    color: #b30000;
   }
-
-  ul.timeline li::before {
-    content: '';
-    position: absolute;
-    top: 20px;
-    left: -20px;
-    width: 16px;
-    height: 16px;
-    background: #b30000;
-    border-radius: 50%;
-    box-shadow: 0 0 12px #b30000;
+  #themeToggle {
+    position: fixed; top: 20px; right: 20px;
+    background: #990000; border: none; padding: 10px 20px;
+    color: white; font-weight: bold; cursor: pointer;
+    border-radius: 5px;
+    z-index: 10;
   }
-
-  /* Responsive */
-  @media (max-width: 700px) {
-    ul.timeline {
-      grid-template-columns: 1fr;
-    }
-    ul.timeline li::before {
-      left: 10px;
-      top: 15px;
-    }
+  body.dark {
+    background: #1a0000;
+    color: white;
+  }
+  body.light {
+    background: #fff0f0;
+    color: #660000;
+  }
+  body.light nav {
+    background: #ffcccc;
+  }
+  body.light #themeToggle {
+    background: #cc0000;
+    color: white;
+  }
+  #particles-js {
+    position: fixed;
+    width: 100%; height: 100%;
+    top: 0; left: 0; z-index: 0;
+  }
+  .content {
+    position: relative;
+    z-index: 1;
   }
 </style>
 </head>
-<body>
+<body class="dark">
 
-<canvas id="particle-canvas"></canvas>
-
-<header>Atatürk Zaman Çizelgesi</header>
+<button id="themeToggle">Tema Değiştir</button>
 
 <nav>
   <a href="index.html">Ana Sayfa</a>
@@ -153,134 +87,10 @@
   <a href="gerisayim.html">Geri Sayım</a>
 </nav>
 
-<main>
-  <h1>Mustafa Kemal Atatürk'ün Önemli Tarihleri</h1>
+<div id="particles-js"></div>
+
+<div class="container content">
+  <h1>Atatürk Zaman Çizelgesi</h1>
   <ul class="timeline">
-    <li>
-      <strong>1881</strong>
-      Selanik'te doğdu.
-    </li>
-    <li>
-      <strong>1905</strong>
-      Harp Akademisi'nden Kurmay Yüzbaşı olarak mezun oldu.
-    </li>
-    <li>
-      <strong>1919</strong>
-      Samsun'a çıkarak Kurtuluş Savaşı'nı başlattı.
-    </li>
-    <li>
-      <strong>1923</strong>
-      Türkiye Cumhuriyeti'nin kuruluşunu ilan etti.
-    </li>
-    <li>
-      <strong>1934</strong>
-      Soyadı Kanunu ile "Atatürk" soyadını aldı.
-    </li>
-    <li>
-      <strong>1938</strong>
-      10 Kasım'da vefat etti.
-    </li>
-  </ul>
-</main>
-
-<script>
-  const canvas = document.getElementById('particle-canvas');
-  const ctx = canvas.getContext('2d');
-
-  let particlesArray = [];
-  const maxParticles = 70;
-  const colors = ['#b30000', '#ff1a1a', '#ff6666'];
-  let mouse = {
-    x: null,
-    y: null,
-    radius: 100
-  };
-
-  window.addEventListener('mousemove', function(e){
-    mouse.x = e.x;
-    mouse.y = e.y;
-  });
-
-  class Particle {
-    constructor(x, y, size, color){
-      this.x = x;
-      this.y = y;
-      this.size = size;
-      this.color = color;
-      this.baseX = x;
-      this.baseY = y;
-      this.density = Math.random() * 30 + 1;
-    }
-
-    draw(){
-      ctx.beginPath();
-      ctx.fillStyle = this.color;
-      ctx.shadowColor = this.color;
-      ctx.shadowBlur = 10;
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.closePath();
-    }
-
-    update(){
-      let dx = mouse.x - this.x;
-      let dy = mouse.y - this.y;
-      let distance = Math.sqrt(dx*dx + dy*dy);
-      let forceDirectionX = dx / distance;
-      let forceDirectionY = dy / distance;
-      let maxDistance = mouse.radius;
-      let force = (maxDistance - distance) / maxDistance;
-      force = Math.max(force, 0);
-
-      let directionX = forceDirectionX * force * this.density;
-      let directionY = forceDirectionY * force * this.density;
-
-      if(distance < mouse.radius){
-        this.x -= directionX;
-        this.y -= directionY;
-      } else {
-        if(this.x !== this.baseX){
-          let dx = this.x - this.baseX;
-          this.x -= dx/10;
-        }
-        if(this.y !== this.baseY){
-          let dy = this.y - this.baseY;
-          this.y -= dy/10;
-        }
-      }
-    }
-  }
-
-  function init(){
-    particlesArray = [];
-    for(let i=0; i < maxParticles; i++){
-      let x = Math.random() * window.innerWidth;
-      let y = Math.random() * window.innerHeight;
-      let size = Math.random() * 4 + 1;
-      let color = colors[Math.floor(Math.random() * colors.length)];
-      particlesArray.push(new Particle(x,y,size,color));
-    }
-  }
-
-  function animate(){
-    ctx.clearRect(0,0,window.innerWidth, window.innerHeight);
-    particlesArray.forEach(particle => {
-      particle.update();
-      particle.draw();
-    });
-    requestAnimationFrame(animate);
-  }
-
-  function resize(){
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    init();
-  }
-
-  window.addEventListener('resize', resize);
-  resize();
-  animate();
-</script>
-
-</body>
-</html>
+    <li><strong>1881:</strong> Mustafa Kemal Atatürk doğdu.</li>
+    <li><strong>1919:</strong> Samsun'a çıktı, Kurtuluş S
