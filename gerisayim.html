@@ -24,6 +24,7 @@
     color: #ff4d4d;
     text-decoration: none;
     font-weight: bold;
+    z-index: 10;
   }
   header {
     text-align: center;
@@ -57,8 +58,8 @@
 
 <header>
   <h1>Atatürk ve Cumhuriyet Özel Günleri Geri Sayımı</h1>
-  <div id="event-name"></div>
-  <div id="countdown">Yükleniyor...</div>
+  <div id="event-name">Yükleniyor...</div>
+  <div id="countdown">...</div>
 </header>
 
 <!-- Particles.js -->
@@ -99,70 +100,69 @@ particlesJS("particles-js", {
 </script>
 
 <script>
-// Özel günler (sadece ay ve gün önemli, yıl önemsiz)
+// Atatürk ve Cumhuriyet özel günleri (Ay, Gün formatı)
 const specialEvents = [
-  { date: "19.05", name: "Atatürk'ü Anma, Gençlik ve Spor Bayramı" },
-  { date: "23.04", name: "Ulusal Egemenlik ve Çocuk Bayramı" },
-  { date: "29.10", name: "Cumhuriyet Bayramı" },
-  { date: "10.11", name: "Atatürk'ü Anma Günü" }
+  { date: "05-19", name: "Atatürk'ü Anma, Gençlik ve Spor Bayramı" },
+  { date: "04-23", name: "Ulusal Egemenlik ve Çocuk Bayramı" },
+  { date: "10-29", name: "Cumhuriyet Bayramı" },
+  { date: "11-10", name: "Atatürk'ü Anma Günü" }
 ];
 
-// Tarihi oluştur (yıl: bu yıl veya gelecek yıl)
-function getNextEventDate(dayMonth) {
+// Tarih nesnesi oluşturur, gelecek yıl ise ayarlanır
+function getNextEventDate(monthDay) {
   const now = new Date();
-  const [day, month] = dayMonth.split('.').map(Number);
-  let eventDate = new Date(now.getFullYear(), month - 1, day);
+  const [month, day] = monthDay.split("-").map(Number);
+  let eventDate = new Date(now.getFullYear(), month -1, day);
 
-  // Eğer bugün veya geçmişse gelecek yıla al
-  if (eventDate < now || isSameDay(eventDate, now) === false && eventDate.getTime() === now.getTime()) {
-    eventDate = new Date(now.getFullYear() + 1, month - 1, day);
+  // Eğer bugün ya da geçmişse, gelecek yıla al
+  if (eventDate < now) {
+    eventDate = new Date(now.getFullYear() + 1, month -1, day);
   }
-
   return eventDate;
 }
 
-// Bugün mü kontrolü
+// İki tarihin aynı günü olup olmadığını kontrol eder
 function isSameDay(d1, d2) {
   return d1.getDate() === d2.getDate() &&
          d1.getMonth() === d2.getMonth() &&
          d1.getFullYear() === d2.getFullYear();
 }
 
-// En yakın etkinliği bul
+// En yakın olayı bul
 function getNearestEvent() {
   const now = new Date();
   let minDiff = Infinity;
-  let nearest = null;
+  let nearestEvent = null;
 
-  for (const ev of specialEvents) {
+  specialEvents.forEach(ev => {
     const eventDate = getNextEventDate(ev.date);
     const diff = eventDate - now;
     if (diff >= 0 && diff < minDiff) {
       minDiff = diff;
-      nearest = { ...ev, eventDate };
+      nearestEvent = { ...ev, eventDate };
     }
-  }
-  return nearest;
+  });
+
+  return nearestEvent;
 }
 
 // Geri sayımı güncelle
 function updateCountdown() {
   const now = new Date();
-  const nearest = getNearestEvent();
+  const event = getNearestEvent();
 
-  if (!nearest) {
-    document.getElementById('countdown').textContent = "Yaklaşan özel gün yok.";
-    document.getElementById('event-name').textContent = "";
+  if (!event) {
+    document.getElementById("event-name").textContent = "Yaklaşan özel gün yok.";
+    document.getElementById("countdown").textContent = "";
     return;
   }
 
-  const { name, eventDate } = nearest;
-  document.getElementById('event-name').textContent = name;
+  document.getElementById("event-name").textContent = event.name;
 
-  const distance = eventDate - now;
+  const distance = event.eventDate - now;
 
-  if (distance <= 0 && isSameDay(eventDate, now)) {
-    document.getElementById('countdown').textContent = "Bugün!";
+  if (distance <= 0 && isSameDay(event.eventDate, now)) {
+    document.getElementById("countdown").textContent = "Bugün!";
     return;
   }
 
@@ -171,11 +171,11 @@ function updateCountdown() {
   const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
   const seconds = Math.floor((distance % (1000*60)) / 1000);
 
-  document.getElementById('countdown').textContent =
+  document.getElementById("countdown").textContent =
     `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye kaldı`;
 }
 
-// Başlangıçta ve her saniye çalıştır
+// Sayfa açılır açılmaz ve her saniye güncelle
 updateCountdown();
 setInterval(updateCountdown, 1000);
 </script>
