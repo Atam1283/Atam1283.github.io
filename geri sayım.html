@@ -4,8 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Atatürk Geri Sayım</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Open+Sans&display=swap" rel="stylesheet">
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Open+Sans&display=swap');
+  /* Genel Ayarlar */
   body {
     margin: 0; padding: 0;
     font-family: 'Merriweather', serif;
@@ -13,9 +17,9 @@
     color: #ffcccc;
     overflow-x: hidden;
     transition: background-color 0.4s ease, color 0.4s ease;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
   }
   nav {
     background: #330000cc;
@@ -23,6 +27,7 @@
     display: flex;
     gap: 25px;
     font-weight: bold;
+    z-index: 20;
   }
   nav a {
     color: #ff6666;
@@ -48,13 +53,201 @@
     cursor: pointer;
     box-shadow: 0 0 12px #ff0000cc;
     transition: background-color 0.3s ease;
-    z-index: 15;
+    z-index: 30;
   }
   #themeToggle:hover {
     background: #ff1a1a;
   }
   .container {
     max-width: 700px;
-    margin: auto;
     background: #330000cc;
-    padding:
+    margin: 100px auto 60px;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #ff4d4daa;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+  }
+  h1 {
+    font-family: 'Merriweather', serif;
+    color: #ff9999;
+    margin-bottom: 25px;
+    text-shadow: 0 0 15px #ff4d4d;
+  }
+  #countdown {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ff6666;
+    text-shadow: 0 0 12px #ff3333;
+    margin-top: 20px;
+  }
+  #eventName {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: #ff9999;
+  }
+  
+  /* Tema Açma - Kapatma */
+  body.light {
+    background-color: #fff0f0;
+    color: #660000;
+  }
+  body.light nav {
+    background-color: #ffcccccc;
+  }
+  body.light nav a {
+    color: #660000;
+  }
+  body.light nav a:hover {
+    color: #cc0000;
+  }
+  body.light nav a.active {
+    color: #990000;
+    text-shadow: none;
+  }
+  body.light #themeToggle {
+    background: #cc0000;
+    box-shadow: 0 0 15px #cc0000aa;
+    color: #fff;
+  }
+  body.light #themeToggle:hover {
+    background: #ff3333;
+  }
+  body.light .container {
+    background: #ffcccccc;
+    box-shadow: 0 0 20px #cc0000aa;
+  }
+
+  /* Particles.js tam ekran */
+  #particles-js {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body class="dark">
+
+<nav>
+  <a href="index.html">Ana Sayfa</a>
+  <a href="hayati.html">Hayatı</a>
+  <a href="galeri.html">Galeri</a>
+  <a href="zaman.html">Zaman Çizelgesi</a>
+  <a href="gerisayim.html" class="active">Geri Sayım</a>
+</nav>
+
+<button id="themeToggle">Tema Değiştir</button>
+
+<div id="particles-js"></div>
+
+<div class="container">
+  <h1>Atatürk ve Cumhuriyet'e Geri Sayım</h1>
+  <div id="countdown">Yükleniyor...</div>
+  <div id="eventName"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+  // Kırmızı tema partiküller
+  particlesJS('particles-js', {
+    particles: {
+      number: { value: 80, density: { enable: true, value_area: 900 } },
+      color: { value: ['#ff0000', '#cc0000', '#990000'] },
+      shape: { type: 'circle' },
+      opacity: { value: 0.5, random: true },
+      size: { value: 3, random: true },
+      move: {
+        enable: true,
+        speed: 2,
+        direction: 'none',
+        random: false,
+        straight: false,
+        out_mode: 'out',
+        bounce: false
+      }
+    },
+    interactivity: {
+      detect_on: 'canvas',
+      events: {
+        onhover: { enable: true, mode: 'repulse' },
+        onclick: { enable: true, mode: 'push' },
+        resize: true
+      },
+      modes: {
+        repulse: { distance: 120, duration: 0.4 },
+        push: { particles_nb: 4 }
+      }
+    },
+    retina_detect: true
+  });
+
+  // Tema değiştirici
+  const themeBtn = document.getElementById('themeToggle');
+  themeBtn.addEventListener('click', () => {
+    if(document.body.classList.contains('dark')){
+      document.body.classList.replace('dark', 'light');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.body.classList.replace('light', 'dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+  const savedTheme = localStorage.getItem('theme');
+  if(savedTheme) {
+    document.body.className = savedTheme;
+  }
+
+  // Geri sayım ayarları:
+  // Önemli tarihi buraya ekliyoruz (örnek: 29 Ekim Cumhuriyet Bayramı)
+  const events = [
+    { name: "Cumhuriyet Bayramı", date: "2025-10-29T00:00:00" },
+    { name: "Atatürk'ün Doğum Günü", date: "2026-05-19T00:00:00" },
+    { name: "Atatürk'ün Vefat Günü", date: "2026-11-10T00:00:00" }
+  ];
+
+  const countdownElem = document.getElementById('countdown');
+  const eventNameElem = document.getElementById('eventName');
+
+  function getNextEvent(){
+    const now = new Date();
+    for(let e of events){
+      let eventDate = new Date(e.date);
+      if(eventDate > now) return e;
+    }
+    // Eğer tarih geçtiyse, ilk olayı döndür (döngü için)
+    return events[0];
+  }
+
+  function updateCountdown() {
+    const now = new Date();
+    const nextEvent = getNextEvent();
+    const eventDate = new Date(nextEvent.date);
+    const diff = eventDate - now;
+
+    if(diff <= 0){
+      countdownElem.textContent = "Etkinlik başladı!";
+      eventNameElem.textContent = nextEvent.name;
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    countdownElem.textContent = `${days} Gün ${hours} Saat ${minutes} Dakika ${seconds} Saniye`;
+    eventNameElem.textContent = nextEvent.name;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+</script>
+
+</body>
+</html>
