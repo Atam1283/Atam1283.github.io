@@ -2,150 +2,230 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Atatürk'ün Hayatı</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <!-- Google Font: Orbitron -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    /* Sayfa genel stil ayarları */
+    :root {
+      --bg-color: #111;
+      --text-color: #fff;
+      --accent-color: #ff2c2c;
+      --card-bg: #1e1e1e;
+    }
+
+    body.light-theme {
+      --bg-color: #fff;
+      --text-color: #111;
+      --accent-color: #c40000;
+      --card-bg: #f5f5f5;
+    }
+
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Orbitron', sans-serif;
-      background-color: #000;
-      color: #fff;
+      font-family: 'Rubik', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
       line-height: 1.6;
     }
 
-    /* Parçacıklar arka planı */
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      top: 0;
-      left: 0;
-    }
-
     header {
+      background-color: var(--accent-color);
+      color: white;
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 1.5rem;
+      font-size: 2rem;
+      font-weight: bold;
     }
 
-    h1 {
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-      color: #ff4d4d;
+    nav.nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      padding: 1rem;
+      background-color: rgba(0,0,0,0.1);
     }
 
-    .life {
+    nav.nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      position: relative;
+    }
+
+    nav.nav a::after {
+      content: '';
+      display: block;
+      width: 0%;
+      height: 2px;
+      background: var(--accent-color);
+      transition: width 0.3s;
+      margin-top: 4px;
+    }
+
+    nav.nav a:hover::after {
+      width: 100%;
+    }
+
+    main {
       max-width: 900px;
-      margin: auto;
-      padding: 2rem;
-      background-color: rgba(0, 0, 0, 0.6); /* Arkaplan kutu görünümü */
-      border-radius: 12px;
-      box-shadow: 0 0 15px #ff0000;
+      margin: 2rem auto;
+      padding: 0 1rem;
     }
 
-    .life ul {
+    main h2 {
+      text-align: center;
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .timeline {
       list-style: none;
       padding-left: 0;
     }
 
-    .life li {
+    .timeline li {
+      background-color: var(--card-bg);
       margin-bottom: 1rem;
-      border-left: 4px solid #ff4d4d;
-      padding-left: 1rem;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background-color 0.3s;
     }
 
-    a {
-      color: #ff4d4d;
+    .timeline li:hover {
+      background-color: var(--accent-color);
+      color: white;
+      cursor: default;
+    }
+
+    .date {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .event {
+      font-size: 1rem;
+    }
+
+    .theme-toggle {
       position: fixed;
-      top: 1rem;
-      left: 1rem;
-      text-decoration: none;
+      top: 20px;
+      right: 20px;
+      background: var(--accent-color);
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
       font-weight: bold;
-      background-color: rgba(255,0,0,0.1);
-      padding: 0.5rem;
-      border-radius: 6px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 100;
     }
 
-    @media screen and (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
 
-      .life {
-        padding: 1rem;
+    @media (max-width: 600px) {
+      main {
+        padding: 0 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <div id="particles-js"></div> <!-- Kırmızı parçacıklar arka planı -->
-  <a href="index.html">← Ana Sayfa</a>
+  <button class="theme-toggle" onclick="temaDegistir()">Temayı Değiştir</button>
 
-  <header>
-    <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
-  </header>
+  <header>Mustafa Kemal Atatürk</header>
 
-  <section class="life">
-    <ul>
-      <li><strong>1881</strong> - Mustafa Selânik'te dünyaya gelir.</li>
-      <li><strong>1893</strong> - Askerî Hazırlık Okuluna başlar ve Kemal adını alır.</li>
-      <li><strong>1895</strong> - Manastır Askerî Lisesine başlar.</li>
-      <li><strong>1899</strong> - Harbiye'ye girer.</li>
-      <li><strong>1905</strong> - Harp Akademisinden mezun olur, Şam'a gönderilir.</li>
-      <li><strong>1906-1907</strong> - "Vatan ve Hürriyet" cemiyetini kurar, Selanik'e geçer.</li>
-      <li><strong>1911-1912</strong> - Trablusgarp'ta görev alır, Tobruk'u savunur.</li>
-      <li><strong>1915</strong> - Çanakkale Savaşı'nda büyük zaferler kazanır.</li>
-      <li><strong>1916</strong> - Tuğgeneralliğe terfi eder.</li>
-      <li><strong>1919</strong> - 19 Mayıs'ta Samsun'a çıkar, Milli Mücadele'yi başlatır.</li>
-      <li><strong>1920</strong> - TBMM'yi Ankara'da açar.</li>
-      <li><strong>1921</strong> - Sakarya Zaferi ve Gazi unvanı.</li>
-      <li><strong>1922</strong> - Büyük Taarruz ve zaferle Cumhuriyetin temeli atılır.</li>
-      <li><strong>1923</strong> - Türkiye Cumhuriyeti kurulur, Atatürk ilk Cumhurbaşkanı olur.</li>
-      <li><strong>1934</strong> - "Atatürk" soyadı verilir.</li>
-      <li><strong>1938</strong> - 10 Kasım'da İstanbul'da hayata veda eder.</li>
-    </ul>
-  </section>
+  <nav class="nav">
+    <a href="index.html">Ana Sayfa</a>
+    <a href="hayatı.html" class="active">Hayatı</a>
+    <a href="zaman.html">Zaman Çizelgesi</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="geri-sayim.html">Geri Sayım</a>
+  </nav>
 
-  <!-- Particles.js kırmızı parçacık arka planı -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <script>
-    particlesJS("particles-js", {
-      particles: {
-        number: { value: 80 },
-        color: { value: "#ff0000" },
-        shape: { type: "circle" },
-        opacity: { value: 0.3 },
-        size: { value: 3 },
-        line_linked: {
-          enable: true,
-          distance: 100,
-          color: "#ff0000",
-          opacity: 0.4,
-          width: 1
-        },
-        move: {
-          enable: true,
-          speed: 2
-        }
-      },
-      interactivity: {
-        detect_on: "canvas",
-        events: {
-          onhover: { enable: true, mode: "repulse" },
-          onclick: { enable: true, mode: "push" }
-        },
-        modes: {
-          repulse: { distance: 100 },
-          push: { particles_nb: 4 }
-        }
-      },
-      retina_detect: true
-    });
-  </script>
-</body>
-</html>
+  <main>
+    <h2>Atatürk'ün Hayatı</h2>
+    <ul class="timeline">
+      <li>
+        <div class="date">1881</div>
+        <div class="event">Mustafa Selânik'te dünyaya gelir.</div>
+      </li>
+      <li>
+        <div class="date">1893</div>
+        <div class="event">Mustafa Selânik'teki Askerî Hazırlık Okuluna başlar ve burada öğretmeni tarafından kendisine ikinci ismi "Kemâl" verilir.</div>
+      </li>
+      <li>
+        <div class="date">1895</div>
+        <div class="event">Mustafa Kemâl Manastır'daki Askerî Liseye başlar.</div>
+      </li>
+      <li>
+        <div class="date">1899</div>
+        <div class="event">Mustafa Kemâl İstanbul'da Harbiye'nin hazırlık sınıfına başlar.</div>
+      </li>
+      <li>
+        <div class="date">1902</div>
+        <div class="event">Mustafa Kemâl Harbiye'den mezun olur ve buradan sonra Harp Akademisine devam eder.</div>
+      </li>
+      <li>
+        <div class="date">11 Ocak 1905</div>
+        <div class="event">Mustafa Kemâl Harp Akademisinden Kurmay Yüzbaşı olarak mezun olur ve Şam'da bulunan Beşinci Orduda görev almak üzere Şam'a gönderilir.</div>
+      </li>
+      <li>
+        <div class="date">Ekim 1906</div>
+        <div class="event">Mustafa Kemâl ve arkadaşları Şam'da "Vatan ve Hürriyet" adıyla gizli bir dernek kurarlar.</div>
+      </li>
+      <li>
+        <div class="date">Eylül 1907</div>
+        <div class="event">Mustafa Kemâl Üçüncü Orduya tayin edilir ve Selanik'e gönderilir.</div>
+      </li>
+      <li>
+        <div class="date">13 Eylül 1911</div>
+        <div class="event">Mustafa Kemâl İstanbul'daki Genel Kurmaya tayin edilir.</div>
+      </li>
+      <li>
+        <div class="date">9 Ocak 1912</div>
+        <div class="event">Mustafa Kemâl Libya'daki Tobruk taarruzunu başarılı bir şekilde yönetir.</div>
+      </li>
+      <li>
+        <div class="date">25 Kasım 1912</div>
+        <div class="event">Mustafa Kemâl Hareket Başkanı olarak Akdeniz Boğazları özel Kuvvetlerine atanır.</div>
+      </li>
+      <li>
+        <div class="date">27 Ekim 1913</div>
+        <div class="event">Mustafa Kemâl Sofya'ya Askeri Ataşe olarak atanır.</div>
+      </li>
+      <li>
+        <div class="date">25 Nisan 1915</div>
+        <div class="event">İttifak Devletleri Arıburnu'na çıkarma yaparlar, Mustafa Kemâl Tümeni ile ilerlemelerini durdurur.</div>
+      </li>
+      <li>
+        <div class="date">9 Ağustos 1915</div>
+        <div class="event">Mustafa Kemâl Anafartalar Grup Kumandanlığına getirilir.</div>
+      </li>
+      <li>
+        <div class="date">1 Nisan 1916</div>
+        <div class="event">Mustafa Kemâl Tuğgeneralliğe terfi eder.</div>
+      </li>
+      <li>
+        <div class="date">6-7 Ağustos 1916</div>
+        <div class="event">Mustafa Kemâl Bitlis ve Muş'u düşmandan geri alır.</div>
+      </li>
+      <li>
+        <div class="date">31 Ekim 1918</div>
+        <div class="event">Mustafa Kemâl Yıldırım Orduları Grup Kumandanı olur.</div>
+      </li>
+      <li>
+        <div class="date">30 Nisan 1919</div>
+        <div class="event">Mustafa Kemâl Erzurum'da bulunan Dokuzuncu Orduya geniş yetkilerle Müfettiş olarak atanır.</div>
+      </li>
+      <li>
+       
