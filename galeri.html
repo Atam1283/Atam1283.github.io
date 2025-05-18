@@ -1,205 +1,134 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Atatürk Galerisi</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Open+Sans&display=swap');
-  body {
-    margin: 0; padding: 0;
-    font-family: 'Merriweather', serif;
-    background-color: #1a0000;
-    color: #ffcccc;
-    overflow-x: hidden;
-    transition: background-color 0.4s ease, color 0.4s ease;
-  }
-  nav {
-    background: #330000cc;
-    padding: 15px 30px;
-    display: flex;
-    gap: 25px;
-    font-weight: bold;
-  }
-  nav a {
-    color: #ff6666;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  nav a:hover {
-    color: #ff0000;
-  }
-  nav a.active {
-    color: #ff1a1a;
-    text-shadow: 0 0 10px #ff4d4d;
-  }
-  #themeToggle {
-    position: fixed;
-    top: 15px; right: 15px;
-    background: #b30000;
-    color: #fff;
-    border: none;
-    padding: 8px 14px;
-    font-weight: 600;
-    border-radius: 6px;
-    cursor: pointer;
-    box-shadow: 0 0 12px #ff0000cc;
-    transition: background-color 0.3s ease;
-    z-index: 15;
-  }
-  #themeToggle:hover {
-    background: #ff1a1a;
-  }
-  .container {
-    max-width: 900px;
-    margin: 100px auto 60px;
-    background: #330000cc;
-    padding: 25px 40px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px #ff4d4daa;
-  }
-  h1 {
-    text-align: center;
-    font-family: 'Merriweather', serif;
-    color: #ff9999;
-    margin-bottom: 30px;
-    text-shadow: 0 0 15px #ff4d4d;
-  }
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-    gap: 20px;
-  }
-  .gallery-item {
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 0 12px #cc0000cc;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  .gallery-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px #ff3333cc;
-  }
-  .gallery-item img {
-    width: 100%;
-    display: block;
-  }
-  /* Tema açma-kapama */
-  body.light {
-    background-color: #fff0f0;
-    color: #660000;
-  }
-  body.light nav {
-    background-color: #ffcccccc;
-  }
-  body.light nav a {
-    color: #660000;
-  }
-  body.light nav a:hover {
-    color: #cc0000;
-  }
-  body.light nav a.active {
-    color: #990000;
-    text-shadow: none;
-  }
-  body.light #themeToggle {
-    background: #cc0000;
-    box-shadow: 0 0 15px #cc0000aa;
-    color: #fff;
-  }
-  body.light #themeToggle:hover {
-    background: #ff3333;
-  }
-  body.light .container {
-    background: #ffcccccc;
-    box-shadow: 0 0 20px #cc0000aa;
-  }
-  /* Particles.js için tam ekran */
-  #particles-js {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 1;
-    pointer-events: none;
-  }
-</style>
-</head>
-<body class="dark">
-
-<nav>
-  <a href="index.html">Ana Sayfa</a>
-  <a href="hayati.html">Hayatı</a>
-  <a href="galeri.html" class="active">Galeri</a>
-  <a href="zaman.html">Zaman Çizelgesi</a>
-  <a href="gerisayim.html">Geri Sayım</a>
-</nav>
-
-<button id="themeToggle">Tema Değiştir</button>
-
-<div id="particles-js"></div>
-
-<div class="container">
-  <h1>Atatürk Galerisi</h1>
-  <div class="gallery-grid">
-    <div class="gallery-item"><img src="assets/ataturk1.jpg" alt="Atatürk 1" /></div>
-    <div class="gallery-item"><img src="assets/ataturk2.jpg" alt="Atatürk 2" /></div>
-    <div class="gallery-item"><img src="assets/ataturk3.jpg" alt="Atatürk 3" /></div>
-    <div class="gallery-item"><img src="assets/ataturk4.jpg" alt="Atatürk 4" /></div>
-    <!-- İstediğin kadar ekleyebilirsin -->
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<script>
-  particlesJS('particles-js', {
-    particles: {
-      number: { value: 70, density: { enable: true, value_area: 900 } },
-      color: { value: ['#ff0000', '#cc0000', '#990000'] },
-      shape: { type: 'circle' },
-      opacity: { value: 0.6, random: true },
-      size: { value: 3, random: true },
-      move: {
-        enable: true,
-        speed: 2,
-        direction: 'none',
-        random: false,
-        straight: false,
-        out_mode: 'out',
-        bounce: false
-      }
-    },
-    interactivity: {
-      detect_on: 'canvas',
-      events: {
-        onhover: { enable: true, mode: 'repulse' },
-        onclick: { enable: true, mode: 'push' },
-        resize: true
-      },
-      modes: {
-        repulse: { distance: 130, duration: 0.4 },
-        push: { particles_nb: 4 }
-      }
-    },
-    retina_detect: true
-  });
-
-  const themeBtn = document.getElementById('themeToggle');
-  themeBtn.addEventListener('click', () => {
-    if(document.body.classList.contains('dark')){
-      document.body.classList.replace('dark', 'light');
-      localStorage.setItem('theme', 'light');
-    } else {
-      document.body.classList.replace('light', 'dark');
-      localStorage.setItem('theme', 'dark');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galeri</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #000;
+      color: #fff;
+      overflow-x: hidden;
     }
-  });
 
-  const savedTheme = localStorage.getItem('theme');
-  if(savedTheme) {
-    document.body.className = savedTheme;
-  }
-</script>
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
 
+    header {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 12px;
+      border: 2px solid #ff4d4d;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #ff4d4d;
+    }
+
+    a {
+      color: #ff4d4d;
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .gallery {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <a href="index.html">← Ana Sayfa</a>
+
+  <header>
+    <h1>Atatürk Galerisi</h1>
+  </header>
+
+  <section class="gallery">
+    <!-- Galeri görselleri -->
+    <img src="assets/ataturk1.jpg" alt="Atatürk 1">
+    <img src="assets/ataturk2.jpg" alt="Atatürk 2">
+    <img src="assets/ataturk3.jpg" alt="Atatürk 3">
+    <img src="assets/ataturk4.jpg" alt="Atatürk 4">
+    <!-- Daha fazla görsel eklersen buraya ekle -->
+  </section>
+
+  <!-- Particles.js -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    // Arka plan parçacık efekti
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 100 },
+        color: { value: "#ff0000" },
+        shape: { type: "circle" },
+        opacity: { value: 0.4 },
+        size: { value: 3 },
+        line_linked: {
+          enable: true,
+          distance: 120,
+          color: "#ff0000",
+          opacity: 0.3,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" }
+        },
+        modes: {
+          repulse: { distance: 100 },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
+    });
+  </script>
 </body>
 </html>
