@@ -2,52 +2,233 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Geri Sayım</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Geri Sayım - Atatürk ve Cumhuriyet</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Merriweather&display=swap" rel="stylesheet" />
+  
   <style>
-    /* Basit geri sayım stil ayarları */
+    /* Temel stil ayarları */
     body {
-      background-color: #000;
-      color: white;
-      font-family: 'Arial', sans-serif;
+      margin: 0;
+      font-family: 'Merriweather', serif;
+      background-color: #111;
+      color: #eee;
+      overflow-x: hidden;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+    header {
+      background-color: #8B0000; /* koyu kırmızı */
+      padding: 20px;
       text-align: center;
-      padding: 50px;
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      user-select: none;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #600000;
+      padding: 10px 0;
+    }
+    nav a {
+      color: #eee;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 700;
+      font-family: 'Roboto', sans-serif;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #ff4444;
+    }
+    main {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 0 20px;
+      line-height: 1.7;
+      font-size: 1.1rem;
+      background-color: rgba(139, 0, 0, 0.3);
+      border-radius: 10px;
+      box-shadow: 0 0 20px #8B0000;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+    h1 {
+      color: #ff6666;
+      margin-bottom: 40px;
     }
     #countdown {
-      font-size: 3rem;
-      margin-top: 20px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: #ff2222;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
+    }
+    #event-desc {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #600000;
+      color: #eee;
+      font-size: 0.9rem;
+      user-select: none;
+      position: relative;
+      z-index: 10;
+    }
+    /* Tema değiştirme butonu */
+    #temaToggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #8B0000;
+      border: none;
+      color: #eee;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+      z-index: 1000;
+    }
+    #temaToggle:hover {
+      background-color: #ff4444;
+    }
+    /* Koyu tema */
+    body.koyu {
+      background-color: #111;
+      color: #eee;
+    }
+    body.koyu main {
+      background-color: rgba(139, 0, 0, 0.3);
+      box-shadow: 0 0 20px #8B0000;
+    }
+    /* Açık tema */
+    body.acik {
+      background-color: #fff;
+      color: #333;
+    }
+    body.acik main {
+      background-color: rgba(255, 200, 200, 0.6);
+      box-shadow: 0 0 20px #ff4444;
+    }
+    body.acik header {
+      background-color: #ff4444;
+      color: #fff;
+    }
+    body.acik nav {
+      background-color: #cc0000;
+    }
+    body.acik nav a {
+      color: #fff;
+    }
+    body.acik nav a:hover {
+      color: #eee;
+    }
+    body.acik footer {
+      background-color: #cc0000;
+      color: #fff;
+    }
+
+    /* Parçacık canvas tam ekran */
+    #particles-js {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
     }
   </style>
 </head>
-<body>
-  <h1>Cumhuriyet Bayramı'na Kalan Süre</h1>
-  <div id="countdown"></div>
+<body class="koyu">
+  <!-- Parçacıklar için canvas -->
+  <div id="particles-js"></div>
 
+  <button id="temaToggle" aria-label="Tema değiştir">Tema Değiştir</button>
+
+  <header>
+    Atatürk ve Cumhuriyet Geri Sayımı
+  </header>
+
+  <nav>
+    <a href="index.html">Ana Sayfa</a>
+    <a href="hayati.html">Hayatı</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="zaman.html">Zaman Çizelgesi</a>
+    <a href="geri-sayim.html">Geri Sayım</a>
+  </nav>
+
+  <main>
+    <h1>En Yakın Tarihi Olay</h1>
+    <div id="event-desc">10 Kasım Atatürk'ü Anma Günü</div>
+    <div id="countdown">Yükleniyor...</div>
+  </main>
+
+  <footer>
+    &copy; 2025 Mustafa Kemal Atatürk Anısına
+  </footer>
+
+  <!-- Particles.js kütüphanesi -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  
   <script>
-    // 29 Ekim için hedef tarih
-    const hedefTarih = new Date("October 29, 2025 00:00:00").getTime();
+    // Tema değiştirme işlemi
+    const temaToggle = document.getElementById('temaToggle');
+    const body = document.body;
 
-    const sayaç = setInterval(() => {
-      const simdi = new Date().getTime(); // Şu anki zamanı al
-      const fark = hedefTarih - simdi;
-
-      // Gün, saat, dakika, saniye hesapla
-      const gün = Math.floor(fark / (1000 * 60 * 60 * 24));
-      const saat = Math.floor((fark % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const dakika = Math.floor((fark % (1000 * 60 * 60)) / (1000 * 60));
-      const saniye = Math.floor((fark % (1000 * 60)) / 1000);
-
-      // HTML'e yaz
-      document.getElementById("countdown").innerHTML = 
-        `${gün} gün ${saat} saat ${dakika} dakika ${saniye} saniye`;
-
-      // Süre dolunca
-      if (fark < 0) {
-        clearInterval(sayaç);
-        document.getElementById("countdown").innerHTML = "Cumhuriyet Bayramı Kutlu Olsun!";
+    temaToggle.addEventListener('click', () => {
+      if(body.classList.contains('koyu')) {
+        body.classList.remove('koyu');
+        body.classList.add('acik');
+      } else {
+        body.classList.remove('acik');
+        body.classList.add('koyu');
       }
-    }, 1000);
-  </script>
-</body>
-</html>
+    });
+
+    // Particles.js kırmızı parçacık ayarları
+    particlesJS('particles-js', {
+      "particles": {
+        "number": { "value": 60, "density": { "enable": true, "value_area": 700 }},
+        "color": { "value": "#ff4444" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.7, "random": true, "anim": { "enable": true, "speed": 1.5, "opacity_min": 0.1, "sync": false }},
+        "size": { "value": 3, "random": true, "anim": { "enable": true, "speed": 5, "size_min": 0.5, "sync": false }},
+        "line_linked": { "enable": true, "distance": 100, "color": "#ff4444", "opacity": 0.3, "width": 1 },
+        "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "bounce": false, "attract": { "enable": true, "rotateX": 600, "rotateY": 1200 }}
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "grab" },
+          "onclick": { "enable": true, "mode": "push" },
+          "resize": true
+        },
+        "modes": {
+          "grab": { "distance": 150, "line_linked": { "opacity": 0.4 }},
+          "push": { "particles_nb": 4 }
+        }
+      },
+      "retina_detect": true
+    });
+
+    // Geri sayım için hedef tarih (10 Kasım Atatürk'ü Anma Günü)
+    // Eğer bugün 10 Kasım geçtiyse, bir sonraki yıl için hesaplar
+    function getNextAnniversary() {
+      const now = new Date();
+      const year = now.getMonth() > 10 || (now.getMonth() === 10 && now.getDate() > 10) ? now.getFullYear() + 1 : now.getFullYear();
+      return new Date(year, 10, 10, 9, 5, 0); // 10 Kasım saat 09:05
+    }
+
+    const countdownEl = document.getElementById('countdown');
+    const targetDate = getNextAnniversary();
+
+    function updateCountdown
