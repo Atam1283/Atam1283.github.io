@@ -1,76 +1,87 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ana Sayfa - Atatürk Sözleri</title>
-<style>
-  body {
-    background-color: #000;
-    color: #fff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    padding: 20px;
-    text-align: center;
-  }
-  #quote {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    text-shadow:
-      0 0 10px #fff,
-      0 0 20px #ff4d4d;
-  }
-  #location {
-    font-size: 1.2rem;
-    color: #ff4d4d;
-    font-weight: 600;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atatürk Sözleri - Söylenme Yerleri</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    a#anasayfa {
+      color: white;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 18px;
+      z-index: 10;
+      transition: color 0.3s ease;
+    }
+    a#anasayfa:hover {
+      color: #bbb;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: 700;
+      font-size: 2.8rem;
+      text-shadow: 0 0 10px white;
+    }
+    ul.sozler-listesi {
+      max-width: 700px;
+      margin: 0 auto;
+      padding-left: 20px;
+      line-height: 1.6;
+      font-size: 1.2rem;
+    }
+    ul.sozler-listesi li {
+      margin-bottom: 18px;
+      border-left: 4px solid #555;
+      padding-left: 12px;
+      color: #ccc;
+    }
+    ul.sozler-listesi li strong {
+      color: #fff;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 4px;
+    }
+  </style>
 </head>
 <body>
 
-<div id="quote"></div>
-<div id="location"></div>
+  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
 
-<script>
-  const quotes = [
-    {
-      text: "Yurtta sulh, cihanda sulh.",
-      location: "Samsun, 1921"
-    },
-    {
-      text: "Egemenlik, kayıtsız şartsız milletindir.",
-      location: "TBMM, 23 Nisan 1920"
-    },
-    {
-      text: "Hayatta en hakiki mürşit ilimdir.",
-      location: "Samsun, 1919"
-    },
-    {
-      text: "Milletin bağımsızlığını, yine milletin azim ve kararı kurtaracaktır.",
-      location: "Erzurum Kongresi, 1919"
-    },
-    {
-      text: "Benim naçiz vücudum elbet bir gün toprak olacaktır.",
-      location: "Dolmabahçe Sarayı, 10 Kasım 1938"
-    }
-  ];
+  <h1>Atatürk Sözleri ve Söylenme Yerleri</h1>
 
-  function displayRandomQuote() {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    const quote = quotes[randomIndex];
-    document.getElementById('quote').textContent = `"${quote.text}"`;
-    document.getElementById('location').textContent = `— ${quote.location}`;
-  }
-
-  window.onload = displayRandomQuote;
-</script>
+  <ul class="sozler-listesi">
+    <li>
+      <strong>"Yurtta sulh, cihanda sulh."</strong>
+      <span>Söylenme Yeri: Türkiye Büyük Millet Meclisi, 20 Ekim 1931</span>
+    </li>
+    <li>
+      <strong>"Egemenlik, kayıtsız şartsız milletindir."</strong>
+      <span>Söylenme Yeri: Türkiye Büyük Millet Meclisi, 23 Nisan 1920</span>
+    </li>
+    <li>
+      <strong>"Beni görmek demek, mutlaka yüzümü görmek değildir."</strong>
+      <span>Söylenme Yeri: Kastamonu, 1925</span>
+    </li>
+    <li>
+      <strong>"Milletin bağımsızlığını, yine milletin azim ve kararı kurtaracaktır."</strong>
+      <span>Söylenme Yeri: Samsun, 19 Mayıs 1919</span>
+    </li>
+    <li>
+      <strong>"Hayatta en hakiki mürşit ilimdir."</strong>
+      <span>Söylenme Yeri: Kastamonu Nutku, 1927</span>
+    </li>
+  </ul>
 
 </body>
 </html>
