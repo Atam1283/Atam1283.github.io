@@ -3,175 +3,136 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Geri Sayım | Atatürk ve Cumhuriyet</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <title>Atatürk'ün Hayatı</title>
   <style>
-    /* Genel Reset ve Font */
-    * {
-      box-sizing: border-box;
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&display=swap');
+
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #e0f2fe, #bae6fd);
-      color: #1e293b; /* koyu lacivert-gri */
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      padding: 40px;
+      background-color: #121212;
+      color: #e0e0e0;
+      font-family: 'Merriweather', serif;
+      line-height: 1.6;
     }
 
-    /* Ana Sayfa Linki */
-    a#anasayfa {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      font-weight: 700;
-      color: white;
-      background-color: #0284c7; /* canlı mavi */
-      padding: 8px 14px;
-      border-radius: 8px;
-      text-decoration: none;
-      box-shadow: 0 4px 8px rgb(2 132 199 / 0.3);
-      transition: background-color 0.3s ease;
-      z-index: 100;
-      font-size: 16px;
-    }
-    a#anasayfa:hover {
-      background-color: #0369a1;
-    }
-
-    /* Kutu */
-    .container {
-      background: white;
-      padding: 40px 50px;
-      border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-      max-width: 480px;
-      width: 90%;
-    }
-
-    /* Başlıklar */
     h1 {
-      margin: 0 0 12px;
+      text-align: center;
       font-weight: 700;
-      font-size: 2.2rem;
-      color: #0369a1;
-    }
-    h2 {
-      margin: 0 0 30px;
-      font-weight: 600;
-      font-size: 1.4rem;
-      color: #0c4a6e;
+      font-size: 3rem;
+      margin-bottom: 40px;
+      letter-spacing: 2px;
+      color: #fff;
+      text-transform: uppercase;
+      text-shadow: 1px 1px 4px rgba(255,255,255,0.15);
     }
 
-    /* Geri sayım kutuları */
-    .countdown {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
+    .timeline {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      padding-left: 30px;
+      border-left: 3px solid #bbb;
+    }
+
+    .event {
+      margin-bottom: 40px;
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .event::before {
+      content: '';
+      position: absolute;
+      left: -13px;
+      top: 5px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+      box-shadow: 0 0 8px rgba(255,255,255,0.4);
+    }
+
+    .event-date {
       font-weight: 700;
-      color: #1e293b;
-      font-size: 1.6rem;
+      font-size: 1.1rem;
+      color: #ccc;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
     }
 
-    .countdown div {
-      background-color: #e0f2fe;
-      flex: 1;
-      padding: 20px 0;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .event-title {
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      color: #f0f0f0;
     }
 
-    .label {
-      font-weight: 500;
-      font-size: 0.9rem;
-      color: #0284c7;
-      margin-top: 8px;
-      user-select: none;
+    .event-desc {
+      font-weight: 300;
+      font-size: 1.1rem;
+      color: #bbb;
+      max-width: 600px;
     }
 
-    /* Responsive (mobil) */
-    @media (max-width: 480px) {
-      .countdown {
-        flex-direction: column;
-        gap: 15px;
-        font-size: 1.4rem;
+    /* Responsive */
+    @media (max-width: 600px) {
+      body {
+        padding: 20px;
+      }
+      .timeline {
+        padding-left: 20px;
+        border-left-width: 2px;
+      }
+      .event::before {
+        left: -10px;
+        width: 14px;
+        height: 14px;
+      }
+      .event-title {
+        font-size: 1.3rem;
+      }
+      .event-desc {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
-  <div class="container">
-    <h1>En Yakın Özel Güne Geri Sayım</h1>
-    <h2 id="eventName">Yükleniyor...</h2>
-    <div class="countdown" id="countdown">
-      <div><span id="days">--</span><div class="label">Gün</div></div>
-      <div><span id="hours">--</span><div class="label">Saat</div></div>
-      <div><span id="minutes">--</span><div class="label">Dakika</div></div>
-      <div><span id="seconds">--</span><div class="label">Saniye</div></div>
+
+  <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
+
+  <div class="timeline">
+    <div class="event">
+      <div class="event-date">1881</div>
+      <div class="event-title">Doğumu</div>
+      <div class="event-desc">Selanik'te doğdu. Modern Türkiye'nin kurucusudur.</div>
+    </div>
+
+    <div class="event">
+      <div class="event-date">19 Mayıs 1919</div>
+      <div class="event-title">Milli Mücadeleyi Başlatması</div>
+      <div class="event-desc">Samsun'a çıkarak Kurtuluş Savaşı'nı başlattı.</div>
+    </div>
+
+    <div class="event">
+      <div class="event-date">23 Nisan 1920</div>
+      <div class="event-title">TBMM'nin Açılışı</div>
+      <div class="event-desc">Türkiye Büyük Millet Meclisi açıldı ve egemenlik halka verildi.</div>
+    </div>
+
+    <div class="event">
+      <div class="event-date">29 Ekim 1923</div>
+      <div class="event-title">Cumhuriyetin İlanı</div>
+      <div class="event-desc">Türkiye Cumhuriyeti resmen kuruldu.</div>
+    </div>
+
+    <div class="event">
+      <div class="event-date">10 Kasım 1938</div>
+      <div class="event-title">Vefatı</div>
+      <div class="event-desc">Dolmabahçe Sarayı'nda hayata gözlerini yumdu.</div>
     </div>
   </div>
 
-  <script>
-    const events = [
-      { date: '01-01', name: 'Yılbaşı' },
-      { date: '04-23', name: 'Ulusal Egemenlik ve Çocuk Bayramı' },
-      { date: '05-01', name: 'Emek ve Dayanışma Günü' },
-      { date: '05-19', name: 'Atatürk\'ü Anma, Gençlik ve Spor Bayramı' },
-      { date: '07-15', name: 'Milli Birlik ve Demokrasi Günü' },
-      { date: '08-30', name: 'Zafer Bayramı' },
-      { date: '10-29', name: 'Cumhuriyet Bayramı' },
-      { date: '11-10', name: 'Atatürk\'ü Anma Günü' }
-    ];
-
-    function getNextEvent() {
-      const now = new Date();
-      const currentYear = now.getFullYear();
-
-      let closest = null;
-
-      for (const event of events) {
-        let eventDate = new Date(`${currentYear}-${event.date}T00:00:00`);
-        if (eventDate < now) {
-          eventDate = new Date(`${currentYear + 1}-${event.date}T00:00:00`);
-        }
-        if (!closest || eventDate < closest.date) {
-          closest = { ...event, date: eventDate };
-        }
-      }
-
-      return closest;
-    }
-
-    const event = getNextEvent();
-    document.getElementById('eventName').textContent = event.name;
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = event.date.getTime() - now;
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((distance / (1000 * 60)) % 60);
-      const seconds = Math.floor((distance / 1000) % 60);
-
-      document.getElementById('days').textContent = days >= 0 ? days : 0;
-      document.getElementById('hours').textContent = hours >= 0 ? hours : 0;
-      document.getElementById('minutes').textContent = minutes >= 0 ? minutes : 0;
-      document.getElementById('seconds').textContent = seconds >= 0 ? seconds : 0;
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
 </body>
 </html>
