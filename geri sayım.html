@@ -3,167 +3,176 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Atatürk ve Cumhuriyet Geri Sayımı</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet" />
-
+<title>Atatürk Geri Sayım</title>
 <style>
   body {
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-    transition: background-color 0.5s ease, color 0.5s ease;
-    background-color: #1a0000;
-    color: white;
-    text-align: center;
+    margin: 0; padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: white;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.5s, color 0.5s;
   }
-  h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    margin: 2rem 0 1rem 0;
-    color: #ff4d4d;
+  header {
+    background-color: #b30000;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 28px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
   }
   nav {
-    background-color: #660000;
-    padding: 1rem;
+    background-color: #ff1a1a;
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 20px;
+    padding: 12px 0;
   }
   nav a {
-    color: #f0f0f0;
+    color: white;
     text-decoration: none;
     font-weight: 600;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
+    font-size: 18px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background-color 0.3s;
   }
   nav a:hover {
-    color: #ff4d4d;
+    background-color: #800000;
   }
-  #themeToggle {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    background-color: #990000;
-    border: none;
-    color: white;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
+  main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+  h1 {
+    color: #b30000;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px #660000;
+  }
+  #countdown {
+    font-size: 60px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #b30000;
+    text-shadow: 2px 2px 5px #660000;
+  }
+  #event-name {
+    font-size: 22px;
     font-weight: 600;
+    margin-bottom: 10px;
+  }
+  #themeBtn {
+    position: fixed;
+    top: 15px; right: 15px;
+    background-color: #b30000;
+    color: white;
+    border: none;
+    padding: 8px 14px;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 0 8px #b30000;
+    transition: background-color 0.3s;
+    z-index: 100;
   }
-  #themeToggle:hover {
-    background-color: #ff3333;
+  #themeBtn:hover {
+    background-color: #800000;
   }
+  /* Koyu tema */
   body.dark-theme {
     background-color: #1a0000;
-    color: white;
+    color: #f0dede;
   }
-  body.light-theme {
-    background-color: #fff0f0;
-    color: #660000;
+  body.dark-theme header {
+    background-color: #ff1a1a;
   }
-  body.light-theme nav {
-    background-color: #ffcccc;
+  body.dark-theme nav {
+    background-color: #800000;
   }
-  body.light-theme nav a {
-    color: #660000;
+  body.dark-theme nav a {
+    color: #ffdede;
   }
-  body.light-theme nav a:hover {
-    color: #990000;
+  body.dark-theme nav a:hover {
+    background-color: #ff4d4d;
   }
-  body.light-theme #themeToggle {
-    background-color: #cc6666;
-    color: #330000;
-  }
-  body.light-theme #themeToggle:hover {
-    background-color: #ff9999;
-  }
-  #particles-js {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    top: 0;
-    left: 0;
-  }
-  .countdown {
-    max-width: 700px;
-    margin: 3rem auto;
-    padding: 2rem 1rem;
-    background: rgba(255, 77, 77, 0.15);
-    border-left: 4px solid #ff4d4d;
-    border-radius: 6px;
-    box-shadow: 0 0 15px #ff4d4d55;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 2rem;
+  body.dark-theme h1,
+  body.dark-theme #countdown,
+  body.dark-theme #event-name {
     color: #ff4d4d;
-    text-align: center;
-  }
-  .event-desc {
-    max-width: 700px;
-    margin: 0 auto 2rem auto;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    font-size: 1.2rem;
-    color: white;
-  }
-  @media (max-width: 600px) {
-    .countdown {
-      max-width: 95%;
-      font-size: 1.5rem;
-      padding: 1.5rem 1rem;
-    }
-    .event-desc {
-      max-width: 95%;
-      font-size: 1rem;
-      padding: 0 1rem;
-    }
+    text-shadow: 1px 1px 5px #330000;
   }
 </style>
 </head>
-<body class="dark-theme">
+<body>
 
-<div id="particles-js"></div>
+<button id="themeBtn">Tema Değiştir</button>
+
+<header>Atatürk - Geri Sayım</header>
 
 <nav>
   <a href="index.html">Ana Sayfa</a>
   <a href="hayati.html">Hayatı</a>
-  <a href="galeri.html">Galeri</a>
+  <a href="galeri.html">Galerisi</a>
   <a href="zaman.html">Zaman Çizelgesi</a>
   <a href="gerisayim.html">Geri Sayım</a>
 </nav>
 
-<button id="themeToggle">Tema Değiştir</button>
+<main>
+  <h1>Atatürk'ün 19 Mayıs Samsun'a Çıkış Günü</h1>
+  <div id="event-name">19 Mayıs 1919 - Milli Mücadele Başlangıcı</div>
+  <div id="countdown">Yükleniyor...</div>
+</main>
 
-<h1>Atatürk ve Cumhuriyet ile ilgili Geri Sayım</h1>
-<div class="event-desc" id="eventDesc">En yakın önemli tarihi olaya geri sayım</div>
-<div class="countdown" id="countdown">Yükleniyor...</div>
-
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
-  particlesJS('particles-js',
-    {
-      "particles": {
-        "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
-        "color": { "value": "#ff4d4d" },
-        "shape": { "type": "circle", "stroke": { "width": 0 } },
-        "opacity": { "value": 0.7 },
-        "size": { "value": 4, "random": true },
-        "move": { "enable": true, "speed": 3, "direction": "none", "random": true, "straight": false, "out_mode": "out" }
-      },
-      "interactivity": { "events": { "onhover": { "enable": true, "mode": "repulse" } } },
-      "retina_detect": true
+  const themeBtn = document.getElementById('themeBtn');
+  themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme');
+  });
+
+  // Geri sayım tarihi: 19 Mayıs, bir sonraki 19 Mayıs'a sayım
+  function getNextEventDate() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const eventDateThisYear = new Date(year, 4, 19, 0, 0, 0); // Mayıs ayı 4 (0 tabanlı)
+    if (now < eventDateThisYear) {
+      return eventDateThisYear;
+    } else {
+      return new Date(year + 1, 4, 19, 0, 0, 0);
     }
-  );
-
-  const themeToggleBtn = document.getElementById('themeToggle');
-  const body = document.body;
-
-  if(localStorage.getItem('theme') === 'light') {
-    body.classList.replace('dark-theme', 'light-theme');
   }
 
-  themeToggleBtn.addEventListener('click', () => {
-    if(body.classList
+  function updateCountdown() {
+    const now = new Date();
+    const eventDate = getNextEventDate();
+    const diff = eventDate - now;
+
+    if (diff <= 0) {
+      document.getElementById('countdown').innerText = "Bugün 19 Mayıs! Milli Mücadele Başlıyor.";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById('countdown').innerText = 
+      `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye kaldı.`;
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
+
+</body>
+</html>
