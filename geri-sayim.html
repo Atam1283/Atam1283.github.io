@@ -4,22 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Geri Sayım</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet"/>
   <style>
     body {
       background-color: black;
       color: white;
-      font-family: 'Orbitron', sans-serif;
+      font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
-      overflow: hidden;
-    }
-
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
     }
 
     a#anasayfa {
@@ -30,131 +21,83 @@
       font-weight: bold;
       text-decoration: none;
       font-size: 18px;
-      z-index: 10;
     }
 
     h1 {
       text-align: center;
-      font-size: 2.5rem;
       margin-top: 80px;
+      font-size: 2rem;
       color: #ff4d4d;
     }
 
     #countdown {
-      font-size: 2rem;
       text-align: center;
-      margin-top: 40px;
+      font-size: 1.5rem;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <div id="particles-js"></div>
   <a id="anasayfa" href="index.html">← Ana Sayfa</a>
-  <h1 id="event-name">Yaklaşan Özel Gün</h1>
-  <div id="countdown">Yükleniyor...</div>
+  <h1 id="event-name">Yükleniyor...</h1>
+  <div id="countdown">Geri sayım başlatılıyor...</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    // Partikül efekti
-    particlesJS("particles-js", {
-      particles: {
-        number: { value: 90 },
-        color: { value: "#ff0000" },
-        shape: { type: "circle" },
-        opacity: { value: 0.5 },
-        size: { value: 3 },
-        line_linked: {
-          enable: true,
-          distance: 120,
-          color: "#ff0000",
-          opacity: 0.4,
-          width: 1
-        },
-        move: {
-          enable: true,
-          speed: 2
-        }
-      },
-      interactivity: {
-        detect_on: "canvas",
-        events: {
-          onhover: { enable: true, mode: "repulse" },
-          onclick: { enable: true, mode: "push" }
-        },
-        modes: {
-          repulse: { distance: 100 },
-          push: { particles_nb: 4 }
-        }
-      },
-      retina_detect: true
-    });
-
-    // Önemli günler (tarihler yıl hariç, her yıl tekrarlanır)
     const events = [
-      { date: "18 Mart", name: "Çanakkale Zaferi ve Şehitleri Anma Günü" },
-      { date: "23 Nisan", name: "Ulusal Egemenlik ve Çocuk Bayramı" },
-      { date: "19 Mayıs", name: "Atatürk’ü Anma, Gençlik ve Spor Bayramı" },
-      { date: "15 Temmuz", name: "Demokrasi ve Millî Birlik Günü" },
-      { date: "30 Ağustos", name: "Zafer Bayramı" },
-      { date: "29 Ekim", name: "Cumhuriyet Bayramı" },
-      { date: "10 Kasım", name: "Atatürk’ü Anma Günü" }
+      { date: "01-01", name: "Yılbaşı" },
+      { date: "23-04", name: "Ulusal Egemenlik ve Çocuk Bayramı" },
+      { date: "01-05", name: "Emek ve Dayanışma Günü" },
+      { date: "19-05", name: "Atatürk'ü Anma, Gençlik ve Spor Bayramı" },
+      { date: "15-07", name: "Milli Birlik ve Demokrasi Günü" },
+      { date: "30-08", name: "Zafer Bayramı" },
+      { date: "29-10", name: "Cumhuriyet Bayramı" }
     ];
 
-    function getNextEvent(events) {
-      const today = new Date();
-      const thisYear = today.getFullYear();
-      let nextEvent = null;
+    function getNextEvent() {
+      const now = new Date();
+      const currentYear = now.getFullYear();
+      let closestEvent = null;
       let minDiff = Infinity;
 
-      for (let event of events) {
-        const [day, month] = event.date.split(" ").map(v => isNaN(v) ? v : parseInt(v));
-        const monthIndex = {
-          "Ocak": 0, "Şubat": 1, "Mart": 2, "Nisan": 3, "Mayıs": 4,
-          "Haziran": 5, "Temmuz": 6, "Ağustos": 7, "Eylül": 8,
-          "Ekim": 9, "Kasım": 10, "Aralık": 11
-        };
+      events.forEach(e => {
+        const [day, month] = e.date.split("-");
+        let eventDate = new Date(`${currentYear}-${month}-${day}T00:00:00`);
+        if (eventDate < now) eventDate.setFullYear(currentYear + 1);
 
-        const date = typeof month === 'string'
-          ? new Date(thisYear, monthIndex[month], day)
-          : new Date(thisYear, month - 1, day);
-
-        if (date < today) {
-          date.setFullYear(thisYear + 1);
-        }
-
-        const diff = date - today;
+        const diff = eventDate - now;
         if (diff < minDiff) {
           minDiff = diff;
-          nextEvent = { ...event, fullDate: date };
+          closestEvent = { name: e.name, date: eventDate };
         }
-      }
+      });
 
-      return nextEvent;
+      return closestEvent;
     }
 
     function startCountdown() {
-      const event = getNextEvent(events);
+      const event = getNextEvent();
       document.getElementById("event-name").innerText = event.name;
 
-      function updateCountdown() {
+      function update() {
         const now = new Date().getTime();
-        const distance = event.fullDate.getTime() - now;
+        const distance = event.date.getTime() - now;
+
+        if (distance < 0) {
+          document.getElementById("countdown").innerText = "Etkinlik zamanı geldi!";
+          return;
+        }
 
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        document.getElementById("countdown").innerHTML =
+        document.getElementById("countdown").innerText =
           `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye`;
-
-        if (distance < 0) {
-          document.getElementById("countdown").innerHTML = "Etkinlik zamanı geldi!";
-        }
       }
 
-      updateCountdown();
-      setInterval(updateCountdown, 1000);
+      update();
+      setInterval(update, 1000);
     }
 
     startCountdown();
