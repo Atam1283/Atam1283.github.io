@@ -1,196 +1,141 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Atatürk Sitesi - Ana Sayfa</title>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Playfair+Display&display=swap" rel="stylesheet" />
-<style>
-  /* Tema ve stil burada */
-  body {
-    font-family: 'Merriweather', serif;
-    background-color: var(--bg-color, #fff);
-    color: var(--text-color, #222);
-    margin: 0; padding-top: 70px;
-    transition: background-color 0.5s, color 0.5s;
-    min-height: 100vh;
-  }
-  :root {
-    --bg-color: #fff;
-    --text-color: #222;
-    --primary-color: #b22222;
-  }
-  body.dark-theme {
-    --bg-color: #121212;
-    --text-color: #eee;
-    --primary-color: #ff6347;
-  }
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 60px;
-    background: var(--primary-color);
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    z-index: 999;
-  }
-  nav .logo {
-    color: white;
-    font-weight: bold;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-  }
-  nav ul {
-    margin-left: auto;
-    list-style: none;
-    display: flex;
-    gap: 20px;
-  }
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    font-family: 'Merriweather', serif;
-  }
-  nav ul li a:hover {
-    color: #ffdede;
-  }
-  #theme-selector {
-    margin-left: 20px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  #random-quote {
-    background: var(--primary-color);
-    color: white;
-    border-radius: 10px;
-    padding: 15px 20px;
-    margin: 30px auto;
-    max-width: 700px;
-    font-style: italic;
-    font-size: 1.3rem;
-    text-align: center;
-  }
-  /* Parçacık efekt (basit) */
-  #particle-canvas {
-    position: fixed;
-    top: 60px; left: 0;
-    width: 100%;
-    height: calc(100% - 60px);
-    pointer-events: none;
-    z-index: 1;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Atatürk Sitesi</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Modern şık yazı tipi -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet"/>
+  <style>
+    /* Genel stil ayarları */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Arka plan parçacıkları */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #ff3333;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #ccc;
+      margin-top: 0;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    nav a {
+      color: white;
+      background-color: rgba(255, 0, 0, 0.2);
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #ff0000;
+      transform: scale(1.05);
+    }
+
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav a {
+        width: 80%;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
-<nav>
-  <div class="logo">Atatürk Sitesi</div>
-  <ul>
-    <li><a href="index.html">Ana Sayfa</a></li>
-    <li><a href="hayati.html">Hayatı</a></li>
-    <li><a href="galeri.html">Galerisi</a></li>
-    <li><a href="zaman.html">Zaman Çizelgesi</a></li>
-    <li><a href="gerisayim.html">Geri Sayım</a></li>
-  </ul>
-  <select id="theme-selector" title="Tema Seçin">
-    <option value="light">Açık Tema</option>
-    <option value="dark">Koyu Tema</option>
-  </select>
-</nav>
+  <div id="particles-js"></div> <!-- Etkileşimli parçacıklı arka plan -->
 
-<canvas id="particle-canvas"></canvas>
+  <header>
+    <h1>Mustafa Kemal Atatürk</h1>
+    <p>Onu Anlamak, Geleceği Kurmaktır.</p>
+  </header>
 
-<main>
-  <h1>Mustafa Kemal Atatürk</h1>
-  <div id="random-quote">Yükleniyor...</div>
-</main>
+  <nav>
+    <a href="hayatı.html">Hayatı</a>
+    <a href="zaman.html">Zaman Çizelgesi</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="geri-sayım.html">Geri Sayım</a>
+  </nav>
 
-<script>
-  // Tema yönetimi
-  const themeSelector = document.getElementById('theme-selector');
-  function setTheme(theme) {
-    if(theme === 'dark') document.body.classList.add('dark-theme');
-    else document.body.classList.remove('dark-theme');
-    localStorage.setItem('siteTheme', theme);
-  }
-  const savedTheme = localStorage.getItem('siteTheme') || 'light';
-  themeSelector.value = savedTheme;
-  setTheme(savedTheme);
-  themeSelector.addEventListener('change', e => setTheme(e.target.value));
-
-  // Rastgele Atatürk sözleri
-  const quotes = [
-    "Egemenlik, kayıtsız şartsız milletindir.",
-    "Hayatta en hakiki mürşit ilimdir.",
-    "Ne mutlu Türküm diyene!",
-    "Yurtta sulh, cihanda sulh.",
-    "Beni görmek demek mutlaka yüzümü görmek değildir. Benim düşüncelerimi, benim duygularımı anlıyorsanız bu kafidir.",
-    "İstikbal göklerdedir."
-  ];
-  const quoteEl = document.getElementById('random-quote');
-  function showRandomQuote() {
-    const q = quotes[Math.floor(Math.random() * quotes.length)];
-    quoteEl.textContent = `"${q}"`;
-  }
-  showRandomQuote();
-
-  // Basit kırmızı parçacık efekti
-  const canvas = document.getElementById('particle-canvas');
-  const ctx = canvas.getContext('2d');
-  let particlesArray = [];
-
-  function initCanvas(){
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight - 60;
-  }
-  window.addEventListener('resize', initCanvas);
-  initCanvas();
-
-  class Particle {
-    constructor(){
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.size = Math.random() * 3 + 1;
-      this.speedX = (Math.random() - 0.5) * 1.5;
-      this.speedY = (Math.random() - 0.5) * 1.5;
-      this.color = 'rgba(178,34,34,0.7)';
-    }
-    update(){
-      this.x += this.speedX;
-      this.y += this.speedY;
-      if(this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-      if(this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-    }
-    draw(){
-      ctx.fillStyle = this.color;
-      ctx.beginPath();
-      ctx.shadowColor = 'rgba(255,0,0,0.7)';
-      ctx.shadowBlur = 10;
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
-  function initParticles(){
-    particlesArray = [];
-    for(let i=0; i<50; i++){
-      particlesArray.push(new Particle());
-    }
-  }
-  function animate(){
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particlesArray.forEach(p => {
-      p.update();
-      p.draw();
+  <!-- Particles.js etkileşimli arka plan -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    // Kırmızı parçacık efekt ayarları
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 90 },
+        color: { value: "#ff0000" },
+        shape: { type: "circle" },
+        opacity: { value: 0.3 },
+        size: { value: 3 },
+        line_linked: {
+          enable: true,
+          distance: 120,
+          color: "#ff0000",
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" }
+        },
+        modes: {
+          repulse: { distance: 100 },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
     });
-    requestAnimationFrame(animate);
-  }
-  initParticles();
-  animate();
-</script>
+  </script>
 </body>
 </html>
