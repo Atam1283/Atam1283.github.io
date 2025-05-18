@@ -116,9 +116,206 @@
   <a href="index.html">Ana Sayfa</a>
   <a href="hayati.html">Hayatı</a>
   <a href="galeri.html">Galeri</a>
+  <a href="zaman.html">Zaman Çizelgesi</a><!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Zaman Çizelgesi - Atatürk Temalı Site</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet" />
+
+<style>
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    background-color: #1a0000;
+    color: white;
+    text-align: center;
+  }
+  h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    margin: 2rem 0 1rem 0;
+    color: #ff4d4d;
+  }
+  nav {
+    background-color: #660000;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  nav a {
+    color: #f0f0f0;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+  }
+  nav a:hover {
+    color: #ff4d4d;
+  }
+  #themeToggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background-color: #990000;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  #themeToggle:hover {
+    background-color: #ff3333;
+  }
+  body.dark-theme {
+    background-color: #1a0000;
+    color: white;
+  }
+  body.light-theme {
+    background-color: #fff0f0;
+    color: #660000;
+  }
+  body.light-theme nav {
+    background-color: #ffcccc;
+  }
+  body.light-theme nav a {
+    color: #660000;
+  }
+  body.light-theme nav a:hover {
+    color: #990000;
+  }
+  body.light-theme #themeToggle {
+    background-color: #cc6666;
+    color: #330000;
+  }
+  body.light-theme #themeToggle:hover {
+    background-color: #ff9999;
+  }
+  #particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    top: 0;
+    left: 0;
+  }
+  .timeline {
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+    text-align: left;
+  }
+  .event {
+    background: rgba(255, 77, 77, 0.15);
+    border-left: 4px solid #ff4d4d;
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #ff4d4d55;
+  }
+  .event h3 {
+    margin: 0 0 0.5rem 0;
+    color: #ff4d4d;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .event p {
+    margin: 0;
+    line-height: 1.4;
+  }
+  @media (max-width: 600px) {
+    .timeline {
+      max-width: 95%;
+    }
+  }
+</style>
+</head>
+<body class="dark-theme">
+
+<div id="particles-js"></div>
+
+<nav>
+  <a href="index.html">Ana Sayfa</a>
+  <a href="hayati.html">Hayatı</a>
+  <a href="galeri.html">Galeri</a>
   <a href="zaman.html">Zaman Çizelgesi</a>
   <a href="gerisayim.html">Geri Sayım</a>
 </nav>
+
+<button id="themeToggle">Tema Değiştir</button>
+
+<div class="timeline">
+  <h1>Mustafa Kemal Atatürk Zaman Çizelgesi</h1>
+  
+  <div class="event">
+    <h3>1881 - Doğum</h3>
+    <p>Mustafa Kemal Atatürk Selanik'te doğdu.</p>
+  </div>
+
+  <div class="event">
+    <h3>1919 - Samsun’a Çıkış</h3>
+    <p>19 Mayıs 1919'da Samsun’a çıkarak Kurtuluş Savaşı'nı başlattı.</p>
+  </div>
+
+  <div class="event">
+    <h3>1923 - Cumhuriyetin İlanı</h3>
+    <p>29 Ekim 1923'te Türkiye Cumhuriyeti'ni ilan etti ve ilk cumhurbaşkanı oldu.</p>
+  </div>
+
+  <div class="event">
+    <h3>1934 - Soyadı Kanunu</h3>
+    <p>Atatürk soyadını aldı ve halk arasında 'Atatürk' olarak tanındı.</p>
+  </div>
+
+  <div class="event">
+    <h3>1938 - Vefat</h3>
+    <p>10 Kasım 1938'de İstanbul’da vefat etti.</p>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+  particlesJS('particles-js',
+    {
+      "particles": {
+        "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": "#ff4d4d" },
+        "shape": { "type": "circle", "stroke": { "width": 0 } },
+        "opacity": { "value": 0.7 },
+        "size": { "value": 4, "random": true },
+        "move": { "enable": true, "speed": 3, "direction": "none", "random": true, "straight": false, "out_mode": "out" }
+      },
+      "interactivity": { "events": { "onhover": { "enable": true, "mode": "repulse" } } },
+      "retina_detect": true
+    }
+  );
+
+  const themeToggleBtn = document.getElementById('themeToggle');
+  const body = document.body;
+
+  if(localStorage.getItem('theme') === 'light') {
+    body.classList.replace('dark-theme', 'light-theme');
+  }
+
+  themeToggleBtn.addEventListener('click', () => {
+    if(body.classList.contains('dark-theme')) {
+      body.classList.replace('dark-theme', 'light-theme');
+      localStorage.setItem('theme', 'light');
+    } else {
+      body.classList.replace('light-theme', 'dark-theme');
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+</script>
+
+</body>
+</html>
 
 <button id="themeToggle">Tema Değiştir</button>
 
