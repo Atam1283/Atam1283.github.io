@@ -1,172 +1,156 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Atatürk'ün Hayatı</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zaman Çizelgesi</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&display=swap');
-
     body {
       margin: 0;
-      padding: 40px 20px;
-      background-color: #0a0a0a; /* Koyu arka plan */
-      color: #ffffff;
-      font-family: 'Merriweather', serif;
-      line-height: 1.7;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #000;
+      color: #fff;
     }
 
-    a#anasayfa {
+    header {
       position: fixed;
-      top: 15px;
-      left: 15px;
-      color: white;
-      font-weight: 700;
-      text-decoration: none;
-      font-size: 18px;
-      z-index: 100;
-      font-family: Arial, sans-serif;
-      padding: 5px 10px;
-      border: 2px solid white;
-      border-radius: 6px;
-      transition: background-color 0.3s, color 0.3s;
+      top: 0;
+      width: 100%;
+      background-color: #000;
+      padding: 15px;
+      text-align: center;
+      z-index: 1000;
+      border-bottom: 1px solid #444;
     }
-    a#anasayfa:hover {
-      background-color: white;
-      color: #0a0a0a;
+
+    header a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    header a:hover {
+      color: red;
     }
 
     h1 {
-      text-align: left; /* sola yaslandı */
-      font-weight: 700;
-      font-size: 3rem;
-      margin-bottom: 50px;
-      letter-spacing: 3px;
-      color: #fff;
-      text-transform: uppercase;
-      text-shadow: 0 0 20px rgba(255,255,255,1);
+      color: white;
+      text-align: center;
+      padding: 80px 20px 20px;
+      font-size: 2.5rem;
+      text-shadow: 0 0 10px white;
     }
 
     .timeline {
-      max-width: 700px;
-      margin: 0;
       position: relative;
-      padding-left: 20px; /* çizgi sola yaslandı */
-      border-left: 4px solid #bbb;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 0;
     }
 
-    .event {
-      position: relative;
-      margin-bottom: 45px;
-      padding-left: 30px; /* yuvarlak için boşluk */
-    }
-
-    .event::before {
+    .timeline::after {
       content: '';
       position: absolute;
-      left: -32px; /* yuvarlak çizgi üzerinde tam ortada */
-      top: 50%;
-      transform: translateY(-50%);
-      width: 18px;
-      height: 18px;
-      background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+      width: 4px;
+      background-color: #fff;
+      top: 0;
+      bottom: 0;
+      left: 30px;
+      margin-left: -2px;
+    }
+
+    .timeline-item {
+      padding: 15px 20px;
+      position: relative;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-left: 4px solid #fff;
+      margin: 10px 0 10px 60px;
+      border-radius: 5px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -42px;
+      top: 20px;
+      width: 20px;
+      height: 20px;
+      background-color: white;
       border-radius: 50%;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+      border: 3px solid #000;
     }
 
-    .event-date {
-      font-weight: 700;
-      font-size: 1.15rem;
-      color: #ffffff;
-      margin-bottom: 6px;
-      letter-spacing: 1px;
-      font-family: 'Arial', sans-serif;
+    .timeline-item.red::before {
+      background-color: #ff2c2c;
     }
 
-    /* 10 Kasım 1938 için özel renk */
-    .special-date {
-      color: #ff2b2b;
-      text-shadow: 0 0 8px #ff2b2b;
+    .timeline-item h3 {
+      margin: 0 0 5px;
+      font-size: 1.2rem;
+      color: #fffbfb;
     }
 
-    .event-title {
-      font-weight: 700;
-      font-size: 1.6rem;
-      margin-bottom: 8px;
-      color: #ffffff;
-    }
-
-    .event-desc {
-      font-weight: 300;
-      font-size: 1.1rem;
-      color: #ffffff;
-      max-width: 600px;
-      line-height: 1.5;
-    }
-
-    @media (max-width: 600px) {
-      body {
-        padding: 30px 15px;
-      }
-      .timeline {
-        padding-left: 15px;
-        border-left-width: 3px;
-        margin-left: 0;
-      }
-      .event::before {
-        left: -27px;
-        width: 14px;
-        height: 14px;
-      }
-      .event-title {
-        font-size: 1.3rem;
-      }
-      .event-desc {
-        font-size: 1rem;
-      }
-      a#anasayfa {
-        font-size: 16px;
-        padding: 4px 8px;
-      }
+    .timeline-item p {
+      margin: 0;
+      color: #ddd;
     }
   </style>
 </head>
 <body>
 
-  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
+  <header>
+    <a href="index.html">Ana Sayfa</a>
+    <a href="hayati.html">Hayatı</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="gerisayim.html">Geri Sayım</a>
+  </header>
 
-  <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
+  <h1>Mustafa Kemal Atatürk - Zaman Çizelgesi</h1>
 
   <div class="timeline">
-    <div class="event">
-      <div class="event-date">1881</div>
-      <div class="event-title">Doğumu</div>
-      <div class="event-desc">Selanik'te doğdu. Modern Türkiye Cumhuriyeti'nin kurucusudur.</div>
+
+    <div class="timeline-item">
+      <h3>1881</h3>
+      <p>Selanik’te doğdu.</p>
     </div>
 
-    <div class="event">
-      <div class="event-date">19 Mayıs 1919</div>
-      <div class="event-title">Milli Mücadeleyi Başlatması</div>
-      <div class="event-desc">Samsun'a çıkarak Kurtuluş Savaşı'nı başlattı.</div>
+    <div class="timeline-item">
+      <h3>1915</h3>
+      <p>Çanakkale Savaşı'nda büyük başarı kazandı.</p>
     </div>
 
-    <div class="event">
-      <div class="event-date">23 Nisan 1920</div>
-      <div class="event-title">Türkiye Büyük Millet Meclisi'nin Açılışı</div>
-      <div class="event-desc">Egemenlik halkın olduğunu ilan etti.</div>
+    <div class="timeline-item">
+      <h3>19 Mayıs 1919</h3>
+      <p>Samsun'a çıkarak Kurtuluş Savaşı’nı başlattı.</p>
     </div>
 
-    <div class="event">
-      <div class="event-date">29 Ekim 1923</div>
-      <div class="event-title">Cumhuriyetin İlanı</div>
-      <div class="event-desc">Türkiye Cumhuriyeti resmen kuruldu.</div>
+    <div class="timeline-item">
+      <h3>23 Nisan 1920</h3>
+      <p>Türkiye Büyük Millet Meclisi'ni açtı.</p>
     </div>
 
-    <div class="event special">
-      <div class="event-date special-date">10 Kasım 1938</div>
-      <div class="event-title">Vefatı</div>
-      <div class="event-desc">Dolmabahçe Sarayı'nda hayata gözlerini yumdu.</div>
+    <div class="timeline-item">
+      <h3>30 Ağustos 1922</h3>
+      <p>Başkomutanlık Meydan Muharebesi zaferi.</p>
     </div>
+
+    <div class="timeline-item">
+      <h3>29 Ekim 1923</h3>
+      <p>Türkiye Cumhuriyeti'ni ilan etti ve Cumhurbaşkanı oldu.</p>
+    </div>
+
+    <div class="timeline-item">
+      <h3>1934</h3>
+      <p>Soyadı Kanunu ile “Atatürk” soyadını aldı.</p>
+    </div>
+
+    <div class="timeline-item red">
+      <h3>10 Kasım 1938</h3>
+      <p>İstanbul Dolmabahçe Sarayı’nda hayatını kaybetti.</p>
+    </div>
+
   </div>
 
 </body>
