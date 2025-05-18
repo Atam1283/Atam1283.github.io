@@ -9,48 +9,39 @@
   <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Playfair+Display&display=swap" rel="stylesheet" />
 
   <style>
-    /* Temel reset ve responsive */
+    /* Reset & basic */
     * {
       margin: 0; padding: 0; box-sizing: border-box;
     }
-
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: 'Merriweather', serif;
-      background-color: #fff;
-      color: #222;
+      background-color: var(--bg-color, #fff);
+      color: var(--text-color, #222);
       line-height: 1.6;
       min-height: 100vh;
+      padding-top: 70px;
       transition: background-color 0.5s, color 0.5s;
-      opacity: 0;
-      animation: fadeIn 1s forwards;
+    }
+    :root {
+      --bg-color: #fff;
+      --text-color: #222;
+      --primary-color: #b22222;
+    }
+    body.dark-theme {
+      --bg-color: #121212;
+      --text-color: #eee;
+      --primary-color: #ff6347;
     }
 
-    /* Tema için anma günü özel */
-    body.anma-gunu {
-      background-color: #000;
-      color: #fff;
-      font-style: italic;
-      text-align: center;
-      padding: 30px;
-    }
-
-    h1 {
+    h1, h2, h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      margin: 40px 0 20px 0;
-      text-align: center;
+      margin-bottom: 1rem;
     }
-
-    p {
-      max-width: 700px;
-      margin: 0 auto 30px auto;
-      font-size: 1.2rem;
-      text-align: center;
-    }
-
-    /* Menü */
     nav {
-      background: #ff0000;
+      background: var(--primary-color);
       position: fixed;
       top: 0; left: 0; right: 0;
       height: 60px;
@@ -60,108 +51,251 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.3);
       z-index: 1000;
     }
-
+    nav .logo {
+      color: white;
+      font-weight: bold;
+      font-size: 1.5rem;
+      font-family: 'Playfair Display', serif;
+    }
     nav ul {
       list-style: none;
       display: flex;
       gap: 20px;
       margin-left: auto;
     }
-
     nav ul li a {
       color: white;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
       font-family: 'Merriweather', serif;
       transition: color 0.3s;
+      cursor: pointer;
     }
-
     nav ul li a:hover {
       color: #ffdede;
     }
 
-    /* Sayfa içeriği üst menüden boşluk */
     main {
-      padding-top: 80px;
-      padding-left: 15px;
-      padding-right: 15px;
       max-width: 900px;
-      margin: 0 auto;
+      margin: 0 auto 50px auto;
+      padding: 0 15px;
     }
 
-    /* Fade in animasyon */
-    @keyframes fadeIn {
-      to { opacity: 1; }
+    /* Theme selector */
+    #theme-selector {
+      margin-left: 20px;
+      padding: 5px 10px;
+      font-family: 'Merriweather', serif;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* Random quote */
+    #random-quote {
+      background: var(--primary-color);
+      color: white;
+      padding: 15px 20px;
+      border-radius: 10px;
+      text-align: center;
+      margin: 30px 0;
+      font-style: italic;
+      font-size: 1.25rem;
+    }
+
+    /* Mini blog */
+    #mini-blog article {
+      margin-bottom: 20px;
+      border-left: 5px solid var(--primary-color);
+      padding-left: 15px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      color: #333;
+    }
+    body.dark-theme #mini-blog article {
+      background: #222;
+      color: #ddd;
+    }
+
+    /* Gallery */
+    #gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    #gallery img {
+      max-width: 150px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.3s;
+    }
+    #gallery img:hover {
+      border-color: var(--primary-color);
+    }
+
+    /* Timeline */
+    #timeline {
+      margin-top: 30px;
+      border-left: 4px solid var(--primary-color);
+      padding-left: 15px;
+    }
+    #timeline div {
+      margin-bottom: 20px;
+    }
+    #timeline div h4 {
+      color: var(--primary-color);
+    }
+
+    /* Countdown */
+    #countdown {
+      margin-top: 30px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-align: center;
+      background: var(--primary-color);
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
     }
 
     /* Responsive */
     @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
       nav ul {
         gap: 10px;
+      }
+      #gallery img {
+        max-width: 100px;
       }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <div style="color:#fff; font-weight:bold; font-family:'Playfair Display', serif; font-size:1.5rem;">
-      Atatürk Sitesi
+<nav>
+  <div class="logo">Atatürk Sitesi</div>
+  <ul>
+    <li><a href="#anasayfa">Ana Sayfa</a></li>
+    <li><a href="#mini-blog">Hayatı</a></li>
+    <li><a href="#gallery">Galerisi</a></li>
+    <li><a href="#timeline">Zaman Çizelgesi</a></li>
+    <li><a href="#countdown">Geri Sayım</a></li>
+  </ul>
+  <select id="theme-selector" title="Tema Seçin">
+    <option value="light">Açık Tema</option>
+    <option value="dark">Koyu Tema</option>
+  </select>
+</nav>
+
+<main>
+
+  <section id="anasayfa">
+    <h1>Mustafa Kemal Atatürk</h1>
+    <div id="random-quote">Loading...</div>
+  </section>
+
+  <section id="mini-blog">
+    <h2>Atatürk’ün Hayatı</h2>
+    <article>
+      <h3>1881 - Doğumu</h3>
+      <p>Mustafa Kemal Atatürk, 1881 yılında Selanik’te doğdu.</p>
+    </article>
+    <article>
+      <h3>1919 - Samsun’a Çıkışı</h3>
+      <p>19 Mayıs 1919'da Samsun’a çıkarak Kurtuluş Savaşı'nı başlattı.</p>
+    </article>
+    <article>
+      <h3>1923 - Cumhuriyetin İlanı</h3>
+      <p>29 Ekim 1923’te Türkiye Cumhuriyeti’ni kurdu ve ilk cumhurbaşkanı oldu.</p>
+    </article>
+  </section>
+
+  <section id="gallery">
+    <h2>Atatürk Galerisi</h2>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Mustafa_Kemal_Atat%C3%BCrk_1925.jpg" alt="Atatürk 1925" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Mustafa_Kemal_Atat%C3%BCrk_in_1930.jpg" alt="Atatürk 1930" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Mustafa_Kemal_Atat%C3%BCrk_1936.jpg" alt="Atatürk 1936" />
+  </section>
+
+  <section id="timeline">
+    <h2>Atatürk Zaman Çizelgesi</h2>
+    <div>
+      <h4>1881</h4>
+      <p>Selanik’te doğdu.</p>
     </div>
-    <ul>
-      <li><a href="#anasayfa">Ana Sayfa</a></li>
-      <li><a href="#sozu">Sözleri</a></li>
-      <li><a href="#haberler">Haberler</a></li>
-      <li><a href="#iletisim">İletişim</a></li>
-    </ul>
-  </nav>
+    <div>
+      <h4>1919</h4>
+      <p>Samsun’a çıktı, Kurtuluş Savaşı başladı.</p>
+    </div>
+    <div>
+      <h4>1923</h4>
+      <p>Türkiye Cumhuriyeti ilan edildi.</p>
+    </div>
+    <div>
+      <h4>1938</h4>
+      <p>10 Kasım’da vefat etti.</p>
+    </div>
+  </section>
 
-  <main>
-    <section id="anasayfa">
-      <h1>Mustafa Kemal Atatürk</h1>
-      <p>"Yurtta sulh, cihanda sulh."</p>
-    </section>
+  <section id="countdown">
+    <h2>10 Kasım’a Geri Sayım</h2>
+    <div id="timer">Yükleniyor...</div>
+  </section>
 
-    <section id="sozu">
-      <h2>Atatürk’ün Ünlü Sözleri</h2>
-      <ul>
-        <li>“Egemenlik, kayıtsız şartsız milletindir.”</li>
-        <li>“Hayatta en hakiki mürşit ilimdir.”</li>
-        <li>“Ne mutlu Türküm diyene!”</li>
-      </ul>
-    </section>
+</main>
 
-    <section id="haberler">
-      <h2>Güncel Haberler</h2>
-      <p>Türkiye ve Atatürk ile ilgili haberler henüz eklenmedi.</p>
-    </section>
+<script>
+  // Rastgele sözler
+  const quotes = [
+    "Egemenlik, kayıtsız şartsız milletindir.",
+    "Hayatta en hakiki mürşit ilimdir.",
+    "Ne mutlu Türküm diyene!",
+    "Yurtta sulh, cihanda sulh.",
+    "Beni görmek demek mutlaka yüzümü görmek değildir. Benim düşüncelerimi, benim duygularımı anlıyorsanız bu kafidir.",
+    "İstikbal göklerdedir."
+  ];
+  const quoteEl = document.getElementById('random-quote');
+  function showRandomQuote(){
+    const q = quotes[Math.floor(Math.random() * quotes.length)];
+    quoteEl.textContent = `"${q}"`;
+  }
+  showRandomQuote();
 
-    <section id="iletisim">
-      <h2>İletişim</h2>
-      <p>Bu site Atatürk sevgisiyle yapıldı.</p>
-    </section>
-  </main>
-
-  <script>
-    // Sayfa yüklendiğinde opacity fade in için zaten CSS animation var.
-
-    // 2 - Anma Günü Hatırlatıcı (10 Kasım)
-    const today = new Date();
-    const isAnmaGunu = today.getDate() === 10 && today.getMonth() === 10; // Kasım ayı 10. gün (0-indexli ay)
-
-    if(isAnmaGunu) {
-      document.body.classList.add('anma-gunu');
-      // Mesajı göster
-      const main = document.querySelector('main');
-      main.innerHTML = `
-        <h1>Mustafa Kemal Atatürk’ü Anıyoruz</h1>
-        <p>Bugün 10 Kasım. Büyük Önderimizin aramızdan ayrılışının yıldönümü. Saygı ve minnetle anıyoruz.</p>
-      `;
+  // Tema seçici
+  const themeSelector = document.getElementById('theme-selector');
+  function setTheme(theme){
+    if(theme === 'dark'){
+      document.body.classList.add('dark-theme');
+    } else {
+      document.body.classList.remove('dark-theme');
     }
-  </script>
+    localStorage.setItem('siteTheme', theme);
+  }
+  // Yüklendiğinde kaydedilmiş tema uygula
+  const savedTheme = localStorage.getItem('siteTheme') || 'light';
+  themeSelector.value = savedTheme;
+  setTheme(savedTheme);
 
-</body>
-</html>
+  themeSelector.addEventListener('change', e => {
+    setTheme(e.target.value);
+  });
+
+  // 10 Kasım geri sayım
+  const timerEl = document.getElementById('timer');
+  function countdownToAtaturk(){
+    const now = new Date();
+    let year = now.getFullYear();
+    const targetDate = new Date(year, 10, 10, 9, 5, 0); // 10 Kasım 09:05
+
+    if(now > targetDate){
+      // Gelecek yıl için güncelle
+      targetDate.setFullYear(year + 1);
+    }
+
+    const diff = targetDate - now;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff
