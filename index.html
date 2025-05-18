@@ -2,185 +2,191 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Atatürk - Ana Sayfa</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atatürk Anasayfa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --bg-color: #111;
+      --text-color: #fff;
+      --accent-color: #ff2c2c;
+      --card-bg: #1e1e1e;
+    }
+
+    body.light-theme {
+      --bg-color: #fff;
+      --text-color: #111;
+      --accent-color: #c40000;
+      --card-bg: #f5f5f5;
+    }
+
     body {
       margin: 0;
       font-family: 'Rubik', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
       transition: background-color 0.3s, color 0.3s;
-      color: white;
-      overflow-x: hidden;
-    }
-
-    /* Tema renkleri */
-    .light-theme {
-      background-color: #ffffff;
-      color: #222;
-    }
-
-    .dark-theme {
-      background-color: #1a1a1a;
-      color: #f5f5f5;
     }
 
     header {
-      background: rgba(255, 0, 0, 0.85);
-      padding: 1rem 2rem;
+      background-color: var(--accent-color);
+      color: white;
       text-align: center;
-      font-size: 1.5rem;
+      padding: 1.5rem;
+      font-size: 2rem;
       font-weight: bold;
-      position: relative;
-      z-index: 10;
     }
 
-    nav {
+    .nav {
       display: flex;
       justify-content: center;
-      gap: 2rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
       padding: 1rem;
-      background: rgba(0,0,0,0.2);
+      background-color: rgba(0, 0, 0, 0.1);
     }
 
-    nav a {
-      color: white;
+    .nav a {
+      color: var(--text-color);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: bold;
+      font-size: 1.1rem;
+      position: relative;
     }
 
-    #ataturk-sozu {
-      font-size: 1.5rem;
-      margin-top: 3rem;
+    .nav a::after {
+      content: '';
+      display: block;
+      width: 0%;
+      height: 2px;
+      background: var(--accent-color);
+      transition: width 0.3s;
+      margin-top: 4px;
+    }
+
+    .nav a:hover::after {
+      width: 100%;
+    }
+
+    .container {
       text-align: center;
-      padding: 0 2rem;
+      padding: 3rem 2rem;
     }
 
-    .tema-btn {
-      position: absolute;
+    .quote {
+      font-size: 1.7rem;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    .cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      width: 250px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card h3 {
+      margin-bottom: 0.5rem;
+      color: var(--accent-color);
+    }
+
+    .theme-toggle {
+      position: fixed;
       top: 20px;
       right: 20px;
-      padding: 0.5rem 1rem;
-      background-color: white;
+      background: var(--accent-color);
       border: none;
-      cursor: pointer;
+      color: white;
+      padding: 0.5rem 1rem;
       font-weight: bold;
-    }
-
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 100;
     }
 
     footer {
       text-align: center;
       padding: 2rem;
       margin-top: 3rem;
-      background: rgba(0,0,0,0.5);
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 600px) {
+      .cards {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
-<body class="dark-theme">
-  <!-- Tema Değiştir Butonu -->
-  <button class="tema-btn" onclick="temaDegistir()">Temayı Değiştir</button>
+<body>
+  <button class="theme-toggle" onclick="temaDegistir()">Temayı Değiştir</button>
 
-  <!-- Üst Menü -->
   <header>Mustafa Kemal Atatürk</header>
 
-  <nav>
+  <nav class="nav">
     <a href="index.html">Ana Sayfa</a>
     <a href="hayatı.html">Hayatı</a>
     <a href="zaman.html">Zaman Çizelgesi</a>
     <a href="galeri.html">Galeri</a>
-    <a href="geri-sayım.html">Geri Sayım</a>
+    <a href="geri-sayim.html">Geri Sayım</a>
   </nav>
 
-  <!-- Ortadaki Değişen Söz -->
-  <div id="ataturk-sozu">"Yurtta sulh, cihanda sulh."</div>
+  <div class="container">
+    <div class="quote" id="sozu">"Yurtta sulh, cihanda sulh."</div>
 
-  <!-- Footer -->
+    <div class="cards">
+      <div class="card">
+        <h3>Hayatı</h3>
+        <p>Mustafa Kemal Atatürk’ün yaşam öyküsünü keşfedin.</p>
+      </div>
+      <div class="card">
+        <h3>Zaman Çizelgesi</h3>
+        <p>Hayatındaki önemli olaylara tarih sırasıyla göz atın.</p>
+      </div>
+      <div class="card">
+        <h3>Galeri</h3>
+        <p>Atatürk’e ait fotoğraflar ve anılara göz atın.</p>
+      </div>
+      <div class="card">
+        <h3>Geri Sayım</h3>
+        <p>Atatürk'ün hayatındaki önemli bir güne geri sayım yapın.</p>
+      </div>
+    </div>
+  </div>
+
   <footer>© 2025 EFE | Atatürk'ü Anma Sitesi</footer>
 
-  <!-- Parçacık Arka Plan -->
-  <canvas id="parcaciklar"></canvas>
-
-  <!-- JavaScriptler -->
   <script>
-    // Değişen Atatürk Sözleri
     const sozler = [
       "Yurtta sulh, cihanda sulh.",
-      "Benim naçiz vücudum elbet bir gün toprak olacaktır.",
-      "Egemenlik, kayıtsız şartsız milletindir.",
       "Hayatta en hakiki mürşit ilimdir.",
+      "Egemenlik, kayıtsız şartsız milletindir.",
+      "Benim naçiz vücudum elbet bir gün toprak olacaktır.",
       "Milletin bağımsızlığını yine milletin azim ve kararı kurtaracaktır."
     ];
 
-    document.getElementById("ataturk-sozu").textContent =
+    document.getElementById("sozu").textContent =
       `"${sozler[Math.floor(Math.random() * sozler.length)]}"`;
 
-    // Tema Değiştir
     function temaDegistir() {
-      document.body.classList.toggle("light-theme");
-      document.body.classList.toggle("dark-theme");
+      document.body.classList.toggle('light-theme');
     }
-
-    // Kırmızı Parçacık Efekti
-    const canvas = document.getElementById("parcaciklar");
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const particles = [];
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = Math.random() * 1 - 0.5;
-        this.speedY = Math.random() * 1 - 0.5;
-        this.color = "rgba(255,0,0,0.8)";
-      }
-
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        // Ekran dışına çıkan parçacığı yeniden başlat
-        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
-          this.x = Math.random() * canvas.width;
-          this.y = Math.random() * canvas.height;
-        }
-      }
-
-      draw() {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    function initParticles() {
-      for (let i = 0; i < 150; i++) {
-        particles.push(new Particle());
-      }
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-      requestAnimationFrame(animate);
-    }
-
-    initParticles();
-    animate();
   </script>
 </body>
 </html>
