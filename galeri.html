@@ -1,107 +1,68 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Atatürk Galerisi</title>
-  <style>
-    body {
-      background-color: black; /* Sayfa arka planı siyah */
-      color: white;
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 20px;
-    }
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 20px;
+}
 
-    a#anasayfa {
-      color: white;
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 18px;
-      z-index: 10;
-    }
-    a#anasayfa:hover {
-      color: #ff4d4d;
-    }
+a#anasayfa {
+  color: white;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 18px;
+  z-index: 10;
+}
+a#anasayfa:hover {
+  color: #ccc;
+}
 
-    h1 {
-      text-align: center;
-      margin-bottom: 40px;
-      font-weight: 700;
-      font-size: 2.8rem;
-      color: white;
-    }
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 700;
+  font-size: 2.8rem;
+  color: #fff;
+  text-shadow: 0 0 15px #fff;
+}
 
-    .gallery {
-      background-color: #000; /* Galeri arka planı siyah */
-      padding: 20px;
-      border-radius: 10px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      max-width: 1000px;
-      margin: 0 auto;
-      box-shadow: 0 0 15px #ff4d4d88;
-    }
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
 
-    .gallery-item {
-      background: #111; /* Kart arka planı koyu */
-      border: 2px solid #ff4d4d;
-      border-radius: 10px;
-      padding: 10px;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-    }
-    .gallery-item:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #ff4d4d;
-    }
+.gallery-item {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.gallery-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px white;
+}
 
-    .gallery-item img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 12px;
-      height: 180px;
-      object-fit: cover;
-      box-shadow: 0 0 8px #ff4d4d88;
-    }
+.gallery-item img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  height: 180px;
+  object-fit: cover;
+  box-shadow: 0 0 8px white;
+}
 
-    .gallery-item p {
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: #ff4d4d;
-      margin: 0;
-    }
-  </style>
-</head>
-<body>
-
-  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
-
-  <h1>Atatürk Galerisi</h1>
-
-  <section class="gallery">
-    <div class="gallery-item">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Mustafa_Kemal_Atat%C3%BCrk_in_1930s.jpg/440px-Mustafa_Kemal_Atat%C3%BCrk_in_1930s.jpg" alt="Atatürk 1930'lar" />
-      <p>Mustafa Kemal Atatürk (1930'lar)</p>
-    </div>
-    <div class="gallery-item">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Ataturk_in_March_1924.jpg/440px-Ataturk_in_March_1924.jpg" alt="Atatürk 1924" />
-      <p>Atatürk, Mart 1924</p>
-    </div>
-    <div class="gallery-item">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Ataturk_in_the_1920s.jpg/440px-Ataturk_in_the_1920s.jpg" alt="Atatürk 1920'ler" />
-      <p>Atatürk (1920'ler)</p>
-    </div>
-    <div class="gallery-item">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Atatürk_1937.jpg/440px-Atatürk_1937.jpg" alt="Atatürk 1937" />
-      <p>Atatürk, 1937</p>
-    </div>
-  </section>
-
-</body>
-</html>
+.gallery-item p {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: white;
+  margin: 0;
+}
