@@ -1,189 +1,141 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ana Sayfa - Atatürk</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins&display=swap" rel="stylesheet" />
-<style>
-  /* Reset & Temel */
-  * {margin:0; padding:0; box-sizing: border-box;}
-  body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #1a0000;
-    color: #fff;
-    min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
-  }
-  nav {
-    background-color: #660000cc;
-    padding: 15px 30px;
-    display: flex;
-    gap: 25px;
-    font-weight: 600;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-  nav a {
-    color: #fff;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  nav a:hover {
-    color: #ff5555;
-  }
-  .container {
-    max-width: 900px;
-    margin: 50px auto 80px;
-    padding: 0 20px;
-    position: relative;
-    z-index: 5;
-    text-align: center;
-  }
-  h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px #ff0000cc;
-  }
-  p {
-    font-size: 1.25rem;
-    line-height: 1.6;
-    max-width: 650px;
-    margin: 0 auto;
-    text-shadow: 0 0 6px #990000cc;
-  }
-
-  /* Tema butonu */
-  #themeToggle {
-    position: fixed;
-    top: 20px;
-    right: 25px;
-    background: #ff1a1a;
-    border: none;
-    padding: 12px 24px;
-    font-weight: 700;
-    color: #fff;
-    border-radius: 30px;
-    cursor: pointer;
-    box-shadow: 0 0 15px #ff1a1aaa;
-    z-index: 15;
-    transition: background 0.4s ease;
-  }
-  #themeToggle:hover {
-    background: #ff4d4d;
-  }
-
-  /* Particles canvas */
-  #particles-js {
-    position: fixed;
-    top:0; left:0;
-    width: 100%; height: 100%;
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  /* Temalar */
-  body.light {
-    background-color: #fff0f0;
-    color: #660000;
-  }
-  body.light nav {
-    background-color: #ffcccccc;
-  }
-  body.light nav a {
-    color: #660000;
-  }
-  body.light nav a:hover {
-    color: #cc0000;
-  }
-  body.light #themeToggle {
-    background: #cc0000;
-    box-shadow: 0 0 15px #cc0000aa;
-  }
-  body.light #themeToggle:hover {
-    background: #ff3333;
-  }
-  body.light p, body.light h1 {
-    text-shadow: none;
-  }
-</style>
-</head>
-<body class="dark">
-
-<nav>
-  <a href="index.html">Ana Sayfa</a>
-  <a href="hayati.html">Hayatı</a>
-  <a href="galeri.html">Galeri</a>
-  <a href="zaman.html">Zaman Çizelgesi</a>
-  <a href="gerisayim.html">Geri Sayım</a>
-</nav>
-
-<button id="themeToggle">Tema Değiştir</button>
-
-<div id="particles-js"></div>
-
-<div class="container">
-  <h1>Mustafa Kemal Atatürk</h1>
-  <p>Türkiye Cumhuriyeti'nin kurucusu ve lideri Mustafa Kemal Atatürk'ün hayatı, düşünceleri ve devrimleri hakkında bilgiler burada.</p>
-</div>
-
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<script>
-  // Particles config - kırmızı ve hareketli
-  particlesJS('particles-js', {
-    particles: {
-      number: { value: 80, density: { enable: true, value_area: 900 } },
-      color: { value: ['#ff0000', '#cc0000', '#990000'] },
-      shape: { type: 'circle' },
-      opacity: { value: 0.7, random: true },
-      size: { value: 4, random: true },
-      move: {
-        enable: true,
-        speed: 3,
-        direction: 'none',
-        random: false,
-        straight: false,
-        out_mode: 'out',
-        bounce: false
-      }
-    },
-    interactivity: {
-      detect_on: 'canvas',
-      events: {
-        onhover: { enable: true, mode: 'grab' },
-        onclick: { enable: true, mode: 'push' },
-        resize: true
-      },
-      modes: {
-        grab: { distance: 120, line_linked: { opacity: 0.3 }},
-        push: { particles_nb: 4 }
-      }
-    },
-    retina_detect: true
-  });
-
-  // Tema değiştirici
-  const themeBtn = document.getElementById('themeToggle');
-  themeBtn.addEventListener('click', () => {
-    if(document.body.classList.contains('dark')){
-      document.body.classList.replace('dark', 'light');
-      localStorage.setItem('theme', 'light');
-    } else {
-      document.body.classList.replace('light', 'dark');
-      localStorage.setItem('theme', 'dark');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Atatürk Sitesi</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Modern şık yazı tipi -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet"/>
+  <style>
+    /* Genel stil ayarları */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #000;
+      color: #fff;
+      overflow-x: hidden;
     }
-  });
 
-  // Önceki tema kaydı
-  const savedTheme = localStorage.getItem('theme');
-  if(savedTheme) {
-    document.body.className = savedTheme;
-  }
-</script>
+    /* Arka plan parçacıkları */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
 
+    header {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #ff3333;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #ccc;
+      margin-top: 0;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    nav a {
+      color: white;
+      background-color: rgba(255, 0, 0, 0.2);
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #ff0000;
+      transform: scale(1.05);
+    }
+
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav a {
+        width: 80%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div> <!-- Etkileşimli parçacıklı arka plan -->
+
+  <header>
+    <h1>Mustafa Kemal Atatürk</h1>
+    <p>Onu Anlamak, Geleceği Kurmaktır.</p>
+  </header>
+
+  <nav>
+    <a href="hayatı.html">Hayatı</a>
+    <a href="zaman.html">Zaman Çizelgesi</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="geri-sayım.html">Geri Sayım</a>
+  </nav>
+
+  <!-- Particles.js etkileşimli arka plan -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    // Kırmızı parçacık efekt ayarları
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 90 },
+        color: { value: "#ff0000" },
+        shape: { type: "circle" },
+        opacity: { value: 0.3 },
+        size: { value: 3 },
+        line_linked: {
+          enable: true,
+          distance: 120,
+          color: "#ff0000",
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" }
+        },
+        modes: {
+          repulse: { distance: 100 },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
+    });
+  </script>
 </body>
 </html>
