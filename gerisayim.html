@@ -100,7 +100,7 @@ particlesJS("particles-js", {
 </script>
 
 <script>
-// Atatürk ve Cumhuriyet özel günleri (Ay, Gün formatı)
+// Özel günler (ay-gün formatında)
 const specialEvents = [
   { date: "05-19", name: "Atatürk'ü Anma, Gençlik ve Spor Bayramı" },
   { date: "04-23", name: "Ulusal Egemenlik ve Çocuk Bayramı" },
@@ -108,27 +108,26 @@ const specialEvents = [
   { date: "11-10", name: "Atatürk'ü Anma Günü" }
 ];
 
-// Tarih nesnesi oluşturur, gelecek yıl ise ayarlanır
+// Bir sonraki özel gün tarihini bul
 function getNextEventDate(monthDay) {
   const now = new Date();
   const [month, day] = monthDay.split("-").map(Number);
   let eventDate = new Date(now.getFullYear(), month -1, day);
 
-  // Eğer bugün ya da geçmişse, gelecek yıla al
   if (eventDate < now) {
     eventDate = new Date(now.getFullYear() + 1, month -1, day);
   }
   return eventDate;
 }
 
-// İki tarihin aynı günü olup olmadığını kontrol eder
+// Aynı gün mü kontrolü
 function isSameDay(d1, d2) {
   return d1.getDate() === d2.getDate() &&
          d1.getMonth() === d2.getMonth() &&
          d1.getFullYear() === d2.getFullYear();
 }
 
-// En yakın olayı bul
+// En yakın özel günü bul
 function getNearestEvent() {
   const now = new Date();
   let minDiff = Infinity;
@@ -175,7 +174,7 @@ function updateCountdown() {
     `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye kaldı`;
 }
 
-// Sayfa açılır açılmaz ve her saniye güncelle
+// Sayfa yüklendiğinde ve her saniye güncelle
 updateCountdown();
 setInterval(updateCountdown, 1000);
 </script>
