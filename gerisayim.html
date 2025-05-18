@@ -3,229 +3,206 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Geri Sayım - Atatürk ve Cumhuriyet</title>
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Merriweather&display=swap" rel="stylesheet" />
-  
+  <title>Atatürk Geri Sayım</title>
+
+  <!-- Google Fonts: Modern, okunaklı yazı stili -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+
   <style>
-    body {
-      margin: 0; font-family: 'Merriweather', serif;
-      background-color: #111; color: #eee;
-      overflow-x: hidden;
-      transition: background-color 0.5s ease, color 0.5s ease;
+    /* Sayfa genel ayarları */
+    body, html {
+      margin: 0; padding: 0; height: 100%;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #0b0000; /* koyu zemin */
+      color: white;
+      overflow: hidden; /* Kaydırma çubuğu olmasın */
     }
-    header {
-      background-color: #8B0000;
-      padding: 20px;
-      text-align: center;
-      font-weight: 700;
-      font-size: 2rem;
-      letter-spacing: 2px;
-      user-select: none;
+
+    /* Geri sayım kutusu ortada */
+    .countdown-container {
       position: relative;
-      z-index: 10;
-    }
-    nav {
+      z-index: 10; /* parçacıkların önünde */
+      height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
-      background-color: #600000;
-      padding: 10px 0;
-      position: relative;
-      z-index: 10;
-    }
-    nav a {
-      color: #eee;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: 700;
-      font-family: 'Roboto', sans-serif;
-      transition: color 0.3s ease;
-    }
-    nav a:hover {
-      color: #ff4444;
-    }
-    main {
-      max-width: 700px;
-      margin: 50px auto;
+      align-items: center;
+      text-align: center;
       padding: 20px;
-      line-height: 1.7;
-      font-size: 1.1rem;
-      background-color: rgba(139, 0, 0, 0.3);
-      border-radius: 10px;
-      box-shadow: 0 0 20px #8B0000;
-      text-align: center;
-      position: relative;
-      z-index: 10;
+      background: rgba(0,0,0,0.5);
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+      border-radius: 15px;
+      max-width: 400px;
+      margin: auto;
     }
-    h1 {
-      color: #ff6666;
-      margin-bottom: 40px;
-    }
-    #countdown {
-      font-family: 'Roboto', sans-serif;
-      font-weight: 700;
+
+    .countdown-container h1 {
       font-size: 2.5rem;
-      color: #ff2222;
-      letter-spacing: 2px;
-      margin-bottom: 30px;
-    }
-    #event-desc {
-      font-size: 1.2rem;
       margin-bottom: 20px;
+      color: #ff4c4c;
+      text-shadow: 0 0 8px #ff0000;
     }
-    footer {
-      text-align: center;
-      padding: 15px;
-      background-color: #600000;
-      color: #eee;
-      font-size: 0.9rem;
-      user-select: none;
-      position: relative;
-      z-index: 10;
-    }
-    #temaToggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: #8B0000;
-      border: none;
-      color: #eee;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
+
+    .countdown {
+      font-size: 3rem;
+      letter-spacing: 0.1em;
       font-weight: 700;
-      transition: background-color 0.3s ease;
-      z-index: 1000;
+      color: #ff0000;
+      text-shadow: 0 0 10px #ff6666;
     }
-    #temaToggle:hover {
-      background-color: #ff4444;
-    }
-    body.koyu {
-      background-color: #111;
-      color: #eee;
-    }
-    body.koyu main {
-      background-color: rgba(139, 0, 0, 0.3);
-      box-shadow: 0 0 20px #8B0000;
-    }
-    body.acik {
-      background-color: #fff;
-      color: #333;
-    }
-    body.acik main {
-      background-color: rgba(255, 200, 200, 0.6);
-      box-shadow: 0 0 20px #ff4444;
-    }
-    body.acik header {
-      background-color: #ff4444;
-      color: #fff;
-    }
-    body.acik nav {
-      background-color: #cc0000;
-    }
-    body.acik nav a {
-      color: #fff;
-    }
-    body.acik nav a:hover {
-      color: #eee;
-    }
-    body.acik footer {
-      background-color: #cc0000;
-      color: #fff;
-    }
-    #particles-js {
+
+    /* Partiküller için canvas tam ekran ve altta */
+    #particle-canvas {
       position: fixed;
       top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      z-index: 0;
-      pointer-events: none;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1; /* içerik altında */
+      pointer-events: none; /* fare etkileşimini engelle */
+      background: #0b0000; /* koyu arka plan */
     }
   </style>
 </head>
-<body class="koyu">
+<body>
 
-  <!-- Parçacıklar -->
-  <div id="particles-js"></div>
+  <!-- Kırmızı partiküller için canvas -->
+  <canvas id="particle-canvas"></canvas>
 
-  <button id="temaToggle" aria-label="Tema değiştir">Tema Değiştir</button>
+  <div class="countdown-container">
+    <h1>Atatürk ve Cumhuriyet Geri Sayımı</h1>
+    <div id="countdown" class="countdown">Yükleniyor...</div>
+  </div>
 
-  <header>
-    Atatürk ve Cumhuriyet Geri Sayımı
-  </header>
-
-  <nav>
-    <a href="index.html">Ana Sayfa</a>
-    <a href="hayati.html">Hayatı</a>
-    <a href="galeri.html">Galeri</a>
-    <a href="zaman.html">Zaman Çizelgesi</a>
-    <a href="geri-sayim.html">Geri Sayım</a>
-  </nav>
-
-  <main>
-    <h1>En Yakın Tarihi Olay</h1>
-    <div id="event-desc">10 Kasım Atatürk'ü Anma Günü</div>
-    <div id="countdown">Yükleniyor...</div>
-  </main>
-
-  <footer>
-    &copy; 2025 Mustafa Kemal Atatürk Anısına
-  </footer>
-
-  <!-- Particles.js -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  
   <script>
-    // Tema değiştirici buton kontrolü
-    const temaToggle = document.getElementById('temaToggle');
-    const body = document.body;
-    temaToggle.addEventListener('click', () => {
-      if(body.classList.contains('koyu')) {
-        body.classList.replace('koyu', 'acik');
-      } else {
-        body.classList.replace('acik', 'koyu');
-      }
-    });
+    // Geri sayım hedef tarihi (örnek: 29 Ekim Cumhuriyet Bayramı 2025)
+    const targetDate = new Date('2025-10-29T00:00:00');
 
-    // Particles.js kırmızı parçacık ayarları
-    particlesJS('particles-js', {
-      particles: {
-        number: { value: 60, density: { enable: true, value_area: 700 }},
-        color: { value: "#ff4444" },
-        shape: { type: "circle" },
-        opacity: { value: 0.7, random: true, anim: { enable: true, speed: 1.5, opacity_min: 0.1, sync: false }},
-        size: { value: 3, random: true, anim: { enable: true, speed: 5, size_min: 0.5, sync: false }},
-        line_linked: { enable: true, distance: 100, color: "#ff4444", opacity: 0.3, width: 1 },
-        move: { enable: true, speed: 2, direction: "none", random: false, straight: false, bounce: false, attract: { enable: true, rotateX: 600, rotateY: 1200 }}
-      },
-      interactivity: {
-        detect_on: "canvas",
-        events: {
-          onhover: { enable: true, mode: "grab" },
-          onclick: { enable: true, mode: "push" },
-          resize: true
-        },
-        modes: {
-          grab: { distance: 150, line_linked: { opacity: 0.4 }},
-          push: { particles_nb: 4 }
-        }
-      },
-      retina_detect: true
-    });
-
-    // Geri sayım hedefi - 10 Kasım 09:05
-    function getNextAnniversary() {
-      const now = new Date();
-      const year = (now.getMonth() > 10 || (now.getMonth() === 10 && now.getDate() > 10)) ? now.getFullYear() + 1 : now.getFullYear();
-      return new Date(year, 10, 10, 9, 5, 0);
-    }
-
-    const countdownEl = document.getElementById('countdown');
-    const targetDate = getNextAnniversary();
+    const countdownElem = document.getElementById('countdown');
 
     function updateCountdown() {
       const now = new Date();
       const diff = targetDate - now;
 
-      if(diff <= 0) {
-        countdownEl.textContent = "Bugün Atatürk'ü An
+      if (diff <= 0) {
+        countdownElem.textContent = 'Cumhuriyet Bayramı Kutlu Olsun!';
+        clearInterval(intervalId);
+        return;
+      }
+
+      // Gün, saat, dakika, saniye hesapla
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      // Yazdır
+      countdownElem.textContent = `${days} gün ${hours.toString().padStart(2,'0')} saat ${minutes.toString().padStart(2,'0')} dakika ${seconds.toString().padStart(2,'0')} saniye`;
+    }
+
+    // İlk çağrı
+    updateCountdown();
+    // Her saniye güncelle
+    const intervalId = setInterval(updateCountdown, 1000);
+
+
+    /* ----------------- Kırmızı Parçacıklar Canvas Efekti ----------------- */
+
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Canvas boyutlarını tam ekran yap
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Parçacık nesnesi
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 1.5;
+        this.speedY = (Math.random() - 0.5) * 1.5;
+        this.opacity = Math.random() * 0.8 + 0.2;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        // Canvas dışına çıkınca yeniden başlat
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+          this.reset();
+          this.x = this.x < 0 ? canvas.width : (this.x > canvas.width ? 0 : this.x);
+          this.y = this.y < 0 ? canvas.height : (this.y > canvas.height ? 0 : this.y);
+        }
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255, 0, 0, ${this.opacity})`;
+        ctx.shadowColor = 'red';
+        ctx.shadowBlur = 8;
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // Parçacıklar dizisi
+    const particles = [];
+    const particleCount = 100;
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    // Fare konumu takibi
+    const mouse = {
+      x: null,
+      y: null,
+      radius: 100
+    };
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    // Animasyon döngüsü
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach(p => {
+        p.update();
+
+        // Fareye yakınsa hızlan ve büyü
+        const dx = mouse.x - p.x;
+        const dy = mouse.y - p.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < mouse.radius) {
+          const force = (mouse.radius - dist) / mouse.radius;
+          p.x -= dx / 10 * force;
+          p.y -= dy / 10 * force;
+          p.size = Math.min(p.size + 0.05 * force * 10, 4);
+          p.opacity = Math.min(p.opacity + 0.05 * force * 10, 1);
+        } else {
+          p.size = Math.max(p.size - 0.02, 1);
+          p.opacity = Math.max(p.opacity - 0.01, 0.2);
+        }
+
+        p.draw();
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+  </script>
+</body>
+</html>
