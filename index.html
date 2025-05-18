@@ -1,359 +1,102 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Mustafa Kemal Atatürk</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-    <style>
-        /* Genel stil */
-        body, html {
-            margin: 0; padding: 0;
-            height: 100%;
-            font-family: 'Roboto', sans-serif;
-            background: #fff0f0;
-            color: #7a0b0b;
-            overflow-x: hidden;
-        }
-
-        /* Üst menü */
-        header {<!DOCTYPE html>
-<html lang="tr">
-<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mustafa Kemal Atatürk</title>
+  <title>Atatürk - Ana Sayfa</title>
   <style>
-    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#fff0f0; color:#7a0b0b; }
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #8B0000, #ffffff);
+      color: #fff;
+    }
     header {
-      background:#7a0b0b; color:#fff; padding:1rem 2rem; position: sticky; top: 0; z-index: 10;
-      display: flex; justify-content: space-between; align-items: center;
+      background: #a80000;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      letter-spacing: 3px;
     }
     nav ul {
-      list-style:none; margin:0; padding:0; display:flex; gap:1.5rem;
+      list-style: none;
+      padding: 0; margin: 10px 0 0 0;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+    }
+    nav ul li {
+      display: inline;
     }
     nav ul li a {
-      color:#fff; text-decoration:none; font-weight:600; cursor:pointer;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 8px 15px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
     }
-    nav ul li a:hover {
-      color:#ff3b3b;
+    nav ul li a:hover, nav ul li a:focus {
+      background-color: #ff0000;
+      outline: none;
     }
     main {
-      max-width: 900px; margin: 2rem auto; padding: 0 1rem; min-height: 400px;
+      max-width: 900px;
+      margin: 40px auto;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
     }
-    section {
-      display: none; /* Tüm bölümler gizli */
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 6px 12px rgba(122, 11, 11, 0.15);
+    main h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: #fff;
+      text-shadow: 1px 1px 3px #700000;
     }
-    section.active {
-      display: block; /* Aktif bölüm görünür */
+    main p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #ffeaea;
     }
-    h2 {
-      border-bottom: 3px solid #ff3b3b;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    img.hero-image {
-      display: block;
-      max-width: 100%;
-      margin: 0 auto 2rem;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(122, 11, 11, 0.5);
+    footer {
+      text-align: center;
+      margin: 50px 0 20px;
+      color: #ccc;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
-
-<header>
-  <h1>Mustafa Kemal Atatürk</h1>
-  <nav>
-    <ul>
-      <li><a onclick="showSection('anasayfa')">Ana Sayfa</a></li>
-      <li><a onclick="showSection('hayati')">Hayatı</a></li>
-      <li><a onclick="showSection('inkilaplar')">İnkılaplar</a></li>
-      <li><a onclick="showSection('sozleri')">Sözleri</a></li>
-      <li><a onclick="showSection('miras')">Mirası</a></li>
-    </ul>
-  </nav>
-</header>
-
-<main>
-  <section id="anasayfa" class="active">
-    <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Mustafa_Kemal_Atat%C3%BCrk_1930s.jpg/800px-Mustafa_Kemal_Atat%C3%BCrk_1930s.jpg" alt="Mustafa Kemal Atatürk" />
-    <h2>Ana Sayfa</h2>
-    <p>Hoşgeldiniz! Bu site Mustafa Kemal Atatürk'ün hayatı ve eserlerini anlatmaktadır.</p>
-  </section>
-
-  <section id="hayati">
-    <h2>Mustafa Kemal Atatürk'ün Hayatı</h2>
-    <p>1881 yılında Selanik'te doğmuş, Osmanlı İmparatorluğu'nun son dönemlerinde yetişmiş büyük bir asker ve devlet adamıdır...</p>
-  </section>
-
-  <section id="inkilaplar">
-    <h2>İnkılaplar</h2>
-    <p>Atatürk, modern Türkiye'nin temellerini atmak için kapsamlı reformlar yapmıştır...</p>
-  </section>
-
-  <section id="sozleri">
-    <h2>Atatürk'ün Sözleri</h2>
-    <p>"Yurtta sulh, cihanda sulh."</p>
-    <p>"Egemenlik, kayıtsız şartsız milletindir."</p>
-    <p>"Hayatta en hakiki mürşit ilimdir."</p>
-  </section>
-
-  <section id="miras">
-    <h2>Atatürk'ün Mirası</h2>
-    <p>Atatürk, Türkiye Cumhuriyeti'nin çağdaş, demokratik ve laik bir devlet olarak yoluna devam etmesini sağlamıştır...</p>
-  </section>
-</main>
-
-<script>
-  function showSection(id) {
-    const sections = document.querySelectorAll('main section');
-    sections.forEach(section => {
-      section.classList.remove('active');
-    });
-    document.getElementById(id).classList.add('active');
-  }
-</script>
-
-</body>
-</html>
-
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            box-shadow: 0 2px 8px rgba(122,11,11,0.6);
-        }
-        header nav {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        header nav h1 {
-            font-weight: 700;
-            font-size: 1.8rem;
-            letter-spacing: 2px;
-        }
-        header nav ul {
-            list-style: none;
-            display: flex;
-            gap: 1.5rem;
-            margin: 0; padding: 0;
-        }
-        header nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        header nav ul li a:hover {
-            color: #ff3b3b;
-        }
-
-        /* Ana içerik */
-        main {
-            max-width: 900px;
-            margin: 3rem auto 4rem;
-            padding: 0 1rem;
-            position: relative;
-            z-index: 5;
-        }
-
-        section {
-            background: white;
-            padding: 2rem;
-            margin-bottom: 3rem;
-            border-radius: 10px;
-            box-shadow: 0 6px 12px rgba(122, 11, 11, 0.15);
-        }
-
-        section h2 {
-            color: #7a0b0b;
-            border-bottom: 3px solid #ff3b3b;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        section p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            text-align: justify;
-        }
-
-        /* Atatürk resmi */
-        .hero-image {
-            display: block;
-            max-width: 100%;
-            margin: 0 auto 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(122, 11, 11, 0.5);
-            transition: transform 0.3s ease;
-        }
-        .hero-image:hover {
-            transform: scale(1.05);
-        }
-
-        /* Footer */
-        footer {
-            background-color: #7a0b0b;
-            color: white;
-            text-align: center;
-            padding: 1rem 0;
-            font-size: 0.9rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            header nav ul {
-                flex-direction: column;
-                gap: 0.7rem;
-            }
-        }
-
-        /* Particles effect */
-        #particles-js {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-            background: #fff0f0;
-        }
-    </style>
-</head>
-<body>
-
-<!-- Parçacık animasyonu için container -->
-<div id="particles-js"></div>
-
-<header>
+  <header>
+    <h1>Mustafa Kemal Atatürk</h1>
     <nav>
-        <h1>Mustafa Kemal Atatürk</h1>
-        <ul>
-            <li><a href="#hayati">Hayatı</a></li>
-            <li><a href="#inkilaplar">İnkılaplar</a></li>
-            <li><a href="#sozleri">Sözleri</a></li>
-            <li><a href="#miras">Mirası</a></li>
-        </ul>
+      <ul>
+        <li><a href="index.html" aria-current="page">Ana Sayfa</a></li>
+        <li><a href="hayati.html">Hayatı</a></li>
+        <li><a href="galeri.html">Galeri</a></li>
+        <li><a href="zaman.html">Zaman Çizelgesi</a></li>
+        <li><a href="gerisayim.html">Geri Sayım</a></li>
+      </ul>
     </nav>
-</header>
+  </header>
 
-<main>
-    <img 
-        class="hero-image" 
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Mustafa_Kemal_Atat%C3%BCrk_1930s.jpg/800px-Mustafa_Kemal_Atat%C3%BCrk_1930s.jpg" 
-        alt="Mustafa Kemal Atatürk" 
-    />
+  <main>
+    <h2>Hoş Geldiniz</h2>
+    <p>
+      Mustafa Kemal Atatürk, Türkiye Cumhuriyeti'nin kurucusu ve büyük lideridir.
+      Bu sitede Atatürk'ün hayatı, eserleri, fotoğrafları, önemli tarihleri ve
+      etkinlikleri hakkında bilgiler bulabilirsiniz.
+    </p>
+  </main>
 
-    <section id="hayati">
-        <h2>Mustafa Kemal Atatürk'ün Hayatı</h2>
-        <p>
-            Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğmuş, Osmanlı İmparatorluğu'nun son dönemlerinde yetişmiş büyük bir asker ve devlet adamıdır. Türkiye Cumhuriyeti'nin kurucusu ve ilk Cumhurbaşkanıdır.
-        </p>
-        <p>
-            Eğitim hayatına askeri okullarda devam etmiş, Çanakkale Savaşı'nda gösterdiği üstün başarılarla adını duyurmuştur. Kurtuluş Savaşı'nın lideri olarak Türkiye'nin bağımsızlığını kazanmasını sağlamıştır.
-        </p>
-    </section>
-
-    <section id="inkilaplar">
-        <h2>İnkılaplar</h2>
-        <p>
-            Atatürk, modern Türkiye'nin temellerini atmak için kapsamlı reformlar yapmıştır. Hukuk, eğitim, dil, kadın hakları ve ekonomi alanında önemli değişiklikler gerçekleştirmiştir. Latin alfabesine geçiş, laiklik ilkesinin yerleşmesi ve kadınlara seçme-seçilme hakkı verilmesi bunların en önemlilerindendir.
-        </p>
-    </section>
-
-    <section id="sozleri">
-        <h2>Atatürk'ün Sözleri</h2>
-        <p>
-            "Yurtta sulh, cihanda sulh." - Bu söz Atatürk'ün barışa verdiği önemi vurgular.
-        </p>
-        <p>
-            "Egemenlik, kayıtsız şartsız milletindir." - Türk milletinin kendi kaderini tayin etme hakkını anlatır.
-        </p>
-        <p>
-            "Hayatta en hakiki mürşit ilimdir." - Bilim ve akıl rehberliğinin önemini belirtir.
-        </p>
-    </section>
-
-    <section id="miras">
-        <h2>Atatürk'ün Mirası</h2>
-        <p>
-            Atatürk, Türkiye Cumhuriyeti'nin çağdaş, demokratik ve laik bir devlet olarak yoluna devam etmesini sağlamıştır. Onun ilke ve inkılapları bugün de Türkiye'nin temel taşıdır.
-        </p>
-        <p>
-            Anıtkabir ve diğer anıtlar onun hatırasını yaşatırken, eğitim ve kültür alanındaki eserleri onun düşüncelerinin nesilden nesile aktarılmasını sağlar.
-        </p>
-    </section>
-</main>
-
-<footer>
-    &copy; 2025 Mustafa Kemal Atatürk Anısına Hazırlanmıştır.
-</footer>
-
-<!-- Particles.js kütüphanesi -->
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script>
-    /* Particles.js ayarları */
-    particlesJS("particles-js", {
-        "particles": {
-            "number": {
-                "value": 80,
-                "density": { "enable": true, "value_area": 800 }
-            },
-            "color": { "value": "#b30000" },
-            "shape": {
-                "type": "circle",
-                "stroke": { "width": 0, "color": "#000000" }
-            },
-            "opacity": {
-                "value": 0.7,
-                "random": true,
-                "anim": { "enable": false }
-            },
-            "size": {
-                "value": 4,
-                "random": true,
-                "anim": { "enable": true, "speed": 6, "size_min": 0.1, "sync": false }
-            },
-            "line_linked": {
-                "enable": true,
-                "distance": 150,
-                "color": "#ff0000",
-                "opacity": 0.4,
-                "width": 1
-            },
-            "move": {
-                "enable": true,
-                "speed": 3,
-                "direction": "none",
-                "random": false,
-                "straight": false,
-                "out_mode": "out"
-            }
-        },
-        "interactivity": {
-            "detect_on": "canvas",
-            "events": {
-                "onhover": { "enable": true, "mode": "grab" },
-                "onclick": { "enable": true, "mode": "push" }
-            },
-            "modes": {
-                "grab": { "distance": 140, "line_linked": { "opacity": 0.6 }},
-                "push": { "particles_nb": 4 }
-            }
-        },
-        "retina_detect": true
-    });
-</script>
-
+  <footer>
+    &copy; 2025 Atatürk Temalı Site
+  </footer>
 </body>
 </html>
