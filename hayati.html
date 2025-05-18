@@ -7,17 +7,15 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&display=swap');
 
-    /* Genel body ayarları */
     body {
       margin: 0;
       padding: 40px 20px;
-      background-color: #121212;
+      background-color: #0a0a0a; /* Daha koyu arka plan */
       color: #e0e0e0;
       font-family: 'Merriweather', serif;
       line-height: 1.7;
     }
 
-    /* Sol üstte sabit ana sayfa bağlantısı */
     a#anasayfa {
       position: fixed;
       top: 15px;
@@ -35,10 +33,9 @@
     }
     a#anasayfa:hover {
       background-color: white;
-      color: #121212;
+      color: #0a0a0a;
     }
 
-    /* Sayfa başlığı */
     h1 {
       text-align: center;
       font-weight: 700;
@@ -50,23 +47,22 @@
       text-shadow: 1px 1px 5px rgba(255,255,255,0.2);
     }
 
-    /* Timeline container */
     .timeline {
       max-width: 700px;
       margin: 0 auto;
       position: relative;
-      padding-left: 40px;
+      padding-left: 20px; /* Çizgi sol tam yaslanacak şekilde padding küçültüldü */
       border-left: 4px solid #bbb;
+      /* timeline'ı sol kenara biraz daha yaklaştır */
+      margin-left: 0;
     }
 
-    /* Her bir olay */
     .event {
       position: relative;
       margin-bottom: 45px;
       padding-left: 25px;
     }
 
-    /* Olayın noktası */
     .event::before {
       content: '';
       position: absolute;
@@ -79,7 +75,6 @@
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
     }
 
-    /* Tarih */
     .event-date {
       font-weight: 700;
       font-size: 1.15rem;
@@ -89,7 +84,6 @@
       font-family: 'Arial', sans-serif;
     }
 
-    /* Başlık */
     .event-title {
       font-weight: 700;
       font-size: 1.6rem;
@@ -97,7 +91,6 @@
       color: #f0f0f0;
     }
 
-    /* Açıklama */
     .event-desc {
       font-weight: 300;
       font-size: 1.1rem;
@@ -106,14 +99,14 @@
       line-height: 1.5;
     }
 
-    /* Responsive mobil için */
     @media (max-width: 600px) {
       body {
         padding: 30px 15px;
       }
       .timeline {
-        padding-left: 30px;
+        padding-left: 15px;
         border-left-width: 3px;
+        margin-left: 0;
       }
       .event::before {
         left: -22px;
