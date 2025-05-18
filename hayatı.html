@@ -1,206 +1,154 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Atatürk'ün Hayatı</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mustafa Kemal Atatürk'ün Hayatı</title>
+  <link rel="stylesheet" href="css/style.css" />
 
-<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Open+Sans&display=swap" rel="stylesheet">
-
-<style>
-  body {
-    margin: 0; padding: 0;
-    font-family: 'Merriweather', serif;
-    background-color: #1a0000;
-    color: #ffcccc;
-    overflow-x: hidden;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    transition: background-color 0.4s ease, color 0.4s ease;
-  }
-  nav {
-    background: #330000cc;
-    padding: 15px 30px;
-    display: flex;
-    gap: 25px;
-    font-weight: bold;
-    z-index: 20;
-  }
-  nav a {
-    color: #ff6666;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  nav a:hover {
-    color: #ff0000;
-  }
-  nav a.active {
-    color: #ff1a1a;
-    text-shadow: 0 0 10px #ff4d4d;
-  }
-  #themeToggle {
-    position: fixed;
-    top: 15px; right: 15px;
-    background: #b30000;
-    color: #fff;
-    border: none;
-    padding: 8px 14px;
-    font-weight: 600;
-    border-radius: 6px;
-    cursor: pointer;
-    box-shadow: 0 0 12px #ff0000cc;
-    transition: background-color 0.3s ease;
-    z-index: 30;
-  }
-  #themeToggle:hover {
-    background: #ff1a1a;
-  }
-  .container {
-    max-width: 800px;
-    background: #330000cc;
-    margin: 100px auto 60px;
-    padding: 30px 40px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px #ff4d4daa;
-    position: relative;
-    z-index: 10;
-  }
-  h1 {
-    font-family: 'Merriweather', serif;
-    color: #ff9999;
-    margin-bottom: 30px;
-    text-align: center;
-    text-shadow: 0 0 15px #ff4d4d;
-  }
-  p {
-    font-family: 'Open Sans', sans-serif;
-    line-height: 1.7;
-    font-size: 1.1rem;
-    color: #ffcccc;
-    margin-bottom: 20px;
-  }
-
-  /* Açık tema */
-  body.light {
-    background-color: #fff0f0;
-    color: #660000;
-  }
-  body.light nav {
-    background-color: #ffcccccc;
-  }
-  body.light nav a {
-    color: #660000;
-  }
-  body.light nav a:hover {
-    color: #cc0000;
-  }
-  body.light nav a.active {
-    color: #990000;
-    text-shadow: none;
-  }
-  body.light #themeToggle {
-    background: #cc0000;
-    box-shadow: 0 0 15px #cc0000aa;
-    color: #fff;
-  }
-  body.light #themeToggle:hover {
-    background: #ff3333;
-  }
-  body.light .container {
-    background: #ffcccccc;
-    box-shadow: 0 0 20px #cc0000aa;
-  }
-
-  #particles-js {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 1;
-    pointer-events: none;
-  }
-</style>
-</head>
-<body class="dark">
-
-<nav>
-  <a href="index.html">Ana Sayfa</a>
-  <a href="hayati.html" class="active">Hayatı</a>
-  <a href="galeri.html">Galeri</a>
-  <a href="zaman.html">Zaman Çizelgesi</a>
-  <a href="gerisayim.html">Geri Sayım</a>
-</nav>
-
-<button id="themeToggle">Tema Değiştir</button>
-
-<div id="particles-js"></div>
-
-<div class="container">
-  <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
-  <p>
-    Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Türk milletinin kurtuluşu için verdiği mücadeleler,
-    onun büyük liderliğini ortaya koydu. 1919'da Samsun'a çıkarak Türk Kurtuluş Savaşı'nı başlattı ve
-    Türkiye Cumhuriyeti'nin kurulmasını sağladı.
-  </p>
-  <p>
-    Atatürk, sadece askeri bir lider değil, aynı zamanda bir devlet adamı ve reformcuydu.
-    Eğitimden hukuka, ekonomiden kadının toplumdaki yerine kadar birçok alanda köklü değişiklikler yaptı.
-  </p>
-  <p>
-    10 Kasım 1938'de vefat eden Atatürk, Türkiye Cumhuriyeti'nin kurucusu ve çağdaşlaşma mimarı olarak
-    her zaman hatırlanacaktır.
-  </p>
-</div>
-
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<script>
-  particlesJS('particles-js', {
-    particles: {
-      number: { value: 80, density: { enable: true, value_area: 900 } },
-      color: { value: ['#ff0000', '#cc0000', '#990000'] },
-      shape: { type: 'circle' },
-      opacity: { value: 0.5, random: true },
-      size: { value: 3, random: true },
-      move: {
-        enable: true,
-        speed: 2,
-        direction: 'none',
-        random: false,
-        straight: false,
-        out_mode: 'out',
-        bounce: false
-      }
-    },
-    interactivity: {
-      detect_on: 'canvas',
-      events: {
-        onhover: { enable: true, mode: 'repulse' },
-        onclick: { enable: true, mode: 'push' },
-        resize: true
-      },
-      modes: {
-        repulse: { distance: 120, duration: 0.4 },
-        push: { particles_nb: 4 }
-      }
-    },
-    retina_detect: true
-  });
-
-  const themeBtn = document.getElementById('themeToggle');
-  themeBtn.addEventListener('click', () => {
-    if(document.body.classList.contains('dark')){
-      document.body.classList.replace('dark', 'light');
-      localStorage.setItem('theme', 'light');
-    } else {
-      document.body.classList.replace('light', 'dark');
-      localStorage.setItem('theme', 'dark');
+  <!-- Özel font -->
+  <style>
+    @font-face {
+      font-family: 'OzelFont';
+      src: url('assets/ozel-font.ttf');
     }
-  });
-  const savedTheme = localStorage.getItem('theme');
-  if(savedTheme) {
-    document.body.className = savedTheme;
-  }
-</script>
 
+    body {
+      margin: 0;
+      font-family: 'OzelFont', sans-serif;
+      color: white;
+      background-color: #000;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 20px;
+      text-align: center;
+      background: rgba(255, 0, 0, 0.8);
+    }
+
+    nav a {
+      margin: 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-top: 30px;
+    }
+
+    .icerik {
+      max-width: 900px;
+      margin: 40px auto;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+    }
+
+    .tema-btn {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: white;
+      color: red;
+      border: none;
+      padding: 10px 15px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Tema değiştirme düğmesi -->
+  <button class="tema-btn" onclick="temayiDegistir()">Temayı Değiştir</button>
+
+  <!-- Navigasyon -->
+  <header>
+    <nav>
+      <a href="index.html">Ana Sayfa</a>
+      <a href="hayatı.html">Hayatı</a>
+      <a href="galeri.html">Galeri</a>
+      <a href="zaman.html">Zaman Çizelgesi</a>
+      <a href="geri-sayım.html">Geri Sayım</a>
+    </nav>
+  </header>
+
+  <!-- Sayfa Başlığı -->
+  <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
+
+  <!-- İçerik -->
+  <div class="icerik">
+    <p>
+      Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Harp Okulu ve Harp Akademisi'nde aldığı askeri eğitimle, Osmanlı ordusunda görev almaya başladı. 
+      I. Dünya Savaşı sırasında Çanakkale'de gösterdiği üstün başarılarla adını duyurdu.
+    </p>
+    <p>
+      1919'da Samsun'a çıkarak Kurtuluş Savaşı'nı başlattı. Erzurum ve Sivas Kongreleri ile milli direnişi örgütledi. 
+      1923'te Türkiye Cumhuriyeti'ni kurdu ve ilk Cumhurbaşkanı oldu.
+    </p>
+    <p>
+      Atatürk, laiklik, kadın hakları, eğitim reformları gibi birçok alanda çağdaşlaşma adımları attı. 10 Kasım 1938’de Dolmabahçe Sarayı’nda hayata veda etti.
+    </p>
+  </div>
+
+  <!-- Parçacık efekti -->
+  <canvas id="particles"></canvas>
+
+  <!-- Tema değiştirme scripti -->
+  <script src="js/tema.js"></script>
+
+  <!-- Parçacık efekti scripti -->
+  <script>
+    // Parçacık animasyonu için temel yapı
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Parçacık tanımı
+    const particlesArray = [];
+    for (let i = 0; i < 100; i++) {
+      particlesArray.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 1,
+        speedX: Math.random() * 1 - 0.5,
+        speedY: Math.random() * 1 - 0.5
+      });
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255,0,0,0.7)";
+        ctx.fill();
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        // Ekrandan çıkarsa yeniden konumlandır
+        if (p.x > canvas.width) p.x = 0;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.y > canvas.height) p.y = 0;
+        if (p.y < 0) p.y = canvas.height;
+      });
+      requestAnimationFrame(animateParticles);
+    }
+
+    animateParticles();
+
+    // Pencere yeniden boyutlandığında canvas boyutunu güncelle
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
 </body>
 </html>
