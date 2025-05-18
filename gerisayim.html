@@ -2,207 +2,140 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Atatürk Geri Sayım</title>
-
-  <!-- Google Fonts: Modern, okunaklı yazı stili -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Geri Sayım</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet"/>
   <style>
-    /* Sayfa genel ayarları */
-    body, html {
-      margin: 0; padding: 0; height: 100%;
-      font-family: 'Montserrat', sans-serif;
-      background-color: #0b0000; /* koyu zemin */
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Orbitron', sans-serif;
       color: white;
-      overflow: hidden; /* Kaydırma çubuğu olmasın */
+      background-color: black;
     }
 
-    /* Geri sayım kutusu ortada */
-    .countdown-container {
-      position: relative;
-      z-index: 10; /* parçacıkların önünde */
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-      background: rgba(0,0,0,0.5);
-      box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
-      border-radius: 15px;
-      max-width: 400px;
-      margin: auto;
-    }
-
-    .countdown-container h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: #ff4c4c;
-      text-shadow: 0 0 8px #ff0000;
-    }
-
-    .countdown {
-      font-size: 3rem;
-      letter-spacing: 0.1em;
-      font-weight: 700;
-      color: #ff0000;
-      text-shadow: 0 0 10px #ff6666;
-    }
-
-    /* Partiküller için canvas tam ekran ve altta */
-    #particle-canvas {
+    #particles-js {
       position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 1; /* içerik altında */
-      pointer-events: none; /* fare etkileşimini engelle */
-      background: #0b0000; /* koyu arka plan */
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .content {
+      text-align: center;
+      margin-top: 20vh;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    #countdown {
+      font-size: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1rem 2rem;
+      border-radius: 15px;
+      display: inline-block;
+    }
+
+    a {
+      color: #ff4d4d;
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      text-decoration: none;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-
-  <!-- Kırmızı partiküller için canvas -->
-  <canvas id="particle-canvas"></canvas>
-
-  <div class="countdown-container">
-    <h1>Atatürk ve Cumhuriyet Geri Sayımı</h1>
-    <div id="countdown" class="countdown">Yükleniyor...</div>
+  <div id="particles-js"></div>
+  <a href="index.html">← Ana Sayfa</a>
+  <div class="content">
+    <h1>En Yakın Tarihi Olay İçin Geri Sayım</h1>
+    <div id="event-name"></div>
+    <div id="countdown"></div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    // Geri sayım hedef tarihi (örnek: 29 Ekim Cumhuriyet Bayramı 2025)
-    const targetDate = new Date('2025-10-29T00:00:00');
+    // Atatürk'ün önemli olayları
+    const events = [
+      { name: "19 Mayıs - Atatürk'ün Samsun'a çıkışı", date: "2025-05-19" },
+      { name: "23 Temmuz - Erzurum Kongresi", date: "2025-07-23" },
+      { name: "30 Ağustos - Zafer Bayramı", date: "2025-08-30" },
+      { name: "29 Ekim - Cumhuriyet Bayramı", date: "2025-10-29" },
+      { name: "10 Kasım - Atatürk'ün Ölüm Yıldönümü", date: "2025-11-10" }
+    ];
 
-    const countdownElem = document.getElementById('countdown');
+    const now = new Date();
+    let upcomingEvent = events.find(e => new Date(e.date) > now);
+
+    // Eğer bu yılki tüm tarihler geçtiyse, ilkini al (gelecek yıl için)
+    if (!upcomingEvent) {
+      const nextYear = now.getFullYear() + 1;
+      upcomingEvent = {
+        name: events[0].name,
+        date: `${nextYear}-${events[0].date.slice(5)}`
+      };
+    }
+
+    document.getElementById('event-name').innerText = upcomingEvent.name;
+
+    const countdownEl = document.getElementById('countdown');
+    const targetDate = new Date(upcomingEvent.date).getTime();
 
     function updateCountdown() {
-      const now = new Date();
-      const diff = targetDate - now;
+      const now = new Date().getTime();
+      const distance = targetDate - now;
 
-      if (diff <= 0) {
-        countdownElem.textContent = 'Cumhuriyet Bayramı Kutlu Olsun!';
-        clearInterval(intervalId);
-        return;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdownEl.innerText = `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye kaldı`;
+
+      if (distance < 0) {
+        countdownEl.innerText = "Etkinlik zamanı geldi!";
       }
-
-      // Gün, saat, dakika, saniye hesapla
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      // Yazdır
-      countdownElem.textContent = `${days} gün ${hours.toString().padStart(2,'0')} saat ${minutes.toString().padStart(2,'0')} dakika ${seconds.toString().padStart(2,'0')} saniye`;
     }
 
-    // İlk çağrı
-    updateCountdown();
-    // Her saniye güncelle
-    const intervalId = setInterval(updateCountdown, 1000);
+    setInterval(updateCountdown, 1000);
 
-
-    /* ----------------- Kırmızı Parçacıklar Canvas Efekti ----------------- */
-
-    const canvas = document.getElementById('particle-canvas');
-    const ctx = canvas.getContext('2d');
-
-    // Canvas boyutlarını tam ekran yap
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    // Parçacık nesnesi
-    class Particle {
-      constructor() {
-        this.reset();
-      }
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 1.5;
-        this.speedY = (Math.random() - 0.5) * 1.5;
-        this.opacity = Math.random() * 0.8 + 0.2;
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        // Canvas dışına çıkınca yeniden başlat
-        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
-          this.reset();
-          this.x = this.x < 0 ? canvas.width : (this.x > canvas.width ? 0 : this.x);
-          this.y = this.y < 0 ? canvas.height : (this.y > canvas.height ? 0 : this.y);
+    // Particles.js kırmızı efektler
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80 },
+        color: { value: "#ff0000" },
+        shape: { type: "circle" },
+        opacity: { value: 0.6 },
+        size: { value: 3 },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#ff0000",
+          opacity: 0.4,
+          width: 1
+        },
+        move: { enable: true, speed: 3 }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" }
+        },
+        modes: {
+          repulse: { distance: 100 },
+          push: { particles_nb: 4 }
         }
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(255, 0, 0, ${this.opacity})`;
-        ctx.shadowColor = 'red';
-        ctx.shadowBlur = 8;
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    // Parçacıklar dizisi
-    const particles = [];
-    const particleCount = 100;
-
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
-
-    // Fare konumu takibi
-    const mouse = {
-      x: null,
-      y: null,
-      radius: 100
-    };
-
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
+      },
+      retina_detect: true
     });
-
-    // Animasyon döngüsü
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      particles.forEach(p => {
-        p.update();
-
-        // Fareye yakınsa hızlan ve büyü
-        const dx = mouse.x - p.x;
-        const dy = mouse.y - p.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < mouse.radius) {
-          const force = (mouse.radius - dist) / mouse.radius;
-          p.x -= dx / 10 * force;
-          p.y -= dy / 10 * force;
-          p.size = Math.min(p.size + 0.05 * force * 10, 4);
-          p.opacity = Math.min(p.opacity + 0.05 * force * 10, 1);
-        } else {
-          p.size = Math.max(p.size - 0.02, 1);
-          p.opacity = Math.max(p.opacity - 0.01, 0.2);
-        }
-
-        p.draw();
-      });
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-
   </script>
 </body>
 </html>
