@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Geri Sayım</title>
+<title>Atatürk ve Cumhuriyet Geri Sayımı</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
 <style>
   body {
@@ -56,7 +56,7 @@
 <a href="index.html">← Ana Sayfa</a>
 
 <header>
-  <h1>Geri Sayım</h1>
+  <h1>Atatürk ve Cumhuriyet Özel Günleri Geri Sayımı</h1>
   <div id="event-name"></div>
   <div id="countdown">Yükleniyor...</div>
 </header>
@@ -99,59 +99,50 @@ particlesJS("particles-js", {
 </script>
 
 <script>
-// Önemli tarihler listesi
-const importantDates = [
-  { date: "01.01", name: "Yılbaşı", desc: "Yeni yılın ilk günü" },
-  { date: "23.04.1920", name: "Ulusal Egemenlik ve Çocuk Bayramı", desc: "TBMM'nin açılışı, Atatürk'ün çocuklara armağanı" },
-  { date: "01.05", name: "Emek ve Dayanışma Günü", desc: "İşçi bayramı" },
-  { date: "19.05.1919", name: "Atatürk'ü Anma, Gençlik ve Spor Bayramı", desc: "Atatürk’ün Samsun’a çıkarak Kurtuluş Savaşı’nı başlattığı gün" },
-  { date: "15.07", name: "Milli Birlik ve Demokrasi Günü", desc: "" },
-  { date: "30.08.1922", name: "Zafer Bayramı", desc: "Başkomutanlık Meydan Muharebesi'nin zaferle sonuçlanması" },
-  { date: "29.10.1923", name: "Cumhuriyet Bayramı", desc: "Türkiye Cumhuriyeti’nin ilanı" },
-  { date: "10.11", name: "Atatürk'ü Anma Günü", desc: "Atatürk’ün vefatı" }
+// Özel günler (sadece ay ve gün önemli, yıl önemsiz)
+const specialEvents = [
+  { date: "19.05", name: "Atatürk'ü Anma, Gençlik ve Spor Bayramı" },
+  { date: "23.04", name: "Ulusal Egemenlik ve Çocuk Bayramı" },
+  { date: "29.10", name: "Cumhuriyet Bayramı" },
+  { date: "10.11", name: "Atatürk'ü Anma Günü" }
 ];
 
-// Belirli gün-ay (yıl yoksa) için gelecek tarihi döner
-function getNextDate(dayMonthYear) {
+// Tarihi oluştur (yıl: bu yıl veya gelecek yıl)
+function getNextEventDate(dayMonth) {
   const now = new Date();
-  let parts = dayMonthYear.split('.');
-  let day = parseInt(parts[0], 10);
-  let month = parseInt(parts[1], 10) - 1;
-  let year;
+  const [day, month] = dayMonth.split('.').map(Number);
+  let eventDate = new Date(now.getFullYear(), month - 1, day);
 
-  if (parts.length === 3) {
-    year = parseInt(parts[2], 10);
-    // Eğer yıl geçmişse ve bugünden önceyse, dönecek tarih geçmiş olur (biz yukarıda filtreleriz)
-  } else {
-    // Yıl yok, o yüzden bu yılın tarihi al
-    year = now.getFullYear();
-  }
-
-  let eventDate = new Date(year, month, day);
-
-  // Eğer yıl yoksa ve tarih geçmişse bir sonraki yıla taşı
-  if (parts.length !== 3 && eventDate < now) {
-    eventDate = new Date(year + 1, month, day);
+  // Eğer bugün veya geçmişse gelecek yıla al
+  if (eventDate < now || isSameDay(eventDate, now) === false && eventDate.getTime() === now.getTime()) {
+    eventDate = new Date(now.getFullYear() + 1, month - 1, day);
   }
 
   return eventDate;
 }
 
+// Bugün mü kontrolü
+function isSameDay(d1, d2) {
+  return d1.getDate() === d2.getDate() &&
+         d1.getMonth() === d2.getMonth() &&
+         d1.getFullYear() === d2.getFullYear();
+}
+
 // En yakın etkinliği bul
 function getNearestEvent() {
   const now = new Date();
-  let nearestEvent = null;
   let minDiff = Infinity;
+  let nearest = null;
 
-  for (const event of importantDates) {
-    const eventDate = getNextDate(event.date);
+  for (const ev of specialEvents) {
+    const eventDate = getNextEventDate(ev.date);
     const diff = eventDate - now;
     if (diff >= 0 && diff < minDiff) {
       minDiff = diff;
-      nearestEvent = { ...event, eventDate };
+      nearest = { ...ev, eventDate };
     }
   }
-  return nearestEvent;
+  return nearest;
 }
 
 // Geri sayımı güncelle
@@ -160,15 +151,17 @@ function updateCountdown() {
   const nearest = getNearestEvent();
 
   if (!nearest) {
-    document.getElementById('countdown').textContent = "Yaklaşan önemli gün yok.";
+    document.getElementById('countdown').textContent = "Yaklaşan özel gün yok.";
     document.getElementById('event-name').textContent = "";
     return;
   }
 
-  document.getElementById('event-name').textContent = nearest.name;
+  const { name, eventDate } = nearest;
+  document.getElementById('event-name').textContent = name;
 
-  const distance = nearest.eventDate - now;
-  if (distance < 0) {
+  const distance = eventDate - now;
+
+  if (distance <= 0 && isSameDay(eventDate, now)) {
     document.getElementById('countdown').textContent = "Bugün!";
     return;
   }
@@ -182,9 +175,10 @@ function updateCountdown() {
     `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye kaldı`;
 }
 
-// İlk yüklemede ve her saniye güncelle
+// Başlangıçta ve her saniye çalıştır
 updateCountdown();
 setInterval(updateCountdown, 1000);
 </script>
+
 </body>
 </html>
