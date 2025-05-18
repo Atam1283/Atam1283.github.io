@@ -1,1 +1,119 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atatürk - Galeri</title>
+  <style>
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #8B0000, #ffffff);
+      color: #fff;
+    }
+    header {
+      background: #a80000;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      letter-spacing: 3px;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0; margin: 10px 0 0 0;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+    }
+    nav ul li {
+      display: inline;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 8px 15px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    nav ul li a:hover, nav ul li a:focus {
+      background-color: #ff0000;
+      outline: none;
+    }
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+      text-align: center;
+    }
+    main h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: #fff;
+      text-shadow: 1px 1px 3px #700000;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .gallery img {
+      width: 200px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #a80000;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #ff0000;
+    }
+    footer {
+      text-align: center;
+      margin: 50px 0 20px;
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mustafa Kemal Atatürk</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Ana Sayfa</a></li>
+        <li><a href="hayati.html">Hayatı</a></li>
+        <li><a href="galeri.html" aria-current="page">Galeri</a></li>
+        <li><a href="zaman.html">Zaman Çizelgesi</a></li>
+        <li><a href="gerisayim.html">Geri Sayım</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Fotoğraf Galerisi</h2>
+    <div class="gallery">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Atat%C3%BCrk_1925.jpg" alt="Atatürk 1925" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Ataturk_at_Sep_1925.jpg" alt="Atatürk Ekim 1925" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Atat%C3%BCrk_Ankara_1923.jpg" alt="Atatürk Ankara 1923" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Ataturk_and_Ismet_in_Ankara.jpg" alt="Atatürk ve İsmet İnönü" />
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Atatürk Temalı Site
+  </footer>
+</body>
+</html>
 
