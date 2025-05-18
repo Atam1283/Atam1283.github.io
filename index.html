@@ -3,184 +3,164 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Atatürk Temalı Web Sitesi</title>
+  <title>Atatürk Temalı Site</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Playfair+Display&display=swap" rel="stylesheet" />
 
   <style>
+    /* Temel reset ve responsive */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
     body {
-      margin: 0; padding: 0; height: 100%;
       font-family: 'Merriweather', serif;
+      background-color: #fff;
+      color: #222;
+      line-height: 1.6;
+      min-height: 100vh;
       transition: background-color 0.5s, color 0.5s;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+
+    /* Tema için anma günü özel */
+    body.anma-gunu {
+      background-color: #000;
+      color: #fff;
+      font-style: italic;
       text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Temalar */
-    body.light {
-      background-color: #ffffff;
-      color: #000000;
-    }
-
-    body.dark {
-      background-color: #000000;
-      color: #ffffff;
+      padding: 30px;
     }
 
     h1 {
-      margin-top: 50px;
       font-family: 'Playfair Display', serif;
       font-size: 3rem;
-      text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.8);
-      position: relative;
-      z-index: 10;
+      margin: 40px 0 20px 0;
+      text-align: center;
     }
 
     p {
-      font-style: italic;
-      margin-top: 30px;
-      font-size: 1.3rem;
-      max-width: 600px;
+      max-width: 700px;
+      margin: 0 auto 30px auto;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    /* Menü */
+    nav {
+      background: #ff0000;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
       margin-left: auto;
-      margin-right: auto;
-      text-shadow: 1px 1px 3px rgba(255, 0, 0, 0.8);
-      position: relative;
-      z-index: 10;
     }
 
-    /* Buton stil */
-    #theme-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      padding: 10px 15px;
-      border: none;
-      background-color: #ff0000;
+    nav ul li a {
       color: white;
+      text-decoration: none;
       font-weight: bold;
-      cursor: pointer;
-      border-radius: 5px;
-      box-shadow: 0 0 10px #ff0000;
-      transition: background-color 0.3s;
-      z-index: 100;
       font-family: 'Merriweather', serif;
-    }
-    #theme-toggle:hover {
-      background-color: #cc0000;
+      transition: color 0.3s;
     }
 
-    /* Canvas tam ekran */
-    #particle-canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 1;
-      pointer-events: none;
-      background: transparent;
+    nav ul li a:hover {
+      color: #ffdede;
+    }
+
+    /* Sayfa içeriği üst menüden boşluk */
+    main {
+      padding-top: 80px;
+      padding-left: 15px;
+      padding-right: 15px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Fade in animasyon */
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      nav ul {
+        gap: 10px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <button id="theme-toggle">Tema Değiştir</button>
+  <nav>
+    <div style="color:#fff; font-weight:bold; font-family:'Playfair Display', serif; font-size:1.5rem;">
+      Atatürk Sitesi
+    </div>
+    <ul>
+      <li><a href="#anasayfa">Ana Sayfa</a></li>
+      <li><a href="#sozu">Sözleri</a></li>
+      <li><a href="#haberler">Haberler</a></li>
+      <li><a href="#iletisim">İletişim</a></li>
+    </ul>
+  </nav>
 
-  <canvas id="particle-canvas"></canvas>
+  <main>
+    <section id="anasayfa">
+      <h1>Mustafa Kemal Atatürk</h1>
+      <p>"Yurtta sulh, cihanda sulh."</p>
+    </section>
 
-  <h1>Mustafa Kemal Atatürk</h1>
-  <p>"Yurtta sulh, cihanda sulh."</p>
+    <section id="sozu">
+      <h2>Atatürk’ün Ünlü Sözleri</h2>
+      <ul>
+        <li>“Egemenlik, kayıtsız şartsız milletindir.”</li>
+        <li>“Hayatta en hakiki mürşit ilimdir.”</li>
+        <li>“Ne mutlu Türküm diyene!”</li>
+      </ul>
+    </section>
+
+    <section id="haberler">
+      <h2>Güncel Haberler</h2>
+      <p>Türkiye ve Atatürk ile ilgili haberler henüz eklenmedi.</p>
+    </section>
+
+    <section id="iletisim">
+      <h2>İletişim</h2>
+      <p>Bu site Atatürk sevgisiyle yapıldı.</p>
+    </section>
+  </main>
 
   <script>
-    const body = document.body;
-    const btn = document.getElementById('theme-toggle');
-    const canvas = document.getElementById('particle-canvas');
-    const ctx = canvas.getContext('2d');
-    let width, height;
+    // Sayfa yüklendiğinde opacity fade in için zaten CSS animation var.
 
-    // Tema rengi için kırmızı tonlarını tanımla
-    const themeColors = {
-      dark: {
-        particleColor: 'rgba(255, 0, 0, ALPHA)', // parlak kırmızı
-        shadowColor: 'rgba(255, 0, 0, 0.7)'
-      },
-      light: {
-        particleColor: 'rgba(150, 0, 0, ALPHA)', // daha koyu kırmızı açık fonda
-        shadowColor: 'rgba(150, 0, 0, 0.7)'
-      }
-    };
+    // 2 - Anma Günü Hatırlatıcı (10 Kasım)
+    const today = new Date();
+    const isAnmaGunu = today.getDate() === 10 && today.getMonth() === 10; // Kasım ayı 10. gün (0-indexli ay)
 
-    // Başlangıçta localStorage'dan tema oku veya default 'dark' yap
-    let currentTheme = localStorage.getItem('theme') || 'dark';
-    body.classList.add(currentTheme);
-
-    function resize() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
+    if(isAnmaGunu) {
+      document.body.classList.add('anma-gunu');
+      // Mesajı göster
+      const main = document.querySelector('main');
+      main.innerHTML = `
+        <h1>Mustafa Kemal Atatürk’ü Anıyoruz</h1>
+        <p>Bugün 10 Kasım. Büyük Önderimizin aramızdan ayrılışının yıldönümü. Saygı ve minnetle anıyoruz.</p>
+      `;
     }
-    window.addEventListener('resize', resize);
-    resize();
-
-    class Particle {
-      constructor() {
-        this.reset();
-      }
-      reset() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 1;
-        this.speedY = (Math.random() - 0.5) * 1;
-        this.alpha = Math.random() * 0.7 + 0.3;
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
-          this.reset();
-        }
-      }
-      draw(ctx, colors) {
-        ctx.beginPath();
-        const color = colors.particleColor.replace('ALPHA', this.alpha.toFixed(2));
-        ctx.fillStyle = color;
-        ctx.shadowColor = colors.shadowColor;
-        ctx.shadowBlur = 6;
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    const particles = [];
-    const particleCount = 120;
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-      const colors = themeColors[currentTheme];
-      particles.forEach(p => {
-        p.update();
-        p.draw(ctx, colors);
-      });
-      requestAnimationFrame(animate);
-    }
-    animate();
-
-    // Butona tıklayınca tema değiştir
-    btn.addEventListener('click', () => {
-      if (currentTheme === 'dark') {
-        currentTheme = 'light';
-        body.classList.replace('dark', 'light');
-      } else {
-        currentTheme = 'dark';
-        body.classList.replace('light', 'dark');
-      }
-      localStorage.setItem('theme', currentTheme);
-    });
   </script>
 
 </body>
