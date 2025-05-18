@@ -1,316 +1,205 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Atatürk - Cumhuriyet Bayramı Geri Sayımı</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Geri Sayım - Atatürk Temalı Site</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Merriweather&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet" />
 
-  <style>
-    /* Temel fontlar */
-    body {
-      margin: 0; padding: 0;
-      font-family: 'Montserrat', sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      transition: background-color 0.5s ease, color 0.5s ease;
-    }
-
-    /* Koyu ve açık tema renkleri */
-    body.light {
-      background: #fff0f0;
-      color: #8b0000;
-    }
-    body.dark {
-      background: #1a0000;
-      color: #ff5555;
-    }
-
-    /* Arka plan kırmızı animasyon efekti */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      background: radial-gradient(circle at 20% 20%, rgba(255, 0, 0, 0.25), transparent 70%),
-                  radial-gradient(circle at 80% 70%, rgba(255, 50, 50, 0.2), transparent 60%);
-      animation: pulseRed 6s ease-in-out infinite;
-    }
-
-    @keyframes pulseRed {
-      0%, 100% {
-        opacity: 0.7;
-      }
-      50% {
-        opacity: 0.3;
-      }
-    }
-
-    header {
-      background-color: #a80000;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.4);
-      position: relative;
-      z-index: 1;
-    }
-
-    header h1 {
-      margin: 0;
-      font-family: 'Merriweather', serif;
-      font-size: 2.8rem;
-      letter-spacing: 4px;
-      color: white;
-      text-shadow: 2px 2px 6px #5a0000;
-    }
-
-    nav ul {
-      list-style: none;
-      padding: 0; margin: 10px 0 0 0;
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-    }
-
-    nav ul li {
-      display: inline;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1rem;
-      padding: 8px 15px;
-      border-radius: 6px;
-      transition: background-color 0.3s ease;
-      background-color: rgba(255,255,255,0.1);
-    }
-
-    nav ul li a:hover, nav ul li a:focus {
-      background-color: #ff0000;
-      outline: none;
-      box-shadow: 0 0 8px #ff0000;
-    }
-
-    main {
-      flex-grow: 1;
-      max-width: 600px;
-      margin: 40px auto;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 12px;
-      padding: 40px 30px;
-      box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
-      text-align: center;
-      position: relative;
-      z-index: 1;
-      transition: background-color 0.5s ease, color 0.5s ease;
-    }
-
-    body.dark main {
-      background: rgba(255, 255, 255, 0.1);
-      box-shadow: 0 0 30px #ff4444;
-      color: #ffdddd;
-    }
-    body.light main {
-      background: rgba(255, 240, 240, 0.9);
-      box-shadow: 0 0 10px #a80000;
-      color: #8b0000;
-    }
-
-    main h2 {
-      font-family: 'Merriweather', serif;
-      font-size: 2rem;
-      margin-bottom: 30px;
-      color: inherit;
-      text-shadow: 1px 1px 3px rgba(128,0,0,0.7);
-    }
-
-    #countdown {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #ff0000;
-      text-shadow: 2px 2px 5px #5a0000;
-      transition: color 0.5s ease, text-shadow 0.5s ease;
-    }
-
-    body.dark #countdown {
-      color: #ff6666;
-      text-shadow: 2px 2px 6px #ff2222;
-    }
-
-    .time-box {
-      background: #fff;
-      color: #a80000;
-      padding: 15px 25px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #a80000;
-      min-width: 90px;
-      transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
-    }
-
-    body.dark .time-box {
-      background: #330000;
-      color: #ff9999;
-      box-shadow: 0 0 12px #ff5555;
-    }
-
-    .time-box span {
-      display: block;
-      font-size: 1rem;
-      font-weight: 600;
-      margin-top: 8px;
-    }
-
-    footer {
-      text-align: center;
-      margin: 20px 0;
-      color: #ccc;
-      font-size: 0.9rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Tema değiştirme butonu */
-    #theme-toggle {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      background-color: #a80000;
-      color: white;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 1rem;
-      box-shadow: 0 0 10px #a80000;
-      transition: background-color 0.3s ease;
-      z-index: 2;
-    }
-
-    #theme-toggle:hover {
-      background-color: #ff0000;
-      box-shadow: 0 0 15px #ff0000;
-    }
-
-  </style>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    background-color: #1a0000;
+    color: white;
+    text-align: center;
+  }
+  h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    margin: 1rem 0;
+  }
+  nav {
+    background-color: #660000;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  nav a {
+    color: #f0f0f0;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+  }
+  nav a:hover {
+    color: #ff4d4d;
+  }
+  #themeToggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background-color: #990000;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  #themeToggle:hover {
+    background-color: #ff3333;
+  }
+  body.dark-theme {
+    background-color: #1a0000;
+    color: white;
+  }
+  body.light-theme {
+    background-color: #fff0f0;
+    color: #660000;
+  }
+  body.light-theme nav {
+    background-color: #ffcccc;
+  }
+  body.light-theme nav a {
+    color: #660000;
+  }
+  body.light-theme nav a:hover {
+    color: #990000;
+  }
+  body.light-theme #themeToggle {
+    background-color: #cc6666;
+    color: #330000;
+  }
+  body.light-theme #themeToggle:hover {
+    background-color: #ff9999;
+  }
+  #particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    top: 0;
+    left: 0;
+  }
+  .container {
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+  }
+  #countdown {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    margin-top: 2rem;
+    letter-spacing: 0.1em;
+    color: #ff4d4d;
+  }
+  #countdown span {
+    display: inline-block;
+    min-width: 60px;
+  }
+  .label {
+    font-size: 1rem;
+    display: block;
+    margin-top: 0.3rem;
+    color: #ff9999;
+  }
+</style>
 </head>
-<body class="dark">
+<body class="dark-theme">
 
-  <button id="theme-toggle" aria-label="Tema değiştir">Açık Tema</button>
+<div id="particles-js"></div>
 
-  <header>
-    <h1>Mustafa Kemal Atatürk</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Ana Sayfa</a></li>
-        <li><a href="hayati.html">Hayatı</a></li>
-        <li><a href="galeri.html">Galeri</a></li>
-        <li><a href="zaman.html">Zaman Çizelgesi</a></li>
-        <li><a href="gerisayim.html" aria-current="page">Geri Sayım</a></li>
-      </ul>
-    </nav>
-  </header>
+<nav>
+  <a href="index.html">Ana Sayfa</a>
+  <a href="hayati.html">Hayatı</a>
+  <a href="galeri.html">Galeri</a>
+  <a href="zaman.html">Zaman Çizelgesi</a>
+  <a href="gerisayim.html">Geri Sayım</a>
+</nav>
 
-  <main>
-    <h2>29 Ekim Cumhuriyet Bayramı'na Geri Sayım</h2>
-    <div id="countdown">
-      <div class="time-box">
-        <div id="days">0</div>
-        <span>Gün</span>
-      </div>
-      <div class="time-box">
-        <div id="hours">0</div>
-        <span>Saat</span>
-      </div>
-      <div class="time-box">
-        <div id="minutes">0</div>
-        <span>Dakika</span>
-      </div>
-      <div class="time-box">
-        <div id="seconds">0</div>
-        <span>Saniye</span>
-      </div>
-    </div>
-  </main>
+<button id="themeToggle">Tema Değiştir</button>
 
-  <footer>
-    &copy; 2025 Atatürk Temalı Site
-  </footer>
+<div class="container">
+  <h1>Geri Sayım</h1>
+  <p>Atatürk'ün doğum gününe geri sayım:</p>
 
-  <script>
-    // Tema değiştirme fonksiyonu
-    const toggleBtn = document.getElementById('theme-toggle');
-    const body = document.body;
+  <div id="countdown">
+    <div><span id="days">--</span><span class="label">Gün</span></div>
+    <div><span id="hours">--</span><span class="label">Saat</span></div>
+    <div><span id="minutes">--</span><span class="label">Dakika</span></div>
+    <div><span id="seconds">--</span><span class="label">Saniye</span></div>
+  </div>
+</div>
 
-    function updateButtonText() {
-      toggleBtn.textContent = body.classList.contains('dark') ? 'Açık Tema' : 'Koyu Tema';
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+  particlesJS('particles-js',
+    {
+      "particles": {
+        "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": "#ff4d4d" },
+        "shape": { "type": "circle", "stroke": { "width": 0 } },
+        "opacity": { "value": 0.7 },
+        "size": { "value": 4, "random": true },
+        "move": { "enable": true, "speed": 3, "direction": "none", "random": true, "straight": false, "out_mode": "out" }
+      },
+      "interactivity": { "events": { "onhover": { "enable": true, "mode": "repulse" } } },
+      "retina_detect": true
+    }
+  );
+
+  const themeToggleBtn = document.getElementById('themeToggle');
+  const body = document.body;
+
+  if(localStorage.getItem('theme') === 'light') {
+    body.classList.replace('dark-theme', 'light-theme');
+  }
+
+  themeToggleBtn.addEventListener('click', () => {
+    if(body.classList.contains('dark-theme')) {
+      body.classList.replace('dark-theme', 'light-theme');
+      localStorage.setItem('theme', 'light');
+    } else {
+      body.classList.replace('light-theme', 'dark-theme');
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+
+  // Geri sayım fonksiyonu
+  function countdown() {
+    // Atatürk doğum günü (örnek: 1881-05-19, her yıl Mayıs 19)
+    const now = new Date();
+    let year = now.getFullYear();
+
+    // Hedef tarih: bu yılın 19 Mayıs'ı
+    let target = new Date(year, 4, 19, 0, 0, 0); // ay 0 bazlı, 4 = Mayıs
+
+    // Eğer geçtiyse, gelecek yıla ayarla
+    if (now > target) {
+      target = new Date(year + 1, 4, 19, 0, 0, 0);
     }
 
-    toggleBtn.addEventListener('click', () => {
-      body.classList.toggle('dark');
-      body.classList.toggle('light');
-      updateButtonText();
-      localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
-    });
+    const diff = target - now;
 
-    // Sayfa yüklendiğinde kayıtlı tema uygulanır
-    window.addEventListener('load', () => {
-      const savedTheme = localStorage.getItem('theme');
-      if(savedTheme) {
-        body.classList.remove('dark', 'light');
-        body.classList.add(savedTheme);
-      } else {
-        body.classList.add('dark'); // varsayılan tema
-      }
-      updateButtonText();
-    });
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
 
-    // Geri sayım kodu
-    function getNextRepublicDay() {
-      const now = new Date();
-      let year = now.getFullYear();
-      const republicDayThisYear = new Date(year, 9, 29);
-      if (now > republicDayThisYear) {
-        year += 1;
-      }
-      return new Date(year, 9, 29, 0, 0, 0);
-    }
+    document.getElementById('days').textContent = days.toString().padStart(2, '0');
+    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+  }
 
-    const targetDate = getNextRepublicDay().getTime();
+  setInterval(countdown, 1000);
+  countdown();
+</script>
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      if (distance < 0) {
-        document.getElementById('countdown').innerHTML = "<h3>29 Ekim Cumhuriyet Bayramı geldi.</h3>";
-        clearInterval(interval);
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById('days').textContent = days;
-      document.getElementById('hours').textContent = hours;
-      document.getElementById('minutes').textContent = minutes;
-      document.getElementById('seconds').textContent = seconds;
-    }
-
-    updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
-
-  </script>
 </body>
 </html>
