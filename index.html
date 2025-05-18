@@ -5,22 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Atatürk Temalı Web Sitesi</title>
   <style>
-    /* Temalar */
     body {
       margin: 0; padding: 0; height: 100%;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       transition: background-color 0.5s, color 0.5s;
       text-align: center;
       position: relative;
+      overflow: hidden;
     }
 
-    /* Aydınlık tema */
+    /* Temalar */
     body.light {
       background-color: #ffffff;
       color: #000000;
     }
 
-    /* Karanlık tema (default) */
     body.dark {
       background-color: #000000;
       color: #ffffff;
@@ -30,6 +29,8 @@
       margin-top: 50px;
       font-size: 3rem;
       text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.8);
+      position: relative;
+      z-index: 10;
     }
 
     p {
@@ -37,6 +38,8 @@
       margin-top: 30px;
       font-size: 1.3rem;
       text-shadow: 1px 1px 3px rgba(255, 0, 0, 0.8);
+      position: relative;
+      z-index: 10;
     }
 
     /* Buton stil */
@@ -58,11 +61,23 @@
     #theme-toggle:hover {
       background-color: #cc0000;
     }
+
+    /* Canvas tam ekran */
+    #particle-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      background: transparent;
+    }
   </style>
 </head>
 <body>
 
   <button id="theme-toggle">Tema Değiştir</button>
+
+  <canvas id="particle-canvas"></canvas>
 
   <h1>Mustafa Kemal Atatürk</h1>
   <p>"Yurtta sulh, cihanda sulh."</p>
@@ -70,20 +85,92 @@
   <script>
     const body = document.body;
     const btn = document.getElementById('theme-toggle');
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+
+    // Tema rengi için kırmızı tonlarını tanımla
+    const themeColors = {
+      dark: {
+        particleColor: 'rgba(255, 0, 0, ALPHA)', // parlak kırmızı
+        shadowColor: 'rgba(255, 0, 0, 0.7)'
+      },
+      light: {
+        particleColor: 'rgba(150, 0, 0, ALPHA)', // daha koyu kırmızı açık fonda
+        shadowColor: 'rgba(150, 0, 0, 0.7)'
+      }
+    };
 
     // Başlangıçta localStorage'dan tema oku veya default 'dark' yap
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    body.classList.add(savedTheme);
+    let currentTheme = localStorage.getItem('theme') || 'dark';
+    body.classList.add(currentTheme);
 
-    // Butona tıklayınca temayı değiştir
-    btn.addEventListener('click', () => {
-      if (body.classList.contains('dark')) {
-        body.classList.replace('dark', 'light');
-        localStorage.setItem('theme', 'light');
-      } else {
-        body.classList.replace('light', 'dark');
-        localStorage.setItem('theme', 'dark');
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Particle {
+      constructor() {
+        this.reset();
       }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 1;
+        this.speedY = (Math.random() - 0.5) * 1;
+        this.alpha = Math.random() * 0.7 + 0.3;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+          this.reset();
+        }
+      }
+      draw(ctx, colors) {
+        ctx.beginPath();
+        const color = colors.particleColor.replace('ALPHA', this.alpha.toFixed(2));
+        ctx.fillStyle = color;
+        ctx.shadowColor = colors.shadowColor;
+        ctx.shadowBlur = 6;
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    const particles = [];
+    const particleCount = 120;
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      const colors = themeColors[currentTheme];
+      particles.forEach(p => {
+        p.update();
+        p.draw(ctx, colors);
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Butona tıklayınca tema değiştir
+    btn.addEventListener('click', () => {
+      if (currentTheme === 'dark') {
+        currentTheme = 'light';
+        body.classList.replace('dark', 'light');
+      } else {
+        currentTheme = 'dark';
+        body.classList.replace('light', 'dark');
+      }
+      localStorage.setItem('theme', currentTheme);
     });
   </script>
 
