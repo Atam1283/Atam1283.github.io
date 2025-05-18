@@ -1,199 +1,132 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Özel Gün Geri Sayım</title>
-<style>
-  body {
-    background-color: #fff;
-    color: #222;
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 40px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-  }
-
-  a#anasayfa {
-    color: #222;
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 18px;
-    background: rgba(0,0,0,0.05);
-    padding: 6px 12px;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-    z-index: 10;
-  }
-  a#anasayfa:hover {
-    background-color: #222;
-    color: #fff;
-  }
-
-  h1 {
-    font-size: 2.8rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    color: #111;
-    text-align: center;
-  }
-
-  #countdown {
-    background: #f9f9f9;
-    border-radius: 15px;
-    border: 2px solid #ccc;
-    padding: 30px 40px;
-    max-width: 400px;
-    width: 100%;
-    box-shadow: 0 0 15px rgba(0,0,0,0.07);
-    text-align: center;
-  }
-
-  #event-name {
-    font-weight: 700;
-    font-size: 1.6rem;
-    color: #222;
-    margin-bottom: 20px;
-  }
-
-  #event-name.highlight {
-    color: #d32f2f; /* canlı kırmızı */
-  }
-
-  .time {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  .time > div {
-    background: #fff;
-    border: 2px solid #ccc;
-    border-radius: 12px;
-    padding: 15px 20px;
-    width: 70px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  }
-
-  .time > div span.number {
-    display: block;
-    font-size: 2.6rem;
-    font-weight: 700;
-    color: #333;
-  }
-
-  .time > div span.label {
-    display: block;
-    font-size: 0.9rem;
-    color: #666;
-    margin-top: 5px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  @media (max-width: 480px) {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Özel Günlere Geri Sayım</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      justify-content: center;
+    }
+    a#anasayfa {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 18px;
+      z-index: 10;
+    }
+    a#anasayfa:hover {
+      color: #ff4d4d;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: white;
+      text-align: center;
+      text-shadow: 0 0 10px #ff4d4d;
+    }
     #countdown {
-      padding: 20px;
+      display: flex;
+      gap: 20px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      justify-content: center;
+      margin-bottom: 10px;
+      color: white;
+      text-shadow: 0 0 5px #ff4d4d;
     }
-    .time > div {
-      width: 50px;
-      padding: 10px;
+    #event-name {
+      font-size: 1.5rem;
+      color: white;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 20px;
     }
-    .time > div span.number {
-      font-size: 2rem;
-    }
-    .time > div span.label {
-      font-size: 0.75rem;
-    }
-  }
-</style>
+  </style>
 </head>
 <body>
 
-<a id="anasayfa" href="index.html">← Ana Sayfa</a>
+  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
 
-<h1>En Yakın Özel Güne Geri Sayım</h1>
-
-<div id="countdown">
+  <h1>En Yakın Özel Güne Geri Sayım</h1>
   <div id="event-name"></div>
-  <div class="time">
-    <div><span class="number" id="days">0</span><span class="label">Gün</span></div>
-    <div><span class="number" id="hours">0</span><span class="label">Saat</span></div>
-    <div><span class="number" id="minutes">0</span><span class="label">Dakika</span></div>
-    <div><span class="number" id="seconds">0</span><span class="label">Saniye</span></div>
+  <div id="countdown">
+    <span id="days">00</span> Gün 
+    <span id="hours">00</span> Saat 
+    <span id="minutes">00</span> Dakika 
+    <span id="seconds">00</span> Saniye
   </div>
-</div>
 
-<script>
-  const events = [
-    { name: "Yılbaşı", date: "01-01" },
-    { name: "Ulusal Egemenlik ve Çocuk Bayramı", date: "04-23" },
-    { name: "Emek ve Dayanışma Günü", date: "05-01" },
-    { name: "Atatürk'ü Anma, Gençlik ve Spor Bayramı", date: "05-19" },
-    { name: "Milli Birlik ve Demokrasi Günü", date: "07-15" },
-    { name: "Zafer Bayramı", date: "08-30" },
-    { name: "Cumhuriyet Bayramı", date: "10-29" }
-  ];
+  <script>
+    const events = [
+      { name: "Yılbaşı", date: "01-01" },
+      { name: "Ulusal Egemenlik ve Çocuk Bayramı", date: "04-23" },
+      { name: "Emek ve Dayanışma Günü", date: "05-01" },
+      { name: "Atatürk'ü Anma, Gençlik ve Spor Bayramı", date: "05-19" },
+      { name: "Milli Birlik ve Demokrasi Günü", date: "07-15" },
+      { name: "Zafer Bayramı", date: "08-30" },
+      { name: "Cumhuriyet Bayramı", date: "10-29" },
+      { name: "Atatürk'ü Anma Günü", date: "11-10" }
+    ];
 
-  function getNextEvent() {
-    const now = new Date();
-    let year = now.getFullYear();
+    function getNextEvent() {
+      const now = new Date();
+      const thisYear = now.getFullYear();
 
-    let upcomingEvents = events.map(e => {
-      let [month, day] = e.date.split('-').map(Number);
-      let eventDate = new Date(year, month - 1, day);
-      if(eventDate < now) {
-        eventDate.setFullYear(year + 1);
+      let upcomingEvents = events.map(e => {
+        let eventDate = new Date(`${thisYear}-${e.date}T00:00:00`);
+        if (eventDate < now) {
+          eventDate = new Date(`${thisYear + 1}-${e.date}T00:00:00`);
+        }
+        return {...e, eventDate};
+      });
+
+      upcomingEvents.sort((a, b) => a.eventDate - b.eventDate);
+
+      return upcomingEvents[0];
+    }
+
+    function updateCountdown() {
+      const event = getNextEvent();
+      const now = new Date();
+      const diff = event.eventDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("event-name").textContent = `${event.name} bugün!`;
+        document.getElementById("days").textContent = "00";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
+        return;
       }
-      return {...e, eventDate};
-    });
 
-    upcomingEvents.sort((a,b) => a.eventDate - b.eventDate);
-    return upcomingEvents[0];
-  }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
 
-  function updateCountdown() {
-    const event = getNextEvent();
-    const now = new Date();
-    const diff = event.eventDate - now;
-
-    if(diff <= 0) {
-      document.getElementById("event-name").textContent = `Bugün: ${event.name}`;
-      document.getElementById("event-name").classList.add("highlight");
-      document.getElementById("days").textContent = 0;
-      document.getElementById("hours").textContent = 0;
-      document.getElementById("minutes").textContent = 0;
-      document.getElementById("seconds").textContent = 0;
-      return;
+      document.getElementById("event-name").textContent = `Sıradaki Özel Gün: ${event.name}`;
+      document.getElementById("days").textContent = days.toString().padStart(2, "0");
+      document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
+      document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
+      document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0");
     }
 
-    document.getElementById("event-name").textContent = event.name;
-    if(event.name === "Atatürk'ü Anma, Gençlik ve Spor Bayramı") {
-      document.getElementById("event-name").classList.add("highlight");
-    } else {
-      document.getElementById("event-name").classList.remove("highlight");
-    }
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-
-    document.getElementById("days").textContent = days;
-    document.getElementById("hours").textContent = hours;
-    document.getElementById("minutes").textContent = minutes;
-    document.getElementById("seconds").textContent = seconds;
-  }
-
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-</script>
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
 
 </body>
 </html>
