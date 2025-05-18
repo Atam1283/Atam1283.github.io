@@ -12,48 +12,40 @@
     background-color: black;
     color: white;
     overflow-x: hidden;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
   }
   #particles-js {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     z-index: -1;
   }
-  header {
+  a {
     position: fixed;
-    top: 1rem;
-    left: 1rem;
-  }
-  header a {
+    top: 1rem; left: 1rem;
     color: #ff4d4d;
     text-decoration: none;
     font-weight: bold;
-    font-size: 1.2rem;
-    margin-right: 1rem;
+  }
+  header {
+    text-align: center;
+    padding: 2rem 1rem 0 1rem;
   }
   h1 {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
+  }
+  #event-name {
+    font-size: 1.5rem;
     color: #ff4d4d;
+    margin-bottom: 2rem;
   }
   #countdown {
     font-size: 3rem;
-    margin-top: 1rem;
-    color: white;
-    font-weight: bold;
+    text-align: center;
+    letter-spacing: 0.1em;
   }
-  #event-name {
-    font-size: 1.8rem;
-    margin-top: 0.5rem;
-    color: #ff4d4d;
+  @media (max-width: 600px) {
+    h1 { font-size: 2rem; }
+    #countdown { font-size: 2rem; }
   }
 </style>
 </head>
@@ -61,113 +53,130 @@
 
 <div id="particles-js"></div>
 
+<a href="index.html">← Ana Sayfa</a>
+
 <header>
-  <a href="index.html">← Ana Sayfa</a>
-  <a href="hayati.html">Hayat</a>
+  <h1>Geri Sayım</h1>
+  <div id="event-name"></div>
+  <div id="countdown">Yükleniyor...</div>
 </header>
 
-<main>
-  <h1>En Yakın Özel Güne Geri Sayım</h1>
-  <div id="countdown">Yükleniyor...</div>
-  <div id="event-name"></div>
-</main>
-
+<!-- Particles.js -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
-  particlesJS("particles-js", {
-    particles: {
-      number: { value: 90 },
-      color: { value: "#ff0000" },
-      shape: { type: "circle" },
-      opacity: { value: 0.5 },
-      size: { value: 3 },
-      line_linked: {
-        enable: true,
-        distance: 120,
-        color: "#ff0000",
-        opacity: 0.4,
-        width: 1
-      },
-      move: {
-        enable: true,
-        speed: 2
-      }
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 90 },
+    color: { value: "#ff0000" },
+    shape: { type: "circle" },
+    opacity: { value: 0.5 },
+    size: { value: 3 },
+    line_linked: {
+      enable: true,
+      distance: 120,
+      color: "#ff0000",
+      opacity: 0.4,
+      width: 1
     },
-    interactivity: {
-      detect_on: "canvas",
-      events: {
-        onhover: { enable: true, mode: "repulse" },
-        onclick: { enable: true, mode: "push" }
-      },
-      modes: {
-        repulse: { distance: 100 },
-        push: { particles_nb: 4 }
-      }
+    move: {
+      enable: true,
+      speed: 2
+    }
+  },
+  interactivity: {
+    detect_on: "canvas",
+    events: {
+      onhover: { enable: true, mode: "repulse" },
+      onclick: { enable: true, mode: "push" }
     },
-    retina_detect: true
-  });
+    modes: {
+      repulse: { distance: 100 },
+      push: { particles_nb: 4 }
+    }
+  },
+  retina_detect: true
+});
 </script>
 
 <script>
-  // Özel günler listesi (sadece ay-gün, yıl yok çünkü her yıl)
-  const events = [
-    { name: "Yılbaşı", date: "01-01" },
-    { name: "Ulusal Egemenlik ve Çocuk Bayramı", date: "04-23" },
-    { name: "Emek ve Dayanışma Günü", date: "05-01" },
-    { name: "Atatürk'ü Anma, Gençlik ve Spor Bayramı", date: "05-19" },
-    { name: "Milli Birlik ve Demokrasi Günü", date: "07-15" },
-    { name: "Zafer Bayramı", date: "08-30" },
-    { name: "Cumhuriyet Bayramı", date: "10-29" },
-    { name: "Atatürk'ü Anma Günü ve Atatürk Haftası", date: "11-10" }
-  ];
+// Önemli tarihler listesi (gün.ay.yıl şeklinde, yıl opsiyonel, yıl yoksa her yıl tekrar)
+const importantDates = [
+  { date: "01.01", name: "Yılbaşı", desc: "Yeni yılın ilk günü" },
+  { date: "23.04.1920", name: "Ulusal Egemenlik ve Çocuk Bayramı", desc: "TBMM'nin açılışı, Atatürk'ün çocuklara armağanı" },
+  { date: "01.05", name: "Emek ve Dayanışma Günü", desc: "İşçi bayramı" },
+  { date: "19.05.1919", name: "Atatürk'ü Anma, Gençlik ve Spor Bayramı", desc: "Atatürk’ün Samsun’a çıkarak Kurtuluş Savaşı’nı başlattığı gün" },
+  { date: "15.07", name: "Milli Birlik ve Demokrasi Günü", desc: "" },
+  { date: "30.08.1922", name: "Zafer Bayramı", desc: "Başkomutanlık Meydan Muharebesi'nin zaferle sonuçlanması" },
+  { date: "29.10.1923", name: "Cumhuriyet Bayramı", desc: "Türkiye Cumhuriyeti’nin ilanı" },
+  { date: "10.11", name: "Atatürk'ü Anma Günü", desc: "Atatürk’ün vefatı" }
+];
 
-  function getNextEvent() {
-    const now = new Date();
-    let soonestEvent = null;
-    let soonestDiff = Infinity;
+// Şu anki tarih
+const now = new Date();
 
-    for (const event of events) {
-      // O yıl için event tarihi
-      let eventDate = new Date(now.getFullYear(), parseInt(event.date.split("-")[0]) - 1, parseInt(event.date.split("-")[1]));
-      // Eğer tarih geçmişse, gelecek yıl olarak ayarla
-      if (eventDate < now) {
-        eventDate.setFullYear(eventDate.getFullYear() + 1);
-      }
-      const diff = eventDate - now;
-      if (diff < soonestDiff) {
-        soonestDiff = diff;
-        soonestEvent = { ...event, eventDate };
-      }
-    }
-    return soonestEvent;
+// Tarihi bu yıl için oluşturur, eğer geçmişte kaldıysa, gelecek yıla atar
+function getNextDate(dayMonthYear) {
+  let parts = dayMonthYear.split('.');
+  let day = parseInt(parts[0], 10);
+  let month = parseInt(parts[1], 10) - 1; // JS ay 0 tabanlı
+  let year = parts.length === 3 ? parseInt(parts[2], 10) : now.getFullYear();
+
+  let eventDate = new Date(year, month, day);
+
+  // Eğer tarih geçmişte kaldıysa ve yıl belirtilmemişse, bir sonraki yıla geçir
+  if (eventDate < now && parts.length !== 3) {
+    eventDate = new Date(year + 1, month, day);
   }
 
-  function updateCountdown() {
-    const event = getNextEvent();
-    if (!event) return;
+  // Eğer yıl varsa ve tarih geçmişse -> geri saymaz, geçmiştir, ama biz hep yakını bulacağız.
+  return eventDate;
+}
 
-    const now = new Date();
-    const diff = event.eventDate - now;
+// En yakın etkinliği bul
+function getNearestEvent() {
+  let nearestEvent = null;
+  let minDiff = Infinity;
 
-    if (diff <= 0) {
-      document.getElementById("countdown").textContent = "Bugün " + event.name + "!";
-      document.getElementById("event-name").textContent = "";
-      return;
+  for (const event of importantDates) {
+    const eventDate = getNextDate(event.date);
+    const diff = eventDate - now;
+    if (diff >= 0 && diff < minDiff) {
+      minDiff = diff;
+      nearestEvent = { ...event, eventDate };
     }
+  }
+  return nearestEvent;
+}
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
+// Geri sayımı güncelle
+function updateCountdown() {
+  const nearest = getNearestEvent();
+  if (!nearest) {
+    document.getElementById('countdown').textContent = "Yaklaşan önemli gün yok.";
+    document.getElementById('event-name').textContent = "";
+    return;
+  }
+  document.getElementById('event-name').textContent = nearest.name;
 
-    document.getElementById("countdown").textContent =
-      `${days} Gün ${hours} Saat ${minutes} Dakika ${seconds} Saniye`;
-    document.getElementById("event-name").textContent = event.name + " için geri sayım";
+  const distance = nearest.eventDate - new Date();
+  if (distance < 0) {
+    document.getElementById('countdown').textContent = "Bugün!";
+    return;
   }
 
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+  const days = Math.floor(distance / (1000*60*60*24));
+  const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+  const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+  const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+  document.getElementById('countdown').textContent =
+    `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye kaldı`;
+}
+
+// İlk ve 1 saniyede bir güncelle
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
 </script>
-
 </body>
 </html>
