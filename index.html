@@ -3,126 +3,186 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ana Sayfa - Atatürk Sitesi</title>
+<title>Ana Sayfa - Atatürk</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins&display=swap" rel="stylesheet" />
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap');
+  /* Reset & Temel */
+  * {margin:0; padding:0; box-sizing: border-box;}
   body {
-    margin:0; padding:0; font-family: 'Montserrat', sans-serif;
-    background: #1a0000; color: white;
+    font-family: 'Poppins', sans-serif;
+    background-color: #1a0000;
+    color: #fff;
+    min-height: 100vh;
+    position: relative;
     overflow-x: hidden;
   }
   nav {
-    background: #660000; padding: 15px;
-    display: flex; gap: 20px;
-  }
-  nav a {
-    color: white; text-decoration: none; font-weight: 600;
-  }
-  nav a:hover {
-    text-decoration: underline;
-  }
-  .container {
-    padding: 20px; max-width: 900px; margin: auto;
-  }
-  h1 {
-    font-weight: 700; margin-bottom: 10px;
-    text-align: center;
-  }
-  p {
-    font-size: 1.1rem; line-height: 1.5;
-  }
-  /* Tema değiştirme butonu */
-  #themeToggle {
-    position: fixed; top: 20px; right: 20px;
-    background: #990000; border: none; padding: 10px 20px;
-    color: white; font-weight: bold; cursor: pointer;
-    border-radius: 5px;
+    background-color: #660000cc;
+    padding: 15px 30px;
+    display: flex;
+    gap: 25px;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
     z-index: 10;
   }
-  /* Koyu tema */
-  body.dark {
-    background: #1a0000;
-    color: white;
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
   }
-  /* Açık tema */
+  nav a:hover {
+    color: #ff5555;
+  }
+  .container {
+    max-width: 900px;
+    margin: 50px auto 80px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 5;
+    text-align: center;
+  }
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #ff0000cc;
+  }
+  p {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    max-width: 650px;
+    margin: 0 auto;
+    text-shadow: 0 0 6px #990000cc;
+  }
+
+  /* Tema butonu */
+  #themeToggle {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    background: #ff1a1a;
+    border: none;
+    padding: 12px 24px;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 0 15px #ff1a1aaa;
+    z-index: 15;
+    transition: background 0.4s ease;
+  }
+  #themeToggle:hover {
+    background: #ff4d4d;
+  }
+
+  /* Particles canvas */
+  #particles-js {
+    position: fixed;
+    top:0; left:0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Temalar */
   body.light {
-    background: #fff0f0;
+    background-color: #fff0f0;
     color: #660000;
   }
   body.light nav {
-    background: #ffcccc;
+    background-color: #ffcccccc;
+  }
+  body.light nav a {
+    color: #660000;
+  }
+  body.light nav a:hover {
+    color: #cc0000;
   }
   body.light #themeToggle {
     background: #cc0000;
-    color: white;
+    box-shadow: 0 0 15px #cc0000aa;
   }
-  /* Kırmızı parçacık arka plan */
-  #particles-js {
-    position: fixed;
-    width: 100%; height: 100%;
-    top: 0; left: 0; z-index: 0;
+  body.light #themeToggle:hover {
+    background: #ff3333;
   }
-  .content {
-    position: relative;
-    z-index: 1;
+  body.light p, body.light h1 {
+    text-shadow: none;
   }
 </style>
 </head>
 <body class="dark">
 
-<button id="themeToggle">Tema Değiştir</button>
-
 <nav>
   <a href="index.html">Ana Sayfa</a>
   <a href="hayati.html">Hayatı</a>
-  <a href="galeri.html">Galerisi</a>
+  <a href="galeri.html">Galeri</a>
   <a href="zaman.html">Zaman Çizelgesi</a>
   <a href="gerisayim.html">Geri Sayım</a>
 </nav>
 
+<button id="themeToggle">Tema Değiştir</button>
+
 <div id="particles-js"></div>
 
-<div class="container content">
+<div class="container">
   <h1>Mustafa Kemal Atatürk</h1>
-  <p>Türkiye Cumhuriyeti'nin kurucusu ve ilk Cumhurbaşkanı Mustafa Kemal Atatürk, çağdaş Türkiye'nin mimarıdır.</p>
-  <p>Hayatı, devrimleri ve vizyonu ile Türk milletine ilham vermeye devam ediyor.</p>
+  <p>Türkiye Cumhuriyeti'nin kurucusu ve lideri Mustafa Kemal Atatürk'ün hayatı, düşünceleri ve devrimleri hakkında bilgiler burada.</p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
-  // ParticlesJS kırmızı tema ayarları
+  // Particles config - kırmızı ve hareketli
   particlesJS('particles-js', {
     particles: {
-      number: { value: 60, density: { enable: true, value_area: 800 } },
-      color: { value: '#ff0000' },
+      number: { value: 80, density: { enable: true, value_area: 900 } },
+      color: { value: ['#ff0000', '#cc0000', '#990000'] },
       shape: { type: 'circle' },
-      opacity: { value: 0.6 },
+      opacity: { value: 0.7, random: true },
       size: { value: 4, random: true },
-      move: { enable: true, speed: 2, direction: 'none', out_mode: 'out' }
+      move: {
+        enable: true,
+        speed: 3,
+        direction: 'none',
+        random: false,
+        straight: false,
+        out_mode: 'out',
+        bounce: false
+      }
     },
     interactivity: {
       detect_on: 'canvas',
       events: {
-        onhover: { enable: true, mode: 'repulse' },
-        onclick: { enable: true, mode: 'push' }
+        onhover: { enable: true, mode: 'grab' },
+        onclick: { enable: true, mode: 'push' },
+        resize: true
       },
       modes: {
-        repulse: { distance: 100 },
+        grab: { distance: 120, line_linked: { opacity: 0.3 }},
         push: { particles_nb: 4 }
       }
     },
     retina_detect: true
   });
 
-  // Tema değiştirme
-  const toggleBtn = document.getElementById('themeToggle');
-  toggleBtn.addEventListener('click', () => {
+  // Tema değiştirici
+  const themeBtn = document.getElementById('themeToggle');
+  themeBtn.addEventListener('click', () => {
     if(document.body.classList.contains('dark')){
       document.body.classList.replace('dark', 'light');
+      localStorage.setItem('theme', 'light');
     } else {
       document.body.classList.replace('light', 'dark');
+      localStorage.setItem('theme', 'dark');
     }
   });
+
+  // Önceki tema kaydı
+  const savedTheme = localStorage.getItem('theme');
+  if(savedTheme) {
+    document.body.className = savedTheme;
+  }
 </script>
 
 </body>
