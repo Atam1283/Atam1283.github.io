@@ -3,125 +3,74 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ana Sayfa - Atatürk</title>
+<title>Ana Sayfa - Atatürk Sitesi</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
-  /* GENEL */
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap');
   body {
-    margin: 0; padding: 0;
-    font-family: 'Montserrat', sans-serif;
-    background-color: #ffe6e6;
-    color: #660000;
-    min-height: 100vh;
+    margin:0; padding:0; font-family: 'Montserrat', sans-serif;
+    background: #1a0000; color: white;
     overflow-x: hidden;
-    transition: background-color 0.5s, color 0.5s;
-    position: relative;
-  }
-
-  /* Parçacık canvas - sayfanın en arkasında */
-  #particle-canvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  header {
-    background-color: #b30000;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-    font-weight: 700;
-    font-size: 2.5rem;
-    letter-spacing: 1.5px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
   }
   nav {
-    background-color: #ff4d4d;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    padding: 15px 0;
-    position: sticky;
-    top: 72px; /* header yüksekliği kadar aşağı */
-    z-index: 10;
+    background: #660000; padding: 15px;
+    display: flex; gap: 20px;
   }
   nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.1rem;
-    padding: 10px 18px;
-    border-radius: 8px;
-    transition: background-color 0.3s;
+    color: white; text-decoration: none; font-weight: 600;
   }
   nav a:hover {
-    background-color: #800000;
+    text-decoration: underline;
   }
-  main {
-    padding: 60px 20px 100px;
-    max-width: 900px;
-    margin: 0 auto;
+  .container {
+    padding: 20px; max-width: 900px; margin: auto;
+  }
+  h1 {
+    font-weight: 700; margin-bottom: 10px;
     text-align: center;
+  }
+  p {
+    font-size: 1.1rem; line-height: 1.5;
+  }
+  /* Tema değiştirme butonu */
+  #themeToggle {
+    position: fixed; top: 20px; right: 20px;
+    background: #990000; border: none; padding: 10px 20px;
+    color: white; font-weight: bold; cursor: pointer;
+    border-radius: 5px;
+    z-index: 10;
+  }
+  /* Koyu tema */
+  body.dark {
+    background: #1a0000;
+    color: white;
+  }
+  /* Açık tema */
+  body.light {
+    background: #fff0f0;
+    color: #660000;
+  }
+  body.light nav {
+    background: #ffcccc;
+  }
+  body.light #themeToggle {
+    background: #cc0000;
+    color: white;
+  }
+  /* Kırmızı parçacık arka plan */
+  #particles-js {
+    position: fixed;
+    width: 100%; height: 100%;
+    top: 0; left: 0; z-index: 0;
+  }
+  .content {
     position: relative;
     z-index: 1;
   }
-  h1 {
-    font-size: 3rem;
-    margin-bottom: 25px;
-  }
-  p {
-    font-size: 1.3rem;
-    line-height: 1.7;
-  }
-
-  #themeBtn {
-    position: fixed;
-    top: 15px; right: 15px;
-    background-color: #b30000;
-    border: none;
-    color: white;
-    padding: 10px 16px;
-    font-weight: 700;
-    border-radius: 6px;
-    cursor: pointer;
-    box-shadow: 0 0 8px #b30000;
-    transition: background-color 0.3s;
-    z-index: 20;
-  }
-  #themeBtn:hover {
-    background-color: #800000;
-  }
-
-  /* Koyu Tema */
-  body.dark-theme {
-    background-color: #330000;
-    color: #ffdede;
-  }
-  body.dark-theme header {
-    background-color: #ff1a1a;
-  }
-  body.dark-theme nav {
-    background-color: #800000;
-  }
-  body.dark-theme nav a:hover {
-    background-color: #ff4d4d;
-  }
-  body.dark-theme nav a {
-    color: #ffdede;
-  }
 </style>
 </head>
-<body>
-<canvas id="particle-canvas"></canvas>
-<button id="themeBtn">Tema Değiştir</button>
+<body class="dark">
 
-<header>Mustafa Kemal Atatürk</header>
+<button id="themeToggle">Tema Değiştir</button>
 
 <nav>
   <a href="index.html">Ana Sayfa</a>
@@ -131,91 +80,50 @@
   <a href="gerisayim.html">Geri Sayım</a>
 </nav>
 
-<main>
-  <h1>Türkiye Cumhuriyeti'nin Kurucusu</h1>
-  <p>
-    Mustafa Kemal Atatürk, Türkiye Cumhuriyeti'nin kurucusu ve ilk Cumhurbaşkanıdır. 
-    Modern Türkiye'nin temellerini atan lider olarak, eğitim, hukuk, kültür ve toplum alanlarında önemli reformlar yapmıştır.
-  </p>
-</main>
+<div id="particles-js"></div>
 
+<div class="container content">
+  <h1>Mustafa Kemal Atatürk</h1>
+  <p>Türkiye Cumhuriyeti'nin kurucusu ve ilk Cumhurbaşkanı Mustafa Kemal Atatürk, çağdaş Türkiye'nin mimarıdır.</p>
+  <p>Hayatı, devrimleri ve vizyonu ile Türk milletine ilham vermeye devam ediyor.</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
-  // Tema değiştirici
-  const themeBtn = document.getElementById('themeBtn');
-  themeBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark-theme');
+  // ParticlesJS kırmızı tema ayarları
+  particlesJS('particles-js', {
+    particles: {
+      number: { value: 60, density: { enable: true, value_area: 800 } },
+      color: { value: '#ff0000' },
+      shape: { type: 'circle' },
+      opacity: { value: 0.6 },
+      size: { value: 4, random: true },
+      move: { enable: true, speed: 2, direction: 'none', out_mode: 'out' }
+    },
+    interactivity: {
+      detect_on: 'canvas',
+      events: {
+        onhover: { enable: true, mode: 'repulse' },
+        onclick: { enable: true, mode: 'push' }
+      },
+      modes: {
+        repulse: { distance: 100 },
+        push: { particles_nb: 4 }
+      }
+    },
+    retina_detect: true
   });
 
-  // Parçacık efekti canvas
-  const canvas = document.getElementById('particle-canvas');
-  const ctx = canvas.getContext('2d');
-  let particlesArray;
-
-  // Ayarları yapalım
-  const maxParticles = 80;
-  const colors = ['#b30000', '#ff1a1a', '#ff4d4d'];
-
-  function initParticles() {
-    particlesArray = [];
-    for (let i=0; i < maxParticles; i++) {
-      particlesArray.push(new Particle());
+  // Tema değiştirme
+  const toggleBtn = document.getElementById('themeToggle');
+  toggleBtn.addEventListener('click', () => {
+    if(document.body.classList.contains('dark')){
+      document.body.classList.replace('dark', 'light');
+    } else {
+      document.body.classList.replace('light', 'dark');
     }
-  }
-
-  // Parçacık sınıfı
-  class Particle {
-    constructor() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.size = Math.random() * 3 + 1;
-      this.speedX = (Math.random() - 0.5) * 0.5;
-      this.speedY = (Math.random() - 0.5) * 0.5;
-      this.color = colors[Math.floor(Math.random() * colors.length)];
-      this.opacity = Math.random() * 0.8 + 0.2;
-    }
-    update() {
-      this.x += this.speedX;
-      this.y += this.speedY;
-
-      // Ekrandan çıkınca ters yönde döndür
-      if(this.x > canvas.width) this.x = 0;
-      else if(this.x < 0) this.x = canvas.width;
-      if(this.y > canvas.height) this.y = 0;
-      else if(this.y < 0) this.y = canvas.height;
-    }
-    draw() {
-      ctx.beginPath();
-      ctx.fillStyle = this.color;
-      ctx.globalAlpha = this.opacity;
-      ctx.shadowColor = this.color;
-      ctx.shadowBlur = 10;
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.closePath();
-      ctx.globalAlpha = 1;
-    }
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particlesArray.forEach(p => {
-      p.update();
-      p.draw();
-    });
-    requestAnimationFrame(animate);
-  }
-
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    initParticles();
-  }
-  window.addEventListener('resize', resizeCanvas);
-
-  // Başlat
-  resizeCanvas();
-  animate();
-
+  });
 </script>
+
 </body>
 </html>
