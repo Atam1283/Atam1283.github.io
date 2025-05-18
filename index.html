@@ -5,33 +5,124 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Atatürk Temalı Web Sitesi</title>
   <style>
-    body {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
+    body, html {
+      margin: 0; padding: 0; height: 100%;
+      overflow: hidden;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #1e1e1e;
+      color: white;
+      position: relative;
       text-align: center;
-      padding: 40px;
     }
+
     h1 {
-      margin-bottom: 30px;
-      font-size: 2.8rem;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+      position: relative;
+      z-index: 10;
+      margin-top: 50px;
+      font-size: 3rem;
+      text-shadow: 2px 2px 5px rgba(255,0,0,0.7);
     }
+
     img {
       max-width: 300px;
+      margin-top: 20px;
       border-radius: 15px;
-      box-shadow: 0 8px 15px rgba(0,0,0,0.5);
+      box-shadow: 0 8px 15px rgba(255,0,0,0.6);
+      position: relative;
+      z-index: 10;
     }
+
     p {
-      margin-top: 30px;
-      font-size: 1.2rem;
+      position: relative;
+      z-index: 10;
       font-style: italic;
+      margin-top: 30px;
+      font-size: 1.3rem;
+      text-shadow: 1px 1px 3px rgba(255,0,0,0.8);
+    }
+
+    /* Canvas tam ekran ve arka plan */
+    #particle-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 1;
+      pointer-events: none; /* Fareyi engellemesin */
+      background: #1e1e1e;
     }
   </style>
 </head>
 <body>
+
+  <canvas id="particle-canvas"></canvas>
+
   <h1>Mustafa Kemal Atatürk</h1>
   <img src="AtaturkGorselleri/Atatürk.gif" alt="Atatürk GIF" />
   <p>"Yurtta sulh, cihanda sulh."</p>
+
+  <script>
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+
+    // Yeniden boyutlandır
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    // Partikül sınıfı
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 1;
+        this.speedY = (Math.random() - 0.5) * 1;
+        this.alpha = Math.random() * 0.7 + 0.3;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+          this.reset();
+        }
+      }
+      draw(ctx) {
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255, 0, 0, ${this.alpha})`;
+        ctx.shadowColor = `rgba(255, 0, 0, 0.7)`;
+        ctx.shadowBlur = 6;
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // Partiküller oluştur
+    const particles = [];
+    const particleCount = 120;
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    // Animasyon döngüsü
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        p.update();
+        p.draw(ctx);
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+
 </body>
 </html>
