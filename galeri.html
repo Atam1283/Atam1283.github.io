@@ -3,50 +3,111 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Galeri</title>
+<title>Atatürk Galerisi</title>
 <style>
   body {
-    margin: 0;
-    background-color: black;
-    color: white;
-    font-family: Arial, sans-serif;
+    margin: 0; padding: 20px;
+    background-color: #0a0a0a; /* koyu siyah */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ff4d4d; /* kırmızı vurgu */
   }
-  a {
+  h1 {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 40px;
     color: #ff4d4d;
-    text-decoration: none;
-    font-weight: bold;
-    position: fixed;
-    top: 1rem;
-    left: 1rem;
-  }
-  /* Ana sayfa linkini beyaz yapıyoruz */
-  a:first-of-type {
-    color: white !important;
+    text-shadow: 0 0 8px #ff4d4daa;
   }
   .gallery {
-    max-width: 900px;
-    margin: 5rem auto 2rem auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 1100px;
+    margin: 0 auto;
   }
-  .gallery img {
-    width: 100%;
-    border-radius: 8px;
+  .gallery-item {
+    background: #1a1a1a;
     border: 2px solid #ff4d4d;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 10px #ff4d4d66;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.4s ease;
+  }
+  .gallery-item:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 25px #ff4d4dcc;
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .gallery-item:hover img {
+    transform: scale(1.1);
+  }
+  .gallery-item p {
+    padding: 12px 15px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #ff8080;
+    text-align: center;
+    margin: 0;
+    user-select: none;
+  }
+  a#anasayfa {
+    color: white;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+    z-index: 10;
+    transition: color 0.3s ease;
+  }
+  a#anasayfa:hover {
+    color: #ff4d4d;
+  }
+
+  @media (max-width: 600px) {
+    .gallery-item img {
+      height: 150px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 25px;
+    }
   }
 </style>
 </head>
 <body>
 
-<a href="index.html">← Ana Sayfa</a>
+  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
 
-<div class="gallery">
-  <img src="resim1.jpg" alt="Resim 1" />
-  <img src="resim2.jpg" alt="Resim 2" />
-  <img src="resim3.jpg" alt="Resim 3" />
-  <img src="resim4.jpg" alt="Resim 4" />
-</div>
+  <h1>Atatürk Galerisi</h1>
+
+  <section class="gallery">
+    <div class="gallery-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Mustafa_Kemal_Atat%C3%BCrk_in_1930s.jpg/440px-Mustafa_Kemal_Atat%C3%BCrk_in_1930s.jpg" alt="Atatürk 1930'lar" />
+      <p>Mustafa Kemal Atatürk (1930'lar)</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Ataturk_in_March_1924.jpg/440px-Ataturk_in_March_1924.jpg" alt="Atatürk 1924" />
+      <p>Atatürk, Mart 1924</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Ataturk_in_the_1920s.jpg/440px-Ataturk_in_the_1920s.jpg" alt="Atatürk 1920'ler" />
+      <p>Atatürk (1920'ler)</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Atatürk_1937.jpg/440px-Atatürk_1937.jpg" alt="Atatürk 1937" />
+      <p>Atatürk, 1937</p>
+    </div>
+  </section>
 
 </body>
 </html>
