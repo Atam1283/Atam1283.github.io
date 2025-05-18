@@ -2,113 +2,80 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Galeri</title>
-  <link rel="stylesheet" href="css/style.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ana Sayfa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
   <style>
     body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       font-family: 'Orbitron', sans-serif;
-      background-color: #000;
-      color: #fff;
+      background-color: black;
+      color: white;
       overflow-x: hidden;
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
-
     #particles-js {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
       z-index: -1;
     }
-
-    header {
-      padding: 1rem;
-      text-align: center;
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      color: white;
     }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+    nav {
+      margin-top: 1rem;
     }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      padding: 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .gallery img {
-      width: 100%;
-      border-radius: 12px;
-      border: 2px solid #ff4d4d;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #ff4d4d;
-    }
-
-    a {
-      color: #ff4d4d;
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
+    nav a {
+      color: white;
       text-decoration: none;
       font-weight: bold;
+      font-size: 1.2rem;
+      margin: 0 1rem;
+      transition: color 0.3s ease;
     }
-
-    @media screen and (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-
-      .gallery {
-        padding: 1rem;
-      }
+    nav a:hover {
+      color: #ff4d4d;
     }
   </style>
 </head>
 <body>
   <div id="particles-js"></div>
-  <a href="index.html">← Ana Sayfa</a>
 
   <header>
-    <h1>Atatürk Galerisi</h1>
+    <h1>Ana Sayfa</h1>
   </header>
 
-  <section class="gallery">
-    <!-- Galeri görselleri -->
-    <img src="assets/ataturk1.jpg" alt="Atatürk 1">
-    <img src="assets/ataturk2.jpg" alt="Atatürk 2">
-    <img src="assets/ataturk3.jpg" alt="Atatürk 3">
-    <img src="assets/ataturk4.jpg" alt="Atatürk 4">
-    <!-- Daha fazla görsel eklersen buraya ekle -->
-  </section>
+  <nav>
+    <a href="zaman-cizelgesi.html">Zaman Çizelgesi</a>
+    <a href="hayati.html">Hayatı</a>
+    <a href="geri-sayim.html">Geri Sayım</a>
+    <a href="galeri.html">Galeri</a>
+  </nav>
 
-  <!-- Particles.js -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    // Arka plan parçacık efekti
     particlesJS("particles-js", {
       particles: {
-        number: { value: 100 },
+        number: { value: 90 },
         color: { value: "#ff0000" },
         shape: { type: "circle" },
-        opacity: { value: 0.4 },
+        opacity: { value: 0.5 },
         size: { value: 3 },
         line_linked: {
           enable: true,
           distance: 120,
           color: "#ff0000",
-          opacity: 0.3,
+          opacity: 0.4,
           width: 1
         },
         move: {
