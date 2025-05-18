@@ -1,76 +1,122 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ana Sayfa - Atatürk Sözleri</title>
-<style>
-  body {
-    background-color: #000;
-    color: #fff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    padding: 20px;
-    text-align: center;
-  }
-  #quote {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    text-shadow:
-      0 0 10px #fff,
-      0 0 20px #ff4d4d;
-  }
-  #location {
-    font-size: 1.2rem;
-    color: #ff4d4d;
-    font-weight: 600;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mustafa Kemal Atatürk</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #ffffff;
+      color: #222;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 100vh;
+      padding-top: 80px;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #fff;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #000;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #666;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: bold;
+      color: #000;
+      margin-bottom: 20px;
+      text-shadow: 0 0 6px #aaa;
+    }
+
+    #quote {
+      font-size: 1.4rem;
+      font-style: italic;
+      max-width: 700px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    #location {
+      font-size: 1.1rem;
+      color: #666;
+    }
+
+  </style>
 </head>
 <body>
 
-<div id="quote"></div>
-<div id="location"></div>
+  <header>
+    <nav>
+      <a href="index.html">Ana Sayfa</a>
+      <a href="hayati.html">Hayatı</a>
+      <a href="galeri.html">Galeri</a>
+      <a href="gerisayim.html">Geri Sayım</a>
+      <a href="zamancizelgesi.html">Zaman Çizelgesi</a>
+    </nav>
+  </header>
 
-<script>
-  const quotes = [
-    {
-      text: "Yurtta sulh, cihanda sulh.",
-      location: "Samsun, 1921"
-    },
-    {
-      text: "Egemenlik, kayıtsız şartsız milletindir.",
-      location: "TBMM, 23 Nisan 1920"
-    },
-    {
-      text: "Hayatta en hakiki mürşit ilimdir.",
-      location: "Samsun, 1919"
-    },
-    {
-      text: "Milletin bağımsızlığını, yine milletin azim ve kararı kurtaracaktır.",
-      location: "Erzurum Kongresi, 1919"
-    },
-    {
-      text: "Benim naçiz vücudum elbet bir gün toprak olacaktır.",
-      location: "Dolmabahçe Sarayı, 10 Kasım 1938"
+  <main>
+    <h1>Mustafa Kemal Atatürk</h1>
+    <div id="quote">...</div>
+    <div id="location">...</div>
+  </main>
+
+  <script>
+    const quotes = [
+      {
+        text: "Yurtta sulh, cihanda sulh.",
+        location: "Söylev, 1931"
+      },
+      {
+        text: "Egemenlik, kayıtsız şartsız milletindir.",
+        location: "TBMM Açılışı, 1920"
+      },
+      {
+        text: "Hayatta en hakiki mürşit ilimdir, fendir.",
+        location: "Kastamonu, 1924"
+      },
+      {
+        text: "Benim naçiz vücudum elbet bir gün toprak olacaktır. Fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır.",
+        location: "Ankara, 1926"
+      },
+      {
+        text: "Milletin bağımsızlığını yine milletin azim ve kararı kurtaracaktır.",
+        location: "Erzurum Kongresi, 1919"
+      }
+    ];
+
+    function showRandomQuote() {
+      const index = Math.floor(Math.random() * quotes.length);
+      document.getElementById("quote").textContent = `"${quotes[index].text}"`;
+      document.getElementById("location").textContent = `— ${quotes[index].location}`;
     }
-  ];
 
-  function displayRandomQuote() {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    const quote = quotes[randomIndex];
-    document.getElementById('quote').textContent = `"${quote.text}"`;
-    document.getElementById('location').textContent = `— ${quote.location}`;
-  }
-
-  window.onload = displayRandomQuote;
-</script>
+    window.onload = showRandomQuote;
+  </script>
 
 </body>
 </html>
