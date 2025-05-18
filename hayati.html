@@ -2,152 +2,282 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mustafa Kemal Atatürk'ün Hayatı</title>
-  <link rel="stylesheet" href="css/style.css" />
-
-  <!-- Özel font -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atatürk'ün Hayatı</title>
+  
+  <!-- Google Fonts - Estetik ve okunaklı fontlar -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Merriweather&display=swap" rel="stylesheet" />
+  
   <style>
-    @font-face {
-      font-family: 'OzelFont';
-      src: url('assets/ozel-font.ttf');
-    }
-
+    /* Temel stil ayarları */
     body {
       margin: 0;
-      font-family: 'OzelFont', sans-serif;
-      color: white;
-      background-color: #000;
+      font-family: 'Merriweather', serif;
+      background-color: #111;
+      color: #eee;
       overflow-x: hidden;
+      transition: background-color 0.5s ease, color 0.5s ease;
     }
-
     header {
+      background-color: #8B0000; /* koyu kırmızı */
       padding: 20px;
       text-align: center;
-      background: rgba(255, 0, 0, 0.8);
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      user-select: none;
     }
-
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #600000;
+      padding: 10px 0;
+    }
     nav a {
-      margin: 10px;
-      color: white;
+      color: #eee;
       text-decoration: none;
-      font-weight: bold;
+      margin: 0 15px;
+      font-weight: 700;
+      font-family: 'Roboto', sans-serif;
+      transition: color 0.3s ease;
     }
-
-    h1 {
-      font-size: 3rem;
-      margin-top: 30px;
+    nav a:hover {
+      color: #ff4444;
     }
-
-    .icerik {
+    main {
       max-width: 900px;
       margin: 40px auto;
-      font-size: 1.2rem;
-      line-height: 1.8;
-      padding: 20px;
-      background-color: rgba(0, 0, 0, 0.6);
-      border-radius: 12px;
+      padding: 0 20px;
+      line-height: 1.7;
+      font-size: 1.1rem;
+      background-color: rgba(139, 0, 0, 0.3);
+      border-radius: 10px;
+      box-shadow: 0 0 20px #8B0000;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #ff6666;
+    }
+    p {
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #600000;
+      color: #eee;
+      font-size: 0.9rem;
+      user-select: none;
+    }
+    /* Tema değiştirme butonu */
+    #temaToggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #8B0000;
+      border: none;
+      color: #eee;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+      z-index: 1000;
+    }
+    #temaToggle:hover {
+      background-color: #ff4444;
+    }
+    /* Koyu tema için stil */
+    body.koyu {
+      background-color: #111;
+      color: #eee;
+    }
+    body.koyu main {
+      background-color: rgba(139, 0, 0, 0.3);
+      box-shadow: 0 0 20px #8B0000;
+    }
+    body.acik {
+      background-color: #fff;
+      color: #333;
+    }
+    body.acik main {
+      background-color: rgba(255, 200, 200, 0.6);
+      box-shadow: 0 0 20px #ff4444;
+    }
+    body.acik header {
+      background-color: #ff4444;
+      color: #fff;
+    }
+    body.acik nav {
+      background-color: #cc0000;
+    }
+    body.acik nav a {
+      color: #fff;
+    }
+    body.acik nav a:hover {
+      color: #eee;
+    }
+    body.acik footer {
+      background-color: #cc0000;
+      color: #fff;
     }
 
-    .tema-btn {
+    /* Parçacık canvas tam ekran */
+    #particles-js {
       position: fixed;
-      top: 15px;
-      right: 15px;
-      background: white;
-      color: red;
-      border: none;
-      padding: 10px 15px;
-      font-weight: bold;
-      cursor: pointer;
-      z-index: 1000;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none; /* Arka planda tıklanabilirlik engellendi */
+    }
+    /* İçerik üstte görünsün */
+    main, header, nav, footer, #temaToggle {
+      position: relative;
+      z-index: 10;
     }
   </style>
 </head>
-<body>
+<body class="koyu">
+  <!-- Kırmızı parçacıklar için canvas -->
+  <div id="particles-js"></div>
 
-  <!-- Tema değiştirme düğmesi -->
-  <button class="tema-btn" onclick="temayiDegistir()">Temayı Değiştir</button>
+  <button id="temaToggle" aria-label="Tema değiştir">Tema Değiştir</button>
 
-  <!-- Navigasyon -->
   <header>
-    <nav>
-      <a href="index.html">Ana Sayfa</a>
-      <a href="hayatı.html">Hayatı</a>
-      <a href="galeri.html">Galeri</a>
-      <a href="zaman.html">Zaman Çizelgesi</a>
-      <a href="geri-sayım.html">Geri Sayım</a>
-    </nav>
+    Mustafa Kemal Atatürk'ün Hayatı
   </header>
 
-  <!-- Sayfa Başlığı -->
-  <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
+  <nav>
+    <a href="index.html">Ana Sayfa</a>
+    <a href="hayati.html">Hayatı</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="zaman.html">Zaman Çizelgesi</a>
+    <a href="geri-sayim.html">Geri Sayım</a>
+  </nav>
 
-  <!-- İçerik -->
-  <div class="icerik">
+  <main>
+    <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
     <p>
-      Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Harp Okulu ve Harp Akademisi'nde aldığı askeri eğitimle, Osmanlı ordusunda görev almaya başladı. 
-      I. Dünya Savaşı sırasında Çanakkale'de gösterdiği üstün başarılarla adını duyurdu.
+      Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğmuştur. Osmanlı İmparatorluğu'nun son dönemlerinde yetişen Atatürk, askeri ve siyasi dehasıyla Türkiye Cumhuriyeti'nin kurucusu olmuştur.
     </p>
     <p>
-      1919'da Samsun'a çıkarak Kurtuluş Savaşı'nı başlattı. Erzurum ve Sivas Kongreleri ile milli direnişi örgütledi. 
-      1923'te Türkiye Cumhuriyeti'ni kurdu ve ilk Cumhurbaşkanı oldu.
+      Askeri eğitimini tamamladıktan sonra çeşitli cephelerde görev yaptı ve I. Dünya Savaşı'nda önemli başarılar elde etti. Savaşın ardından Anadolu'da başlayan bağımsızlık mücadelesinin lideri olarak öne çıktı.
     </p>
     <p>
-      Atatürk, laiklik, kadın hakları, eğitim reformları gibi birçok alanda çağdaşlaşma adımları attı. 10 Kasım 1938’de Dolmabahçe Sarayı’nda hayata veda etti.
+      1923 yılında Türkiye Cumhuriyeti'ni kurdu ve cumhurbaşkanı olarak modernleşme reformlarını başlattı. Eğitim, hukuk, kadın hakları, ekonomi gibi birçok alanda köklü değişikliklere imza attı.
     </p>
-  </div>
+    <p>
+      Atatürk, 10 Kasım 1938'de İstanbul'da hayatını kaybetmiş olsa da fikirleri ve eserleri günümüzde de yaşamaya devam etmektedir.
+    </p>
+  </main>
 
-  <!-- Parçacık efekti -->
-  <canvas id="particles"></canvas>
+  <footer>
+    &copy; 2025 Mustafa Kemal Atatürk Anısına
+  </footer>
 
-  <!-- Tema değiştirme scripti -->
-  <script src="js/tema.js"></script>
-
-  <!-- Parçacık efekti scripti -->
+  <!-- Tema değiştirme ve parçacıklar için scriptler -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    // Parçacık animasyonu için temel yapı
-    const canvas = document.getElementById("particles");
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // Tema değiştirme butonu ve temalar
+    const temaToggle = document.getElementById('temaToggle');
+    const body = document.body;
 
-    // Parçacık tanımı
-    const particlesArray = [];
-    for (let i = 0; i < 100; i++) {
-      particlesArray.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 2 + 1,
-        speedX: Math.random() * 1 - 0.5,
-        speedY: Math.random() * 1 - 0.5
-      });
-    }
+    temaToggle.addEventListener('click', () => {
+      if(body.classList.contains('koyu')) {
+        body.classList.remove('koyu');
+        body.classList.add('acik');
+      } else {
+        body.classList.remove('acik');
+        body.classList.add('koyu');
+      }
+    });
 
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particlesArray.forEach(p => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(255,0,0,0.7)";
-        ctx.fill();
-        p.x += p.speedX;
-        p.y += p.speedY;
-
-        // Ekrandan çıkarsa yeniden konumlandır
-        if (p.x > canvas.width) p.x = 0;
-        if (p.x < 0) p.x = canvas.width;
-        if (p.y > canvas.height) p.y = 0;
-        if (p.y < 0) p.y = canvas.height;
-      });
-      requestAnimationFrame(animateParticles);
-    }
-
-    animateParticles();
-
-    // Pencere yeniden boyutlandığında canvas boyutunu güncelle
-    window.addEventListener("resize", () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    // Particles.js kırmızı renk parçacık ayarları
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {
+          "value": 60,
+          "density": {
+            "enable": true,
+            "value_area": 700
+          }
+        },
+        "color": {
+          "value": "#ff4444"  // Kırmızı renk parçacıklar
+        },
+        "shape": {
+          "type": "circle"
+        },
+        "opacity": {
+          "value": 0.7,
+          "random": true,
+          "anim": {
+            "enable": true,
+            "speed": 1.5,
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": {
+            "enable": true,
+            "speed": 5,
+            "size_min": 0.5,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 100,
+          "color": "#ff4444",
+          "opacity": 0.3,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "bounce": false,
+          "attract": {
+            "enable": true,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "grab"  // Fare üzerine geldiğinde parçacıklar birbirine çekilir
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"  // Tıklayınca yeni parçacık ekler
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 150,
+            "line_linked": {
+              "opacity": 0.4
+            }
+          },
+          "push": {
+            "particles_nb": 4
+          }
+        }
+      },
+      "retina_detect": true
     });
   </script>
 </body>
