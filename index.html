@@ -4,78 +4,44 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ana Sayfa</title>
+  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      margin: 0; padding: 0;
-      font-family: 'Orbitron', sans-serif;
-      background-color: black;
-      color: white;
-      overflow-x: hidden;
-      position: relative;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-    #particles-js {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-      color: white;
-    }
-    nav {
-      margin-top: 1rem;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.2rem;
-      margin: 0 1rem;
-      transition: color 0.3s ease;
-    }
-    nav a:hover {
-      color: #ff4d4d;
-    }
-  </style>
 </head>
 <body>
   <div id="particles-js"></div>
 
   <header>
-    <h1>Ana Sayfa</h1>
+    <nav>
+      <a href="#" class="logo">Ana Sayfa</a>
+      <a href="hayat.html">Hayatı</a>
+      <a href="zaman-cizelgesi.html">Zaman Çizelgesi</a>
+      <a href="geri-sayim.html">Geri Sayım</a>
+      <a href="galeri.html">Galeri</a>
+    </nav>
   </header>
 
-  <nav>
-    <a href="zaman-cizelgesi.html">Zaman Çizelgesi</a>
-    <a href="hayati.html">Hayatı</a>
-    <a href="geri-sayim.html">Geri Sayım</a>
-    <a href="galeri.html">Galeri</a>
-  </nav>
+  <main>
+    <section class="welcome">
+      <h1>Hoş Geldiniz!</h1>
+      <p>Atatürk ve Cumhuriyet ile ilgili önemli içeriklere buradan ulaşabilirsiniz.</p>
+    </section>
+  </main>
 
+  <!-- Particles.js kütüphanesi -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
     particlesJS("particles-js", {
       particles: {
-        number: { value: 90 },
-        color: { value: "#ff0000" },
+        number: { value: 80 },
+        color: { value: "#ffffff" },
         shape: { type: "circle" },
         opacity: { value: 0.5 },
         size: { value: 3 },
         line_linked: {
           enable: true,
           distance: 120,
-          color: "#ff0000",
-          opacity: 0.4,
+          color: "#ffffff",
+          opacity: 0.3,
           width: 1
         },
         move: {
