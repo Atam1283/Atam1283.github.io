@@ -2,98 +2,112 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Geri Sayım</title>
   <style>
     body {
       background-color: black;
       color: white;
-      font-family: 'Arial', sans-serif;
+      font-family: 'Orbitron', sans-serif;
       margin: 0;
       padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
     }
 
     a#anasayfa {
+      position: absolute;
+      top: 20px;
+      left: 20px;
       color: white;
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      font-weight: bold;
       text-decoration: none;
+      font-weight: bold;
       font-size: 18px;
     }
 
-    h1 {
-      text-align: center;
-      margin-top: 80px;
-      font-size: 2rem;
+    a#anasayfa:hover {
       color: #ff4d4d;
     }
 
+    h1 {
+      color: #ff4d4d;
+      margin-bottom: 1rem;
+    }
+
     #countdown {
-      text-align: center;
-      font-size: 1.5rem;
-      margin-top: 20px;
+      font-size: 2rem;
+      margin-top: 1rem;
+    }
+
+    .highlight {
+      color: #ff4d4d;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
   <a id="anasayfa" href="index.html">← Ana Sayfa</a>
-  <h1 id="event-name">Yükleniyor...</h1>
-  <div id="countdown">Geri sayım başlatılıyor...</div>
+  <h1>En Yakın Özel Güne Geri Sayım</h1>
+  <div id="eventName"></div>
+  <div id="countdown"></div>
 
   <script>
     const events = [
       { date: "01-01", name: "Yılbaşı" },
-      { date: "23-04", name: "Ulusal Egemenlik ve Çocuk Bayramı" },
-      { date: "01-05", name: "Emek ve Dayanışma Günü" },
-      { date: "19-05", name: "Atatürk'ü Anma, Gençlik ve Spor Bayramı" },
-      { date: "15-07", name: "Milli Birlik ve Demokrasi Günü" },
-      { date: "30-08", name: "Zafer Bayramı" },
-      { date: "29-10", name: "Cumhuriyet Bayramı" }
+      { date: "04-23", name: "Ulusal Egemenlik ve Çocuk Bayramı" },
+      { date: "05-01", name: "Emek ve Dayanışma Günü" },
+      { date: "05-19", name: "Atatürk'ü Anma, Gençlik ve Spor Bayramı" },
+      { date: "07-15", name: "Milli Birlik ve Demokrasi Günü" },
+      { date: "08-30", name: "Zafer Bayramı" },
+      { date: "10-29", name: "Cumhuriyet Bayramı" },
+      { date: "11-10", name: "Atatürk’ü Anma Günü" }
     ];
 
-    function getNextEvent() {
+    function getClosestEvent() {
       const now = new Date();
       const currentYear = now.getFullYear();
-      let closestEvent = null;
-      let minDiff = Infinity;
+
+      let closest = null;
+      let closestDiff = Infinity;
 
       events.forEach(e => {
-        const [day, month] = e.date.split("-");
+        const [month, day] = e.date.split("-");
         let eventDate = new Date(`${currentYear}-${month}-${day}T00:00:00`);
-        if (eventDate < now) eventDate.setFullYear(currentYear + 1);
+
+        // Eğer tarih geçtiyse, gelecek yıl için kontrol et
+        if (eventDate < now) {
+          eventDate = new Date(`${currentYear + 1}-${month}-${day}T00:00:00`);
+        }
 
         const diff = eventDate - now;
-        if (diff < minDiff) {
-          minDiff = diff;
-          closestEvent = { name: e.name, date: eventDate };
+        if (diff < closestDiff) {
+          closest = { ...e, eventDate };
+          closestDiff = diff;
         }
       });
 
-      return closestEvent;
+      return closest;
     }
 
     function startCountdown() {
-      const event = getNextEvent();
-      document.getElementById("event-name").innerText = event.name;
+      const event = getClosestEvent();
+      document.getElementById("eventName").innerHTML = `<p class="highlight">${event.name}</p>`;
 
       function update() {
-        const now = new Date().getTime();
-        const distance = event.date.getTime() - now;
+        const now = new Date();
+        const diff = event.eventDate - now;
 
-        if (distance < 0) {
-          document.getElementById("countdown").innerText = "Etkinlik zamanı geldi!";
-          return;
-        }
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        document.getElementById("countdown").innerText =
-          `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye`;
+        document.getElementById("countdown").innerHTML =
+          `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye kaldı`;
       }
 
       update();
