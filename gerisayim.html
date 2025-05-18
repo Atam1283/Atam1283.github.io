@@ -21,14 +21,14 @@
   a {
     position: fixed;
     top: 1rem; left: 1rem;
-    color: #ff4d4d;
+    color: white;
     text-decoration: none;
     font-weight: bold;
     z-index: 10;
   }
   header {
     text-align: center;
-    padding: 2rem 1rem 0 1rem;
+    padding: 3rem 1rem 2rem 1rem;
   }
   h1 {
     font-size: 2.5rem;
@@ -47,6 +47,7 @@
   @media (max-width: 600px) {
     h1 { font-size: 2rem; }
     #countdown { font-size: 2rem; }
+    a { font-size: 0.9rem; }
   }
 </style>
 </head>
@@ -62,7 +63,6 @@
   <div id="countdown">...</div>
 </header>
 
-<!-- Particles.js -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
 particlesJS("particles-js", {
@@ -100,7 +100,6 @@ particlesJS("particles-js", {
 </script>
 
 <script>
-// Özel günler (ay-gün formatında)
 const specialEvents = [
   { date: "05-19", name: "Atatürk'ü Anma, Gençlik ve Spor Bayramı" },
   { date: "04-23", name: "Ulusal Egemenlik ve Çocuk Bayramı" },
@@ -108,7 +107,6 @@ const specialEvents = [
   { date: "11-10", name: "Atatürk'ü Anma Günü" }
 ];
 
-// Bir sonraki özel gün tarihini bul
 function getNextEventDate(monthDay) {
   const now = new Date();
   const [month, day] = monthDay.split("-").map(Number);
@@ -120,14 +118,12 @@ function getNextEventDate(monthDay) {
   return eventDate;
 }
 
-// Aynı gün mü kontrolü
 function isSameDay(d1, d2) {
   return d1.getDate() === d2.getDate() &&
          d1.getMonth() === d2.getMonth() &&
          d1.getFullYear() === d2.getFullYear();
 }
 
-// En yakın özel günü bul
 function getNearestEvent() {
   const now = new Date();
   let minDiff = Infinity;
@@ -145,7 +141,6 @@ function getNearestEvent() {
   return nearestEvent;
 }
 
-// Geri sayımı güncelle
 function updateCountdown() {
   const now = new Date();
   const event = getNearestEvent();
@@ -174,7 +169,6 @@ function updateCountdown() {
     `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye kaldı`;
 }
 
-// Sayfa yüklendiğinde ve her saniye güncelle
 updateCountdown();
 setInterval(updateCountdown, 1000);
 </script>
