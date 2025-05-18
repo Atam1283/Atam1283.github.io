@@ -2,191 +2,113 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Atatürk Anasayfa</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atatürk Ana Sayfa</title>
   <style>
-    :root {
-      --bg-color: #111;
-      --text-color: #fff;
-      --accent-color: #ff2c2c;
-      --card-bg: #1e1e1e;
-    }
+    /* Google Font Montserrat */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-    body.light-theme {
-      --bg-color: #fff;
-      --text-color: #111;
-      --accent-color: #c40000;
-      --card-bg: #f5f5f5;
+    /* Temel renkler */
+    :root {
+      --primary-red: #d10000;
+      --secondary-red: #ff4d4d;
+      --bg-light: #fff5f5;
+      --text-dark: #3b0a0a;
     }
 
     body {
       margin: 0;
-      font-family: 'Rubik', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background-color 0.3s, color 0.3s;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, var(--bg-light), #ffe5e5);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      text-align: center;
     }
 
     header {
-      background-color: var(--accent-color);
-      color: white;
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 2rem;
-      font-weight: bold;
-    }
-
-    .nav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      padding: 1rem;
-      background-color: rgba(0, 0, 0, 0.1);
-    }
-
-    .nav a {
-      color: var(--text-color);
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.1rem;
-      position: relative;
-    }
-
-    .nav a::after {
-      content: '';
-      display: block;
-      width: 0%;
-      height: 2px;
-      background: var(--accent-color);
-      transition: width 0.3s;
-      margin-top: 4px;
-    }
-
-    .nav a:hover::after {
-      width: 100%;
-    }
-
-    .container {
-      text-align: center;
-      padding: 3rem 2rem;
-    }
-
-    .quote {
-      font-size: 1.7rem;
-      margin-bottom: 2rem;
-      font-style: italic;
-    }
-
-    .cards {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
-
-    .card {
-      background-color: var(--card-bg);
-      padding: 2rem;
-      border-radius: 12px;
-      width: 250px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transition: transform 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-    }
-
-    .card h3 {
+      font-weight: 700;
+      font-size: 2.5rem;
       margin-bottom: 0.5rem;
-      color: var(--accent-color);
+      color: var(--primary-red);
+      user-select: none;
     }
 
-    .theme-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: var(--accent-color);
+    hr {
       border: none;
-      color: white;
-      padding: 0.5rem 1rem;
-      font-weight: bold;
-      border-radius: 5px;
-      cursor: pointer;
-      z-index: 100;
+      border-bottom: 2px solid var(--secondary-red);
+      width: 120px;
+      margin: 1rem auto 2rem;
     }
 
-    footer {
-      text-align: center;
-      padding: 2rem;
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      opacity: 0.7;
+    .quote-container {
+      max-width: 700px;
+      font-size: 1.4rem;
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      user-select: text;
     }
 
+    .author {
+      font-weight: 700;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: var(--primary-red);
+    }
+
+    /* Responsive */
     @media (max-width: 600px) {
-      .cards {
-        flex-direction: column;
-        align-items: center;
+      header {
+        font-size: 1.8rem;
+      }
+      .quote-container {
+        font-size: 1.1rem;
       }
     }
+
   </style>
 </head>
 <body>
-  <button class="theme-toggle" onclick="temaDegistir()">Temayı Değiştir</button>
 
   <header>Mustafa Kemal Atatürk</header>
-
-  <nav class="nav">
-    <a href="index.html">Ana Sayfa</a>
-    <a href="hayatı.html">Hayatı</a>
-    <a href="zaman.html">Zaman Çizelgesi</a>
-    <a href="galeri.html">Galeri</a>
-    <a href="geri-sayim.html">Geri Sayım</a>
-  </nav>
-
-  <div class="container">
-    <div class="quote" id="sozu">"Yurtta sulh, cihanda sulh."</div>
-
-    <div class="cards">
-      <div class="card">
-        <h3>Hayatı</h3>
-        <p>Mustafa Kemal Atatürk’ün yaşam öyküsünü keşfedin.</p>
-      </div>
-      <div class="card">
-        <h3>Zaman Çizelgesi</h3>
-        <p>Hayatındaki önemli olaylara tarih sırasıyla göz atın.</p>
-      </div>
-      <div class="card">
-        <h3>Galeri</h3>
-        <p>Atatürk’e ait fotoğraflar ve anılara göz atın.</p>
-      </div>
-      <div class="card">
-        <h3>Geri Sayım</h3>
-        <p>Atatürk'ün hayatındaki önemli bir güne geri sayım yapın.</p>
-      </div>
-    </div>
+  <hr />
+  <div class="quote-container" id="quote">
+    <!-- JS ile rastgele Atatürk sözü gelecek -->
   </div>
-
-  <footer>© 2025 EFE | Atatürk'ü Anma Sitesi</footer>
+  <div class="author">- Atatürk</div>
 
   <script>
-    const sozler = [
+    // Atatürk'ten özlü sözler listesi
+    const quotes = [
       "Yurtta sulh, cihanda sulh.",
-      "Hayatta en hakiki mürşit ilimdir.",
       "Egemenlik, kayıtsız şartsız milletindir.",
-      "Benim naçiz vücudum elbet bir gün toprak olacaktır.",
-      "Milletin bağımsızlığını yine milletin azim ve kararı kurtaracaktır."
+      "Hayatta en hakiki mürşit ilimdir, fendir.",
+      "Beni görmek demek mutlaka yüzümü görmek değildir. Benim düşüncelerimi, benim duygularımı anlıyorsanız ve hissediyorsanız bu yeterlidir.",
+      "Milletin bağımsızlığı tehlikedeyse, mücadele etmek her Türk’ün hakkı ve görevidir.",
+      "İstikbal göklerdedir.",
+      "Benim naçiz vücudum elbet bir gün toprak olacaktır, fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır.",
+      "Küçük olsun benim olsun.",
+      "Hayal etmek, bilgiden daha önemlidir.",
+      "Türk gençliği! Birinci vazifen, Türk istiklâlini, Türk cumhuriyetini, ilelebet, muhafaza ve müdafaa etmektir."
     ];
 
-    document.getElementById("sozu").textContent =
-      `"${sozler[Math.floor(Math.random() * sozler.length)]}"`;
-
-    function temaDegistir() {
-      document.body.classList.toggle('light-theme');
+    function changeQuote() {
+      const quoteEl = document.getElementById('quote');
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      quoteEl.textContent = quotes[randomIndex];
     }
+
+    // Sayfa yüklendiğinde ilk söz
+    changeQuote();
+
+    // Her 10 saniyede bir değiştir (isteğe bağlı)
+    setInterval(changeQuote, 10000);
   </script>
+
 </body>
 </html>
