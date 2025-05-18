@@ -1,244 +1,53 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Atatürk Geri Sayım</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Open+Sans&display=swap" rel="stylesheet">
-
-<style>
-  body {
-    margin: 0; padding: 0;
-    font-family: 'Merriweather', serif;
-    background-color: #1a0000;
-    color: #ffcccc;
-    overflow-x: hidden;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    transition: background-color 0.4s ease, color 0.4s ease;
-  }
-  nav {
-    background: #330000cc;
-    padding: 15px 30px;
-    display: flex;
-    gap: 25px;
-    font-weight: bold;
-    z-index: 20;
-  }
-  nav a {
-    color: #ff6666;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  nav a:hover {
-    color: #ff0000;
-  }
-  nav a.active {
-    color: #ff1a1a;
-    text-shadow: 0 0 10px #ff4d4d;
-  }
-  #themeToggle {
-    position: fixed;
-    top: 15px; right: 15px;
-    background: #b30000;
-    color: #fff;
-    border: none;
-    padding: 8px 14px;
-    font-weight: 600;
-    border-radius: 6px;
-    cursor: pointer;
-    box-shadow: 0 0 12px #ff0000cc;
-    transition: background-color 0.3s ease;
-    z-index: 30;
-  }
-  #themeToggle:hover {
-    background: #ff1a1a;
-  }
-  .container {
-    max-width: 700px;
-    background: #330000cc;
-    margin: 100px auto 60px;
-    padding: 30px 40px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px #ff4d4daa;
-    text-align: center;
-    position: relative;
-    z-index: 10;
-  }
-  h1 {
-    font-family: 'Merriweather', serif;
-    color: #ff9999;
-    margin-bottom: 25px;
-    text-shadow: 0 0 15px #ff4d4d;
-  }
-  #countdown {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: #ff6666;
-    text-shadow: 0 0 12px #ff3333;
-    margin-top: 20px;
-  }
-  #eventName {
-    margin-top: 15px;
-    font-size: 1.2rem;
-    color: #ff9999;
-  }
-
-  /* Tema açık */
-  body.light {
-    background-color: #fff0f0;
-    color: #660000;
-  }
-  body.light nav {
-    background-color: #ffcccccc;
-  }
-  body.light nav a {
-    color: #660000;
-  }
-  body.light nav a:hover {
-    color: #cc0000;
-  }
-  body.light nav a.active {
-    color: #990000;
-    text-shadow: none;
-  }
-  body.light #themeToggle {
-    background: #cc0000;
-    box-shadow: 0 0 15px #cc0000aa;
-    color: #fff;
-  }
-  body.light #themeToggle:hover {
-    background: #ff3333;
-  }
-  body.light .container {
-    background: #ffcccccc;
-    box-shadow: 0 0 20px #cc0000aa;
-  }
-
-  #particles-js {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 1;
-    pointer-events: none;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geri Sayım</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Basit geri sayım stil ayarları */
+    body {
+      background-color: #000;
+      color: white;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    #countdown {
+      font-size: 3rem;
+      margin-top: 20px;
+    }
+  </style>
 </head>
-<body class="dark">
+<body>
+  <h1>Cumhuriyet Bayramı'na Kalan Süre</h1>
+  <div id="countdown"></div>
 
-<nav>
-  <a href="index.html">Ana Sayfa</a>
-  <a href="hayati.html">Hayatı</a>
-  <a href="galeri.html">Galeri</a>
-  <a href="zaman.html">Zaman Çizelgesi</a>
-  <a href="gerisayim.html" class="active">Geri Sayım</a>
-</nav>
+  <script>
+    // 29 Ekim için hedef tarih
+    const hedefTarih = new Date("October 29, 2025 00:00:00").getTime();
 
-<button id="themeToggle">Tema Değiştir</button>
+    const sayaç = setInterval(() => {
+      const simdi = new Date().getTime(); // Şu anki zamanı al
+      const fark = hedefTarih - simdi;
 
-<div id="particles-js"></div>
+      // Gün, saat, dakika, saniye hesapla
+      const gün = Math.floor(fark / (1000 * 60 * 60 * 24));
+      const saat = Math.floor((fark % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const dakika = Math.floor((fark % (1000 * 60 * 60)) / (1000 * 60));
+      const saniye = Math.floor((fark % (1000 * 60)) / 1000);
 
-<div class="container">
-  <h1>Atatürk ve Cumhuriyet'e Geri Sayım</h1>
-  <div id="countdown">Yükleniyor...</div>
-  <div id="eventName"></div>
-</div>
+      // HTML'e yaz
+      document.getElementById("countdown").innerHTML = 
+        `${gün} gün ${saat} saat ${dakika} dakika ${saniye} saniye`;
 
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<script>
-  particlesJS('particles-js', {
-    particles: {
-      number: { value: 80, density: { enable: true, value_area: 900 } },
-      color: { value: ['#ff0000', '#cc0000', '#990000'] },
-      shape: { type: 'circle' },
-      opacity: { value: 0.5, random: true },
-      size: { value: 3, random: true },
-      move: {
-        enable: true,
-        speed: 2,
-        direction: 'none',
-        random: false,
-        straight: false,
-        out_mode: 'out',
-        bounce: false
+      // Süre dolunca
+      if (fark < 0) {
+        clearInterval(sayaç);
+        document.getElementById("countdown").innerHTML = "Cumhuriyet Bayramı Kutlu Olsun!";
       }
-    },
-    interactivity: {
-      detect_on: 'canvas',
-      events: {
-        onhover: { enable: true, mode: 'repulse' },
-        onclick: { enable: true, mode: 'push' },
-        resize: true
-      },
-      modes: {
-        repulse: { distance: 120, duration: 0.4 },
-        push: { particles_nb: 4 }
-      }
-    },
-    retina_detect: true
-  });
-
-  const themeBtn = document.getElementById('themeToggle');
-  themeBtn.addEventListener('click', () => {
-    if(document.body.classList.contains('dark')){
-      document.body.classList.replace('dark', 'light');
-      localStorage.setItem('theme', 'light');
-    } else {
-      document.body.classList.replace('light', 'dark');
-      localStorage.setItem('theme', 'dark');
-    }
-  });
-  const savedTheme = localStorage.getItem('theme');
-  if(savedTheme) {
-    document.body.className = savedTheme;
-  }
-
-  const events = [
-    { name: "Cumhuriyet Bayramı", date: "2025-10-29T00:00:00" },
-    { name: "Atatürk'ün Doğum Günü", date: "2026-05-19T00:00:00" },
-    { name: "Atatürk'ün Vefat Günü", date: "2026-11-10T00:00:00" }
-  ];
-
-  const countdownElem = document.getElementById('countdown');
-  const eventNameElem = document.getElementById('eventName');
-
-  function getNextEvent(){
-    const now = new Date();
-    for(let e of events){
-      let eventDate = new Date(e.date);
-      if(eventDate > now) return e;
-    }
-    return events[0];
-  }
-
-  function updateCountdown() {
-    const now = new Date();
-    const nextEvent = getNextEvent();
-    const eventDate = new Date(nextEvent.date);
-    const diff = eventDate - now;
-
-    if(diff <= 0){
-      countdownElem.textContent = "Etkinlik başladı!";
-      eventNameElem.textContent = nextEvent.name;
-      return;
-    }
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-
-    countdownElem.textContent = `${days} Gün ${hours} Saat ${minutes} Dakika ${seconds} Saniye`;
-    eventNameElem.textContent = nextEvent.name;
-  }
-
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-</script>
-
+    }, 1000);
+  </script>
 </body>
 </html>
