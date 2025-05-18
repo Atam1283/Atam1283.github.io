@@ -1,120 +1,177 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Atatürk'ün Hayatı</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Geri Sayım | Atatürk ve Cumhuriyet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Genel Reset ve Font */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+      color: #1e293b; /* koyu lacivert-gri */
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
 
-<!-- Google Fonts: Roboto -->
-<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+    /* Ana Sayfa Linki */
+    a#anasayfa {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-weight: 700;
+      color: white;
+      background-color: #0284c7; /* canlı mavi */
+      padding: 8px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgb(2 132 199 / 0.3);
+      transition: background-color 0.3s ease;
+      z-index: 100;
+      font-size: 16px;
+    }
+    a#anasayfa:hover {
+      background-color: #0369a1;
+    }
 
-<style>
-  /* Genel Ayarlar */
-  body {
-    background-color: #f9f9f9; /* Çok açık gri */
-    color: #222222; /* Koyu gri/siyah */
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 20px;
-  }
+    /* Kutu */
+    .container {
+      background: white;
+      padding: 40px 50px;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      max-width: 480px;
+      width: 90%;
+    }
 
-  /* Başlıklar */
-  h1, h2 {
-    color: #c62828; /* Atatürk kırmızısı tonunda vurgu */
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
+    /* Başlıklar */
+    h1 {
+      margin: 0 0 12px;
+      font-weight: 700;
+      font-size: 2.2rem;
+      color: #0369a1;
+    }
+    h2 {
+      margin: 0 0 30px;
+      font-weight: 600;
+      font-size: 1.4rem;
+      color: #0c4a6e;
+    }
 
-  h1 {
-    font-size: 2.8rem;
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 40px;
-  }
+    /* Geri sayım kutuları */
+    .countdown {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 1.6rem;
+    }
 
-  h2 {
-    font-size: 1.8rem;
-    margin-top: 40px;
-    margin-bottom: 20px;
-  }
-
-  /* Linkler */
-  a {
-    color: #c62828;
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-
-  /* İçerik ve görsel düzeni */
-  .content {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
-  }
-
-  .text {
-    flex: 1 1 550px;
-    min-width: 300px;
-  }
-
-  .image-container {
-    flex: 1 1 300px;
-    min-width: 280px;
-  }
-
-  .image-container img {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(198, 40, 40, 0.3);
-  }
-
-  /* Paragraflar */
-  p {
-    margin-bottom: 1.2em;
-    font-size: 1.1rem;
-  }
-
-  /* Responsive: mobilde görsel altta */
-  @media (max-width: 700px) {
-    .content {
+    .countdown div {
+      background-color: #e0f2fe;
+      flex: 1;
+      padding: 20px 0;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2);
+      display: flex;
       flex-direction: column;
+      align-items: center;
     }
 
-    .text, .image-container {
-      min-width: 100%;
+    .label {
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #0284c7;
+      margin-top: 8px;
+      user-select: none;
     }
-  }
-</style>
 
+    /* Responsive (mobil) */
+    @media (max-width: 480px) {
+      .countdown {
+        flex-direction: column;
+        gap: 15px;
+        font-size: 1.4rem;
+      }
+    }
+  </style>
 </head>
 <body>
-
-  <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
-
-  <section class="content">
-    <div class="text">
-      <h2>Erken Dönem</h2>
-      <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te dünyaya gelmiştir. Eğitim hayatına Şemsi Efendi Okulu'nda başlamış, ardından Askeri Rüştiye ve Harp Okulu'nda eğitimini sürdürmüştür.</p>
-
-      <h2>Kurtuluş Savaşı ve Cumhuriyetin Kuruluşu</h2>
-      <p>1919 yılında Samsun'a çıkarak Türk milletinin bağımsızlık mücadelesini başlatmıştır. 1923 yılında Türkiye Cumhuriyeti'nin kurulmasıyla, ülkenin ilk Cumhurbaşkanı olmuştur.</p>
-
-      <h2>Reformlar ve Modernleşme</h2>
-      <p>Atatürk, Türkiye'yi çağdaşlaştırmak için birçok reform gerçekleştirmiştir. Eğitimden hukuka, kadın haklarından ekonomiye kadar pek çok alanda köklü değişiklikler yapmıştır.</p>
-
-      <p>Daha fazla bilgi için <a href="https://tr.wikipedia.org/wiki/Mustafa_Kemal_Atatürk" target="_blank" rel="noopener noreferrer">Atatürk'ün Vikipedi Sayfası</a>'nı ziyaret edebilirsiniz.</p>
+  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
+  <div class="container">
+    <h1>En Yakın Özel Güne Geri Sayım</h1>
+    <h2 id="eventName">Yükleniyor...</h2>
+    <div class="countdown" id="countdown">
+      <div><span id="days">--</span><div class="label">Gün</div></div>
+      <div><span id="hours">--</span><div class="label">Saat</div></div>
+      <div><span id="minutes">--</span><div class="label">Dakika</div></div>
+      <div><span id="seconds">--</span><div class="label">Saniye</div></div>
     </div>
+  </div>
 
-    <div class="image-container">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Mustafa_Kemal_Atat%C3%BCrk_in_1930s.jpg/440px-Mustafa_Kemal_Atat%C3%BCrk_in_1930s.jpg" alt="Mustafa Kemal Atatürk 1930'lar" />
-    </div>
-  </section>
+  <script>
+    const events = [
+      { date: '01-01', name: 'Yılbaşı' },
+      { date: '04-23', name: 'Ulusal Egemenlik ve Çocuk Bayramı' },
+      { date: '05-01', name: 'Emek ve Dayanışma Günü' },
+      { date: '05-19', name: 'Atatürk\'ü Anma, Gençlik ve Spor Bayramı' },
+      { date: '07-15', name: 'Milli Birlik ve Demokrasi Günü' },
+      { date: '08-30', name: 'Zafer Bayramı' },
+      { date: '10-29', name: 'Cumhuriyet Bayramı' },
+      { date: '11-10', name: 'Atatürk\'ü Anma Günü' }
+    ];
 
+    function getNextEvent() {
+      const now = new Date();
+      const currentYear = now.getFullYear();
+
+      let closest = null;
+
+      for (const event of events) {
+        let eventDate = new Date(`${currentYear}-${event.date}T00:00:00`);
+        if (eventDate < now) {
+          eventDate = new Date(`${currentYear + 1}-${event.date}T00:00:00`);
+        }
+        if (!closest || eventDate < closest.date) {
+          closest = { ...event, date: eventDate };
+        }
+      }
+
+      return closest;
+    }
+
+    const event = getNextEvent();
+    document.getElementById('eventName').textContent = event.name;
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = event.date.getTime() - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      document.getElementById('days').textContent = days >= 0 ? days : 0;
+      document.getElementById('hours').textContent = hours >= 0 ? hours : 0;
+      document.getElementById('minutes').textContent = minutes >= 0 ? minutes : 0;
+      document.getElementById('seconds').textContent = seconds >= 0 ? seconds : 0;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
 </body>
 </html>
