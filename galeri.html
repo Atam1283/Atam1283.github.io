@@ -3,95 +3,150 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Galerisi - Atatürk Sitesi</title>
+<title>Atatürk Galerisi</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Open+Sans&display=swap');
   body {
-    margin:0; padding:0; font-family: 'Montserrat', sans-serif;
-    background: #1a0000; color: white;
+    margin: 0; padding: 0;
+    font-family: 'Merriweather', serif;
+    background-color: #1a0000;
+    color: #ffcccc;
     overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
   }
   nav {
-    background: #660000; padding: 15px;
-    display: flex; gap: 20px;
+    background: #330000cc;
+    padding: 15px 30px;
+    display: flex;
+    gap: 25px;
+    font-weight: bold;
   }
   nav a {
-    color: white; text-decoration: none; font-weight: 600;
+    color: #ff6666;
+    text-decoration: none;
+    transition: color 0.3s ease;
   }
   nav a:hover {
-    text-decoration: underline;
+    color: #ff0000;
   }
-  .container {
-    padding: 20px; max-width: 900px; margin: auto;
-  }
-  h1 {
-    font-weight: 700; margin-bottom: 10px;
-    text-align: center;
-  }
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
-    gap: 15px;
-  }
-  .gallery img {
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 0 10px #ff0000a0;
+  nav a.active {
+    color: #ff1a1a;
+    text-shadow: 0 0 10px #ff4d4d;
   }
   #themeToggle {
-    position: fixed; top: 20px; right: 20px;
-    background: #990000; border: none; padding: 10px 20px;
-    color: white; font-weight: bold; cursor: pointer;
-    border-radius: 5px;
-    z-index: 10;
+    position: fixed;
+    top: 15px; right: 15px;
+    background: #b30000;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 0 12px #ff0000cc;
+    transition: background-color 0.3s ease;
+    z-index: 15;
   }
-  body.dark {
-    background: #1a0000;
-    color: white;
+  #themeToggle:hover {
+    background: #ff1a1a;
   }
+  .container {
+    max-width: 900px;
+    margin: 100px auto 60px;
+    background: #330000cc;
+    padding: 25px 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #ff4d4daa;
+  }
+  h1 {
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    color: #ff9999;
+    margin-bottom: 30px;
+    text-shadow: 0 0 15px #ff4d4d;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 20px;
+  }
+  .gallery-item {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 12px #cc0000cc;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #ff3333cc;
+  }
+  .gallery-item img {
+    width: 100%;
+    display: block;
+  }
+  /* Tema açma-kapama */
   body.light {
-    background: #fff0f0;
+    background-color: #fff0f0;
     color: #660000;
   }
   body.light nav {
-    background: #ffcccc;
+    background-color: #ffcccccc;
+  }
+  body.light nav a {
+    color: #660000;
+  }
+  body.light nav a:hover {
+    color: #cc0000;
+  }
+  body.light nav a.active {
+    color: #990000;
+    text-shadow: none;
   }
   body.light #themeToggle {
     background: #cc0000;
-    color: white;
+    box-shadow: 0 0 15px #cc0000aa;
+    color: #fff;
   }
+  body.light #themeToggle:hover {
+    background: #ff3333;
+  }
+  body.light .container {
+    background: #ffcccccc;
+    box-shadow: 0 0 20px #cc0000aa;
+  }
+  /* Particles.js için tam ekran */
   #particles-js {
     position: fixed;
+    top: 0; left: 0;
     width: 100%; height: 100%;
-    top: 0; left: 0; z-index: 0;
-  }
-  .content {
-    position: relative;
     z-index: 1;
+    pointer-events: none;
   }
 </style>
 </head>
 <body class="dark">
 
-<button id="themeToggle">Tema Değiştir</button>
-
 <nav>
   <a href="index.html">Ana Sayfa</a>
   <a href="hayati.html">Hayatı</a>
-  <a href="galeri.html">Galerisi</a>
+  <a href="galeri.html" class="active">Galeri</a>
   <a href="zaman.html">Zaman Çizelgesi</a>
   <a href="gerisayim.html">Geri Sayım</a>
 </nav>
 
+<button id="themeToggle">Tema Değiştir</button>
+
 <div id="particles-js"></div>
 
-<div class="container content">
+<div class="container">
   <h1>Atatürk Galerisi</h1>
-  <div class="gallery">
-    <img src="images/ataturk1.jpg" alt="Atatürk 1" />
-    <img src="images/ataturk2.jpg" alt="Atatürk 2" />
-    <img src="images/ataturk3.jpg" alt="Atatürk 3" />
-    <img src="images/ataturk4.jpg" alt="Atatürk 4" />
+  <div class="gallery-grid">
+    <div class="gallery-item"><img src="assets/ataturk1.jpg" alt="Atatürk 1" /></div>
+    <div class="gallery-item"><img src="assets/ataturk2.jpg" alt="Atatürk 2" /></div>
+    <div class="gallery-item"><img src="assets/ataturk3.jpg" alt="Atatürk 3" /></div>
+    <div class="gallery-item"><img src="assets/ataturk4.jpg" alt="Atatürk 4" /></div>
+    <!-- İstediğin kadar ekleyebilirsin -->
   </div>
 </div>
 
@@ -99,35 +154,51 @@
 <script>
   particlesJS('particles-js', {
     particles: {
-      number: { value: 60, density: { enable: true, value_area: 800 } },
-      color: { value: '#ff0000' },
+      number: { value: 70, density: { enable: true, value_area: 900 } },
+      color: { value: ['#ff0000', '#cc0000', '#990000'] },
       shape: { type: 'circle' },
-      opacity: { value: 0.6 },
-      size: { value: 4, random: true },
-      move: { enable: true, speed: 2, direction: 'none', out_mode: 'out' }
+      opacity: { value: 0.6, random: true },
+      size: { value: 3, random: true },
+      move: {
+        enable: true,
+        speed: 2,
+        direction: 'none',
+        random: false,
+        straight: false,
+        out_mode: 'out',
+        bounce: false
+      }
     },
     interactivity: {
       detect_on: 'canvas',
       events: {
         onhover: { enable: true, mode: 'repulse' },
-        onclick: { enable: true, mode: 'push' }
+        onclick: { enable: true, mode: 'push' },
+        resize: true
       },
       modes: {
-        repulse: { distance: 100 },
+        repulse: { distance: 130, duration: 0.4 },
         push: { particles_nb: 4 }
       }
     },
     retina_detect: true
   });
 
-  const toggleBtn = document.getElementById('themeToggle');
-  toggleBtn.addEventListener('click', () => {
+  const themeBtn = document.getElementById('themeToggle');
+  themeBtn.addEventListener('click', () => {
     if(document.body.classList.contains('dark')){
       document.body.classList.replace('dark', 'light');
+      localStorage.setItem('theme', 'light');
     } else {
       document.body.classList.replace('light', 'dark');
+      localStorage.setItem('theme', 'dark');
     }
   });
+
+  const savedTheme = localStorage.getItem('theme');
+  if(savedTheme) {
+    document.body.className = savedTheme;
+  }
 </script>
 
 </body>
