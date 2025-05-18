@@ -3,43 +3,47 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Atatürk Geri Sayım</title>
+<title>Geri Sayım - Atatürk</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap');
+
   body {
     margin: 0; padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: white;
-    color: #222;
-    display: flex;
-    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    background-color: #ffe6e6;
+    color: #660000;
     min-height: 100vh;
+    display: flex; flex-direction: column;
     transition: background-color 0.5s, color 0.5s;
   }
   header {
     background-color: #b30000;
     color: white;
-    padding: 15px 20px;
     text-align: center;
-    font-weight: bold;
-    font-size: 28px;
+    padding: 20px 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: 1.5px;
     position: sticky;
     top: 0;
     z-index: 10;
   }
   nav {
-    background-color: #ff1a1a;
+    background-color: #ff4d4d;
     display: flex;
     justify-content: center;
-    gap: 20px;
-    padding: 12px 0;
+    gap: 30px;
+    padding: 15px 0;
   }
   nav a {
     color: white;
     text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    font-size: 18px;
-    padding: 6px 12px;
-    border-radius: 6px;
+    font-size: 1.2rem;
+    padding: 8px 16px;
+    border-radius: 8px;
     transition: background-color 0.3s;
   }
   nav a:hover {
@@ -47,39 +51,35 @@
   }
   main {
     flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 0 auto;
     text-align: center;
-    padding: 20px;
   }
   h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.8rem;
+    margin-bottom: 20px;
     color: #b30000;
-    margin-bottom: 30px;
-    text-shadow: 1px 1px 3px #660000;
   }
   #countdown {
-    font-size: 60px;
+    font-size: 3rem;
     font-weight: 700;
-    margin-bottom: 30px;
+    letter-spacing: 2px;
+    margin-top: 30px;
+    font-family: 'Montserrat', sans-serif;
     color: #b30000;
-    text-shadow: 2px 2px 5px #660000;
-  }
-  #event-name {
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 10px;
   }
   #themeBtn {
     position: fixed;
     top: 15px; right: 15px;
     background-color: #b30000;
-    color: white;
     border: none;
-    padding: 8px 14px;
-    border-radius: 5px;
-    font-weight: 600;
+    color: white;
+    padding: 10px 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    border-radius: 6px;
     cursor: pointer;
     box-shadow: 0 0 8px #b30000;
     transition: background-color 0.3s;
@@ -88,10 +88,11 @@
   #themeBtn:hover {
     background-color: #800000;
   }
-  /* Koyu tema */
+
+  /* Dark theme */
   body.dark-theme {
-    background-color: #1a0000;
-    color: #f0dede;
+    background-color: #330000;
+    color: #ffdede;
   }
   body.dark-theme header {
     background-color: #ff1a1a;
@@ -99,26 +100,20 @@
   body.dark-theme nav {
     background-color: #800000;
   }
-  body.dark-theme nav a {
-    color: #ffdede;
-  }
   body.dark-theme nav a:hover {
     background-color: #ff4d4d;
   }
-  body.dark-theme h1,
-  body.dark-theme #countdown,
-  body.dark-theme #event-name {
+  body.dark-theme nav a {
+    color: #ffdede;
+  }
+  body.dark-theme #countdown {
     color: #ff4d4d;
-    text-shadow: 1px 1px 5px #330000;
   }
 </style>
 </head>
 <body>
-
 <button id="themeBtn">Tema Değiştir</button>
-
-<header>Atatürk - Geri Sayım</header>
-
+<header>Atatürk ve Cumhuriyet Geri Sayımı</header>
 <nav>
   <a href="index.html">Ana Sayfa</a>
   <a href="hayati.html">Hayatı</a>
@@ -126,10 +121,8 @@
   <a href="zaman.html">Zaman Çizelgesi</a>
   <a href="gerisayim.html">Geri Sayım</a>
 </nav>
-
 <main>
-  <h1>Atatürk'ün 19 Mayıs Samsun'a Çıkış Günü</h1>
-  <div id="event-name">19 Mayıs 1919 - Milli Mücadele Başlangıcı</div>
+  <h1>Atatürk ve Cumhuriyetle İlgili Yaklaşan Önemli Tarih</h1>
   <div id="countdown">Yükleniyor...</div>
 </main>
 
@@ -139,40 +132,31 @@
     document.body.classList.toggle('dark-theme');
   });
 
-  // Geri sayım tarihi: 19 Mayıs, bir sonraki 19 Mayıs'a sayım
-  function getNextEventDate() {
-    const now = new Date();
-    const year = now.getFullYear();
-    const eventDateThisYear = new Date(year, 4, 19, 0, 0, 0); // Mayıs ayı 4 (0 tabanlı)
-    if (now < eventDateThisYear) {
-      return eventDateThisYear;
-    } else {
-      return new Date(year + 1, 4, 19, 0, 0, 0);
-    }
-  }
+  // Geri sayım yapılacak tarih (29 Ekim Cumhuriyet Bayramı)
+  const countDownDate = new Date("October 29, 2025 00:00:00").getTime();
+
+  const countdownElement = document.getElementById('countdown');
 
   function updateCountdown() {
-    const now = new Date();
-    const eventDate = getNextEventDate();
-    const diff = eventDate - now;
+    const now = new Date().getTime();
+    const distance = countDownDate - now;
 
-    if (diff <= 0) {
-      document.getElementById('countdown').innerText = "Bugün 19 Mayıs! Milli Mücadele Başlıyor.";
+    if (distance < 0) {
+      countdownElement.innerHTML = "Cumhuriyet Bayramı Kutlu Olsun!";
+      clearInterval(interval);
       return;
     }
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 *24)) / (1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((distance % (1000*60)) / 1000);
 
-    document.getElementById('countdown').innerText = 
-      `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye kaldı.`;
+    countdownElement.innerHTML = `${days} Gün ${hours} Saat ${minutes} Dakika ${seconds} Saniye`;
   }
 
-  setInterval(updateCountdown, 1000);
   updateCountdown();
+  const interval = setInterval(updateCountdown, 1000);
 </script>
-
 </body>
 </html>
