@@ -2,164 +2,153 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Atatürk Önemli Günler Geri Sayım</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geri Sayım - Atatürk</title>
+  <link rel="stylesheet" href="css/style.css" />
   <style>
-    /* Temel stiller */
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
-    :root {
-      --bg-color-light: #f9f9f9;
-      --text-color-light: #222;
-      --bg-color-dark: #121212;
-      --text-color-dark: #eee;
-      --red-particle-color: #ff4d4d;
-    }
-
-    body {
+    body, html {
       margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background-color: var(--bg-color-light);
-      color: var(--text-color-light);
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    body.dark {
-      background-color: var(--bg-color-dark);
-      color: var(--text-color-dark);
-    }
-
-    header {
-      padding: 1rem 2rem;
-      text-align: center;
-      font-weight: 700;
-      font-size: 1.8rem;
-      background: linear-gradient(90deg, #d10000, #ff4d4d);
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
       color: white;
-      user-select: none;
+      background-color: #000;
+      overflow: hidden;
     }
-
-    main {
-      flex-grow: 1;
-      padding: 2rem;
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
+    .content {
+      z-index: 2;
       position: relative;
-      z-index: 1;
+      text-align: center;
+      top: 40%;
+      transform: translateY(-50%);
     }
-
-    .countdown {
-      font-size: 3rem;
-      font-weight: 700;
-      margin: 1rem 0 2rem;
-      letter-spacing: 2px;
-      user-select: none;
+    h1 {
+      font-size: 3em;
+      margin-bottom: 0.5em;
     }
-
-    .event-info {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 2rem;
+    #countdown {
+      font-size: 2em;
+      font-weight: bold;
     }
-
-    .theme-toggle {
-      cursor: pointer;
-      padding: 0.5rem 1rem;
-      font-weight: 600;
-      background-color: #ff4d4d;
-      border: none;
-      border-radius: 25px;
-      color: white;
-      user-select: none;
-      transition: background-color 0.3s ease;
-    }
-
-    .theme-toggle:hover {
-      background-color: #d10000;
-    }
-
-    /* Kırmızı parçacıkların üstüne yazı */
-    #particle-canvas {
+    canvas {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
       z-index: 0;
-      background-color: transparent;
     }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      .countdown {
-        font-size: 2.2rem;
-      }
-      header {
-        font-size: 1.4rem;
-        padding: 1rem;
-      }
+    .btn {
+      margin-top: 2em;
+      padding: 12px 24px;
+      font-size: 1em;
+      background: white;
+      color: black;
+      border: none;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-
-  <header>Mustafa Kemal Atatürk Önemli Günler Geri Sayımı</header>
-
-  <main>
-    <div class="event-info" id="event-name">Yükleniyor...</div>
-    <div class="countdown" id="countdown">--:--:--:--</div>
-    <button class="theme-toggle" id="themeToggle">Tema Değiştir</button>
-  </main>
-
-  <canvas id="particle-canvas"></canvas>
+  <canvas id="particles"></canvas>
+  <div class="content">
+    <h1 id="event-name">Yaklaşan Önemli Gün</h1>
+    <div id="countdown">Yükleniyor...</div>
+    <button class="btn" onclick="window.location.href='index.html'">Ana Sayfaya Dön</button>
+  </div>
 
   <script>
-    // Önemli günlerin listesi: tarih ve açıklama
+    // Önemli tarih listesi
     const events = [
-      { date: '1881-01-01', text: "Mustafa Selânik'te dünyaya gelir." },
-      { date: '1893-01-01', text: 'Mustafa Selânik Askerî Hazırlık Okuluna başlar ve ikinci ismi "Kemâl" verilir.' },
-      { date: '1895-01-01', text: 'Manastır Askerî Lisesine başlar.' },
-      { date: '1899-01-01', text: "İstanbul Harbiye'nin hazırlık sınıfına başlar." },
-      { date: '1902-01-01', text: 'Harbiye'den mezun olur ve Harp Akademisine devam eder.' },
-      { date: '1905-01-11', text: 'Harp Akademisinden Kurmay Yüzbaşı olarak mezun olur, Şam’a gönderilir.' },
-      { date: '1906-10-01', text: '"Vatan ve Hürriyet" derneğini kurar.' },
-      { date: '1907-09-01', text: 'Üçüncü Orduya tayin edilir, Selanik’e gönderilir.' },
-      { date: '1911-09-13', text: 'İstanbul’daki Genel Kurmaya tayin edilir.' },
-      { date: '1912-01-09', text: 'Libya Tobruk taarruzunu yönetir.' },
-      { date: '1912-11-25', text: 'Akdeniz Boğazları özel Kuvvetlerine atanır.' },
-      { date: '1913-10-27', text: 'Sofya’ya Askeri Ataşe olarak atanır.' },
-      { date: '1915-04-25', text: 'Arıburnu çıkarmasında ilerlemeyi durdurur.' },
-      { date: '1915-08-09', text: 'Anafartalar Grup Kumandanlığına getirilir.' },
-      { date: '1916-04-01', text: 'Tuğgeneralliğe terfi eder.' },
-      { date: '1916-08-06', text: 'Bitlis ve Muş’u düşmandan geri alır.' },
-      { date: '1918-10-31', text: 'Yıldırım Orduları Grup Kumandanı olur.' },
-      { date: '1919-04-30', text: 'Erzurum’da Dokuzuncu Orduya Müfettiş olarak atanır.' },
-      { date: '1919-05-16', text: 'İstanbul’u terk eder.' },
-      { date: '1919-05-19', text: 'Samsun’a ayak basar.' },
-      { date: '1919-07-08', text: 'Üçüncü Ordu Müfettişliği görevinden istifa eder.' },
-      { date: '1919-07-23', text: 'Erzurum Kongresi Başkanlığına getirilir.' },
-      { date: '1919-09-04', text: 'Sivas Kongresi Başkanlığına getirilir.' },
-      { date: '1919-12-27', text: 'İcra Heyeti ile Ankara’ya gelir.' },
-      { date: '1920-04-23', text: 'Türkiye Büyük Millet Meclisi’ni açar.' },
-      { date: '1920-05-11', text: 'İstanbul hükümeti tarafından ölüme mahkûm edilir.' },
-      { date: '1921-08-05', text: 'TBMM tarafından Başkumandan olarak atanır.' },
-      { date: '1921-08-23', text: 'Sakarya Savaşı başlar.' },
-      { date: '1921-09-19', text: 'TBMM tarafından Mareşal ve Gazi unvanı verilir.' },
-      { date: '1922-08-26', text: 'Büyük Taarruzu Kocatepe’den yönetir.' },
-      { date: '1922-08-30', text: 'Dumlupınar savaşını kazanır.' },
-      { date: '1922-09-10', text: 'İzmir’e girer.' },
-      { date: '1922-11-01', text: 'Hilafetin kaldırılması önerisini TBMM kabûl eder.' },
-      { date: '1923-01-14', text: "Annesi Zübeyde Hanım vefat eder." },
-      { date: '1923-10-29', text: 'Türkiye Cumhuriyeti ilân edilir, ilk Cumhurbaşkanı seçilir.' },
-      { date: '1924-08-24', text: 'İlk kez şapka giyer.' },
-      { date: '1928-08-09', text: 'Yeni Türk Alfabesi ile konuşma yapar.' },
-      { date: '1931-04-12', text: 'Türk Tarih Kurumunu kurar.' },
-      { date: '1932-07-12', text: 'Türk Dil Kurumunu kurar.' },
-      { date: '1934-06-16', text: 'TBMM "Atatürk" soyadını verir.' },
-      { date: '193
+      { name: "19 Mayıs - Atatürk’ü Anma, Gençlik ve Spor Bayramı", date: "2025-05-19" },
+      { name: "30 Ağustos - Zafer Bayramı", date: "2025-08-30" },
+      { name: "29 Ekim - Cumhuriyet Bayramı", date: "2025-10-29" },
+      { name: "10 Kasım - Atatürk’ün Vefatı", date: "2025-11-10" }
+    ];
+
+    function findNextEvent() {
+      const now = new Date();
+      return events.find(event => new Date(event.date) > now);
+    }
+
+    function updateCountdown(targetDate, name) {
+      const eventName = document.getElementById("event-name");
+      const countdown = document.getElementById("countdown");
+
+      eventName.textContent = name;
+
+      function update() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+          countdown.innerHTML = "Etkinlik başladı!";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdown.innerHTML = `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye`;
+      }
+
+      update();
+      setInterval(update, 1000);
+    }
+
+    const next = findNextEvent();
+    if (next) {
+      updateCountdown(new Date(next.date).getTime(), next.name);
+    } else {
+      document.getElementById("countdown").textContent = "Yaklaşan etkinlik bulunamadı.";
+    }
+  </script>
+
+  <!-- Partikül animasyonu -->
+  <script>
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    const particles = [];
+
+    for (let i = 0; i < 100; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 2 + 1,
+        dx: (Math.random() - 0.5) * 2,
+        dy: (Math.random() - 0.5) * 2,
+      });
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = "#ff0000";
+
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if (p.x < 0 || p.x > width) p.dx *= -1;
+        if (p.y < 0 || p.y > height) p.dy *= -1;
+      });
+
+      requestAnimationFrame(animateParticles);
+    }
+
+    animateParticles();
+
+    window.addEventListener("resize", () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
