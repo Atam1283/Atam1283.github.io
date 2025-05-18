@@ -3,48 +3,71 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Önemli Günlere Geri Sayım</title>
+  <title>Atatürk ve Cumhuriyet Günleri Geri Sayım</title>
   <style>
     body {
       background-color: black;
       color: white;
-      font-family: 'Orbitron', sans-serif, monospace;
-      text-align: center;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
       padding: 40px 20px;
     }
+
+    a#anasayfa {
+      color: white;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 18px;
+      z-index: 10;
+    }
+    a#anasayfa:hover {
+      color: #ff4d4d;
+    }
+
     h1 {
+      text-align: center;
       color: #ff4d4d;
       margin-bottom: 30px;
-      font-weight: 700;
+      font-size: 2.5rem;
     }
-    #countdown {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      color: white;
-      letter-spacing: 2px;
-    }
+
     #event-name {
       font-size: 1.8rem;
       color: #ff4d4d;
-      font-weight: 600;
-      margin-bottom: 5px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 10px;
     }
+
+    #countdown {
+      font-size: 3rem;
+      font-weight: bold;
+      text-align: center;
+      color: white;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+    }
+
     #event-desc {
-      font-size: 1.1rem;
-      color: #ddd;
+      font-size: 1.2rem;
+      text-align: center;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
 
-  <h1>Atatürk ve Cumhuriyet Önemli Gün Geri Sayımı</h1>
+  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
+
+  <h1>Yaklaşan Önemli Gün</h1>
   <div id="event-name"></div>
   <div id="countdown"></div>
   <div id="event-desc"></div>
 
   <script>
-    // Önemli günler listesi (gün-ay-yıl, isim, açıklama)
     const events = [
       { date: "01-01", name: "Yılbaşı", desc: "Yeni yılın ilk günü" },
       { date: "23-04", name: "Ulusal Egemenlik ve Çocuk Bayramı", desc: "TBMM'nin açılışı, Atatürk'ün çocuklara armağanı" },
@@ -58,55 +81,42 @@
 
     function getNextEvent() {
       const now = new Date();
-      let currentYear = now.getFullYear();
+      const currentYear = now.getFullYear();
 
-      // Gelecek yılın başını da kontrol etmek için events'i genişlet
-      const eventDates = events.map(e => {
-        // Tarih stringinden ay ve gün çıkar
+      const futureEvents = events.map(e => {
         const [day, month] = e.date.split("-").map(Number);
+        let eventDate = new Date(currentYear, month - 1, day);
 
-        // Bu yıl için tarih
-        let eventDateThisYear = new Date(currentYear, month -1, day, 0, 0, 0);
-
-        // Eğer bu tarih geçtiyse, gelecek yıl olarak al
-        if (eventDateThisYear < now) {
-          eventDateThisYear = new Date(currentYear + 1, month -1, day, 0, 0, 0);
+        if (eventDate < now) {
+          eventDate = new Date(currentYear + 1, month - 1, day);
         }
-        return { ...e, eventDate: eventDateThisYear };
+
+        return { ...e, eventDate };
       });
 
-      // En yakın tarihe göre sırala ve ilkini al
-      eventDates.sort((a, b) => a.eventDate - b.eventDate);
-      return eventDates[0];
+      futureEvents.sort((a, b) => a.eventDate - b.eventDate);
+      return futureEvents[0];
     }
 
     function updateCountdown() {
       const now = new Date();
-      const nextEvent = getNextEvent();
-      const diff = nextEvent.eventDate - now;
-
-      if (diff <= 0) {
-        document.getElementById("event-name").textContent = `${nextEvent.name} bugün!`;
-        document.getElementById("countdown").textContent = "00:00:00:00";
-        document.getElementById("event-desc").textContent = nextEvent.desc;
-        return;
-      }
+      const event = getNextEvent();
+      const diff = event.eventDate - now;
 
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
 
-      document.getElementById("event-name").textContent = nextEvent.name;
+      document.getElementById("event-name").textContent = event.name;
       document.getElementById("countdown").textContent =
-        `${days.toString().padStart(2, '0')} : ` +
-        `${hours.toString().padStart(2, '0')} : ` +
-        `${minutes.toString().padStart(2, '0')} : ` +
-        `${seconds.toString().padStart(2, '0')}`;
-      document.getElementById("event-desc").textContent = nextEvent.desc;
+        `${String(days).padStart(2, "0")} : ` +
+        `${String(hours).padStart(2, "0")} : ` +
+        `${String(minutes).padStart(2, "0")} : ` +
+        `${String(seconds).padStart(2, "0")}`;
+      document.getElementById("event-desc").textContent = event.desc;
     }
 
-    // Sayfa yüklendiğinde ve her saniye çalıştır
     updateCountdown();
     setInterval(updateCountdown, 1000);
   </script>
