@@ -5,109 +5,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Atatürk Temalı Web Sitesi</title>
   <style>
-    body, html {
+    /* Temalar */
+    body {
       margin: 0; padding: 0; height: 100%;
-      overflow: hidden;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #000000; /* Tam siyah arka plan */
-      color: white;
-      position: relative;
+      transition: background-color 0.5s, color 0.5s;
       text-align: center;
+      position: relative;
+    }
+
+    /* Aydınlık tema */
+    body.light {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    /* Karanlık tema (default) */
+    body.dark {
+      background-color: #000000;
+      color: #ffffff;
     }
 
     h1 {
-      position: relative;
-      z-index: 10;
       margin-top: 50px;
       font-size: 3rem;
-      text-shadow: 2px 2px 5px rgba(255,0,0,0.8); /* Kırmızı gölge */
+      text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.8);
     }
 
     p {
-      position: relative;
-      z-index: 10;
       font-style: italic;
       margin-top: 30px;
       font-size: 1.3rem;
-      text-shadow: 1px 1px 3px rgba(255,0,0,0.8); /* Kırmızı gölge */
+      text-shadow: 1px 1px 3px rgba(255, 0, 0, 0.8);
     }
 
-    /* Canvas tam ekran ve arka planı saydam yap */
-    #particle-canvas {
+    /* Buton stil */
+    #theme-toggle {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 1;
-      pointer-events: none;
-      background: transparent;
+      top: 20px;
+      right: 20px;
+      padding: 10px 15px;
+      border: none;
+      background-color: #ff0000;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+      box-shadow: 0 0 10px #ff0000;
+      transition: background-color 0.3s;
+      z-index: 100;
+    }
+    #theme-toggle:hover {
+      background-color: #cc0000;
     }
   </style>
 </head>
 <body>
 
-  <canvas id="particle-canvas"></canvas>
+  <button id="theme-toggle">Tema Değiştir</button>
 
   <h1>Mustafa Kemal Atatürk</h1>
   <p>"Yurtta sulh, cihanda sulh."</p>
 
   <script>
-    const canvas = document.getElementById('particle-canvas');
-    const ctx = canvas.getContext('2d');
-    let width, height;
+    const body = document.body;
+    const btn = document.getElementById('theme-toggle');
 
-    function resize() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-    }
-    window.addEventListener('resize', resize);
-    resize();
+    // Başlangıçta localStorage'dan tema oku veya default 'dark' yap
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    body.classList.add(savedTheme);
 
-    class Particle {
-      constructor() {
-        this.reset();
+    // Butona tıklayınca temayı değiştir
+    btn.addEventListener('click', () => {
+      if (body.classList.contains('dark')) {
+        body.classList.replace('dark', 'light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.classList.replace('light', 'dark');
+        localStorage.setItem('theme', 'dark');
       }
-      reset() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 1;
-        this.speedY = (Math.random() - 0.5) * 1;
-        this.alpha = Math.random() * 0.7 + 0.3;
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
-          this.reset();
-        }
-      }
-      draw(ctx) {
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(255, 0, 0, ${this.alpha})`;
-        ctx.shadowColor = `rgba(255, 0, 0, 0.7)`;
-        ctx.shadowBlur = 6;
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    const particles = [];
-    const particleCount = 120;
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-      particles.forEach(p => {
-        p.update();
-        p.draw(ctx);
-      });
-      requestAnimationFrame(animate);
-    }
-    animate();
+    });
   </script>
 
 </body>
