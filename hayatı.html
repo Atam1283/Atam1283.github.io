@@ -4,14 +4,19 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Atatürk'ün Hayatı</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Open+Sans&display=swap" rel="stylesheet">
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Open+Sans&display=swap');
   body {
     margin: 0; padding: 0;
     font-family: 'Merriweather', serif;
     background-color: #1a0000;
     color: #ffcccc;
     overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     transition: background-color 0.4s ease, color 0.4s ease;
   }
   nav {
@@ -20,6 +25,7 @@
     display: flex;
     gap: 25px;
     font-weight: bold;
+    z-index: 20;
   }
   nav a {
     color: #ff6666;
@@ -45,29 +51,37 @@
     cursor: pointer;
     box-shadow: 0 0 12px #ff0000cc;
     transition: background-color 0.3s ease;
-    z-index: 15;
+    z-index: 30;
   }
   #themeToggle:hover {
     background: #ff1a1a;
   }
   .container {
     max-width: 800px;
-    margin: 100px auto 60px;
     background: #330000cc;
-    padding: 25px 40px;
+    margin: 100px auto 60px;
+    padding: 30px 40px;
     border-radius: 15px;
     box-shadow: 0 0 20px #ff4d4daa;
-    text-align: justify;
-    line-height: 1.7;
+    position: relative;
+    z-index: 10;
   }
   h1 {
-    text-align: center;
     font-family: 'Merriweather', serif;
     color: #ff9999;
     margin-bottom: 30px;
+    text-align: center;
     text-shadow: 0 0 15px #ff4d4d;
   }
-  /* Tema açma-kapama */
+  p {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.7;
+    font-size: 1.1rem;
+    color: #ffcccc;
+    margin-bottom: 20px;
+  }
+
+  /* Açık tema */
   body.light {
     background-color: #fff0f0;
     color: #660000;
@@ -97,7 +111,7 @@
     background: #ffcccccc;
     box-shadow: 0 0 20px #cc0000aa;
   }
-  /* Particles.js için tam ekran */
+
   #particles-js {
     position: fixed;
     top: 0; left: 0;
@@ -124,25 +138,28 @@
 <div class="container">
   <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
   <p>
-    Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Osmanlı İmparatorluğu'nun son dönemlerinde yetişen Atatürk, üstün askeri ve liderlik yetenekleriyle Türk milletinin bağımsızlık mücadelesinde önderlik yaptı. 1919 yılında Samsun'a çıkarak Milli Mücadeleyi başlattı, Anadolu'nun dört bir yanını işgalcilere karşı organize etti ve 1923 yılında Türkiye Cumhuriyeti'ni kurdu.
+    Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Türk milletinin kurtuluşu için verdiği mücadeleler,
+    onun büyük liderliğini ortaya koydu. 1919'da Samsun'a çıkarak Türk Kurtuluş Savaşı'nı başlattı ve
+    Türkiye Cumhuriyeti'nin kurulmasını sağladı.
   </p>
   <p>
-    Eğitim hayatında ve askeri kariyerinde daima yenilikçi düşüncelerle ilerleyen Atatürk, cumhuriyetin kuruluşundan sonra hukuk, eğitim, ekonomi ve kültür alanlarında kapsamlı reformlar gerçekleştirdi. Amacı, Türkiye'yi çağdaş medeniyetler seviyesine taşımaktı. Kadın haklarından alfabe değişikliğine, laiklikten sanayi hamlelerine kadar pek çok alanda köklü değişikliklere imza attı.
+    Atatürk, sadece askeri bir lider değil, aynı zamanda bir devlet adamı ve reformcuydu.
+    Eğitimden hukuka, ekonomiden kadının toplumdaki yerine kadar birçok alanda köklü değişiklikler yaptı.
   </p>
   <p>
-    Atatürk, sadece bir devlet adamı değil aynı zamanda bir düşünür ve vizyonerdi. 10 Kasım 1938'de İstanbul’da hayatını kaybetti ancak geride özgürlük, bağımsızlık ve modernleşme idealleriyle dolu bir miras bıraktı. Bugün de Türk milleti onun ilke ve inkılaplarını rehber edinerek geleceğe yürümektedir.
+    10 Kasım 1938'de vefat eden Atatürk, Türkiye Cumhuriyeti'nin kurucusu ve çağdaşlaşma mimarı olarak
+    her zaman hatırlanacaktır.
   </p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
-  // Particles.js - kırmızı tonlarda, etkileşimli parçacıklar
   particlesJS('particles-js', {
     particles: {
-      number: { value: 70, density: { enable: true, value_area: 900 } },
+      number: { value: 80, density: { enable: true, value_area: 900 } },
       color: { value: ['#ff0000', '#cc0000', '#990000'] },
       shape: { type: 'circle' },
-      opacity: { value: 0.6, random: true },
+      opacity: { value: 0.5, random: true },
       size: { value: 3, random: true },
       move: {
         enable: true,
@@ -162,14 +179,13 @@
         resize: true
       },
       modes: {
-        repulse: { distance: 130, duration: 0.4 },
+        repulse: { distance: 120, duration: 0.4 },
         push: { particles_nb: 4 }
       }
     },
     retina_detect: true
   });
 
-  // Tema değiştirme butonu işlevi
   const themeBtn = document.getElementById('themeToggle');
   themeBtn.addEventListener('click', () => {
     if(document.body.classList.contains('dark')){
@@ -180,8 +196,6 @@
       localStorage.setItem('theme', 'dark');
     }
   });
-
-  // Sayfa yüklendiğinde kaydedilmiş tema uygulanır
   const savedTheme = localStorage.getItem('theme');
   if(savedTheme) {
     document.body.className = savedTheme;
