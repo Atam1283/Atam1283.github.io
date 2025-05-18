@@ -1,1 +1,178 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atatürk - Cumhuriyet Bayramı Geri Sayımı</title>
+  <style>
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #8B0000, #ffffff);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: #a80000;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      letter-spacing: 3px;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0; margin: 10px 0 0 0;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+    }
+    nav ul li {
+      display: inline;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 8px 15px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    nav ul li a:hover, nav ul li a:focus {
+      background-color: #ff0000;
+      outline: none;
+    }
+    main {
+      flex-grow: 1;
+      max-width: 600px;
+      margin: 40px auto;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 40px 30px;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+      text-align: center;
+    }
+    main h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #fff;
+      text-shadow: 1px 1px 3px #700000;
+    }
+    #countdown {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #ff0000;
+      text-shadow: 2px 2px 5px #5a0000;
+    }
+    .time-box {
+      background: #fff;
+      color: #a80000;
+      padding: 15px 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #a80000;
+      min-width: 90px;
+    }
+    .time-box span {
+      display: block;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+    footer {
+      text-align: center;
+      margin: 20px 0;
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mustafa Kemal Atatürk</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Ana Sayfa</a></li>
+        <li><a href="hayati.html">Hayatı</a></li>
+        <li><a href="galeri.html">Galeri</a></li>
+        <li><a href="zaman.html">Zaman Çizelgesi</a></li>
+        <li><a href="gerisayim.html" aria-current="page">Geri Sayım</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>29 Ekim Cumhuriyet Bayramı'na Geri Sayım</h2>
+    <div id="countdown">
+      <div class="time-box">
+        <div id="days">0</div>
+        <span>Gün</span>
+      </div>
+      <div class="time-box">
+        <div id="hours">0</div>
+        <span>Saat</span>
+      </div>
+      <div class="time-box">
+        <div id="minutes">0</div>
+        <span>Dakika</span>
+      </div>
+      <div class="time-box">
+        <div id="seconds">0</div>
+        <span>Saniye</span>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Atatürk Temalı Site
+  </footer>
+
+  <script>
+    function getNextRepublicDay() {
+      const now = new Date();
+      let year = now.getFullYear();
+      // Eğer bu yıl 29 Ekim geçtiyse, sonraki yıl için ayarla
+      const republicDayThisYear = new Date(year, 9, 29); // Ay 0'dan başlar, 9 = Ekim
+      if (now > republicDayThisYear) {
+        year += 1;
+      }
+      return new Date(year, 9, 29, 0, 0, 0);
+    }
+
+    const targetDate = getNextRepublicDay().getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById('countdown').innerHTML = "<h3>29 Ekim Cumhuriyet Bayramı geldi.</h3>";
+        clearInterval(interval);
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours;
+      document.getElementById('minutes').textContent = minutes;
+      document.getElementById('seconds').textContent = seconds;
+    }
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
 
