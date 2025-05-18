@@ -4,243 +4,96 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Zaman Çizelgesi - Atatürk</title>
-
 <style>
-  /* Temel stiller */
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap');
+
   body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: white;
-    color: #222;
+    margin: 0; padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #ffe6e6;
+    color: #660000;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
     transition: background-color 0.5s, color 0.5s;
   }
-
   header {
-    background-color: #b30000; /* Koyu kırmızı */
+    background-color: #b30000;
     color: white;
-    padding: 15px 20px;
     text-align: center;
-    font-weight: bold;
-    font-size: 24px;
+    padding: 20px 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: 1.5px;
     position: sticky;
     top: 0;
     z-index: 10;
   }
-
   nav {
-    background-color: #ff1a1a; /* Açık kırmızı */
+    background-color: #ff4d4d;
     display: flex;
     justify-content: center;
-    gap: 20px;
-    padding: 12px 0;
+    gap: 30px;
+    padding: 15px 0;
   }
   nav a {
     color: white;
     text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    font-size: 18px;
-    padding: 6px 12px;
-    border-radius: 6px;
+    font-size: 1.2rem;
+    padding: 8px 16px;
+    border-radius: 8px;
     transition: background-color 0.3s;
   }
   nav a:hover {
-    background-color: #800000; /* Koyu ton hover */
+    background-color: #800000;
   }
-
   main {
+    flex-grow: 1;
+    padding: 40px 20px;
     max-width: 900px;
-    margin: 40px auto;
-    padding: 0 20px 40px 20px;
+    margin: 0 auto;
+    line-height: 1.7;
   }
-
   h1 {
-    text-align: center;
-    margin-bottom: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.8rem;
+    margin-bottom: 20px;
     color: #b30000;
-    text-shadow: 1px 1px 3px #660000;
   }
-
-  .timeline {
+  ul.timeline {
+    list-style: none;
+    padding-left: 0;
     border-left: 3px solid #b30000;
-    padding-left: 20px;
   }
-  .event {
+  ul.timeline li {
     margin-bottom: 25px;
+    padding-left: 20px;
     position: relative;
   }
-  .event::before {
-    content: "";
+  ul.timeline li::before {
+    content: '';
     position: absolute;
     left: -10px;
-    top: 6px;
-    width: 14px;
-    height: 14px;
+    top: 5px;
+    width: 16px;
+    height: 16px;
     background-color: #b30000;
     border-radius: 50%;
+    border: 3px solid white;
   }
-  .event h3 {
-    margin: 0;
-    font-weight: 700;
-    color: #800000;
-  }
-  .event p {
-    margin: 6px 0 0 0;
-    line-height: 1.4;
-  }
-
-  /* Tema butonu */
   #themeBtn {
     position: fixed;
-    top: 15px;
-    right: 15px;
+    top: 15px; right: 15px;
     background-color: #b30000;
-    color: white;
     border: none;
-    padding: 8px 14px;
-    border-radius: 5px;
-    font-weight: 600;
+    color: white;
+    padding: 10px 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    border-radius: 6px;
     cursor: pointer;
     box-shadow: 0 0 8px #b30000;
     transition: background-color 0.3s;
-    z-index: 100;
-  }
-  #themeBtn:hover {
-    background-color: #800000;
-  }
-
-  /* Koyu tema */
-  body.dark-theme {
-    background-color: #1a0000;
-    color: #f0dede;
-  }
-  body.dark-theme header {
-    background-color: #ff1a1a;
-    color: white;
-  }
-  body.dark-theme nav {
-    background-color: #800000;
-  }
-  body.dark-theme nav a {
-    color: #ffdede;
-  }
-  body.dark-theme nav a:hover {
-    background-color: #ff4d4d;
-  }
-  body.dark-theme h1 {
-    color: #ff4d4d;
-    text-shadow: 1px 1px 5px #330000;
-  }
-  body.dark-theme .timeline {
-    border-left-color: #ff4d4d;
-  }
-  body.dark-theme .event::before {
-    background-color: #ff4d4d;
-  }
-  body.dark-theme .event h3 {
-    color: #ff9999;
-  }
-
-  /* Partikül arka plan */
-  #particles-js {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    z-index: 0;
-    pointer-events: none;
-  }
-</style>
-
-</head>
-<body>
-
-<button id="themeBtn">Tema Değiştir</button>
-
-<header>
-  Mustafa Kemal Atatürk - Zaman Çizelgesi
-</header>
-
-<nav>
-  <a href="index.html">Ana Sayfa</a>
-  <a href="hayati.html">Hayatı</a>
-  <a href="galeri.html">Galerisi</a>
-  <a href="zaman.html">Zaman Çizelgesi</a>
-  <a href="gerisayim.html">Geri Sayım</a>
-</nav>
-
-<main>
-  <h1>Zaman Çizelgesi</h1>
-
-  <section class="timeline">
-    <div class="event">
-      <h3>1881 - Doğum</h3>
-      <p>Mustafa Kemal Atatürk, Selanik'te dünyaya geldi.</p>
-    </div>
-    <div class="event">
-      <h3>1919 - Samsun'a Çıkış</h3>
-      <p>19 Mayıs 1919'da Samsun'a çıkarak Milli Mücadele'yi başlattı.</p>
-    </div>
-    <div class="event">
-      <h3>1923 - Cumhuriyetin İlanı</h3>
-      <p>29 Ekim 1923'te Türkiye Cumhuriyeti resmen kuruldu.</p>
-    </div>
-    <div class="event">
-      <h3>1938 - Vefat</h3>
-      <p>10 Kasım 1938'de İstanbul'da vefat etti.</p>
-    </div>
-  </section>
-</main>
-
-<div id="particles-js"></div>
-
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<script>
-  // Partikül efekt ayarları (kırmızı parçacıklar)
-  particlesJS('particles-js', {
-    "particles": {
-      "number": {
-        "value": 80,
-        "density": { "enable": true, "value_area": 800 }
-      },
-      "color": { "value": "#ff0000" },
-      "shape": {
-        "type": "circle"
-      },
-      "opacity": {
-        "value": 0.6,
-        "random": true
-      },
-      "size": {
-        "value": 3,
-        "random": true
-      },
-      "move": {
-        "enable": true,
-        "speed": 2,
-        "direction": "none",
-        "random": true,
-        "straight": false,
-        "out_mode": "out"
-      }
-    },
-    "interactivity": {
-      "detect_on": "canvas",
-      "events": {
-        "onhover": { "enable": true, "mode": "repulse" },
-        "onclick": { "enable": true, "mode": "push" }
-      },
-      "modes": {
-        "repulse": { "distance": 100 },
-        "push": { "particles_nb": 4 }
-      }
-    },
-    "retina_detect": true
-  });
-
-  // Tema değiştirme
-  const themeBtn = document.getElementById('themeBtn');
-  themeBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark-theme');
-  });
-</script>
-
-</body>
-</html>
+    z-index: 
