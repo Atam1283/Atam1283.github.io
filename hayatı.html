@@ -3,121 +3,189 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hayatı - Atatürk Sitesi</title>
+<title>Atatürk'ün Hayatı</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Open+Sans&display=swap');
   body {
-    margin:0; padding:0; font-family: 'Montserrat', sans-serif;
-    background: #1a0000; color: white;
+    margin: 0; padding: 0;
+    font-family: 'Merriweather', serif;
+    background-color: #1a0000;
+    color: #ffcccc;
     overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
   }
   nav {
-    background: #660000; padding: 15px;
-    display: flex; gap: 20px;
+    background: #330000cc;
+    padding: 15px 30px;
+    display: flex;
+    gap: 25px;
+    font-weight: bold;
   }
   nav a {
-    color: white; text-decoration: none; font-weight: 600;
+    color: #ff6666;
+    text-decoration: none;
+    transition: color 0.3s ease;
   }
   nav a:hover {
-    text-decoration: underline;
+    color: #ff0000;
   }
-  .container {
-    padding: 20px; max-width: 900px; margin: auto;
-  }
-  h1 {
-    font-weight: 700; margin-bottom: 10px;
-    text-align: center;
-  }
-  p {
-    font-size: 1.1rem; line-height: 1.5;
+  nav a.active {
+    color: #ff1a1a;
+    text-shadow: 0 0 10px #ff4d4d;
   }
   #themeToggle {
-    position: fixed; top: 20px; right: 20px;
-    background: #990000; border: none; padding: 10px 20px;
-    color: white; font-weight: bold; cursor: pointer;
-    border-radius: 5px;
-    z-index: 10;
+    position: fixed;
+    top: 15px; right: 15px;
+    background: #b30000;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 0 12px #ff0000cc;
+    transition: background-color 0.3s ease;
+    z-index: 15;
   }
-  body.dark {
-    background: #1a0000;
-    color: white;
+  #themeToggle:hover {
+    background: #ff1a1a;
   }
+  .container {
+    max-width: 800px;
+    margin: 100px auto 60px;
+    background: #330000cc;
+    padding: 25px 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #ff4d4daa;
+    text-align: justify;
+    line-height: 1.7;
+  }
+  h1 {
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    color: #ff9999;
+    margin-bottom: 30px;
+    text-shadow: 0 0 15px #ff4d4d;
+  }
+  /* Tema açma-kapama */
   body.light {
-    background: #fff0f0;
+    background-color: #fff0f0;
     color: #660000;
   }
   body.light nav {
-    background: #ffcccc;
+    background-color: #ffcccccc;
+  }
+  body.light nav a {
+    color: #660000;
+  }
+  body.light nav a:hover {
+    color: #cc0000;
+  }
+  body.light nav a.active {
+    color: #990000;
+    text-shadow: none;
   }
   body.light #themeToggle {
     background: #cc0000;
-    color: white;
+    box-shadow: 0 0 15px #cc0000aa;
+    color: #fff;
   }
+  body.light #themeToggle:hover {
+    background: #ff3333;
+  }
+  body.light .container {
+    background: #ffcccccc;
+    box-shadow: 0 0 20px #cc0000aa;
+  }
+  /* Particles.js için tam ekran */
   #particles-js {
     position: fixed;
+    top: 0; left: 0;
     width: 100%; height: 100%;
-    top: 0; left: 0; z-index: 0;
-  }
-  .content {
-    position: relative;
     z-index: 1;
+    pointer-events: none;
   }
 </style>
 </head>
 <body class="dark">
 
-<button id="themeToggle">Tema Değiştir</button>
-
 <nav>
   <a href="index.html">Ana Sayfa</a>
-  <a href="hayati.html">Hayatı</a>
-  <a href="galeri.html">Galerisi</a>
+  <a href="hayati.html" class="active">Hayatı</a>
+  <a href="galeri.html">Galeri</a>
   <a href="zaman.html">Zaman Çizelgesi</a>
   <a href="gerisayim.html">Geri Sayım</a>
 </nav>
 
+<button id="themeToggle">Tema Değiştir</button>
+
 <div id="particles-js"></div>
 
-<div class="container content">
+<div class="container">
   <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
-  <p>1881 yılında Selanik'te doğan Mustafa Kemal Atatürk, Türkiye Cumhuriyeti'nin kurucusudur.</p>
-  <p>Askeri kariyeri ve liderliğiyle Osmanlı İmparatorluğu'nun son döneminde önemli roller üstlenmiştir.</p>
-  <p>1923 yılında Cumhuriyet'i ilan etmiş ve modern Türkiye'nin temellerini atmıştır.</p>
+  <p>
+    Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Osmanlı İmparatorluğu'nun son dönemlerinde yetişen Atatürk, üstün askeri ve liderlik yetenekleriyle Türk milletinin bağımsızlık mücadelesinde önderlik yaptı. 1919 yılında Samsun'a çıkarak Milli Mücadeleyi başlattı, Anadolu'nun dört bir yanını işgalcilere karşı organize etti ve 1923 yılında Türkiye Cumhuriyeti'ni kurdu.
+  </p>
+  <p>
+    Eğitim hayatında ve askeri kariyerinde daima yenilikçi düşüncelerle ilerleyen Atatürk, cumhuriyetin kuruluşundan sonra hukuk, eğitim, ekonomi ve kültür alanlarında kapsamlı reformlar gerçekleştirdi. Amacı, Türkiye'yi çağdaş medeniyetler seviyesine taşımaktı. Kadın haklarından alfabe değişikliğine, laiklikten sanayi hamlelerine kadar pek çok alanda köklü değişikliklere imza attı.
+  </p>
+  <p>
+    Atatürk, sadece bir devlet adamı değil aynı zamanda bir düşünür ve vizyonerdi. 10 Kasım 1938'de İstanbul’da hayatını kaybetti ancak geride özgürlük, bağımsızlık ve modernleşme idealleriyle dolu bir miras bıraktı. Bugün de Türk milleti onun ilke ve inkılaplarını rehber edinerek geleceğe yürümektedir.
+  </p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
+  // Particles.js - kırmızı tonlarda, etkileşimli parçacıklar
   particlesJS('particles-js', {
     particles: {
-      number: { value: 60, density: { enable: true, value_area: 800 } },
-      color: { value: '#ff0000' },
+      number: { value: 70, density: { enable: true, value_area: 900 } },
+      color: { value: ['#ff0000', '#cc0000', '#990000'] },
       shape: { type: 'circle' },
-      opacity: { value: 0.6 },
-      size: { value: 4, random: true },
-      move: { enable: true, speed: 2, direction: 'none', out_mode: 'out' }
+      opacity: { value: 0.6, random: true },
+      size: { value: 3, random: true },
+      move: {
+        enable: true,
+        speed: 2,
+        direction: 'none',
+        random: false,
+        straight: false,
+        out_mode: 'out',
+        bounce: false
+      }
     },
     interactivity: {
       detect_on: 'canvas',
       events: {
         onhover: { enable: true, mode: 'repulse' },
-        onclick: { enable: true, mode: 'push' }
+        onclick: { enable: true, mode: 'push' },
+        resize: true
       },
       modes: {
-        repulse: { distance: 100 },
+        repulse: { distance: 130, duration: 0.4 },
         push: { particles_nb: 4 }
       }
     },
     retina_detect: true
   });
 
-  const toggleBtn = document.getElementById('themeToggle');
-  toggleBtn.addEventListener('click', () => {
+  // Tema değiştirme butonu işlevi
+  const themeBtn = document.getElementById('themeToggle');
+  themeBtn.addEventListener('click', () => {
     if(document.body.classList.contains('dark')){
       document.body.classList.replace('dark', 'light');
+      localStorage.setItem('theme', 'light');
     } else {
       document.body.classList.replace('light', 'dark');
+      localStorage.setItem('theme', 'dark');
     }
   });
+
+  // Sayfa yüklendiğinde kaydedilmiş tema uygulanır
+  const savedTheme = localStorage.getItem('theme');
+  if(savedTheme) {
+    document.body.className = savedTheme;
+  }
 </script>
 
 </body>
