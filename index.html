@@ -1,283 +1,176 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mustafa Kemal Atatürk - Modern Site</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mustafa Kemal Atatürk</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+        /* Genel düzen */
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #e0eafc, #cfdef3);
+            color: #333;
+            line-height: 1.6;
+        }
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Merriweather:ital,wght@0,400;1,700&display=swap" rel="stylesheet" />
+        /* Üst menü */
+        header {
+            background-color: #002147;
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        header nav h1 {
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+        }
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        header nav ul li a:hover {
+            color: #f44336;
+        }
 
-<style>
-  /* Temel Reset */
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    transition: background 0.5s, color 0.5s;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-  :root {
-    --bg: #fdf6f0;
-    --text: #2b2b2b;
-    --primary: #b22222;
-    --secondary: #f5c6c6;
-    --shadow: rgba(178, 34, 34, 0.3);
-    --accent: #8b0000;
-  }
-  body.dark {
-    --bg: #121212;
-    --text: #e0e0e0;
-    --primary: #ff6347;
-    --secondary: #b34747;
-    --shadow: rgba(255, 99, 71, 0.4);
-    --accent: #ff4500;
-  }
+        /* Ana içerik */
+        main {
+            max-width: 900px;
+            margin: 2rem auto 4rem;
+            padding: 0 1rem;
+        }
 
-  /* Navbar */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    background: var(--primary);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-    box-shadow: 0 3px 10px var(--shadow);
-    z-index: 1000;
-  }
-  nav .logo {
-    font-family: 'Merriweather', serif;
-    font-weight: 700;
-    font-size: 1.7rem;
-    color: white;
-    letter-spacing: 2px;
-  }
-  nav ul {
-    display: flex;
-    gap: 25px;
-    list-style: none;
-  }
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: color 0.3s;
-  }
-  nav ul li a:hover {
-    color: var(--secondary);
-  }
-  #theme-toggle {
-    background: transparent;
-    border: 2px solid white;
-    border-radius: 30px;
-    padding: 6px 14px;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.3s, color 0.3s;
-  }
-  #theme-toggle:hover {
-    background: white;
-    color: var(--primary);
-  }
+        section {
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 6px 10px rgb(0 0 0 / 0.1);
+        }
 
-  /* Main Container */
-  main {
-    max-width: 900px;
-    margin: 100px auto 60px;
-    padding: 0 20px;
-    position: relative;
-    z-index: 10;
-  }
+        section h2 {
+            color: #002147;
+            border-bottom: 2px solid #f44336;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
 
-  /* Başlıklar */
-  h1, h2 {
-    font-family: 'Merriweather', serif;
-    color: var(--primary);
-    text-shadow: 2px 2px 6px var(--shadow);
-  }
-  h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
-  }
-  h2 {
-    font-size: 2rem;
-    margin: 50px 0 20px;
-    border-bottom: 3px solid var(--primary);
-    display: inline-block;
-    padding-bottom: 6px;
-  }
-  p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
-  }
+        section p {
+            font-size: 1.1rem;
+            text-align: justify;
+        }
 
-  /* Zaman Çizelgesi */
-  .timeline {
-    position: relative;
-    margin-left: 20px;
-    border-left: 3px solid var(--primary);
-  }
-  .timeline-event {
-    margin: 25px 0;
-    padding-left: 25px;
-    position: relative;
-  }
-  .timeline-event::before {
-    content: '';
-    position: absolute;
-    left: -12px;
-    top: 0;
-    width: 20px;
-    height: 20px;
-    background: var(--primary);
-    border-radius: 50%;
-    box-shadow: 0 0 8px var(--shadow);
-  }
-  .timeline-event time {
-    font-weight: 600;
-    color: var(--accent);
-  }
+        /* Atatürk resmi */
+        .hero-image {
+            max-width: 100%;
+            border-radius: 12px;
+            display: block;
+            margin: 0 auto 2rem;
+            box-shadow: 0 8px 20px rgb(0 0 0 / 0.15);
+        }
 
-  /* Geri Sayım */
-  #countdown {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--accent);
-    margin: 40px 0;
-    text-align: center;
-  }
+        /* Footer */
+        footer {
+            background-color: #002147;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 0.9rem;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
 
-  /* Sözler */
-  .quotes {
-    font-style: italic;
-    background: var(--secondary);
-    border-left: 6px solid var(--primary);
-    padding: 15px 20px;
-    margin: 20px 0;
-    border-radius: 8px;
-    color: var(--primary);
-    box-shadow: 2px 2px 8px var(--shadow);
-  }
-
-  /* Galeri */
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-    gap: 20px;
-  }
-  .gallery img {
-    width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px var(--shadow);
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  .gallery img:hover {
-    transform: scale(1.05);
-  }
-
-  /* Lightbox Styles */
-  #lightbox {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.85);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-  }
-  #lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 12px;
-    box-shadow: 0 0 20px white;
-  }
-  #lightbox:target {
-    display: flex;
-  }
-  #lightbox-close {
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    color: white;
-    font-size: 2rem;
-    font-weight: 700;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  /* Sosyal medya footer */
-  footer {
-    text-align: center;
-    padding: 30px 10px 20px;
-    background: var(--primary);
-    color: white;
-    position: relative;
-    z-index: 10;
-  }
-  footer a {
-    color: white;
-    margin: 0 12px;
-    font-size: 1.4rem;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  footer a:hover {
-    color: var(--secondary);
-  }
-
-  /* Parçacıklar canvas */
-  #particle-canvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  /* Responsive */
-  @media (max-width: 600px) {
-    h1 { font-size: 2.2rem; }
-    nav {
-      padding: 12px 20px;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    nav ul {
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-  }
-</style>
+        /* Responsive */
+        @media (max-width: 600px) {
+            header nav ul {
+                flex-direction: column;
+                gap: 0.7rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<nav>
-  <div class="logo">Mustafa Kemal Atatürk</div>
-  <ul>
-    <li><a href="#hakkinda">Hakkında</a></li>
-    <li><a href="#timeline">Zaman Çizelgesi</a></li>
-    <li><a href="#countdown-section">Geri Sayım</a></li>
-    <li><a href="#sozleri">Sözleri</a></li>
-    <li><a href="#galeri">Galeri</a></li>
-  </ul>
-  <button id="theme-toggle" aria-label="Tema değiştir">Koyu Tema</button>
-</nav>
-
-<canvas id="particle-canvas"></canvas>
+<header>
+    <nav>
+        <h1>Mustafa Kemal Atatürk</h1>
+        <ul>
+            <li><a href="#hayati">Hayatı</a></li>
+            <li><a href="#inkilaplar">İnkılaplar</a></li>
+            <li><a href="#sozleri">Sözleri</a></li>
+            <li><a href="#miras">Mirası</a></li>
+        </ul>
+    </nav>
+</header>
 
 <main>
-  <section id="hakkinda">
-    <h1>Mustafa Kemal Atatürk</h1>
-    <p>Türkiye Cumhuriyeti'nin kurucusu ve ilk Cumhurbaşkanı Mustafa Kemal Atatürk, modern Türkiye
+    <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Mustafa_Kemal_Atat%C3%BCrk_1930s.jpg" alt="Mustafa Kemal Atatürk" />
 
-    
+    <section id="hayati">
+        <h2>Mustafa Kemal Atatürk'ün Hayatı</h2>
+        <p>
+            Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğmuş, Osmanlı İmparatorluğu'nun son dönemlerinde yetişmiş büyük bir asker ve devlet adamıdır. Türkiye Cumhuriyeti'nin kurucusu ve ilk Cumhurbaşkanıdır.
+        </p>
+        <p>
+            Eğitim hayatına askeri okullarda devam etmiş, Çanakkale Savaşı'nda gösterdiği üstün başarılarla adını duyurmuştur. Kurtuluş Savaşı'nın lideri olarak Türkiye'nin bağımsızlığını kazanmasını sağlamıştır.
+        </p>
+    </section>
+
+    <section id="inkilaplar">
+        <h2>İnkılaplar</h2>
+        <p>
+            Atatürk, modern Türkiye'nin temellerini atmak için kapsamlı reformlar yapmıştır. Hukuk, eğitim, dil, kadın hakları ve ekonomi alanında önemli değişiklikler gerçekleştirmiştir. Latin alfabesine geçiş, laiklik ilkesinin yerleşmesi ve kadınlara seçme-seçilme hakkı verilmesi bunların en önemlilerindendir.
+        </p>
+    </section>
+
+    <section id="sozleri">
+        <h2>Atatürk'ün Sözleri</h2>
+        <p>
+            "Yurtta sulh, cihanda sulh." - Bu söz Atatürk'ün barışa verdiği önemi vurgular.
+        </p>
+        <p>
+            "Egemenlik, kayıtsız şartsız milletindir." - Türk milletinin kendi kaderini tayin etme hakkını anlatır.
+        </p>
+        <p>
+            "Hayatta en hakiki mürşit ilimdir." - Bilim ve akıl rehberliğinin önemini belirtir.
+        </p>
+    </section>
+
+    <section id="miras">
+        <h2>Atatürk'ün Mirası</h2>
+        <p>
+            Atatürk, Türkiye Cumhuriyeti'nin çağdaş, demokratik ve laik bir devlet olarak yoluna devam etmesini sağlamıştır. Onun ilke ve inkılapları bugün de Türkiye'nin temel taşıdır.
+        </p>
+        <p>
+            Anıtkabir ve diğer anıtlar onun hatırasını yaşatırken, eğitim ve kültür alanındaki eserleri onun düşüncelerinin nesilden nesile aktarılmasını sağlar.
+        </p>
+    </section>
+</main>
+
+<footer>
+    &copy; 2025 Mustafa Kemal Atatürk Anısına Hazırlanmıştır.
+</footer>
+
+</body>
+</html>
