@@ -2,15 +2,24 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Atatürk ve Cumhuriyet Günleri Geri Sayım</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geri Sayım</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet"/>
   <style>
     body {
       background-color: black;
       color: white;
-      font-family: 'Arial', sans-serif;
+      font-family: 'Orbitron', sans-serif;
       margin: 0;
-      padding: 40px 20px;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
     }
 
     a#anasayfa {
@@ -23,102 +32,132 @@
       font-size: 18px;
       z-index: 10;
     }
-    a#anasayfa:hover {
-      color: #ff4d4d;
-    }
 
     h1 {
       text-align: center;
-      color: #ff4d4d;
-      margin-bottom: 30px;
       font-size: 2.5rem;
-    }
-
-    #event-name {
-      font-size: 1.8rem;
+      margin-top: 80px;
       color: #ff4d4d;
-      font-weight: bold;
-      text-align: center;
-      margin-bottom: 10px;
     }
 
     #countdown {
-      font-size: 3rem;
-      font-weight: bold;
+      font-size: 2rem;
       text-align: center;
-      color: white;
-      letter-spacing: 3px;
-      margin-bottom: 10px;
-    }
-
-    #event-desc {
-      font-size: 1.2rem;
-      text-align: center;
-      color: #ccc;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
-
+  <div id="particles-js"></div>
   <a id="anasayfa" href="index.html">← Ana Sayfa</a>
+  <h1 id="event-name">Yaklaşan Özel Gün</h1>
+  <div id="countdown">Yükleniyor...</div>
 
-  <h1>Yaklaşan Önemli Gün</h1>
-  <div id="event-name"></div>
-  <div id="countdown"></div>
-  <div id="event-desc"></div>
-
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
+    // Partikül efekti
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 90 },
+        color: { value: "#ff0000" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5 },
+        size: { value: 3 },
+        line_linked: {
+          enable: true,
+          distance: 120,
+          color: "#ff0000",
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" }
+        },
+        modes: {
+          repulse: { distance: 100 },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
+    });
+
+    // Önemli günler (tarihler yıl hariç, her yıl tekrarlanır)
     const events = [
-      { date: "01-01", name: "Yılbaşı", desc: "Yeni yılın ilk günü" },
-      { date: "23-04", name: "Ulusal Egemenlik ve Çocuk Bayramı", desc: "TBMM'nin açılışı, Atatürk'ün çocuklara armağanı" },
-      { date: "01-05", name: "Emek ve Dayanışma Günü", desc: "İşçi bayramı" },
-      { date: "19-05", name: "Atatürk'ü Anma, Gençlik ve Spor Bayramı", desc: "Atatürk’ün Samsun’a çıkarak Kurtuluş Savaşı’nı başlattığı gün" },
-      { date: "15-07", name: "Milli Birlik ve Demokrasi Günü", desc: "Demokrasi ve Millî Birlik Günü" },
-      { date: "30-08", name: "Zafer Bayramı", desc: "Başkomutanlık Meydan Muharebesi'nin zaferle sonuçlanması" },
-      { date: "29-10", name: "Cumhuriyet Bayramı", desc: "Türkiye Cumhuriyeti’nin ilanı" },
-      { date: "10-11", name: "Atatürk'ü Anma Günü", desc: "Atatürk’ün vefatı ve Atatürk Haftası" }
+      { date: "18 Mart", name: "Çanakkale Zaferi ve Şehitleri Anma Günü" },
+      { date: "23 Nisan", name: "Ulusal Egemenlik ve Çocuk Bayramı" },
+      { date: "19 Mayıs", name: "Atatürk’ü Anma, Gençlik ve Spor Bayramı" },
+      { date: "15 Temmuz", name: "Demokrasi ve Millî Birlik Günü" },
+      { date: "30 Ağustos", name: "Zafer Bayramı" },
+      { date: "29 Ekim", name: "Cumhuriyet Bayramı" },
+      { date: "10 Kasım", name: "Atatürk’ü Anma Günü" }
     ];
 
-    function getNextEvent() {
-      const now = new Date();
-      const currentYear = now.getFullYear();
+    function getNextEvent(events) {
+      const today = new Date();
+      const thisYear = today.getFullYear();
+      let nextEvent = null;
+      let minDiff = Infinity;
 
-      const futureEvents = events.map(e => {
-        const [day, month] = e.date.split("-").map(Number);
-        let eventDate = new Date(currentYear, month - 1, day);
+      for (let event of events) {
+        const [day, month] = event.date.split(" ").map(v => isNaN(v) ? v : parseInt(v));
+        const monthIndex = {
+          "Ocak": 0, "Şubat": 1, "Mart": 2, "Nisan": 3, "Mayıs": 4,
+          "Haziran": 5, "Temmuz": 6, "Ağustos": 7, "Eylül": 8,
+          "Ekim": 9, "Kasım": 10, "Aralık": 11
+        };
 
-        if (eventDate < now) {
-          eventDate = new Date(currentYear + 1, month - 1, day);
+        const date = typeof month === 'string'
+          ? new Date(thisYear, monthIndex[month], day)
+          : new Date(thisYear, month - 1, day);
+
+        if (date < today) {
+          date.setFullYear(thisYear + 1);
         }
 
-        return { ...e, eventDate };
-      });
+        const diff = date - today;
+        if (diff < minDiff) {
+          minDiff = diff;
+          nextEvent = { ...event, fullDate: date };
+        }
+      }
 
-      futureEvents.sort((a, b) => a.eventDate - b.eventDate);
-      return futureEvents[0];
+      return nextEvent;
     }
 
-    function updateCountdown() {
-      const now = new Date();
-      const event = getNextEvent();
-      const diff = event.eventDate - now;
+    function startCountdown() {
+      const event = getNextEvent(events);
+      document.getElementById("event-name").innerText = event.name;
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = event.fullDate.getTime() - now;
 
-      document.getElementById("event-name").textContent = event.name;
-      document.getElementById("countdown").textContent =
-        `${String(days).padStart(2, "0")} : ` +
-        `${String(hours).padStart(2, "0")} : ` +
-        `${String(minutes).padStart(2, "0")} : ` +
-        `${String(seconds).padStart(2, "0")}`;
-      document.getElementById("event-desc").textContent = event.desc;
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML =
+          `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye`;
+
+        if (distance < 0) {
+          document.getElementById("countdown").innerHTML = "Etkinlik zamanı geldi!";
+        }
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
     }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    startCountdown();
   </script>
 </body>
 </html>
