@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Geri Sayım - Atatürk Temalı Site</title>
+<title>Atatürk ve Cumhuriyet Geri Sayımı</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet" />
 
@@ -16,10 +16,11 @@
     color: white;
     text-align: center;
   }
-  h1, h2, h3 {
+  h1 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    margin: 1rem 0;
+    margin: 2rem 0 1rem 0;
+    color: #ff4d4d;
   }
   nav {
     background-color: #660000;
@@ -86,27 +87,39 @@
     top: 0;
     left: 0;
   }
-  .container {
-    max-width: 600px;
+  .countdown {
+    max-width: 700px;
     margin: 3rem auto;
-    padding: 0 1rem;
-  }
-  #countdown {
+    padding: 2rem 1rem;
+    background: rgba(255, 77, 77, 0.15);
+    border-left: 4px solid #ff4d4d;
+    border-radius: 6px;
+    box-shadow: 0 0 15px #ff4d4d55;
     font-family: 'Montserrat', sans-serif;
-    font-size: 3rem;
-    margin-top: 2rem;
-    letter-spacing: 0.1em;
+    font-weight: 700;
+    font-size: 2rem;
     color: #ff4d4d;
+    text-align: center;
   }
-  #countdown span {
-    display: inline-block;
-    min-width: 60px;
+  .event-desc {
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: white;
   }
-  .label {
-    font-size: 1rem;
-    display: block;
-    margin-top: 0.3rem;
-    color: #ff9999;
+  @media (max-width: 600px) {
+    .countdown {
+      max-width: 95%;
+      font-size: 1.5rem;
+      padding: 1.5rem 1rem;
+    }
+    .event-desc {
+      max-width: 95%;
+      font-size: 1rem;
+      padding: 0 1rem;
+    }
   }
 </style>
 </head>
@@ -124,17 +137,9 @@
 
 <button id="themeToggle">Tema Değiştir</button>
 
-<div class="container">
-  <h1>Geri Sayım</h1>
-  <p>Atatürk'ün doğum gününe geri sayım:</p>
-
-  <div id="countdown">
-    <div><span id="days">--</span><span class="label">Gün</span></div>
-    <div><span id="hours">--</span><span class="label">Saat</span></div>
-    <div><span id="minutes">--</span><span class="label">Dakika</span></div>
-    <div><span id="seconds">--</span><span class="label">Saniye</span></div>
-  </div>
-</div>
+<h1>Atatürk ve Cumhuriyet ile ilgili Geri Sayım</h1>
+<div class="event-desc" id="eventDesc">En yakın önemli tarihi olaya geri sayım</div>
+<div class="countdown" id="countdown">Yükleniyor...</div>
 
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
@@ -161,45 +166,4 @@
   }
 
   themeToggleBtn.addEventListener('click', () => {
-    if(body.classList.contains('dark-theme')) {
-      body.classList.replace('dark-theme', 'light-theme');
-      localStorage.setItem('theme', 'light');
-    } else {
-      body.classList.replace('light-theme', 'dark-theme');
-      localStorage.setItem('theme', 'dark');
-    }
-  });
-
-  // Geri sayım fonksiyonu
-  function countdown() {
-    // Atatürk doğum günü (örnek: 1881-05-19, her yıl Mayıs 19)
-    const now = new Date();
-    let year = now.getFullYear();
-
-    // Hedef tarih: bu yılın 19 Mayıs'ı
-    let target = new Date(year, 4, 19, 0, 0, 0); // ay 0 bazlı, 4 = Mayıs
-
-    // Eğer geçtiyse, gelecek yıla ayarla
-    if (now > target) {
-      target = new Date(year + 1, 4, 19, 0, 0, 0);
-    }
-
-    const diff = target - now;
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-
-    document.getElementById('days').textContent = days.toString().padStart(2, '0');
-    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-  }
-
-  setInterval(countdown, 1000);
-  countdown();
-</script>
-
-</body>
-</html>
+    if(body.classList
