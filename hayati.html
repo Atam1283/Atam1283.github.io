@@ -42,9 +42,9 @@
       font-size: 3rem;
       margin-bottom: 50px;
       letter-spacing: 3px;
-      color: #fff;
+      color: #ffffff;
       text-transform: uppercase;
-      text-shadow: 1px 1px 5px rgba(255,255,255,0.2);
+      text-shadow: 0 0 15px rgba(255,255,255,0.9);
     }
 
     .timeline {
@@ -53,21 +53,21 @@
       position: relative;
       padding-left: 20px; /* Çizgi sol tam yaslanacak şekilde padding küçültüldü */
       border-left: 4px solid #bbb;
-      /* timeline'ı sol kenara biraz daha yaklaştır */
       margin-left: 0;
     }
 
     .event {
       position: relative;
       margin-bottom: 45px;
-      padding-left: 25px;
+      padding-left: 30px; /* yuvarlağın tam ortalanması için biraz artırıldı */
     }
 
     .event::before {
       content: '';
       position: absolute;
-      left: -27px;
-      top: 6px;
+      left: -32px; /* yuvarlak tam çizgi ortasında */
+      top: 50%;
+      transform: translateY(-50%);
       width: 18px;
       height: 18px;
       background: linear-gradient(135deg, #fff 0%, #aaa 100%);
@@ -109,7 +109,7 @@
         margin-left: 0;
       }
       .event::before {
-        left: -22px;
+        left: -27px;
         width: 14px;
         height: 14px;
       }
