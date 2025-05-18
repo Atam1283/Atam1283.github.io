@@ -1,199 +1,173 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Geri Sayım - Atatürk ve Cumhuriyet Önemli Günler</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet"/>
-  <style>
-    body {
-      margin: 0; padding: 0;
-      font-family: 'Orbitron', sans-serif;
-      background-color: black;
-      color: white;
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      position: relative;
-    }
-
-    #particles-js {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -1;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: #ff4d4d;
-    }
-
-    .countdown {
-      font-size: 3rem;
-      background-color: rgba(255, 77, 77, 0.1);
-      padding: 1rem 2rem;
-      border-radius: 10px;
-      border-left: 6px solid #ff4d4d;
-      min-width: 320px;
-    }
-
-    .event-name {
-      margin-top: 1rem;
-      font-size: 1.5rem;
-      color: #ff4d4d;
-      max-width: 700px;
-      line-height: 1.4;
-    }
-
-    a {
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      color: #ff4d4d;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.8rem;
-      }
-      .countdown {
-        font-size: 2rem;
-        min-width: 260px;
-      }
-      .event-name {
-        font-size: 1.1rem;
-      }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Geri Sayım</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+<style>
+  body {
+    margin: 0; padding: 0;
+    font-family: 'Orbitron', sans-serif;
+    background-color: black;
+    color: white;
+    overflow-x: hidden;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+  }
+  #particles-js {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  header {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+  }
+  header a {
+    color: #ff4d4d;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+  }
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #ff4d4d;
+  }
+  #countdown {
+    font-size: 3rem;
+    margin-top: 1rem;
+    color: white;
+    font-weight: bold;
+  }
+  #event-name {
+    font-size: 1.8rem;
+    margin-top: 0.5rem;
+    color: #ff4d4d;
+  }
+</style>
 </head>
 <body>
 
-  <div id="particles-js"></div>
+<div id="particles-js"></div>
+
+<header>
   <a href="index.html">← Ana Sayfa</a>
+  <a href="hayati.html">Hayat</a>
+</header>
 
-  <h1>En Yakın Önemli Gün İçin Geri Sayım</h1>
-  <div class="countdown" id="countdown">Yükleniyor...</div>
-  <div class="event-name" id="event-name"></div>
+<main>
+  <h1>En Yakın Özel Güne Geri Sayım</h1>
+  <div id="countdown">Yükleniyor...</div>
+  <div id="event-name"></div>
+</main>
 
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <script>
-    particlesJS("particles-js", {
-      particles: {
-        number: { value: 90 },
-        color: { value: "#ff0000" },
-        shape: { type: "circle" },
-        opacity: { value: 0.5 },
-        size: { value: 3 },
-        line_linked: {
-          enable: true,
-          distance: 120,
-          color: "#ff0000",
-          opacity: 0.4,
-          width: 1
-        },
-        move: {
-          enable: true,
-          speed: 2
-        }
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+  particlesJS("particles-js", {
+    particles: {
+      number: { value: 90 },
+      color: { value: "#ff0000" },
+      shape: { type: "circle" },
+      opacity: { value: 0.5 },
+      size: { value: 3 },
+      line_linked: {
+        enable: true,
+        distance: 120,
+        color: "#ff0000",
+        opacity: 0.4,
+        width: 1
       },
-      interactivity: {
-        detect_on: "canvas",
-        events: {
-          onhover: { enable: true, mode: "repulse" },
-          onclick: { enable: true, mode: "push" }
-        },
-        modes: {
-          repulse: { distance: 100 },
-          push: { particles_nb: 4 }
-        }
+      move: {
+        enable: true,
+        speed: 2
+      }
+    },
+    interactivity: {
+      detect_on: "canvas",
+      events: {
+        onhover: { enable: true, mode: "repulse" },
+        onclick: { enable: true, mode: "push" }
       },
-      retina_detect: true
-    });
-  </script>
+      modes: {
+        repulse: { distance: 100 },
+        push: { particles_nb: 4 }
+      }
+    },
+    retina_detect: true
+  });
+</script>
 
-  <script>
-    // Liste halinde verilen önemli günler (Tarih, Gün Adı, Açıklama)
-    const events = [
-      { date: "01-01", name: "Yılbaşı", description: "Yeni yılın ilk günü" },
-      { date: "04-23-1920", name: "Ulusal Egemenlik ve Çocuk Bayramı", description: "TBMM'nin açılışı, Atatürk'ün çocuklara armağanı" },
-      { date: "05-01", name: "Emek ve Dayanışma Günü", description: "İşçi bayramı" },
-      { date: "05-19-1919", name: "Atatürk’ü Anma, Gençlik ve Spor Bayramı", description: "Atatürk’ün Samsun’a çıkarak Kurtuluş Savaşı’nı başlattığı gün" },
-      { date: "08-30-1922", name: "Zafer Bayramı", description: "Başkomutanlık Meydan Muharebesi'nin zaferle sonuçlanması" },
-      { date: "10-29-1923", name: "Cumhuriyet Bayramı", description: "Türkiye Cumhuriyeti’nin ilanı" },
-      { date: "10-08-1920", name: "Sevr Antlaşması", description: "Sevr Antlaşması'nın imzalanması (reddedilmiştir)" },
-      { date: "11-01-1922", name: "Saltanatın Kaldırılması", description: "" },
-      { date: "07-24-1923", name: "Lozan Antlaşması", description: "Lozan Antlaşması’nın imzalanması" },
-      { date: "03-03-1924", name: "Halifeliğin Kaldırılması", description: "Tevhid-i Tedrisat Kanunu" },
-      { date: "10-15-1927", name: "Büyük Nutuk’un TBMM’de okunmaya başlaması", description: "" },
-      { date: "11-10-1938", name: "Atatürk’ün Vefatı", description: "Atatürk’ün İstanbul Dolmabahçe Sarayı’nda vefatı" },
-      { date: "02-17-1925", name: "Şapka Kanunu", description: "" },
-      { date: "11-25-1925", name: "Tekke, zaviye ve türbelerin kapatılması", description: "" },
-      { date: "11-26-1925", name: "Tarikatların kaldırılması", description: "" },
-      { date: "11-01-1928", name: "Harf Devrimi", description: "" },
-      { date: "12-05-1934", name: "Kadınlara seçme ve seçilme hakkı", description: "" },
-      { date: "06-21-1934", name: "Soyadı Kanunu", description: "" },
-      { date: "03-18", name: "Çanakkale Zaferi ve Şehitleri Anma Günü", description: "" },
-      { date: "12-27-1919", name: "Atatürk’ün Ankara’ya gelişi", description: "" },
-      { date: "03-16-1920", name: "İstanbul’un İtilaf Devletleri tarafından işgali", description: "" },
-      { date: "09-04-1919", name: "Sivas Kongresi", description: "" },
-      { date: "07-23-1919", name: "Erzurum Kongresi", description: "" },
-      { date: "07-15", name: "Demokrasi ve Millî Birlik Günü", description: "" }
-    ];
+<script>
+  // Özel günler listesi (sadece ay-gün, yıl yok çünkü her yıl)
+  const events = [
+    { name: "Yılbaşı", date: "01-01" },
+    { name: "Ulusal Egemenlik ve Çocuk Bayramı", date: "04-23" },
+    { name: "Emek ve Dayanışma Günü", date: "05-01" },
+    { name: "Atatürk'ü Anma, Gençlik ve Spor Bayramı", date: "05-19" },
+    { name: "Milli Birlik ve Demokrasi Günü", date: "07-15" },
+    { name: "Zafer Bayramı", date: "08-30" },
+    { name: "Cumhuriyet Bayramı", date: "10-29" },
+    { name: "Atatürk'ü Anma Günü ve Atatürk Haftası", date: "11-10" }
+  ];
 
-    // Tarihleri Date objesine çevirmek için fonksiyon (yıllı/yılsız)
-    function parseEventDate(event, currentYear) {
-      // Eğer yıl varsa (format: MM-DD-YYYY)
-      if (event.date.length === 10) {
-        const parts = event.date.split("-");
-        // yyyy, mm, dd (JS Date ayları 0 bazlı)
-        return new Date(parts[2], parts[0] - 1, parts[1]);
-      } else {
-        // Yıl yok, sadece ay-gün (MM-DD)
-        const parts = event.date.split("-");
-        return new Date(currentYear, parts[0] - 1, parts[1]);
+  function getNextEvent() {
+    const now = new Date();
+    let soonestEvent = null;
+    let soonestDiff = Infinity;
+
+    for (const event of events) {
+      // O yıl için event tarihi
+      let eventDate = new Date(now.getFullYear(), parseInt(event.date.split("-")[0]) - 1, parseInt(event.date.split("-")[1]));
+      // Eğer tarih geçmişse, gelecek yıl olarak ayarla
+      if (eventDate < now) {
+        eventDate.setFullYear(eventDate.getFullYear() + 1);
+      }
+      const diff = eventDate - now;
+      if (diff < soonestDiff) {
+        soonestDiff = diff;
+        soonestEvent = { ...event, eventDate };
       }
     }
+    return soonestEvent;
+  }
 
-    function getNextEvent() {
-      const now = new Date();
-      let minDiff = Infinity;
-      let nextEvent = null;
+  function updateCountdown() {
+    const event = getNextEvent();
+    if (!event) return;
 
-      for (let event of events) {
-        let eventDate = parseEventDate(event, now.getFullYear());
+    const now = new Date();
+    const diff = event.eventDate - now;
 
-        // Eğer geçmişse, bir sonraki yıla al
-        if (eventDate < now) {
-          eventDate.setFullYear(eventDate.getFullYear() + 1);
-        }
-
-        const diff = eventDate - now;
-        if (diff < minDiff) {
-          minDiff = diff;
-          nextEvent = { ...event, eventDate };
-        }
-      }
-
-      return nextEvent;
+    if (diff <= 0) {
+      document.getElementById("countdown").textContent = "Bugün " + event.name + "!";
+      document.getElementById("event-name").textContent = "";
+      return;
     }
 
-    function updateCountdown() {
-      const countdownElem = document.getElementById("countdown");
-      const eventNameElem = document.getElementById("event-name");
-      const nextEvent = getNextEvent();
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
 
-      if (!nextEvent) {
-        countdownElem.textContent = "Yaklaşan etkinlik bulunamadı.";
-        eventNameElem.textContent
+    document.getElementById("countdown").textContent =
+      `${days} Gün ${hours} Saat ${minutes} Dakika ${seconds} Saniye`;
+    document.getElementById("event-name").textContent = event.name + " için geri sayım";
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
