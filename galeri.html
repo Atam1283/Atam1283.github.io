@@ -1,88 +1,86 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Atatürk Galerisi</title>
-<style>
-  body {
-    margin: 0; padding: 20px;
-    background-color: #0a0a0a; /* koyu siyah */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #ff4d4d; /* kırmızı vurgu */
-  }
-  h1 {
-    text-align: center;
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 40px;
-    color: #ff4d4d;
-    text-shadow: 0 0 8px #ff4d4daa;
-  }
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  .gallery-item {
-    background: #1a1a1a;
-    border: 2px solid #ff4d4d;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 0 10px #ff4d4d66;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.4s ease;
-  }
-  .gallery-item:hover {
-    transform: scale(1.07);
-    box-shadow: 0 0 25px #ff4d4dcc;
-  }
-  .gallery-item img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-  }
-  .gallery-item:hover img {
-    transform: scale(1.1);
-  }
-  .gallery-item p {
-    padding: 12px 15px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    color: #ff8080;
-    text-align: center;
-    margin: 0;
-    user-select: none;
-  }
-  a#anasayfa {
-    color: white;
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 18px;
-    z-index: 10;
-    transition: color 0.3s ease;
-  }
-  a#anasayfa:hover {
-    color: #ff4d4d;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atatürk Galerisi</title>
+  <style>
+    body {
+      background-color: #fff;
+      color: #222;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
 
-  @media (max-width: 600px) {
-    .gallery-item img {
-      height: 150px;
+    a#anasayfa {
+      color: #222;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 18px;
+      z-index: 10;
+      background: rgba(0,0,0,0.05);
+      padding: 6px 12px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
     }
+    a#anasayfa:hover {
+      background-color: #222;
+      color: #fff;
+    }
+
     h1 {
-      font-size: 2rem;
-      margin-bottom: 25px;
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: 700;
+      font-size: 2.8rem;
+      color: #111;
     }
-  }
-</style>
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      background: #f9f9f9;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
+    .gallery-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #888;
+      border-color: #555;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      height: 180px;
+      object-fit: cover;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      background-color: #ddd;
+    }
+
+    .gallery-item p {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #444;
+      margin: 0;
+    }
+  </style>
 </head>
 <body>
 
@@ -92,7 +90,7 @@
 
   <section class="gallery">
     <div class="gallery-item">
-      <img src="https://pin.it/6WZjqxBTE" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Mustafa_Kemal_Atat%C3%BCrk_in_1930s.jpg/440px-Mustafa_Kemal_Atat%C3%BCrk_in_1930s.jpg" alt="Atatürk 1930'lar" />
       <p>Mustafa Kemal Atatürk (1930'lar)</p>
     </div>
     <div class="gallery-item">
