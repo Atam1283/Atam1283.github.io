@@ -38,23 +38,6 @@
       margin-bottom: 30px;
       text-shadow: 0 0 10px #fff;
     }
-    #languageSelector {
-      margin-bottom: 30px;
-    }
-    select {
-      font-size: 1.1rem;
-      padding: 6px 12px;
-      border-radius: 6px;
-      border: none;
-      background: #222;
-      color: #eee;
-      cursor: pointer;
-      box-shadow: 0 0 10px #ff4d4d;
-      transition: background-color 0.3s;
-    }
-    select:hover {
-      background-color: #333;
-    }
 
     .countdown-container {
       background-color: #111;
@@ -153,15 +136,7 @@
 
   <a id="anasayfa" href="index.html">← Ana Sayfa</a>
 
-  <h1 id="title">Yaklaşan Önemli Gün</h1>
-
-  <div id="languageSelector">
-    <select id="langSelect" aria-label="Dil Seçimi">
-      <option value="tr">Türkçe</option>
-      <option value="en">English</option>
-      <option value="az">Azərbaycanca</option>
-    </select>
-  </div>
+  <h1>Yaklaşan Önemli Gün</h1>
 
   <div class="countdown-container" role="region" aria-live="polite" aria-atomic="true">
     <div class="event-name" id="eventName">Yükleniyor...</div>
@@ -178,102 +153,44 @@
   </div>
 
   <script>
-    // Diller ve metinler
-    const translations = {
-      tr: {
-        title: "Yaklaşan Önemli Gün",
-        events: [
-          { name: "19 Mayıs Atatürk'ü Anma, Gençlik ve Spor Bayramı", date: "2025-05-19T00:00:00" },
-          { name: "30 Ağustos Zafer Bayramı", date: "2025-08-30T00:00:00" },
-          { name: "29 Ekim Cumhuriyet Bayramı", date: "2025-10-29T00:00:00" },
-          { name: "10 Kasım Atatürk’ü Anma Günü", date: "2025-11-10T09:05:00" },
-        ],
-        labels: {
-          days: "gün",
-          hours: "saat",
-          minutes: "dakika",
-          seconds: "saniye",
-          progressText: "Etkinliğe %"
-        }
-      },
-      en: {
-        title: "Upcoming Important Day",
-        events: [
-          { name: "May 19 Commemoration of Atatürk, Youth and Sports Day", date: "2025-05-19T00:00:00" },
-          { name: "August 30 Victory Day", date: "2025-08-30T00:00:00" },
-          { name: "October 29 Republic Day", date: "2025-10-29T00:00:00" },
-          { name: "November 10 Atatürk Memorial Day", date: "2025-11-10T09:05:00" },
-        ],
-        labels: {
-          days: "days",
-          hours: "hours",
-          minutes: "minutes",
-          seconds: "seconds",
-          progressText: "Progress: %"
-        }
-      },
-      az: {
-        title: "Yaxınlaşan Vacib Gün",
-        events: [
-          { name: "19 May Atatürkü Anma, Gənclik və İdman Bayramı", date: "2025-05-19T00:00:00" },
-          { name: "30 Avqust Zəfər Bayramı", date: "2025-08-30T00:00:00" },
-          { name: "29 Oktyabr Respublika Günü", date: "2025-10-29T00:00:00" },
-          { name: "10 Noyabr Atatürkü Anma Günü", date: "2025-11-10T09:05:00" },
-        ],
-        labels: {
-          days: "gün",
-          hours: "saat",
-          minutes: "dəqiqə",
-          seconds: "saniyə",
-          progressText: "Tədbirə %"
-        }
-      }
+    // Sadece Türkçe metinler ve etkinlikler
+    const events = [
+      { name: "19 Mayıs Atatürk'ü Anma, Gençlik ve Spor Bayramı", date: "2025-05-19T00:00:00" },
+      { name: "30 Ağustos Zafer Bayramı", date: "2025-08-30T00:00:00" },
+      { name: "29 Ekim Cumhuriyet Bayramı", date: "2025-10-29T00:00:00" },
+      { name: "10 Kasım Atatürk’ü Anma Günü", date: "2025-11-10T09:05:00" }
+    ];
+
+    const labels = {
+      days: "gün",
+      hours: "saat",
+      minutes: "dakika",
+      seconds: "saniye",
+      progressText: "Etkinliğe %"
     };
 
-    // Yerel dil ayarı
-    let lang = localStorage.getItem("lang") || "tr";
-
-    const langSelect = document.getElementById("langSelect");
-    const titleEl = document.getElementById("title");
     const eventNameEl = document.getElementById("eventName");
     const countdownEl = document.getElementById("countdown");
     const percentageEl = document.getElementById("percentage");
     const progressBar = document.querySelector(".progress-bar");
     const progressText = document.getElementById("progressText");
 
-    // SVG dairesel çember parametreleri
     const radius = 90;
     const circumference = 2 * Math.PI * radius;
 
     progressBar.style.strokeDasharray = circumference;
 
-    // Dil seçimini uygula ve localStorage kaydet
-    function applyLanguage(selectedLang) {
-      lang = selectedLang;
-      localStorage.setItem("lang", lang);
-      langSelect.value = lang;
-
-      // Başlık
-      titleEl.textContent = translations[lang].title;
-
-      // Yeniden geri sayımı başlat
-      updateCountdown();
-    }
-
-    // En yakın etkinliği al
     function getNextEvent() {
       const now = new Date();
-      return translations[lang].events.find(e => new Date(e.date) > now);
+      return events.find(e => new Date(e.date) > now);
     }
 
-    // Geri sayımı güncelle
     function updateCountdown() {
       const now = new Date();
       const event = getNextEvent();
 
       if (!event) {
-        eventNameEl.textContent = lang === "en" ? "No upcoming events" :
-          lang === "az" ? "Yaxın tədbir yoxdur" : "Yaklaşan etkinlik yok";
+        eventNameEl.textContent = "Yaklaşan etkinlik yok";
         countdownEl.textContent = "";
         percentageEl.textContent = "";
         progressBar.style.strokeDashoffset = circumference;
@@ -283,7 +200,7 @@
 
       const eventDate = new Date(event.date);
 
-      // Yılın başlangıcından etkinliğe toplam süre (milisaniye)
+      // Yılın başından etkinliğe toplam süre (ms)
       const yearStart = new Date(now.getFullYear(), 0, 1);
 
       const totalDuration = eventDate - yearStart;
@@ -291,27 +208,34 @@
       const remaining = eventDate - now;
 
       if (remaining < 0) {
-        // Zaten geçmişse, sonraki etkinliği al
         updateCountdown();
         return;
       }
 
-      // Kalan zaman birimleri
+      // Zaman hesapları
       const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
       const hours = Math.floor((remaining / (1000 * 60 * 60)) % 24);
       const minutes = Math.floor((remaining / (1000 * 60)) % 60);
       const seconds = Math.floor((remaining / 1000) % 60);
 
-      // Metinler
-      const lbl = translations[lang].labels;
-
       eventNameEl.textContent = event.name;
-      countdownEl.textContent = `${days} ${lbl.days} ${hours} ${lbl.hours} ${minutes} ${lbl.minutes} ${seconds} ${lbl.seconds}`;
+      countdownEl.textContent = `${days} ${labels.days} ${hours} ${labels.hours} ${minutes} ${labels.minutes} ${seconds} ${labels.seconds}`;
 
-      // Yüzde hesapla ve göster
+      // Yüzde hesapla ve uygula
       let percentage = (elapsed / totalDuration) * 100;
       if (percentage > 100) percentage = 100;
       if (percentage < 0) percentage = 0;
 
-      percentageEl.textContent = `${lbl.progressText} ${percentage.toFixed(2)}%`;
-      progressText.textContent = `${percentage.toFixed(
+      percentageEl.textContent = `${labels.progressText} ${percentage.toFixed(2)}%`;
+      progressText.textContent = `${percentage.toFixed(1)}%`;
+
+      const offset = circumference - (percentage / 100) * circumference;
+      progressBar.style.strokeDashoffset = offset;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+
+</body>
+</html>
