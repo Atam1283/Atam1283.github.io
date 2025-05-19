@@ -6,58 +6,53 @@
   <title>Atatürk Galerisi</title>
   <style>
     body {
-      background-color: #000;
-      color: #eee;
+      background-color: black;
+      color: white;
       font-family: 'Arial', sans-serif;
       margin: 0;
-      padding: 5vw;
-      box-sizing: border-box;
+      padding: 20px;
     }
 
     a#anasayfa {
-      color: #fff;
+      color: white;
       position: fixed;
       top: 15px;
       left: 15px;
       font-weight: bold;
       text-decoration: none;
-      font-size: 4vw;
-      z-index: 10;
-      transition: color 0.3s ease;
+      font-size: 18px;
     }
+
     a#anasayfa:hover {
-      color: #bbb;
+      color: #ff4d4d;
     }
 
     h1 {
       text-align: center;
       margin-bottom: 40px;
-      font-weight: 700;
-      font-size: 6vw;
-      color: #fff;
-      text-shadow: 0 0 10px #fff;
+      font-size: 2.8rem;
+      text-shadow: 0 0 12px white;
     }
 
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
-      max-width: 1200px;
+      max-width: 1000px;
       margin: 0 auto;
     }
 
     .gallery-item {
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid #eee;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid white;
       border-radius: 10px;
       padding: 10px;
       text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
+      transition: transform 0.3s ease;
     }
+
     .gallery-item:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 15px #eee;
     }
 
     .gallery-item img {
@@ -65,60 +60,39 @@
       height: 180px;
       object-fit: cover;
       border-radius: 8px;
-      margin-bottom: 12px;
-      box-shadow: 0 0 8px #eee88;
     }
 
     .gallery-item p {
-      font-weight: 600;
-      font-size: 1rem;
-      color: #ddd;
-      margin: 0;
-    }
-
-    @media (min-width: 768px) {
-      a#anasayfa {
-        font-size: 16px;
-      }
-
-      h1 {
-        font-size: 48px;
-      }
-
-      .gallery-item p {
-        font-size: 1.1rem;
-      }
-
-      .gallery-item img {
-        height: 200px;
-      }
+      margin-top: 10px;
+      color: #ff4d4d;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
-  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
+<a id="anasayfa" href="index.html">← Ana Sayfa</a>
 
-  <h1>Atatürk Galerisi</h1>
+<h1>Atatürk Galerisi</h1>
 
-  <section class="gallery">
-    <div class="gallery-item">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Mustafa_Kemal_Atat%C3%BCrk_in_1930s.jpg/440px-Mustafa_Kemal_Atat%C3%BCrk_in_1930s.jpg" alt="Atatürk 1930'lar" />
-      <p>Mustafa Kemal Atatürk (1930'lar)</p>
-    </div>
-    <div class="gallery-item">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Ataturk_in_March_1924.jpg/440px-Ataturk_in_March_1924.jpg" alt="Atatürk 1924" />
-      <p>Atatürk, Mart 1924</p>
-    </div>
-    <div class="gallery-item">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Ataturk_in_the_1920s.jpg/440px-Ataturk_in_the_1920s.jpg" alt="Atatürk 1920'ler" />
-      <p>Atatürk (1920'ler)</p>
-    </div>
-    <div class="gallery-item">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Atatürk_1937.jpg/440px-Atatürk_1937.jpg" alt="Atatürk 1937" />
-      <p>Atatürk, 1937</p>
-    </div>
-  </section>
+<section class="gallery">
+  <div class="gallery-item">
+    <img src="images/ataturk1.jpg" alt="Atatürk Fotoğraf 1" />
+    <p>Fotoğraf 1</p>
+  </div>
+  <div class="gallery-item">
+    <img src="images/ataturk2.jpg" alt="Atatürk Fotoğraf 2" />
+    <p>Fotoğraf 2</p>
+  </div>
+  <div class="gallery-item">
+    <img src="images/ataturk3.jpg" alt="Atatürk Fotoğraf 3" />
+    <p>Fotoğraf 3</p>
+  </div>
+  <div class="gallery-item">
+    <img src="images/ataturk4.jpg" alt="Atatürk Fotoğraf 4" />
+    <p>Fotoğraf 4</p>
+  </div>
+</section>
 
 </body>
 </html>
