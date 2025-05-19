@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ana Sayfa</title>
+  <title>Mustafa Kemal Atatürk</title>
   <style>
     body {
       margin: 0;
@@ -62,11 +62,11 @@
     .search-section {
       margin: 20px auto;
       max-width: 600px;
-      background-color: rgba(255, 255, 255, 0.03);
+      background-color: rgba(255,255,255,0.03);
       padding: 20px;
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
     }
 
     .search-section input[type="text"] {
@@ -76,7 +76,7 @@
       border: none;
       font-size: 1rem;
       outline: none;
-      box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.3);
+      box-shadow: inset 0 0 5px rgba(255,255,255,0.3);
     }
 
     .search-section button {
@@ -95,54 +95,19 @@
       background-color: #e60000;
     }
 
-    #settings {
+    .settings {
       position: fixed;
-      top: 15px;
-      right: 15px;
+      top: 10px;
+      right: 10px;
+      z-index: 999;
+    }
+
+    .settings select {
+      padding: 8px;
+      background-color: black;
       color: white;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 1rem;
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 8px 12px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-      z-index: 1000;
-    }
-
-    #settings:hover {
-      background-color: rgba(255, 77, 77, 0.8);
-    }
-
-    #settings-menu {
-      display: none;
-      position: fixed;
-      top: 50px;
-      right: 15px;
-      background-color: rgba(0, 0, 0, 0.95);
-      border: 1px solid #ff4d4d;
-      border-radius: 8px;
-      padding: 10px;
-      min-width: 160px;
-      z-index: 1001;
-    }
-
-    #settings-menu label {
-      display: block;
-      color: white;
-      margin-bottom: 8px;
-      font-weight: bold;
-    }
-
-    #language-select {
-      width: 100%;
-      padding: 6px 8px;
-      border-radius: 6px;
-      border: none;
-      font-size: 1rem;
-      background-color: rgba(255, 255, 255, 0.1);
-      color: white;
-      outline: none;
+      border: 1px solid white;
+      border-radius: 5px;
     }
 
     @media (max-width: 600px) {
@@ -173,64 +138,113 @@
 </head>
 <body>
 
-  <nav>
-    <a href="hayati.html">Hayatı</a>
-    <a href="galeri.html">Galeri</a>
-    <a href="gerisayim.html">Geri Sayım</a>
-  </nav>
-
-  <div id="settings" onclick="toggleSettings()">Ayarlar ▼</div>
-  <div id="settings-menu">
-    <label for="language-select">Dil Seçimi</label>
-    <select id="language-select" onchange="changeLanguage(this.value)">
+  <!-- Dil Ayarı Menüsü -->
+  <div class="settings">
+    <select onchange="changeLanguage(this.value)">
       <option value="tr">Türkçe</option>
       <option value="en">English</option>
-      <option value="az">Azərbaycanca</option>
+      <option value="az">Azərbaycan</option>
     </select>
   </div>
 
+  <!-- Menü -->
+  <nav>
+    <a href="hayati.html" id="menu-life">Hayatı</a>
+    <a href="galeri.html" id="menu-gallery">Galeri</a>
+    <a href="gerisayim.html" id="menu-countdown">Geri Sayım</a>
+  </nav>
+
+  <!-- Arama -->
   <section class="search-section">
     <form onsubmit="aramaYap(); return false;">
       <input type="text" id="arama" placeholder="Atatürk, Cumhuriyet, Türkiye..." />
-      <button type="submit">Ara</button>
+      <button type="submit" id="btn-search">Ara</button>
     </form>
   </section>
 
-  <h1 id="title">Mustafa Kemal Atatürk</h1>
+  <!-- Başlık -->
+  <h1 id="main-title">Mustafa Kemal Atatürk</h1>
 
+  <!-- Söz -->
   <div class="quote" id="quote"></div>
   <div class="quote-source" id="quote-source"></div>
 
   <script>
-    const sozler = [
-      { metin: "Benim naçiz vücudum elbet bir gün toprak olacaktır; fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır.", kaynak: "TBMM, 1927" },
-      { metin: "Yurtta sulh, cihanda sulh.", kaynak: "Ankara, 1931" },
-      { metin: "Egemenlik, kayıtsız şartsız milletindir.", kaynak: "1920, TBMM Açılışı" },
-      { metin: "Milletin bağımsızlığını yine milletin azim ve kararı kurtaracaktır.", kaynak: "Sivas Kongresi, 1919" }
-    ];
-
-    const diller = {
+    const translations = {
       tr: {
+        searchPlaceholder: "Atatürk, Cumhuriyet, Türkiye...",
+        searchButton: "Ara",
         title: "Mustafa Kemal Atatürk",
-        placeholder: "Atatürk, Cumhuriyet, Türkiye...",
-        button: "Ara"
+        menu: { life: "Hayatı", gallery: "Galeri", countdown: "Geri Sayım" }
       },
       en: {
+        searchPlaceholder: "Atatürk, Republic, Turkey...",
+        searchButton: "Search",
         title: "Mustafa Kemal Atatürk",
-        placeholder: "Atatürk, Republic, Turkey...",
-        button: "Search"
+        menu: { life: "Life", gallery: "Gallery", countdown: "Countdown" }
       },
       az: {
+        searchPlaceholder: "Atatürk, Cümhuriyyət, Türkiyə...",
+        searchButton: "Axtar",
         title: "Mustafa Kamal Atatürk",
-        placeholder: "Atatürk, Respublika, Türkiyə...",
-        button: "Axtar"
+        menu: { life: "Həyatı", gallery: "Qalereya", countdown: "Geri Sayım" }
       }
     };
 
-    function rastgeleSoz() {
-      const soz = sozler[Math.floor(Math.random() * sozler.length)];
-      document.getElementById("quote").textContent = `"${soz.metin}"`;
-      document.getElementById("quote-source").textContent = `– ${soz.kaynak}`;
+    const quotes = {
+      tr: [
+        { text: "Benim naçiz vücudum elbet bir gün toprak olacaktır; fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır.", source: "TBMM, 1927" },
+        { text: "Yurtta sulh, cihanda sulh.", source: "Ankara, 1931" },
+        { text: "Egemenlik, kayıtsız şartsız milletindir.", source: "1920, TBMM Açılışı" }
+      ],
+      en: [
+        { text: "My mortal body will surely turn into dust one day; but the Republic of Turkey will live forever.", source: "Grand National Assembly, 1927" },
+        { text: "Peace at home, peace in the world.", source: "Ankara, 1931" },
+        { text: "Sovereignty unconditionally belongs to the nation.", source: "1920, GNA Opening" }
+      ],
+      az: [
+        { text: "Mənim ətdən ibarət cismim bir gün torpaq olacaq; amma Türkiyə Cümhuriyyəti əbədi yaşayacaq.", source: "TBMM, 1927" },
+        { text: "Evində sülh, dünyada sülh.", source: "Ankara, 1931" },
+        { text: "Hakimiyyət qeydsiz-şərtsiz millətindir.", source: "1920, TBMM Açılışı" }
+      ]
+    };
+
+    // Varsayılan dili ayarla
+    document.addEventListener("DOMContentLoaded", () => {
+      const defaultLang = "tr";
+      let lang = localStorage.getItem("lang");
+
+      if (!lang || !["tr", "en", "az"].includes(lang)) {
+        lang = defaultLang;
+        localStorage.setItem("lang", lang);
+      }
+
+      applyLanguage(lang);
+      showRandomQuote(lang);
+
+      // Dil seçim kutusunu seçilen dile göre ayarla
+      document.querySelector(".settings select").value = lang;
+    });
+
+    function changeLanguage(lang) {
+      localStorage.setItem("lang", lang);
+      location.reload();
+    }
+
+    function applyLanguage(lang) {
+      const t = translations[lang];
+      document.getElementById("arama").placeholder = t.searchPlaceholder;
+      document.getElementById("btn-search").textContent = t.searchButton;
+      document.getElementById("main-title").textContent = t.title;
+      document.getElementById("menu-life").textContent = t.menu.life;
+      document.getElementById("menu-gallery").textContent = t.menu.gallery;
+      document.getElementById("menu-countdown").textContent = t.menu.countdown;
+    }
+
+    function showRandomQuote(lang) {
+      const sec = quotes[lang][Math.floor(Math.random() * quotes[lang].length)];
+      document.getElementById("quote").textContent = `"${sec.text}"`;
+      document.getElementById("quote-source").textContent = `– ${sec.source}`;
     }
 
     function aramaYap() {
@@ -240,33 +254,9 @@
         return;
       }
       const sorgu = `site:tr.wikipedia.org OR site:atam.gov.tr OR site:tbmm.gov.tr "${kelime}"`;
-      window.open("https://www.google.com/search?q=" + encodeURIComponent(sorgu), "_blank");
+      const url = "https://www.google.com/search?q=" + encodeURIComponent(sorgu);
+      window.open(url, "_blank");
     }
-
-    function toggleSettings() {
-      const menu = document.getElementById("settings-menu");
-      menu.style.display = menu.style.display === "block" ? "none" : "block";
-    }
-
-    function changeLanguage(lang) {
-  localStorage.setItem("dil", lang);  // Tüm sayfalarda "dil" olarak kullanılmalı
-  applyLanguage(lang);
-}
-
-
-    function applyLanguage(lang) {
-      const l = diller[lang] || diller["tr"];
-      document.getElementById("title").textContent = l.title;
-      document.getElementById("arama").placeholder = l.placeholder;
-      document.querySelector(".search-section button").textContent = l.button;
-      document.getElementById("language-select").value = lang;
-    }
-
-    // Başlangıçta
-    const lang = localStorage.getItem("lang") || "tr";
-    applyLanguage(lang);
-    rastgeleSoz();
   </script>
-
 </body>
 </html>
