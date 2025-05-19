@@ -1,12 +1,12 @@
-<!-- Sağ üstte Ayarlar butonu ve dil seçeneği menüsü -->
+<!-- Ayarlar ve Dil Seçimi -->
 <style>
-  /* Ayarlar butonu ve menü stili */
   #settings {
     position: fixed;
     top: 15px;
     right: 15px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     user-select: none;
+    z-index: 1000;
   }
 
   #settings button {
@@ -33,7 +33,7 @@
     padding: 8px;
     display: none;
     color: white;
-    width: 140px;
+    width: 150px;
     text-align: left;
   }
 
@@ -57,7 +57,7 @@
 
 <div id="settings">
   <button id="settings-btn">Ayarlar ⚙️</button>
-  <div id="lang-menu">
+  <div id="lang-menu" role="menu" aria-label="Dil Seçenekleri">
     <label><input type="radio" name="language" value="tr" checked> Türkçe</label>
     <label><input type="radio" name="language" value="en"> English</label>
     <label><input type="radio" name="language" value="az"> Azərbaycan</label>
@@ -68,26 +68,22 @@
   const settingsBtn = document.getElementById('settings-btn');
   const langMenu = document.getElementById('lang-menu');
 
-  // Ayarlar butonuna tıklayınca menüyü aç/kapa
   settingsBtn.addEventListener('click', () => {
-    if(langMenu.style.display === 'block'){
-      langMenu.style.display = 'none';
-    } else {
-      langMenu.style.display = 'block';
-    }
+    langMenu.style.display = (langMenu.style.display === 'block') ? 'none' : 'block';
   });
 
-  // Dil seçimi değiştiğinde console.log ile göster (buraya kendi dil değiştirme fonksiyonunu ekleyebilirsin)
-  const langRadios = langMenu.querySelectorAll('input[name="language"]');
-  langRadios.forEach(radio => {
-    radio.addEventListener('change', (e) => {
-      console.log('Seçilen dil:', e.target.value);
-      // Burada dil değişimi için gerekli işlemleri yapabilirsin
+  langMenu.querySelectorAll('input[name="language"]').forEach(input => {
+    input.addEventListener('change', e => {
+      const selectedLang = e.target.value;
+      console.log('Seçilen dil:', selectedLang);
+
+      // Buraya dil değişim fonksiyonunu ekleyebilirsin
+      // Örneğin:
+      // changeLanguage(selectedLang);
     });
   });
 
-  // Sayfanın herhangi bir yerine tıklayınca menüyü kapat
-  document.addEventListener('click', (e) => {
+  document.addEventListener('click', e => {
     if (!settingsBtn.contains(e.target) && !langMenu.contains(e.target)) {
       langMenu.style.display = 'none';
     }
