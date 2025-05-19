@@ -3,63 +3,178 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Geri Sayım Sayfası</title>
-
-  <!-- Modern ve okunabilir yazı tipi -->
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet" />
-
+  <title>Geri Sayım</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
-      background-color: #222; /* Koyu tema arka plan */
-      color: #fff;
-      font-family: 'Rubik', sans-serif;
       margin: 0;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      padding: 0;
+      background-color: #121212;
+      color: #f0f0f0;
+      font-family: 'Roboto Slab', serif;
+      text-align: center;
     }
 
-    /* Geri sayım metni için özel stil */
-    .countdown-text {
+    a#anasayfa {
+      color: #f0f0f0;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 18px;
+      transition: color 0.3s ease;
+      z-index: 100;
+      padding: 6px 12px;
+      border-radius: 8px;
+      background-color: rgba(255, 77, 77, 0.15);
+    }
+
+    a#anasayfa:hover {
+      color: #ff6666;
+      background-color: rgba(255, 77, 77, 0.35);
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-top: 80px;
+      text-shadow: 0 0 20px rgba(255, 77, 77, 0.8);
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      user-select: none;
+    }
+
+    .countdown-box {
+      margin: 40px auto;
+      padding: 35px 25px;
+      border: 2px solid rgba(255, 77, 77, 0.7);
+      border-radius: 20px;
+      max-width: 600px;
+      background-color: rgba(255, 255, 255, 0.06);
+      box-shadow: 0 0 18px rgba(255, 77, 77, 0.6);
+      backdrop-filter: blur(7px);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .countdown-box:hover {
+      box-shadow: 0 0 30px rgba(255, 77, 77, 0.9);
+    }
+
+    .event-name {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ff4d4d;
+      margin-bottom: 25px;
+      letter-spacing: 1.5px;
+      user-select: none;
+      text-shadow: 0 0 5px rgba(255, 77, 77, 0.8);
+    }
+
+    .countdown {
       font-size: 2.4rem;
       font-weight: 600;
-      color: #ffffff;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
-      letter-spacing: 1.2px;
-      margin: 1rem 0;
+      color: #fff;
+      text-shadow: 0 0 12px rgba(255, 77, 77, 0.85);
       transition: color 0.3s ease, transform 0.3s ease;
       user-select: none;
     }
 
-    /* Hover ile hafif parlama ve büyüme efekti */
-    .countdown-text:hover {
-      color: #ffd700; /* Altın sarısı */
+    .countdown:hover {
+      color: #ff9999;
       transform: scale(1.05);
       cursor: default;
     }
 
-    /* Olay adı vb. */
-    .event-name {
-      font-size: 1.6rem;
-      font-weight: 400;
-      color: #ddd;
-      margin-top: 0.3rem;
-      text-align: center;
-      user-select: none;
+    /* Mobil uyumluluk */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .countdown-box {
+        margin: 20px;
+        padding: 25px 20px;
+      }
+
+      .event-name {
+        font-size: 1.6rem;
+        margin-bottom: 18px;
+      }
+
+      .countdown {
+        font-size: 1.8rem;
+      }
+
+      a#anasayfa {
+        font-size: 16px;
+        padding: 5px 10px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="countdown-text" id="countdown">
-    05 Gün 12 Saat 34 Dakika 50 Saniye
+  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
+
+  <h1>En Yakın Özel Güne Geri Sayım</h1>
+
+  <div class="countdown-box">
+    <div class="event-name" id="event-name"></div>
+    <div class="countdown" id="countdown"></div>
   </div>
-  <div class="event-name">
-    Cumhuriyet Bayramı
-  </div>
+
+  <script>
+    const events = [
+      { date: '01/01', name: 'Yılbaşı' },
+      { date: '04/23', name: 'Ulusal Egemenlik ve Çocuk Bayramı' },
+      { date: '05/01', name: 'Emek ve Dayanışma Günü' },
+      { date: '05/19', name: 'Atatürk\'ü Anma, Gençlik ve Spor Bayramı' },
+      { date: '07/15', name: 'Milli Birlik ve Demokrasi Günü' },
+      { date: '08/30', name: 'Zafer Bayramı' },
+      { date: '10/29', name: 'Cumhuriyet Bayramı' }
+    ];
+
+    function getNextEvent() {
+      const today = new Date();
+      let currentYear = today.getFullYear();
+
+      const futureEvents = events.map(e => {
+        let [month, day] = e.date.split('/').map(Number);
+        let eventDate = new Date(currentYear, month - 1, day);
+        if (eventDate < today) {
+          eventDate.setFullYear(currentYear + 1);
+        }
+        return { ...e, dateObj: eventDate };
+      });
+
+      futureEvents.sort((a, b) => a.dateObj - b.dateObj);
+      return futureEvents[0];
+    }
+
+    function updateCountdown() {
+      const event = getNextEvent();
+      const now = new Date();
+      const distance = event.dateObj - now;
+
+      if (distance <= 0) {
+        document.getElementById('countdown').textContent = 'Bugün!';
+        document.getElementById('event-name').textContent = event.name;
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      document.getElementById('event-name').textContent = event.name;
+      document.getElementById('countdown').textContent =
+        `${days} gün, ${hours} saat, ${minutes} dakika, ${seconds} saniye kaldı`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
 
 </body>
 </html>
