@@ -9,52 +9,76 @@
     body {
       margin: 0;
       background-color: #000;
+      background-image: url('assets/ataturk-siluet.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
       color: white;
       font-family: Arial, sans-serif;
       text-align: center;
-      padding-top: 100px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ff4d4d;
     }
 
     .baslik {
-      font-size: 48px;
+      font-size: 6vw;
       font-weight: bold;
       color: white;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
       text-shadow: 0 0 6px #ff4d4d;
     }
 
     .soz {
       font-family: 'Great Vibes', cursive;
-      font-size: 30px;
-      max-width: 700px;
+      font-size: 5vw;
+      max-width: 90%;
       margin: 0 auto;
       color: #dddddd;
       text-shadow: 0 0 5px #ffffff88;
     }
 
     .kaynak {
-      font-size: 16px;
-      margin-top: 8px;
+      font-size: 3.5vw;
+      margin-top: 10px;
       color: #cccccc;
       font-style: italic;
     }
 
-    nav {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-    }
+    @media (min-width: 768px) {
+      .baslik {
+        font-size: 48px;
+      }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
+      .soz {
+        font-size: 30px;
+      }
 
-    nav a:hover {
-      color: #ff4d4d;
+      .kaynak {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
@@ -63,7 +87,6 @@
   <nav>
     <a href="hayati.html">Hayatı</a>
     <a href="galeri.html">Galeri</a>
-   
     <a href="gerisayim.html">Geri Sayım</a>
   </nav>
 
