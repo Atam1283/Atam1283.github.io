@@ -122,6 +122,10 @@
       max-width: 900px;
       padding: 0 20px;
       flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
     }
 
     h1 {
@@ -139,12 +143,57 @@
       line-height: 1.5;
       margin-bottom: 10px;
       user-select: none;
+      max-width: 700px;
     }
 
     #location {
       font-size: 1.1rem;
       opacity: 0.7;
       user-select: none;
+    }
+
+    /* Arama motoru */
+    #search-form {
+      width: 100%;
+      max-width: 700px;
+      display: flex;
+      gap: 10px;
+    }
+
+    #search-input {
+      flex-grow: 1;
+      padding: 10px 15px;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      border: 2px solid white;
+      background-color: transparent;
+      color: white;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    #search-input::placeholder {
+      color: #ccc;
+    }
+
+    #search-input:focus {
+      border-color: #ff4d4d;
+    }
+
+    #search-button {
+      padding: 10px 20px;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      border: none;
+      background-color: #ff4d4d;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    #search-button:hover {
+      background-color: #cc3b3b;
     }
 
     /* Responsive */
@@ -154,6 +203,10 @@
       }
       #quote {
         font-size: 1.2rem;
+        max-width: 100%;
+      }
+      #location {
+        font-size: 1rem;
       }
       #lang-menu {
         width: 140px;
@@ -168,6 +221,13 @@
       #settings button {
         font-size: 0.9rem;
         padding: 5px 10px;
+      }
+      #search-input {
+        font-size: 1rem;
+      }
+      #search-button {
+        font-size: 1rem;
+        padding: 10px 15px;
       }
     }
   </style>
@@ -194,29 +254,27 @@
     <h1>Mustafa Kemal Atatürk</h1>
     <div id="quote"></div>
     <div id="location"></div>
+
+    <form id="search-form" role="search" aria-label="Atatürk, Cumhuriyet ve Türkiye arama motoru">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Atatürk, Cumhuriyet veya Türkiye'de ara..."
+        aria-label="Arama kutusu"
+        required
+      />
+      <button type="submit" id="search-button" aria-label="Ara">Ara</button>
+    </form>
   </main>
 
   <script>
-    const quotes = {
-      tr: [
-        { text: "Egemenlik, kayıtsız şartsız milletindir.", location: "Türkiye Büyük Millet Meclisi, 1920" },
-        { text: "Yurtta sulh, cihanda sulh.", location: "Dışişleri Bakanlığı, 1931" },
-        { text: "Hayatta en hakiki mürşit ilimdir.", location: "Samsun, 19 Mayıs 1919" },
-        { text: "Beni görmek demek mutlaka yüzümü görmek değildir.", location: "Samsun, 1919" },
-        { text: "Milletin istiklalini yine milletin azim ve kararı kurtaracaktır.", location: "Ankara, 1920" }
-      ],
-      en: [
-        { text: "Sovereignty belongs unconditionally to the nation.", location: "Grand National Assembly of Turkey, 1920" },
-        { text: "Peace at home, peace in the world.", location: "Ministry of Foreign Affairs, 1931" },
-        { text: "Science is the truest guide in life.", location: "Samsun, May 19, 1919" },
-        { text: "Seeing me does not necessarily mean seeing my face.", location: "Samsun, 1919" },
-        { text: "The nation’s independence will be saved by the nation’s will and determination.", location: "Ankara, 1920" }
-      ],
-      az: [
-        { text: "Suvremənlik şərtsiz olaraq millətə aiddir.", location: "Türkiyə Böyük Millət Məclisi, 1920" },
-        { text: "Yurdda sülh, dünyada sülh.", location: "Xarici İşlər Nazirliyi, 1931" },
-        { text: "Həyatda ən doğru rəhbər elmidir.", location: "Samsun, 19 May 1919" },
-        { text: "Məni görmək mütləq üzümü görmək deyil.", location: "Samsun, 1919" },
-        { text: "Millətin müstəqilliyini millətin iradəsi və qərarı xilas edəcək.", location: "Ankara, 1920" }
-      ]
-   
+    // Dil seçimi menüsü aç/kapa
+    const settingsBtn = document.getElementById('settings-btn');
+    const langMenu = document.getElementById('lang-menu');
+    settingsBtn.addEventListener('click', () => {
+      const expanded = settingsBtn.getAttribute('aria-expanded') === 'true';
+      settingsBtn.setAttribute('aria-expanded', !expanded);
+      langMenu.style.display = expanded ? 'none' : 'block';
+    });
+
+    // Diller ve söz
