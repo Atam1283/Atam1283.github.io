@@ -18,33 +18,32 @@
     box-sizing: border-box;
     position: relative;
   }
-  /* Galeri sayfasındaki Ana Sayfa butonuna benzer stil */
+
+  /* GALERİ SAYFASINDAKİ ANA SAYFA BUTONU STİLİ */
   #homeBtn {
     position: fixed;
     top: 20px;
     left: 20px;
-    background: transparent;
-    border: 1.5px solid #fff;
-    color: #fff;
-    font-weight: 600;
-    padding: 6px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    text-decoration: none;
+    background: none;
+    border: none;
+    color: #ccc;
+    font-weight: 500;
     font-size: 1rem;
-    transition: background-color 0.3s, color 0.3s;
-    user-select: none;
-    z-index: 1000;
+    cursor: pointer;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    user-select: none;
+    padding: 0;
+    transition: color 0.3s ease;
+    text-decoration: underline;
+    z-index: 1000;
   }
   #homeBtn:hover {
-    background-color: #fff;
-    color: #000;
+    color: #fff;
   }
 
   /* En yakın gün kutusu */
   #nearestEventBox {
-    border: 1.8px solid #fff;
+    border: 2.5px solid #fff;
     border-radius: 40px;
     padding: 24px 40px;
     max-width: 90vw;
@@ -54,13 +53,31 @@
     font-weight: 400;
     letter-spacing: 0.03em;
     margin-bottom: 50px;
+
+    /* Parlaklık arttırmak için glow ekledim */
+    box-shadow: 0 0 12px 3px rgba(255, 255, 255, 0.8);
+    transition: box-shadow 0.3s ease;
   }
+  #nearestEventBox:hover {
+    box-shadow: 0 0 20px 6px rgba(255, 255, 255, 1);
+  }
+
+  /* Başlık - event name */
   #nearestEventBox h2 {
     margin: 0 0 12px 0;
-    font-size: 1.8rem;
-    font-weight: 700; /* Kalınlaştırıldı */
+    font-size: 2rem;
+    font-weight: 700; /* Kalın */
     letter-spacing: 0.06em;
+    cursor: pointer;
+
+    /* Hover ile etkileşim */
+    transition: color 0.3s ease, transform 0.3s ease;
   }
+  #nearestEventBox h2:hover {
+    color: #00ffff; /* Parlak mavi/turkuaz */
+    transform: scale(1.07);
+  }
+
   #nearestEventBox .date {
     font-size: 1.3rem;
     font-weight: 600;
@@ -93,7 +110,7 @@
 
   @media (max-width: 480px) {
     #nearestEventBox h2 {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
     }
     #nearestEventBox {
       padding: 18px 24px;
@@ -112,16 +129,16 @@
 </head>
 <body>
 
-<a id="homeBtn" href="index.html" title="Ana Sayfa">Ana Sayfa</a>
+<button id="homeBtn" onclick="location.href='index.html'" title="Ana Sayfa">Ana Sayfa</button>
 
-<div id="nearestEventBox">
-  <h2 id="eventName">Yükleniyor...</h2>
-  <div class="date" id="eventDate"></div>
+<div id="nearestEventBox" tabindex="0" aria-label="En yakın önemli gün bilgisi">
+  <h2 id="eventName" title="Etkinlik adı"></h2>
+  <div class="date" id="eventDate" aria-live="polite"></div>
 </div>
 
-<div id="countdown"></div>
+<div id="countdown" aria-live="polite"></div>
 
-<div id="progressBarContainer">
+<div id="progressBarContainer" aria-label="Geri sayım ilerleme çubuğu">
   <div id="progressBar"></div>
 </div>
 
