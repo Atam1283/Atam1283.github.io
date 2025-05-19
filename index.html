@@ -3,158 +3,117 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mustafa Kemal Atatürk</title>
+  <title>Geri Sayım</title>
   <style>
     body {
-      background-color: #000;
-      color: #eee;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;<!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mustafa Kemal Atatürk</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-  <style>
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      padding: 40px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      box-sizing: border-box;
+      padding: 0;
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
     }
 
-    .nav {
+    a#anasayfa {
+      color: white;
       position: fixed;
-      top: 20px;
-      right: 30px;
-      display: flex;
-      gap: 20px;
-    }
-
-    .nav a {
-      color: #fff;
-      text-decoration: none;
+      top: 15px;
+      left: 15px;
       font-weight: bold;
-      font-size: 1rem;
-      transition: color 0.3s;
+      text-decoration: none;
+      font-size: 18px;
     }
 
-    .nav a:hover {
+    a#anasayfa:hover {
       color: #ff4d4d;
     }
 
     h1 {
-      font-size: 3.5rem;
-      text-align: center;
+      font-size: 2.8rem;
       margin-top: 80px;
-      margin-bottom: 20px;
       text-shadow: 0 0 15px white;
-      user-select: none;
     }
 
-    .el-yazisi {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2rem;
-      color: #ccc;
-      text-align: center;
-      max-width: 700px;
-      user-select: none;
+    .countdown-box {
+      margin: 40px auto;
+      padding: 30px;
+      border: 2px solid white;
+      border-radius: 15px;
+      max-width: 500px;
+      background-color: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 15px white;
+    }
+
+    .event-name {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #ff4d4d;
+      margin-bottom: 20px;
+    }
+
+    .countdown {
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+      font-weight: normal;
     }
   </style>
 </head>
 <body>
 
-  <!-- Sağ üstteki menü -->
-  <div class="nav">
-    <a href="hayati.html">Hayatı</a>
-    <a href="galeri.html">Galeri</a>
-    <a href="gerisayim.html">Geri Sayım</a>
+  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
+
+  <h1>En Yakın Özel Güne Geri Sayım</h1>
+
+  <div class="countdown-box">
+    <div class="event-name" id="event-name"></div>
+    <div class="countdown" id="countdown"></div>
   </div>
 
-  <!-- Başlık -->
-  <h1>Mustafa Kemal Atatürk</h1>
-
-  <!-- El yazısı ile söz -->
-  <div class="el-yazisi" id="quote"></div>
-
   <script>
-    const quotes = [
-      "Yurtta sulh, cihanda sulh.",
-      "Egemenlik kayıtsız şartsız milletindir.",
-      "Hayatta en hakiki mürşit ilimdir.",
-      "Benim naçiz vücudum elbet bir gün toprak olacaktır; fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır.",
-      "Beni görmek demek, mutlaka yüzümü görmek değildir. Benim fikirlerimi, benim duygularımı anlıyorsanız ve hissediyorsanız bu yeterlidir."
+    const events = [
+      { date: '01/01', name: 'Yılbaşı' },
+      { date: '04/23', name: 'Ulusal Egemenlik ve Çocuk Bayramı' },
+      { date: '05/01', name: 'Emek ve Dayanışma Günü' },
+      { date: '05/19', name: 'Atatürk\'ü Anma, Gençlik ve Spor Bayramı' },
+      { date: '07/15', name: 'Milli Birlik ve Demokrasi Günü' },
+      { date: '08/30', name: 'Zafer Bayramı' },
+      { date: '10/29', name: 'Cumhuriyet Bayramı' }
     ];
 
-    function showRandomQuote() {
-      const quoteEl = document.getElementById('quote');
-      const randomIndex = Math.floor(Math.random() * quotes.length);
-      quoteEl.textContent = quotes[randomIndex];
+    function getNextEvent() {
+      const today = new Date();
+      let currentYear = today.getFullYear();
+
+      const futureEvents = events.map(e => {
+        let [month, day] = e.date.split('/').map(Number);
+        let eventDate = new Date(currentYear, month - 1, day);
+        if (eventDate < today) {
+          eventDate.setFullYear(currentYear + 1);
+        }
+        return { ...e, dateObj: eventDate };
+      });
+
+      futureEvents.sort((a, b) => a.dateObj - b.dateObj);
+      return futureEvents[0];
     }
 
-    showRandomQuote();
-  </script>
+    function updateCountdown() {
+      const event = getNextEvent();
+      const now = new Date();
+      const distance = event.dateObj - now;
 
-</body>
-</html>
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
 
-      padding: 40px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      box-sizing: border-box;
-      position: relative;
+      document.getElementById('event-name').textContent = event.name;
+      document.getElementById('countdown').textContent =
+        `${days} gün, ${hours} saat, ${minutes} dakika, ${seconds} saniye kaldı`;
     }
 
-    h1 {
-      font-size: 3rem;
-      text-align: center;
-      text-shadow: 0 0 15px white;
-      margin-bottom: 12px;
-      user-select: none;
-    }
-
-    blockquote {
-      max-width: 600px;
-      font-size: 1.3rem;
-      font-style: italic;
-      color: #ccc;
-      text-align: center;
-      border-left: 4px solid #ff2c2c;
-      padding-left: 18px;
-      user-select: none;
-    }
-  </style>
-</head>
-<body>
-
-  <h1>Mustafa Kemal Atatürk</h1>
-  <blockquote id="quote"></blockquote>
-
-  <script>
-    const quotes = [
-      "Egemenlik, kayıtsız şartsız milletindir. (Türkiye Büyük Millet Meclisi)",
-      "Yurtta sulh, cihanda sulh. (Ankara Nutku)",
-      "Hayatta en hakiki mürşit ilimdir. (1923 Nutku)",
-      "Benim manevi mirasım bilim ve akıldır. (Samsun Nutku)",
-      "Milletin bağımsızlığını yine milletin azim ve kararı kurtaracaktır. (Sivas Kongresi)"
-    ];
-
-    function showRandomQuote() {
-      const quoteEl = document.getElementById('quote');
-      const randomIndex = Math.floor(Math.random() * quotes.length);
-      quoteEl.textContent = quotes[randomIndex];
-    }
-
-    showRandomQuote();
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
   </script>
 
 </body>
