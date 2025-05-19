@@ -1,164 +1,107 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Atatürk'ün Hayatı</title>
   <style>
     body {
-      background-color: #000;
-      color: #eee;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0 5vw 40px;
-      box-sizing: border-box;
-    }
-
-    a#anasayfa {
+      background-color: black;
       color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .dil-secimi {
       position: fixed;
-      top: 15px;
-      left: 15px;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 4vw;
-      z-index: 10;
-      transition: color 0.3s;
+      top: 20px;
+      right: 20px;
+      background-color: rgba(255,255,255,0.05);
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
     }
 
-    a#anasayfa:hover {
-      color: #ff2c2c;
+    .dil-secimi select {
+      background: transparent;
+      color: white;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
     }
 
-    h1 {
-      text-align: center;
-      padding-top: 70px;
-      color: #fff;
-      font-size: 6vw;
-      text-shadow: 0 0 10px white;
-      margin-bottom: 30px;
+    .dil-secimi select option {
+      background-color: black;
+      color: white;
     }
 
-    .timeline {
-      max-width: 900px;
+    .icerik {
+      max-width: 800px;
       margin: 0 auto;
     }
 
-    .event {
-      background-color: rgba(255, 255, 255, 0.04);
-      border-left: 4px solid #fff;
-      padding: 20px;
-      margin: 20px 0;
-      position: relative;
-      border-radius: 6px;
+    .lang {
+      display: none;
     }
 
-    .event::before {
-      content: "";
-      position: absolute;
-      top: 20px;
-      left: -18px;
-      width: 16px;
-      height: 16px;
-      background-color: #fff;
-      border-radius: 50%;
-      border: 3px solid #000;
-    }
-
-    .event.red::before {
-      background-color: #ff2c2c;
-    }
-
-    .event h3 {
-      margin: 0 0 5px;
-      font-size: 4.5vw;
-      color: #fff;
-    }
-
-    .event.red h3 {
-      color: #ff2c2c;
-    }
-
-    .event p {
-      margin: 0;
-      font-size: 4vw;
-      color: #ddd;
-      line-height: 1.5;
-    }
-
-    .event.red p {
-      color: #ffaaaa;
-    }
-
-    @media (min-width: 768px) {
-      a#anasayfa {
-        font-size: 16px;
-      }
-
-      h1 {
-        font-size: 48px;
-      }
-
-      .event h3 {
-        font-size: 20px;
-      }
-
-      .event p {
-        font-size: 16px;
-      }
-
-      .event::before {
-        left: -30px;
-        width: 20px;
-        height: 20px;
-      }
+    .lang.active {
+      display: block;
     }
   </style>
 </head>
 <body>
 
-  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
+<div class="dil-secimi">
+  <label for="dil">Dil: </label>
+  <select id="dil" onchange="dilDegistir(this.value)">
+    <option value="tr">Türkçe</option>
+    <option value="en">English</option>
+    <option value="az">Azərbaycan dili</option>
+  </select>
+</div>
 
-  <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
-
-  <div class="timeline">
-    <div class="event">
-      <h3>1881</h3>
-      <p>Selanik'te doğdu.</p>
-    </div>
-    <div class="event">
-      <h3>1893</h3>
-      <p>Selanik Askerî Rüştiyesi'ne başladı ve "Kemal" ismini aldı.</p>
-    </div>
-    <div class="event">
-      <h3>1905</h3>
-      <p>Harp Akademisi'ni kurmay yüzbaşı olarak bitirdi.</p>
-    </div>
-    <div class="event">
-      <h3>1915</h3>
-      <p>Çanakkale Savaşı'nda büyük başarı gösterdi.</p>
-    </div>
-    <div class="event">
-      <h3>19 Mayıs 1919</h3>
-      <p>Samsun'a çıkarak Kurtuluş Savaşı’nı başlattı.</p>
-    </div>
-    <div class="event">
-      <h3>1920</h3>
-      <p>Türkiye Büyük Millet Meclisi'ni açtı.</p>
-    </div>
-    <div class="event">
-      <h3>1923</h3>
-      <p>Cumhuriyet ilan edildi ve Atatürk ilk Cumhurbaşkanı oldu.</p>
-    </div>
-    <div class="event">
-      <h3>1934</h3>
-      <p>Soyadı Kanunu ile “Atatürk” soyadını aldı.</p>
-    </div>
-    <div class="event red">
-      <h3>10 Kasım 1938</h3>
-      <p>Dolmabahçe Sarayı'nda vefat etti.</p>
-    </div>
+<div class="icerik">
+  <!-- Türkçe -->
+  <div class="lang" id="tr">
+    <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
+    <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğmuştur. Osmanlı İmparatorluğu’nun son dönemlerinde yetişmiş ve modern Türkiye Cumhuriyeti’nin kurucusu olmuştur...</p>
+    <!-- Devamını buraya ekleyebilirsiniz -->
   </div>
+
+  <!-- İngilizce -->
+  <div class="lang" id="en">
+    <h1>The Life of Mustafa Kemal Atatürk</h1>
+    <p>Mustafa Kemal Atatürk was born in 1881 in Thessaloniki. He grew up during the final years of the Ottoman Empire and became the founder of the modern Republic of Turkey...</p>
+    <!-- Add full translation here -->
+  </div>
+
+  <!-- Azerice -->
+  <div class="lang" id="az">
+    <h1>Mustafa Kamal Atatürkün Həyatı</h1>
+    <p>Mustafa Kamal Atatürk 1881-ci ildə Salonikdə anadan olub. Osmanlı İmperiyasının son dövrlərində böyüyüb və müasir Türkiyə Cümhuriyyətinin qurucusu olmuşdur...</p>
+    <!-- Add full translation here -->
+  </div>
+</div>
+
+<script>
+  function dilDegistir(dil) {
+    localStorage.setItem('seciliDil', dil);
+    guncelleDil();
+  }
+
+  function guncelleDil() {
+    const seciliDil = localStorage.getItem('seciliDil') || 'tr';
+    document.querySelectorAll('.lang').forEach(div => {
+      div.classList.remove('active');
+    });
+    const aktifDiv = document.getElementById(seciliDil);
+    if (aktifDiv) aktifDiv.classList.add('active');
+    document.getElementById('dil').value = seciliDil;
+  }
+
+  window.onload = guncelleDil;
+</script>
 
 </body>
 </html>
