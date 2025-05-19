@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ana Sayfa</title>
   <style>
     body {
@@ -13,7 +13,6 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
     }
-
     nav {
       display: flex;
       flex-wrap: wrap;
@@ -23,7 +22,6 @@
       background-color: rgba(255, 255, 255, 0.05);
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     }
-
     nav a {
       color: white;
       text-decoration: none;
@@ -31,19 +29,17 @@
       transition: 0.3s;
       font-size: 1.1rem;
     }
-
     nav a:hover {
       color: #ff4d4d;
     }
-
     h1 {
       font-size: 2.8rem;
       margin-top: 40px;
       font-weight: bold;
       color: white;
       text-shadow: 0 0 15px white;
+      user-select: none;
     }
-
     .quote {
       font-family: 'Brush Script MT', cursive;
       font-size: 1.8rem;
@@ -51,14 +47,14 @@
       max-width: 800px;
       color: #f0f0f0;
       padding: 0 20px;
+      user-select: none;
     }
-
     .quote-source {
       font-size: 1rem;
       color: #bbb;
       margin-top: 5px;
+      user-select: none;
     }
-
     .search-section {
       margin: 20px auto;
       max-width: 600px;
@@ -68,7 +64,6 @@
       border: 1px solid rgba(255,255,255,0.2);
       box-shadow: 0 0 10px rgba(255,255,255,0.1);
     }
-
     .search-section input[type="text"] {
       padding: 12px;
       width: 70%;
@@ -78,7 +73,6 @@
       outline: none;
       box-shadow: inset 0 0 5px rgba(255,255,255,0.3);
     }
-
     .search-section button {
       padding: 12px 20px;
       background-color: #ff4d4d;
@@ -90,84 +84,132 @@
       font-weight: bold;
       transition: 0.3s ease;
     }
-
     .search-section button:hover {
       background-color: #e60000;
     }
-
     @media (max-width: 600px) {
       .search-section input[type="text"] {
         width: 100%;
         margin-bottom: 10px;
       }
-
       .search-section button {
         width: 100%;
         margin-left: 0;
       }
-
       .search-section form {
         display: flex;
         flex-direction: column;
       }
-
       h1 {
         font-size: 2.2rem;
       }
-
       .quote {
         font-size: 1.4rem;
       }
+    }
+    /* Ayarlar butonu sağ üstte */
+    #settings-container {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      user-select: none;
+      z-index: 1000;
+    }
+    #settings-btn {
+      background: none;
+      border: 2px solid white;
+      color: white;
+      padding: 6px 12px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    #settings-btn:hover {
+      background-color: #ff4d4d;
+      border-color: #ff4d4d;
+      color: white;
+    }
+    #settings-menu {
+      display: none;
+      background: #222;
+      border: 1px solid #444;
+      margin-top: 8px;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-align: left;
+      min-width: 140px;
+    }
+    #settings-menu label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+      font-weight: normal;
+      font-size: 16px;
+      color: white;
+    }
+    #settings-menu input[type="radio"] {
+      margin-right: 8px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="hayati.html">Hayatı</a>
-    <a href="galeri.html">Galeri</a>
-    <a href="gerisayim.html">Geri Sayım</a>
+  <nav id="menu">
+    <a href="hayati.html" data-key="menu_hayati">Hayatı</a>
+    <a href="galeri.html" data-key="menu_galeri">Galeri</a>
+    <a href="gerisayim.html" data-key="menu_gerisayim">Geri Sayım</a>
   </nav>
 
+  <div id="settings-container">
+    <button id="settings-btn" aria-haspopup="true" aria-expanded="false" aria-controls="settings-menu">Ayarlar ⚙️</button>
+    <div id="settings-menu" role="menu" aria-label="Ayarlar Menüsü">
+      <form>
+        <label><input type="radio" name="language" value="tr" /> Türkçe</label>
+        <label><input type="radio" name="language" value="en" /> English</label>
+        <label><input type="radio" name="language" value="az" /> Azərbaycan</label>
+      </form>
+    </div>
+  </div>
+
   <section class="search-section">
-    <form onsubmit="aramaYap(); return false;">
-      <input type="text" id="arama" placeholder="Atatürk, Cumhuriyet, Türkiye..." />
-      <button type="submit">Ara</button>
+    <form id="search-form" onsubmit="aramaYap(); return false;">
+      <input type="text" id="arama" placeholder="Atatürk, Cumhuriyet, Türkiye..." aria-label="Arama" />
+      <button type="submit" id="search-button">Ara</button>
     </form>
   </section>
 
-  <h1>Mustafa Kemal Atatürk</h1>
+  <h1 id="main-title">Mustafa Kemal Atatürk</h1>
 
   <div class="quote" id="quote"></div>
   <div class="quote-source" id="quote-source"></div>
 
   <script>
-    const sozler = [
-      { metin: "Benim naçiz vücudum elbet bir gün toprak olacaktır; fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır.", kaynak: "TBMM, 1927" },
-      { metin: "Yurtta sulh, cihanda sulh.", kaynak: "Ankara, 1931" },
-      { metin: "Egemenlik, kayıtsız şartsız milletindir.", kaynak: "1920, TBMM Açılışı" },
-      { metin: "Milletin bağımsızlığını yine milletin azim ve kararı kurtaracaktır.", kaynak: "Sivas Kongresi, 1919" }
-    ];
-
-    function rastgeleSoz() {
-      const sec = sozler[Math.floor(Math.random() * sozler.length)];
-      document.getElementById("quote").textContent = `"${sec.metin}"`;
-      document.getElementById("quote-source").textContent = `– ${sec.kaynak}`;
-    }
-
-    function aramaYap() {
-      const kelime = document.getElementById("arama").value.trim();
-      if (!kelime) {
-        alert("Lütfen bir arama kelimesi giriniz.");
-        return;
-      }
-      const sorgu = `site:tr.wikipedia.org OR site:atam.gov.tr OR site:tbmm.gov.tr "${kelime}"`;
-      const url = "https://www.google.com/search?q=" + encodeURIComponent(sorgu);
-      window.open(url, "_blank");
-    }
-
-    rastgeleSoz();
-  </script>
-
-</body>
-</html>
+    // Dil ve içerikler
+    const content = {
+      tr: {
+        mainTitle: "Mustafa Kemal Atatürk",
+        menu_hayati: "Hayatı",
+        menu_galeri: "Galeri",
+        menu_gerisayim: "Geri Sayım",
+        searchPlaceholder: "Atatürk, Cumhuriyet, Türkiye...",
+        searchButton: "Ara",
+        sozler: [
+          { metin: "Benim naçiz vücudum elbet bir gün toprak olacaktır; fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır.", kaynak: "TBMM, 1927" },
+          { metin: "Yurtta sulh, cihanda sulh.", kaynak: "Ankara, 1931" },
+          { metin: "Egemenlik, kayıtsız şartsız milletindir.", kaynak: "1920, TBMM Açılışı" },
+          { metin: "Milletin bağımsızlığını yine milletin azim ve kararı kurtaracaktır.", kaynak: "Sivas Kongresi, 1919" }
+        ],
+        googleSites: 'site:tr.wikipedia.org OR site:atam.gov.tr OR site:tbmm.gov.tr'
+      },
+      en: {
+        mainTitle: "Mustafa Kemal Atatürk",
+        menu_hayati: "Life",
+        menu_galeri: "Gallery",
+        menu_gerisayim: "Countdown",
+        searchPlaceholder: "Atatürk, Republic, Turkey...",
+        searchButton: "Search",
+        sozler: [
+          { metin: "My humble body will surely become soil one day; but the Republic of Turkey will live forever.", kaynak: "Grand National Assembly, 1927" },
+          { metin: "Peace at
