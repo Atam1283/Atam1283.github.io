@@ -1,5 +1,202 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Atatürk Sitesi</title>
+
+<style>
+  /* Genel */
+  body {
+    margin:0; padding:0;
+    background-color: black;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Üst Menü */
+  nav {
+    display: flex;
+    justify-content: center;
+    background: #111;
+    padding: 12px 0;
+    font-weight: bold;
+    gap: 20px;
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+  }
+  nav a:hover {
+    color: #ff4d4d;
+  }
+
+  /* Ayarlar Butonu */
+  #settings-container {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+  }
+  #settings-btn {
+    background: none;
+    border: 2px solid white;
+    color: white;
+    padding: 6px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  #settings-btn:hover {
+    background-color: #ff4d4d;
+    border-color: #ff4d4d;
+    color: white;
+  }
+
+  /* Ayarlar Menüsü */
+  #settings-menu {
+    display: none;
+    background: #222;
+    border: 1px solid #444;
+    margin-top: 8px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-align: left;
+  }
+  #settings-menu label {
+    display: block;
+    margin: 6px 0;
+    cursor: pointer;
+    font-weight: normal;
+    font-size: 16px;
+  }
+  #settings-menu input[type="radio"] {
+    margin-right: 8px;
+  }
+
+  /* Ana Başlık */
+  #main-title {
+    margin-top: 80px;
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    user-select: none;
+  }
+
+  /* Atatürk Sözü */
+  #quote-container {
+    margin-top: 16px;
+    font-family: 'Segoe Script', 'Comic Sans MS', cursive;
+    font-size: 1.7rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    line-height: 1.4;
+    user-select: none;
+  }
+  #location {
+    margin-top: 8px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ff4d4d;
+  }
+
+  /* Arama Kutusu */
+  #search-form {
+    margin: 40px auto 60px;
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  #search-input {
+    flex-grow: 1;
+    padding: 12px 14px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+  }
+  #search-submit {
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  #search-submit:hover {
+    background-color: #e04343;
+  }
+
+  /* Responsive */
+  @media(max-width: 600px) {
+    #main-title {
+      font-size: 2.2rem;
+      margin-top: 50px;
+    }
+    #quote-container {
+      font-size: 1.3rem;
+      max-width: 90vw;
+    }
+    #search-form {
+      flex-direction: column;
+      max-width: 90vw;
+    }
+    #search-submit {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html">Ana Sayfa</a>
+  <a href="hayati.html">Hayatı</a>
+  <a href="galeri.html">Galeri</a>
+  <a href="gerisayim.html">Geri Sayım</a>
+</nav>
+
+<div id="settings-container">
+  <button id="settings-btn" aria-haspopup="true" aria-expanded="false" aria-controls="settings-menu">Ayarlar ⚙️</button>
+  <div id="settings-menu" role="menu" aria-label="Ayarlar Menüsü">
+    <form>
+      <label><input type="radio" name="language" value="tr" /> Türkçe</label>
+      <label><input type="radio" name="language" value="en" /> English</label>
+      <label><input type="radio" name="language" value="az" /> Azərbaycan</label>
+    </form>
+  </div>
+</div>
+
+<h1 id="main-title">Mustafa Kemal Atatürk</h1>
+
+<div id="quote-container">
+  <div id="quote">“Bilim ve akıl her zaman yol göstericidir.”</div>
+  <div id="location">1924, Türkiye</div>
+</div>
+
+<form id="search-form" role="search" aria-label="Arama Formu">
+  <input id="search-input" type="search" placeholder="Atatürk, Cumhuriyet ve Türkiye hakkında ara..." aria-label="Arama" />
+  <button id="search-submit" type="submit">Ara</button>
+</form>
+
 <script>
-  // Atatürk sözleri - üç dilde
+  // Sözler
   const quotes = {
     tr: [
       { text: "Yurtta sulh, cihanda sulh.", location: "1923, Türkiye" },
@@ -21,101 +218,20 @@
     ]
   };
 
+  // Elemanlar
   const quoteEl = document.getElementById('quote');
   const locationEl = document.getElementById('location');
   const settingsBtn = document.getElementById('settings-btn');
-  const languageBtn = document.getElementById('language-btn');
   const settingsMenu = document.getElementById('settings-menu');
   const languageRadios = settingsMenu.querySelectorAll('input[name="language"]');
   const searchForm = document.getElementById('search-form');
   const searchInput = document.getElementById('search-input');
 
-  // Dil seçimi için localStorage anahtarı
+  // Dil ayarı anahtarı
   const LANG_KEY = 'selectedLanguage';
 
-  // Varsayılan dil
+  // Mevcut dil (localStorage’dan oku veya varsayılan tr)
   let currentLang = localStorage.getItem(LANG_KEY) || 'tr';
 
-  // Dil seçim radyo butonlarını güncelle
-  function updateLanguageRadios() {
-    languageRadios.forEach(radio => {
-      radio.checked = radio.value === currentLang;
-    });
-  }
-
-  // Sözleri rastgele göster (sayfa yüklendiğinde veya dil değiştiğinde)
-  function showRandomQuote() {
-    const list = quotes[currentLang];
-    const randomIndex = Math.floor(Math.random() * list.length);
-    const quote = list[randomIndex];
-    quoteEl.textContent = `"${quote.text}"`;
-    locationEl.textContent = quote.location;
-  }
-
-  // Ayarlar menüsünü aç/kapa
-  function toggleSettingsMenu() {
-    const isVisible = settingsMenu.style.display === 'block';
-    if (isVisible) {
-      settingsMenu.style.display = 'none';
-      settingsBtn.setAttribute('aria-expanded', 'false');
-      languageBtn.setAttribute('aria-expanded', 'false');
-    } else {
-      settingsMenu.style.display = 'block';
-      settingsBtn.setAttribute('aria-expanded', 'true');
-      languageBtn.setAttribute('aria-expanded', 'true');
-    }
-  }
-
-  // Sayfa yüklendiğinde dil ayarlarını uygula
-  function init() {
-    updateLanguageRadios();
-    showRandomQuote();
-  }
-
-  // Dil değişince işlemler
-  function changeLanguage(lang) {
-    currentLang = lang;
-    localStorage.setItem(LANG_KEY, lang);
-    updateLanguageRadios();
-    showRandomQuote();
-  }
-
-  // Arama formu submit olduğunda Google'da arama yapacak
-  searchForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const query = searchInput.value.trim();
-    if (!query) return;
-    const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-    window.open(searchUrl, '_blank');
-  });
-
-  // Ayarlar veya Dil butonuna tıklandığında menüyü aç/kapa
-  settingsBtn.addEventListener('click', e => {
-    e.stopPropagation();
-    toggleSettingsMenu();
-  });
-  languageBtn.addEventListener('click', e => {
-    e.stopPropagation();
-    toggleSettingsMenu();
-  });
-
-  // Dil radyo butonlarına tıklayınca dili değiştir
-  languageRadios.forEach(radio => {
-    radio.addEventListener('change', e => {
-      changeLanguage(e.target.value);
-      settingsMenu.style.display = 'none';
-      settingsBtn.setAttribute('aria-expanded', 'false');
-      languageBtn.setAttribute('aria-expanded', 'false');
-    });
-  });
-
-  // Menü dışında bir yere tıklandığında menüyü kapat
-  document.addEventListener('click', () => {
-    settingsMenu.style.display = 'none';
-    settingsBtn.setAttribute('aria-expanded', 'false');
-    languageBtn.setAttribute('aria-expanded', 'false');
-  });
-
-  // Sayfa yüklendiğinde çalıştır
-  window.addEventListener('load', init);
-</script>
+  // Dil seçim radyo güncelleme
+  function updateLanguage
