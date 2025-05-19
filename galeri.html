@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Atatürk Galerisi</title>
-  <!-- Font Awesome CDN (İnstagram simgesi için) -->
+  <!-- Font Awesome (Instagram simgesi için) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
   <style>
@@ -98,20 +98,21 @@
       margin-top: 4px;
     }
 
-    .instagram {
-      margin-top: 10px;
-      font-size: 0.95rem;
+    .instagram-below {
+      margin-top: 5px;
+      text-align: left;
     }
 
-    .instagram a {
-      color: #fff;
+    .instagram-below a {
+      color: white;
       text-decoration: none;
+      font-size: 0.95rem;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
 
-    .instagram a:hover {
+    .instagram-below a:hover {
       color: #ff4d4d;
     }
 
@@ -123,6 +124,10 @@
       .gallery-item img {
         height: auto;
         max-height: 250px;
+      }
+
+      .instagram-below {
+        font-size: 0.85rem;
       }
     }
   </style>
@@ -136,20 +141,22 @@
 
   <div class="gallery-wrapper">
     <section class="gallery">
-
-      <!-- 1. Fotoğraf + Instagram -->
-      <div class="gallery-item">
-        <img src="images/ataturk1.jpg" alt="Atatürk Fotoğraf 1" />
-        <div class="caption">Atatürk Fotoğraf 1</div>
-        <div class="location">Ankara - 1923</div>
-        <div class="instagram">
+      
+      <!-- İlk fotoğraf -->
+      <div>
+        <div class="gallery-item">
+          <img src="images/ataturk1.jpg" alt="Atatürk Fotoğraf 1" />
+          <div class="caption">Atatürk Fotoğraf 1</div>
+          <div class="location">Ankara - 1923</div>
+        </div>
+        <div class="instagram-below">
           <a href="https://www.instagram.com/muhammedefekrkmz01" target="_blank">
             <i class="fab fa-instagram"></i> @muhammedefekrkmz01
           </a>
         </div>
       </div>
 
-      <!-- Diğer Fotoğraflar -->
+      <!-- Diğer fotoğraflar -->
       <div class="gallery-item">
         <img src="images/ataturk2.jpg" alt="Atatürk Fotoğraf 2" />
         <div class="caption">Atatürk Fotoğraf 2</div>
@@ -165,6 +172,7 @@
         <div class="caption">Atatürk Fotoğraf 4</div>
         <div class="location">İstanbul - 1936</div>
       </div>
+
     </section>
   </div>
 
