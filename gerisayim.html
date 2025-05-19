@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>En Yakın Önemli Gün - Geri Sayım</title>
 <style>
-  /* Genel reset ve temel stil */
   body {
     margin: 0;
     padding: 40px 20px;
@@ -19,8 +18,6 @@
     box-sizing: border-box;
     position: relative;
   }
-
-  /* Ana Sayfa Butonu (sol üst) */
   #homeBtn {
     position: fixed;
     top: 20px;
@@ -43,7 +40,6 @@
     color: #000;
   }
 
-  /* Başlık ince tüp şeklinde */
   h1 {
     font-weight: 300;
     font-size: 2rem;
@@ -58,30 +54,31 @@
     max-width: 90vw;
   }
 
-  /* Etkinlik adı - parlak beyaz, ince tüp */
-  #eventName {
-    font-weight: 300;
-    font-size: 1.8rem;
-    padding: 8px 30px;
-    border: 1px solid #fff;
+  /* En yakın gün kutusu */
+  #nearestEventBox {
+    border: 1.8px solid #fff;
     border-radius: 40px;
-    color: #fff;
-    text-align: center;
-    letter-spacing: 0.06em;
-    margin-bottom: 12px;
-    user-select: none;
+    padding: 24px 40px;
     max-width: 90vw;
-  }
-
-  /* Tarih */
-  #eventDate {
-    font-weight: 600;
-    font-size: 1.5rem;
-    margin-bottom: 30px;
+    text-align: center;
     user-select: none;
+    color: #fff;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    margin-bottom: 50px;
+  }
+  #nearestEventBox h2 {
+    margin: 0 0 12px 0;
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+  }
+  #nearestEventBox .date {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 8px;
   }
 
-  /* Geri sayım */
   #countdown {
     font-size: 1.4rem;
     font-weight: 400;
@@ -90,7 +87,6 @@
     user-select: none;
   }
 
-  /* İlerleme çubuğu */
   #progressBarContainer {
     width: 80%;
     max-width: 600px;
@@ -99,7 +95,6 @@
     border-radius: 50px;
     box-shadow: inset 0 0 8px #111;
   }
-
   #progressBar {
     height: 100%;
     width: 0%;
@@ -109,12 +104,18 @@
   }
 
   @media (max-width: 480px) {
-    h1, #eventName {
+    h1 {
       font-size: 1.4rem;
       padding: 6px 24px;
     }
-    #eventDate {
-      font-size: 1.2rem;
+    #nearestEventBox h2 {
+      font-size: 1.4rem;
+    }
+    #nearestEventBox {
+      padding: 18px 24px;
+    }
+    #nearestEventBox .date {
+      font-size: 1.1rem;
     }
     #countdown {
       font-size: 1.1rem;
@@ -131,8 +132,11 @@
 
 <h1>En Yakın Önemli Gün</h1>
 
-<div id="eventName">Yükleniyor...</div>
-<div id="eventDate"></div>
+<div id="nearestEventBox">
+  <h2 id="eventName">Yükleniyor...</h2>
+  <div class="date" id="eventDate"></div>
+</div>
+
 <div id="countdown"></div>
 
 <div id="progressBarContainer">
