@@ -1,92 +1,126 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mustafa Kemal Atatürk</title>
-  <style>
-    body {
-      background-color: #000;
-      color: #eee;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 40px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      box-sizing: border-box;
-      position: relative;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mustafa Kemal Atatürk</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
 
-    /* Zaman Çizelgesi butonu sağ üstte */
-    a#timelineBtn {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      background: transparent;
-      border: 2px solid #eee;
-      color: #eee;
-      padding: 8px 14px;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 6px;
-      font-size: 14px;
-      transition: all 0.3s ease;
-      z-index: 10;
-      cursor: pointer;
-    }
-    a#timelineBtn:hover {
-      background: #ff2c2c;
-      border-color: #ff2c2c;
-      color: white;
-    }
+  /* Sol üstte Ana Sayfa linki */
+  a#anasayfa {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    z-index: 1000;
+    transition: color 0.3s;
+  }
+  a#anasayfa:hover {
+    color: #ff4d4d;
+    cursor: pointer;
+  }
 
-    h1 {
-      font-size: 3rem;
-      text-align: center;
-      text-shadow: 0 0 15px white;
-      margin-bottom: 12px;
-      user-select: none;
-    }
+  /* Üst menü - diğer sayfa linkleri (zaman çizelgesi yok) */
+  nav {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 1000;
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: color 0.3s;
+  }
+  nav a:hover {
+    color: #ff4d4d;
+    cursor: pointer;
+  }
 
-    blockquote {
-      max-width: 600px;
-      font-size: 1.3rem;
-      font-style: italic;
-      color: #ccc;
-      text-align: center;
-      border-left: 4px solid #ff2c2c;
-      padding-left: 18px;
-      user-select: none;
-    }
-  </style>
+  /* Başlık ve sözün olduğu alan */
+  .header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 160px;
+    padding-top: 60px;
+    text-align: center;
+    user-select: none;
+  }
+
+  .header-container h1 {
+    font-size: 3.5rem;
+    margin: 0;
+    font-weight: 900;
+    color: white;
+    text-shadow: 0 0 15px white;
+  }
+
+  .header-container .quote {
+    margin: 15px 0 5px 0;
+    font-size: 1.6rem;
+    font-weight: 600;
+    font-style: italic;
+    color: #ddd;
+    max-width: 700px;
+  }
+
+  .header-container .source {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #aaa;
+    max-width: 700px;
+  }
+</style>
 </head>
 <body>
 
-  <!-- Zaman Çizelgesi Butonu sağ üstte -->
-  <a id="timelineBtn" href="timeline.html">Zaman Çizelgesi</a>
+  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
 
-  <h1>Mustafa Kemal Atatürk</h1>
-  <blockquote id="quote"></blockquote>
+  <nav>
+    <a href="hayat.html">Hayatı</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="geri-sayim.html">Geri Sayım</a>
+  </nav>
 
-  <script>
-    const quotes = [
-      "Egemenlik, kayıtsız şartsız milletindir. (Türkiye Büyük Millet Meclisi)",
-      "Yurtta sulh, cihanda sulh. (Ankara Nutku)",
-      "Hayatta en hakiki mürşit ilimdir. (1923 Nutku)",
-      "Benim manevi mirasım bilim ve akıldır. (Samsun Nutku)",
-      "Milletin bağımsızlığını yine milletin azim ve kararı kurtaracaktır. (Sivas Kongresi)"
-    ];
+  <div class="header-container">
+    <h1>Mustafa Kemal Atatürk</h1>
+    <div class="quote" id="quoteText">Loading...</div>
+    <div class="source" id="quoteSource"></div>
+  </div>
 
-    function showRandomQuote() {
-      const quoteEl = document.getElementById('quote');
-      const randomIndex = Math.floor(Math.random() * quotes.length);
-      quoteEl.textContent = quotes[randomIndex];
-    }
+<script>
+  const quotes = [
+    { text: "Yurtta sulh, cihanda sulh.", source: "Atatürk'ün Söylev ve Demeçleri" },
+    { text: "Egemenlik kayıtsız şartsız milletindir.", source: "1920 TBMM Açılışı" },
+    { text: "Hayatta en hakiki mürşit ilimdir.", source: "1923 Nutuk" },
+    { text: "Türkiye Cumhuriyeti ilelebet payidar kalacaktır.", source: "1927 Nutuk" },
+    { text: "Benim naçiz vücudum bir gün toprak olacaktır.", source: "1938 Vasiyeti" },
+    { text: "Milletin bağımsızlığı, yine milletin azim ve kararıyla kurtarılacaktır.", source: "1919 Samsun'a Çıkışı" },
+    { text: "Özgürlük ve bağımsızlık benim karakterimdir.", source: "1927 Nutuk" },
+    { text: "Türk, öğün, çalış, güven.", source: "1923 Nutuk" }
+  ];
 
-    showRandomQuote();
-  </script>
+  const randomIndex = Math.floor(Math.random() * quotes.length);
+  const selectedQuote = quotes[randomIndex];
+
+  document.getElementById("quoteText").textContent = `"${selectedQuote.text}"`;
+  document.getElementById("quoteSource").textContent = `— ${selectedQuote.source}`;
+</script>
 
 </body>
 </html>
