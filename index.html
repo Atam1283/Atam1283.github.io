@@ -249,9 +249,10 @@
     }
 
     function changeLanguage(lang) {
-      localStorage.setItem("lang", lang);
-      applyLanguage(lang);
-    }
+  localStorage.setItem("dil", lang);  // Tüm sayfalarda "dil" olarak kullanılmalı
+  applyLanguage(lang);
+}
+
 
     function applyLanguage(lang) {
       const l = diller[lang] || diller["tr"];
