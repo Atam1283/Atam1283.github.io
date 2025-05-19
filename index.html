@@ -1,221 +1,95 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mustafa Kemal Atatürk</title>
-  <style>
-    body {
-      margin: 0;
-      background-color: #000;
-      color: white;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      justify-content: center;
-      text-align: center;
-      padding: 20px;
-    }
+<!-- Sağ üstte Ayarlar butonu ve dil seçeneği menüsü -->
+<style>
+  /* Ayarlar butonu ve menü stili */
+  #settings {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    user-select: none;
+  }
 
-    h1 {
-      font-size: 3rem;
-      margin: 0 0 15px 0;
-      font-weight: normal;
-      letter-spacing: 2px;
-    }
+  #settings button {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
 
-    .quote {
-      font-family: 'Lucida Handwriting', cursive, 'Segoe UI';
-      font-size: 1.5rem;
-      font-style: italic;
-      margin-bottom: 60px;
-      max-width: 700px;
-      line-height: 1.4;
-    }
+  #settings button:hover {
+    background-color: white;
+    color: black;
+  }
 
-    .quote-location {
-      font-size: 1rem;
-      color: #ccc;
-      margin-top: 5px;
-      font-style: normal;
-    }
+  #lang-menu {
+    margin-top: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid white;
+    border-radius: 8px;
+    padding: 8px;
+    display: none;
+    color: white;
+    width: 140px;
+    text-align: left;
+  }
 
-    /* Ayarlar / Dil Seçimi */
-    .settings {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 10;
-    }
+  #lang-menu label {
+    display: block;
+    cursor: pointer;
+    padding: 6px 4px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+  }
 
-    .dropbtn {
-      background-color: transparent;
-      color: white;
-      font-size: 16px;
-      border: 2px solid white;
-      border-radius: 5px;
-      padding: 8px 12px;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-    }
+  #lang-menu label:hover {
+    background-color: white;
+    color: black;
+  }
 
-    .dropbtn:hover {
-      background-color: #ff4d4d;
-      color: white;
-      border-color: #ff4d4d;
-    }
+  #lang-menu input {
+    margin-right: 8px;
+  }
+</style>
 
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #111;
-      min-width: 140px;
-      border: 1px solid #555;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(255,255,255,0.2);
-      padding: 10px;
-      right: 0;
-      z-index: 99;
-      text-align: left;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    .language-selector ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .language-selector li {
-      color: white;
-      margin: 8px 0;
-      cursor: pointer;
-      padding: 6px 8px;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-      font-weight: 600;
-    }
-
-    .language-selector li:hover {
-      background-color: #333;
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2.2rem;
-      }
-      .quote {
-        font-size: 1.2rem;
-        max-width: 90vw;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="settings">
-    <div class="dropdown">
-      <button class="dropbtn">⚙ Ayarlar</button>
-      <div class="dropdown-content">
-        <div class="language-selector">
-          <p><strong>Dil Seçimi:</strong></p>
-          <ul>
-            <li data-lang="tr">Türkçe</li>
-            <li data-lang="en">English</li>
-            <li data-lang="az">Azərbaycanca</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+<div id="settings">
+  <button id="settings-btn">Ayarlar ⚙️</button>
+  <div id="lang-menu">
+    <label><input type="radio" name="language" value="tr" checked> Türkçe</label>
+    <label><input type="radio" name="language" value="en"> English</label>
+    <label><input type="radio" name="language" value="az"> Azərbaycan</label>
   </div>
+</div>
 
-  <h1>Mustafa Kemal Atatürk</h1>
-  <div class="quote" id="quote"></div>
-  <div class="quote-location" id="quote-location"></div>
+<script>
+  const settingsBtn = document.getElementById('settings-btn');
+  const langMenu = document.getElementById('lang-menu');
 
-  <script>
-    const quotes = [
-      {
-        lang: 'tr',
-        text: "Yurtta sulh, cihanda sulh.",
-        location: "Söylev, 1931"
-      },
-      {
-        lang: 'en',
-        text: "Peace at home, peace in the world.",
-        location: "Speech, 1931"
-      },
-      {
-        lang: 'az',
-        text: "Yurdda sülh, dünyada sülh.",
-        location: "Nitq, 1931"
-      },
-      {
-        lang: 'tr',
-        text: "Egemenlik, kayıtsız şartsız milletindir.",
-        location: "Nutuk, 1927"
-      },
-      {
-        lang: 'en',
-        text: "Sovereignty unconditionally belongs to the nation.",
-        location: "The Speech, 1927"
-      },
-      {
-        lang: 'az',
-        text: "Müstəqillik şəksiz şərtsiz millətindir.",
-        location: "Nitq, 1927"
-      },
-      {
-        lang: 'tr',
-        text: "Hayatta en hakiki mürşit ilimdir.",
-        location: "Söylev, 1923"
-      },
-      {
-        lang: 'en',
-        text: "The truest guide in life is science.",
-        location: "Speech, 1923"
-      },
-      {
-        lang: 'az',
-        text: "Həyatda ən doğru rəhbər elmidir.",
-        location: "Nitq, 1923"
-      }
-    ];
-
-    let currentLang = 'tr';
-
-    const quoteEl = document.getElementById('quote');
-    const locationEl = document.getElementById('quote-location');
-
-    function showRandomQuote(lang) {
-      const filtered = quotes.filter(q => q.lang === lang);
-      const randomIndex = Math.floor(Math.random() * filtered.length);
-      const quote = filtered[randomIndex];
-      quoteEl.textContent = quote.text;
-      locationEl.textContent = quote.location;
+  // Ayarlar butonuna tıklayınca menüyü aç/kapa
+  settingsBtn.addEventListener('click', () => {
+    if(langMenu.style.display === 'block'){
+      langMenu.style.display = 'none';
+    } else {
+      langMenu.style.display = 'block';
     }
+  });
 
-    // İlk yüklemede Türkçe göster
-    showRandomQuote(currentLang);
-
-    // Dil seçimi tıklamaları
-    document.querySelectorAll('.language-selector li').forEach(li => {
-      li.addEventListener('click', () => {
-        currentLang = li.getAttribute('data-lang');
-        showRandomQuote(currentLang);
-      });
+  // Dil seçimi değiştiğinde console.log ile göster (buraya kendi dil değiştirme fonksiyonunu ekleyebilirsin)
+  const langRadios = langMenu.querySelectorAll('input[name="language"]');
+  langRadios.forEach(radio => {
+    radio.addEventListener('change', (e) => {
+      console.log('Seçilen dil:', e.target.value);
+      // Burada dil değişimi için gerekli işlemleri yapabilirsin
     });
-  </script>
-</body>
-</html>
+  });
+
+  // Sayfanın herhangi bir yerine tıklayınca menüyü kapat
+  document.addEventListener('click', (e) => {
+    if (!settingsBtn.contains(e.target) && !langMenu.contains(e.target)) {
+      langMenu.style.display = 'none';
+    }
+  });
+</script>
