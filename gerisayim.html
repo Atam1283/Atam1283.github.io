@@ -15,24 +15,25 @@
       text-align: center;
     }
 
+    /* Ana Sayfa linki - sade beyaz, kırmızı vurgusuz */
     a#anasayfa {
-      color: #f0f0f0;
+      color: white;
       position: fixed;
       top: 15px;
       left: 15px;
-      font-weight: 700;
+      font-weight: 600;
       text-decoration: none;
       font-size: 18px;
-      transition: opacity 0.3s ease;
       z-index: 100;
-      padding: 6px 12px;
-      border-radius: 8px;
-      background-color: rgba(255, 255, 255, 0.12);
+      padding: 6px 10px;
+      background-color: transparent;
+      border-radius: 0;
+      transition: color 0.3s ease;
     }
 
     a#anasayfa:hover {
-      opacity: 0.8;
-      background-color: rgba(255, 255, 255, 0.20);
+      color: #bbbbbb;
+      cursor: pointer;
     }
 
     h1 {
@@ -107,7 +108,7 @@
 
       a#anasayfa {
         font-size: 16px;
-        padding: 5px 10px;
+        padding: 5px 8px;
       }
     }
   </style>
