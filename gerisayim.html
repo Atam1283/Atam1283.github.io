@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Geri Sayım</title>
   <style>
     body {
@@ -12,8 +12,13 @@
       margin: 0;
       padding: 0;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      justify-content: flex-start;
+      align-items: center;
+      padding-top: 80px;
     }
-
     a#anasayfa {
       color: #fff;
       position: fixed;
@@ -22,61 +27,124 @@
       text-decoration: none;
       font-size: 1.2rem;
       font-weight: bold;
+      z-index: 10;
     }
-
     a#anasayfa:hover {
       color: #ff4d4d;
     }
-
     h1 {
       font-size: 2.5rem;
       color: #fff;
-      margin-top: 80px;
+      margin-bottom: 30px;
       text-shadow: 0 0 10px #fff;
+    }
+    #languageSelector {
+      margin-bottom: 30px;
+    }
+    select {
+      font-size: 1.1rem;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: none;
+      background: #222;
+      color: #eee;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff4d4d;
+      transition: background-color 0.3s;
+    }
+    select:hover {
+      background-color: #333;
     }
 
     .countdown-container {
-      margin-top: 40px;
-      padding: 30px;
       background-color: #111;
       border-radius: 12px;
-      display: inline-block;
-      box-shadow: 0 0 25px 5px rgba(255, 0, 0, 0.4); /* Parlak kenar efekti */
-      border: 2px solid #ff4d4d;
+      padding: 30px 20px;
+      max-width: 400px;
+      width: 90vw;
+      box-shadow: 0 0 30px 6px rgba(255, 77, 77, 0.6);
+      position: relative;
     }
 
     .event-name {
       font-size: 1.6rem;
       color: #ff4d4d;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      min-height: 42px;
     }
 
     .countdown {
-      font-size: 2rem;
+      font-size: 1.9rem;
       color: #fff;
+      margin-bottom: 15px;
     }
 
     .percentage {
-      margin-top: 15px;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: #ccc;
+      margin-bottom: 30px;
     }
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
+    /* Dairesel progress bar */
+    .progress-circle {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+    }
 
-      .event-name {
-        font-size: 1.3rem;
-      }
+    .progress-circle svg {
+      transform: rotate(-90deg);
+      width: 200px;
+      height: 200px;
+      filter: drop-shadow(0 0 4px #ff4d4d);
+    }
 
-      .countdown {
-        font-size: 1.5rem;
-      }
+    .progress-circle circle {
+      fill: none;
+      stroke-width: 15;
+      stroke-linecap: round;
+    }
 
-      .percentage {
-        font-size: 1rem;
+    .progress-bg {
+      stroke: #222;
+    }
+
+    .progress-bar {
+      stroke: #ff4d4d;
+      stroke-dasharray: 565.48; /* 2 * PI * radius (radius=90) */
+      stroke-dashoffset: 565.48;
+      transition: stroke-dashoffset 0.7s ease-out;
+      filter: drop-shadow(0 0 8px #ff4d4d);
+    }
+
+    .progress-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #ff4d4d;
+      font-size: 2.3rem;
+      font-weight: bold;
+      text-shadow: 0 0 8px #ff4d4d;
+      user-select: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 500px) {
+      .progress-circle {
+        width: 150px;
+        height: 150px;
+      }
+      .progress-circle svg {
+        width: 150px;
+        height: 150px;
+      }
+      .progress-text {
+        font-size: 1.8rem;
+      }
+      .countdown-container {
+        max-width: 320px;
       }
     }
   </style>
@@ -84,54 +152,166 @@
 <body>
 
   <a id="anasayfa" href="index.html">← Ana Sayfa</a>
-  <h1>Yaklaşan Önemli Gün</h1>
 
-  <div class="countdown-container">
+  <h1 id="title">Yaklaşan Önemli Gün</h1>
+
+  <div id="languageSelector">
+    <select id="langSelect" aria-label="Dil Seçimi">
+      <option value="tr">Türkçe</option>
+      <option value="en">English</option>
+      <option value="az">Azərbaycanca</option>
+    </select>
+  </div>
+
+  <div class="countdown-container" role="region" aria-live="polite" aria-atomic="true">
     <div class="event-name" id="eventName">Yükleniyor...</div>
     <div class="countdown" id="countdown">00 gün 00 saat 00 dakika 00 saniye</div>
     <div class="percentage" id="percentage">Yüzde hesaplanıyor...</div>
+
+    <div class="progress-circle" aria-label="Geri sayım ilerleme çubuğu">
+      <svg>
+        <circle class="progress-bg" cx="100" cy="100" r="90"></circle>
+        <circle class="progress-bar" cx="100" cy="100" r="90"></circle>
+      </svg>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
   </div>
 
   <script>
-    const events = [
-      { name: "19 Mayıs Atatürk'ü Anma, Gençlik ve Spor Bayramı", date: "2025-05-19T00:00:00" },
-      { name: "30 Ağustos Zafer Bayramı", date: "2025-08-30T00:00:00" },
-      { name: "29 Ekim Cumhuriyet Bayramı", date: "2025-10-29T00:00:00" },
-      { name: "10 Kasım Atatürk’ü Anma Günü", date: "2025-11-10T09:05:00" }
-    ];
+    // Diller ve metinler
+    const translations = {
+      tr: {
+        title: "Yaklaşan Önemli Gün",
+        events: [
+          { name: "19 Mayıs Atatürk'ü Anma, Gençlik ve Spor Bayramı", date: "2025-05-19T00:00:00" },
+          { name: "30 Ağustos Zafer Bayramı", date: "2025-08-30T00:00:00" },
+          { name: "29 Ekim Cumhuriyet Bayramı", date: "2025-10-29T00:00:00" },
+          { name: "10 Kasım Atatürk’ü Anma Günü", date: "2025-11-10T09:05:00" },
+        ],
+        labels: {
+          days: "gün",
+          hours: "saat",
+          minutes: "dakika",
+          seconds: "saniye",
+          progressText: "Etkinliğe %"
+        }
+      },
+      en: {
+        title: "Upcoming Important Day",
+        events: [
+          { name: "May 19 Commemoration of Atatürk, Youth and Sports Day", date: "2025-05-19T00:00:00" },
+          { name: "August 30 Victory Day", date: "2025-08-30T00:00:00" },
+          { name: "October 29 Republic Day", date: "2025-10-29T00:00:00" },
+          { name: "November 10 Atatürk Memorial Day", date: "2025-11-10T09:05:00" },
+        ],
+        labels: {
+          days: "days",
+          hours: "hours",
+          minutes: "minutes",
+          seconds: "seconds",
+          progressText: "Progress: %"
+        }
+      },
+      az: {
+        title: "Yaxınlaşan Vacib Gün",
+        events: [
+          { name: "19 May Atatürkü Anma, Gənclik və İdman Bayramı", date: "2025-05-19T00:00:00" },
+          { name: "30 Avqust Zəfər Bayramı", date: "2025-08-30T00:00:00" },
+          { name: "29 Oktyabr Respublika Günü", date: "2025-10-29T00:00:00" },
+          { name: "10 Noyabr Atatürkü Anma Günü", date: "2025-11-10T09:05:00" },
+        ],
+        labels: {
+          days: "gün",
+          hours: "saat",
+          minutes: "dəqiqə",
+          seconds: "saniyə",
+          progressText: "Tədbirə %"
+        }
+      }
+    };
 
-    function getNextEvent() {
-      const now = new Date();
-      return events.find(e => new Date(e.date) > now);
+    // Yerel dil ayarı
+    let lang = localStorage.getItem("lang") || "tr";
+
+    const langSelect = document.getElementById("langSelect");
+    const titleEl = document.getElementById("title");
+    const eventNameEl = document.getElementById("eventName");
+    const countdownEl = document.getElementById("countdown");
+    const percentageEl = document.getElementById("percentage");
+    const progressBar = document.querySelector(".progress-bar");
+    const progressText = document.getElementById("progressText");
+
+    // SVG dairesel çember parametreleri
+    const radius = 90;
+    const circumference = 2 * Math.PI * radius;
+
+    progressBar.style.strokeDasharray = circumference;
+
+    // Dil seçimini uygula ve localStorage kaydet
+    function applyLanguage(selectedLang) {
+      lang = selectedLang;
+      localStorage.setItem("lang", lang);
+      langSelect.value = lang;
+
+      // Başlık
+      titleEl.textContent = translations[lang].title;
+
+      // Yeniden geri sayımı başlat
+      updateCountdown();
     }
 
+    // En yakın etkinliği al
+    function getNextEvent() {
+      const now = new Date();
+      return translations[lang].events.find(e => new Date(e.date) > now);
+    }
+
+    // Geri sayımı güncelle
     function updateCountdown() {
       const now = new Date();
       const event = getNextEvent();
-      if (!event) return;
 
-      const targetDate = new Date(event.date);
-      const totalDuration = targetDate - new Date(now.getFullYear(), 0, 1); // yılın başı ile etkinlik arası
-      const remaining = targetDate - now;
+      if (!event) {
+        eventNameEl.textContent = lang === "en" ? "No upcoming events" :
+          lang === "az" ? "Yaxın tədbir yoxdur" : "Yaklaşan etkinlik yok";
+        countdownEl.textContent = "";
+        percentageEl.textContent = "";
+        progressBar.style.strokeDashoffset = circumference;
+        progressText.textContent = "";
+        return;
+      }
 
+      const eventDate = new Date(event.date);
+
+      // Yılın başlangıcından etkinliğe toplam süre (milisaniye)
+      const yearStart = new Date(now.getFullYear(), 0, 1);
+
+      const totalDuration = eventDate - yearStart;
+      const elapsed = now - yearStart;
+      const remaining = eventDate - now;
+
+      if (remaining < 0) {
+        // Zaten geçmişse, sonraki etkinliği al
+        updateCountdown();
+        return;
+      }
+
+      // Kalan zaman birimleri
       const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
       const hours = Math.floor((remaining / (1000 * 60 * 60)) % 24);
       const minutes = Math.floor((remaining / (1000 * 60)) % 60);
       const seconds = Math.floor((remaining / 1000) % 60);
 
-      document.getElementById("eventName").textContent = event.name;
-      document.getElementById("countdown").textContent =
-        `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye`;
+      // Metinler
+      const lbl = translations[lang].labels;
 
-      const elapsed = now - new Date(now.getFullYear(), 0, 1); // yılbaşından bu yana
-      const percent = 100 * (elapsed / totalDuration);
-      document.getElementById("percentage").textContent =
-        `Etkinliğe %${percent.toFixed(2)} oranında yaklaşıldı.`;
-    }
+      eventNameEl.textContent = event.name;
+      countdownEl.textContent = `${days} ${lbl.days} ${hours} ${lbl.hours} ${minutes} ${lbl.minutes} ${seconds} ${lbl.seconds}`;
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
+      // Yüzde hesapla ve göster
+      let percentage = (elapsed / totalDuration) * 100;
+      if (percentage > 100) percentage = 100;
+      if (percentage < 0) percentage = 0;
 
-</body>
-</html>
+      percentageEl.textContent = `${lbl.progressText} ${percentage.toFixed(2)}%`;
+      progressText.textContent = `${percentage.toFixed(
