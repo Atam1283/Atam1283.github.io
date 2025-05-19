@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mustafa Kemal Atatürk</title>
 <style>
-  /* Sayfa genel ayarları */
   body {
     margin: 0;
     padding: 0;
@@ -14,7 +13,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
-  /* Ana Sayfa linki sol üstte */
+  /* Sol üstte Ana Sayfa linki */
   a#anasayfa {
     position: fixed;
     top: 15px;
@@ -31,14 +30,34 @@
     cursor: pointer;
   }
 
-  /* İçerik kutusu, sayfanın en üstü ve ortasında */
+  /* Üst menü - diğer sayfa linkleri */
+  nav {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 1000;
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: color 0.3s;
+  }
+  nav a:hover {
+    color: #ff4d4d;
+    cursor: pointer;
+  }
+
+  /* Başlık ve sözün olduğu alan */
   .header-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    height: 120px;
-    padding-top: 50px;
+    height: 160px;
+    padding-top: 60px;
     text-align: center;
     user-select: none;
   }
@@ -51,13 +70,20 @@
     text-shadow: 0 0 15px white;
   }
 
-  .header-container p {
-    margin: 10px 0 0 0;
-    font-size: 1.4rem;
-    font-weight: 500;
+  .header-container .quote {
+    margin: 15px 0 5px 0;
+    font-size: 1.6rem;
+    font-weight: 600;
     font-style: italic;
     color: #ddd;
-    max-width: 600px;
+    max-width: 700px;
+  }
+
+  .header-container .source {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #aaa;
+    max-width: 700px;
   }
 </style>
 </head>
@@ -65,10 +91,39 @@
 
   <a id="anasayfa" href="index.html">← Ana Sayfa</a>
 
+  <nav>
+    <a href="geri-sayim.html">Geri Sayım</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="hayat.html">Hayatı</a>
+  </nav>
+
   <div class="header-container">
     <h1>Mustafa Kemal Atatürk</h1>
-    <p>“Yurtta sulh, cihanda sulh.”</p>
+    <div class="quote" id="quoteText">Loading...</div>
+    <div class="source" id="quoteSource"></div>
   </div>
+
+<script>
+  // Atatürk sözleri ve söylendikleri yerler
+  const quotes = [
+    { text: "Yurtta sulh, cihanda sulh.", source: "Atatürk'ün Söylev ve Demeçleri" },
+    { text: "Egemenlik kayıtsız şartsız milletindir.", source: "1920 TBMM Açılışı" },
+    { text: "Hayatta en hakiki mürşit ilimdir.", source: "1923 Nutuk" },
+    { text: "Türkiye Cumhuriyeti ilelebet payidar kalacaktır.", source: "1927 Nutuk" },
+    { text: "Benim naçiz vücudum bir gün toprak olacaktır.", source: "1938 Vasiyeti" },
+    { text: "Milletin bağımsızlığı, yine milletin azim ve kararıyla kurtarılacaktır.", source: "1919 Samsun'a Çıkışı" },
+    { text: "Özgürlük ve bağımsızlık benim karakterimdir.", source: "1927 Nutuk" },
+    { text: "Türk, öğün, çalış, güven.", source: "1923 Nutuk" }
+  ];
+
+  // Rastgele bir sözü seç, sayfa yenilendikçe değişsin
+  const randomIndex = Math.floor(Math.random() * quotes.length);
+  const selectedQuote = quotes[randomIndex];
+
+  // Sözleri HTML'ye yerleştir
+  document.getElementById("quoteText").textContent = `"${selectedQuote.text}"`;
+  document.getElementById("quoteSource").textContent = `— ${selectedQuote.source}`;
+</script>
 
 </body>
 </html>
