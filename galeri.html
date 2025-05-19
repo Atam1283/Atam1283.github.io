@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Galeri</title>
+  <title>Atatürk Galerisi</title>
   <style>
     body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: black;
+      color: white;
+      font-family: 'Arial', sans-serif;
       margin: 0;
-      padding: 0;
+      padding: 20px;
     }
 
     a#anasayfa {
@@ -20,169 +20,108 @@
       left: 15px;
       font-weight: bold;
       text-decoration: none;
-      font-size: 4vw;
+      font-size: 18px;
       z-index: 10;
-      transition: color 0.3s;
     }
 
     a#anasayfa:hover {
-      color: #ff2c2c;
+      color: #ff4d4d;
     }
 
     h1 {
-      margin-top: 70px;
-      font-size: 6vw;
-      text-shadow: 0 0 10px white;
       text-align: center;
+      margin-bottom: 40px;
+      font-weight: 700;
+      font-size: 2.8rem;
+      text-shadow: 0 0 10px white;
     }
 
     .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid white;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      height: 400px;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 40px 20px;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    .photo {
-      width: 90vw;
-      max-width: 300px;
-      background-color: #111;
-      border: 2px solid #fff;
-      border-radius: 8px;
-      overflow: hidden;
-      transition: transform 0.3s ease;
+    .gallery-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px white;
     }
 
-    .photo:hover {
-      transform: scale(1.03);
-    }
-
-    .photo img {
+    .gallery-item img {
       width: 100%;
-      height: auto;
-      display: block;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
     }
 
     .caption {
-      padding: 10px;
-      font-size: 1rem;
-      color: #ccc;
-      text-align: center;
-    }
-
-    .settings {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      color: white;
-      cursor: pointer;
-      z-index: 100;
-    }
-
-    .language-selector {
-      position: absolute;
-      top: 40px;
-      right: 0;
-      background-color: #111;
-      border: 1px solid #444;
-      padding: 10px;
-      display: none;
-      border-radius: 5px;
-    }
-
-    .language-selector button {
-      background: none;
-      border: none;
-      color: white;
-      margin: 5px 0;
-      cursor: pointer;
       font-weight: bold;
+      margin-top: 10px;
+      font-size: 1.1rem;
     }
 
-    .settings:hover .language-selector {
-      display: block;
+    .location {
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-top: 4px;
     }
 
-    @media (min-width: 768px) {
-      a#anasayfa { font-size: 16px; }
-      h1 { font-size: 48px; }
+    @media (max-width: 600px) {
+      .gallery-item {
+        height: auto;
+      }
+
+      .gallery-item img {
+        height: auto;
+        max-height: 250px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <a id="anasayfa" href="index.html" data-key="back_home">← Ana Sayfa</a>
+  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
 
-  <div class="settings">
-    ⚙️
-    <div class="language-selector">
-      <button onclick="changeLanguage('tr')">Türkçe</button>
-      <button onclick="changeLanguage('en')">English</button>
-      <button onclick="changeLanguage('az')">Azərbaycanca</button>
+  <h1>Atatürk Galerisi</h1>
+
+  <section class="gallery">
+    <div class="gallery-item">
+      <img src="images/ataturk1.jpg" alt="Atatürk Fotoğraf 1" />
+      <div class="caption">Atatürk Fotoğraf 1</div>
+      <div class="location">Ankara - 1923</div>
     </div>
-  </div>
-
-  <h1 data-key="gallery_title">Fotoğraf Galerisi</h1>
-
-  <div class="gallery">
-    <div class="photo">
-      <img src="gorseller/foto1.jpg" alt="Atatürk">
-      <div class="caption" data-key="caption1">Anıtkabir'den</div>
+    <div class="gallery-item">
+      <img src="images/ataturk2.jpg" alt="Atatürk Fotoğraf 2" />
+      <div class="caption">Atatürk Fotoğraf 2</div>
+      <div class="location">Samsun - 1919</div>
     </div>
-    <div class="photo">
-      <img src="gorseller/foto2.jpg" alt="Atatürk">
-      <div class="caption" data-key="caption2">Samsun'dan</div>
+    <div class="gallery-item">
+      <img src="images/ataturk3.jpg" alt="Atatürk Fotoğraf 3" />
+      <div class="caption">Atatürk Fotoğraf 3</div>
+      <div class="location">İzmir - 1934</div>
     </div>
-    <div class="photo">
-      <img src="gorseller/foto3.jpg" alt="Atatürk">
-      <div class="caption" data-key="caption3">Dolmabahçe'den</div>
+    <div class="gallery-item">
+      <img src="images/ataturk4.jpg" alt="Atatürk Fotoğraf 4" />
+      <div class="caption">Atatürk Fotoğraf 4</div>
+      <div class="location">İstanbul - 1936</div>
     </div>
-  </div>
-
-  <script>
-    const translations = {
-      tr: {
-        back_home: "← Ana Sayfa",
-        gallery_title: "Fotoğraf Galerisi",
-        caption1: "Anıtkabir'den",
-        caption2: "Samsun'dan",
-        caption3: "Dolmabahçe'den",
-      },
-      en: {
-        back_home: "← Home",
-        gallery_title: "Photo Gallery",
-        caption1: "From Anıtkabir",
-        caption2: "From Samsun",
-        caption3: "From Dolmabahçe",
-      },
-      az: {
-        back_home: "← Ana Səhifə",
-        gallery_title: "Foto Qalereya",
-        caption1: "Anıtqəbirdən",
-        caption2: "Samsundan",
-        caption3: "Dolmabaxçadan",
-      }
-    };
-
-    function changeLanguage(lang) {
-      localStorage.setItem("lang", lang);
-      applyLanguage(lang);
-    }
-
-    function applyLanguage(lang) {
-      const elements = document.querySelectorAll("[data-key]");
-      elements.forEach(el => {
-        const key = el.getAttribute("data-key");
-        if (translations[lang] && translations[lang][key]) {
-          el.textContent = translations[lang][key];
-        }
-      });
-    }
-
-    const selectedLang = localStorage.getItem("lang") || "tr";
-    applyLanguage(selectedLang);
-  </script>
+  </section>
 
 </body>
 </html>
