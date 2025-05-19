@@ -6,107 +6,60 @@
   <title>Mustafa Kemal Atatürk</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background-color: black;
-      color: white;
+      background-color: #000;
+      color: #eee;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    /* Üst menü - sağ üstte */
-    nav {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      z-index: 1000;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 15px;
-      font-weight: 600;
-      font-size: 16px;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: #ff4d4d;
-      cursor: pointer;
-    }
-
-    /* Başlık ve söz */
-    .header-container {
+      margin: 0;
+      padding: 40px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      height: 160px;
-      padding-top: 60px;
+      min-height: 100vh;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 3rem;
       text-align: center;
+      text-shadow: 0 0 15px white;
+      margin-bottom: 12px;
       user-select: none;
     }
 
-    .header-container h1 {
-      font-size: 3.5rem;
-      margin: 0;
-      font-weight: 900;
-      color: white;
-      text-shadow: 0 0 15px white;
-    }
-
-    .quote {
-      margin: 15px 0 5px 0;
-      font-size: 1.6rem;
-      font-weight: 600;
+    blockquote {
+      max-width: 600px;
+      font-size: 1.3rem;
       font-style: italic;
-      color: #ddd;
-      max-width: 700px;
+      color: #ccc;
       text-align: center;
-    }
-
-    .source {
-      font-size: 1rem;
-      font-weight: 400;
-      color: #aaa;
-      text-align: center;
-      max-width: 700px;
+      border-left: 4px solid #ff2c2c;
+      padding-left: 18px;
+      user-select: none;
     }
   </style>
 </head>
 <body>
 
-  <!-- Sağ üst menü (istenilen sırayla) -->
-  <nav>
-    <a href="hayat.html">Hayatı</a>
-    <a href="zaman.html">Zaman Çizelgesi</a>
-    <a href="galeri.html">Galeri</a>
-    <a href="geri-sayim.html">Geri Sayım</a>
-  </nav>
-
-  <div class="header-container">
-    <h1>Mustafa Kemal Atatürk</h1>
-    <div class="quote" id="quoteText">Yükleniyor...</div>
-    <div class="source" id="quoteSource"></div>
-  </div>
+  <h1>Mustafa Kemal Atatürk</h1>
+  <blockquote id="quote"></blockquote>
 
   <script>
     const quotes = [
-      { text: "Yurtta sulh, cihanda sulh.", source: "Atatürk'ün Söylev ve Demeçleri" },
-      { text: "Egemenlik kayıtsız şartsız milletindir.", source: "1920 TBMM Açılışı" },
-      { text: "Hayatta en hakiki mürşit ilimdir.", source: "1923 Nutuk" },
-      { text: "Türkiye Cumhuriyeti ilelebet payidar kalacaktır.", source: "1927 Nutuk" },
-      { text: "Benim naçiz vücudum bir gün toprak olacaktır.", source: "1938 Vasiyeti" },
-      { text: "Milletin bağımsızlığı, yine milletin azim ve kararıyla kurtarılacaktır.", source: "1919 Samsun’a Çıkışı" },
-      { text: "Özgürlük ve bağımsızlık benim karakterimdir.", source: "1927 Nutuk" },
-      { text: "Türk, öğün, çalış, güven.", source: "1923 Nutuk" }
+      "Egemenlik, kayıtsız şartsız milletindir. (Türkiye Büyük Millet Meclisi)",
+      "Yurtta sulh, cihanda sulh. (Ankara Nutku)",
+      "Hayatta en hakiki mürşit ilimdir. (1923 Nutku)",
+      "Benim manevi mirasım bilim ve akıldır. (Samsun Nutku)",
+      "Milletin bağımsızlığını yine milletin azim ve kararı kurtaracaktır. (Sivas Kongresi)"
     ];
 
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    const selectedQuote = quotes[randomIndex];
+    function showRandomQuote() {
+      const quoteEl = document.getElementById('quote');
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      quoteEl.textContent = quotes[randomIndex];
+    }
 
-    document.getElementById("quoteText").textContent = `"${selectedQuote.text}"`;
-    document.getElementById("quoteSource").textContent = `— ${selectedQuote.source}`;
+    showRandomQuote();
   </script>
 
 </body>
