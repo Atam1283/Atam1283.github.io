@@ -163,7 +163,6 @@
   </div>
 
   <script>
-    // Çok dilli içerik verileri
     const translations = {
       tr: {
         home: "Ana Sayfa",
@@ -213,10 +212,14 @@
     };
 
     function applyLanguage(lang) {
+      // Geçersiz dil gelirse tr olarak al
       if (!translations[lang]) lang = "tr";
+
+      // Başlık ve ana sayfa linki
       document.getElementById("page-title").textContent = translations[lang].title;
       document.getElementById("home-text").textContent = translations[lang].home;
 
+      // Zaman çizelgesi metinleri
       translations[lang].timeline.forEach((item, idx) => {
         const yearEl = document.querySelector(`[data-id="year-${idx + 1}"]`);
         const textEl = document.querySelector(`[data-id="text-${idx + 1}"]`);
@@ -225,7 +228,7 @@
       });
     }
 
-    // localStorage'den dili al, yoksa tr kullan
+    // localStorage'den dili al, yoksa tr olarak ayarla
     const lang = localStorage.getItem("lang");
     if (lang === "en" || lang === "az") {
       applyLanguage(lang);
