@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Geri Sayım</title>
   <style>
     body {
@@ -15,132 +15,110 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      height: 100vh;
       text-align: center;
-      padding-top: 80px;
     }
 
-    header {
+    a#anasayfa {
       position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: #000;
-      border-bottom: 1px solid #333;
-      display: flex;
-      justify-content: center;
-      padding: 15px 0;
-      z-index: 1000;
-    }
-
-    nav a {
-      margin: 0 15px;
+      top: 20px;
+      left: 20px;
+      color: white;
       text-decoration: none;
       font-weight: bold;
-      color: white;
-      transition: color 0.3s ease;
+      font-size: 18px;
+      z-index: 1000;
+      transition: color 0.3s;
     }
 
-    nav a:hover {
-      color: #ff4444;
+    a#anasayfa:hover {
+      color: #ff4d4d;
     }
 
     h1 {
-      font-size: 2.8rem;
-      font-weight: bold;
+      font-size: 2.6rem;
       margin-bottom: 20px;
-      color: white;
-      text-shadow: 0 0 8px white;
+      text-shadow: 0 0 10px white;
     }
 
-    #event {
+    #event-name {
       font-size: 1.5rem;
       margin-bottom: 10px;
-      color: #ff4444;
+      color: #ff4d4d;
     }
 
     #countdown {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: bold;
-      color: #fff;
-      text-shadow: 0 0 5px #ff4444;
+      text-shadow: 0 0 10px #ff4d4d;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      #countdown {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <nav>
-      <a href="index.html">Ana Sayfa</a>
-      <a href="hayati.html">Hayatı</a>
-      <a href="galeri.html">Galeri</a>
-      <a href="zamancizelgesi.html">Zaman Çizelgesi</a>
-    </nav>
-  </header>
+  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
 
-  <main>
-    <h1>En Yakın Özel Güne Geri Sayım</h1>
-    <div id="event">Yükleniyor...</div>
-    <div id="countdown">—</div>
-  </main>
+  <h1>En Yakın Özel Güne Geri Sayım</h1>
+  <div id="event-name"></div>
+  <div id="countdown">Yükleniyor...</div>
 
   <script>
     const events = [
-      { date: "01-01", name: "Yılbaşı" },
-      { date: "04-23", name: "Ulusal Egemenlik ve Çocuk Bayramı" },
-      { date: "05-01", name: "Emek ve Dayanışma Günü" },
-      { date: "05-19", name: "Atatürk'ü Anma, Gençlik ve Spor Bayramı" },
-      { date: "07-15", name: "Milli Birlik ve Demokrasi Günü" },
-      { date: "08-30", name: "Zafer Bayramı" },
-      { date: "10-29", name: "Cumhuriyet Bayramı" },
-      { date: "11-10", name: "Atatürk’ü Anma Günü" }
+      { date: "2025-06-19", name: "19 Mayıs - Atatürk'ü Anma, Gençlik ve Spor Bayramı" },
+      { date: "2025-07-15", name: "15 Temmuz - Demokrasi ve Millî Birlik Günü" },
+      { date: "2025-08-30", name: "30 Ağustos - Zafer Bayramı" },
+      { date: "2025-10-29", name: "29 Ekim - Cumhuriyet Bayramı" },
+      { date: "2025-11-10", name: "10 Kasım - Atatürk’ü Anma Günü" },
+      { date: "2026-01-01", name: "1 Ocak - Yılbaşı" },
+      { date: "2026-04-23", name: "23 Nisan - Ulusal Egemenlik ve Çocuk Bayramı" },
+      { date: "2026-05-01", name: "1 Mayıs - Emek ve Dayanışma Günü" }
     ];
 
     function getNextEvent() {
       const today = new Date();
-      const currentYear = today.getFullYear();
-
-      let upcomingEvents = events.map(event => {
-        let eventDate = new Date(`${currentYear}-${event.date}`);
-        if (eventDate < today) {
-          eventDate.setFullYear(currentYear + 1);
-        }
-        return {
-          name: event.name,
-          date: eventDate
-        };
-      });
-
-      upcomingEvents.sort((a, b) => a.date - b.date);
-      return upcomingEvents[0];
+      return events.find(event => new Date(event.date) > today);
     }
 
-    function startCountdown() {
-      const nextEvent = getNextEvent();
-      document.getElementById("event").textContent = nextEvent.name;
+    function updateCountdown() {
+      const event = getNextEvent();
+      if (!event) {
+        document.getElementById("countdown").innerText = "Etkinlik bulunamadı.";
+        return;
+      }
 
-      function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = nextEvent.date.getTime() - now;
+      document.getElementById("event-name").innerText = event.name;
+      const eventDate = new Date(event.date);
+
+      const x = setInterval(() => {
+        const now = new Date();
+        const distance = eventDate - now;
 
         if (distance < 0) {
-          document.getElementById("countdown").textContent = "Bugün!";
+          clearInterval(x);
+          document.getElementById("countdown").innerText = "Etkinlik başladı!";
           return;
         }
 
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((distance / (1000 * 60)) % 60);
-        const seconds = Math.floor((distance / 1000) % 60);
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        document.getElementById("countdown").textContent =
+        document.getElementById("countdown").innerHTML =
           `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye`;
-      }
-
-      updateCountdown();
-      setInterval(updateCountdown, 1000);
+      }, 1000);
     }
 
-    window.onload = startCountdown;
+    updateCountdown();
   </script>
 
 </body>
