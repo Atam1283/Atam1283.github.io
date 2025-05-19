@@ -36,7 +36,7 @@
 
     h1 {
       font-size: 3rem;
-      margin-top: 80px;
+      margin-top: 40px;
       font-weight: bold;
       color: white;
       text-shadow: 0 0 15px white;
@@ -57,19 +57,13 @@
     }
 
     .search-section {
-      margin: 50px auto;
+      margin: 20px auto;
       max-width: 600px;
       background-color: rgba(255,255,255,0.03);
-      padding: 30px;
+      padding: 20px;
       border-radius: 12px;
       border: 1px solid rgba(255,255,255,0.2);
       box-shadow: 0 0 10px rgba(255,255,255,0.1);
-    }
-
-    .search-section h2 {
-      color: white;
-      font-size: 1.5rem;
-      margin-bottom: 20px;
     }
 
     .search-section input[type="text"] {
@@ -125,17 +119,17 @@
     <a href="gerisayim.html">Geri Sayım</a>
   </nav>
 
-  <h1>Mustafa Kemal Atatürk</h1>
-  <div class="quote" id="quote"></div>
-  <div class="quote-source" id="quote-source"></div>
-
   <section class="search-section">
-    <h2>Atatürk, Cumhuriyet ve Türkiye Arama Motoru</h2>
     <form onsubmit="aramaYap(); return false;">
-      <input type="text" id="arama" placeholder="Örn: Nutuk, Cumhuriyet, 10 Kasım..." />
+      <input type="text" id="arama" placeholder="Atatürk, Cumhuriyet, Türkiye..." />
       <button type="submit">Ara</button>
     </form>
   </section>
+
+  <h1>Mustafa Kemal Atatürk</h1>
+
+  <div class="quote" id="quote"></div>
+  <div class="quote-source" id="quote-source"></div>
 
   <script>
     const sozler = [
