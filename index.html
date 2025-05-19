@@ -5,148 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mustafa Kemal Atatürk</title>
   <style>
+    /* Genel ayarlar */
     body {
-      margin: 0; padding: 0;
-      background-color: black;
+      margin: 0;
+      padding: 0;
+      background-color: #000; /* Siyah arka plan */
       color: white;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      text-align: center;
-    }
-
-    nav {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      gap: 20px;
-      padding: 20px;
-      background-color: rgba(255, 255, 255, 0.05);
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-      font-size: 1.1rem;
-    }
-
-    nav a:hover {
-      color: #ff4d4d;
-    }
-
+    /* Başlık */
     h1 {
-      font-size: 2.8rem;
-      margin-top: 40px;
-      font-weight: bold;
-      color: white;
-      text-shadow: 0 0 15px white;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px white;
+      user-select: none;
     }
 
-    .quote {
-      font-family: 'Brush Script MT', cursive;
+    /* Sözler */
+    #quote {
       font-size: 1.8rem;
-      margin: 20px auto;
-      max-width: 800px;
-      color: #f0f0f0;
-      padding: 0 20px;
+      font-style: italic;
+      font-family: 'Segoe UI', 'Comic Sans MS', cursive, sans-serif;
+      max-width: 700px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+      user-select: none;
     }
 
-    .quote-source {
-      font-size: 1rem;
-      color: #bbb;
-      margin-top: 5px;
+    /* Sözün söylendiği yer */
+    #location {
+      font-size: 1.1rem;
+      opacity: 0.7;
+      user-select: none;
     }
 
-    .search-section {
-      margin: 20px auto;
-      max-width: 600px;
-      background-color: rgba(255,255,255,0.03);
-      padding: 20px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.2);
-      box-shadow: 0 0 10px rgba(255,255,255,0.1);
-    }
-
-    .search-section input[type="text"] {
-      padding: 12px;
-      width: 70%;
-      border-radius: 6px;
-      border: none;
-      font-size: 1rem;
-      outline: none;
-      box-shadow: inset 0 0 5px rgba(255,255,255,0.3);
-    }
-
-    .search-section button {
-      padding: 12px 20px;
-      background-color: #ff4d4d;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      margin-left: 10px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s ease;
-    }
-
-    .search-section button:hover {
-      background-color: #e60000;
-    }
-
-    @media (max-width: 600px) {
-      .search-section input[type="text"] {
-        width: 100%;
-        margin-bottom: 10px;
-      }
-
-      .search-section button {
-        width: 100%;
-        margin-left: 0;
-      }
-
-      .search-section form {
-        display: flex;
-        flex-direction: column;
-      }
-
-      h1 {
-        font-size: 2.2rem;
-      }
-
-      .quote {
-        font-size: 1.4rem;
-      }
-    }
-
-    /* Ayarlar ve Dil butonları */
-    #settings-container {
+    /* Ayarlar butonu ve menü */
+    #settings {
       position: fixed;
       top: 15px;
       right: 15px;
-      z-index: 1000;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      user-select: none;
+      z-index: 1000;
     }
 
-    #settings-btn, #lang-btn {
+    #settings button {
       background: transparent;
       border: 2px solid white;
       color: white;
-      padding: 6px 12px;
+      padding: 8px 16px;
       border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
       transition: background-color 0.3s ease, color 0.3s ease;
-      margin-left: 5px;
     }
 
-    #settings-btn:hover, #lang-btn:hover {
+    #settings button:hover {
       background-color: white;
       color: black;
-    }
-
-    #lang-btn {
-      display: none; /* Başta gizli */
     }
 
     #lang-menu {
@@ -154,13 +79,11 @@
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid white;
       border-radius: 8px;
-      padding: 8px;
+      padding: 10px;
       display: none;
       color: white;
-      width: 150px;
+      width: 180px;
       text-align: left;
-      position: absolute;
-      right: 0;
     }
 
     #lang-menu label {
@@ -169,7 +92,6 @@
       padding: 6px 4px;
       border-radius: 5px;
       transition: background-color 0.2s ease;
-      user-select: none;
     }
 
     #lang-menu label:hover {
@@ -179,97 +101,108 @@
 
     #lang-menu input {
       margin-right: 8px;
-      cursor: pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      #quote {
+        font-size: 1.2rem;
+        max-width: 90vw;
+      }
+      #lang-menu {
+        width: 140px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Ayarlar ve Dil Seçimi -->
-  <div id="settings-container" aria-label="Ayarlar ve Dil Seçimi">
-    <button id="settings-btn" aria-haspopup="true" aria-expanded="false">Ayarlar ⚙️</button>
-    <button id="lang-btn" aria-haspopup="true" aria-expanded="false">Dil</button>
+  <div id="settings">
+    <button id="settings-btn" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu">Ayarlar ⚙️</button>
     <div id="lang-menu" role="menu" aria-label="Dil Seçenekleri">
-      <label><input type="radio" name="language" value="tr"> Türkçe</label>
+      <label><input type="radio" name="language" value="tr" checked> Türkçe</label>
       <label><input type="radio" name="language" value="en"> English</label>
       <label><input type="radio" name="language" value="az"> Azərbaycan</label>
     </div>
   </div>
 
-  <nav>
-    <a href="hayati.html" data-i18n="nav_hayati">Hayatı</a>
-    <a href="galeri.html" data-i18n="nav_galeri">Galeri</a>
-    <a href="gerisayim.html" data-i18n="nav_gerisayim">Geri Sayım</a>
-  </nav>
-
-  <section class="search-section">
-    <form onsubmit="aramaYap(); return false;">
-      <input type="text" id="arama" data-i18n-placeholder="search_placeholder" placeholder="Atatürk, Cumhuriyet, Türkiye..." />
-      <button type="submit" data-i18n="search_button">Ara</button>
-    </form>
-  </section>
-
-  <h1 data-i18n="title">Mustafa Kemal Atatürk</h1>
-
-  <div class="quote" id="quote"></div>
-  <div class="quote-source" id="quote-source"></div>
+  <h1>Mustafa Kemal Atatürk</h1>
+  <div id="quote"></div>
+  <div id="location"></div>
 
   <script>
-    // Çeviri verileri
-    const translations = {
-      tr: {
-        title: "Mustafa Kemal Atatürk",
-        nav_hayati: "Hayatı",
-        nav_galeri: "Galeri",
-        nav_gerisayim: "Geri Sayım",
-        search_placeholder: "Atatürk, Cumhuriyet, Türkiye...",
-        search_button: "Ara",
-        quotes: [
-          { metin: "Benim naçiz vücudum elbet bir gün toprak olacaktır; fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır.", kaynak: "TBMM, 1927" },
-          { metin: "Yurtta sulh, cihanda sulh.", kaynak: "Atatürk" },
-          { metin: "Egemenlik, kayıtsız şartsız milletindir.", kaynak: "Atatürk" }
-        ],
-        alert_empty_search: "Lütfen bir arama kelimesi giriniz."
-      },
-      en: {
-        title: "Mustafa Kemal Atatürk",
-        nav_hayati: "Life",
-        nav_galeri: "Gallery",
-        nav_gerisayim: "Countdown",
-        search_placeholder: "Atatürk, Republic, Turkey...",
-        search_button: "Search",
-        quotes: [
-          { metin: "My mortal body will surely turn into soil one day; but the Republic of Turkey will live forever.", kaynak: "Turkish Parliament, 1927" },
-          { metin: "Peace at home, peace in the world.", kaynak: "Atatürk" },
-          { metin: "Sovereignty belongs unconditionally to the nation.", kaynak: "Atatürk" }
-        ],
-        alert_empty_search: "Please enter a search term."
-      },
-      az: {
-        title: "Mustafa Kamal Atatürk",
-        nav_hayati: "Həyatı",
-        nav_galeri: "Qalereya",
-        nav_gerisayim: "Geri Sayım",
-        search_placeholder: "Atatürk, Respublika, Türkiyə...",
-        search_button: "Axtar",
-        quotes: [
-          { metin: "Mənim bədənim bir gün torpağa dönəcək; amma Türkiyə Respublikası əbədidir.", kaynak: "TBMM, 1927" },
-          { metin: "Yurdda sulh, cihanda sulh.", kaynak: "Atatürk" },
-          { metin: "Hakimiyyət şərtsiz-müntəzəmsiz millətindir.", kaynak: "Atatürk" }
-        ],
-        alert_empty_search: "Zəhmət olmasa axtarış sözü daxil edin."
-      }
+    const quotes = {
+      tr: [
+        { text: "Egemenlik, kayıtsız şartsız milletindir.", location: "Türkiye Büyük Millet Meclisi, 1920" },
+        { text: "Yurtta sulh, cihanda sulh.", location: "Dışişleri Bakanlığı, 1931" },
+        { text: "Hayatta en hakiki mürşit ilimdir.", location: "Samsun, 19 Mayıs 1919" },
+        { text: "Beni görmek demek mutlaka yüzümü görmek değildir.", location: "Samsun, 1919" },
+        { text: "Milletin istiklalini yine milletin azim ve kararı kurtaracaktır.", location: "Ankara, 1920" }
+      ],
+      en: [
+        { text: "Sovereignty belongs unconditionally to the nation.", location: "Grand National Assembly of Turkey, 1920" },
+        { text: "Peace at home, peace in the world.", location: "Ministry of Foreign Affairs, 1931" },
+        { text: "Science is the truest guide in life.", location: "Samsun, May 19, 1919" },
+        { text: "Seeing me does not necessarily mean seeing my face.", location: "Samsun, 1919" },
+        { text: "The nation’s independence will be saved by the nation’s will and determination.", location: "Ankara, 1920" }
+      ],
+      az: [
+        { text: "Suvremənlik şərtsiz olaraq millətə aiddir.", location: "Türkiyə Böyük Millət Məclisi, 1920" },
+        { text: "Yurdda sülh, dünyada sülh.", location: "Xarici İşlər Nazirliyi, 1931" },
+        { text: "Həyatda ən doğru rəhbər elmidir.", location: "Samsun, 19 May 1919" },
+        { text: "Məni görmək mütləq üzümü görmək deyil.", location: "Samsun, 1919" },
+        { text: "Millətin müstəqilliyini millətin iradəsi və qərarı xilas edəcək.", location: "Ankara, 1920" }
+      ]
     };
 
-    // Elemanlar
-    const settingsBtn = document.getElementById('settings-btn');
-    const langBtn = document.getElementById('lang-btn');
+    const quoteElem = document.getElementById('quote');
+    const locationElem = document.getElementById('location');
     const langMenu = document.getElementById('lang-menu');
-    const langRadios = langMenu.querySelectorAll('input[name="language"]');
+    const settingsBtn = document.getElementById('settings-btn');
 
-    // Dil localStorage'dan yüklenir, yoksa tr
-    let currentLang = localStorage.getItem('selectedLanguage') || 'tr';
+    // Varsayılan dil
+    let currentLang = 'tr';
 
-    // Dil seçim ekranını yönet
+    function setQuote() {
+      const list = quotes[currentLang];
+      const randomIndex = Math.floor(Math.random() * list.length);
+      const { text, location } = list[randomIndex];
+      quoteElem.textContent = `"${text}"`;
+      locationElem.textContent = location;
+    }
+
+    // Dil seçimi değiştiğinde
+    langMenu.querySelectorAll('input[name="language"]').forEach(input => {
+      input.addEventListener('change', (e) => {
+        currentLang = e.target.value;
+        setQuote();
+      });
+    });
+
+    // Ayarlar butonu tıklama aç/kapa
     settingsBtn.addEventListener('click', () => {
-      if (langBtn
+      if (langMenu.style.display === 'block') {
+        langMenu.style.display = 'none';
+        settingsBtn.setAttribute('aria-expanded', 'false');
+      } else {
+        langMenu.style.display = 'block';
+        settingsBtn.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    // Menü dışına tıklayınca kapat
+    document.addEventListener('click', e => {
+      if (!settingsBtn.contains(e.target) && !langMenu.contains(e.target)) {
+        langMenu.style.display = 'none';
+        settingsBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Sayfa yüklendiğinde ilk söz gösterimi
+    setQuote();
+  </script>
+</body>
+</html>
