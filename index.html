@@ -9,7 +9,102 @@
       background-color: #000;
       color: #eee;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mustafa Kemal Atatürk</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .nav {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    .nav a:hover {
+      color: #ff4d4d;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      text-align: center;
+      margin-top: 80px;
+      margin-bottom: 20px;
+      text-shadow: 0 0 15px white;
+      user-select: none;
+    }
+
+    .el-yazisi {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      color: #ccc;
+      text-align: center;
+      max-width: 700px;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sağ üstteki menü -->
+  <div class="nav">
+    <a href="hayati.html">Hayatı</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="gerisayim.html">Geri Sayım</a>
+  </div>
+
+  <!-- Başlık -->
+  <h1>Mustafa Kemal Atatürk</h1>
+
+  <!-- El yazısı ile söz -->
+  <div class="el-yazisi" id="quote"></div>
+
+  <script>
+    const quotes = [
+      "Yurtta sulh, cihanda sulh.",
+      "Egemenlik kayıtsız şartsız milletindir.",
+      "Hayatta en hakiki mürşit ilimdir.",
+      "Benim naçiz vücudum elbet bir gün toprak olacaktır; fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır.",
+      "Beni görmek demek, mutlaka yüzümü görmek değildir. Benim fikirlerimi, benim duygularımı anlıyorsanız ve hissediyorsanız bu yeterlidir."
+    ];
+
+    function showRandomQuote() {
+      const quoteEl = document.getElementById('quote');
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      quoteEl.textContent = quotes[randomIndex];
+    }
+
+    showRandomQuote();
+  </script>
+
+</body>
+</html>
+
       padding: 40px 20px;
       display: flex;
       flex-direction: column;
