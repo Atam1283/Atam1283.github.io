@@ -95,7 +95,6 @@
       background-color: #e60000;
     }
 
-    /* Ayarlar butonu ve dropdown */
     #settings {
       position: fixed;
       top: 15px;
@@ -103,9 +102,8 @@
       color: white;
       cursor: pointer;
       font-weight: bold;
-      user-select: none;
-      font-size: 1.1rem;
-      background-color: rgba(255, 255, 255, 0.05);
+      font-size: 1rem;
+      background-color: rgba(255, 255, 255, 0.1);
       padding: 8px 12px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
@@ -121,7 +119,7 @@
       position: fixed;
       top: 50px;
       right: 15px;
-      background-color: rgba(0, 0, 0, 0.9);
+      background-color: rgba(0, 0, 0, 0.95);
       border: 1px solid #ff4d4d;
       border-radius: 8px;
       padding: 10px;
@@ -134,7 +132,6 @@
       color: white;
       margin-bottom: 8px;
       font-weight: bold;
-      font-size: 1rem;
     }
 
     #language-select {
@@ -146,12 +143,6 @@
       background-color: rgba(255, 255, 255, 0.1);
       color: white;
       outline: none;
-      cursor: pointer;
-    }
-
-    #language-select option {
-      background-color: black;
-      color: white;
     }
 
     @media (max-width: 600px) {
@@ -177,80 +168,104 @@
       .quote {
         font-size: 1.4rem;
       }
-
-      #settings {
-        font-size: 1rem;
-        padding: 6px 10px;
-      }
-
-      #settings-menu {
-        min-width: 140px;
-      }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <a href="hayati.html" id="nav-hayati">Hayatı</a>
-    <a href="galeri.html" id="nav-galeri">Galeri</a>
-    <a href="gerisayim.html" id="nav-gerisayim">Geri Sayım</a>
+    <a href="hayati.html">Hayatı</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="gerisayim.html">Geri Sayım</a>
   </nav>
+
+  <div id="settings" onclick="toggleSettings()">Ayarlar ▼</div>
+  <div id="settings-menu">
+    <label for="language-select">Dil Seçimi</label>
+    <select id="language-select" onchange="changeLanguage(this.value)">
+      <option value="tr">Türkçe</option>
+      <option value="en">English</option>
+      <option value="az">Azərbaycanca</option>
+    </select>
+  </div>
 
   <section class="search-section">
     <form onsubmit="aramaYap(); return false;">
       <input type="text" id="arama" placeholder="Atatürk, Cumhuriyet, Türkiye..." />
-      <button type="submit" id="arama-btn">Ara</button>
+      <button type="submit">Ara</button>
     </form>
   </section>
 
-  <h1 id="baslik">Mustafa Kemal Atatürk</h1>
+  <h1 id="title">Mustafa Kemal Atatürk</h1>
 
   <div class="quote" id="quote"></div>
   <div class="quote-source" id="quote-source"></div>
 
-  <div id="settings">Ayarlar ▼
-    <div id="settings-menu">
-      <label for="language-select" id="label-language">Dil Seçimi</label>
-      <select id="language-select">
-        <option value="tr">Türkçe</option>
-        <option value="en">English</option>
-        <option value="az">Azərbaycanca</option>
-      </select>
-    </div>
-  </div>
-
   <script>
-    // İçerikler: Sözler ve metinler diller için
-    const content = {
+    const sozler = [
+      { metin: "Benim naçiz vücudum elbet bir gün toprak olacaktır; fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır.", kaynak: "TBMM, 1927" },
+      { metin: "Yurtta sulh, cihanda sulh.", kaynak: "Ankara, 1931" },
+      { metin: "Egemenlik, kayıtsız şartsız milletindir.", kaynak: "1920, TBMM Açılışı" },
+      { metin: "Milletin bağımsızlığını yine milletin azim ve kararı kurtaracaktır.", kaynak: "Sivas Kongresi, 1919" }
+    ];
+
+    const diller = {
       tr: {
-        baslik: "Mustafa Kemal Atatürk",
+        title: "Mustafa Kemal Atatürk",
         placeholder: "Atatürk, Cumhuriyet, Türkiye...",
-        sozler: [
-          { metin: "Benim naçiz vücudum elbet bir gün toprak olacaktır; fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır.", kaynak: "TBMM, 1927" },
-          { metin: "Yurtta sulh, cihanda sulh.", kaynak: "Ankara, 1931" },
-          { metin: "Egemenlik, kayıtsız şartsız milletindir.", kaynak: "1920, TBMM Açılışı" },
-          { metin: "Milletin bağımsızlığını yine milletin azim ve kararı kurtaracaktır.", kaynak: "Sivas Kongresi, 1919" }
-        ],
-        aramaUyari: "Lütfen bir arama kelimesi giriniz.",
-        ayarlar: "Ayarlar ▼",
-        dilSecimi: "Dil Seçimi"
+        button: "Ara"
       },
       en: {
-        baslik: "Mustafa Kemal Atatürk",
+        title: "Mustafa Kemal Atatürk",
         placeholder: "Atatürk, Republic, Turkey...",
-        sozler: [
-          { metin: "My humble body will surely become soil one day; but the Republic of Turkey will forever endure.", kaynak: "Turkish Grand National Assembly, 1927" },
-          { metin: "Peace at Home, Peace in the World.", kaynak: "Ankara, 1931" },
-          { metin: "Sovereignty unconditionally belongs to the nation.", kaynak: "1920, Opening of the Turkish Grand National Assembly" },
-          { metin: "The nation's independence will be saved by the nation's determination and decision.", kaynak: "Sivas Congress, 1919" }
-        ],
-        aramaUyari: "Please enter a search term.",
-        ayarlar: "Settings ▼",
-        dilSecimi: "Select Language"
+        button: "Search"
       },
       az: {
-        baslik: "Mustafa Kamal Atatürk",
+        title: "Mustafa Kamal Atatürk",
         placeholder: "Atatürk, Respublika, Türkiyə...",
-        sozler: [
-          { metin: "Mənim ac
+        button: "Axtar"
+      }
+    };
+
+    function rastgeleSoz() {
+      const soz = sozler[Math.floor(Math.random() * sozler.length)];
+      document.getElementById("quote").textContent = `"${soz.metin}"`;
+      document.getElementById("quote-source").textContent = `– ${soz.kaynak}`;
+    }
+
+    function aramaYap() {
+      const kelime = document.getElementById("arama").value.trim();
+      if (!kelime) {
+        alert("Lütfen bir arama kelimesi giriniz.");
+        return;
+      }
+      const sorgu = `site:tr.wikipedia.org OR site:atam.gov.tr OR site:tbmm.gov.tr "${kelime}"`;
+      window.open("https://www.google.com/search?q=" + encodeURIComponent(sorgu), "_blank");
+    }
+
+    function toggleSettings() {
+      const menu = document.getElementById("settings-menu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+
+    function changeLanguage(lang) {
+      localStorage.setItem("lang", lang);
+      applyLanguage(lang);
+    }
+
+    function applyLanguage(lang) {
+      const l = diller[lang] || diller["tr"];
+      document.getElementById("title").textContent = l.title;
+      document.getElementById("arama").placeholder = l.placeholder;
+      document.querySelector(".search-section button").textContent = l.button;
+      document.getElementById("language-select").value = lang;
+    }
+
+    // Başlangıçta
+    const lang = localStorage.getItem("lang") || "tr";
+    applyLanguage(lang);
+    rastgeleSoz();
+  </script>
+
+</body>
+</html>
