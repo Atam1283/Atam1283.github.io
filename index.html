@@ -1,233 +1,233 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mustafa Kemal Atatürk</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: black;
-      color: white;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      text-align: center;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mustafa Kemal Atatürk</title>
+<style>
+  /* Temel stil */
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+  }
 
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 20px;
-      background-color: rgba(255, 255, 255, 0.05);
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-      z-index: 1;
-      position: relative;
-    }
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 1;
+  }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-      font-size: 1.1rem;
-    }
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    font-size: 1.1rem;
+  }
 
-    nav a:hover {
-      color: #ff4d4d;
-    }
+  nav a:hover {
+    color: #ff4d4d;
+  }
 
-    h1 {
-      font-size: 2.8rem;
-      margin-top: 40px;
-      font-weight: bold;
-      color: white;
-      text-shadow: 0 0 15px white;
-      z-index: 1;
-      position: relative;
-    }
+  h1 {
+    font-size: 2.8rem;
+    margin-top: 40px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 15px white;
+    position: relative;
+    z-index: 1;
+  }
 
-    .quote {
-      font-family: 'Brush Script MT', cursive;
-      font-size: 1.8rem;
-      margin: 20px auto;
-      max-width: 800px;
-      color: #f0f0f0;
-      padding: 0 20px;
-      z-index: 1;
-      position: relative;
-    }
+  .quote {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 1.8rem;
+    margin: 15px auto 5px;
+    max-width: 800px;
+    color: #f0f0f0;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+  }
 
-    .quote-source {
-      font-size: 1rem;
-      color: #bbb;
-      margin-top: 5px;
-      z-index: 1;
-      position: relative;
-    }
+  .quote-source {
+    font-size: 1rem;
+    color: #bbb;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
 
-    .search-section {
-      margin: 20px auto;
-      max-width: 600px;
-      background-color: rgba(255,255,255,0.03);
-      padding: 20px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.2);
-      box-shadow: 0 0 10px rgba(255,255,255,0.1);
-      z-index: 1;
-      position: relative;
-    }
+  .search-section {
+    margin: 20px auto 40px;
+    max-width: 600px;
+    background-color: rgba(255,255,255,0.03);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    position: relative;
+    z-index: 1;
+  }
 
+  .search-section input[type="text"] {
+    padding: 12px;
+    width: 70%;
+    border-radius: 6px;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+    box-shadow: inset 0 0 5px rgba(255,255,255,0.3);
+  }
+
+  .search-section button {
+    padding: 12px 20px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s ease;
+  }
+
+  .search-section button:hover {
+    background-color: #e60000;
+  }
+
+  /* Ayarlar simgesi ve menü */
+  .settings {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 10000;
+  }
+
+  .settings-button {
+    font-size: 28px;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 6px;
+    user-select: none;
+  }
+
+  .settings-button:hover {
+    background-color: rgba(255, 77, 77, 0.3);
+  }
+
+  .first-dropdown {
+    display: none;
+    position: absolute;
+    top: 42px;
+    right: 0;
+    background-color: #222;
+    border-radius: 8px;
+    min-width: 80px;
+    box-shadow: 0 0 10px rgba(255,255,255,0.2);
+    user-select: none;
+  }
+
+  .first-dropdown button {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    font-size: 1rem;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .first-dropdown button:hover {
+    background-color: #ff4d4d;
+  }
+
+  .language-dropdown {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 100%;
+    background-color: #222;
+    border-radius: 8px;
+    min-width: 140px;
+    box-shadow: 0 0 10px rgba(255,255,255,0.2);
+    z-index: 10001;
+    user-select: none;
+  }
+
+  .language-dropdown button {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    font-size: 1rem;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .language-dropdown button:hover {
+    background-color: #ff4d4d;
+  }
+
+  .language-dropdown button.active {
+    background-color: #ff4d4d;
+    font-weight: bold;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
     .search-section input[type="text"] {
-      padding: 12px;
-      width: 70%;
-      border-radius: 6px;
-      border: none;
-      font-size: 1rem;
-      outline: none;
-      box-shadow: inset 0 0 5px rgba(255,255,255,0.3);
+      width: 100%;
+      margin-bottom: 10px;
     }
 
     .search-section button {
-      padding: 12px 20px;
-      background-color: #ff4d4d;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      margin-left: 10px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s ease;
-    }
-
-    .search-section button:hover {
-      background-color: #e60000;
-    }
-
-    /* Ayar simgesi ve dil menüsü */
-    .settings {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      z-index: 10000;
-    }
-
-    .settings-button {
-      font-size: 28px;
-      background: transparent;
-      border: none;
-      color: white;
-      cursor: pointer;
-      padding: 5px 10px;
-      border-radius: 6px;
-    }
-
-    .settings-button:hover {
-      background-color: rgba(255, 77, 77, 0.3);
-    }
-
-    /* İlk açılır menü (Dil butonu) */
-    .first-dropdown {
-      display: none;
-      position: absolute;
-      top: 42px;
-      right: 0;
-      background-color: #222;
-      border-radius: 8px;
-      min-width: 80px;
-      box-shadow: 0 0 10px rgba(255,255,255,0.2);
-      user-select: none;
-    }
-
-    .first-dropdown button {
-      display: block;
       width: 100%;
-      background: none;
-      border: none;
-      color: white;
-      padding: 10px 15px;
-      font-size: 1rem;
-      text-align: left;
-      cursor: pointer;
+      margin-left: 0;
     }
 
-    .first-dropdown button:hover {
-      background-color: #ff4d4d;
+    .search-section form {
+      display: flex;
+      flex-direction: column;
     }
 
-    /* Dil seçenekleri menüsü */
+    h1 {
+      font-size: 2.2rem;
+    }
+
+    .quote {
+      font-size: 1.4rem;
+    }
+
+    .first-dropdown, .language-dropdown {
+      position: fixed !important;
+      top: 50px !important;
+      right: 10px !important;
+      min-width: 160px;
+    }
+
     .language-dropdown {
-      display: none;
-      position: absolute;
-      top: 0;
-      right: 100%;
-      background-color: #222;
-      border-radius: 8px;
-      min-width: 140px;
-      box-shadow: 0 0 10px rgba(255,255,255,0.2);
-      z-index: 10001;
-      user-select: none;
+      top: 110px !important;
     }
-
-    .language-dropdown button {
-      display: block;
-      width: 100%;
-      background: none;
-      border: none;
-      color: white;
-      padding: 10px 15px;
-      font-size: 1rem;
-      text-align: left;
-      cursor: pointer;
-    }
-
-    .language-dropdown button:hover {
-      background-color: #ff4d4d;
-    }
-
-    .language-dropdown button.active {
-      background-color: #ff4d4d;
-      font-weight: bold;
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      .search-section input[type="text"] {
-        width: 100%;
-        margin-bottom: 10px;
-      }
-
-      .search-section button {
-        width: 100%;
-        margin-left: 0;
-      }
-
-      .search-section form {
-        display: flex;
-        flex-direction: column;
-      }
-
-      h1 {
-        font-size: 2.2rem;
-      }
-
-      .quote {
-        font-size: 1.4rem;
-      }
-
-      /* Mobilde menülerin pozisyonu */
-      .first-dropdown, .language-dropdown {
-        position: fixed !important;
-        top: 50px !important;
-        right: 10px !important;
-        min-width: 160px;
-      }
-      .language-dropdown {
-        top: 110px !important;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
@@ -263,8 +263,8 @@
   <h1 id="main-title">Mustafa Kemal Atatürk</h1>
 
   <!-- Söz -->
-  <div class="quote" id="quote"></div>
-  <div class="quote-source" id="quote-source"></div>
+  <div class="quote" id="quote">Yurtta sulh, cihanda sulh.</div>
+  <div class="quote-source" id="quote-source">Mustafa Kemal Atatürk</div>
 
   <script>
     // Dil çeviri verileri
@@ -273,19 +273,25 @@
         searchPlaceholder: "Atatürk, Cumhuriyet, Türkiye...",
         searchButton: "Ara",
         title: "Mustafa Kemal Atatürk",
-        menu: { life: "Hayatı", gallery: "Galeri", countdown: "Geri Sayım" }
+        menu: { life: "Hayatı", gallery: "Galeri", countdown: "Geri Sayım" },
+        quote: "Yurtta sulh, cihanda sulh.",
+        quoteSource: "Mustafa Kemal Atatürk"
       },
       en: {
         searchPlaceholder: "Atatürk, Republic, Turkey...",
         searchButton: "Search",
         title: "Mustafa Kemal Atatürk",
-        menu: { life: "Life", gallery: "Gallery", countdown: "Countdown" }
+        menu: { life: "Life", gallery: "Gallery", countdown: "Countdown" },
+        quote: "Peace at home, peace in the world.",
+        quoteSource: "Mustafa Kemal Atatürk"
       },
       az: {
         searchPlaceholder: "Atatürk, Cümhuriyyət, Türkiyə...",
         searchButton: "Axtar",
         title: "Mustafa Kamal Atatürk",
-        menu: { life: "Həyatı", gallery: "Qalereya", countdown: "Geri Sayım" }
+        menu: { life: "Həyatı", gallery: "Qalereya", countdown: "Geri Sayım" },
+        quote: "Yurdda sülh, dünyada sülh.",
+        quoteSource: "Mustafa Kamal Atatürk"
       }
     };
 
@@ -306,7 +312,6 @@
       if (!translations[lang]) lang = 'tr';
       localStorage.setItem('siteLang', lang);
 
-      // Çevirileri uygula
       const t = translations[lang];
       el.searchInput.placeholder = t.searchPlaceholder;
       el.searchBtn.textContent = t.searchButton;
@@ -314,6 +319,8 @@
       el.menuLife.textContent = t.menu.life;
       el.menuGallery.textContent = t.menu.gallery;
       el.menuCountdown.textContent = t.menu.countdown;
+      el.quote.textContent = t.quote;
+      el.quoteSource.textContent = t.quoteSource;
 
       // Dil menüsünde aktif dili göster
       document.querySelectorAll('#languageDropdown button').forEach(btn => {
@@ -321,7 +328,7 @@
       });
     }
 
-    // Sayfa yüklenince önce kayıtlı dil yüklenir
+    // Sayfa yüklenince kayıtlı dil uygulanır
     document.addEventListener('DOMContentLoaded', () => {
       const savedLang = localStorage.getItem('siteLang') || 'tr';
       setLanguage(savedLang);
@@ -333,53 +340,62 @@
     const langBtn = document.getElementById('btnLangMenu');
     const languageDropdown = document.getElementById('languageDropdown');
 
-    // Ayar simgesi tıklama
-    settingsBtn.addEventListener('click', () => {
-      const shown = firstDropdown.style.display === 'block';
-      firstDropdown.style.display = shown ? 'none' : 'block';
-      settingsBtn.setAttribute('aria-expanded', !shown);
-      // Dil menüsünü kapat
+    settingsBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const visible = firstDropdown.style.display === 'block';
+      firstDropdown.style.display = visible ? 'none' : 'block';
+      settingsBtn.setAttribute('aria-expanded', !visible);
+      // Kapatılırsa alt menü kapansın
+      if (visible) {
+        languageDropdown.style.display = 'none';
+        langBtn.setAttribute('aria-expanded', false);
+      }
+    });
+
+    // Dil butonuna tıklayınca dil seçenekleri gösterilir
+    langBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const visible = languageDropdown.style.display === 'block';
+      languageDropdown.style.display = visible ? 'none' : 'block';
+      langBtn.setAttribute('aria-expanded', !visible);
+    });
+
+    // Dışarı tıklayınca menüleri kapat
+    document.addEventListener('click', () => {
+      firstDropdown.style.display = 'none';
       languageDropdown.style.display = 'none';
+      settingsBtn.setAttribute('aria-expanded', false);
       langBtn.setAttribute('aria-expanded', false);
     });
 
-    // Dil butonuna tıklayınca alt menü açılır
-    langBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const shown = languageDropdown.style.display === 'block';
-      languageDropdown.style.display = shown ? 'none' : 'block';
-      langBtn.setAttribute('aria-expanded', !shown);
-    });
-
-    // Dil seçme butonlarına tıklayınca dili değiştir
+    // Dil seçimi yapıldığında
     languageDropdown.querySelectorAll('button').forEach(btn => {
       btn.addEventListener('click', () => {
         const lang = btn.getAttribute('data-lang');
         setLanguage(lang);
-        // Menüleri kapat
-        languageDropdown.style.display = 'none';
-        langBtn.setAttribute('aria-expanded', false);
         firstDropdown.style.display = 'none';
+        languageDropdown.style.display = 'none';
         settingsBtn.setAttribute('aria-expanded', false);
+        langBtn.setAttribute('aria-expanded', false);
       });
     });
 
-    // Sayfada başka yere tıklayınca menüler kapanır
-    document.addEventListener('click', () => {
-      firstDropdown.style.display = 'none';
-      settingsBtn.setAttribute('aria-expanded', false);
-      languageDropdown.style.display = 'none';
-      langBtn.setAttribute('aria-expanded', false);
-    });
-
-    // Arama fonksiyonu (Örnek, kendine göre değiştir)
+    // Basit arama fonksiyonu
     function aramaYap() {
       const query = el.searchInput.value.trim();
-      if (query) {
-        alert(`Arama yapılacak: ${query}`);
-        // Buraya arama fonksiyonunu ekle
-      }
+      if (!query) return;
+      const lang = localStorage.getItem('siteLang') || 'tr';
+
+      // Örnek arama motoru: Google ve Türkçe/İngilizce/Azeri için özel site araması
+      let siteFilter = '';
+      if (lang === 'tr') siteFilter = ' site:ataturk.gov.tr OR site:ataturk.net ';
+      else if (lang === 'en') siteFilter = ' site:en.ataturk.net OR site:en.wikipedia.org ';
+      else if (lang === 'az') siteFilter = ' site:az.wikipedia.org ';
+
+      const url = 'https://www.google.com/search?q=' + encodeURIComponent(query + siteFilter);
+      window.open(url, '_blank');
     }
   </script>
+
 </body>
 </html>
