@@ -12,6 +12,8 @@
       color: white;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
+      min-height: 100vh;
+      position: relative;
     }
 
     nav {
@@ -22,6 +24,8 @@
       padding: 20px;
       background-color: rgba(255, 255, 255, 0.05);
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      z-index: 1;
+      position: relative;
     }
 
     nav a {
@@ -30,6 +34,8 @@
       font-weight: bold;
       transition: 0.3s;
       font-size: 1.1rem;
+      z-index: 1;
+      position: relative;
     }
 
     nav a:hover {
@@ -42,6 +48,8 @@
       font-weight: bold;
       color: white;
       text-shadow: 0 0 15px white;
+      position: relative;
+      z-index: 1;
     }
 
     .quote {
@@ -51,12 +59,16 @@
       max-width: 800px;
       color: #f0f0f0;
       padding: 0 20px;
+      position: relative;
+      z-index: 1;
     }
 
     .quote-source {
       font-size: 1rem;
       color: #bbb;
       margin-top: 5px;
+      position: relative;
+      z-index: 1;
     }
 
     .search-section {
@@ -67,6 +79,8 @@
       border-radius: 12px;
       border: 1px solid rgba(255,255,255,0.2);
       box-shadow: 0 0 10px rgba(255,255,255,0.1);
+      position: relative;
+      z-index: 1;
     }
 
     .search-section input[type="text"] {
@@ -100,7 +114,8 @@
       position: fixed;
       top: 10px;
       right: 10px;
-      z-index: 9999;
+      z-index: 99999; /* En üstte */
+      user-select: none;
     }
 
     .settings button {
@@ -108,8 +123,12 @@
       border: none;
       cursor: pointer;
       color: white;
-      font-size: 24px;
-      padding: 5px;
+      font-size: 28px;
+      padding: 8px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .dropdown {
@@ -121,26 +140,26 @@
       display: none;
       position: absolute;
       right: 0;
-      background-color: rgba(0,0,0,0.9);
+      background-color: rgba(0,0,0,0.95);
       min-width: 140px;
-      border-radius: 6px;
-      box-shadow: 0 8px 16px rgba(255, 77, 77, 0.2);
-      z-index: 10000;
-      margin-top: 5px;
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(255, 77, 77, 0.3);
+      margin-top: 8px;
       text-align: left;
       user-select: none;
+      z-index: 999999;
     }
 
     .dropdown-content button {
       background: none;
       border: none;
       color: white;
-      padding: 10px 15px;
+      padding: 12px 18px;
       width: 100%;
       text-align: left;
       cursor: pointer;
       font-size: 1rem;
-      transition: background-color 0.2s;
+      transition: background-color 0.2s ease;
     }
 
     .dropdown-content button:hover,
@@ -180,14 +199,14 @@
 </head>
 <body>
 
-  <!-- Dil Ayarı Menüsü -->
+  <!-- Ayarlar ve Dil Menüsü -->
   <div class="settings">
-    <div class="dropdown" id="languageDropdown">
-      <button id="settingsBtn" aria-label="Ayarlar ve dil seçimi">⚙️</button>
-      <div class="dropdown-content" aria-label="Dil seçeneği menüsü">
-        <button data-lang="tr">Türkçe</button>
-        <button data-lang="en">English</button>
-        <button data-lang="az">Azərbaycan</button>
+    <div class="dropdown" id="languageDropdown" aria-label="Dil ve ayarlar menüsü">
+      <button id="settingsBtn" aria-haspopup="true" aria-expanded="false" aria-label="Ayarlar ve dil seçimi">⚙️</button>
+      <div class="dropdown-content" role="menu" aria-hidden="true" tabindex="-1">
+        <button role="menuitem" data-lang="tr">Türkçe</button>
+        <button role="menuitem" data-lang="en">English</button>
+        <button role="menuitem" data-lang="az">Azərbaycan</button>
       </div>
     </div>
   </div>
@@ -244,7 +263,7 @@
       { text: "Ne mutlu Türküm diyene!", source: "Mustafa Kemal Atatürk" }
     ];
 
-    // DOM elemanları referansları
+    // DOM elemanları
     const el = {
       searchInput: document.getElementById("arama"),
       searchBtn: document.getElementById("btn-search"),
@@ -255,7 +274,8 @@
       quote: document.getElementById("quote"),
       quoteSource: document.getElementById("quote-source"),
       dropdown: document.getElementById("languageDropdown"),
-      settingsBtn: document.getElementById("settingsBtn")
+      settingsBtn: document.getElementById("settingsBtn"),
+      dropdownContent: document.querySelector(".dropdown-content")
     };
 
     function getRandomQuote() {
@@ -290,23 +310,27 @@
       setLanguage(savedLang);
 
       // Dropdown aç/kapa
-      el.settingsBtn.addEventListener('click', () => {
+      el.settingsBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const expanded = el.settingsBtn.getAttribute('aria-expanded') === 'true';
+        el.settingsBtn.setAttribute('aria-expanded', !expanded);
         el.dropdown.classList.toggle('show');
       });
 
       // Dışarı tıklayınca dropdown'u kapat
-      document.addEventListener('click', (e) => {
-        if (!el.dropdown.contains(e.target)) {
-          el.dropdown.classList.remove('show');
-        }
+      document.addEventListener('click', () => {
+        el.dropdown.classList.remove('show');
+        el.settingsBtn.setAttribute('aria-expanded', 'false');
       });
 
       // Dil butonları tıklama
       document.querySelectorAll('#languageDropdown button').forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
           const lang = btn.getAttribute('data-lang');
           setLanguage(lang);
           el.dropdown.classList.remove('show');
+          el.settingsBtn.setAttribute('aria-expanded', 'false');
         });
       });
     });
