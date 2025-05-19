@@ -163,7 +163,6 @@
   </div>
 
   <script>
-    // Çeviri metinleri
     const translations = {
       tr: {
         home: "Ana Sayfa",
@@ -212,28 +211,30 @@
       }
     };
 
-    // Sayfa yüklendiğinde dil uygula
     function applyLanguage(lang) {
-      if (!translations[lang]) lang = "tr"; // Varsayılan Türkçe
+      // Geçersiz dil gelirse tr olarak al
+      if (!translations[lang]) lang = "tr";
 
-      // Başlık
+      // Başlık ve ana sayfa linki
       document.getElementById("page-title").textContent = translations[lang].title;
-
-      // Ana sayfa linki
       document.getElementById("home-text").textContent = translations[lang].home;
 
-      // Zaman çizelgesi metinlerini güncelle
-      translations[lang].timeline.forEach((item, index) => {
-        const yearElem = document.querySelector(`[data-id="year-${index + 1}"]`);
-        const textElem = document.querySelector(`[data-id="text-${index + 1}"]`);
-        if (yearElem) yearElem.textContent = item.year;
-        if (textElem) textElem.textContent = item.text;
+      // Zaman çizelgesi metinleri
+      translations[lang].timeline.forEach((item, idx) => {
+        const yearEl = document.querySelector(`[data-id="year-${idx + 1}"]`);
+        const textEl = document.querySelector(`[data-id="text-${idx + 1}"]`);
+        if (yearEl) yearEl.textContent = item.year;
+        if (textEl) textEl.textContent = item.text;
       });
     }
 
-    // localStorage'den dili oku, uygula
-    const savedLang = localStorage.getItem("lang") || "tr";
-    applyLanguage(savedLang);
+    // localStorage'den dili al, yoksa tr olarak ayarla
+    const lang = localStorage.getItem("lang");
+    if (lang === "en" || lang === "az") {
+      applyLanguage(lang);
+    } else {
+      applyLanguage("tr");
+    }
   </script>
 
 </body>
