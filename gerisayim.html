@@ -1,31 +1,107 @@
-<style>
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 6vw;
-      padding: 10px;
-    }
-
-    #countdown {
-      font-size: 5vw;
-      padding: 15px;
-    }
-
-    a#anasayfa {
-      font-size: 4vw;
-    }
-  }
-
-  @media (max-width: 480px) {
-    h1 {
-      font-size: 7vw;
-    }
-
-    #countdown {
-      font-size: 6vw;
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Atatürk'ü Anma Geri Sayım</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100vh;
     }
 
     a#anasayfa {
-      font-size: 5vw;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      z-index: 10;
+      transition: color 0.3s;
     }
-  }
-</style>
+
+    a#anasayfa:hover {
+      color: #ff4d4d;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #fff;
+    }
+
+    #countdown {
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-shadow: 0 0 8px #ff4d4d;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+        padding: 0 15px;
+      }
+      #countdown {
+        font-size: 1.8rem;
+      }
+      a#anasayfa {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      #countdown {
+        font-size: 1.5rem;
+      }
+      a#anasayfa {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
+
+  <h1>10 Kasım Atatürk'ü Anma Günü'ne Kalan Süre</h1>
+  <div id="countdown"></div>
+
+  <script>
+    function geriSayim() {
+      const hedefTarih = new Date("November 10, 2025 09:05:00").getTime();
+      const simdi = new Date().getTime();
+      const fark = hedefTarih - simdi;
+
+      if (fark < 0) {
+        document.getElementById("countdown").innerHTML = "Anma Günü Geldi.";
+        return;
+      }
+
+      const gun = Math.floor(fark / (1000 * 60 * 60 * 24));
+      const saat = Math.floor((fark % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const dakika = Math.floor((fark % (1000 * 60 * 60)) / (1000 * 60));
+      const saniye = Math.floor((fark % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `${gun} Gün ${saat} Saat ${dakika} Dakika ${saniye} Saniye`;
+    }
+
+    setInterval(geriSayim, 1000);
+    geriSayim();
+  </script>
+
+</body>
+</html>
