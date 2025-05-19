@@ -95,19 +95,63 @@
       background-color: #e60000;
     }
 
+    /* Ayar butonu ve dropdown */
     .settings {
       position: fixed;
       top: 10px;
       right: 10px;
-      z-index: 999;
+      z-index: 9999;
+      user-select: none;
     }
 
-    .settings select {
-      padding: 8px;
-      background-color: black;
+    .settings-button {
+      background: transparent;
+      border: none;
       color: white;
-      border: 1px solid white;
-      border-radius: 5px;
+      font-size: 28px;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+
+    .settings-button:hover {
+      background-color: rgba(255, 77, 77, 0.3);
+    }
+
+    .language-dropdown {
+      display: none;
+      position: absolute;
+      top: 42px;
+      right: 0;
+      background-color: #222;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
+      overflow: hidden;
+      min-width: 140px;
+    }
+
+    .language-dropdown button {
+      display: block;
+      width: 100%;
+      background: none;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      font-size: 1rem;
+      text-align: left;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .language-dropdown button:hover {
+      background-color: #ff4d4d;
+    }
+
+    /* Aktif dili farklı göster */
+    .language-dropdown button.active {
+      background-color: #ff4d4d;
+      font-weight: bold;
     }
 
     @media (max-width: 600px) {
@@ -138,13 +182,14 @@
 </head>
 <body>
 
-  <!-- Dil Ayarı Menüsü -->
-  <div class="settings">
-    <select onchange="changeLanguage(this.value)">
-      <option value="tr">Türkçe</option>
-      <option value="en">English</option>
-      <option value="az">Azərbaycan</option>
-    </select>
+  <!-- Dil Ayarı Menüsü (Ayar İkonu + Dropdown) -->
+  <div class="settings" tabindex="0">
+    <button class="settings-button" aria-label="Dil ayarları">⚙️</button>
+    <div class="language-dropdown" role="menu" aria-label="Dil seçenekleri">
+      <button type="button" data-lang="tr">Türkçe</button>
+      <button type="button" data-lang="en">English</button>
+      <button type="button" data-lang="az">Azərbaycan</button>
+    </div>
   </div>
 
   <!-- Menü -->
@@ -209,7 +254,6 @@
       ]
     };
 
-    // Varsayılan dili ayarla
     document.addEventListener("DOMContentLoaded", () => {
       const defaultLang = "tr";
       let lang = localStorage.getItem("lang");
@@ -221,9 +265,31 @@
 
       applyLanguage(lang);
       showRandomQuote(lang);
+      updateActiveLangButton(lang);
 
-      // Dil seçim kutusunu seçilen dile göre ayarla
-      document.querySelector(".settings select").value = lang;
+      // Dil dropdown butonlarını ayarla
+      const dropdown = document.querySelector(".language-dropdown");
+      const settingsBtn = document.querySelector(".settings-button");
+
+      // Dil dropdown aç/kapa
+      settingsBtn.addEventListener("click", () => {
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+      });
+
+      // Dil butonlarına tıkla
+      dropdown.querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const selectedLang = btn.getAttribute("data-lang");
+          changeLanguage(selectedLang);
+        });
+      });
+
+      // Dropdown dışına tıklayınca kapat
+      document.addEventListener("click", (e) => {
+        if (!document.querySelector(".settings").contains(e.target)) {
+          dropdown.style.display = "none";
+        }
+      });
     });
 
     function changeLanguage(lang) {
@@ -245,6 +311,12 @@
       const sec = quotes[lang][Math.floor(Math.random() * quotes[lang].length)];
       document.getElementById("quote").textContent = `"${sec.text}"`;
       document.getElementById("quote-source").textContent = `– ${sec.source}`;
+    }
+
+    function updateActiveLangButton(lang) {
+      document.querySelectorAll(".language-dropdown button").forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+      });
     }
 
     function aramaYap() {
