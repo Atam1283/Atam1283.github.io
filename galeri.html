@@ -11,11 +11,6 @@
       font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 20px;
-      min-height: 100vh;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
 
     a#anasayfa {
@@ -27,78 +22,10 @@
       text-decoration: none;
       font-size: 18px;
       z-index: 10;
-      user-select: none;
-      cursor: pointer;
-      transition: color 0.3s ease;
     }
+
     a#anasayfa:hover {
       color: #ff4d4d;
-    }
-
-    /* En yakın gün kutusu */
-    #nearestEventBox {
-      border: 2.5px solid #fff;
-      border-radius: 40px;
-      padding: 24px 40px;
-      max-width: 90vw;
-      text-align: center;
-      user-select: none;
-      color: #fff;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      margin: 80px 0 40px 0; /* üstte boşluk verdi */
-      box-shadow: 0 0 20px 6px rgba(255, 255, 255, 1);
-      transition: box-shadow 0.3s ease;
-      width: 100%;
-      max-width: 600px;
-    }
-    #nearestEventBox:hover {
-      box-shadow: 0 0 28px 9px rgba(255, 255, 255, 1);
-    }
-
-    #nearestEventBox h2 {
-      margin: 0 0 12px 0;
-      font-size: 2rem;
-      cursor: pointer;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-    #nearestEventBox h2:hover {
-      color: #00ffff;
-      transform: scale(1.07);
-    }
-
-    #nearestEventBox .date {
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    #countdown {
-      font-size: 1.4rem;
-      font-weight: 400;
-      letter-spacing: 0.02em;
-      margin-bottom: 40px;
-      user-select: none;
-      width: 100%;
-      max-width: 600px;
-      text-align: center;
-    }
-
-    #progressBarContainer {
-      width: 80%;
-      max-width: 600px;
-      height: 14px;
-      background-color: #222;
-      border-radius: 50px;
-      box-shadow: inset 0 0 8px #111;
-      margin-bottom: 40px;
-    }
-    #progressBar {
-      height: 100%;
-      width: 0%;
-      background-color: #fff;
-      border-radius: 50px;
-      transition: width 0.5s ease-out;
     }
 
     h1 {
@@ -107,8 +34,6 @@
       font-weight: 700;
       font-size: 2.8rem;
       text-shadow: 0 0 10px white;
-      width: 100%;
-      max-width: 900px;
     }
 
     .gallery {
@@ -117,7 +42,6 @@
       gap: 30px;
       max-width: 1400px;
       margin: 0 auto;
-      width: 100%;
     }
 
     .gallery-item {
@@ -167,44 +91,12 @@
         height: auto;
         max-height: 250px;
       }
-
-      #nearestEventBox h2 {
-        font-size: 1.5rem;
-      }
-
-      #nearestEventBox {
-        padding: 18px 24px;
-        margin: 60px 0 30px 0;
-      }
-
-      #nearestEventBox .date {
-        font-size: 1.1rem;
-      }
-
-      #countdown {
-        font-size: 1.1rem;
-      }
-
-      #progressBarContainer {
-        width: 90%;
-      }
     }
   </style>
 </head>
 <body>
 
-  <a id="anasayfa" href="index.html" title="Ana Sayfa">← Ana Sayfa</a>
-
-  <div id="nearestEventBox" tabindex="0" aria-label="En yakın önemli gün bilgisi">
-    <h2 id="eventName" title="Etkinlik adı"></h2>
-    <div class="date" id="eventDate" aria-live="polite"></div>
-  </div>
-
-  <div id="countdown" aria-live="polite"></div>
-
-  <div id="progressBarContainer" aria-label="Geri sayım ilerleme çubuğu">
-    <div id="progressBar"></div>
-  </div>
+  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
 
   <h1>Atatürk Galerisi</h1>
 
@@ -230,91 +122,6 @@
       <div class="location">İstanbul - 1936</div>
     </div>
   </section>
-
-<script>
-  const importantDates = [
-    { name: "Şapka Kanunu", date: "1925-02-17" },
-    { name: "Tekke, zaviye ve türbelerin kapatılması", date: "1925-11-25" },
-    { name: "Tarikatların kaldırılması", date: "1925-11-26" },
-    { name: "Harf Devrimi", date: "1928-11-01" },
-    { name: "Türk Tarih Kurumu'nun kurulması", date: "1931-01-01" },
-    { name: "Türk Dil Kurumu'nun kurulması", date: "1932-01-01" },
-    { name: "Kadınlara seçme ve seçilme hakkı", date: "1934-12-05" },
-    { name: "Soyadı Kanunu", date: "1934-06-21" }
-  ];
-
-  function createDateForYear(dateString, year) {
-    const parts = dateString.split("-");
-    return new Date(year, parseInt(parts[1],10) - 1, parseInt(parts[2],10));
-  }
-
-  function getNextImportantDate(dates) {
-    const now = new Date();
-    const currentYear = now.getFullYear();
-
-    let futureDates = dates.map(d => {
-      let eventDate = createDateForYear(d.date, currentYear);
-      if(eventDate < now){
-        eventDate.setFullYear(currentYear + 1);
-      }
-      return {...d, nextDate: eventDate};
-    });
-
-    futureDates.sort((a,b) => a.nextDate - b.nextDate);
-    return futureDates[0];
-  }
-
-  function formatDate(date) {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return date.toLocaleDateString('tr-TR', options);
-  }
-
-  function startCountdown(event) {
-    const countdownEl = document.getElementById("countdown");
-    const progressBar = document.getElementById("progressBar");
-    const eventNameEl = document.getElementById("eventName");
-    const eventDateEl = document.getElementById("eventDate");
-
-    let startDate = new Date(event.nextDate);
-    startDate.setFullYear(startDate.getFullYear() - 1);
-
-    eventNameEl.textContent = event.name;
-    eventDateEl.textContent = formatDate(event.nextDate);
-
-    function update() {
-      const now = new Date();
-      let diff = event.nextDate - now;
-
-      if(diff <= 0){
-        countdownEl.textContent = "Bugün!";
-        progressBar.style.width = "100%";
-        clearInterval(interval);
-        return;
-      }
-
-      const days = Math.floor(diff / (1000*60*60*24));
-      const hours = Math.floor((diff / (1000*60*60)) % 24);
-      const minutes = Math.floor((diff / (1000*60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      countdownEl.textContent = `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye kaldı`;
-
-      const totalPeriod = event.nextDate - startDate;
-      const elapsed = now - startDate;
-      let percent = (elapsed / totalPeriod) * 100;
-      if(percent > 100) percent = 100;
-      if(percent < 0) percent = 0;
-
-      progressBar.style.width = percent + "%";
-    }
-
-    update();
-    const interval = setInterval(update, 1000);
-  }
-
-  const nextEvent = getNextImportantDate(importantDates);
-  startCountdown(nextEvent);
-</script>
 
 </body>
 </html>
