@@ -1,163 +1,105 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Atatürk Galerisi</title>
-  <style>
-    body {
-      background-color: black;
-      color: white;
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+<style>
+  body {
+    background-color: black;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding-top: 80px; /* Üst bar yüksekliği kadar boşluk */
+  }
 
-    a#anasayfa {
-      color: white;
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 18px;
-      z-index: 10;
-    }
+  /* Üst sabit bar */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 2px 8px rgba(255,255,255,0.15);
+    z-index: 1000;
+  }
 
-    a#anasayfa:hover {
-      color: #ff4d4d;
-    }
+  a#anasayfa {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+    white-space: nowrap;
+  }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 40px;
-      font-weight: 700;
-      font-size: 2.8rem;
-      text-shadow: 0 0 10px white;
-    }
+  a#anasayfa:hover {
+    color: #ff4d4d;
+  }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      max-width: 1400px;
-      margin: 0 auto;
-      flex-grow: 1;
-    }
+  h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.8rem;
+    white-space: nowrap;
+  }
 
+  /* Galeri yatay scroll */
+  .gallery-wrapper {
+    overflow-x: auto;
+    padding: 20px;
+  }
+
+  .gallery {
+    display: flex;
+    gap: 30px;
+    max-width: none; /* grid yerine flex olduğu için genişlik otomatik */
+  }
+
+  .gallery-item {
+    flex: 0 0 300px; /* 300px genişlikte sabit kalacak */
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid white;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px;
+  }
+
+  .gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px white;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .caption {
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 1.1rem;
+  }
+
+  .location {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 600px) {
     .gallery-item {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid white;
-      border-radius: 12px;
-      padding: 15px;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-      height: 400px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .gallery-item:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px white;
+      height: auto;
     }
 
     .gallery-item img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 8px;
+      height: auto;
+      max-height: 250px;
     }
-
-    .caption {
-      font-weight: bold;
-      margin-top: 10px;
-      font-size: 1.1rem;
-    }
-
-    .location {
-      font-size: 0.9rem;
-      color: #ccc;
-      margin-top: 4px;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      color: #ccc;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      padding-bottom: 20px;
-    }
-
-    footer a {
-      color: #ccc;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: color 0.3s ease;
-    }
-
-    footer a:hover {
-      color: #E1306C;
-    }
-
-    @media (max-width: 600px) {
-      .gallery-item {
-        height: auto;
-      }
-
-      .gallery-item img {
-        height: auto;
-        max-height: 250px;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
-
-  <h1>Atatürk Galerisi</h1>
-
-  <section class="gallery">
-    <div class="gallery-item">
-      <img src="images/ataturk1.jpg" alt="Atatürk Fotoğraf 1" />
-      <div class="caption">Atatürk Fotoğraf 1</div>
-      <div class="location">Ankara - 1923</div>
-    </div>
-    <div class="gallery-item">
-      <img src="images/ataturk2.jpg" alt="Atatürk Fotoğraf 2" />
-      <div class="caption">Atatürk Fotoğraf 2</div>
-      <div class="location">Samsun - 1919</div>
-    </div>
-    <div class="gallery-item">
-      <img src="images/ataturk3.jpg" alt="Atatürk Fotoğraf 3" />
-      <div class="caption">Atatürk Fotoğraf 3</div>
-      <div class="location">İzmir - 1934</div>
-    </div>
-    <div class="gallery-item">
-      <img src="images/ataturk4.jpg" alt="Atatürk Fotoğraf 4" />
-      <div class="caption">Atatürk Fotoğraf 4</div>
-      <div class="location">İstanbul - 1936</div>
-    </div>
-  </section>
-
-  <footer>
-    <a href="https://www.instagram.com/muhammedefekrkmz01" target="_blank" rel="noopener" aria-label="Instagram hesabı">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#E1306C" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path d="M7.75 2C4.25 2 2 4.25 2 7.75v8.5C2 19.75 4.25 22 7.75 22h8.5c3.5 0 5.75-2.25 5.75-5.75v-8.5C22 4.25 19.75 2 16.25 2h-8.5zm0 2h8.5c1.51 0 2.25 0.74 2.25 2.25v8.5c0 1.51-0.74 2.25-2.25 2.25h-8.5c-1.51 0-2.25-0.74-2.25-2.25v-8.5c0-1.51 0.74-2.25 2.25-2.25zm4.25 2.75a4.25 4.25 0 1 0 0 8.5 4.25 4.25 0 0 0 0-8.5zm0 2a2.25 2.25 0 1 1 0 4.5 2.25 2.25 0 0 1 0-4.5zm3.5-.75a0.75 0.75 0 1 1-1.5 0 0.75 0.75 0 0 1 1.5 0z"/>
-      </svg>
-      @muhammedefekrkmz01
-    </a>
-  </footer>
-
-</body>
-</html>
+  }
+</style>
