@@ -26,10 +26,17 @@
     .soz {
       font-family: 'Great Vibes', cursive;
       font-size: 30px;
-      max-width: 600px;
+      max-width: 700px;
       margin: 0 auto;
       color: #dddddd;
       text-shadow: 0 0 5px #ffffff88;
+    }
+
+    .kaynak {
+      font-size: 16px;
+      margin-top: 8px;
+      color: #cccccc;
+      font-style: italic;
     }
 
     nav {
@@ -61,19 +68,36 @@
   </nav>
 
   <div class="baslik">Mustafa Kemal Atatürk</div>
-  <div class="soz" id="ataturk-sozu">"Yurtta sulh, cihanda sulh."</div>
+  <div class="soz" id="ataturk-sozu"></div>
+  <div class="kaynak" id="soz-kaynagi"></div>
 
   <script>
     const sozler = [
-      `"Egemenlik, kayıtsız şartsız milletindir."`,
-      `"Benim naçiz vücudum elbet bir gün toprak olacaktır; fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır."`,
-      `"Hayatta en hakiki mürşit ilimdir, fendir."`,
-      `"Milleti kurtaranlar yalnız ve ancak öğretmenlerdir."`,
-      `"Yurtta sulh, cihanda sulh."`
+      {
+        metin: `"Egemenlik, kayıtsız şartsız milletindir."`,
+        kaynak: "1920 – Türkiye Büyük Millet Meclisi Açılış Konuşması"
+      },
+      {
+        metin: `"Yurtta sulh, cihanda sulh."`,
+        kaynak: "1931 – Cumhuriyet Halk Partisi Kurultayı"
+      },
+      {
+        metin: `"Hayatta en hakiki mürşit ilimdir, fendir."`,
+        kaynak: "1924 – Öğretmenler Birliği Toplantısı"
+      },
+      {
+        metin: `"Benim naçiz vücudum elbet bir gün toprak olacaktır; fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır."`,
+        kaynak: "1926 – İzmir Suikasti Duruşması"
+      },
+      {
+        metin: `"Milleti kurtaranlar yalnız ve ancak öğretmenlerdir."`,
+        kaynak: "1925 – Kastamonu Öğretmenler Derneği Ziyareti"
+      }
     ];
 
-    const rastgeleSoz = sozler[Math.floor(Math.random() * sozler.length)];
-    document.getElementById("ataturk-sozu").textContent = rastgeleSoz;
+    const rastgele = sozler[Math.floor(Math.random() * sozler.length)];
+    document.getElementById("ataturk-sozu").textContent = rastgele.metin;
+    document.getElementById("soz-kaynagi").textContent = rastgele.kaynak;
   </script>
 
 </body>
