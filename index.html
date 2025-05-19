@@ -108,6 +108,7 @@
       color: white;
       border: 1px solid white;
       border-radius: 5px;
+      cursor: pointer;
     }
 
     @media (max-width: 600px) {
@@ -140,7 +141,7 @@
 
   <!-- Dil Ayarı Menüsü -->
   <div class="settings">
-    <select onchange="changeLanguage(this.value)">
+    <select id="language-select" onchange="changeLanguage(this.value)">
       <option value="tr">Türkçe</option>
       <option value="en">English</option>
       <option value="az">Azərbaycan</option>
@@ -209,21 +210,19 @@
       ]
     };
 
-    // Varsayılan dili ayarla
     document.addEventListener("DOMContentLoaded", () => {
-      const defaultLang = "tr";
+      // Varsayılan dil: tr
       let lang = localStorage.getItem("lang");
-
-      if (!lang || !["tr", "en", "az"].includes(lang)) {
-        lang = defaultLang;
+      if (!lang || !["tr","en","az"].includes(lang)) {
+        lang = "tr";
         localStorage.setItem("lang", lang);
       }
 
+      // Dil seçimini güncelle
+      document.getElementById("language-select").value = lang;
+
       applyLanguage(lang);
       showRandomQuote(lang);
-
-      // Dil seçim kutusunu seçilen dile göre ayarla
-      document.querySelector(".settings select").value = lang;
     });
 
     function changeLanguage(lang) {
@@ -238,25 +237,4 @@
       document.getElementById("main-title").textContent = t.title;
       document.getElementById("menu-life").textContent = t.menu.life;
       document.getElementById("menu-gallery").textContent = t.menu.gallery;
-      document.getElementById("menu-countdown").textContent = t.menu.countdown;
-    }
-
-    function showRandomQuote(lang) {
-      const sec = quotes[lang][Math.floor(Math.random() * quotes[lang].length)];
-      document.getElementById("quote").textContent = `"${sec.text}"`;
-      document.getElementById("quote-source").textContent = `– ${sec.source}`;
-    }
-
-    function aramaYap() {
-      const kelime = document.getElementById("arama").value.trim();
-      if (!kelime) {
-        alert("Lütfen bir arama kelimesi giriniz.");
-        return;
-      }
-      const sorgu = `site:tr.wikipedia.org OR site:atam.gov.tr OR site:tbmm.gov.tr "${kelime}"`;
-      const url = "https://www.google.com/search?q=" + encodeURIComponent(sorgu);
-      window.open(url, "_blank");
-    }
-  </script>
-</body>
-</html>
+      document.getElementById("menu
