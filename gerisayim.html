@@ -13,9 +13,13 @@
       color: #f0f0f0;
       font-family: 'Roboto Slab', serif;
       text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px 40px;
     }
 
-    /* Ana Sayfa linki */
     a#anasayfa {
       color: white;
       position: fixed;
@@ -32,80 +36,129 @@
     }
 
     a#anasayfa:hover {
-      color: #ff4d4d; /* Kırmızı */
+      color: #ff4d4d;
       cursor: pointer;
     }
 
     h1 {
       font-size: 2.8rem;
-      margin-top: 80px;
+      margin-bottom: 50px;
       text-shadow: 0 0 20px rgba(255, 77, 77, 0.8);
       font-weight: 700;
       letter-spacing: 1.2px;
       user-select: none;
+      width: 100%;
+      max-width: 700px;
+    }
+
+    /* Etkinlik kutuları kapsayıcı */
+    .events-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
     }
 
     .countdown-box {
-      margin: 40px auto;
-      padding: 35px 25px;
+      padding: 30px 25px;
       border: 2px solid rgba(255, 77, 77, 0.7);
       border-radius: 20px;
-      max-width: 600px;
       background-color: rgba(255, 255, 255, 0.06);
       box-shadow: 0 0 18px rgba(255, 77, 77, 0.6);
       backdrop-filter: blur(7px);
+      user-select: none;
       transition: box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
-
     .countdown-box:hover {
       box-shadow: 0 0 30px rgba(255, 77, 77, 0.9);
     }
 
     .event-name {
-      font-size: 2rem;
+      font-size: 1.9rem;
       font-weight: 700;
       color: #ff4d4d;
-      margin-bottom: 25px;
-      letter-spacing: 1.5px;
-      user-select: none;
+      margin-bottom: 20px;
+      letter-spacing: 1.3px;
       text-shadow: 0 0 5px rgba(255, 77, 77, 0.8);
+      cursor: pointer;
+      transition: color 0.3s ease;
+      display: inline-block;
+    }
+    .event-name:hover {
+      color: #ff9999;
+      text-decoration: underline;
     }
 
     .countdown {
-      font-size: 2.4rem;
+      font-size: 2.1rem;
       font-weight: 600;
       color: #fff;
       text-shadow: 0 0 12px rgba(255, 77, 77, 0.85);
+      margin-bottom: 20px;
       transition: color 0.3s ease, transform 0.3s ease;
-      user-select: none;
     }
-
     .countdown:hover {
       color: #ff9999;
       transform: scale(1.05);
       cursor: default;
     }
 
+    /* Grafik çubuğu */
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      background-color: rgba(255, 77, 77, 0.2);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: inset 0 0 5px rgba(255, 77, 77, 0.3);
+    }
+    .progress-fill {
+      height: 100%;
+      background-color: #ff4d4d;
+      width: 0;
+      border-radius: 8px 0 0 8px;
+      transition: width 1s ease-in-out;
+    }
+
+    /* Animasyon (fade in) */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .countdown-box {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
     /* Mobil uyumluluk */
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
       h1 {
         font-size: 2rem;
       }
-
       .countdown-box {
-        margin: 20px;
-        padding: 25px 20px;
+        padding: 25px 15px;
       }
-
       .event-name {
-        font-size: 1.6rem;
-        margin-bottom: 18px;
+        font-size: 1.5rem;
       }
-
       .countdown {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
       }
-
+    }
+    @media (max-width: 400px) {
+      .events-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
       a#anasayfa {
         font-size: 16px;
         padding: 5px 8px;
@@ -117,11 +170,10 @@
 
   <a id="anasayfa" href="index.html">← Ana Sayfa</a>
 
-  <h1>En Yakın Özel Güne Geri Sayım</h1>
+  <h1>Özel Günlere Geri Sayım</h1>
 
-  <div class="countdown-box">
-    <div class="event-name" id="event-name"></div>
-    <div class="countdown" id="countdown"></div>
+  <div class="events-container" id="events-container">
+    <!-- Geri sayım kutuları buraya JS ile eklenecek -->
   </div>
 
   <script>
@@ -135,46 +187,111 @@
       { date: '10/29', name: 'Cumhuriyet Bayramı' }
     ];
 
-    function getNextEvent() {
-      const today = new Date();
-      let currentYear = today.getFullYear();
+    // Verilen tarihten gün başlangıcını al
+    function startOfDay(date) {
+      return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    }
 
-      const futureEvents = events.map(e => {
+    // İki tarih arası gün farkı
+    function daysBetween(date1, date2) {
+      const diffTime = date2 - date1;
+      return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    }
+
+    // Etkinliklerin her biri için tarih objesi ve yıl hesaplama
+    function prepareEvents() {
+      const today = new Date();
+      const currentYear = today.getFullYear();
+
+      return events.map(e => {
         let [month, day] = e.date.split('/').map(Number);
-        let eventDate = new Date(currentYear, month - 1, day);
-        if (eventDate < today) {
-          eventDate.setFullYear(currentYear + 1);
+        let eventDate = new Date(currentYear, month -1, day);
+        if (eventDate < today) eventDate.setFullYear(currentYear + 1);
+        return {...e, dateObj: eventDate};
+      }).sort((a,b) => a.dateObj - b.dateObj);
+    }
+
+    // Etkinlik kutusunu oluştur
+    function createCountdownBox(event) {
+      const box = document.createElement('div');
+      box.classList.add('countdown-box');
+
+      // Link ver, tıklayınca Wikipedia açsın (arama linki)
+      const eventLink = document.createElement('a');
+      eventLink.className = 'event-name';
+      eventLink.href = `https://tr.wikipedia.org/wiki/${encodeURIComponent(event.name)}`;
+      eventLink.target = '_blank';
+      eventLink.rel = 'noopener noreferrer';
+      eventLink.textContent = event.name;
+
+      const countdownText = document.createElement('div');
+      countdownText.className = 'countdown';
+      countdownText.textContent = 'Yükleniyor...';
+
+      // Grafik çubuğu
+      const progressBar = document.createElement('div');
+      progressBar.className = 'progress-bar';
+      const progressFill = document.createElement('div');
+      progressFill.className = 'progress-fill';
+      progressBar.appendChild(progressFill);
+
+      box.appendChild(eventLink);
+      box.appendChild(countdownText);
+      box.appendChild(progressBar);
+
+      return {box, countdownText, progressFill, event};
+    }
+
+    // Geri sayım güncelleme fonksiyonu
+    function updateCountdowns(containers) {
+      const now = new Date();
+      containers.forEach(c => {
+        const eventDate = c.event.dateObj;
+        const distance = eventDate - now;
+
+        if(distance <= 0){
+          c.countdownText.textContent = 'Bugün!';
+          c.progressFill.style.width = '100%';
+          return;
         }
-        return { ...e, dateObj: eventDate };
+
+        const days = Math.floor(distance / (1000*60*60*24));
+        const hours = Math.floor((distance / (1000*60*60)) % 24);
+        const minutes = Math.floor((distance / (1000*60)) % 60);
+        const seconds = Math.floor((distance / 1000) % 60);
+
+        c.countdownText.textContent = `${days} gün, ${hours} saat, ${minutes} dakika, ${seconds} saniye kaldı`;
+
+        // Gün sayısı üzerinden yüzde hesapla (1 yıl yaklaşık 365 gün)
+        const totalDays = daysBetween(startOfDay(new Date()), eventDate);
+        const passedDays = 365 - totalDays; // geçen gün sayısı
+        let progressPercent = ((passedDays / 365) * 100);
+        if(progressPercent < 0) progressPercent = 0;
+        if(progressPercent > 100) progressPercent = 100;
+
+        c.progressFill.style.width = `${progressPercent}%`;
+      });
+    }
+
+    // Sayfa hazırlandığında kutuları oluştur ve ekle
+    function init() {
+      const eventsPrepared = prepareEvents();
+      const container = document.getElementById('events-container');
+
+      // Kutu nesneleri dizisi
+      const countdownContainers = [];
+
+      eventsPrepared.forEach(event => {
+        const {box, countdownText, progressFill} = createCountdownBox(event);
+        container.appendChild(box);
+        countdownContainers.push({countdownText, progressFill, event});
       });
 
-      futureEvents.sort((a, b) => a.dateObj - b.dateObj);
-      return futureEvents[0];
+      updateCountdowns(countdownContainers);
+      setInterval(() => updateCountdowns(countdownContainers), 1000);
     }
 
-    function updateCountdown() {
-      const event = getNextEvent();
-      const now = new Date();
-      const distance = event.dateObj - now;
-
-      if (distance <= 0) {
-        document.getElementById('countdown').textContent = 'Bugün!';
-        document.getElementById('event-name').textContent = event.name;
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((distance / (1000 * 60)) % 60);
-      const seconds = Math.floor((distance / 1000) % 60);
-
-      document.getElementById('event-name').textContent = event.name;
-      document.getElementById('countdown').textContent =
-        `${days} gün, ${hours} saat, ${minutes} dakika, ${seconds} saniye kaldı`;
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    window.onload = init;
   </script>
 
 </body>
