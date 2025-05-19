@@ -6,8 +6,7 @@
   <title>Mustafa Kemal Atatürk</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       background-color: black;
       color: white;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -120,17 +119,16 @@
       }
     }
 
-    /* Ayarlar ve Dil Seçimi stil */
-    #settings {
+    /* Ayarlar ve Dil butonları */
+    #settings-container {
       position: fixed;
       top: 15px;
       right: 15px;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      user-select: none;
       z-index: 1000;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    #settings button {
+    #settings-btn, #lang-btn {
       background: transparent;
       border: 2px solid white;
       color: white;
@@ -139,29 +137,16 @@
       font-weight: bold;
       cursor: pointer;
       transition: background-color 0.3s ease, color 0.3s ease;
+      margin-left: 5px;
     }
 
-    #settings button:hover {
+    #settings-btn:hover, #lang-btn:hover {
       background-color: white;
       color: black;
     }
 
     #lang-btn {
-      margin-left: 10px;
       display: none; /* Başta gizli */
-      background: transparent;
-      border: 2px solid white;
-      color: white;
-      padding: 6px 12px;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    #lang-btn:hover {
-      background-color: white;
-      color: black;
     }
 
     #lang-menu {
@@ -176,7 +161,6 @@
       text-align: left;
       position: absolute;
       right: 0;
-      z-index: 1001;
     }
 
     #lang-menu label {
@@ -185,6 +169,7 @@
       padding: 6px 4px;
       border-radius: 5px;
       transition: background-color 0.2s ease;
+      user-select: none;
     }
 
     #lang-menu label:hover {
@@ -194,14 +179,16 @@
 
     #lang-menu input {
       margin-right: 8px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <div id="settings" aria-label="Ayarlar ve Dil Seçimi">
-    <button id="settings-btn" aria-haspopup="true" aria-expanded="false" aria-controls="lang-btn">Ayarlar ⚙️</button>
-    <button id="lang-btn" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu">Dil</button>
+  <!-- Ayarlar ve Dil Seçimi -->
+  <div id="settings-container" aria-label="Ayarlar ve Dil Seçimi">
+    <button id="settings-btn" aria-haspopup="true" aria-expanded="false">Ayarlar ⚙️</button>
+    <button id="lang-btn" aria-haspopup="true" aria-expanded="false">Dil</button>
     <div id="lang-menu" role="menu" aria-label="Dil Seçenekleri">
       <label><input type="radio" name="language" value="tr"> Türkçe</label>
       <label><input type="radio" name="language" value="en"> English</label>
@@ -228,7 +215,7 @@
   <div class="quote-source" id="quote-source"></div>
 
   <script>
-    // Çeviriler
+    // Çeviri verileri
     const translations = {
       tr: {
         title: "Mustafa Kemal Atatürk",
@@ -274,36 +261,15 @@
       }
     };
 
-    // Butonlar ve menü elemanları
+    // Elemanlar
     const settingsBtn = document.getElementById('settings-btn');
     const langBtn = document.getElementById('lang-btn');
     const langMenu = document.getElementById('lang-menu');
-    const langRadios = document.querySelectorAll('input[name="language"]');
+    const langRadios = langMenu.querySelectorAll('input[name="language"]');
 
-    // Dil seçimi localStorage'dan okunur, yoksa 'tr' default
+    // Dil localStorage'dan yüklenir, yoksa tr
     let currentLang = localStorage.getItem('selectedLanguage') || 'tr';
 
-    // Dil radyo butonları için başlangıç işaretlemesi ve event
-    langRadios.forEach(radio => {
-      if (radio.value === currentLang) radio.checked = true;
-      radio.addEventListener('change', () => {
-        currentLang = radio.value;
-        localStorage.setItem('selectedLanguage', currentLang);
-        applyTranslations();
-      });
-    });
-
-    // Ayarlar butonu tıklanınca Dil butonunu göster/gizle
+    // Dil seçim ekranını yönet
     settingsBtn.addEventListener('click', () => {
-      if (langBtn.style.display === 'inline-block') {
-        langBtn.style.display = 'none';
-        langBtn.setAttribute('aria-expanded', 'false');
-        langMenu.style.display = 'none';
-      } else {
-        langBtn.style.display = 'inline-block';
-        langBtn.setAttribute('aria-expanded', 'true');
-      }
-    });
-
-    // Dil butonu tıklanınca dilleri göster/gizle
-    langBtn.addEventListener('click', () => {
+      if (langBtn
