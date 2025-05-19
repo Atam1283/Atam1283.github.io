@@ -2,91 +2,105 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Atatürk'ün Hayatı</title>
   <style>
     body {
       background-color: #000;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
+      color: #eee;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 0;
+      padding: 0 20px 40px;
     }
 
-    #anasayfa {
+    a#anasayfa {
+      color: white;
       position: fixed;
       top: 15px;
-      left: 20px;
-      color: white;
+      left: 15px;
       font-weight: bold;
       text-decoration: none;
-      font-size: 18px;
-      z-index: 1000;
+      font-size: 16px;
+      z-index: 10;
+      transition: color 0.3s;
     }
 
-    #anasayfa:hover {
-      color: #ff4444;
+    a#anasayfa:hover {
+      color: #ff2c2c;
     }
 
     h1 {
       text-align: center;
-      margin-top: 100px;
-      margin-bottom: 40px;
+      padding-top: 70px;
+      color: #fff;
       font-size: 2.8rem;
-      color: white;
-      text-shadow: 0 0 8px white;
-    }
-
-    .timeline {
-      position: relative;
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    .timeline::after {
-      content: '';
-      position: absolute;
-      left: 20px;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      background-color: #fff;
-    }
-
-    .timeline-item {
-      padding: 20px 20px 20px 60px;
-      position: relative;
+      text-shadow: 0 0 10px white;
       margin-bottom: 30px;
     }
 
-    .timeline-item::before {
-      content: '';
+    .timeline {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .event {
+      background-color: rgba(255, 255, 255, 0.04);
+      border-left: 4px solid #fff;
+      padding: 20px 20px 15px 20px;
+      margin: 20px 0;
+      position: relative;
+      border-radius: 6px;
+    }
+
+    .event::before {
+      content: "";
       position: absolute;
-      top: 25px;
-      left: 12px;
-      width: 16px;
-      height: 16px;
-      background-color: #ff4444;
+      top: 20px;
+      left: -30px;
+      width: 20px;
+      height: 20px;
+      background-color: #fff;
       border-radius: 50%;
-      border: 2px solid white;
-      transform: translateY(-50%);
+      border: 3px solid #000;
     }
 
-    .timeline-item h3 {
-      font-size: 1.4rem;
+    .event.red::before {
+      background-color: #ff2c2c;
+    }
+
+    .event h3 {
+      margin: 0 0 5px;
+      font-size: 1.2rem;
       color: #fff;
-      margin-bottom: 5px;
     }
 
-    .timeline-item p {
-      font-size: 1rem;
-      color: #ccc;
+    .event.red h3 {
+      color: #ff2c2c;
+    }
+
+    .event p {
       margin: 0;
+      font-size: 1rem;
+      color: #ddd;
+      line-height: 1.4;
     }
 
-    .timeline-item.red {
-      color: #ff4444;
+    .event.red p {
+      color: #ffaaaa;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      a#anasayfa {
+        font-size: 14px;
+      }
+
+      .event::before {
+        left: -22px;
+      }
     }
   </style>
 </head>
@@ -97,29 +111,41 @@
   <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
 
   <div class="timeline">
-    <div class="timeline-item">
+    <div class="event">
       <h3>1881</h3>
       <p>Selanik'te doğdu.</p>
     </div>
-    <div class="timeline-item">
+    <div class="event">
+      <h3>1893</h3>
+      <p>Selanik Askerî Rüştiyesi'ne başladı ve "Kemal" ismini aldı.</p>
+    </div>
+    <div class="event">
       <h3>1905</h3>
-      <p>Harp Akademisi'nden Kurmay Yüzbaşı olarak mezun oldu.</p>
+      <p>Harp Akademisi'ni kurmay yüzbaşı olarak bitirdi.</p>
     </div>
-    <div class="timeline-item">
+    <div class="event">
       <h3>1915</h3>
-      <p>Çanakkale Savaşı’nda önemli başarılar elde etti.</p>
+      <p>Çanakkale Savaşı'nda büyük başarı gösterdi.</p>
     </div>
-    <div class="timeline-item">
-      <h3>1919</h3>
-      <p>19 Mayıs'ta Samsun'a çıkarak Kurtuluş Savaşı’nı başlattı.</p>
+    <div class="event">
+      <h3>19 Mayıs 1919</h3>
+      <p>Samsun'a çıkarak Kurtuluş Savaşı’nı başlattı.</p>
     </div>
-    <div class="timeline-item">
+    <div class="event">
+      <h3>1920</h3>
+      <p>Türkiye Büyük Millet Meclisi'ni açtı.</p>
+    </div>
+    <div class="event">
       <h3>1923</h3>
-      <p>Türkiye Cumhuriyeti’ni ilan etti ve Cumhurbaşkanı oldu.</p>
+      <p>Cumhuriyet ilan edildi ve Atatürk ilk Cumhurbaşkanı oldu.</p>
     </div>
-    <div class="timeline-item red">
+    <div class="event">
+      <h3>1934</h3>
+      <p>Soyadı Kanunu ile “Atatürk” soyadını aldı.</p>
+    </div>
+    <div class="event red">
       <h3>10 Kasım 1938</h3>
-      <p>İstanbul Dolmabahçe Sarayı’nda vefat etti.</p>
+      <p>Dolmabahçe Sarayı'nda vefat etti.</p>
     </div>
   </div>
 
