@@ -1,22 +1,262 @@
-@media (max-width: 600px) {
-  .dilsecici {
-    position: fixed !important;  /* Sabit */
-    top: 10px !important;        /* Üstten 10px */
-    right: 10px !important;      /* Sağdan 10px */
-    margin: 0 !important;        /* Margin sıfır */
-    background: rgba(0, 0, 0, 0.7); /* Yarı saydam siyah arka plan */
-    padding: 5px 10px;
-    border-radius: 8px;
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-    z-index: 9999;
-  }
-  .dilsecici select {
-    background-color: #222 !important;
-    color: white !important;
-    border-radius: 5px !important;
-    border: none !important;
-    padding: 5px 10px !important;
-    font-size: 1rem !important;
-    cursor: pointer !important;
-  }
-}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mustafa Kemal Atatürk</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+      font-size: 1.1rem;
+    }
+
+    nav a:hover {
+      color: #ff4d4d;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-top: 40px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 0 15px white;
+    }
+
+    .quote {
+      font-family: 'Brush Script MT', cursive;
+      font-size: 1.8rem;
+      margin: 20px auto;
+      max-width: 800px;
+      color: #f0f0f0;
+      padding: 0 20px;
+    }
+
+    .quote-source {
+      font-size: 1rem;
+      color: #bbb;
+      margin-top: 5px;
+    }
+
+    .search-section {
+      margin: 20px auto;
+      max-width: 600px;
+      background-color: rgba(255,255,255,0.03);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+
+    .search-section input[type="text"] {
+      padding: 12px;
+      width: 70%;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      outline: none;
+      box-shadow: inset 0 0 5px rgba(255,255,255,0.3);
+    }
+
+    .search-section button {
+      padding: 12px 20px;
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      margin-left: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .search-section button:hover {
+      background-color: #e60000;
+    }
+
+    .settings {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 999;
+    }
+
+    .settings select {
+      padding: 8px;
+      background-color: black;
+      color: white;
+      border: 1px solid white;
+      border-radius: 5px;
+    }
+
+    @media (max-width: 600px) {
+      .search-section input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .search-section button {
+        width: 100%;
+        margin-left: 0;
+      }
+
+      .search-section form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .quote {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Dil Ayarı Menüsü -->
+  <div class="settings">
+    <select onchange="changeLanguage(this.value)">
+      <option value="tr">Türkçe</option>
+      <option value="en">English</option>
+      <option value="az">Azərbaycan</option>
+    </select>
+  </div>
+
+  <!-- Menü -->
+  <nav>
+    <a href="hayati.html" id="menu-life">Hayatı</a>
+    <a href="galeri.html" id="menu-gallery">Galeri</a>
+    <a href="gerisayim.html" id="menu-countdown">Geri Sayım</a>
+  </nav>
+
+  <!-- Arama -->
+  <section class="search-section">
+    <form onsubmit="aramaYap(); return false;">
+      <input type="text" id="arama" placeholder="Atatürk, Cumhuriyet, Türkiye..." />
+      <button type="submit" id="btn-search">Ara</button>
+    </form>
+  </section>
+
+  <!-- Başlık -->
+  <h1 id="main-title">Mustafa Kemal Atatürk</h1>
+
+  <!-- Söz -->
+  <div class="quote" id="quote"></div>
+  <div class="quote-source" id="quote-source"></div>
+
+  <script>
+    const translations = {
+      tr: {
+        searchPlaceholder: "Atatürk, Cumhuriyet, Türkiye...",
+        searchButton: "Ara",
+        title: "Mustafa Kemal Atatürk",
+        menu: { life: "Hayatı", gallery: "Galeri", countdown: "Geri Sayım" }
+      },
+      en: {
+        searchPlaceholder: "Atatürk, Republic, Turkey...",
+        searchButton: "Search",
+        title: "Mustafa Kemal Atatürk",
+        menu: { life: "Life", gallery: "Gallery", countdown: "Countdown" }
+      },
+      az: {
+        searchPlaceholder: "Atatürk, Cümhuriyyət, Türkiyə...",
+        searchButton: "Axtar",
+        title: "Mustafa Kamal Atatürk",
+        menu: { life: "Həyatı", gallery: "Qalereya", countdown: "Geri Sayım" }
+      }
+    };
+
+    const quotes = {
+      tr: [
+        { text: "Benim naçiz vücudum elbet bir gün toprak olacaktır; fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır.", source: "TBMM, 1927" },
+        { text: "Yurtta sulh, cihanda sulh.", source: "Ankara, 1931" },
+        { text: "Egemenlik, kayıtsız şartsız milletindir.", source: "1920, TBMM Açılışı" }
+      ],
+      en: [
+        { text: "My mortal body will surely turn into dust one day; but the Republic of Turkey will live forever.", source: "Grand National Assembly, 1927" },
+        { text: "Peace at home, peace in the world.", source: "Ankara, 1931" },
+        { text: "Sovereignty unconditionally belongs to the nation.", source: "1920, GNA Opening" }
+      ],
+      az: [
+        { text: "Mənim ətdən ibarət cismim bir gün torpaq olacaq; amma Türkiyə Cümhuriyyəti əbədi yaşayacaq.", source: "TBMM, 1927" },
+        { text: "Evində sülh, dünyada sülh.", source: "Ankara, 1931" },
+        { text: "Hakimiyyət qeydsiz-şərtsiz millətindir.", source: "1920, TBMM Açılışı" }
+      ]
+    };
+
+    // Varsayılan dili ayarla
+    document.addEventListener("DOMContentLoaded", () => {
+      const defaultLang = "tr";
+      let lang = localStorage.getItem("lang");
+
+      if (!lang || !["tr", "en", "az"].includes(lang)) {
+        lang = defaultLang;
+        localStorage.setItem("lang", lang);
+      }
+
+      applyLanguage(lang);
+      showRandomQuote(lang);
+
+      // Dil seçim kutusunu seçilen dile göre ayarla
+      document.querySelector(".settings select").value = lang;
+    });
+
+    function changeLanguage(lang) {
+      localStorage.setItem("lang", lang);
+      location.reload();
+    }
+
+    function applyLanguage(lang) {
+      const t = translations[lang];
+      document.getElementById("arama").placeholder = t.searchPlaceholder;
+      document.getElementById("btn-search").textContent = t.searchButton;
+      document.getElementById("main-title").textContent = t.title;
+      document.getElementById("menu-life").textContent = t.menu.life;
+      document.getElementById("menu-gallery").textContent = t.menu.gallery;
+      document.getElementById("menu-countdown").textContent = t.menu.countdown;
+    }
+
+    function showRandomQuote(lang) {
+      const sec = quotes[lang][Math.floor(Math.random() * quotes[lang].length)];
+      document.getElementById("quote").textContent = `"${sec.text}"`;
+      document.getElementById("quote-source").textContent = `– ${sec.source}`;
+    }
+
+    function aramaYap() {
+      const kelime = document.getElementById("arama").value.trim();
+      if (!kelime) {
+        alert("Lütfen bir arama kelimesi giriniz.");
+        return;
+      }
+      const sorgu = `site:tr.wikipedia.org OR site:atam.gov.tr OR site:tbmm.gov.tr "${kelime}"`;
+      const url = "https://www.google.com/search?q=" + encodeURIComponent(sorgu);
+      window.open(url, "_blank");
+    }
+  </script>
+</body>
+</html>
