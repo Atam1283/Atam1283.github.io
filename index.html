@@ -1,237 +1,173 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Atatürk Sitesi</title>
-
-<style>
-  /* Genel */
-  body {
-    margin:0; padding:0;
-    background-color: black;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: center;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Üst Menü */
-  nav {
-    display: flex;
-    justify-content: center;
-    background: #111;
-    padding: 12px 0;
-    font-weight: bold;
-    gap: 20px;
-  }
-  nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    transition: color 0.3s;
-  }
-  nav a:hover {
-    color: #ff4d4d;
-  }
-
-  /* Ayarlar Butonu */
-  #settings-container {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-  }
-  #settings-btn {
-    background: none;
-    border: 2px solid white;
-    color: white;
-    padding: 6px 12px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  #settings-btn:hover {
-    background-color: #ff4d4d;
-    border-color: #ff4d4d;
-    color: white;
-  }
-
-  /* Ayarlar Menüsü */
-  #settings-menu {
-    display: none;
-    background: #222;
-    border: 1px solid #444;
-    margin-top: 8px;
-    padding: 10px 20px;
-    border-radius: 6px;
-    text-align: left;
-  }
-  #settings-menu label {
-    display: block;
-    margin: 6px 0;
-    cursor: pointer;
-    font-weight: normal;
-    font-size: 16px;
-  }
-  #settings-menu input[type="radio"] {
-    margin-right: 8px;
-  }
-
-  /* Ana Başlık */
-  #main-title {
-    margin-top: 80px;
-    font-size: 3rem;
-    font-weight: bold;
-    color: white;
-    user-select: none;
-  }
-
-  /* Atatürk Sözü */
-  #quote-container {
-    margin-top: 16px;
-    font-family: 'Segoe Script', 'Comic Sans MS', cursive;
-    font-size: 1.7rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
-    line-height: 1.4;
-    user-select: none;
-  }
-  #location {
-    margin-top: 8px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #ff4d4d;
-  }
-
-  /* Arama Kutusu */
-  #search-form {
-    margin: 40px auto 60px;
-    max-width: 600px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-  }
-  #search-input {
-    flex-grow: 1;
-    padding: 12px 14px;
-    font-size: 18px;
-    border-radius: 8px;
-    border: none;
-    outline: none;
-  }
-  #search-submit {
-    background-color: #ff4d4d;
-    border: none;
-    color: white;
-    padding: 12px 24px;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  #search-submit:hover {
-    background-color: #e04343;
-  }
-
-  /* Responsive */
-  @media(max-width: 600px) {
-    #main-title {
-      font-size: 2.2rem;
-      margin-top: 50px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ana Sayfa</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
     }
-    #quote-container {
-      font-size: 1.3rem;
-      max-width: 90vw;
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     }
-    #search-form {
-      flex-direction: column;
-      max-width: 90vw;
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+      font-size: 1.1rem;
     }
-    #search-submit {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
+
+    nav a:hover {
+      color: #ff4d4d;
     }
-  }
-</style>
+
+    h1 {
+      font-size: 2.8rem;
+      margin-top: 40px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 0 15px white;
+    }
+
+    .quote {
+      font-family: 'Brush Script MT', cursive;
+      font-size: 1.8rem;
+      margin: 20px auto;
+      max-width: 800px;
+      color: #f0f0f0;
+      padding: 0 20px;
+    }
+
+    .quote-source {
+      font-size: 1rem;
+      color: #bbb;
+      margin-top: 5px;
+    }
+
+    .search-section {
+      margin: 20px auto;
+      max-width: 600px;
+      background-color: rgba(255,255,255,0.03);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+
+    .search-section input[type="text"] {
+      padding: 12px;
+      width: 70%;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      outline: none;
+      box-shadow: inset 0 0 5px rgba(255,255,255,0.3);
+    }
+
+    .search-section button {
+      padding: 12px 20px;
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      margin-left: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .search-section button:hover {
+      background-color: #e60000;
+    }
+
+    @media (max-width: 600px) {
+      .search-section input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .search-section button {
+        width: 100%;
+        margin-left: 0;
+      }
+
+      .search-section form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .quote {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<nav>
-  <a href="index.html">Ana Sayfa</a>
-  <a href="hayati.html">Hayatı</a>
-  <a href="galeri.html">Galeri</a>
-  <a href="gerisayim.html">Geri Sayım</a>
-</nav>
+  <nav>
+    <a href="hayati.html">Hayatı</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="gerisayim.html">Geri Sayım</a>
+  </nav>
 
-<div id="settings-container">
-  <button id="settings-btn" aria-haspopup="true" aria-expanded="false" aria-controls="settings-menu">Ayarlar ⚙️</button>
-  <div id="settings-menu" role="menu" aria-label="Ayarlar Menüsü">
-    <form>
-      <label><input type="radio" name="language" value="tr" /> Türkçe</label>
-      <label><input type="radio" name="language" value="en" /> English</label>
-      <label><input type="radio" name="language" value="az" /> Azərbaycan</label>
+  <section class="search-section">
+    <form onsubmit="aramaYap(); return false;">
+      <input type="text" id="arama" placeholder="Atatürk, Cumhuriyet, Türkiye..." />
+      <button type="submit">Ara</button>
     </form>
-  </div>
-</div>
+  </section>
 
-<h1 id="main-title">Mustafa Kemal Atatürk</h1>
+  <h1>Mustafa Kemal Atatürk</h1>
 
-<div id="quote-container">
-  <div id="quote">“Bilim ve akıl her zaman yol göstericidir.”</div>
-  <div id="location">1924, Türkiye</div>
-</div>
+  <div class="quote" id="quote"></div>
+  <div class="quote-source" id="quote-source"></div>
 
-<form id="search-form" role="search" aria-label="Arama Formu">
-  <input id="search-input" type="search" placeholder="Atatürk, Cumhuriyet ve Türkiye hakkında ara..." aria-label="Arama" />
-  <button id="search-submit" type="submit">Ara</button>
-</form>
+  <script>
+    const sozler = [
+      { metin: "Benim naçiz vücudum elbet bir gün toprak olacaktır; fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır.", kaynak: "TBMM, 1927" },
+      { metin: "Yurtta sulh, cihanda sulh.", kaynak: "Ankara, 1931" },
+      { metin: "Egemenlik, kayıtsız şartsız milletindir.", kaynak: "1920, TBMM Açılışı" },
+      { metin: "Milletin bağımsızlığını yine milletin azim ve kararı kurtaracaktır.", kaynak: "Sivas Kongresi, 1919" }
+    ];
 
-<script>
-  // Sözler
-  const quotes = {
-    tr: [
-      { text: "Yurtta sulh, cihanda sulh.", location: "1923, Türkiye" },
-      { text: "Egemenlik, kayıtsız şartsız milletindir.", location: "1921, Türkiye" },
-      { text: "Hayatta en hakiki mürşit ilimdir.", location: "1924, Türkiye" },
-      { text: "Benim manevi mirasım bilim ve akıldır.", location: "1938, Türkiye" }
-    ],
-    en: [
-      { text: "Peace at home, peace in the world.", location: "1923, Turkey" },
-      { text: "Sovereignty unconditionally belongs to the nation.", location: "1921, Turkey" },
-      { text: "Science is the truest guide in life.", location: "1924, Turkey" },
-      { text: "My spiritual heritage is science and reason.", location: "1938, Turkey" }
-    ],
-    az: [
-      { text: "Yurdda sülh, dünyada sülh.", location: "1923, Türkiyə" },
-      { text: "Hökmdarlıq şərtsiz-şərtsiz millətindir.", location: "1921, Türkiyə" },
-      { text: "Həyatda ən doğru yol göstərən elmidir.", location: "1924, Türkiyə" },
-      { text: "Mənim mənəvi mirasım elm və ağıl olub.", location: "1938, Türkiyə" }
-    ]
-  };
+    function rastgeleSoz() {
+      const sec = sozler[Math.floor(Math.random() * sozler.length)];
+      document.getElementById("quote").textContent = `"${sec.metin}"`;
+      document.getElementById("quote-source").textContent = `– ${sec.kaynak}`;
+    }
 
-  // Elemanlar
-  const quoteEl = document.getElementById('quote');
-  const locationEl = document.getElementById('location');
-  const settingsBtn = document.getElementById('settings-btn');
-  const settingsMenu = document.getElementById('settings-menu');
-  const languageRadios = settingsMenu.querySelectorAll('input[name="language"]');
-  const searchForm = document.getElementById('search-form');
-  const searchInput = document.getElementById('search-input');
+    function aramaYap() {
+      const kelime = document.getElementById("arama").value.trim();
+      if (!kelime) {
+        alert("Lütfen bir arama kelimesi giriniz.");
+        return;
+      }
+      const sorgu = `site:tr.wikipedia.org OR site:atam.gov.tr OR site:tbmm.gov.tr "${kelime}"`;
+      const url = "https://www.google.com/search?q=" + encodeURIComponent(sorgu);
+      window.open(url, "_blank");
+    }
 
-  // Dil ayarı anahtarı
-  const LANG_KEY = 'selectedLanguage';
+    rastgeleSoz();
+  </script>
 
-  // Mevcut dil (localStorage’dan oku veya varsayılan tr)
-  let currentLang = localStorage.getItem(LANG_KEY) || 'tr';
-
-  // Dil seçim radyo güncelleme
-  function updateLanguage
+</body>
+</html>
