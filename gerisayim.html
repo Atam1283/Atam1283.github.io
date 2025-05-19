@@ -2,151 +2,70 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Geri Sayım</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
+      background-color: #0a0a0a;
+      color: #eee;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #121212;
-      color: #f0f0f0;
-      font-family: 'Roboto Slab', serif;
       text-align: center;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 60px 20px 40px;
     }
 
     a#anasayfa {
-      color: white;
+      color: #fff;
       position: fixed;
       top: 15px;
       left: 15px;
-      font-weight: 600;
       text-decoration: none;
-      font-size: 18px;
-      z-index: 100;
-      padding: 6px 10px;
-      background-color: transparent;
-      border-radius: 0;
-      transition: color 0.3s ease;
+      font-size: 1.2rem;
+      font-weight: bold;
     }
 
     a#anasayfa:hover {
       color: #ff4d4d;
-      cursor: pointer;
     }
 
     h1 {
-      font-size: 2.8rem;
-      margin-bottom: 50px;
-      text-shadow: 0 0 20px rgba(255, 77, 77, 0.8);
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      user-select: none;
-      max-width: 700px;
-      width: 100%;
+      font-size: 2.5rem;
+      color: #fff;
+      margin-top: 80px;
+      text-shadow: 0 0 10px #fff;
     }
 
-    .countdown-box {
-      padding: 35px 30px;
-      border: 2px solid rgba(255, 77, 77, 0.7);
-      border-radius: 20px;
-      background-color: rgba(255, 255, 255, 0.06);
-      box-shadow: 0 0 18px rgba(255, 77, 77, 0.6);
-      backdrop-filter: blur(7px);
-      user-select: none;
-      transition: box-shadow 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      max-width: 600px;
-      width: 100%;
-      animation: fadeInUp 0.6s ease forwards;
-    }
-    .countdown-box:hover {
-      box-shadow: 0 0 30px rgba(255, 77, 77, 0.9);
+    .countdown-container {
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #111;
+      border-radius: 10px;
+      display: inline-block;
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
     }
 
     .event-name {
-      font-size: 2.2rem;
-      font-weight: 700;
+      font-size: 1.5rem;
       color: #ff4d4d;
-      margin-bottom: 30px;
-      letter-spacing: 1.3px;
-      text-shadow: 0 0 7px rgba(255, 77, 77, 0.8);
-      cursor: pointer;
-      transition: color 0.3s ease;
-      display: inline-block;
-      text-decoration: none;
-    }
-    .event-name:hover {
-      color: #ff9999;
-      text-decoration: underline;
+      margin-bottom: 15px;
     }
 
     .countdown {
-      font-size: 2.4rem;
-      font-weight: 600;
+      font-size: 2rem;
       color: #fff;
-      text-shadow: 0 0 14px rgba(255, 77, 77, 0.85);
-      margin-bottom: 30px;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-    .countdown:hover {
-      color: #ff9999;
-      transform: scale(1.05);
-      cursor: default;
     }
 
-    .progress-bar {
-      width: 100%;
-      height: 14px;
-      background-color: rgba(255, 77, 77, 0.2);
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: inset 0 0 6px rgba(255, 77, 77, 0.3);
-    }
-    .progress-fill {
-      height: 100%;
-      background-color: #ff4d4d;
-      width: 0;
-      border-radius: 10px 0 0 10px;
-      transition: width 1s ease-in-out;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Mobil uyumluluk */
-    @media (max-width: 700px) {
+    @media (max-width: 600px) {
       h1 {
-        font-size: 2rem;
-      }
-      .countdown-box {
-        padding: 25px 20px;
-      }
-      .event-name {
-        font-size: 1.6rem;
-      }
-      .countdown {
         font-size: 1.8rem;
       }
-    }
-    @media (max-width: 400px) {
-      a#anasayfa {
-        font-size: 16px;
-        padding: 5px 8px;
+
+      .event-name {
+        font-size: 1.2rem;
+      }
+
+      .countdown {
+        font-size: 1.5rem;
       }
     }
   </style>
@@ -154,82 +73,43 @@
 <body>
 
   <a id="anasayfa" href="index.html">← Ana Sayfa</a>
+  <h1>Yaklaşan Önemli Gün</h1>
 
-  <h1>En Yakın Özel Güne Geri Sayım</h1>
-
-  <div class="countdown-box" id="countdown-box">
-    <a href="#" target="_blank" rel="noopener noreferrer" class="event-name" id="event-name">Yükleniyor...</a>
-    <div class="countdown" id="countdown">Yükleniyor...</div>
-    <div class="progress-bar">
-      <div class="progress-fill" id="progress-fill"></div>
-    </div>
+  <div class="countdown-container">
+    <div class="event-name" id="eventName">Yükleniyor...</div>
+    <div class="countdown" id="countdown">00 gün 00 saat 00 dakika 00 saniye</div>
   </div>
 
   <script>
     const events = [
-      { date: '01/01', name: 'Yılbaşı' },
-      { date: '04/23', name: 'Ulusal Egemenlik ve Çocuk Bayramı' },
-      { date: '05/01', name: 'Emek ve Dayanışma Günü' },
-      { date: '05/19', name: 'Atatürk\'ü Anma, Gençlik ve Spor Bayramı' },
-      { date: '07/15', name: 'Milli Birlik ve Demokrasi Günü' },
-      { date: '08/30', name: 'Zafer Bayramı' },
-      { date: '10/29', name: 'Cumhuriyet Bayramı' }
+      { name: "19 Mayıs Atatürk'ü Anma, Gençlik ve Spor Bayramı", date: "2025-05-19T00:00:00" },
+      { name: "30 Ağustos Zafer Bayramı", date: "2025-08-30T00:00:00" },
+      { name: "29 Ekim Cumhuriyet Bayramı", date: "2025-10-29T00:00:00" },
+      { name: "10 Kasım Atatürk’ü Anma Günü", date: "2025-11-10T09:05:00" }
     ];
 
-    function startOfDay(date) {
-      return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    }
-
-    function daysBetween(date1, date2) {
-      const diffTime = date2 - date1;
-      return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    }
-
     function getNextEvent() {
-      const today = new Date();
-      const currentYear = today.getFullYear();
-
-      const futureEvents = events.map(e => {
-        let [month, day] = e.date.split('/').map(Number);
-        let eventDate = new Date(currentYear, month - 1, day);
-        if (eventDate < today) eventDate.setFullYear(currentYear + 1);
-        return { ...e, dateObj: eventDate };
-      }).sort((a, b) => a.dateObj - b.dateObj);
-
-      return futureEvents[0];
+      const now = new Date();
+      return events.find(e => new Date(e.date) > now);
     }
 
     function updateCountdown() {
-      const now = new Date();
       const event = getNextEvent();
+      if (!event) return;
 
-      const distance = event.dateObj - now;
-      const eventNameEl = document.getElementById('event-name');
-      const countdownEl = document.getElementById('countdown');
-      const progressFill = document.getElementById('progress-fill');
+      document.getElementById("eventName").textContent = event.name;
 
-      if (distance <= 0) {
-        countdownEl.textContent = 'Bugün!';
-        progressFill.style.width = '100%';
-      } else {
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((distance / (1000 * 60)) % 60);
-        const seconds = Math.floor((distance / 1000) % 60);
+      const targetDate = new Date(event.date);
+      const now = new Date();
+      const diff = targetDate - now;
 
-        countdownEl.textContent = `${days} gün, ${hours} saat, ${minutes} dakika, ${seconds} saniye kaldı`;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
 
-        const totalDays = daysBetween(startOfDay(new Date()), event.dateObj);
-        const passedDays = 365 - totalDays;
-        let progressPercent = ((passedDays / 365) * 100);
-        if (progressPercent < 0) progressPercent = 0;
-        if (progressPercent > 100) progressPercent = 100;
-
-        progressFill.style.width = `${progressPercent}%`;
-      }
-
-      eventNameEl.textContent = event.name;
-      eventNameEl.href = `https://tr.wikipedia.org/wiki/${encodeURIComponent(event.name)}`;
+      document.getElementById("countdown").textContent = 
+        `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye`;
     }
 
     updateCountdown();
