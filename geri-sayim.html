@@ -3,19 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Özel Günlere Geri Sayım</title>
+  <title>Geri Sayım</title>
   <style>
     body {
-      background-color: #000;
-      color: #eee;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 40px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      box-sizing: border-box;
+      padding: 0;
+      background-color: black;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
     }
 
     a#anasayfa {
@@ -25,74 +21,41 @@
       left: 15px;
       font-weight: bold;
       text-decoration: none;
-      font-size: 16px;
-      z-index: 10;
-      transition: color 0.3s;
+      font-size: 18px;
     }
+
     a#anasayfa:hover {
-      color: #ff2c2c;
+      color: #ff4d4d;
     }
 
     h1 {
       font-size: 2.8rem;
-      margin-bottom: 20px;
-      text-align: center;
-      text-shadow: 0 0 12px white;
+      margin-top: 80px;
+      text-shadow: 0 0 15px white;
     }
 
-    #nextEventName {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 15px;
-      color: #eee;
+    .countdown-box {
+      margin: 40px auto;
+      padding: 30px;
+      border: 2px solid white;
+      border-radius: 15px;
+      max-width: 500px;
+      background-color: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 15px white; /* parlaklık efekti */
     }
 
-    #nextEventName.important {
-      color: #ff2c2c;
-      text-shadow: 0 0 12px #ff2c2c;
-    }
-
-    #countdown {
-      display: flex;
-      gap: 30px;
+    .event-name {
       font-size: 1.6rem;
-      font-weight: 600;
-      justify-content: center;
-      margin-bottom: 40px;
+      font-weight: bold;
+      color: #ff4d4d;
+      margin-bottom: 20px;
     }
 
-    .time-box {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 15px 25px;
-      border-radius: 8px;
-      min-width: 70px;
-      text-align: center;
-      box-shadow: 0 0 10px #fff3;
-      user-select: none;
-    }
-
-    .time-box span {
-      display: block;
+    .countdown {
       font-size: 2.2rem;
-      color: white;
-      font-weight: 700;
-    }
-
-    .label {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      color: #ccc;
-      margin-top: 5px;
       letter-spacing: 1px;
+      font-weight: 600;
     }
-
-    footer {
-      margin-top: auto;
-      font-size: 0.85rem;
-      color: #777;
-      user-select: none;
-    }
-
   </style>
 </head>
 <body>
@@ -101,97 +64,52 @@
 
   <h1>En Yakın Özel Güne Geri Sayım</h1>
 
-  <div id="nextEventName">Yükleniyor...</div>
-
-  <div id="countdown">
-    <div class="time-box">
-      <span id="days">0</span>
-      <div class="label">Gün</div>
-    </div>
-    <div class="time-box">
-      <span id="hours">0</span>
-      <div class="label">Saat</div>
-    </div>
-    <div class="time-box">
-      <span id="minutes">0</span>
-      <div class="label">Dakika</div>
-    </div>
-    <div class="time-box">
-      <span id="seconds">0</span>
-      <div class="label">Saniye</div>
-    </div>
+  <div class="countdown-box">
+    <div class="event-name" id="event-name"></div>
+    <div class="countdown" id="countdown"></div>
   </div>
-
-  <footer>© 2025 Mustafa Kemal Atatürk Özel Günleri</footer>
 
   <script>
     const events = [
-      { name: "Yılbaşı", date: "01-01" },
-      { name: "Ulusal Egemenlik ve Çocuk Bayramı", date: "04-23" },
-      { name: "Emek ve Dayanışma Günü", date: "05-01" },
-      { name: "Atatürk'ü Anma, Gençlik ve Spor Bayramı", date: "05-19" },
-      { name: "Milli Birlik ve Demokrasi Günü", date: "07-15" },
-      { name: "Zafer Bayramı", date: "08-30" },
-      { name: "Cumhuriyet Bayramı", date: "10-29" }
+      { date: '01/01', name: 'Yılbaşı' },
+      { date: '04/23', name: 'Ulusal Egemenlik ve Çocuk Bayramı' },
+      { date: '05/01', name: 'Emek ve Dayanışma Günü' },
+      { date: '05/19', name: 'Atatürk\'ü Anma, Gençlik ve Spor Bayramı' },
+      { date: '07/15', name: 'Milli Birlik ve Demokrasi Günü' },
+      { date: '08/30', name: 'Zafer Bayramı' },
+      { date: '10/29', name: 'Cumhuriyet Bayramı' }
     ];
 
     function getNextEvent() {
-      const now = new Date();
-      const currentYear = now.getFullYear();
+      const today = new Date();
+      let currentYear = today.getFullYear();
 
-      // Her etkinin bu yılki tarihini oluştur
-      const upcomingEvents = events.map(ev => {
-        let eventDate = new Date(`${currentYear}-${ev.date}T00:00:00`);
-        // Eğer geçmişte kaldıysa bir sonraki yıla al
-        if (eventDate < now) {
-          eventDate = new Date(`${currentYear + 1}-${ev.date}T00:00:00`);
+      const futureEvents = events.map(e => {
+        let [month, day] = e.date.split('/').map(Number);
+        let eventDate = new Date(currentYear, month - 1, day);
+        if (eventDate < today) {
+          eventDate.setFullYear(currentYear + 1);
         }
-        return {...ev, dateObj: eventDate};
+        return { ...e, dateObj: eventDate };
       });
 
-      // En yakın etkinliği bul
-      upcomingEvents.sort((a, b) => a.dateObj - b.dateObj);
-      return upcomingEvents[0];
+      futureEvents.sort((a, b) => a.dateObj - b.dateObj);
+      return futureEvents[0];
     }
 
     function updateCountdown() {
       const event = getNextEvent();
       const now = new Date();
-      const diff = event.dateObj - now;
+      const distance = event.dateObj - now;
 
-      const nextEventNameEl = document.getElementById('nextEventName');
-      nextEventNameEl.textContent = event.name;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
 
-      // Önemli günleri kırmızı yapalım
-      const importantDays = [
-        "Atatürk'ü Anma, Gençlik ve Spor Bayramı",
-        "Milli Birlik ve Demokrasi Günü",
-        "Zafer Bayramı",
-        "Cumhuriyet Bayramı"
-      ];
-      if (importantDays.includes(event.name)) {
-        nextEventNameEl.classList.add('important');
-      } else {
-        nextEventNameEl.classList.remove('important');
-      }
-
-      if (diff <= 0) {
-        document.getElementById('days').textContent = 0;
-        document.getElementById('hours').textContent = 0;
-        document.getElementById('minutes').textContent = 0;
-        document.getElementById('seconds').textContent = 0;
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      document.getElementById('days').textContent = days;
-      document.getElementById('hours').textContent = hours;
-      document.getElementById('minutes').textContent = minutes;
-      document.getElementById('seconds').textContent = seconds;
+      document.getElementById('event-name').textContent = event.name;
+      document.getElementById('countdown').textContent =
+        `${days} gün, ${hours} saat, ${minutes} dakika, ${seconds} saniye kaldı`;
     }
 
     updateCountdown();
