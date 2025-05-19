@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>En Yakın Önemli Gün - Geri Sayım</title>
+<title>En Yakın Önemli Gün - Geri Sayım ve Zaman Çizelgesi</title>
 <style>
   body {
     margin: 0;
@@ -19,7 +19,6 @@
     position: relative;
   }
 
-  /* Hayatı sayfasındaki Ana Sayfa linki stili */
   a#anasayfa {
     color: white;
     position: fixed;
@@ -37,25 +36,35 @@
     color: #ff4d4d;
   }
 
+  /* Ana konteyner: Geri sayım ve zaman çizelgesi yan yana, mobilde alt alta */
+  #mainContainer {
+    display: flex;
+    gap: 50px;
+    max-width: 1000px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
   /* En yakın gün kutusu */
   #nearestEventBox {
     border: 2.5px solid #fff;
     border-radius: 40px;
     padding: 24px 40px;
-    max-width: 90vw;
+    max-width: 400px;
     text-align: center;
     user-select: none;
     color: #fff;
     font-weight: 700;
     letter-spacing: 0.06em;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     box-shadow: 0 0 20px 6px rgba(255, 255, 255, 1);
     transition: box-shadow 0.3s ease;
+    flex-shrink: 0;
   }
   #nearestEventBox:hover {
     box-shadow: 0 0 28px 9px rgba(255, 255, 255, 1);
   }
-
   #nearestEventBox h2 {
     margin: 0 0 12px 0;
     font-size: 2rem;
@@ -66,24 +75,20 @@
     color: #00ffff;
     transform: scale(1.07);
   }
-
   #nearestEventBox .date {
     font-size: 1.3rem;
     font-weight: 600;
     margin-bottom: 8px;
   }
-
   #countdown {
     font-size: 1.4rem;
     font-weight: 400;
     letter-spacing: 0.02em;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     user-select: none;
   }
-
   #progressBarContainer {
-    width: 80%;
-    max-width: 600px;
+    width: 100%;
     height: 14px;
     background-color: #222;
     border-radius: 50px;
@@ -95,6 +100,63 @@
     background-color: #fff;
     border-radius: 50px;
     transition: width 0.5s ease-out;
+  }
+
+  /* Zaman çizelgesi kutusu */
+  #timelineBox {
+    border: 2.5px solid #fff;
+    border-radius: 40px;
+    padding: 24px 30px;
+    max-width: 400px;
+    height: fit-content;
+    user-select: none;
+    overflow-y: auto;
+    box-shadow: 0 0 15px 4px rgba(255, 255, 255, 0.6);
+    flex-shrink: 0;
+  }
+  #timelineBox h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 1.8rem;
+    text-align: center;
+  }
+  #timelineList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  #timelineList li {
+    padding: 10px 15px;
+    border-bottom: 1px solid #444;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+  }
+  #timelineList li.highlight {
+    background-color: #00ffff22;
+    font-weight: 800;
+    color: #00ffff;
+  }
+  #timelineList li:last-child {
+    border-bottom: none;
+  }
+  #timelineList .date {
+    font-weight: 400;
+    color: #aaa;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    #mainContainer {
+      flex-direction: column;
+      align-items: center;
+    }
+    #nearestEventBox, #timelineBox {
+      max-width: 90vw;
+      width: 100%;
+      margin-bottom: 40px;
+    }
   }
 
   @media (max-width: 480px) {
@@ -111,7 +173,10 @@
       font-size: 1.1rem;
     }
     #progressBarContainer {
-      width: 90%;
+      width: 100%;
+    }
+    #timelineBox h3 {
+      font-size: 1.4rem;
     }
   }
 </style>
@@ -120,15 +185,22 @@
 
 <a id="anasayfa" href="index.html" title="Ana Sayfa">← Ana Sayfa</a>
 
-<div id="nearestEventBox" tabindex="0" aria-label="En yakın önemli gün bilgisi">
-  <h2 id="eventName" title="Etkinlik adı"></h2>
-  <div class="date" id="eventDate" aria-live="polite"></div>
-</div>
+<div id="mainContainer">
 
-<div id="countdown" aria-live="polite"></div>
+  <div id="nearestEventBox" tabindex="0" aria-label="En yakın önemli gün bilgisi">
+    <h2 id="eventName" title="Etkinlik adı"></h2>
+    <div class="date" id="eventDate" aria-live="polite"></div>
+    <div id="countdown" aria-live="polite"></div>
+    <div id="progressBarContainer" aria-label="Geri sayım ilerleme çubuğu">
+      <div id="progressBar"></div>
+    </div>
+  </div>
 
-<div id="progressBarContainer" aria-label="Geri sayım ilerleme çubuğu">
-  <div id="progressBar"></div>
+  <aside id="timelineBox" aria-label="Önemli günler zaman çizelgesi">
+    <h3>Önemli Günler Zaman Çizelgesi</h3>
+    <ul id="timelineList" role="list"></ul>
+  </aside>
+
 </div>
 
 <script>
@@ -148,6 +220,7 @@
     return new Date(year, parseInt(parts[1],10) - 1, parseInt(parts[2],10));
   }
 
+  // En yakın önemli günü belirle
   function getNextImportantDate(dates) {
     const now = new Date();
     const currentYear = now.getFullYear();
@@ -169,6 +242,7 @@
     return date.toLocaleDateString('tr-TR', options);
   }
 
+  // Geri sayımı başlat
   function startCountdown(event) {
     const countdownEl = document.getElementById("countdown");
     const progressBar = document.getElementById("progressBar");
@@ -212,8 +286,45 @@
     const interval = setInterval(update, 1000);
   }
 
+  // Zaman çizelgesi listesini oluştur
+  function createTimeline(dates, highlightEvent) {
+    const timelineList = document.getElementById("timelineList");
+    const now = new Date();
+    const currentYear = now.getFullYear();
+
+    // Tarihleri bu yıl veya sonraki yıla göre ayarla
+    let timelineDates = dates.map(d => {
+      let eventDate = createDateForYear(d.date, currentYear);
+      if(eventDate < now){
+        eventDate.setFullYear(currentYear + 1);
+      }
+      return {...d, nextDate: eventDate};
+    });
+
+    // Tarihe göre sırala
+    timelineDates.sort((a,b) => a.nextDate - b.nextDate);
+
+    // Listeyi oluştur
+    timelineList.innerHTML = "";
+    timelineDates.forEach(d => {
+      const li = document.createElement("li");
+      li.textContent = d.name;
+      const spanDate = document.createElement("span");
+      spanDate.className = "date";
+      spanDate.textContent = formatDate(d.nextDate);
+      li.appendChild(spanDate);
+
+      if(d.name === highlightEvent.name){
+        li.classList.add("highlight");
+        li.setAttribute("aria-current", "true");
+      }
+      timelineList.appendChild(li);
+    });
+  }
+
   const nextEvent = getNextImportantDate(importantDates);
   startCountdown(nextEvent);
+  createTimeline(importantDates, nextEvent);
 </script>
 
 </body>
