@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>En Yakın Önemli Gün - Geri Sayım</title>
 <style>
+  /* Global reset ve box-sizing */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
   body {
     margin: 0;
     padding: 40px 20px;
@@ -15,11 +20,10 @@
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    box-sizing: border-box;
     position: relative;
   }
 
-  /* GALERİ SAYFASINDAKİ ANA SAYFA BUTONU STİLİ */
+  /* Ana sayfa butonu */
   #homeBtn {
     position: fixed;
     top: 20px;
@@ -30,15 +34,22 @@
     font-weight: 500;
     font-size: 1rem;
     cursor: pointer;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: inherit;
     user-select: none;
     padding: 0;
     transition: color 0.3s ease;
     text-decoration: underline;
     z-index: 1000;
   }
-  #homeBtn:hover {
-    color: #fff;
+  #homeBtn:hover,
+  #homeBtn:focus {
+    color: #00ffff;
+    outline: none;
+    text-decoration: none;
+  }
+  #homeBtn:focus-visible {
+    outline: 2px solid #00ffff;
+    outline-offset: 2px;
   }
 
   /* En yakın gün kutusu */
@@ -53,29 +64,37 @@
     font-weight: 400;
     letter-spacing: 0.03em;
     margin-bottom: 50px;
-
-    /* Parlaklık arttırmak için glow ekledim */
     box-shadow: 0 0 12px 3px rgba(255, 255, 255, 0.8);
     transition: box-shadow 0.3s ease;
   }
-  #nearestEventBox:hover {
+  #nearestEventBox:hover,
+  #nearestEventBox:focus {
     box-shadow: 0 0 20px 6px rgba(255, 255, 255, 1);
+    outline: none;
+  }
+  #nearestEventBox:focus-visible {
+    outline: 3px solid #00ffff;
+    outline-offset: 6px;
   }
 
   /* Başlık - event name */
   #nearestEventBox h2 {
     margin: 0 0 12px 0;
     font-size: 2rem;
-    font-weight: 700; /* Kalın */
+    font-weight: 700;
     letter-spacing: 0.06em;
     cursor: pointer;
-
-    /* Hover ile etkileşim */
     transition: color 0.3s ease, transform 0.3s ease;
   }
-  #nearestEventBox h2:hover {
-    color: #00ffff; /* Parlak mavi/turkuaz */
+  #nearestEventBox h2:hover,
+  #nearestEventBox h2:focus {
+    color: #00ffff;
     transform: scale(1.07);
+    outline: none;
+  }
+  #nearestEventBox h2:focus-visible {
+    outline: 2px solid #00ffff;
+    outline-offset: 2px;
   }
 
   #nearestEventBox .date {
@@ -90,6 +109,7 @@
     letter-spacing: 0.02em;
     margin-bottom: 50px;
     user-select: none;
+    text-align: center;
   }
 
   #progressBarContainer {
@@ -132,7 +152,7 @@
 <button id="homeBtn" onclick="location.href='index.html'" title="Ana Sayfa">Ana Sayfa</button>
 
 <div id="nearestEventBox" tabindex="0" aria-label="En yakın önemli gün bilgisi">
-  <h2 id="eventName" title="Etkinlik adı"></h2>
+  <h2 id="eventName" title="Etkinlik adı" tabindex="0"></h2>
   <div class="date" id="eventDate" aria-live="polite"></div>
 </div>
 
