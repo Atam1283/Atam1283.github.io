@@ -1,100 +1,87 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mustafa Kemal Atatürk</title>
-<style>
-  body {
-    margin: 0;
-    padding: 0;
-    background-color: black;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mustafa Kemal Atatürk</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-  /* Sol üstte Ana Sayfa linki */
-  a#anasayfa {
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 18px;
-    z-index: 1000;
-    transition: color 0.3s;
-  }
-  a#anasayfa:hover {
-    color: #ff4d4d;
-    cursor: pointer;
-  }
+    /* Üst menü - sağ üstte */
+    nav {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      z-index: 1000;
+    }
 
-  /* Üst menü - diğer sayfa linkleri (zaman çizelgesi yok) */
-  nav {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    z-index: 1000;
-  }
-  nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 15px;
-    font-weight: 600;
-    font-size: 16px;
-    transition: color 0.3s;
-  }
-  nav a:hover {
-    color: #ff4d4d;
-    cursor: pointer;
-  }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
 
-  /* Başlık ve sözün olduğu alan */
-  .header-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    height: 160px;
-    padding-top: 60px;
-    text-align: center;
-    user-select: none;
-  }
+    nav a:hover {
+      color: #ff4d4d;
+      cursor: pointer;
+    }
 
-  .header-container h1 {
-    font-size: 3.5rem;
-    margin: 0;
-    font-weight: 900;
-    color: white;
-    text-shadow: 0 0 15px white;
-  }
+    /* Başlık ve söz */
+    .header-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 160px;
+      padding-top: 60px;
+      text-align: center;
+      user-select: none;
+    }
 
-  .header-container .quote {
-    margin: 15px 0 5px 0;
-    font-size: 1.6rem;
-    font-weight: 600;
-    font-style: italic;
-    color: #ddd;
-    max-width: 700px;
-  }
+    .header-container h1 {
+      font-size: 3.5rem;
+      margin: 0;
+      font-weight: 900;
+      color: white;
+      text-shadow: 0 0 15px white;
+    }
 
-  .header-container .source {
-    font-size: 1rem;
-    font-weight: 400;
-    color: #aaa;
-    max-width: 700px;
-  }
-</style>
+    .quote {
+      margin: 15px 0 5px 0;
+      font-size: 1.6rem;
+      font-weight: 600;
+      font-style: italic;
+      color: #ddd;
+      max-width: 700px;
+      text-align: center;
+    }
+
+    .source {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #aaa;
+      text-align: center;
+      max-width: 700px;
+    }
+  </style>
 </head>
 <body>
 
-  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
-
+  <!-- Sağ üst menü -->
   <nav>
     <a href="hayat.html">Hayatı</a>
     <a href="galeri.html">Galeri</a>
     <a href="geri-sayim.html">Geri Sayım</a>
+    <a href="zaman.html">Zaman Çizelgesi</a>
   </nav>
 
   <div class="header-container">
@@ -103,24 +90,24 @@
     <div class="source" id="quoteSource"></div>
   </div>
 
-<script>
-  const quotes = [
-    { text: "Yurtta sulh, cihanda sulh.", source: "Atatürk'ün Söylev ve Demeçleri" },
-    { text: "Egemenlik kayıtsız şartsız milletindir.", source: "1920 TBMM Açılışı" },
-    { text: "Hayatta en hakiki mürşit ilimdir.", source: "1923 Nutuk" },
-    { text: "Türkiye Cumhuriyeti ilelebet payidar kalacaktır.", source: "1927 Nutuk" },
-    { text: "Benim naçiz vücudum bir gün toprak olacaktır.", source: "1938 Vasiyeti" },
-    { text: "Milletin bağımsızlığı, yine milletin azim ve kararıyla kurtarılacaktır.", source: "1919 Samsun'a Çıkışı" },
-    { text: "Özgürlük ve bağımsızlık benim karakterimdir.", source: "1927 Nutuk" },
-    { text: "Türk, öğün, çalış, güven.", source: "1923 Nutuk" }
-  ];
+  <script>
+    const quotes = [
+      { text: "Yurtta sulh, cihanda sulh.", source: "Atatürk'ün Söylev ve Demeçleri" },
+      { text: "Egemenlik kayıtsız şartsız milletindir.", source: "1920 TBMM Açılışı" },
+      { text: "Hayatta en hakiki mürşit ilimdir.", source: "1923 Nutuk" },
+      { text: "Türkiye Cumhuriyeti ilelebet payidar kalacaktır.", source: "1927 Nutuk" },
+      { text: "Benim naçiz vücudum bir gün toprak olacaktır.", source: "1938 Vasiyeti" },
+      { text: "Milletin bağımsızlığı, yine milletin azim ve kararıyla kurtarılacaktır.", source: "1919 Samsun'a Çıkışı" },
+      { text: "Özgürlük ve bağımsızlık benim karakterimdir.", source: "1927 Nutuk" },
+      { text: "Türk, öğün, çalış, güven.", source: "1923 Nutuk" }
+    ];
 
-  const randomIndex = Math.floor(Math.random() * quotes.length);
-  const selectedQuote = quotes[randomIndex];
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    const selectedQuote = quotes[randomIndex];
 
-  document.getElementById("quoteText").textContent = `"${selectedQuote.text}"`;
-  document.getElementById("quoteSource").textContent = `— ${selectedQuote.source}`;
-</script>
+    document.getElementById("quoteText").textContent = `"${selectedQuote.text}"`;
+    document.getElementById("quoteSource").textContent = `— ${selectedQuote.source}`;
+  </script>
 
 </body>
 </html>
