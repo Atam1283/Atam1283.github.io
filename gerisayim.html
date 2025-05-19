@@ -6,7 +6,7 @@
   <title>Geri Sayım</title>
   <style>
     body {
-      background-color: #0a0a0a;
+      background-color: #000;
       color: #eee;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
@@ -20,14 +20,15 @@
       padding-top: 80px;
     }
     a#anasayfa {
-      color: #fff;
+      color: #eee;
       position: fixed;
       top: 15px;
       left: 15px;
       text-decoration: none;
       font-size: 1.2rem;
-      font-weight: bold;
+      font-weight: 600;
       z-index: 10;
+      transition: color 0.3s ease;
     }
     a#anasayfa:hover {
       color: #ff4d4d;
@@ -36,56 +37,58 @@
       font-size: 2.5rem;
       color: #fff;
       margin-bottom: 30px;
-      text-shadow: 0 0 10px #fff;
+      font-weight: 600;
+      letter-spacing: 0.05em;
     }
 
     .countdown-container {
-      background-color: #111;
-      border-radius: 12px;
-      padding: 30px 20px;
-      max-width: 400px;
+      background-color: #121212;
+      border-radius: 14px;
+      padding: 30px 25px;
+      max-width: 380px;
       width: 90vw;
-      box-shadow: 0 0 30px 6px rgba(255, 77, 77, 0.6);
-      position: relative;
+      box-shadow: 0 0 12px 2px rgba(255, 77, 77, 0.3);
     }
 
     .event-name {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       color: #ff4d4d;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       min-height: 42px;
+      font-weight: 600;
     }
 
     .countdown {
-      font-size: 1.9rem;
-      color: #fff;
+      font-size: 1.7rem;
+      color: #eee;
       margin-bottom: 15px;
+      font-weight: 500;
     }
 
     .percentage {
       font-size: 1.1rem;
-      color: #ccc;
-      margin-bottom: 30px;
+      color: #bbb;
+      margin-bottom: 28px;
+      font-weight: 400;
     }
 
     /* Dairesel progress bar */
     .progress-circle {
       position: relative;
-      width: 200px;
-      height: 200px;
+      width: 180px;
+      height: 180px;
       margin: 0 auto;
     }
 
     .progress-circle svg {
       transform: rotate(-90deg);
-      width: 200px;
-      height: 200px;
-      filter: drop-shadow(0 0 4px #ff4d4d);
+      width: 180px;
+      height: 180px;
     }
 
     .progress-circle circle {
       fill: none;
-      stroke-width: 15;
+      stroke-width: 14;
       stroke-linecap: round;
     }
 
@@ -98,7 +101,6 @@
       stroke-dasharray: 565.48; /* 2 * PI * radius (radius=90) */
       stroke-dashoffset: 565.48;
       transition: stroke-dashoffset 0.7s ease-out;
-      filter: drop-shadow(0 0 8px #ff4d4d);
     }
 
     .progress-text {
@@ -107,34 +109,42 @@
       left: 50%;
       transform: translate(-50%, -50%);
       color: #ff4d4d;
-      font-size: 2.3rem;
-      font-weight: bold;
-      text-shadow: 0 0 8px #ff4d4d;
+      font-size: 2.1rem;
+      font-weight: 700;
       user-select: none;
     }
 
     /* Responsive */
     @media (max-width: 500px) {
       .progress-circle {
-        width: 150px;
-        height: 150px;
+        width: 140px;
+        height: 140px;
       }
       .progress-circle svg {
-        width: 150px;
-        height: 150px;
+        width: 140px;
+        height: 140px;
       }
       .progress-text {
-        font-size: 1.8rem;
+        font-size: 1.7rem;
       }
       .countdown-container {
         max-width: 320px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      .countdown {
+        font-size: 1.4rem;
+      }
+      .event-name {
+        font-size: 1.3rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
+  <a id="anasayfa" href="index.html" aria-label="Ana sayfaya dön">← Ana Sayfa</a>
 
   <h1>Yaklaşan Önemli Gün</h1>
 
@@ -145,15 +155,14 @@
 
     <div class="progress-circle" aria-label="Geri sayım ilerleme çubuğu">
       <svg>
-        <circle class="progress-bg" cx="100" cy="100" r="90"></circle>
-        <circle class="progress-bar" cx="100" cy="100" r="90"></circle>
+        <circle class="progress-bg" cx="90" cy="90" r="90"></circle>
+        <circle class="progress-bar" cx="90" cy="90" r="90"></circle>
       </svg>
       <div class="progress-text" id="progressText">0%</div>
     </div>
   </div>
 
   <script>
-    // Sadece Türkçe metinler ve etkinlikler
     const events = [
       { name: "19 Mayıs Atatürk'ü Anma, Gençlik ve Spor Bayramı", date: "2025-05-19T00:00:00" },
       { name: "30 Ağustos Zafer Bayramı", date: "2025-08-30T00:00:00" },
@@ -200,9 +209,7 @@
 
       const eventDate = new Date(event.date);
 
-      // Yılın başından etkinliğe toplam süre (ms)
       const yearStart = new Date(now.getFullYear(), 0, 1);
-
       const totalDuration = eventDate - yearStart;
       const elapsed = now - yearStart;
       const remaining = eventDate - now;
@@ -212,7 +219,6 @@
         return;
       }
 
-      // Zaman hesapları
       const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
       const hours = Math.floor((remaining / (1000 * 60 * 60)) % 24);
       const minutes = Math.floor((remaining / (1000 * 60)) % 60);
@@ -221,7 +227,6 @@
       eventNameEl.textContent = event.name;
       countdownEl.textContent = `${days} ${labels.days} ${hours} ${labels.hours} ${minutes} ${labels.minutes} ${seconds} ${labels.seconds}`;
 
-      // Yüzde hesapla ve uygula
       let percentage = (elapsed / totalDuration) * 100;
       if (percentage > 100) percentage = 100;
       if (percentage < 0) percentage = 0;
