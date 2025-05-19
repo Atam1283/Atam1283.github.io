@@ -7,54 +7,51 @@
 <style>
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #000;
-    color: #eee;
-    text-align: center;
+    background-color: #000000;
+    color: #f0f0f0;
+    margin: 0;
     padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
   }
-  #eventList {
-    margin-bottom: 30px;
+  h1 {
+    color: #f39c12;
+    margin-bottom: 40px;
+    font-weight: 700;
+    font-size: 2.5rem;
   }
-  .event-item {
-    cursor: pointer;
-    margin: 5px 0;
-    font-weight: 600;
-    color: #66ccff;
-    transition: color 0.3s;
-  }
-  .event-item:hover {
-    color: #1abc9c;
-    text-decoration: underline;
-  }
-
   #eventName {
-    font-size: 32px;
+    font-size: 2rem;
     font-weight: 700;
     margin-bottom: 8px;
     color: #f39c12;
+    text-align: center;
   }
   #countdown {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     color: #e74c3c;
   }
   #description {
-    font-size: 18px;
+    font-size: 1.1rem;
     font-style: italic;
-    margin-bottom: 25px;
+    margin-bottom: 40px;
     color: #bdc3c7;
+    text-align: center;
+    max-width: 600px;
   }
-
   #progressBarContainer {
     width: 80%;
+    max-width: 600px;
     height: 20px;
     background-color: #222;
     border-radius: 10px;
-    margin: 0 auto 40px auto;
-    box-shadow: 0 0 10px #111 inset;
+    box-shadow: inset 0 0 10px #111;
   }
-
   #progressBar {
     height: 100%;
     width: 0%;
@@ -62,15 +59,28 @@
     border-radius: 10px;
     transition: width 0.5s ease-out;
   }
+  @media (max-width: 480px) {
+    #eventName {
+      font-size: 1.5rem;
+    }
+    #countdown {
+      font-size: 1.1rem;
+    }
+    #description {
+      font-size: 1rem;
+      max-width: 90%;
+    }
+    #progressBarContainer {
+      width: 90%;
+    }
+  }
 </style>
 </head>
 <body>
 
-<h1 style="color:#f39c12; margin-bottom: 40px;">Atatürk ve Türkiye Önemli Günler</h1>
+<h1>Atatürk ve Türkiye Önemli Günler</h1>
 
-<div id="eventList"></div>
-
-<div id="eventName">Seçili Gün: Yükleniyor...</div>
+<div id="eventName">Yükleniyor...</div>
 <div id="countdown"></div>
 <div id="description"></div>
 
@@ -87,26 +97,14 @@
     { name: "Türk Tarih Kurumu'nun kurulması", date: "1931-01-01", description: "1931 yılında Türk Tarih Kurumu kuruldu" },
     { name: "Türk Dil Kurumu'nun kurulması", date: "1932-01-01", description: "1932 yılında Türk Dil Kurumu kuruldu" },
     { name: "Kadınlara seçme ve seçilme hakkı", date: "1934-12-05", description: "5 Aralık 1934, kadınlara seçme ve seçilme hakkı verildi" },
-    { name: "Soyadı Kanunu", date: "1934-06-21", description: "21 Haziran 1934, Soyadı Kanunu kabul edildi" },
-    { name: "Ulusal Egemenlik ve Çocuk Bayramı", date: "1920-04-23", description: "TBMM'nin açılışı, Atatürk'ün çocuklara armağanı" },
-    { name: "Atatürk'ü Anma, Gençlik ve Spor Bayramı", date: "1919-05-19", description: "Atatürk'ün Samsun'a çıkarak Kurtuluş Savaşı'nı başlattığı gün" },
-    { name: "Zafer Bayramı", date: "1922-08-30", description: "Başkomutanlık Meydan Muharebesi'nin zaferi" },
-    { name: "Cumhuriyet Bayramı", date: "1923-10-29", description: "Türkiye Cumhuriyeti’nin ilanı" },
-    { name: "Atatürk'ün Vefatı", date: "1938-11-10", description: "Atatürk'ün Dolmabahçe Sarayı'nda vefatı" },
-    { name: "Çanakkale Zaferi ve Şehitleri Anma Günü", date: "1915-03-18", description: "Çanakkale Zaferi anma günü" }
+    { name: "Soyadı Kanunu", date: "1934-06-21", description: "21 Haziran 1934, Soyadı Kanunu kabul edildi" }
   ];
 
-  // Tarih formatını ay ve güne göre oluşturur, yıl dinamik olarak ayarlanır
   function createDateForYear(dateString, year) {
     const parts = dateString.split("-");
-    if(parts.length < 3){
-      // Yıl sadece varsa, 1 Ocak
-      return new Date(year, 0, 1);
-    }
-    return new Date(year, parseInt(parts[1],10) -1, parseInt(parts[2],10));
+    return new Date(year, parseInt(parts[1],10) - 1, parseInt(parts[2],10));
   }
 
-  // En yakın etkinliği bulur
   function getNextImportantDate(dates) {
     const now = new Date();
     const currentYear = now.getFullYear();
@@ -123,18 +121,11 @@
     return futureDates[0];
   }
 
-  // Geri sayım ve ilerleme çubuğu
   function startCountdown(event) {
     const countdownEl = document.getElementById("countdown");
     const progressBar = document.getElementById("progressBar");
     const eventNameEl = document.getElementById("eventName");
     const descriptionEl = document.getElementById("description");
-
-    const now = new Date();
-    // Geçen zaman için referans: son etkinlik ile sonraki etkinlik arası (1 yıl varsayımı)
-    // Biz sadece bir sonraki etkinliğe geri sayım yapıyoruz. İlerlemenin hesaplanması için:
-    // Başlangıç: geçen yıl aynı tarihte (targetDate - 1 yıl)
-    // Bitiş: hedef tarih
 
     let startDate = new Date(event.nextDate);
     startDate.setFullYear(startDate.getFullYear() - 1);
@@ -157,7 +148,6 @@
 
       countdownEl.textContent = `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye kaldı`;
 
-      // Progress Bar hesaplama
       const totalPeriod = event.nextDate - startDate;
       const elapsed = now - startDate;
       let percent = (elapsed / totalPeriod) * 100;
@@ -174,33 +164,9 @@
     const interval = setInterval(update, 1000);
   }
 
-  // Etkinlik listesi oluşturalım ve tıklanınca o günün geri sayımı gösterilsin
-  const eventListContainer = document.getElementById("eventList");
-
-  importantDates.sort((a,b) => {
-    // Tarih sırasına göre sıralama (ay-gün bazlı)
-    let aDate = new Date(a.date);
-    let bDate = new Date(b.date);
-    return aDate - bDate;
-  });
-
-  importantDates.forEach((event, index) => {
-    const el = document.createElement("div");
-    el.classList.add("event-item");
-    el.textContent = event.name;
-    el.title = event.description;
-    el.onclick = () => {
-      // Seçilen etkinliğe göre geri sayımı başlat
-      const now = new Date();
-      let eventDate = createDateForYear(event.date, now.getFullYear());
-      if(eventDate < now) eventDate.setFullYear(now.getFullYear() +1);
-      startCountdown({...event, nextDate: eventDate});
-    };
-    eventListContainer.appendChild(el);
-  });
-
-  // Sayfa açıldığında en yakın etkinlik geri sayımı otomatik başlasın
-  startCountdown(getNextImportantDate(importantDates));
+  // Sayfa açılır açılmaz en yakın etkinliği göster
+  const nextEvent = getNextImportantDate(importantDates);
+  startCountdown(nextEvent);
 
 </script>
 
