@@ -1,33 +1,43 @@
+gerisayım
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Atatürk'ü Anma Geri Sayım</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Geri Sayım</title>
   <style>
     body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
       margin: 0;
       padding: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-height: 100vh;
+      background-color: black;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
     }
 
     a#anasayfa {
+      color: white;
       position: fixed;
       top: 15px;
       left: 15px;
-      color: #fff;
-      text-decoration: none;
       font-weight: bold;
+      text-decoration: none;
       font-size: 18px;
-      z-index: 10;
-      transition: color 0.3s;
     }
 
     a#anasayfa:hover {
@@ -35,40 +45,32 @@
     }
 
     h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px #fff;
+      font-size: 2.8rem;
+      margin-top: 80px;
+      text-shadow: 0 0 15px white;
     }
 
-    #countdown {
-      font-size: 2.5rem;
+    .countdown-box {
+      margin: 40px auto;
+      padding: 30px;
+      border: 2px solid white;
+      border-radius: 15px;
+      max-width: 500px;
+      background-color: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 15px white; /* parlaklık efekti */
+    }
+
+    .event-name {
+      font-size: 1.6rem;
       font-weight: bold;
-      text-shadow: 0 0 8px #ff4d4d;
+      color: #ff4d4d;
+      margin-bottom: 20px;
     }
 
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2.2rem;
-        padding: 0 15px;
-      }
-      #countdown {
-        font-size: 1.8rem;
-      }
-      a#anasayfa {
-        font-size: 16px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.8rem;
-      }
-      #countdown {
-        font-size: 1.5rem;
-      }
-      a#anasayfa {
-        font-size: 14px;
-      }
+    .countdown {
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+      font-weight: 600;
     }
   </style>
 </head>
@@ -76,31 +78,58 @@
 
   <a id="anasayfa" href="index.html">← Ana Sayfa</a>
 
-  <h1>10 Kasım Atatürk'ü Anma Günü'ne Kalan Süre</h1>
-  <div id="countdown"></div>
+  <h1>En Yakın Özel Güne Geri Sayım</h1>
+
+  <div class="countdown-box">
+    <div class="event-name" id="event-name"></div>
+    <div class="countdown" id="countdown"></div>
+  </div>
 
   <script>
-    function geriSayim() {
-      const hedefTarih = new Date("November 10, 2025 09:05:00").getTime();
-      const simdi = new Date().getTime();
-      const fark = hedefTarih - simdi;
+    const events = [
+      { date: '01/01', name: 'Yılbaşı' },
+      { date: '04/23', name: 'Ulusal Egemenlik ve Çocuk Bayramı' },
+      { date: '05/01', name: 'Emek ve Dayanışma Günü' },
+      { date: '05/19', name: 'Atatürk\'ü Anma, Gençlik ve Spor Bayramı' },
+      { date: '07/15', name: 'Milli Birlik ve Demokrasi Günü' },
+      { date: '08/30', name: 'Zafer Bayramı' },
+      { date: '10/29', name: 'Cumhuriyet Bayramı' }
+    ];
 
-      if (fark < 0) {
-        document.getElementById("countdown").innerHTML = "Anma Günü Geldi.";
-        return;
-      }
+    function getNextEvent() {
+      const today = new Date();
+      let currentYear = today.getFullYear();
 
-      const gun = Math.floor(fark / (1000 * 60 * 60 * 24));
-      const saat = Math.floor((fark % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const dakika = Math.floor((fark % (1000 * 60 * 60)) / (1000 * 60));
-      const saniye = Math.floor((fark % (1000 * 60)) / 1000);
+      const futureEvents = events.map(e => {
+        let [month, day] = e.date.split('/').map(Number);
+        let eventDate = new Date(currentYear, month - 1, day);
+        if (eventDate < today) {
+          eventDate.setFullYear(currentYear + 1);
+        }
+        return { ...e, dateObj: eventDate };
+      });
 
-      document.getElementById("countdown").innerHTML =
-        `${gun} Gün ${saat} Saat ${dakika} Dakika ${saniye} Saniye`;
+      futureEvents.sort((a, b) => a.dateObj - b.dateObj);
+      return futureEvents[0];
     }
 
-    setInterval(geriSayim, 1000);
-    geriSayim();
+    function updateCountdown() {
+      const event = getNextEvent();
+      const now = new Date();
+      const distance = event.dateObj - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      document.getElementById('event-name').textContent = event.name;
+      document.getElementById('countdown').textContent =
+        `${days} gün, ${hours} saat, ${minutes} dakika, ${seconds} saniye kaldı`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
   </script>
 
 </body>
