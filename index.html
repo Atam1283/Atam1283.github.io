@@ -345,7 +345,6 @@
       const visible = firstDropdown.style.display === 'block';
       firstDropdown.style.display = visible ? 'none' : 'block';
       settingsBtn.setAttribute('aria-expanded', !visible);
-
       // Kapatılırsa alt menü kapansın
       if (visible) {
         languageDropdown.style.display = 'none';
@@ -381,4 +380,22 @@
       });
     });
 
-    // Basit arama fonks
+    // Basit arama fonksiyonu
+    function aramaYap() {
+      const query = el.searchInput.value.trim();
+      if (!query) return;
+      const lang = localStorage.getItem('siteLang') || 'tr';
+
+      // Örnek arama motoru: Google ve Türkçe/İngilizce/Azeri için özel site araması
+      let siteFilter = '';
+      if (lang === 'tr') siteFilter = ' site:ataturk.gov.tr OR site:ataturk.net ';
+      else if (lang === 'en') siteFilter = ' site:en.ataturk.net OR site:en.wikipedia.org ';
+      else if (lang === 'az') siteFilter = ' site:az.wikipedia.org ';
+
+      const url = 'https://www.google.com/search?q=' + encodeURIComponent(query + siteFilter);
+      window.open(url, '_blank');
+    }
+  </script>
+
+</body>
+</html>
