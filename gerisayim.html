@@ -3,87 +3,102 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Geri Sayım</title>
+  <title>Yaklaşan Önemli Gün - Geri Sayım</title>
   <style>
+    /* Temel body */
     body {
       background-color: #000;
       color: #eee;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 0;
-      text-align: center;
+      padding: 0 15px 40px;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
-      justify-content: flex-start;
       align-items: center;
+      justify-content: flex-start;
       padding-top: 80px;
     }
+
+    /* Ana sayfa linki */
     a#anasayfa {
       color: #eee;
       position: fixed;
       top: 15px;
       left: 15px;
+      font-weight: 700;
+      font-size: 16px;
       text-decoration: none;
-      font-size: 1.2rem;
-      font-weight: 600;
       z-index: 10;
       transition: color 0.3s ease;
     }
     a#anasayfa:hover {
-      color: #ff4d4d;
+      color: #ff2c2c;
     }
+
+    /* Başlık */
     h1 {
-      font-size: 2.5rem;
-      color: #fff;
-      margin-bottom: 30px;
-      font-weight: 600;
-      letter-spacing: 0.05em;
+      font-size: 48px;
+      margin-bottom: 40px;
+      text-align: center;
+      text-shadow: 0 0 10px #ff2c2c;
+      font-weight: 700;
     }
 
+    /* Kutu */
     .countdown-container {
-      background-color: #121212;
-      border-radius: 14px;
-      padding: 30px 25px;
-      max-width: 380px;
-      width: 90vw;
-      box-shadow: 0 0 12px 2px rgba(255, 77, 77, 0.3);
+      background-color: rgba(255 255 255 / 0.04);
+      border-left: 4px solid #ff2c2c;
+      border-radius: 8px;
+      padding: 25px 30px;
+      max-width: 420px;
+      width: 100%;
+      box-sizing: border-box;
+      box-shadow: 0 0 10px #ff2c2c66;
+      user-select: none;
     }
 
+    /* Etkinlik ismi */
     .event-name {
-      font-size: 1.5rem;
-      color: #ff4d4d;
-      margin-bottom: 18px;
-      min-height: 42px;
-      font-weight: 600;
-    }
-
-    .countdown {
       font-size: 1.7rem;
-      color: #eee;
-      margin-bottom: 15px;
-      font-weight: 500;
+      color: #ff2c2c;
+      font-weight: 700;
+      margin-bottom: 18px;
+      min-height: 54px;
+      line-height: 1.3;
+      text-align: center;
     }
 
+    /* Geri sayım metni */
+    .countdown {
+      font-size: 1.5rem;
+      color: #eee;
+      font-weight: 600;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    /* Yüzdelik metin */
     .percentage {
-      font-size: 1.1rem;
-      color: #bbb;
-      margin-bottom: 28px;
-      font-weight: 400;
+      font-size: 1rem;
+      color: #ff7f7f;
+      margin-bottom: 30px;
+      text-align: center;
+      font-weight: 500;
     }
 
     /* Dairesel progress bar */
     .progress-circle {
       position: relative;
-      width: 180px;
-      height: 180px;
+      width: 160px;
+      height: 160px;
       margin: 0 auto;
     }
 
     .progress-circle svg {
       transform: rotate(-90deg);
-      width: 180px;
-      height: 180px;
+      width: 160px;
+      height: 160px;
     }
 
     .progress-circle circle {
@@ -97,10 +112,10 @@
     }
 
     .progress-bar {
-      stroke: #ff4d4d;
-      stroke-dasharray: 565.48; /* 2 * PI * radius (radius=90) */
+      stroke: #ff2c2c;
+      stroke-dasharray: 565.48; /* 2 * PI * r (r=90 scaled down to 80 radius here) */
       stroke-dashoffset: 565.48;
-      transition: stroke-dashoffset 0.7s ease-out;
+      transition: stroke-dashoffset 0.6s ease-out;
     }
 
     .progress-text {
@@ -108,14 +123,30 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      color: #ff4d4d;
-      font-size: 2.1rem;
+      color: #ff2c2c;
+      font-size: 2rem;
       font-weight: 700;
       user-select: none;
     }
 
     /* Responsive */
-    @media (max-width: 500px) {
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 36px;
+      }
+      .countdown-container {
+        max-width: 90vw;
+      }
+      .event-name {
+        font-size: 1.4rem;
+        min-height: 48px;
+      }
+      .countdown {
+        font-size: 1.2rem;
+      }
+      .percentage {
+        font-size: 0.9rem;
+      }
       .progress-circle {
         width: 140px;
         height: 140px;
@@ -125,19 +156,7 @@
         height: 140px;
       }
       .progress-text {
-        font-size: 1.7rem;
-      }
-      .countdown-container {
-        max-width: 320px;
-      }
-      h1 {
-        font-size: 2rem;
-      }
-      .countdown {
-        font-size: 1.4rem;
-      }
-      .event-name {
-        font-size: 1.3rem;
+        font-size: 1.6rem;
       }
     }
   </style>
@@ -155,8 +174,8 @@
 
     <div class="progress-circle" aria-label="Geri sayım ilerleme çubuğu">
       <svg>
-        <circle class="progress-bg" cx="90" cy="90" r="90"></circle>
-        <circle class="progress-bar" cx="90" cy="90" r="90"></circle>
+        <circle class="progress-bg" cx="80" cy="80" r="80"></circle>
+        <circle class="progress-bar" cx="80" cy="80" r="80"></circle>
       </svg>
       <div class="progress-text" id="progressText">0%</div>
     </div>
@@ -184,7 +203,7 @@
     const progressBar = document.querySelector(".progress-bar");
     const progressText = document.getElementById("progressText");
 
-    const radius = 90;
+    const radius = 80;
     const circumference = 2 * Math.PI * radius;
 
     progressBar.style.strokeDasharray = circumference;
@@ -209,9 +228,12 @@
 
       const eventDate = new Date(event.date);
 
+      // yıl başından etkinliğe kadar süre
       const yearStart = new Date(now.getFullYear(), 0, 1);
       const totalDuration = eventDate - yearStart;
+      // şimdi ile yıl başı arası geçen süre
       const elapsed = now - yearStart;
+      // kalan süre
       const remaining = eventDate - now;
 
       if (remaining < 0) {
@@ -219,6 +241,7 @@
         return;
       }
 
+      // kalan zaman hesaplama
       const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
       const hours = Math.floor((remaining / (1000 * 60 * 60)) % 24);
       const minutes = Math.floor((remaining / (1000 * 60)) % 60);
@@ -227,20 +250,6 @@
       eventNameEl.textContent = event.name;
       countdownEl.textContent = `${days} ${labels.days} ${hours} ${labels.hours} ${minutes} ${labels.minutes} ${seconds} ${labels.seconds}`;
 
+      // yüzdelik hesaplama ve progress bar
       let percentage = (elapsed / totalDuration) * 100;
-      if (percentage > 100) percentage = 100;
-      if (percentage < 0) percentage = 0;
-
-      percentageEl.textContent = `${labels.progressText} ${percentage.toFixed(2)}%`;
-      progressText.textContent = `${percentage.toFixed(1)}%`;
-
-      const offset = circumference - (percentage / 100) * circumference;
-      progressBar.style.strokeDashoffset = offset;
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
-
-</body>
-</html>
+      percentage = Math.min(Math.max(percentage, 
