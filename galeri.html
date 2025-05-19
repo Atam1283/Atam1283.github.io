@@ -4,18 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Atatürk Galerisi</title>
-  <!-- Font Awesome (Instagram simgesi için) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-
   <style>
     body {
       background-color: black;
       color: white;
       font-family: 'Arial', sans-serif;
       margin: 0;
-      padding-top: 80px;
+      padding-top: 80px; /* Üst bar yüksekliği kadar boşluk */
     }
 
+    /* Üst sabit bar */
     header {
       position: fixed;
       top: 0;
@@ -49,6 +47,7 @@
       white-space: nowrap;
     }
 
+    /* Galeri yatay scroll */
     .gallery-wrapper {
       overflow-x: auto;
       padding: 20px;
@@ -57,10 +56,11 @@
     .gallery {
       display: flex;
       gap: 30px;
+      max-width: none; /* grid yerine flex olduğu için genişlik otomatik */
     }
 
     .gallery-item {
-      flex: 0 0 300px;
+      flex: 0 0 300px; /* 300px genişlikte sabit kalacak */
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid white;
       border-radius: 12px;
@@ -71,7 +71,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      height: 440px;
+      height: 400px;
     }
 
     .gallery-item:hover {
@@ -98,24 +98,6 @@
       margin-top: 4px;
     }
 
-    .instagram-below {
-      margin-top: 5px;
-      text-align: left;
-    }
-
-    .instagram-below a {
-      color: white;
-      text-decoration: none;
-      font-size: 0.95rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .instagram-below a:hover {
-      color: #ff4d4d;
-    }
-
     @media (max-width: 600px) {
       .gallery-item {
         height: auto;
@@ -124,10 +106,6 @@
       .gallery-item img {
         height: auto;
         max-height: 250px;
-      }
-
-      .instagram-below {
-        font-size: 0.85rem;
       }
     }
   </style>
@@ -141,22 +119,11 @@
 
   <div class="gallery-wrapper">
     <section class="gallery">
-      
-      <!-- İlk fotoğraf -->
-      <div>
-        <div class="gallery-item">
-          <img src="images/ataturk1.jpg" alt="Atatürk Fotoğraf 1" />
-          <div class="caption">Atatürk Fotoğraf 1</div>
-          <div class="location">Ankara - 1923</div>
-        </div>
-        <div class="instagram-below">
-          <a href="https://www.instagram.com/muhammedefekrkmz01" target="_blank">
-            <i class="fab fa-instagram"></i> @muhammedefekrkmz01
-          </a>
-        </div>
+      <div class="gallery-item">
+        <img src="images/ataturk1.jpg" alt="Atatürk Fotoğraf 1" />
+        <div class="caption">Atatürk Fotoğraf 1</div>
+        <div class="location">Ankara - 1923</div>
       </div>
-
-      <!-- Diğer fotoğraflar -->
       <div class="gallery-item">
         <img src="images/ataturk2.jpg" alt="Atatürk Fotoğraf 2" />
         <div class="caption">Atatürk Fotoğraf 2</div>
@@ -172,7 +139,6 @@
         <div class="caption">Atatürk Fotoğraf 4</div>
         <div class="location">İstanbul - 1936</div>
       </div>
-
     </section>
   </div>
 
