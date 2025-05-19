@@ -23,6 +23,7 @@
       font-size: 18px;
       z-index: 10;
     }
+
     a#anasayfa:hover {
       color: #ff4d4d;
     }
@@ -52,28 +53,36 @@
       text-align: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
+
     .gallery-item:hover {
       transform: scale(1.05);
       box-shadow: 0 0 15px white;
     }
 
     .gallery-item img {
-      width: 100%;
+      max-width: 100%;
       height: auto;
       object-fit: contain;
       border-radius: 8px;
       background-color: black;
       display: block;
-      margin: 0 auto 12px auto;
-      transition: transform 0.3s ease;
     }
 
-    .gallery-item p {
+    .gallery-item .caption {
       font-weight: 600;
       font-size: 1.1rem;
       color: white;
-      margin: 0;
+      margin-top: 10px;
+    }
+
+    .gallery-item .location {
+      font-size: 0.95rem;
+      color: #cccccc;
+      margin-top: 5px;
     }
   </style>
 </head>
@@ -86,19 +95,23 @@
   <section class="gallery">
     <div class="gallery-item">
       <img src="images/ataturk1.jpg" alt="Atatürk Fotoğraf 1" />
-      <p>Atatürk Fotoğraf 1</p>
+      <div class="caption">Atatürk Fotoğraf 1</div>
+      <div class="location">Ankara - 1931</div>
     </div>
     <div class="gallery-item">
       <img src="images/ataturk2.jpg" alt="Atatürk Fotoğraf 2" />
-      <p>Atatürk Fotoğraf 2</p>
+      <div class="caption">Atatürk Fotoğraf 2</div>
+      <div class="location">Samsun - 1919</div>
     </div>
     <div class="gallery-item">
       <img src="images/ataturk3.jpg" alt="Atatürk Fotoğraf 3" />
-      <p>Atatürk Fotoğraf 3</p>
+      <div class="caption">Atatürk Fotoğraf 3</div>
+      <div class="location">İzmir - 1934</div>
     </div>
     <div class="gallery-item">
       <img src="images/ataturk4.jpg" alt="Atatürk Fotoğraf 4" />
-      <p>Atatürk Fotoğraf 4</p>
+      <div class="caption">Atatürk Fotoğraf 4</div>
+      <div class="location">Bursa - 1935</div>
     </div>
   </section>
 
