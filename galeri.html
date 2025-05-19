@@ -38,20 +38,24 @@
 
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      max-width: 1200px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1400px;
       margin: 0 auto;
     }
 
     .gallery-item {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid white;
-      border-radius: 10px;
-      padding: 10px;
+      border-radius: 12px;
+      padding: 15px;
       text-align: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .gallery-item:hover {
@@ -61,26 +65,32 @@
 
     .gallery-item img {
       width: 100%;
-      height: 200px;
+      height: 300px;
       object-fit: cover;
       border-radius: 8px;
-    }
-
-    /* Sadece 3. fotoğrafı daha geniş yapmak için */
-    .gallery-item.wide img {
-      height: 260px;
     }
 
     .caption {
       font-weight: bold;
       margin-top: 10px;
-      color: white;
+      font-size: 1.1rem;
     }
 
     .location {
       font-size: 0.9rem;
       color: #ccc;
-      margin-top: 5px;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 600px) {
+      .gallery-item {
+        height: auto;
+      }
+
+      .gallery-item img {
+        height: auto;
+        max-height: 250px;
+      }
     }
   </style>
 </head>
@@ -101,7 +111,7 @@
       <div class="caption">Atatürk Fotoğraf 2</div>
       <div class="location">Samsun - 1919</div>
     </div>
-    <div class="gallery-item wide">
+    <div class="gallery-item">
       <img src="images/ataturk3.jpg" alt="Atatürk Fotoğraf 3" />
       <div class="caption">Atatürk Fotoğraf 3</div>
       <div class="location">İzmir - 1934</div>
