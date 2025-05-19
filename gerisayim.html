@@ -37,15 +37,16 @@
 
     .countdown-container {
       margin-top: 40px;
-      padding: 20px;
+      padding: 30px;
       background-color: #111;
-      border-radius: 10px;
+      border-radius: 12px;
       display: inline-block;
-      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+      box-shadow: 0 0 25px 5px rgba(255, 0, 0, 0.4); /* Parlak kenar efekti */
+      border: 2px solid #ff4d4d;
     }
 
     .event-name {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       color: #ff4d4d;
       margin-bottom: 15px;
     }
@@ -55,17 +56,27 @@
       color: #fff;
     }
 
+    .percentage {
+      margin-top: 15px;
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+
     @media (max-width: 600px) {
       h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
 
       .event-name {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
       }
 
       .countdown {
         font-size: 1.5rem;
+      }
+
+      .percentage {
+        font-size: 1rem;
       }
     }
   </style>
@@ -78,6 +89,7 @@
   <div class="countdown-container">
     <div class="event-name" id="eventName">Yükleniyor...</div>
     <div class="countdown" id="countdown">00 gün 00 saat 00 dakika 00 saniye</div>
+    <div class="percentage" id="percentage">Yüzde hesaplanıyor...</div>
   </div>
 
   <script>
@@ -94,22 +106,27 @@
     }
 
     function updateCountdown() {
+      const now = new Date();
       const event = getNextEvent();
       if (!event) return;
 
-      document.getElementById("eventName").textContent = event.name;
-
       const targetDate = new Date(event.date);
-      const now = new Date();
-      const diff = targetDate - now;
+      const totalDuration = targetDate - new Date(now.getFullYear(), 0, 1); // yılın başı ile etkinlik arası
+      const remaining = targetDate - now;
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
+      const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((remaining / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((remaining / (1000 * 60)) % 60);
+      const seconds = Math.floor((remaining / 1000) % 60);
 
-      document.getElementById("countdown").textContent = 
+      document.getElementById("eventName").textContent = event.name;
+      document.getElementById("countdown").textContent =
         `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye`;
+
+      const elapsed = now - new Date(now.getFullYear(), 0, 1); // yılbaşından bu yana
+      const percent = 100 * (elapsed / totalDuration);
+      document.getElementById("percentage").textContent =
+        `Etkinliğe %${percent.toFixed(2)} oranında yaklaşıldı.`;
     }
 
     updateCountdown();
