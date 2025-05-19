@@ -3,72 +3,121 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Atatürk ve Türkiye Önemli Günler Geri Sayımı</title>
+<title>En Yakın Önemli Gün - Geri Sayım</title>
 <style>
+  /* Genel reset ve temel stil */
   body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #000000;
-    color: #f0f0f0;
     margin: 0;
     padding: 40px 20px;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
     box-sizing: border-box;
+    position: relative;
   }
-  h1 {
-    color: #f39c12;
-    margin-bottom: 40px;
-    font-weight: 700;
-    font-size: 2.5rem;
-  }
-  #eventName {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: #f39c12;
-    text-align: center;
-  }
-  #countdown {
-    font-size: 1.5rem;
+
+  /* Ana Sayfa Butonu (sol üst) */
+  #homeBtn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
     font-weight: 600;
-    margin-bottom: 12px;
-    color: #e74c3c;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s, color 0.3s;
+    user-select: none;
+    z-index: 1000;
   }
-  #description {
-    font-size: 1.1rem;
-    font-style: italic;
-    margin-bottom: 40px;
-    color: #bdc3c7;
+  #homeBtn:hover {
+    background-color: #fff;
+    color: #000;
+  }
+
+  /* Başlık ince tüp şeklinde */
+  h1 {
+    font-weight: 300;
+    font-size: 2rem;
+    padding: 8px 40px;
+    border: 1px solid #fff;
+    border-radius: 40px;
+    color: #fff;
     text-align: center;
-    max-width: 600px;
+    letter-spacing: 0.08em;
+    margin-bottom: 50px;
+    user-select: none;
+    max-width: 90vw;
   }
+
+  /* Etkinlik adı - parlak beyaz, ince tüp */
+  #eventName {
+    font-weight: 300;
+    font-size: 1.8rem;
+    padding: 8px 30px;
+    border: 1px solid #fff;
+    border-radius: 40px;
+    color: #fff;
+    text-align: center;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+    user-select: none;
+    max-width: 90vw;
+  }
+
+  /* Tarih */
+  #eventDate {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    user-select: none;
+  }
+
+  /* Geri sayım */
+  #countdown {
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin-bottom: 50px;
+    user-select: none;
+  }
+
+  /* İlerleme çubuğu */
   #progressBarContainer {
     width: 80%;
     max-width: 600px;
-    height: 20px;
+    height: 14px;
     background-color: #222;
-    border-radius: 10px;
-    box-shadow: inset 0 0 10px #111;
+    border-radius: 50px;
+    box-shadow: inset 0 0 8px #111;
   }
+
   #progressBar {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, #f39c12, #e74c3c);
-    border-radius: 10px;
+    background-color: #fff;
+    border-radius: 50px;
     transition: width 0.5s ease-out;
   }
+
   @media (max-width: 480px) {
-    #eventName {
-      font-size: 1.5rem;
+    h1, #eventName {
+      font-size: 1.4rem;
+      padding: 6px 24px;
+    }
+    #eventDate {
+      font-size: 1.2rem;
     }
     #countdown {
       font-size: 1.1rem;
-    }
-    #description {
-      font-size: 1rem;
-      max-width: 90%;
     }
     #progressBarContainer {
       width: 90%;
@@ -78,11 +127,13 @@
 </head>
 <body>
 
-<h1>Atatürk ve Türkiye Önemli Günler</h1>
+<a id="homeBtn" href="index.html" title="Ana Sayfa">Ana Sayfa</a>
+
+<h1>En Yakın Önemli Gün</h1>
 
 <div id="eventName">Yükleniyor...</div>
+<div id="eventDate"></div>
 <div id="countdown"></div>
-<div id="description"></div>
 
 <div id="progressBarContainer">
   <div id="progressBar"></div>
@@ -90,14 +141,14 @@
 
 <script>
   const importantDates = [
-    { name: "Şapka Kanunu", date: "1925-02-17", description: "17 Şubat 1925, Şapka Kanunu yürürlüğe girdi" },
-    { name: "Tekke, zaviye ve türbelerin kapatılması", date: "1925-11-25", description: "25 Kasım 1925, tekke, zaviye ve türbeler kapatıldı" },
-    { name: "Tarikatların kaldırılması", date: "1925-11-26", description: "26 Kasım 1925, tarikatlar kaldırıldı" },
-    { name: "Harf Devrimi", date: "1928-11-01", description: "1 Kasım 1928, Latin harfleri kabul edildi" },
-    { name: "Türk Tarih Kurumu'nun kurulması", date: "1931-01-01", description: "1931 yılında Türk Tarih Kurumu kuruldu" },
-    { name: "Türk Dil Kurumu'nun kurulması", date: "1932-01-01", description: "1932 yılında Türk Dil Kurumu kuruldu" },
-    { name: "Kadınlara seçme ve seçilme hakkı", date: "1934-12-05", description: "5 Aralık 1934, kadınlara seçme ve seçilme hakkı verildi" },
-    { name: "Soyadı Kanunu", date: "1934-06-21", description: "21 Haziran 1934, Soyadı Kanunu kabul edildi" }
+    { name: "Şapka Kanunu", date: "1925-02-17" },
+    { name: "Tekke, zaviye ve türbelerin kapatılması", date: "1925-11-25" },
+    { name: "Tarikatların kaldırılması", date: "1925-11-26" },
+    { name: "Harf Devrimi", date: "1928-11-01" },
+    { name: "Türk Tarih Kurumu'nun kurulması", date: "1931-01-01" },
+    { name: "Türk Dil Kurumu'nun kurulması", date: "1932-01-01" },
+    { name: "Kadınlara seçme ve seçilme hakkı", date: "1934-12-05" },
+    { name: "Soyadı Kanunu", date: "1934-06-21" }
   ];
 
   function createDateForYear(dateString, year) {
@@ -121,14 +172,22 @@
     return futureDates[0];
   }
 
+  function formatDate(date) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('tr-TR', options);
+  }
+
   function startCountdown(event) {
     const countdownEl = document.getElementById("countdown");
     const progressBar = document.getElementById("progressBar");
     const eventNameEl = document.getElementById("eventName");
-    const descriptionEl = document.getElementById("description");
+    const eventDateEl = document.getElementById("eventDate");
 
     let startDate = new Date(event.nextDate);
     startDate.setFullYear(startDate.getFullYear() - 1);
+
+    eventNameEl.textContent = event.name;
+    eventDateEl.textContent = formatDate(event.nextDate);
 
     function update() {
       const now = new Date();
@@ -155,19 +214,14 @@
       if(percent < 0) percent = 0;
 
       progressBar.style.width = percent + "%";
-
-      eventNameEl.textContent = event.name;
-      descriptionEl.textContent = event.description;
     }
 
     update();
     const interval = setInterval(update, 1000);
   }
 
-  // Sayfa açılır açılmaz en yakın etkinliği göster
   const nextEvent = getNextImportantDate(importantDates);
   startCountdown(nextEvent);
-
 </script>
 
 </body>
