@@ -10,7 +10,7 @@
     padding: 40px 20px;
     background-color: #000;
     color: #fff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Arial', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,26 +19,22 @@
     position: relative;
   }
 
-  /* GALERİ SAYFASINDAKİ ANA SAYFA BUTONU STİLİ */
-  #homeBtn {
+  /* Hayatı sayfasındaki Ana Sayfa linki stili */
+  a#anasayfa {
+    color: white;
     position: fixed;
-    top: 20px;
-    left: 20px;
-    background: none;
-    border: none;
-    color: #ccc;
-    font-weight: 500;
-    font-size: 1rem;
-    cursor: pointer;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    top: 15px;
+    left: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+    z-index: 10;
     user-select: none;
-    padding: 0;
+    cursor: pointer;
     transition: color 0.3s ease;
-    text-decoration: underline;
-    z-index: 1000;
   }
-  #homeBtn:hover {
-    color: #fff;
+  a#anasayfa:hover {
+    color: #ff4d4d;
   }
 
   /* En yakın gün kutusu */
@@ -50,31 +46,24 @@
     text-align: center;
     user-select: none;
     color: #fff;
-    font-weight: 400;
-    letter-spacing: 0.03em;
+    font-weight: 700;
+    letter-spacing: 0.06em;
     margin-bottom: 50px;
-
-    /* Parlaklık arttırmak için glow ekledim */
-    box-shadow: 0 0 12px 3px rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 20px 6px rgba(255, 255, 255, 1);
     transition: box-shadow 0.3s ease;
   }
   #nearestEventBox:hover {
-    box-shadow: 0 0 20px 6px rgba(255, 255, 255, 1);
+    box-shadow: 0 0 28px 9px rgba(255, 255, 255, 1);
   }
 
-  /* Başlık - event name */
   #nearestEventBox h2 {
     margin: 0 0 12px 0;
     font-size: 2rem;
-    font-weight: 700; /* Kalın */
-    letter-spacing: 0.06em;
     cursor: pointer;
-
-    /* Hover ile etkileşim */
     transition: color 0.3s ease, transform 0.3s ease;
   }
   #nearestEventBox h2:hover {
-    color: #00ffff; /* Parlak mavi/turkuaz */
+    color: #00ffff;
     transform: scale(1.07);
   }
 
@@ -129,7 +118,7 @@
 </head>
 <body>
 
-<button id="homeBtn" onclick="location.href='index.html'" title="Ana Sayfa">Ana Sayfa</button>
+<a id="anasayfa" href="index.html" title="Ana Sayfa">← Ana Sayfa</a>
 
 <div id="nearestEventBox" tabindex="0" aria-label="En yakın önemli gün bilgisi">
   <h2 id="eventName" title="Etkinlik adı"></h2>
