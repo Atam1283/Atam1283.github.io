@@ -117,48 +117,88 @@
 </head>
 <body>
 
-  <a id="anasayfa" href="index.html">← Ana Sayfa</a>
+  <a id="anasayfa" href="index.html">← <span id="home-text">Ana Sayfa</span></a>
 
-  <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
+  <h1 id="page-title">Mustafa Kemal Atatürk'ün Hayatı</h1>
 
-  <div class="timeline">
-    <div class="event">
-      <h3>1881</h3>
-      <p>Selanik'te doğdu.</p>
-    </div>
-    <div class="event">
-      <h3>1893</h3>
-      <p>Selanik Askerî Rüştiyesi'ne başladı ve "Kemal" ismini aldı.</p>
-    </div>
-    <div class="event">
-      <h3>1905</h3>
-      <p>Harp Akademisi'ni kurmay yüzbaşı olarak bitirdi.</p>
-    </div>
-    <div class="event">
-      <h3>1915</h3>
-      <p>Çanakkale Savaşı'nda büyük başarı gösterdi.</p>
-    </div>
-    <div class="event">
-      <h3>19 Mayıs 1919</h3>
-      <p>Samsun'a çıkarak Kurtuluş Savaşı’nı başlattı.</p>
-    </div>
-    <div class="event">
-      <h3>1920</h3>
-      <p>Türkiye Büyük Millet Meclisi'ni açtı.</p>
-    </div>
-    <div class="event">
-      <h3>1923</h3>
-      <p>Cumhuriyet ilan edildi ve Atatürk ilk Cumhurbaşkanı oldu.</p>
-    </div>
-    <div class="event">
-      <h3>1934</h3>
-      <p>Soyadı Kanunu ile “Atatürk” soyadını aldı.</p>
-    </div>
-    <div class="event red">
-      <h3>10 Kasım 1938</h3>
-      <p>Dolmabahçe Sarayı'nda vefat etti.</p>
-    </div>
+  <div class="timeline" id="timeline-container">
+    <!-- İçerik JS ile dolacak -->
   </div>
+
+<script>
+  // Çoklu dil metinleri
+  const translations = {
+    tr: {
+      home: "Ana Sayfa",
+      title: "Mustafa Kemal Atatürk'ün Hayatı",
+      timeline: [
+        { year: "1881", text: "Selanik'te doğdu." },
+        { year: "1893", text: "Selanik Askerî Rüştiyesi'ne başladı ve \"Kemal\" ismini aldı." },
+        { year: "1905", text: "Harp Akademisi'ni kurmay yüzbaşı olarak bitirdi." },
+        { year: "1915", text: "Çanakkale Savaşı'nda büyük başarı gösterdi." },
+        { year: "19 Mayıs 1919", text: "Samsun'a çıkarak Kurtuluş Savaşı’nı başlattı." },
+        { year: "1920", text: "Türkiye Büyük Millet Meclisi'ni açtı." },
+        { year: "1923", text: "Cumhuriyet ilan edildi ve Atatürk ilk Cumhurbaşkanı oldu." },
+        { year: "1934", text: "Soyadı Kanunu ile “Atatürk” soyadını aldı." },
+        { year: "10 Kasım 1938", text: "Dolmabahçe Sarayı'nda vefat etti.", red: true }
+      ]
+    },
+    en: {
+      home: "Home",
+      title: "The Life of Mustafa Kemal Atatürk",
+      timeline: [
+        { year: "1881", text: "Born in Thessaloniki." },
+        { year: "1893", text: "Started at Thessaloniki Military School and received the name \"Kemal\"." },
+        { year: "1905", text: "Graduated from Military Academy as a staff captain." },
+        { year: "1915", text: "Showed great success at the Battle of Gallipoli." },
+        { year: "May 19, 1919", text: "Landed in Samsun and started the War of Independence." },
+        { year: "1920", text: "Opened the Grand National Assembly of Turkey." },
+        { year: "1923", text: "Republic was proclaimed and Atatürk became the first president." },
+        { year: "1934", text: "Received the surname 'Atatürk' with the Surname Law." },
+        { year: "November 10, 1938", text: "Passed away at Dolmabahçe Palace.", red: true }
+      ]
+    },
+    az: {
+      home: "Ana Səhifə",
+      title: "Mustafa Kamal Atatürkün Həyatı",
+      timeline: [
+        { year: "1881", text: "Salonikdə doğulub." },
+        { year: "1893", text: "Salonik Hərbi Rüştiyəsinə başladı və \"Kemal\" adını aldı." },
+        { year: "1905", text: "Hərbi Akademiyanı kəşfiyyat kapitanı kimi bitirdi." },
+        { year: "1915", text: "Çanakkale Döyüşündə böyük uğur qazandı." },
+        { year: "19 May 1919", text: "Samsuna çıxdı və Azadlıq Müharibəsini başlatdı." },
+        { year: "1920", text: "Türkiyə Böyük Millət Məclisini açdı." },
+        { year: "1923", text: "Respublika elan edildi və Atatürk ilk prezident oldu." },
+        { year: "1934", text: "Soyad Qanunu ilə “Atatürk” soyadını aldı." },
+        { year: "10 Noyabr 1938", text: "Dolmabahçə Sarayında vəfat etdi.", red: true }
+      ]
+    }
+  };
+
+  // LocalStorage'dan dil seçimi al, yoksa 'tr' kullan
+  let lang = localStorage.getItem("dil") || "tr";
+
+  // Sayfadaki metinleri ayarla
+  function setLanguage(lang) {
+    const data = translations[lang] || translations.tr;
+    document.getElementById("home-text").textContent = data.home;
+    document.getElementById("page-title").textContent = data.title;
+
+    const timelineDiv = document.getElementById("timeline-container");
+    timelineDiv.innerHTML = "";
+    data.timeline.forEach(event => {
+      const div = document.createElement("div");
+      div.className = "event" + (event.red ? " red" : "");
+      div.innerHTML = `<h3>${event.year}</h3><p>${event.text}</p>`;
+      timelineDiv.appendChild(div);
+    });
+  }
+
+  setLanguage(lang);
+
+  // Eğer dil değiştirilebilir buton veya ayar varsa, oraya da listener ekleyip localStorage güncellenmeli
+  // (burada hayati.html içinde dil seçimi olmadığından, ana sayfadan seçilen dil localStorage'dan alınıyor)
+</script>
 
 </body>
 </html>
