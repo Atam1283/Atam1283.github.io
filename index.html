@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mustafa Kemal Atatürk</title>
   <style>
-    /* Tüm CSS aynı şekilde korunmuştur (kısaltmadan bırakıldı) */
+    /* Tüm CSS içeriğin olduğu gibi korunmuştur */
     body {
       margin: 0;
       padding: 0;
@@ -114,26 +114,43 @@
     .settings-button:hover {
       background-color: rgba(255, 77, 77, 0.3);
     }
-    .first-dropdown, .language-dropdown {
+    .first-dropdown {
       display: none;
       position: absolute;
+      top: 42px;
+      right: 0;
       background-color: #222;
       border-radius: 8px;
+      min-width: 80px;
       box-shadow: 0 0 10px rgba(255,255,255,0.2);
       user-select: none;
     }
-    .first-dropdown {
-      top: 42px;
-      right: 0;
-      min-width: 80px;
+    .first-dropdown button {
+      display: block;
+      width: 100%;
+      background: none;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      font-size: 1rem;
+      text-align: left;
+      cursor: pointer;
+    }
+    .first-dropdown button:hover {
+      background-color: #ff4d4d;
     }
     .language-dropdown {
+      display: none;
+      position: absolute;
       top: 0;
       right: 100%;
+      background-color: #222;
+      border-radius: 8px;
       min-width: 140px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
       z-index: 10001;
+      user-select: none;
     }
-    .first-dropdown button,
     .language-dropdown button {
       display: block;
       width: 100%;
@@ -145,13 +162,12 @@
       text-align: left;
       cursor: pointer;
     }
+    .language-dropdown button:hover {
+      background-color: #ff4d4d;
+    }
     .language-dropdown button.active {
       background-color: #ff4d4d;
       font-weight: bold;
-    }
-    .first-dropdown button:hover,
-    .language-dropdown button:hover {
-      background-color: #ff4d4d;
     }
     @media (max-width: 600px) {
       .search-section input[type="text"] {
@@ -185,6 +201,7 @@
   </style>
 </head>
 <body>
+  <!-- Ayar simgesi ve dil menüsü -->
   <div class="settings" aria-label="Ayarlar menüsü">
     <button class="settings-button" aria-haspopup="true" aria-expanded="false" aria-controls="firstDropdown" aria-label="Ayarlar">⚙️</button>
     <div class="first-dropdown" id="firstDropdown" role="menu">
@@ -196,24 +213,24 @@
       </div>
     </div>
   </div>
-
+  <!-- Menü -->
   <nav>
     <a href="hayati.html" id="menu-life">Hayatı</a>
     <a href="galeri.html" id="menu-gallery">Galeri</a>
     <a href="gerisayim.html" id="menu-countdown">Geri Sayım</a>
   </nav>
-
+  <!-- Arama -->
   <section class="search-section">
     <form onsubmit="aramaYap(); return false;">
       <input type="text" id="arama" placeholder="Atatürk, Cumhuriyet, Türkiye..." />
       <button type="submit" id="btn-search">Ara</button>
     </form>
   </section>
-
+  <!-- Başlık -->
   <h1 id="main-title">Mustafa Kemal Atatürk</h1>
+  <!-- Söz -->
   <div class="quote" id="quote">Yurtta sulh, cihanda sulh.</div>
   <div class="quote-source" id="quote-source">Mustafa Kemal Atatürk</div>
-
   <script>
     const translations = {
       tr: {
@@ -321,6 +338,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       const savedLang = localStorage.getItem('siteLang') || 'tr';
       setLanguage(savedLang);
+      // Rastgele söz seç
       const randomQuote = quoteList[Math.floor(Math.random() * quoteList.length)];
       el.quote.textContent = randomQuote;
     });
