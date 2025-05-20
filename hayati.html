@@ -1,128 +1,47 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mustafa Kemal Atatürk - Hayatı</title>
-<style>
-  /* Global reset ve box-sizing */
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    padding: 40px 20px;
-    background-color: #000;
-    color: #fff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    min-height: 100vh;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* Gri çizgi stil */
-  #separatorLine {
-    width: 90vw;
-    max-width: 900px;
-    height: 1.5px;
-    background-color: #444;
-    margin: 24px 0 40px 0;
-    box-shadow: 0 0 6px #444;
-  }
-
-  /* Üst menü - sayfa butonları */
-  #topMenu {
-    width: 90vw;
-    max-width: 900px;
-    display: flex;
-    justify-content: flex-start;
-    gap: 18px;
-    margin-bottom: 40px;
-  }
-  #topMenu button {
-    background: none;
-    border: 2px solid #fff;
-    color: #fff;
-    font-weight: 600;
-    padding: 6px 14px;
-    border-radius: 30px;
-    cursor: pointer;
-    font-family: inherit;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    user-select: none;
-  }
-  #topMenu button:hover,
-  #topMenu button:focus {
-    background-color: #fff;
-    color: #000;
-    outline: none;
-  }
-  #topMenu button:focus-visible {
-    outline: 2px solid #00ffff;
-    outline-offset: 3px;
-  }
-
-  /* Sayfa başlığı */
-  h1 {
-    font-size: 2.8rem;
-    font-weight: 900;
-    letter-spacing: 0.06em;
-    margin: 0 0 12px 0;
-    text-align: center;
-    user-select: none;
-    color: #fff;
-  }
-
-  /* İçerik metni */
-  #content {
-    width: 90vw;
-    max-width: 900px;
-    font-weight: 400;
-    font-size: 1.1rem;
-    line-height: 1.55;
-    letter-spacing: 0.015em;
-    user-select: text;
-    color: #fff;
-  }
-
-  @media (max-width: 480px) {
-    h1 {
-      font-size: 1.8rem;
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Hayatı</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin:0; padding:40px 20px;
+      background:#000; color:#fff;
+      font-family:'Segoe UI',sans-serif;
     }
-    #content {
-      font-size: 1rem;
+    nav { /* aynısı */ }
+    nav a:hover,nav a:focus{ background:#fff;color:#000;}
+    nav a:focus-visible{outline:2px solid #00ffff;outline-offset:2px;}
+    hr { width:90vw;max-width:900px;height:1.5px;background:#444;border:none;margin:24px auto;box-shadow:0 0 6px #444;}
+    h1 { text-align:center; font-size:2rem; margin-bottom:20px;}
+    .content {
+      max-width:900px; margin:auto;
+      font-size:1.1rem; line-height:1.8;
     }
-    #topMenu {
-      gap: 12px;
-      margin-bottom: 30px;
-    }
-  }
-</style>
+  </style>
 </head>
 <body>
 
-<nav id="topMenu" aria-label="Sayfa navigasyonu">
-  <button onclick="location.href='index.html'" aria-label="Ana Sayfa">Ana Sayfa</button>
-  <button onclick="location.href='galeri.html'" aria-label="Galeri">Galeri</button>
-  <button onclick="location.href='gerisayim.html'" aria-label="Geri Sayım">Geri Sayım</button>
-  <button onclick="location.href='ayarlar.html'" aria-label="Ayarlar">Ayarlar</button>
+<nav aria-label="Sayfa menüsü">
+  <a href="index.html">Ana Sayfa</a>
+  <a href="galeri.html">Galeri</a>
+  <a href="hayati.html">Hayatı</a>
+  <a href="gerisayim.html">Geri Sayım</a>
+  <a href="ayarlar.html">Ayarlar</a>
 </nav>
+<hr/>
 
-<div id="separatorLine" role="presentation"></div>
-
-<h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
-
-<div id="content" tabindex="0">
-  <p><strong>1881</strong> yılında Selanik'te doğdu. Askeri ve siyasi hayatı boyunca Türkiye'nin modernleşmesi için önemli adımlar attı.</p>
-  <p><strong>1905</strong> yılında Harp Akademisi'nden kurmay yüzbaşı olarak mezun oldu.</p>
-  <p><strong>1919</strong> yılında Samsun'a çıkarak Milli Mücadele'yi başlattı.</p>
-  <p><strong>1923</strong> yılında Türkiye Cumhuriyeti'nin kurucusu ve ilk Cumhurbaşkanı oldu.</p>
-  <p><strong>1924-1938</strong> yılları arasında pek çok devrim ve reform gerçekleştirdi, eğitim, hukuk, kadın hakları gibi alanlarda köklü değişikliklere imza attı.</p>
-  <p><strong>1938</strong> yılında vefat etti ancak fikirleri ve reformları bugün de yaşamakta ve ülkenin temel taşı olmaya devam etmektedir.</p>
-  <p>Atatürk, hayatı boyunca <em>“Yurtta sulh, cihanda sulh.”</em> sözünü rehber edinmiştir.</p>
+<h1>Mustafa Kemal Atatürk’ün Hayatı</h1>
+<div class="content">
+  <p><strong>1881:</strong> Selanik'te doğdu.</p>
+  <p><strong>1905:</strong> Harp Akademisi’nden kurmay yüzbaşı olarak mezun oldu.</p>
+  <p><strong>1915:</strong> Çanakkale Savaşı’nda Anafartalar Kahramanı oldu.</p>
+  <p><strong>1919:</strong> Samsun’a çıktı, Milli Mücadeleyi başlattı.</p>
+  <p><strong>1923:</strong> Cumhuriyet’i ilan etti, ilk Cumhurbaşkanı oldu.</p>
+  <p><strong>1938:</strong> 10 Kasım’da Dolmabahçe’de vefat etti.</p>
+  <p>Hayatı boyunca “Yurtta sulh, cihanda sulh” ilkesini benimsedi.</p>
 </div>
 
 </body>
