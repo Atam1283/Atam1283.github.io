@@ -6,79 +6,58 @@
   <title>Ana Sayfa</title>
   <style>
     body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #000;
       color: #eee;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0 5vw 40px;
-      box-sizing: border-box;
-      padding-top: 60px; /* Menü alanı için boşluk */
     }
-
-    /* Menü stili */
     #menu {
       position: fixed;
-      top: 0;
-      width: 100%;
-      background: #111;
+      top: 15px;
+      right: 15px;
+      z-index: 10;
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      z-index: 1000;
-      padding: 10px 0;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+      gap: 12px;
     }
-
     #menu a {
       color: white;
       text-decoration: none;
-      margin: 6px 12px;
-      font-size: 16px;
+      font-weight: bold;
       padding: 6px 12px;
-      background-color: #222;
-      border: 1px solid #eee;
-      border-radius: 6px;
-      transition: 0.3s;
+      border: 1.5px solid #eee;
+      border-radius: 5px;
+      font-size: 16px;
+      background: #222;
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
     }
-
     #menu a:hover {
-      background-color: #ff2c2c;
-      color: white;
+      background: #ff2c2c;
       border-color: #ff2c2c;
+      color: white;
     }
-
     @media (max-width: 600px) {
       #menu {
         flex-direction: column;
+        top: 10px;
+        right: 10px;
       }
-
       #menu a {
-        margin: 5px 0;
+        font-size: 14px;
+        padding: 8px 10px;
       }
-    }
-
-    /* Sayfa içeriği örneği */
-    main {
-      max-width: 900px;
-      margin: 20px auto;
-      text-align: center;
     }
   </style>
 </head>
 <body>
 
   <nav id="menu">
-    <!-- Ana Sayfa butonu bu sayfada gösterilmiyor -->
     <a href="galeri.html">Galeri</a>
     <a href="hayati.html">Hayatı</a>
     <a href="geri-sayim.html">Geri Sayım</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
 
-  <main>
-    <h1>Ana Sayfa</h1>
-    <p>Burada istediğin içeriği ekleyebilirsin.</p>
-  </main>
+  <!-- Sayfa içeriği buraya gelecek -->
 
 </body>
 </html>
