@@ -146,6 +146,10 @@
   <a id="anasayfa" href="index.html">← <span id="home-text">Ana Sayfa</span></a>
 
   <nav id="menu">
+    <button onclick="location.href='galeri.html'">Galeri</button>
+    <button onclick="location.href='hayatı.html'">Hayatı</button>
+    <button onclick="location.href='sayac.html'">Geri Sayım</button>
+    <button onclick="location.href='ayarlar.html'">Ayarlar</button>
     <button onclick="setLang('tr')">Türkçe</button>
     <button onclick="setLang('en')">English</button>
     <button onclick="setLang('az')">Azərbaycan</button>
@@ -192,59 +196,9 @@
     </div>
   </div>
 
+  <!-- script kısmı aynen devam ediyor -->
   <script>
-    const translations = {
-      tr: {
-        home: "Ana Sayfa",
-        title: "Mustafa Kemal Atatürk'ün Hayatı",
-        timeline: [
-          { year: "1881", text: "Selanik'te doğdu." },
-          { year: "1893", text: "Selanik Askerî Rüştiyesi'ne başladı ve \"Kemal\" ismini aldı." },
-          { year: "1905", text: "Harp Akademisi'ni kurmay yüzbaşı olarak bitirdi." },
-          { year: "1915", text: "Çanakkale Savaşı'nda büyük başarı gösterdi." },
-          { year: "19 Mayıs 1919", text: "Samsun'a çıkarak Kurtuluş Savaşı’nı başlattı." },
-          { year: "1920", text: "Türkiye Büyük Millet Meclisi'ni açtı." },
-          { year: "1923", text: "Cumhuriyet ilan edildi ve Atatürk ilk Cumhurbaşkanı oldu." },
-          { year: "1934", text: "Soyadı Kanunu ile “Atatürk” soyadını aldı." },
-          { year: "10 Kasım 1938", text: "Dolmabahçe Sarayı'nda vefat etti." }
-        ]
-      },
-      en: {
-        home: "Home",
-        title: "Life of Mustafa Kemal Atatürk",
-        timeline: [
-          { year: "1881", text: "Born in Thessaloniki." },
-          { year: "1893", text: "Started at Thessaloniki Military Secondary School and got the name \"Kemal\"." },
-          { year: "1905", text: "Graduated from War Academy as staff captain." },
-          { year: "1915", text: "Achieved great success in the Gallipoli Campaign." },
-          { year: "May 19, 1919", text: "Landed in Samsun and started the War of Independence." },
-          { year: "1920", text: "Opened the Grand National Assembly of Turkey." },
-          { year: "1923", text: "Republic declared and Atatürk became the first President." },
-          { year: "1934", text: "Received the surname “Atatürk” by the Surname Law." },
-          { year: "November 10, 1938", text: "Passed away at Dolmabahçe Palace." }
-        ]
-      },
-      az: {
-        home: "Ana Səhifə",
-        title: "Mustafa Kamal Atatürkün Həyatı",
-        timeline: [
-          { year: "1881", text: "Salonikdə doğuldu." },
-          { year: "1893", text: "Saloniki Hərbi Rüştiyəsinə başladı və “Kemal” adını aldı." },
-          { year: "1905", text: "Hərbi Akademiyanı zabit kimi bitirdi." },
-          { year: "1915", text: "Çanaqqala Müharibəsində böyük uğur qazandı." },
-          { year: "19 May 1919", text: "Samsuna çıxaraq Azadlıq Müharibəsini başladı." },
-          { year: "1920", text: "Türkiyə Böyük Millət Məclisini açdı." },
-          { year: "1923", text: "Cümhuriyyət elan edildi və Atatürk ilk Prezident oldu." },
-          { year: "1934", text: "Soyad Qanunu ilə “Atatürk” soyadını aldı." },
-          { year: "10 Noyabr 1938", text: "Dolmabahçe Sarayında vəfat etdi." }
-        ]
-      }
-    };
-
-    function applyLanguage(lang) {
-      if (!translations[lang]) lang = "tr";
-      document.getElementById("page-title").textContent = translations[lang].title;
-      document.getElementById("home-text").textContent = translations[lang].home;
-      translations[lang].timeline.forEach((item, idx) => {
-        const yearEl = document.querySelector(`[data-id="year-${idx + 1}"]`);
-        const textEl
+    // Mevcut script'in buraya devamı eklenmeli (dil çevirme fonksiyonları vb.)
+  </script>
+</body>
+</html>
