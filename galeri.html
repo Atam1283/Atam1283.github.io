@@ -1,238 +1,58 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Galeri</title>
-<style>
-  /* Temel stil */
-  body {
-    margin: 0;
-    padding: 20px 30px;
-    background-color: #000;
-    color: #fff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  nav {
-    width: 100%;
-    max-width: 900px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 40px;
-    gap: 20px;
-  }
-
-  #pageButtons {
-    display: flex;
-    gap: 15px;
-  }
-  #pageButtons a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 8px 14px;
-    border-radius: 25px;
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
-    user-select: none;
-  }
-  #pageButtons a:hover,
-  #pageButtons a:focus {
-    color: #00ffff;
-    border-color: #00ffff;
-    outline: none;
-  }
-  #pageButtons a:focus-visible {
-    outline: 2px solid #00ffff;
-    outline-offset: 2px;
-  }
-
-  #searchForm {
-    flex: 1;
-    max-width: 300px;
-    display: flex;
-  }
-
-  #searchInput {
-    flex: 1;
-    padding: 8px 14px;
-    font-size: 1rem;
-    border-radius: 25px 0 0 25px;
-    border: 2px solid #fff;
-    background-color: #000;
-    color: #fff;
-    outline-offset: 2px;
-  }
-  #searchInput::placeholder {
-    color: #bbb;
-  }
-  #searchInput:focus {
-    border-color: #00ffff;
-    outline: none;
-  }
-
-  #searchButton {
-    padding: 8px 18px;
-    font-size: 1rem;
-    font-weight: 700;
-    border-radius: 0 25px 25px 0;
-    border: 2px solid #fff;
-    border-left: none;
-    background-color: #000;
-    color: #fff;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  #searchButton:hover,
-  #searchButton:focus {
-    background-color: #00ffff;
-    color: #000;
-    outline: none;
-  }
-  #searchButton:focus-visible {
-    outline: 2px solid #00ffff;
-    outline-offset: 2px;
-  }
-
-  h1 {
-    margin: 0 0 25px 0;
-    font-weight: 700;
-    font-size: 2.4rem;
-    user-select: none;
-  }
-
-  #quote {
-    font-size: 1.3rem;
-    font-style: italic;
-    font-weight: 500;
-    max-width: 700px;
-    text-align: center;
-    user-select: none;
-  }
-  #quoteSource {
-    margin-top: 8px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #ccc;
-    text-align: center;
-    user-select: none;
-  }
-
-  /* Galeri bölümü */
-  #galleryContainer {
-    max-width: 900px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
-    gap: 15px;
-    margin-top: 40px;
-  }
-  #galleryContainer img {
-    width: 100%;
-    border-radius: 12px;
-    border: 2px solid #00ffff;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-  }
-  #galleryContainer img:hover,
-  #galleryContainer img:focus {
-    transform: scale(1.05);
-    outline: none;
-  }
-
-  @media (max-width: 480px) {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galeri</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+    }
     nav {
-      flex-direction: column;
-      gap: 15px;
-      align-items: stretch;
+      margin-bottom: 30px;
     }
-    #searchForm {
-      max-width: 100%;
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
     }
-    #pageButtons {
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
+    #searchBar {
+      margin: 30px auto;
+      max-width: 400px;
+      width: 90%;
     }
-  }
-</style>
+    #searchBar input {
+      width: 100%;
+      padding: 10px 15px;
+      border-radius: 25px;
+      border: none;
+      background-color: #222;
+      color: #fff;
+      font-size: 1rem;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
   <nav>
-    <div id="pageButtons" role="navigation" aria-label="Sayfa menüsü">
-      <a href="index.html" tabindex="0">Ana Sayfa</a>
-      <a href="galeri.html" tabindex="0" aria-current="page">Galeri</a>
-      <a href="hayati.html" tabindex="0">Hayatı</a>
-      <a href="gerisayim.html" tabindex="0">Geri Sayım</a>
-      <a href="ayarlar.html" tabindex="0">Ayarlar</a>
-    </div>
-
-    <form id="searchForm" role="search" aria-label="Site içi arama">
-      <input
-        type="search"
-        id="searchInput"
-        placeholder="Arama yapın..."
-        aria-label="Arama kutusu"
-        autocomplete="off"
-        spellcheck="false"
-      />
-      <button type="submit" id="searchButton" aria-label="Ara">Ara</button>
-    </form>
+    <a href="index.html">Ana Sayfa</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="hayati.html">Hayatı</a>
+    <a href="gerisayim.html">Geri Sayım</a>
+    <a href="ayarlar.html">Ayarlar</a>
   </nav>
 
-  <main>
-    <h1>Mustafa Kemal Atatürk</h1>
-    <p id="quote" aria-live="polite" aria-atomic="true" tabindex="0"></p>
-    <p id="quoteSource" aria-live="polite" aria-atomic="true" tabindex="0"></p>
+  <div id="searchBar">
+    <input type="text" placeholder="Arama yapın..." />
+  </div>
 
-    <section id="galleryContainer" aria-label="Atatürk galerisi">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Atatürk_1919.jpg/320px-Atatürk_1919.jpg" alt="Mustafa Kemal Atatürk, 1919" tabindex="0" />
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Mustafa_Kemal_Atatürk_1925.jpg/320px-Mustafa_Kemal_Atatürk_1925.jpg" alt="Mustafa Kemal Atatürk, 1925" tabindex="0" />
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Atatürk_in_Ankara.jpg/320px-Atatürk_in_Ankara.jpg" alt="Mustafa Kemal Atatürk, Ankara" tabindex="0" />
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/AtaturkAnkara1924.jpg/320px-AtaturkAnkara1924.jpg" alt="Mustafa Kemal Atatürk, 1924" tabindex="0" />
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Atatürk_and_Monument.jpg/320px-Atatürk_and_Monument.jpg" alt="Atatürk Anıtı" tabindex="0" />
-    </section>
-  </main>
+  <!-- Galeri içeriği buraya gelecek -->
 
-  <script>
-    const quotes = [
-      { text: "Egemenlik, kayıtsız şartsız milletindir.", source: "1923 TBMM Açılış Konuşması" },
-      { text: "Hayatta en hakiki mürşit ilimdir.", source: "1923 Söylev" },
-      { text: "Yurtta sulh, cihanda sulh.", source: "1931" },
-      { text: "Beni görmek demek mutlaka yüzümü görmek değildir. Benim fikirlerimi, benim duygularımı anlıyorsanız bu kâfidir.", source: "1923 Söylev" },
-      { text: "İstikbal göklerdedir.", source: "1927" },
-      { text: "Milletin bağımsızlığı yine milletin azim ve kararıyla kurtarılacaktır.", source: "1920 Nutuk" },
-      { text: "Türk milletinin karakteri yüksektir; Türk milleti çalışkandır; Türk milleti zekidir.", source: "1927 Söylev" },
-      { text: "Bir millet sanattan ve sanatkârdan mahrumsa, tam bir hayata malik olamaz.", source: "1923 Söylev" }
-    ];
-
-    function displayRandomQuote() {
-      const quoteEl = document.getElementById('quote');
-      const sourceEl = document.getElementById('quoteSource');
-      const randomIndex = Math.floor(Math.random() * quotes.length);
-      const selected = quotes[randomIndex];
-      quoteEl.textContent = `"${selected.text}"`;
-      sourceEl.textContent = `— ${selected.source}`;
-    }
-
-    window.onload = displayRandomQuote;
-
-    document.getElementById('searchForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const query = document.getElementById('searchInput').value.trim();
-      if(query.length > 0) {
-        const siteURL = location.hostname;
-        const searchURL = `https://www.google.com/search?q=site:${siteURL}+${encodeURIComponent(query)}`;
-        window.open(searchURL, '_blank');
-      }
-    });
-  </script>
 </body>
 </html>
