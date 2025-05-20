@@ -1,64 +1,76 @@
 <!DOCTYPE html>
-<html lang="tr"><!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Atatürk'ün Hayatı</title>
 <style>
-  /* Mevcut stilini koruyalım */
   body {
     background-color: black;
     color: white;
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 20px;
+    padding-top: 70px; /* menü alanı kadar boşluk */
   }
-  #top-menu {
+
+  /* Menü çubuğu */
+  nav {
     position: fixed;
-    top: 15px;
-    left: 15px;
-    right: 15px;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #111;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 100;
+    justify-content: center;
+    gap: 25px;
+    padding: 15px 0;
+    box-shadow: 0 2px 8px rgba(255,255,255,0.15);
+    z-index: 999;
   }
-  #top-menu a {
+  nav a {
     color: white;
     text-decoration: none;
     font-weight: bold;
     font-size: 16px;
-    margin-left: 10px;
+    padding: 6px 12px;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
   }
-  #top-menu a:hover {
-    color: #ff2c2c;
+  nav a:hover {
+    background: #ff2c2c;
+    color: white;
   }
+
+  main {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    font-size: 1.2rem;
+    line-height: 1.7;
+  }
+
   h1 {
-    margin-top: 100px;
-    font-size: 2.5rem;
+    text-align: center;
+    font-size: 2.8rem;
   }
-  p {
-    line-height: 1.8;
-    margin-top: 20px;
-    font-size: 1.1rem;
-  }
+
 </style>
 </head>
 <body>
-  <div id="top-menu">
-    <a id="link-anasayfa" href="index.html">Ana Sayfa</a>
-    <div>
-      <a id="link-galeri" href="galeri.html">Galeri</a>
-      <a id="link-ayarlari" href="ayarlar.html">Ayarlar</a>
-    </div>
-  </div>
 
-  <h1 id="page-title">Atatürk'ün Hayatı</h1>
+  <nav>
+    <a href="index.html" id="link-anasayfa">Ana Sayfa</a>
+    <a href="galeri.html" id="link-galeri">Galeri</a>
+    <a href="geri-sayim.html" id="link-gerisayim">Geri Sayım</a>
+    <a href="ayarlar.html" id="link-ayarlari">Ayarlar</a>
+  </nav>
 
-  <p id="content">
-    Mustafa Kemal Atatürk, Türkiye Cumhuriyeti'nin kurucusu ve ilk Cumhurbaşkanıdır. 1881 yılında Selanik'te doğmuş, askeri eğitimini tamamladıktan sonra Türk milletinin bağımsızlığı için mücadele etmiştir.
-  </p>
+  <main>
+    <h1 id="page-title">Atatürk'ün Hayatı</h1>
+    <p id="content">
+      Mustafa Kemal Atatürk, Türkiye Cumhuriyeti'nin kurucusu ve ilk Cumhurbaşkanıdır. 1881 yılında Selanik'te doğmuş, askeri eğitimini tamamladıktan sonra Türk milletinin bağımsızlığı için mücadele etmiştir.
+    </p>
+  </main>
 
   <script>
     const translations = {
@@ -68,6 +80,7 @@
         links: {
           anasayfa: "Ana Sayfa",
           galeri: "Galeri",
+          gerisayim: "Geri Sayım",
           ayarlari: "Ayarlar"
         }
       },
@@ -77,6 +90,7 @@
         links: {
           anasayfa: "Home",
           galeri: "Gallery",
+          gerisayim: "Countdown",
           ayarlari: "Settings"
         }
       },
@@ -86,6 +100,7 @@
         links: {
           anasayfa: "Ana Səhifə",
           galeri: "Qalereya",
+          gerisayim: "Geri Sayım",
           ayarlari: "Ayarlar"
         }
       }
@@ -94,13 +109,14 @@
     function applyLanguage(lang) {
       document.documentElement.lang = lang;
 
-      const t = translations[lang];
+      const t = translations[lang] || translations.tr;
 
       document.getElementById("page-title").textContent = t.pageTitle;
       document.getElementById("content").textContent = t.content;
 
       document.getElementById("link-anasayfa").textContent = t.links.anasayfa;
       document.getElementById("link-galeri").textContent = t.links.galeri;
+      document.getElementById("link-gerisayim").textContent = t.links.gerisayim;
       document.getElementById("link-ayarlari").textContent = t.links.ayarlari;
     }
 
@@ -109,75 +125,6 @@
       applyLanguage(lang);
     });
   </script>
+
 </body>
 </html>
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Atatürk'ün Hayatı</title>
-  <style>
-    body {
-      background-color: black;
-      color: white;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-    }
-    header {
-      background-color: #111;
-      padding: 10px 20px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    header a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 18px;
-    }
-    h1 {
-      margin-top: 20px;
-      font-size: 2rem;
-    }
-    p {
-      line-height: 1.6;
-      margin-top: 15px;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <a id="link-anasayfa" href="index.html">← Ana Sayfa</a>
-  </header>
-
-  <h1 id="page-title">Atatürk'ün Hayatı</h1>
-
-  <p id="content">
-    Mustafa Kemal Atatürk, modern Türkiye Cumhuriyeti'nin kurucusudur. 1881 yılında Selanik'te doğdu...
-  </p>
-
-  <script>
-    const translations = {
-      tr: {
-        pageTitle: "Atatürk'ün Hayatı",
-        content: "Mustafa Kemal Atatürk, modern Türkiye Cumhuriyeti'nin kurucusudur. 1881 yılında Selanik'te doğdu..."
-      },
-      en: {
-        pageTitle: "Atatürk's Biography",
-        content: "Mustafa Kemal Atatürk is the founder of modern Republic of Turkey. He was born in 1881 in Salonika..."
-      },
-      az: {
-        pageTitle: "Atatürkün Həyatı",
-        content: "Mustafa Kamal Atatürk müasir Türkiyə Respublikasının qurucusudur. 1881-ci ildə Salonikdə doğulub..."
-      }
-    };
-
-    function applyLanguage(lang) {
-      document.documentElement.lang = lang;
-      document.getElementById("page-title").textContent = translations[lang].pageTitle;
-      document.getElementById("content").textContent = translations[lang].content;
-      document.getElementById("link-anasayfa").textContent = {
-        tr: "← Ana Sayfa
