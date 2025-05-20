@@ -142,5 +142,80 @@
     </section>
   </div>
 
+  <script>
+    const translations = {
+      tr: {
+        galleryTitle: "Atatürk Galerisi",
+        homeLink: "Ana Sayfa",
+        captions: [
+          "Atatürk Fotoğraf 1",
+          "Atatürk Fotoğraf 2",
+          "Atatürk Fotoğraf 3",
+          "Atatürk Fotoğraf 4"
+        ],
+        locations: [
+          "Ankara - 1923",
+          "Samsun - 1919",
+          "İzmir - 1934",
+          "İstanbul - 1936"
+        ]
+      },
+      en: {
+        galleryTitle: "Atatürk Gallery",
+        homeLink: "Home",
+        captions: [
+          "Atatürk Photo 1",
+          "Atatürk Photo 2",
+          "Atatürk Photo 3",
+          "Atatürk Photo 4"
+        ],
+        locations: [
+          "Ankara - 1923",
+          "Samsun - 1919",
+          "Izmir - 1934",
+          "Istanbul - 1936"
+        ]
+      },
+      az: {
+        galleryTitle: "Atatürk Qalereyası",
+        homeLink: "Ana Səhifə",
+        captions: [
+          "Atatürk Foto 1",
+          "Atatürk Foto 2",
+          "Atatürk Foto 3",
+          "Atatürk Foto 4"
+        ],
+        locations: [
+          "Ankara - 1923",
+          "Samsun - 1919",
+          "İzmir - 1934",
+          "İstanbul - 1936"
+        ]
+      }
+    };
+
+    function applyLanguage(lang) {
+      const t = translations[lang] || translations.tr;
+
+      document.querySelector('header h1').textContent = t.galleryTitle;
+      document.querySelector('a#anasayfa').textContent = "← " + t.homeLink;
+
+      const captions = document.querySelectorAll('.caption');
+      captions.forEach((caption, i) => {
+        caption.textContent = t.captions[i] || caption.textContent;
+      });
+
+      const locations = document.querySelectorAll('.location');
+      locations.forEach((loc, i) => {
+        loc.textContent = t.locations[i] || loc.textContent;
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const userLang = localStorage.getItem("lang") || "tr";
+      applyLanguage(userLang);
+    });
+  </script>
+
 </body>
 </html>
