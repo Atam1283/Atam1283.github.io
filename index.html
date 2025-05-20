@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mustafa Kemal Atatürk</title>
 <style>
-  /* Temel stiller */
   body {
     margin: 0; padding: 0;
     background-color: #0a0a0a;
@@ -13,11 +12,10 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.5;
   }
-
-  /* Menü */
   nav {
     position: fixed;
-    top: 0; left: 0; right: 0;
+    top: 50px; /* Arama çubuğu üstte olduğu için 50px aşağıda başlar */
+    left: 0; right: 0;
     background: linear-gradient(90deg, #111, #1a1a1a);
     display: flex;
     justify-content: center;
@@ -59,8 +57,6 @@
   nav a:focus svg {
     fill: #fff0f0;
   }
-
-  /* Ayarlar butonu */
   .settings {
     position: fixed;
     top: 16px;
@@ -82,8 +78,6 @@
     background-color: rgba(255, 85, 85, 0.4);
     outline: none;
   }
-
-  /* Dropdown menü */
   .dropdown-menu {
     display: none;
     position: absolute;
@@ -118,8 +112,6 @@
     color: #fff;
     outline: none;
   }
-
-  /* Dil seçim alt menüsü */
   #languageDropdown {
     right: 170px;
     top: 0;
@@ -128,10 +120,8 @@
     min-width: 130px;
     box-shadow: 0 0 10px rgba(255, 85, 85, 0.5);
   }
-
-  /* Ana içerik */
   main {
-    padding: 120px 20px 40px;
+    padding: 140px 20px 40px;
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
@@ -153,8 +143,6 @@
     font-weight: 600;
     letter-spacing: 1px;
   }
-
-  /* Atatürk sözü bölümü */
   #atatürk-quote-section {
     margin-top: 50px;
     font-style: italic;
@@ -167,8 +155,6 @@
     font-size: 1rem;
     color: #bbb;
   }
-
-  /* Kaynak linkleri */
   #sources {
     margin-top: 60px;
     font-size: 0.9rem;
@@ -187,8 +173,6 @@
     color: #ff9999;
     outline: none;
   }
-
-  /* Responsive */
   @media (max-width: 600px) {
     nav {
       gap: 25px;
@@ -214,9 +198,57 @@
       font-size: 1.5rem;
     }
   }
+
+  /* Arama kutusu */
+  #search-container {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background-color: #111;
+    padding: 10px 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.8);
+    z-index: 1002;
+    display: flex;
+    justify-content: center;
+  }
+  #search-form {
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+  }
+  #search-input {
+    flex: 1;
+    font-size: 1.1rem;
+    padding: 8px 12px;
+    border-radius: 8px 0 0 8px;
+    border: none;
+    outline: none;
+  }
+  #search-button {
+    font-size: 1.1rem;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 0 8px 8px 0;
+    background-color: #ff5555;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  #search-button:hover,
+  #search-button:focus {
+    background-color: #ff7777;
+    outline: none;
+  }
 </style>
 </head>
 <body>
+
+<!-- Arama motoru -->
+<div id="search-container">
+  <form id="search-form" action="https://www.google.com/search" method="get" target="_blank" role="search" aria-label="Google araması">
+    <input type="text" id="search-input" name="q" placeholder="Google'da ara..." aria-label="Arama kutusu" required />
+    <button type="submit" id="search-button" aria-label="Ara">Ara</button>
+  </form>
+</div>
 
 <!-- Üst Menü -->
 <nav aria-label="Ana Menü">
@@ -250,8 +282,8 @@
 <!-- Ana İçerik -->
 <main>
   <h1>Mustafa Kemal Atatürk</h1>
-  <p id="quote">"Yurtta sulh, cihanda sulh."</p>
-  <p id="quote-source">— Atatürk, 1931</p>
+  <p id="quote"></p>
+  <p id="quote-source"></p>
 
   <section id="atatürk-quote-section" aria-label="Atatürk Sözü">
     <p>"Milletin bağımsızlığını, yine milletin azim ve kararı kurtaracaktır."</p>
@@ -294,26 +326,9 @@
     }
   });
 
-  // Dropdown dışına tıklayınca kapatma
   document.addEventListener('click', () => {
     settingsBtn.setAttribute('aria-expanded', 'false');
     settingsDropdown.style.display = 'none';
     settingsDropdown.setAttribute('aria-hidden', 'true');
 
-    langMenuBtn.setAttribute('aria-expanded', 'false');
-    languageDropdown.style.display = 'none';
-    languageDropdown.setAttribute('aria-hidden', 'true');
-  });
-
-  // Dil seçenekleri tıklama
-  languageDropdown.querySelectorAll('button').forEach(btn => {
-    btn.addEventListener('click', e => {
-      alert(`Dil seçildi: ${btn.textContent}`);
-      // Buraya dil değiştirme kodu eklenebilir
-      settingsBtn.click(); // Menü kapansın
-    });
-  });
-</script>
-
-</body>
-</html>
+    langMenuBtn.setAttribute
