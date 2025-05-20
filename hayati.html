@@ -3,239 +3,100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Atatürk'ün Hayatı</title>
-
+  <title>Hayatı - Mustafa Kemal Atatürk</title>
   <style>
     body {
-      background-color: #000;
-      color: #eee;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 0 5vw 40px;
-      box-sizing: border-box;
-    }
-
-    a#anasayfa {
+      padding: 20px;
+      background-color: black;
       color: white;
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 4vw;
-      z-index: 10;
-      transition: color 0.3s;
-    }
-
-    a#anasayfa:hover {
-      color: #ff2c2c;
-    }
-
-    h1 {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
-      padding-top: 70px;
-      color: #fff;
-      font-size: 6vw;
-      text-shadow: 0 0 10px white;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
       margin-bottom: 30px;
     }
-
-    .timeline {
-      max-width: 900px;
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: #ff4d4d;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px white;
+    }
+    #life-text {
+      max-width: 800px;
       margin: 0 auto;
-    }
-
-    .event {
-      background-color: rgba(255, 255, 255, 0.04);
-      border-left: 4px solid #fff;
-      padding: 20px;
-      margin: 20px 0;
-      position: relative;
-      border-radius: 6px;
-    }
-
-    .event::before {
-      content: "";
-      position: absolute;
-      top: 20px;
-      left: -18px;
-      width: 16px;
-      height: 16px;
-      background-color: #fff;
-      border-radius: 50%;
-      border: 3px solid #000;
-    }
-
-    .event.red::before {
-      background-color: #ff2c2c;
-    }
-
-    .event h3 {
-      margin: 0 0 5px;
-      font-size: 4.5vw;
-      color: #fff;
-    }
-
-    .event.red h3 {
-      color: #ff2c2c;
-    }
-
-    .event p {
-      margin: 0;
-      font-size: 4vw;
+      font-size: 1.2rem;
+      line-height: 1.6;
       color: #ddd;
-      line-height: 1.5;
-    }
-
-    .event.red p {
-      color: #ffaaaa;
-    }
-
-    @media (min-width: 768px) {
-      a#anasayfa {
-        font-size: 16px;
-      }
-
-      h1 {
-        font-size: 48px;
-      }
-
-      .event h3 {
-        font-size: 20px;
-      }
-
-      .event p {
-        font-size: 16px;
-      }
-
-      .event::before {
-        left: -30px;
-        width: 20px;
-        height: 20px;
-      }
     }
   </style>
-
 </head>
 <body>
+  <nav>
+    <a href="index.html" id="menu-home">Anasayfa</a>
+    <a href="galeri.html" id="menu-gallery">Galeri</a>
+    <a href="gerisayim.html" id="menu-countdown">Geri Sayım</a>
+  </nav>
 
-  <a id="anasayfa" href="index.html">← <span id="home-text">Ana Sayfa</span></a>
+  <h1 id="title">Mustafa Kemal Atatürk'ün Hayatı</h1>
 
-  <h1 id="page-title">Mustafa Kemal Atatürk'ün Hayatı</h1>
-
-  <div class="timeline" id="timeline">
-    <div class="event" data-id="1">
-      <h3 data-id="year-1">1881</h3>
-      <p data-id="text-1">Selanik'te doğdu.</p>
-    </div>
-    <div class="event" data-id="2">
-      <h3 data-id="year-2">1893</h3>
-      <p data-id="text-2">Selanik Askerî Rüştiyesi'ne başladı ve "Kemal" ismini aldı.</p>
-    </div>
-    <div class="event" data-id="3">
-      <h3 data-id="year-3">1905</h3>
-      <p data-id="text-3">Harp Akademisi'ni kurmay yüzbaşı olarak bitirdi.</p>
-    </div>
-    <div class="event" data-id="4">
-      <h3 data-id="year-4">1915</h3>
-      <p data-id="text-4">Çanakkale Savaşı'nda büyük başarı gösterdi.</p>
-    </div>
-    <div class="event" data-id="5">
-      <h3 data-id="year-5">19 Mayıs 1919</h3>
-      <p data-id="text-5">Samsun'a çıkarak Kurtuluş Savaşı’nı başlattı.</p>
-    </div>
-    <div class="event" data-id="6">
-      <h3 data-id="year-6">1920</h3>
-      <p data-id="text-6">Türkiye Büyük Millet Meclisi'ni açtı.</p>
-    </div>
-    <div class="event" data-id="7">
-      <h3 data-id="year-7">1923</h3>
-      <p data-id="text-7">Cumhuriyet ilan edildi ve Atatürk ilk Cumhurbaşkanı oldu.</p>
-    </div>
-    <div class="event" data-id="8">
-      <h3 data-id="year-8">1934</h3>
-      <p data-id="text-8">Soyadı Kanunu ile “Atatürk” soyadını aldı.</p>
-    </div>
-    <div class="event red" data-id="9">
-      <h3 data-id="year-9">10 Kasım 1938</h3>
-      <p data-id="text-9">Dolmabahçe Sarayı'nda vefat etti.</p>
-    </div>
+  <div id="life-text">
+    Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Türkiye Cumhuriyeti'nin kurucusu ve ilk cumhurbaşkanıdır...
   </div>
 
   <script>
     const translations = {
       tr: {
-        home: "Ana Sayfa",
         title: "Mustafa Kemal Atatürk'ün Hayatı",
-        timeline: [
-          { year: "1881", text: "Selanik'te doğdu." },
-          { year: "1893", text: "Selanik Askerî Rüştiyesi'ne başladı ve \"Kemal\" ismini aldı." },
-          { year: "1905", text: "Harp Akademisi'ni kurmay yüzbaşı olarak bitirdi." },
-          { year: "1915", text: "Çanakkale Savaşı'nda büyük başarı gösterdi." },
-          { year: "19 Mayıs 1919", text: "Samsun'a çıkarak Kurtuluş Savaşı’nı başlattı." },
-          { year: "1920", text: "Türkiye Büyük Millet Meclisi'ni açtı." },
-          { year: "1923", text: "Cumhuriyet ilan edildi ve Atatürk ilk Cumhurbaşkanı oldu." },
-          { year: "1934", text: "Soyadı Kanunu ile “Atatürk” soyadını aldı." },
-          { year: "10 Kasım 1938", text: "Dolmabahçe Sarayı'nda vefat etti." }
-        ]
+        content: "Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Türkiye Cumhuriyeti'nin kurucusu ve ilk cumhurbaşkanıdır...",
+        menu: { home: "Anasayfa", gallery: "Galeri", countdown: "Geri Sayım" }
       },
       en: {
-        home: "Home",
         title: "Life of Mustafa Kemal Atatürk",
-        timeline: [
-          { year: "1881", text: "Born in Thessaloniki." },
-          { year: "1893", text: "Started at Thessaloniki Military Secondary School and got the name \"Kemal\"." },
-          { year: "1905", text: "Graduated from War Academy as staff captain." },
-          { year: "1915", text: "Achieved great success in the Gallipoli Campaign." },
-          { year: "May 19, 1919", text: "Landed in Samsun and started the War of Independence." },
-          { year: "1920", text: "Opened the Grand National Assembly of Turkey." },
-          { year: "1923", text: "Republic declared and Atatürk became the first President." },
-          { year: "1934", text: "Received the surname “Atatürk” by the Surname Law." },
-          { year: "November 10, 1938", text: "Passed away at Dolmabahçe Palace." }
-        ]
+        content: "Mustafa Kemal Atatürk was born in 1881 in Thessaloniki. He is the founder and first president of the Republic of Turkey...",
+        menu: { home: "Home", gallery: "Gallery", countdown: "Countdown" }
       },
       az: {
-        home: "Ana Səhifə",
         title: "Mustafa Kamal Atatürkün Həyatı",
-        timeline: [
-          { year: "1881", text: "Salonikdə doğuldu." },
-          { year: "1893", text: "Saloniki Hərbi Rüştiyəsinə başladı və “Kemal” adını aldı." },
-          { year: "1905", text: "Hərbi Akademiyanı zabit kimi bitirdi." },
-          { year: "1915", text: "Çanaqqala Müharibəsində böyük uğur qazandı." },
-          { year: "19 May 1919", text: "Samsuna çıxaraq Azadlıq Müharibəsini başladı." },
-          { year: "1920", text: "Türkiyə Böyük Millət Məclisini açdı." },
-          { year: "1923", text: "Cümhuriyyət elan edildi və Atatürk ilk Prezident oldu." },
-          { year: "1934", text: "Soyad Qanunu ilə “Atatürk” soyadını aldı." },
-          { year: "10 Noyabr 1938", text: "Dolmabahçe Sarayında vəfat etdi." }
-        ]
+        content: "Mustafa Kamal Atatürk 1881-ci ildə Selanikdə anadan olmuşdur. O, Türkiyə Respublikasının qurucusu və ilk prezidenti olmuşdur...",
+        menu: { home: "Ana Səhifə", gallery: "Qalereya", countdown: "Geri Sayım" }
       }
     };
 
-    function applyLanguage(lang) {
-      // Geçersiz dil gelirse tr olarak al
-      if (!translations[lang]) lang = "tr";
+    const el = {
+      title: document.getElementById('title'),
+      lifeText: document.getElementById('life-text'),
+      menuHome: document.getElementById('menu-home'),
+      menuGallery: document.getElementById('menu-gallery'),
+      menuCountdown: document.getElementById('menu-countdown')
+    };
 
-      // Başlık ve ana sayfa linki
-      document.getElementById("page-title").textContent = translations[lang].title;
-      document.getElementById("home-text").textContent = translations[lang].home;
-
-      // Zaman çizelgesi metinleri
-      translations[lang].timeline.forEach((item, idx) => {
-        const yearEl = document.querySelector(`[data-id="year-${idx + 1}"]`);
-        const textEl = document.querySelector(`[data-id="text-${idx + 1}"]`);
-        if (yearEl) yearEl.textContent = item.year;
-        if (textEl) textEl.textContent = item.text;
-      });
+    function setLanguage(lang) {
+      if (!translations[lang]) lang = 'tr';
+      const t = translations[lang];
+      el.title.textContent = t.title;
+      el.lifeText.textContent = t.content;
+      el.menuHome.textContent = t.menu.home;
+      el.menuGallery.textContent = t.menu.gallery;
+      el.menuCountdown.textContent = t.menu.countdown;
     }
 
-    // localStorage'den dili al, yoksa tr olarak ayarla
-    const lang = localStorage.getItem("lang");
-    if (lang === "en" || lang === "az") {
-      applyLanguage(lang);
-    } else {
-      applyLanguage("tr");
-    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('siteLang') || 'tr';
+      setLanguage(savedLang);
+    });
   </script>
-
 </body>
 </html>
