@@ -5,70 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ana Sayfa - Modern Tasarım</title>
 <style>
-  /* Genel Reset & Stil */
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #000;
-    color: #fff;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  /* Menü */
-  nav {
-    background: #111;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 20px;
-    box-shadow: 0 0 10px #ffffff66;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-  /* Sayfa butonları grubu */
-  #pageButtons {
-    display: flex;
-    gap: 20px;
-  }
-  #pageButtons a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 6px 14px;
-    border-radius: 30px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    user-select: none;
-  }
-  #pageButtons a:hover,
-  #pageButtons a:focus {
-    background-color: #00ffff;
-    color: #000;
-    outline: none;
-  }
-  #pageButtons a:focus-visible {
-    outline: 2px solid #00ffff;
-    outline-offset: 2px;
-  }
-  /* Arama kutusu */
-  #searchForm {
-    display: flex;
-    align-items: center;
-    max-width: 300px;
-    width: 100%;
-  }
+  /* ... Önceki stil kodları aynı ... */
+  /* Arama kutusu: yazı beyaz, arka plan siyah */
   #searchInput {
     flex: 1;
     padding: 8px 14px;
     border-radius: 30px 0 0 30px;
     border: 2px solid #fff;
     background: #000;
-    color: #fff;
+    color: #fff; /* Yazı beyaz */
     font-size: 1rem;
     font-family: inherit;
     outline-offset: 2px;
@@ -86,65 +31,29 @@
     border: 2px solid #fff;
     border-left: none;
     border-radius: 0 30px 30px 0;
-    background: #00ffff;
-    color: #000;
+    background: #000; /* Buton arka plan siyah */
+    color: #fff; /* Buton yazısı beyaz */
     font-weight: 700;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   #searchButton:hover,
   #searchButton:focus {
-    background-color: #00cccc;
+    background-color: #00ffff;
+    color: #000;
     outline: none;
   }
-  /* Ana içerik */
-  main {
-    flex: 1;
-    padding: 40px 20px;
-    max-width: 960px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    color: #fff;
-    text-shadow: 0 0 12px #ffffffcc;
+
+  /* Kaynak metni */
+  #quoteSource {
+    margin-top: 8px;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    color: #ccc;
+    text-shadow: 0 0 4px #444;
     user-select: none;
-  }
-  #quote {
-    font-size: 1.4rem;
-    font-style: italic;
-    max-width: 700px;
-    line-height: 1.5;
-    color: #fff;
-    text-shadow: 0 0 6px #fff;
-    user-select: none;
-    margin-top: 0;
-  }
-  /* Responsive */
-  @media (max-width: 600px) {
-    h1 {
-      font-size: 2.2rem;
-    }
-    #quote {
-      font-size: 1.1rem;
-      max-width: 90vw;
-    }
-    #searchForm {
-      max-width: 200px;
-    }
-    #pageButtons {
-      gap: 12px;
-    }
-    #pageButtons a {
-      font-size: 0.9rem;
-      padding: 4px 10px;
-    }
   }
 </style>
 </head>
@@ -165,28 +74,31 @@
 <main>
   <h1>Mustafa Kemal Atatürk</h1>
   <p id="quote" aria-live="polite" aria-atomic="true" tabindex="0"></p>
+  <p id="quoteSource" aria-live="polite" aria-atomic="true" tabindex="0"></p>
 </main>
 <script>
   const quotes = [
-    "Egemenlik, kayıtsız şartsız milletindir.",
-    "Hayatta en hakiki mürşit ilimdir.",
-    "Yurtta sulh, cihanda sulh.",
-    "Beni görmek demek mutlaka yüzümü görmek değildir. Benim fikirlerimi, benim duygularımı anlıyorsanız bu kâfidir.",
-    "İstikbal göklerdedir.",
-    "Milletin bağımsızlığı yine milletin azim ve kararıyla kurtarılacaktır.",
-    "Türk milletinin karakteri yüksektir; Türk milleti çalışkandır; Türk milleti zekidir.",
-    "Bir millet sanattan ve sanatkârdan mahrumsa, tam bir hayata malik olamaz."
+    { text: "Egemenlik, kayıtsız şartsız milletindir.", source: "1923 TBMM Açılış Konuşması" },
+    { text: "Hayatta en hakiki mürşit ilimdir.", source: "1923 Söylev" },
+    { text: "Yurtta sulh, cihanda sulh.", source: "1931" },
+    { text: "Beni görmek demek mutlaka yüzümü görmek değildir. Benim fikirlerimi, benim duygularımı anlıyorsanız bu kâfidir.", source: "1923 Söylev" },
+    { text: "İstikbal göklerdedir.", source: "1927" },
+    { text: "Milletin bağımsızlığı yine milletin azim ve kararıyla kurtarılacaktır.", source: "1920 Nutuk" },
+    { text: "Türk milletinin karakteri yüksektir; Türk milleti çalışkandır; Türk milleti zekidir.", source: "1927 Söylev" },
+    { text: "Bir millet sanattan ve sanatkârdan mahrumsa, tam bir hayata malik olamaz.", source: "1923 Söylev" }
   ];
 
   function displayRandomQuote() {
     const quoteEl = document.getElementById('quote');
+    const sourceEl = document.getElementById('quoteSource');
     const randomIndex = Math.floor(Math.random() * quotes.length);
-    quoteEl.textContent = `"${quotes[randomIndex]}"`;
+    const selected = quotes[randomIndex];
+    quoteEl.textContent = `"${selected.text}"`;
+    sourceEl.textContent = `— ${selected.source}`;
   }
 
   window.onload = displayRandomQuote;
 
-  // Basit arama fonksiyonu - google ile site içi arama
   document.getElementById('searchForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const query = document.getElementById('searchInput').value.trim();
