@@ -105,30 +105,80 @@
 <body>
   <div id="top-menu">
     <div class="menu-left">
-      <a href="index.html">Ana Sayfa</a>
+      <a id="link-anasayfa" href="index.html">Ana Sayfa</a>
     </div>
     <div class="menu-right">
-      <a href="galeri.html">Galeri</a>
-      <a href="hayati.html">Hayatı</a>
-      <a href="geri-sayim.html">Geri Sayım</a>
-      <!-- Ayarlardayız, o yüzden burayı göstermiyoruz -->
+      <a id="link-galeri" href="galeri.html">Galeri</a>
+      <a id="link-hayati" href="hayati.html">Hayatı</a>
+      <a id="link-gerisayim" href="geri-sayim.html">Geri Sayım</a>
     </div>
   </div>
 
-  <h1>Ayarlar</h1>
+  <h1 id="title">Ayarlar</h1>
 
   <div class="settings">
-    <h2>Dil Seçimi</h2>
+    <h2 id="lang-header">Dil Seçimi</h2>
     <button onclick="setLang('tr')">Türkçe</button>
     <button onclick="setLang('en')">English</button>
     <button onclick="setLang('az')">Azərbaycan</button>
   </div>
 
   <script>
+    const translations = {
+      tr: {
+        title: "Ayarlar",
+        langHeader: "Dil Seçimi",
+        links: {
+          anasayfa: "Ana Sayfa",
+          galeri: "Galeri",
+          hayati: "Hayatı",
+          gerisayim: "Geri Sayım"
+        }
+      },
+      en: {
+        title: "Settings",
+        langHeader: "Language Selection",
+        links: {
+          anasayfa: "Home",
+          galeri: "Gallery",
+          hayati: "Biography",
+          gerisayim: "Countdown"
+        }
+      },
+      az: {
+        title: "Ayarlar",
+        langHeader: "Dil Seçimi",
+        links: {
+          anasayfa: "Ana Səhifə",
+          galeri: "Qalereya",
+          hayati: "Həyatı",
+          gerisayim: "Geri Sayım"
+        }
+      }
+    };
+
+    function applyLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.getElementById("title").textContent = translations[lang].title;
+      document.getElementById("lang-header").textContent = translations[lang].langHeader;
+
+      document.getElementById("link-anasayfa").textContent = translations[lang].links.anasayfa;
+      document.getElementById("link-galeri").textContent = translations[lang].links.galeri;
+      document.getElementById("link-hayati").textContent = translations[lang].links.hayati;
+      document.getElementById("link-gerisayim").textContent = translations[lang].links.gerisayim;
+    }
+
     function setLang(lang) {
       localStorage.setItem("lang", lang);
       alert("Dil başarıyla değiştirildi.");
+      location.reload();  // Sayfayı yenileyelim ki değişiklik hemen uygulansın
     }
+
+    // Sayfa yüklendiğinde dili uygula
+    document.addEventListener("DOMContentLoaded", () => {
+      const lang = localStorage.getItem("lang") || "tr";
+      applyLanguage(lang);
+    });
   </script>
 </body>
 </html>
