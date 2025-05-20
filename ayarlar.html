@@ -6,89 +6,50 @@
   <title>Ayarlar</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background: black;
-      color: white;
+      background: #000;
+      color: #fff;
       font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      padding: 40px 20px;
     }
-
-    nav {
+    header {
       display: flex;
-      gap: 16px;
       justify-content: center;
-      background: #111;
-      width: 100%;
-      padding: 16px;
+      gap: 24px;
+      margin-bottom: 30px;
     }
-
-    nav a {
-      color: white;
+    header a {
+      color: #fff;
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s;
     }
-
-    nav a:hover {
+    header a:hover {
       color: #fff;
-      text-decoration: underline;
+      text-shadow: 0 0 8px #fff;
     }
-
-    input[type="text"] {
-      margin: 40px auto 20px;
-      padding: 10px 20px;
-      font-size: 1rem;
-      border-radius: 30px;
-      border: none;
-      outline: none;
-      background: white;
-      color: black;
-      width: 80%;
-      max-width: 400px;
-    }
-
-    .settings {
-      margin-top: 40px;
-      max-width: 600px;
-      width: 100%;
+    h1 {
       text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
     }
-
-    .settings label {
-      display: block;
-      margin: 20px 0 10px;
-    }
-
-    .settings select,
-    .settings input[type="checkbox"] {
-      margin: 0 auto;
+    p {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Ana Sayfa</a>
-    <a href="galeri.html">Galeri</a>
-    <a href="hayati.html">Hayatı</a>
-    <a href="gerisayim.html">Geri Sayım</a>
-    <a href="ayarlar.html">Ayarlar</a>
-  </nav>
 
-  <input type="text" placeholder="Ayarları ara..." />
+<header>
+  <a href="index.html">Ana Sayfa</a>
+  <a href="galeri.html">Galeri</a>
+  <a href="hayati.html">Hayatı</a>
+  <a href="gerisayim.html">Geri Sayım</a>
+  <a href="ayarlar.html">Ayarlar</a>
+</header>
 
-  <div class="settings">
-    <label for="language">Dil Seçimi:</label>
-    <select id="language">
-      <option value="tr">Türkçe</option>
-      <option value="en">English</option>
-      <option value="az">Azərbaycan</option>
-    </select>
+<h1>Ayarlar</h1>
+<p>Bu sayfa gelecekte site kişiselleştirmesi için kullanılacaktır.</p>
 
-    <label for="darkMode">Karanlık Mod:</label>
-    <input type="checkbox" id="darkMode" checked />
-  </div>
 </body>
 </html>
