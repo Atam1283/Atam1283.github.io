@@ -6,88 +6,118 @@
   <title>Geri Sayım</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background: black;
-      color: white;
+      background: #000;
+      color: #fff;
       font-family: 'Segoe UI', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: 40px 20px;
+      min-height: 100vh;
     }
-
-    nav {
+    header {
       display: flex;
-      gap: 16px;
       justify-content: center;
-      background: #111;
-      width: 100%;
-      padding: 16px;
+      gap: 24px;
+      margin-bottom: 40px;
     }
-
-    nav a {
-      color: white;
+    header a {
+      color: #fff;
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s;
     }
-
-    nav a:hover {
-      color: #fff;
-      text-decoration: underline;
+    header a:hover {
+      text-shadow: 0 0 8px #fff;
     }
-
-    input[type="text"] {
-      margin: 40px auto 20px;
-      padding: 10px 20px;
-      font-size: 1rem;
-      border-radius: 30px;
-      border: none;
-      outline: none;
-      background: white;
-      color: black;
-      width: 80%;
-      max-width: 400px;
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
     }
-
     #countdown {
-      font-size: 1.6rem;
-      margin-top: 30px;
+      font-size: 1.3rem;
+      margin-bottom: 30px;
       text-align: center;
+    }
+    .progress {
+      width: 80%;
+      max-width: 500px;
+      height: 12px;
+      background: #222;
+      border-radius: 40px;
+      overflow: hidden;
+    }
+    .bar {
+      height: 100%;
+      background: #fff;
+      width: 0%;
+      transition: width 0.4s ease;
     }
   </style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Ana Sayfa</a>
-    <a href="galeri.html">Galeri</a>
-    <a href="hayati.html">Hayatı</a>
-    <a href="gerisayim.html">Geri Sayım</a>
-    <a href="ayarlar.html">Ayarlar</a>
-  </nav>
 
-  <input type="text" placeholder="Geri sayım etkinliği ara..." />
+<header>
+  <a href="index.html">Ana Sayfa</a>
+  <a href="galeri.html">Galeri</a>
+  <a href="hayati.html">Hayatı</a>
+  <a href="gerisayim.html">Geri Sayım</a>
+  <a href="ayarlar.html">Ayarlar</a>
+</header>
 
-  <div id="countdown"></div>
+<h2 id="eventName"></h2>
+<div id="eventDate"></div>
+<div id="countdown"></div>
 
-  <script>
-    const events = [
-      { name: "30 Ağustos Zafer Bayramı", date: "2025-08-30" },
-      { name: "29 Ekim Cumhuriyet Bayramı", date: "2025-10-29" },
-      { name: "10 Kasım Atatürk'ü Anma Günü", date: "2025-11-10" }
-    ];
+<div class="progress">
+  <div class="bar" id="bar"></div>
+</div>
 
-    const today = new Date();
-    let nextEvent = events.find(event => new Date(event.date) > today);
+<script>
+const events = [
+  { name: "Cumhuriyetin İlanı", date: "10/29" },
+  { name: "Atatürk'ün Doğum Günü", date: "05/19" },
+  { name: "Zafer Bayramı", date: "08/30" }
+];
 
-    if (nextEvent) {
-      const diffTime = new Date(nextEvent.date) - today;
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      document.getElementById("countdown").innerText =
-        `${nextEvent.name} için kalan gün: ${diffDays}`;
-    } else {
-      document.getElementById("countdown").innerText = "Yaklaşan bir etkinlik yok.";
-    }
-  </script>
+function getNextEvent() {
+  const now = new Date();
+  const year = now.getFullYear();
+
+  const futureEvents = events.map(e => {
+    const [month, day] = e.date.split('/');
+    let date = new Date(`${year}-${month}-${day}T00:00:00`);
+    if (date < now) date.setFullYear(year + 1);
+    return { ...e, date };
+  });
+
+  futureEvents.sort((a, b) => a.date - b.date);
+  return futureEvents[0];
+}
+
+function updateCountdown() {
+  const event = getNextEvent();
+  document.getElementById("eventName").textContent = event.name;
+  document.getElementById("eventDate").textContent = event.date.toLocaleDateString('tr-TR');
+
+  const now = new Date();
+  const diff = event.date - now;
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+  const minutes = Math.floor(diff / (1000 * 60)) % 60;
+  const seconds = Math.floor(diff / 1000) % 60;
+
+  document.getElementById("countdown").textContent =
+    `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye kaldı`;
+
+  const total = event.date - new Date(event.date.getFullYear() - 1, event.date.getMonth(), event.date.getDate());
+  const progress = ((now - (new Date(event.date.getFullYear() - 1, event.date.getMonth(), event.date.getDate()))) / total) * 100;
+  document.getElementById("bar").style.width = `${progress.toFixed(2)}%`;
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+
 </body>
 </html>
