@@ -20,25 +20,26 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 100;
+      z-index: 1000;
+      background-color: transparent;
     }
 
-    #top-menu a,
-    #top-menu button {
+    #top-menu a {
       background: #222;
       color: white;
       border: 1.5px solid #eee;
-      padding: 6px 12px;
+      padding: 8px 15px;
       font-size: 16px;
-      border-radius: 5px;
+      border-radius: 6px;
       text-decoration: none;
       margin-left: 8px;
       cursor: pointer;
-      transition: background 0.3s, color 0.3s;
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
+      font-weight: 600;
+      user-select: none;
     }
 
-    #top-menu a:hover,
-    #top-menu button:hover {
+    #top-menu a:hover {
       background: #ff2c2c;
       color: white;
       border-color: #ff2c2c;
@@ -54,36 +55,43 @@
       text-align: center;
       padding-top: 100px;
       font-size: 6vw;
+      font-weight: 700;
       text-shadow: 0 0 10px white;
+      margin-bottom: 50px;
     }
 
     .settings {
       max-width: 600px;
-      margin: 50px auto;
+      margin: 0 auto 100px;
       background-color: #111;
-      padding: 20px;
+      padding: 30px 20px;
       border-radius: 10px;
       border: 1px solid #333;
       text-align: center;
+      box-shadow: 0 0 15px rgba(255,44,44,0.5);
     }
 
     .settings h2 {
-      font-size: 24px;
-      margin-bottom: 20px;
-      border-bottom: 1px solid #555;
-      padding-bottom: 10px;
+      font-size: 26px;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #ff2c2c;
+      padding-bottom: 12px;
+      font-weight: 700;
     }
 
     .settings button {
-      margin: 10px 5px 0 0;
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #333;
+      margin: 10px 10px 0 0;
+      padding: 12px 25px;
+      font-size: 18px;
+      background-color: #222;
       color: white;
-      border: 1px solid #fff;
-      border-radius: 6px;
+      border: 1.5px solid #eee;
+      border-radius: 8px;
       cursor: pointer;
-      transition: 0.3s;
+      font-weight: 600;
+      transition: background 0.3s, border-color 0.3s;
+      user-select: none;
+      min-width: 120px;
     }
 
     .settings button:hover {
@@ -92,13 +100,24 @@
     }
 
     @media (max-width: 768px) {
-      #top-menu a,
-      #top-menu button {
+      #top-menu a {
         font-size: 14px;
-        padding: 5px 10px;
+        padding: 6px 12px;
+        margin-left: 6px;
       }
       h1 {
-        font-size: 8vw;
+        font-size: 10vw;
+        padding-top: 80px;
+        margin-bottom: 30px;
+      }
+      .settings h2 {
+        font-size: 22px;
+        margin-bottom: 20px;
+      }
+      .settings button {
+        font-size: 16px;
+        padding: 10px 20px;
+        min-width: 90px;
       }
     }
   </style>
