@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Atatürk'ün Hayatı</title>
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
   <style>
     body {
       background-color: #000;
@@ -15,50 +17,80 @@
       box-sizing: border-box;
     }
 
-    /* Üst Menü Stili */
-    #top-menu {
+    nav#ust-menu {
       position: fixed;
-      top: 0;
+      top: 15px;
       left: 0;
-      width: 100%;
-      background-color: #000;
-      z-index: 1000;
+      right: 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 20px;
-      box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+      padding: 0 15px;
+      z-index: 10;
     }
 
-    #top-menu .left-buttons,
-    #top-menu .right-buttons {
-      display: flex;
-      gap: 10px;
+    .sol-menu a {
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 4vw;
+      transition: color 0.3s;
     }
 
-    #top-menu a,
-    #top-menu button {
+    .sol-menu a:hover {
+      color: #ff2c2c;
+    }
+
+    .dil-menu button {
       background: #222;
       color: white;
       border: 1.5px solid #eee;
+      margin-left: 8px;
       padding: 6px 12px;
       font-size: 16px;
       border-radius: 5px;
       cursor: pointer;
-      text-decoration: none;
-      transition: background 0.3s, color 0.3s, border-color 0.3s;
+      transition: background 0.3s, color 0.3s;
     }
 
-    #top-menu a:hover,
-    #top-menu button:hover {
+    .dil-menu button:hover {
       background: #ff2c2c;
       color: white;
       border-color: #ff2c2c;
     }
 
+    .ust-btnler {
+      position: fixed;
+      top: 60px;
+      right: 15px;
+      z-index: 9;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .ust-btnler a {
+      background: #111;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 14px;
+      border: 1px solid #444;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .ust-btnler a:hover {
+      background: #ff2c2c;
+      color: #fff;
+    }
+
     h1 {
       text-align: center;
-      padding-top: 100px;
+      padding-top: 130px;
       color: #fff;
       font-size: 6vw;
       text-shadow: 0 0 10px white;
@@ -117,6 +149,12 @@
     }
 
     @media (min-width: 768px) {
+      .sol-menu a {
+        font-size: 16px;
+      }
+      .dil-menu button {
+        font-size: 14px;
+      }
       h1 {
         font-size: 48px;
       }
@@ -131,103 +169,87 @@
         width: 20px;
         height: 20px;
       }
+      .ust-btnler a {
+        font-size: 15px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Üst Menü -->
-  <nav id="top-menu">
-    <div class="left-buttons">
-      <a href="index.html">Ana Sayfa</a>
-      <a href="galeri.html">Galeri</a>
-      <a href="hayati.html">Hayatı</a>
-      <a href="gerisayim.html">Geri Sayım</a>
+  <nav id="ust-menu">
+    <div class="sol-menu">
+      <a href="index.html"><i class="fa-solid fa-house"></i> <span id="home-text">Ana Sayfa</span></a>
     </div>
-    <div class="right-buttons">
-      <a href="ayarlar.html">Ayarlar</a>
+    <div class="dil-menu">
       <button onclick="setLang('tr')">Türkçe</button>
       <button onclick="setLang('en')">English</button>
       <button onclick="setLang('az')">Azərbaycan</button>
     </div>
   </nav>
 
+  <div class="ust-btnler">
+    <!-- Hayatı butonu bu sayfa aktif olduğunda gizleniyor -->
+    <!-- Yalnızca diğer sayfalarda gösterilecek -->
+    <!-- Eğer bu HTML başka sayfaya taşınırsa 'hayatı.html' kontrolü değiştirilebilir -->
+    <!-- Geri Sayım -->
+    <a href="gerisayim.html"><i class="fa-solid fa-clock"></i> <span id="countdown-text">Geri Sayım</span></a>
+    <!-- Galeri -->
+    <a href="galeri.html"><i class="fa-solid fa-image"></i> <span id="gallery-text">Galeri</span></a>
+    <!-- Ayarlar -->
+    <a href="ayarlar.html"><i class="fa-solid fa-gear"></i> <span id="settings-text">Ayarlar</span></a>
+  </div>
+
   <h1 id="page-title">Mustafa Kemal Atatürk'ün Hayatı</h1>
 
   <div class="timeline" id="timeline">
-    <div class="event" data-id="1">
-      <h3 data-id="year-1">1881</h3>
-      <p data-id="text-1">Selanik'te doğdu.</p>
-    </div>
-    <div class="event" data-id="2">
-      <h3 data-id="year-2">1893</h3>
-      <p data-id="text-2">Selanik Askerî Rüştiyesi'ne başladı ve "Kemal" ismini aldı.</p>
-    </div>
-    <div class="event" data-id="3">
-      <h3 data-id="year-3">1905</h3>
-      <p data-id="text-3">Harp Akademisi'ni kurmay yüzbaşı olarak bitirdi.</p>
-    </div>
-    <div class="event" data-id="4">
-      <h3 data-id="year-4">1915</h3>
-      <p data-id="text-4">Çanakkale Savaşı'nda büyük başarı gösterdi.</p>
-    </div>
-    <div class="event" data-id="5">
-      <h3 data-id="year-5">19 Mayıs 1919</h3>
-      <p data-id="text-5">Samsun'a çıkarak Kurtuluş Savaşı’nı başlattı.</p>
-    </div>
-    <div class="event" data-id="6">
-      <h3 data-id="year-6">1920</h3>
-      <p data-id="text-6">Türkiye Büyük Millet Meclisi'ni açtı.</p>
-    </div>
-    <div class="event" data-id="7">
-      <h3 data-id="year-7">1923</h3>
-      <p data-id="text-7">Cumhuriyet ilan edildi ve Atatürk ilk Cumhurbaşkanı oldu.</p>
-    </div>
-    <div class="event" data-id="8">
-      <h3 data-id="year-8">1934</h3>
-      <p data-id="text-8">Soyadı Kanunu ile “Atatürk” soyadını aldı.</p>
-    </div>
-    <div class="event red" data-id="9">
-      <h3 data-id="year-9">10 Kasım 1938</h3>
-      <p data-id="text-9">Dolmabahçe Sarayı'nda vefat etti.</p>
-    </div>
+    <!-- Zaman çizelgesi içeriği -->
   </div>
 
   <script>
     const translations = {
       tr: {
         home: "Ana Sayfa",
+        countdown: "Geri Sayım",
+        gallery: "Galeri",
+        settings: "Ayarlar",
         title: "Mustafa Kemal Atatürk'ün Hayatı",
-        timeline: [
-          { year: "1881", text: "Selanik'te doğdu." },
-          { year: "1893", text: "Selanik Askerî Rüştiyesi'ne başladı ve \"Kemal\" ismini aldı." },
-          { year: "1905", text: "Harp Akademisi'ni kurmay yüzbaşı olarak bitirdi." },
-          { year: "1915", text: "Çanakkale Savaşı'nda büyük başarı gösterdi." },
-          { year: "19 Mayıs 1919", text: "Samsun'a çıkarak Kurtuluş Savaşı’nı başlattı." },
-          { year: "1920", text: "Türkiye Büyük Millet Meclisi'ni açtı." },
-          { year: "1923", text: "Cumhuriyet ilan edildi ve Atatürk ilk Cumhurbaşkanı oldu." },
-          { year: "1934", text: "Soyadı Kanunu ile “Atatürk” soyadını aldı." },
-          { year: "10 Kasım 1938", text: "Dolmabahçe Sarayı'nda vefat etti." }
-        ]
       },
       en: {
         home: "Home",
+        countdown: "Countdown",
+        gallery: "Gallery",
+        settings: "Settings",
         title: "Life of Mustafa Kemal Atatürk",
-        timeline: [
-          { year: "1881", text: "Born in Thessaloniki." },
-          { year: "1893", text: "Started at Thessaloniki Military Secondary School and got the name \"Kemal\"." },
-          { year: "1905", text: "Graduated from War Academy as staff captain." },
-          { year: "1915", text: "Achieved great success in the Gallipoli Campaign." },
-          { year: "May 19, 1919", text: "Landed in Samsun and started the War of Independence." },
-          { year: "1920", text: "Opened the Grand National Assembly of Turkey." },
-          { year: "1923", text: "Republic declared and Atatürk became the first President." },
-          { year: "1934", text: "Received the surname “Atatürk” by the Surname Law." },
-          { year: "November 10, 1938", text: "Passed away at Dolmabahçe Palace." }
-        ]
       },
       az: {
         home: "Ana Səhifə",
+        countdown: "Geri Sayım",
+        gallery: "Qalereya",
+        settings: "Ayarlar",
         title: "Mustafa Kamal Atatürkün Həyatı",
-        timeline: [
-          { year: "1881", text: "Salonikdə doğuldu." },
-          { year: "1893", text: "Saloniki Hər8
+      }
+    };
+
+    function setLang(lang) {
+      localStorage.setItem("lang", lang);
+      applyLanguage(lang);
+    }
+
+    function applyLanguage(lang) {
+      if (!translations[lang]) lang = "tr";
+      document.getElementById("home-text").textContent = translations[lang].home;
+      document.getElementById("countdown-text").textContent = translations[lang].countdown;
+      document.getElementById("gallery-text").textContent = translations[lang].gallery;
+      document.getElementById("settings-text").textContent = translations[lang].settings;
+      document.getElementById("page-title").textContent = translations[lang].title;
+    }
+
+    window.onload = () => {
+      const lang = localStorage.getItem("lang") || "tr";
+      applyLanguage(lang);
+    };
+  </script>
+
+</body>
+</html>
