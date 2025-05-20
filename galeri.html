@@ -2,40 +2,52 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Galeri</title>
   <style>
     body {
       margin: 0;
-      padding: 40px 20px;
-      background-color: #000;
-      color: #fff;
+      padding: 0;
+      background: black;
+      color: white;
       font-family: 'Segoe UI', sans-serif;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
+
     nav {
-      margin-bottom: 30px;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-    }
-    #searchBar {
-      margin: 30px auto;
-      max-width: 400px;
-      width: 90%;
-    }
-    #searchBar input {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      background: #111;
       width: 100%;
-      padding: 10px 15px;
-      border-radius: 25px;
-      border: none;
-      background-color: #222;
+      padding: 16px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
       color: #fff;
+      text-decoration: underline;
+    }
+
+    input[type="text"] {
+      margin: 40px auto 20px;
+      padding: 10px 20px;
       font-size: 1rem;
-      text-align: center;
+      border-radius: 30px;
+      border: none;
+      outline: none;
+      background: white;
+      color: black;
+      width: 80%;
+      max-width: 400px;
     }
   </style>
 </head>
@@ -48,11 +60,6 @@
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
 
-  <div id="searchBar">
-    <input type="text" placeholder="Arama yapın..." />
-  </div>
-
-  <!-- Galeri içeriği buraya gelecek -->
-
+  <input type="text" placeholder="Galeride ara..." />
 </body>
 </html>
