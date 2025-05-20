@@ -5,12 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mustafa Kemal Atatürk</title>
 <style>
+  /* Temel stiller */
   body {
     margin: 0; padding: 0;
     background-color: #0a0a0a;
     color: #eee;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
   }
+
+  /* Menü */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -30,7 +34,7 @@
     font-size: 1.3rem;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     padding: 6px 14px;
     border-radius: 12px;
     background: rgba(255 255 255 / 0.05);
@@ -45,8 +49,8 @@
     outline: none;
   }
   nav a svg {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     fill: #eee;
     filter: drop-shadow(0 0 1px rgba(0,0,0,0.3));
     transition: fill 0.3s ease;
@@ -56,13 +60,12 @@
     fill: #fff0f0;
   }
 
-  /* Ayarlar ikonu ve dropdown */
+  /* Ayarlar butonu */
   .settings {
     position: fixed;
     top: 16px;
     right: 20px;
     z-index: 1101;
-    user-select: none;
   }
   .settings-button {
     font-size: 28px;
@@ -79,6 +82,8 @@
     background-color: rgba(255, 85, 85, 0.4);
     outline: none;
   }
+
+  /* Dropdown menü */
   .dropdown-menu {
     display: none;
     position: absolute;
@@ -88,8 +93,8 @@
     border-radius: 14px;
     min-width: 160px;
     box-shadow: 0 0 15px rgba(255, 85, 85, 0.6);
-    user-select: none;
     font-weight: 600;
+    user-select: none;
   }
   .dropdown-menu button {
     display: block;
@@ -102,21 +107,19 @@
     text-align: left;
     cursor: pointer;
     border-bottom: 1px solid #444;
-    user-select: none;
     transition: background-color 0.3s ease;
   }
   .dropdown-menu button:last-child {
     border-bottom: none;
   }
   .dropdown-menu button:hover,
-  .dropdown-menu button.active,
   .dropdown-menu button:focus {
     background-color: #ff5555;
     color: #fff;
     outline: none;
   }
 
-  /* Dil alt menüsü */
+  /* Dil seçim alt menüsü */
   #languageDropdown {
     right: 170px;
     top: 0;
@@ -126,8 +129,9 @@
     box-shadow: 0 0 10px rgba(255, 85, 85, 0.5);
   }
 
+  /* Ana içerik */
   main {
-    padding: 130px 20px 40px;
+    padding: 120px 20px 40px;
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
@@ -148,46 +152,6 @@
     font-size: 1.2rem;
     font-weight: 600;
     letter-spacing: 1px;
-  }
-  .search-section form {
-    margin-top: 48px;
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-  }
-  #arama {
-    padding: 14px 18px;
-    width: 70%;
-    max-width: 480px;
-    border-radius: 10px;
-    border: none;
-    font-size: 1.2rem;
-    outline: none;
-    box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.15);
-    background-color: #222;
-    color: #eee;
-    transition: box-shadow 0.3s ease;
-  }
-  #arama:focus {
-    box-shadow: 0 0 12px #ff5555;
-    background-color: #2a2a2a;
-  }
-  #btn-search {
-    padding: 14px 26px;
-    background-color: #ff5555;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 1.15rem;
-    cursor: pointer;
-    box-shadow: 0 3px 10px #ff4444cc;
-    transition: background-color 0.3s ease;
-  }
-  #btn-search:hover,
-  #btn-search:focus {
-    background-color: #ff7777;
-    outline: none;
   }
 
   /* Atatürk sözü bölümü */
@@ -224,6 +188,7 @@
     outline: none;
   }
 
+  /* Responsive */
   @media (max-width: 600px) {
     nav {
       gap: 25px;
@@ -248,48 +213,107 @@
     #quote {
       font-size: 1.5rem;
     }
-    #arama {
-      width: 60%;
-      font-size: 1rem;
-      padding: 10px 14px;
-    }
-    #btn-search {
-      font-size: 1rem;
-      padding: 12px 20px;
-    }
   }
 </style>
 </head>
 <body>
 
+<!-- Üst Menü -->
 <nav aria-label="Ana Menü">
-  <a href="hayati.html" aria-label="Hayatı" id="menu-life" tabindex="0" title="Hayatı">
+  <a href="hayati.html" aria-label="Hayatı" title="Hayatı">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 2H6a2 2 0 0 0-2 2v16a1 1 0 0 0 1.447.894L12 17.118l6.553 3.776A1 1 0 0 0 20 20V4a2 2 0 0 0-2-2z"/></svg>
     Hayatı
   </a>
-  <a href="galeri.html" aria-label="Galeri" id="menu-gallery" tabindex="0" title="Galeri">
+  <a href="galeri.html" aria-label="Galeri" title="Galeri">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2zM8.5 14.5l2.5 3.01L14.5 13l4.5 6H5l3.5-4.5z"/></svg>
     Galeri
   </a>
-  <a href="gerisayim.html" aria-label="Geri Sayım" id="menu-countdown" tabindex="0" title="Geri Sayım">
+  <a href="gerisayim.html" aria-label="Geri Sayım" title="Geri Sayım">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1a11 11 0 1 0 11 11A11.012 11.012 0 0 0 12 1zm0 20a9 9 0 1 1 9-9 9.01 9.01 0 0 1-9 9zm1-9.414V7h-2v6h6v-2z"/></svg>
     Geri Sayım
   </a>
 </nav>
 
-<div class="settings" aria-label="Ayarlar menüsü">
-  <button
-    class="settings-button"
-    aria-haspopup="true"
-    aria-expanded="false"
-    aria-controls="settingsDropdown"
-    aria-label="Ayarlar"
-    id="settingsBtn"
-  >⚙️</button>
-  <div class="dropdown-menu" id="settingsDropdown" role="menu" aria-hidden="true">
+<!-- Ayarlar Butonu -->
+<div class="settings">
+  <button class="settings-button" aria-haspopup="true" aria-expanded="false" aria-controls="settingsDropdown" id="settingsBtn" aria-label="Ayarlar">⚙️</button>
+  <div class="dropdown-menu" id="settingsDropdown" role="menu" aria-hidden="true" tabindex="-1">
     <button type="button" id="btnLangMenu" aria-haspopup="true" aria-expanded="false" aria-controls="languageDropdown">Dil</button>
-    <div class="dropdown-menu" id="languageDropdown" role="menu" aria-label="Dil seçenekleri" aria-hidden="true">
+    <div class="dropdown-menu" id="languageDropdown" role="menu" aria-label="Dil seçenekleri" aria-hidden="true" tabindex="-1">
       <button type="button" data-lang="tr">Türkçe</button>
       <button type="button" data-lang="en">English</button>
       <button type="button" data-lang="az">Azərbaycan</button>
     </div>
+  </div>
+</div>
+
+<!-- Ana İçerik -->
+<main>
+  <h1>Mustafa Kemal Atatürk</h1>
+  <p id="quote">"Yurtta sulh, cihanda sulh."</p>
+  <p id="quote-source">— Atatürk, 1931</p>
+
+  <section id="atatürk-quote-section" aria-label="Atatürk Sözü">
+    <p>"Milletin bağımsızlığını, yine milletin azim ve kararı kurtaracaktır."</p>
+    <p id="atatürk-quote-source">— Atatürk, Nutuk (1927)</p>
+  </section>
+
+  <section id="sources" aria-label="Kaynaklar">
+    <p>Kaynaklar:
+      <a href="https://www.tdk.gov.tr/" target="_blank" rel="noopener noreferrer">TDK</a> |
+      <a href="https://tr.wikipedia.org/wiki/Mustafa_Kemal_Atat%C3%BCrk" target="_blank" rel="noopener noreferrer">Vikipedi</a>
+    </p>
+  </section>
+</main>
+
+<script>
+  // Ayarlar menüsü açma-kapama işlemi
+  const settingsBtn = document.getElementById('settingsBtn');
+  const settingsDropdown = document.getElementById('settingsDropdown');
+  const langMenuBtn = document.getElementById('btnLangMenu');
+  const languageDropdown = document.getElementById('languageDropdown');
+
+  settingsBtn.addEventListener('click', () => {
+    const expanded = settingsBtn.getAttribute('aria-expanded') === 'true';
+    settingsBtn.setAttribute('aria-expanded', !expanded);
+    settingsDropdown.style.display = expanded ? 'none' : 'block';
+    settingsDropdown.setAttribute('aria-hidden', expanded);
+    if (!expanded) {
+      settingsDropdown.focus();
+    }
+  });
+
+  langMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const expanded = langMenuBtn.getAttribute('aria-expanded') === 'true';
+    langMenuBtn.setAttribute('aria-expanded', !expanded);
+    languageDropdown.style.display = expanded ? 'none' : 'block';
+    languageDropdown.setAttribute('aria-hidden', expanded);
+    if (!expanded) {
+      languageDropdown.focus();
+    }
+  });
+
+  // Dropdown dışına tıklayınca kapatma
+  document.addEventListener('click', () => {
+    settingsBtn.setAttribute('aria-expanded', 'false');
+    settingsDropdown.style.display = 'none';
+    settingsDropdown.setAttribute('aria-hidden', 'true');
+
+    langMenuBtn.setAttribute('aria-expanded', 'false');
+    languageDropdown.style.display = 'none';
+    languageDropdown.setAttribute('aria-hidden', 'true');
+  });
+
+  // Dil seçenekleri tıklama
+  languageDropdown.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', e => {
+      alert(`Dil seçildi: ${btn.textContent}`);
+      // Buraya dil değiştirme kodu eklenebilir
+      settingsBtn.click(); // Menü kapansın
+    });
+  });
+</script>
+
+</body>
+</html>
