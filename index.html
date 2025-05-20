@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mustafa Kemal Atatürk</title>
   <style>
-    /* Tüm CSS içeriğin olduğu gibi korunmuştur */
     body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       background-color: black;
       color: white;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -95,6 +93,7 @@
     .search-section button:hover {
       background-color: #e60000;
     }
+    /* Ayarlar ikonu ve dropdown menü */
     .settings {
       position: fixed;
       top: 10px;
@@ -110,6 +109,7 @@
       padding: 5px 10px;
       border-radius: 6px;
       user-select: none;
+      transition: background-color 0.3s;
     }
     .settings-button:hover {
       background-color: rgba(255, 77, 77, 0.3);
@@ -197,10 +197,10 @@
       .language-dropdown {
         top: 110px !important;
       }
-      /* AYARLAR İKONU MOBİLDE HAFİF KAYDIRILDI */
+      /* Mobilde ayarlar simgesi konumunda küçük düzeltme */
       .settings {
-        top: 5px !important;
-        right: 5px !important;
+        top: 8px !important;
+        right: 8px !important;
       }
       .settings-button {
         font-size: 24px;
@@ -210,24 +210,43 @@
   </style>
 </head>
 <body>
-  <!-- Ayar simgesi ve dil menüsü -->
+  <!-- Ayarlar menüsü -->
   <div class="settings" aria-label="Ayarlar menüsü">
-    <button class="settings-button" aria-haspopup="true" aria-expanded="false" aria-controls="firstDropdown" aria-label="Ayarlar">⚙️</button>
+    <button
+      class="settings-button"
+      aria-haspopup="true"
+      aria-expanded="false"
+      aria-controls="firstDropdown"
+      aria-label="Ayarlar"
+    >⚙️</button>
     <div class="first-dropdown" id="firstDropdown" role="menu">
-      <button type="button" id="btnLangMenu" aria-haspopup="true" aria-expanded="false" aria-controls="languageDropdown">Dil</button>
-      <div class="language-dropdown" id="languageDropdown" role="menu" aria-label="Dil seçenekleri">
+      <button
+        type="button"
+        id="btnLangMenu"
+        aria-haspopup="true"
+        aria-expanded="false"
+        aria-controls="languageDropdown"
+      >Dil</button>
+      <div
+        class="language-dropdown"
+        id="languageDropdown"
+        role="menu"
+        aria-label="Dil seçenekleri"
+      >
         <button type="button" data-lang="tr">Türkçe</button>
         <button type="button" data-lang="en">English</button>
         <button type="button" data-lang="az">Azərbaycan</button>
       </div>
     </div>
   </div>
+
   <!-- Menü -->
   <nav>
     <a href="hayati.html" id="menu-life">Hayatı</a>
     <a href="galeri.html" id="menu-gallery">Galeri</a>
     <a href="gerisayim.html" id="menu-countdown">Geri Sayım</a>
   </nav>
+
   <!-- Arama -->
   <section class="search-section">
     <form onsubmit="aramaYap(); return false;">
@@ -235,11 +254,14 @@
       <button type="submit" id="btn-search">Ara</button>
     </form>
   </section>
+
   <!-- Başlık -->
   <h1 id="main-title">Mustafa Kemal Atatürk</h1>
+
   <!-- Söz -->
   <div class="quote" id="quote">Yurtta sulh, cihanda sulh.</div>
   <div class="quote-source" id="quote-source">Mustafa Kemal Atatürk</div>
+
   <script>
     const translations = {
       tr: {
@@ -264,14 +286,7 @@
         quoteSource: "Mustafa Kamal Atatürk"
       }
     };
-    const quoteList = [
-      "Yurtta sulh, cihanda sulh.",
-      "Benim naçiz vücudum elbet bir gün toprak olacaktır.",
-      "Egemenlik, kayıtsız şartsız milletindir.",
-      "Hayatta en hakiki mürşit ilimdir, fendir.",
-      "Ne mutlu Türküm diyene!",
-      "Milletin bağımsızlığını yine milletin azmi ve kararı kurtaracaktır."
-    ];
+
     const el = {
       searchInput: document.getElementById('arama'),
       searchBtn: document.getElementById('btn-search'),
@@ -282,6 +297,7 @@
       quote: document.getElementById('quote'),
       quoteSource: document.getElementById('quote-source')
     };
+
     function setLanguage(lang) {
       if (!translations[lang]) lang = 'tr';
       localStorage.setItem('siteLang', lang);
@@ -297,6 +313,7 @@
         btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
       });
     }
+
     function aramaYap() {
       const query = el.searchInput.value.trim();
       if (!query) return;
@@ -308,10 +325,12 @@
       const url = 'https://www.google.com/search?q=' + encodeURIComponent(query + siteFilter);
       window.open(url, '_blank');
     }
+
     const settingsBtn = document.querySelector('.settings-button');
     const firstDropdown = document.getElementById('firstDropdown');
     const langBtn = document.getElementById('btnLangMenu');
     const languageDropdown = document.getElementById('languageDropdown');
+
     settingsBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       const visible = firstDropdown.style.display === 'block';
@@ -319,4 +338,52 @@
       settingsBtn.setAttribute('aria-expanded', !visible);
       if (visible) {
         languageDropdown.style.display = 'none';
-        langBtn.setAttribute('aria
+        langBtn.setAttribute('aria-expanded', false);
+      }
+    });
+
+    langBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const visible = languageDropdown.style.display === 'block';
+      languageDropdown.style.display = visible ? 'none' : 'block';
+      langBtn.setAttribute('aria-expanded', !visible);
+    });
+
+    languageDropdown.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const selectedLang = btn.getAttribute('data-lang');
+        setLanguage(selectedLang);
+        languageDropdown.style.display = 'none';
+        firstDropdown.style.display = 'none';
+        settingsBtn.setAttribute('aria-expanded', false);
+        langBtn.setAttribute('aria-expanded', false);
+      });
+    });
+
+    document.body.addEventListener('click', () => {
+      firstDropdown.style.display = 'none';
+      languageDropdown.style.display = 'none';
+      settingsBtn.setAttribute('aria-expanded', false);
+      langBtn.setAttribute('aria-expanded', false);
+    });
+
+    // Sayfa yüklenince dil ayarını uygula
+    const savedLang = localStorage.getItem('siteLang') || 'tr';
+    setLanguage(savedLang);
+
+    // Sadece örnek olarak rastgele söz değişimi (isteğe göre kaldırabilirsin)
+    const quoteList = [
+      "Yurtta sulh, cihanda sulh.",
+      "Benim naçiz vücudum elbet bir gün toprak olacaktır.",
+      "Egemenlik, kayıtsız şartsız milletindir.",
+      "Hayatta en hakiki mürşit ilimdir, fendir.",
+      "Ne mutlu Türküm diyene!",
+      "Milletin bağımsızlığını yine milletin azmi ve kararı kurtaracaktır."
+    ];
+    setInterval(() => {
+      const rndIndex = Math.floor(Math.random() * quoteList.length);
+      el.quote.textContent = quoteList[rndIndex];
+    }, 15000);
+  </script>
+</body>
+</html>
