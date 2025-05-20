@@ -1,97 +1,76 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mustafa Kemal Atatürk - Hayatı</title>
-  <style>
-    body {
-      margin: 0; padding: 20px;
-      background: #000;
-      color: #fff;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
-    }
-    nav {
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto 30px;
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      border-bottom: 1.5px solid #666;
-      padding-bottom: 16px;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 6px 14px;
-      border-radius: 8px;
-      transition: background-color 0.3s, color 0.3s;
-      user-select: none;
-      cursor: pointer;
-    }
-    nav a:hover,
-    nav a:focus {
-      background: #fff;
-      color: #000;
-      outline: none;
-    }
-    nav a:focus-visible {
-      outline: 2px solid #00ffff;
-      outline-offset: 2px;
-    }
-    hr {
-      width: 90vw;
-      max-width: 900px;
-      border: none;
-      border-bottom: 2px solid #555;
-      margin: 24px auto;
-      box-shadow: none;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Atatürk'ün Hayatı - Atatürk Temalı Site</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 80px 20px 40px;
+    background: #000; color: #eee;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh; user-select: none; position: relative;
+    line-height: 1.5;
+  }
+  #navButtons {
+    position: fixed; top: 15px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 14px; z-index: 1000;
+  }
+  #navButtons button {
+    background: none;
+    border: 2px solid #c30a0a;
+    color: #eee;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px 20px;
+    border-radius: 28px;
+    cursor: pointer;
+    user-select: none;
+    font-family: inherit;
+    transition: all 0.3s ease;
+  }
+  #navButtons button:hover,
+  #navButtons button:focus {
+    background-color: #c30a0a;
+    color: #fff;
+    outline: none;
+  }
+  #navButtons button:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+  main {
+    max-width: 720px;
+    margin: 100px auto 0;
+    padding: 0 12px;
+  }
+  h1 {
+    font-size: 2.8rem;
+    color: #c30a0a;
+    font-weight: 900;
+    margin-bottom: 24px;
+    user-select: text;
+  }
+  p {
+    font-size: 1.15rem;
+    margin-bottom: 20px;
+    color: #ddd;
+    user-select: text;
+  }
+  #bottomLine {
+    margin-top: 80px;
+    width: 90vw;
+    max-width: 700px;
+    border-top: 2px solid #222;
+    box-shadow: 0 0 12px 1px #c30a0a44 inset;
+  }
+  @media (max-width: 480px) {
     h1 {
-      text-align: center;
-      font-weight: 700;
-      margin-bottom: 20px;
+      font-size: 2.2rem;
     }
     p {
-      margin-bottom: 16px;
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
-    strong {
-      color: #0ff;
-    }
-  </style>
-</head>
-<body>
-
-  <nav>
-    <a href="index.html">Ana Sayfa</a>
-    <a href="galeri.html">Galeri</a>
-    <a href="hayati.html" aria-current="page">Hayatı</a>
-    <a href="gerisayim.html">Geri Sayım</a>
-    <a href="ayarlar.html">Ayarlar</a>
-  </nav>
-
-  <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
-
-  <p><strong>1881</strong> - Selanik'te doğdu.</p>
-  <p><strong>1893</strong> - Şemsi Efendi Okulu'na başladı.</p>
-  <p><strong>1896</strong> - Manastır Askeri Rüştiyesi'ne geçti.</p>
-  <p><strong>1899</strong> - İstanbul Harp Okulu'na girdi.</p>
-  <p><strong>1902</strong> - Harp Okulu'ndan teğmen olarak mezun oldu.</p>
-  <p><strong>1911</strong> - Trablusgarp Savaşı'nda görev aldı.</p>
-  <p><strong>1915</strong> - Çanakkale Savaşı'nda büyük başarı kazandı.</p>
-  <p><strong>1919</strong> - Samsun'a çıkarak Milli Mücadeleyi başlattı.</p>
-  <p><strong>1923</strong> - Türkiye Cumhuriyeti'nin ilk cumhurbaşkanı oldu.</p>
-  <p><strong>1938</strong> - 10 Kasım'da vefat etti.</p>
-
-  <hr />
-
-</body>
-</html>
+  }
+</
