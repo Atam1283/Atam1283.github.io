@@ -4,193 +4,68 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Atatürk'ün Hayatı</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0 5vw 40px;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #000;
-      color: #eee;
-      box-sizing: border-box;
+      padding: 20px;
     }
-
-    .menu {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: #111;
+    header {
+      background-color: #111;
       padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 999;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-
-    .menu a {
+    header a {
       color: white;
       text-decoration: none;
-      margin-left: 10px;
-      font-size: 14px;
-      padding: 6px 12px;
-      border: 1px solid #eee;
-      border-radius: 5px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      background-color: #222;
-      transition: 0.3s;
+      font-weight: bold;
+      font-size: 18px;
     }
-
-    .menu a:hover {
-      background: #ff2c2c;
-      border-color: #ff2c2c;
-    }
-
-    .menu-left a {
-      font-size: 16px;
-    }
-
-    .menu .hide {
-      display: none;
-    }
-
     h1 {
-      text-align: center;
-      margin-top: 90px;
-      font-size: 6vw;
-      color: #fff;
-      text-shadow: 0 0 10px white;
-      margin-bottom: 30px;
+      margin-top: 20px;
+      font-size: 2rem;
     }
-
-    .timeline {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .event {
-      background-color: rgba(255, 255, 255, 0.04);
-      border-left: 4px solid #fff;
-      padding: 20px;
-      margin: 20px 0;
-      position: relative;
-      border-radius: 6px;
-    }
-
-    .event::before {
-      content: "";
-      position: absolute;
-      top: 20px;
-      left: -18px;
-      width: 16px;
-      height: 16px;
-      background-color: #fff;
-      border-radius: 50%;
-      border: 3px solid #000;
-    }
-
-    .event.red::before {
-      background-color: #ff2c2c;
-    }
-
-    .event h3 {
-      margin: 0 0 5px;
-      font-size: 4.5vw;
-      color: #fff;
-    }
-
-    .event.red h3 {
-      color: #ff2c2c;
-    }
-
-    .event p {
-      margin: 0;
-      font-size: 4vw;
-      color: #ddd;
-      line-height: 1.5;
-    }
-
-    .event.red p {
-      color: #ffaaaa;
-    }
-
-    @media (min-width: 768px) {
-      h1 {
-        font-size: 48px;
-      }
-      .event h3 {
-        font-size: 20px;
-      }
-      .event p {
-        font-size: 16px;
-      }
-      .event::before {
-        left: -30px;
-        width: 20px;
-        height: 20px;
-      }
-      .menu a {
-        font-size: 14px;
-      }
+    p {
+      line-height: 1.6;
+      margin-top: 15px;
     }
   </style>
 </head>
 <body>
+  <header>
+    <a id="link-anasayfa" href="index.html">← Ana Sayfa</a>
+  </header>
 
-  <nav class="menu">
-    <div class="menu-left">
-      <a href="index.html"><i class="fas fa-home"></i> <span id="home-text">Ana Sayfa</span></a>
-    </div>
-    <div class="menu-right">
-      <a href="galeri.html"><i class="fas fa-image"></i><span> Galeri</span></a>
-      <a href="hayati.html" class="hide"><i class="fas fa-user"></i><span> Hayatı</span></a>
-      <a href="gerisayim.html"><i class="fas fa-hourglass-half"></i><span> Geri Sayım</span></a>
-      <a href="ayarlar.html"><i class="fas fa-cog"></i><span> Ayarlar</span></a>
-    </div>
-  </nav>
+  <h1 id="page-title">Atatürk'ün Hayatı</h1>
 
-  <h1 id="page-title">Mustafa Kemal Atatürk'ün Hayatı</h1>
+  <p id="content">
+    Mustafa Kemal Atatürk, modern Türkiye Cumhuriyeti'nin kurucusudur. 1881 yılında Selanik'te doğdu...
+  </p>
 
-  <div class="timeline" id="timeline">
-    <div class="event" data-id="1">
-      <h3>1881</h3>
-      <p>Selanik'te doğdu.</p>
-    </div>
-    <div class="event" data-id="2">
-      <h3>1893</h3>
-      <p>Selanik Askerî Rüştiyesi'ne başladı ve "Kemal" ismini aldı.</p>
-    </div>
-    <div class="event" data-id="3">
-      <h3>1905</h3>
-      <p>Harp Akademisi'ni kurmay yüzbaşı olarak bitirdi.</p>
-    </div>
-    <div class="event" data-id="4">
-      <h3>1915</h3>
-      <p>Çanakkale Savaşı'nda büyük başarı gösterdi.</p>
-    </div>
-    <div class="event" data-id="5">
-      <h3>19 Mayıs 1919</h3>
-      <p>Samsun'a çıkarak Kurtuluş Savaşı’nı başlattı.</p>
-    </div>
-    <div class="event" data-id="6">
-      <h3>1920</h3>
-      <p>Türkiye Büyük Millet Meclisi'ni açtı.</p>
-    </div>
-    <div class="event" data-id="7">
-      <h3>1923</h3>
-      <p>Cumhuriyet ilan edildi ve Atatürk ilk Cumhurbaşkanı oldu.</p>
-    </div>
-    <div class="event" data-id="8">
-      <h3>1934</h3>
-      <p>Soyadı Kanunu ile “Atatürk” soyadını aldı.</p>
-    </div>
-    <div class="event red" data-id="9">
-      <h3>10 Kasım 1938</h3>
-      <p>Dolmabahçe Sarayı'nda vefat etti.</p>
-    </div>
-  </div>
+  <script>
+    const translations = {
+      tr: {
+        pageTitle: "Atatürk'ün Hayatı",
+        content: "Mustafa Kemal Atatürk, modern Türkiye Cumhuriyeti'nin kurucusudur. 1881 yılında Selanik'te doğdu..."
+      },
+      en: {
+        pageTitle: "Atatürk's Biography",
+        content: "Mustafa Kemal Atatürk is the founder of modern Republic of Turkey. He was born in 1881 in Salonika..."
+      },
+      az: {
+        pageTitle: "Atatürkün Həyatı",
+        content: "Mustafa Kamal Atatürk müasir Türkiyə Respublikasının qurucusudur. 1881-ci ildə Salonikdə doğulub..."
+      }
+    };
 
-</body>
-</html>
+    function applyLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.getElementById("page-title").textContent = translations[lang].pageTitle;
+      document.getElementById("content").textContent = translations[lang].content;
+      document.getElementById("link-anasayfa").textContent = {
+        tr: "← Ana Sayfa
