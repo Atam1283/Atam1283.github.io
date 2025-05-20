@@ -1,65 +1,61 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Galeri</title>
   <style>
+    *, *::before, *::after { box-sizing: border-box; }
     body {
-      margin: 0;
-      padding: 0;
-      background: black;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      margin:0; padding:40px 20px;
+      background:#000; color:#fff;
+      font-family:'Segoe UI',sans-serif;
+      text-align:center;
     }
-
     nav {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      background: #111;
-      width: 100%;
-      padding: 16px;
+      width:100%; max-width:900px;
+      margin:0 auto 30px;
+      display:flex; justify-content:center; gap:24px;
+      border-bottom:1.5px solid #666; padding-bottom:16px;
     }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
+    nav a { /* aynı stil */ }
+    nav a:hover,nav a:focus{ background:#fff;color:#000;}
+    nav a:focus-visible{outline:2px solid #00ffff;outline-offset:2px;}
+    hr { width:90vw;max-width:900px;height:1.5px;background:#444;border:none;margin:24px auto;box-shadow:0 0 6px #444;}
+    /* Galeri */
+    .gallery {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:16px;
+      max-width:900px;
+      margin:auto;
     }
-
-    nav a:hover {
-      color: #fff;
-      text-decoration: underline;
+    .gallery img {
+      width:100%; border-radius:8px;
+      border:2px solid #fff; transition:transform .3s;
     }
-
-    input[type="text"] {
-      margin: 40px auto 20px;
-      padding: 10px 20px;
-      font-size: 1rem;
-      border-radius: 30px;
-      border: none;
-      outline: none;
-      background: white;
-      color: black;
-      width: 80%;
-      max-width: 400px;
+    .gallery img:hover, .gallery img:focus {
+      transform:scale(1.05);
     }
   </style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Ana Sayfa</a>
-    <a href="galeri.html">Galeri</a>
-    <a href="hayati.html">Hayatı</a>
-    <a href="gerisayim.html">Geri Sayım</a>
-    <a href="ayarlar.html">Ayarlar</a>
-  </nav>
 
-  <input type="text" placeholder="Galeride ara..." />
+<nav aria-label="Sayfa menüsü">
+  <a href="index.html">Ana Sayfa</a>
+  <a href="galeri.html">Galeri</a>
+  <a href="hayati.html">Hayatı</a>
+  <a href="gerisayim.html">Geri Sayım</a>
+  <a href="ayarlar.html">Ayarlar</a>
+</nav>
+<hr/>
+
+<section class="gallery" aria-label="Atatürk Galerisi">
+  <img src="images/ataturk1.jpg" alt="Atatürk Fotoğraf 1"/>
+  <img src="images/ataturk2.jpg" alt="Atatürk Fotoğraf 2"/>
+  <img src="images/ataturk3.jpg" alt="Atatürk Fotoğraf 3"/>
+  <img src="images/ataturk4.jpg" alt="Atatürk Fotoğraf 4"/>
+</section>
+
 </body>
 </html>
