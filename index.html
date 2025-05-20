@@ -1,173 +1,186 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mustafa Kemal Atatürk - Ana Sayfa</title>
-<style>
-  /* Genel stil */
-  body {
-    margin: 0;
-    background-color: #000;
-    color: #fff;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  }
-  /* Üst menü */
-  .header {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    background: #111;
-    padding: 12px 0;
-    border-bottom: 1px solid #555;
-  }
-  .btn {
-    padding: 8px 18px;
-    font-weight: 600;
-    border: 1px solid #444;
-    border-radius: 4px;
-    background-color: #222;
-    color: #fff;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.2s ease;
-    display: flex;
-    align-items: center;
-  }
-  .btn:hover {
-    background-color: #b30000;
-    border-color: #b30000;
-    color: #fff;
-  }
-  /* Arama motoru */
-  .search-container {
-    display: flex;
-    justify-content: center;
-    margin: 25px 0 15px 0;
-  }
-  .search-input {
-    width: 300px;
-    padding: 8px 12px;
-    font-size: 16px;
-    border: 1px solid #444;
-    border-radius: 5px 0 0 5px;
-    background-color: #000;
-    color: #fff;
-    outline: none;
-  }
-  .search-button {
-    padding: 8px 14px;
-    font-size: 16px;
-    background-color: #b30000;
-    border: 1px solid #b30000;
-    border-radius: 0 5px 5px 0;
-    color: #fff;
-    cursor: pointer;
-  }
-  .search-button:hover {
-    background-color: #ff0000;
-    border-color: #ff0000;
-  }
-  /* İçerik alanı */
-  main {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px 15px;
-    border-top: 1px solid #444;
-  }
-  /* Atatürk ismi */
-  h1.ataturk-name {
-    font-size: 3rem;
-    text-align: center;
-    margin: 15px 0 10px 0;
-    user-select: none;
-  }
-  /* Söz ve kaynak */
-  blockquote {
-    font-style: italic;
-    font-size: 1.4rem;
-    margin: 20px auto 5px auto;
-    max-width: 700px;
-    text-align: center;
-    color: #ddd;
-  }
-  cite {
-    display: block;
-    font-size: 1rem;
-    text-align: center;
-    margin-bottom: 20px;
-    color: #bbb;
-  }
-  /* Gri alt çizgi */
-  hr.divider {
-    border: none;
-    border-top: 1px solid #555;
-    margin: 30px 0;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mustafa Kemal Atatürk - Ana Sayfa</title>
+  <style>
+    body {
+      margin: 0; padding: 0; font-family: Arial, sans-serif;
+      background-color: #000; color: #fff;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .header {
+      display: flex; justify-content: center; gap: 15px;
+      background: #111; padding: 12px 0;
+      border-bottom: 1px solid #555;
+    }
+    .btn {
+      padding: 8px 18px; font-weight: bold;
+      border: 1px solid #444; border-radius: 4px;
+      background-color: #222; color: #fff;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+      text-decoration: none;
+      display: flex; align-items: center;
+    }
+    /* Yeni eklenen: hover ve focus ile kırmızı arka plan ve border */
+    .btn:hover,
+    .btn:focus {
+      background-color: #b30000;
+      border-color: #b30000;
+      color: #fff;
+      outline: none;
+    }
+    .search-container {
+      flex-grow: 1;
+      max-width: 400px;
+      display: flex;
+      justify-content: center;
+    }
+    .search-input {
+      width: 100%; max-width: 100%;
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1px solid #555;
+      background-color: transparent;
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .search-input::placeholder {
+      color: #ccc;
+    }
+    .search-input:focus {
+      border-color: #fff;
+    }
+    .content {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 15px;
+      text-align: center;
+      border-top: 2px solid #555;
+    }
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+      user-select: none;
+    }
+    #quoteBox {
+      margin-top: 20px;
+      font-style: italic;
+      font-size: 22px;
+      color: #ddd;
+    }
+    #quoteSource {
+      margin-top: 8px;
+      font-size: 16px;
+      color: #999;
+    }
+    .highlight {
+      color: #fff;
+    }
+    .separator {
+      border-top: 1px solid #555;
+      margin: 30px 0;
+    }
+  </style>
 </head>
 <body>
-  <header class="header">
+  <div class="header">
     <a href="index.html" class="btn">Ana Sayfa</a>
     <a href="galeri.html" class="btn">Galeri</a>
     <a href="hayati.html" class="btn">Hayatı</a>
     <a href="gerisayim.html" class="btn">Geri Sayım</a>
     <a href="ayarlar.html" class="btn">Ayarlar</a>
-  </header>
-
-  <div class="search-container">
-    <input type="text" class="search-input" id="searchInput" placeholder="Ara..." aria-label="Arama">
-    <button class="search-button" onclick="searchGoogle()">Ara</button>
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Ara..." />
+    </div>
   </div>
 
-  <main>
-    <h1 class="ataturk-name">Mustafa Kemal Atatürk</h1>
-    <blockquote id="quote"></blockquote>
-    <cite id="source"></cite>
-    <hr class="divider" />
-  </main>
+  <div class="content">
+    <h1>Mustafa Kemal Atatürk</h1>
+    <div id="quoteBox">
+      <div id="quoteText"></div>
+      <div id="quoteSource"></div>
+    </div>
+  </div>
 
-<script>
-  const quotes = [
-    {
-      text: "Yurtta sulh, cihanda sulh.",
-      source: "Atatürk, 1931"
-    },
-    {
-      text: "Egemenlik, kayıtsız şartsız milletindir.",
-      source: "Atatürk, 1920"
-    },
-    {
-      text: "Hayatta en hakiki mürşit ilimdir.",
-      source: "Atatürk, 1923"
-    },
-    {
-      text: "Türkiye Cumhuriyeti ilelebet payidar kalacaktır.",
-      source: "Atatürk, 1937"
-    },
-    {
-      text: "Milletin bağımsızlığı, yine milletin azim ve kararıyla kurtarılacaktır.",
-      source: "Atatürk, 1922"
-    },
-    {
-      text: "Benim naçiz vücudum elbet bir gün toprak olacaktır; fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır.",
-      source: "Atatürk, 1938"
+  <script>
+    // Atatürk sözleri ve kaynakları
+    const quotes = [
+      { text: "Yurtta sulh, cihanda sulh.", source: "1923 Nutuk" },
+      { text: "Egemenlik, kayıtsız şartsız milletindir.", source: "1921 Anayasası" },
+      { text: "Hayatta en hakiki mürşit ilimdir.", source: "1923 Söylev" },
+      { text: "Milli mücadele, milletin istiklal savaşıdır.", source: "Nutuk, 1927" },
+      { text: "Bütün ümidim gençliktedir.", source: "1927 Nutuk" },
+      { text: "Benim naçiz vücudum elbet bir gün toprak olacaktır.", source: "1938 Vasiyet" },
+      { text: "Muasır medeniyet seviyesine ulaşmak.", source: "Cumhuriyet hedefi" }
+    ];
+
+    function randomQuote() {
+      const index = Math.floor(Math.random() * quotes.length);
+      return quotes[index];
     }
-  ];
 
-  function displayRandomQuote() {
-    const index = Math.floor(Math.random() * quotes.length);
-    document.getElementById('quote').textContent = `"${quotes[index].text}"`;
-    document.getElementById('source').textContent = quotes[index].source;
-  }
-  displayRandomQuote();
+    // Söz gösterme ayarı
+    const showQuotes = localStorage.getItem('showQuotes');
+    const quoteBox = document.getElementById('quoteBox');
+    const quoteText = document.getElementById('quoteText');
+    const quoteSource = document.getElementById('quoteSource');
 
-  function searchGoogle() {
-    const query = document.getElementById('searchInput').value.trim();
-    if (query) {
-      window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+    // Rastgele söz göster
+    if(showQuotes !== 'false') {
+      const q = randomQuote();
+      quoteText.textContent = `"${q.text}"`;
+      quoteSource.textContent = `- ${q.source}`;
+      quoteBox.style.display = 'block';
+    } else {
+      quoteBox.style.display = 'none';
     }
-  }
-</script>
+
+    // Tema ayarını uygula
+    const darkMode = localStorage.getItem('darkMode');
+    if(darkMode === 'false') {
+      document.body.style.backgroundColor = '#fff';
+      document.body.style.color = '#000';
+      document.querySelectorAll('.highlight').forEach(el => {
+        el.style.color = '#000';
+      });
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.style.backgroundColor = '#e0e0e0';
+        btn.style.color = '#000';
+        btn.style.borderColor = '#bbb';
+      });
+      document.querySelectorAll('.separator').forEach(line => {
+        line.style.borderColor = '#ccc';
+      });
+      document.querySelector('.search-input').style.color = '#000';
+      document.querySelector('.search-input').style.borderColor = '#bbb';
+      document.querySelector('.search-input').style.backgroundColor = '#fff';
+      document.querySelector('.search-input').placeholder = 'Ara...';
+    } else {
+      // Koyu tema varsayılan, CSS zaten koyu
+      document.body.style.backgroundColor = '#000';
+      document.body.style.color = '#fff';
+      document.querySelectorAll('.highlight').forEach(el => {
+        el.style.color = '#fff';
+      });
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.style.backgroundColor = '#222';
+        btn.style.color = '#fff';
+        btn.style.borderColor = '#444';
+      });
+      document.querySelectorAll('.separator').forEach(line => {
+        line.style.borderColor = '#555';
+      });
+      document.querySelector('.search-input').style.color = '#fff';
+      document.querySelector('.search-input').style.borderColor = '#555';
+      document.querySelector('.search-input').style.backgroundColor = 'transparent';
+      document.querySelector('.search-input').placeholder = 'Ara...';
+    }
+  </script>
 </body>
 </html>
