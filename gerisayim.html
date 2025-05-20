@@ -1,296 +1,268 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mustafa Kemal Atatürk - Geri Sayım ve Anlamı</title>
-  <style>
-    /* Temel renk ve font ayarları */
-    body {
-      margin: 0;
-      padding: 20px;
-      background-color: #000;
-      color: #e0f7fa;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      line-height: 1.5;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>En Yakın Önemli Gün - Geri Sayım</title>
+<style>
+  /* Global reset ve box-sizing */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 80px 20px 40px;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* Üstte sayfa butonları */
+  #navButtons {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 16px;
+    z-index: 1000;
+  }
+  #navButtons button {
+    background: none;
+    border: 2px solid #00ffff;
+    color: #00ffff;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    user-select: none;
+    font-family: inherit;
+    transition: all 0.3s ease;
+  }
+  #navButtons button:hover,
+  #navButtons button:focus {
+    background-color: #00ffff;
+    color: #000;
+    outline: none;
+  }
+  #navButtons button:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+
+  /* En yakın gün kutusu */
+  #nearestEventBox {
+    border: 2.5px solid #fff;
+    border-radius: 40px;
+    padding: 30px 40px;
+    max-width: 90vw;
+    text-align: center;
+    user-select: none;
+    color: #fff;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    margin-bottom: 60px;
+    box-shadow: 0 0 14px 3px rgba(255, 255, 255, 0.9);
+    transition: box-shadow 0.3s ease;
+  }
+  #nearestEventBox:hover,
+  #nearestEventBox:focus {
+    box-shadow: 0 0 24px 8px rgba(255, 255, 255, 1);
+    outline: none;
+  }
+  #nearestEventBox:focus-visible {
+    outline: 3px solid #00ffff;
+    outline-offset: 6px;
+  }
+
+  /* Başlık - event name */
+  #nearestEventBox h2 {
+    margin: 0 0 14px 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    cursor: default;
+    user-select: text;
+  }
+
+  #nearestEventBox .date {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  #countdown {
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin-bottom: 60px;
+    user-select: none;
+    text-align: center;
+  }
+
+  #progressBarContainer {
+    width: 80%;
+    max-width: 600px;
+    height: 16px;
+    background-color: #222;
+    border-radius: 50px;
+    box-shadow: inset 0 0 10px #111;
+    margin-bottom: 50px;
+  }
+  #progressBar {
+    height: 100%;
+    width: 0%;
+    background-color: #00ffff;
+    border-radius: 50px;
+    transition: width 0.5s ease-out;
+  }
+
+  /* Gri çizgi alt sınır */
+  #bottomLine {
+    margin-top: 60px;
+    width: 90vw;
+    max-width: 700px;
+    border-top: 2px solid #444;
+    box-shadow: 0 0 12px 1px #00ffff44 inset;
+  }
+
+  @media (max-width: 480px) {
+    #nearestEventBox h2 {
+      font-size: 1.8rem;
     }
-    /* Üst gezinme menüsü */
-    nav {
-      width: 100%;
-      max-width: 900px;
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      border-bottom: 2px solid #004d40;
-      padding-bottom: 16px;
-      margin-bottom: 30px;
-      user-select: none;
+    #nearestEventBox {
+      padding: 20px 24px;
     }
-    nav a {
-      color: #e0f7fa;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 8px 16px;
-      border-radius: 8px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      cursor: pointer;
-    }
-    nav a:hover,
-    nav a:focus-visible {
-      background-color: #00bcd4;
-      color: #000;
-      outline: none;
-    }
-    nav a[aria-current="page"] {
-      background-color: #004d40;
-      cursor: default;
-      color: #b2dfdb;
-      font-weight: 700;
-    }
-    /* Başlık ve açıklama */
-    h1 {
-      font-weight: 900;
-      font-size: 2.8rem;
-      margin: 0 0 8px;
-      text-align: center;
-      user-select: none;
-      color: #00bcd4;
-      text-shadow: 0 0 8px #00bcd4;
-    }
-    .subtitle {
-      font-size: 1.2rem;
-      font-style: italic;
-      max-width: 900px;
-      text-align: center;
-      margin-bottom: 40px;
-      color: #b2dfdb;
-      user-select: none;
-    }
-    /* Geri sayım alanı */
-    #countdown {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      max-width: 900px;
-      margin-bottom: 40px;
-      user-select: none;
-    }
-    .time-part {
-      background-color: #004d40;
-      border: 2px solid #00bcd4;
-      border-radius: 16px;
-      padding: 20px 30px;
-      min-width: 110px;
-      text-align: center;
-      box-shadow: 0 0 12px #00bcd4;
-      transition: transform 0.3s ease;
-    }
-    .time-part:hover,
-    .time-part:focus-within {
-      transform: scale(1.1);
-      box-shadow: 0 0 20px #00e5ff;
-      outline: none;
-    }
-    .number {
-      font-size: 3.2rem;
-      font-weight: 900;
-      line-height: 1;
-      color: #e0f7fa;
-    }
-    .label {
+    #nearestEventBox .date {
       font-size: 1.1rem;
-      margin-top: 6px;
-      color: #b2dfdb;
     }
-    /* İçerik bölümü */
-    section.content {
-      max-width: 900px;
-      background-color: #00251a;
-      border-radius: 16px;
-      padding: 30px 40px;
-      box-shadow: 0 0 16px #004d40;
-      color: #b2dfdb;
-      margin-bottom: 60px;
-      line-height: 1.6;
-      user-select: text;
+    #countdown {
+      font-size: 1.2rem;
     }
-    section.content h2 {
-      color: #00bcd4;
-      margin-top: 0;
-      font-weight: 700;
-      font-size: 2rem;
-      margin-bottom: 12px;
-      user-select: none;
+    #progressBarContainer {
+      width: 90%;
     }
-    section.content p {
-      margin-bottom: 20px;
+    #navButtons button {
+      padding: 6px 14px;
+      font-size: 0.9rem;
     }
-    /* Zaman çizelgesi */
-    .timeline {
-      border-left: 3px solid #00bcd4;
-      margin-left: 10px;
-      padding-left: 15px;
-      max-width: 900px;
-      user-select: text;
-    }
-    .event {
-      margin-bottom: 18px;
-      position: relative;
-      padding-left: 25px;
-    }
-    .event::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 8px;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background-color: #00bcd4;
-      border: 2px solid #004d40;
-    }
-    .event-date {
-      font-weight: 700;
-      color: #80deea;
-      user-select: text;
-    }
-    .event-desc {
-      font-size: 1rem;
-      color: #b2dfdb;
-    }
-    /* Responsive */
-    @media (max-width: 600px) {
-      #countdown {
-        flex-direction: column;
-        align-items: center;
-      }
-      .time-part {
-        min-width: 160px;
-      }
-      section.content {
-        padding: 20px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <nav role="navigation" aria-label="Ana sayfa menüsü">
-    <a href="index.html">Ana Sayfa</a>
-    <a href="galeri.html">Galeri</a>
-    <a href="hayati.html">Hayatı</a>
-    <a href="gerisayim.html" aria-current="page">Geri Sayım</a>
-    <a href="ayarlar.html">Ayarlar</a>
-  </nav>
+<div id="navButtons" role="navigation" aria-label="Sayfa Geçiş Butonları">
+  <button onclick="location.href='index.html'">Ana Sayfa</button>
+  <button onclick="location.href='galeri.html'">Galeri</button>
+  <button onclick="location.href='hayati.html'">Hayatı</button>
+  <button onclick="location.href='gerisayim.html'">Geri Sayım</button>
+  <button onclick="location.href='ayarlar.html'">Ayarlar</button>
+</div>
 
-  <h1>Mustafa Kemal Atatürk’ün Vefatına Kalan Süre</h1>
-  <div class="subtitle">
-    Bu geri sayım, Türkiye Cumhuriyeti’nin kurucusu, büyük lider Mustafa Kemal Atatürk’ün <strong>10 Kasım 1938, 09:05</strong> saatinde gerçekleşen vefatına kalan süreyi göstermektedir. 
-    Onun mirası ve fikirleri sonsuza dek yaşamaya devam edecektir.
-  </div>
+<div id="nearestEventBox" tabindex="0" aria-label="En yakın önemli gün bilgisi">
+  <h2 id="eventName" title="Etkinlik adı"></h2>
+  <div class="date" id="eventDate" aria-live="polite"></div>
+</div>
 
-  <div id="countdown" aria-live="polite" aria-atomic="true" role="timer" aria-label="Geri sayım sayacı">
-    <div class="time-part" tabindex="0">
-      <div class="number" id="days">--</div>
-      <div class="label">Gün</div>
-    </div>
-    <div class="time-part" tabindex="0">
-      <div class="number" id="hours">--</div>
-      <div class="label">Saat</div>
-    </div>
-    <div class="time-part" tabindex="0">
-      <div class="number" id="minutes">--</div>
-      <div class="label">Dakika</div>
-    </div>
-    <div class="time-part" tabindex="0">
-      <div class="number" id="seconds">--</div>
-      <div class="label">Saniye</div>
-    </div>
-  </div>
+<div id="countdown" aria-live="polite"></div>
 
-  <section class="content" aria-label="Atatürk'ün vefatı ve önemi">
-    <h2>Atatürk’ün Vefat Tarihi ve Önemi</h2>
-    <p>
-      Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğmuş ve Türkiye Cumhuriyeti'nin kurucusu olarak Türk milletinin bağımsızlık ve modernleşme yolunda en büyük lideri olmuştur.
-      10 Kasım 1938 sabahı saat 09:05’te İstanbul’da Dolmabahçe Sarayı’nda hayata gözlerini yummuştur.
-    </p>
-    <p>
-      Atatürk’ün vefatı, Türkiye ve dünya tarihinde derin bir iz bırakmıştır. O, sadece bir asker ve devlet adamı değil,
-      aynı zamanda eğitim, hukuk, ekonomi, kültür ve toplumsal alanlarda köklü reformlar yapmış, milletin geleceğini şekillendirmiştir.
-    </p>
-    <p>
-      Bu geri sayım sayfası, onun ebedi hatırasına saygı göstermek ve vefatına kalan süreyi her saniye hatırlamak amacıyla hazırlanmıştır.
-    </p>
-  </section>
+<div id="progressBarContainer" aria-label="Geri sayım ilerleme çubuğu">
+  <div id="progressBar"></div>
+</div>
 
-  <section class="content" aria-label="Atatürk'ün vefatına yakın önemli tarihler">
-    <h2>Atatürk’ün Vefatına Yakın Önemli Tarihler</h2>
-    <div class="timeline">
-      <div class="event">
-        <div class="event-date">8 Kasım 1938</div>
-        <div class="event-desc">Atatürk'ün sağlık durumunun ciddi şekilde kötüleşmeye başlaması.</div>
-      </div>
-      <div class="event">
-        <div class="event-date">9 Kasım 1938</div>
-        <div class="event-desc">Yoğun bakım ve hastane çevresinde büyük bir tedirginlik.</div>
-      </div>
-      <div class="event">
-        <div class="event-date">10 Kasım 1938 - 09:05</div>
-        <div class="event-desc">Mustafa Kemal Atatürk’ün vefatı, Türk milletinin derin yas günü.</div>
-      </div>
-      <div class="event">
-        <div class="event-date">11 Kasım 1938</div>
-        <div class="event-desc">Törenler ve ulusal yas başlaması.</div>
-      </div>
-      <div class="event">
-        <div class="event-date">1938-1939</div>
-        <div class="event-desc">Atatürk’ün mirasının yasalarla korunması ve anıtlar yapılması.</div>
-      </div>
-    </div>
-  </section>
+<div id="bottomLine" aria-hidden="true"></div>
 
-  <script>
-    // Vefat tarihi
-    const vefatTarihi = new Date('1938-11-10T09:05:00');
+<script>
+  const importantDates = [
+    { name: "Şapka Kanunu", date: "1925-02-17" },
+    { name: "Tekke, zaviye ve türbelerin kapatılması", date: "1925-11-25" },
+    { name: "Tarikatların kaldırılması", date: "1925-11-26" },
+    { name: "Harf Devrimi", date: "1928-11-01" },
+    { name: "Türk Tarih Kurumu'nun kurulması", date: "1931-01-01" },
+    { name: "Türk Dil Kurumu'nun kurulması", date: "1932-01-01" },
+    { name: "Kadınlara seçme ve seçilme hakkı", date: "1934-12-05" },
+    { name: "Soyadı Kanunu", date: "1934-06-21" }
+  ];
 
-    function pad2(number) {
-      return number.toString().padStart(2, '0');
-    }
+  function createDateForYear(dateString, year) {
+    const parts = dateString.split("-");
+    return new Date(year, parseInt(parts[1],10) - 1, parseInt(parts[2],10));
+  }
 
-    function updateCountdown() {
+  function getNextImportantDate(dates) {
+    const now = new Date();
+    const currentYear = now.getFullYear();
+
+    let futureDates = dates.map(d => {
+      let eventDate = createDateForYear(d.date, currentYear);
+      if(eventDate < now){
+        eventDate.setFullYear(currentYear + 1);
+      }
+      return {...d, nextDate: eventDate};
+    });
+
+    futureDates.sort((a,b) => a.nextDate - b.nextDate);
+    return futureDates[0];
+  }
+
+  function formatDate(date) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('tr-TR', options);
+  }
+
+  function startCountdown(event) {
+    const countdownEl = document.getElementById("countdown");
+    const progressBar = document.getElementById("progressBar");
+    const eventNameEl = document.getElementById("eventName");
+    const eventDateEl = document.getElementById("eventDate");
+
+    let startDate = new Date(event.nextDate);
+    startDate.setFullYear(startDate.getFullYear() - 1);
+
+    eventNameEl.textContent = event.name;
+    eventDateEl.textContent = formatDate(event.nextDate);
+
+    function update() {
       const now = new Date();
-      let fark = vefatTarihi - now;
+      let diff = event.nextDate - now;
 
-      if (fark <= 0) {
-        // Süre doldu, vefat tarihi geçti
-        document.getElementById('countdown').innerHTML =
-          '<div style="font-size:1.8rem; font-weight:700; color:#f44336; text-align:center; width:100%;">' +
-          'Mustafa Kemal Atatürk\'ün vefat tarihi çoktan geçti. Onun mirası sonsuza dek yaşayacak.' +
-          '</div>';
-        clearInterval(intervalID);
+      if(diff <= 0){
+        countdownEl.textContent = "Bugün!";
+        progressBar.style.width = "100%";
+        clearInterval(interval);
         return;
       }
 
-      const saniye = Math.floor((fark / 1000) % 60);
-      const dakika = Math.floor((fark / 1000 / 60) % 60);
-      const saat = Math.floor((fark / (1000 * 60 * 60)) % 24);
-      const gun = Math.floor(fark / (1000 * 60 * 60 * 24));
+      const days = Math.floor(diff / (1000*60*60*24));
+      const hours = Math.floor((diff / (1000*60*60)) % 24);
+      const minutes = Math.floor((diff / (1000*60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
 
-      document.getElementById('days').textContent = gun;
-      document.getElementById('hours').textContent = pad2(saat);
-      document.getElementById('minutes').textContent = pad2(dakika);
-      document.getElementById('seconds').textContent = pad2(saniye);
+      countdownEl.textContent = `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye kaldı`;
+
+      const totalPeriod = event.nextDate - startDate;
+      const elapsed = now - startDate;
+      let percent = (elapsed / totalPeriod) * 100;
+      if(percent > 100) percent = 100;
+      if(percent < 0) percent = 0;
+
+      progressBar.style.width = percent + "%";
     }
 
-    updateCountdown();
-    const intervalID = setInterval(updateCountdown, 1000);
-  </script>
+    update();
+    const interval = setInterval(update, 1000);
+  }
+
+  const nextEvent = getNextImportantDate(importantDates);
+  startCountdown(nextEvent);
+</script>
 
 </body>
 </html>
