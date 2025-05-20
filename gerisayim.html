@@ -3,75 +3,185 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mustafa Kemal Atatürk - Geri Sayım</title>
+  <title>Mustafa Kemal Atatürk - Geri Sayım ve Anlamı</title>
   <style>
+    /* Temel renk ve font ayarları */
     body {
-      margin: 0; padding: 20px;
-      background: #000;
-      color: #fff;
+      margin: 0;
+      padding: 20px;
+      background-color: #000;
+      color: #e0f7fa;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
+      line-height: 1.5;
     }
+    /* Üst gezinme menüsü */
     nav {
       width: 100%;
       max-width: 900px;
-      margin: 0 auto 30px;
       display: flex;
       justify-content: center;
       gap: 24px;
-      border-bottom: 1.5px solid #666;
+      border-bottom: 2px solid #004d40;
       padding-bottom: 16px;
+      margin-bottom: 30px;
+      user-select: none;
     }
     nav a {
-      color: #fff;
+      color: #e0f7fa;
       text-decoration: none;
       font-weight: 600;
       font-size: 1rem;
-      padding: 6px 14px;
+      padding: 8px 16px;
       border-radius: 8px;
-      transition: background-color 0.3s, color 0.3s;
-      user-select: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
       cursor: pointer;
     }
     nav a:hover,
-    nav a:focus {
-      background: #fff;
+    nav a:focus-visible {
+      background-color: #00bcd4;
       color: #000;
       outline: none;
     }
-    nav a:focus-visible {
-      outline: 2px solid #00ffff;
-      outline-offset: 2px;
+    nav a[aria-current="page"] {
+      background-color: #004d40;
+      cursor: default;
+      color: #b2dfdb;
+      font-weight: 700;
     }
-    hr {
-      width: 90vw;
-      max-width: 900px;
-      border: none;
-      border-bottom: 2px solid #555;
-      margin: 24px auto;
-      box-shadow: none;
-    }
+    /* Başlık ve açıklama */
     h1 {
-      margin-bottom: 20px;
-      font-weight: 700;
+      font-weight: 900;
+      font-size: 2.8rem;
+      margin: 0 0 8px;
       text-align: center;
-    }
-    #countdown {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-top: 30px;
-      color: #0ff;
-      text-shadow: 0 0 10px #0ff;
       user-select: none;
+      color: #00bcd4;
+      text-shadow: 0 0 8px #00bcd4;
+    }
+    .subtitle {
+      font-size: 1.2rem;
+      font-style: italic;
+      max-width: 900px;
+      text-align: center;
+      margin-bottom: 40px;
+      color: #b2dfdb;
+      user-select: none;
+    }
+    /* Geri sayım alanı */
+    #countdown {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin-bottom: 40px;
+      user-select: none;
+    }
+    .time-part {
+      background-color: #004d40;
+      border: 2px solid #00bcd4;
+      border-radius: 16px;
+      padding: 20px 30px;
+      min-width: 110px;
+      text-align: center;
+      box-shadow: 0 0 12px #00bcd4;
+      transition: transform 0.3s ease;
+    }
+    .time-part:hover,
+    .time-part:focus-within {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #00e5ff;
+      outline: none;
+    }
+    .number {
+      font-size: 3.2rem;
+      font-weight: 900;
+      line-height: 1;
+      color: #e0f7fa;
+    }
+    .label {
+      font-size: 1.1rem;
+      margin-top: 6px;
+      color: #b2dfdb;
+    }
+    /* İçerik bölümü */
+    section.content {
+      max-width: 900px;
+      background-color: #00251a;
+      border-radius: 16px;
+      padding: 30px 40px;
+      box-shadow: 0 0 16px #004d40;
+      color: #b2dfdb;
+      margin-bottom: 60px;
+      line-height: 1.6;
+      user-select: text;
+    }
+    section.content h2 {
+      color: #00bcd4;
+      margin-top: 0;
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 12px;
+      user-select: none;
+    }
+    section.content p {
+      margin-bottom: 20px;
+    }
+    /* Zaman çizelgesi */
+    .timeline {
+      border-left: 3px solid #00bcd4;
+      margin-left: 10px;
+      padding-left: 15px;
+      max-width: 900px;
+      user-select: text;
+    }
+    .event {
+      margin-bottom: 18px;
+      position: relative;
+      padding-left: 25px;
+    }
+    .event::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: #00bcd4;
+      border: 2px solid #004d40;
+    }
+    .event-date {
+      font-weight: 700;
+      color: #80deea;
+      user-select: text;
+    }
+    .event-desc {
+      font-size: 1rem;
+      color: #b2dfdb;
+    }
+    /* Responsive */
+    @media (max-width: 600px) {
+      #countdown {
+        flex-direction: column;
+        align-items: center;
+      }
+      .time-part {
+        min-width: 160px;
+      }
+      section.content {
+        padding: 20px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <nav>
+  <nav role="navigation" aria-label="Ana sayfa menüsü">
     <a href="index.html">Ana Sayfa</a>
     <a href="galeri.html">Galeri</a>
     <a href="hayati.html">Hayatı</a>
@@ -79,18 +189,108 @@
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
 
-  <h1>Atatürk'ün Vefatına Kalan Süre</h1>
+  <h1>Mustafa Kemal Atatürk’ün Vefatına Kalan Süre</h1>
+  <div class="subtitle">
+    Bu geri sayım, Türkiye Cumhuriyeti’nin kurucusu, büyük lider Mustafa Kemal Atatürk’ün <strong>10 Kasım 1938, 09:05</strong> saatinde gerçekleşen vefatına kalan süreyi göstermektedir. 
+    Onun mirası ve fikirleri sonsuza dek yaşamaya devam edecektir.
+  </div>
 
-  <div id="countdown" aria-live="polite" aria-atomic="true">Yükleniyor...</div>
+  <div id="countdown" aria-live="polite" aria-atomic="true" role="timer" aria-label="Geri sayım sayacı">
+    <div class="time-part" tabindex="0">
+      <div class="number" id="days">--</div>
+      <div class="label">Gün</div>
+    </div>
+    <div class="time-part" tabindex="0">
+      <div class="number" id="hours">--</div>
+      <div class="label">Saat</div>
+    </div>
+    <div class="time-part" tabindex="0">
+      <div class="number" id="minutes">--</div>
+      <div class="label">Dakika</div>
+    </div>
+    <div class="time-part" tabindex="0">
+      <div class="number" id="seconds">--</div>
+      <div class="label">Saniye</div>
+    </div>
+  </div>
 
-  <hr />
+  <section class="content" aria-label="Atatürk'ün vefatı ve önemi">
+    <h2>Atatürk’ün Vefat Tarihi ve Önemi</h2>
+    <p>
+      Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğmuş ve Türkiye Cumhuriyeti'nin kurucusu olarak Türk milletinin bağımsızlık ve modernleşme yolunda en büyük lideri olmuştur.
+      10 Kasım 1938 sabahı saat 09:05’te İstanbul’da Dolmabahçe Sarayı’nda hayata gözlerini yummuştur.
+    </p>
+    <p>
+      Atatürk’ün vefatı, Türkiye ve dünya tarihinde derin bir iz bırakmıştır. O, sadece bir asker ve devlet adamı değil,
+      aynı zamanda eğitim, hukuk, ekonomi, kültür ve toplumsal alanlarda köklü reformlar yapmış, milletin geleceğini şekillendirmiştir.
+    </p>
+    <p>
+      Bu geri sayım sayfası, onun ebedi hatırasına saygı göstermek ve vefatına kalan süreyi her saniye hatırlamak amacıyla hazırlanmıştır.
+    </p>
+  </section>
+
+  <section class="content" aria-label="Atatürk'ün vefatına yakın önemli tarihler">
+    <h2>Atatürk’ün Vefatına Yakın Önemli Tarihler</h2>
+    <div class="timeline">
+      <div class="event">
+        <div class="event-date">8 Kasım 1938</div>
+        <div class="event-desc">Atatürk'ün sağlık durumunun ciddi şekilde kötüleşmeye başlaması.</div>
+      </div>
+      <div class="event">
+        <div class="event-date">9 Kasım 1938</div>
+        <div class="event-desc">Yoğun bakım ve hastane çevresinde büyük bir tedirginlik.</div>
+      </div>
+      <div class="event">
+        <div class="event-date">10 Kasım 1938 - 09:05</div>
+        <div class="event-desc">Mustafa Kemal Atatürk’ün vefatı, Türk milletinin derin yas günü.</div>
+      </div>
+      <div class="event">
+        <div class="event-date">11 Kasım 1938</div>
+        <div class="event-desc">Törenler ve ulusal yas başlaması.</div>
+      </div>
+      <div class="event">
+        <div class="event-date">1938-1939</div>
+        <div class="event-desc">Atatürk’ün mirasının yasalarla korunması ve anıtlar yapılması.</div>
+      </div>
+    </div>
+  </section>
 
   <script>
-    // Atatürk'ün vefat tarihi
-    const targetDate = new Date('1938-11-10T09:05:00');
+    // Vefat tarihi
+    const vefatTarihi = new Date('1938-11-10T09:05:00');
+
+    function pad2(number) {
+      return number.toString().padStart(2, '0');
+    }
 
     function updateCountdown() {
       const now = new Date();
-      let diff = targetDate - now;
-      if(diff < 0) {
-        document.getElementById('countdown').textContent = "
+      let fark = vefatTarihi - now;
+
+      if (fark <= 0) {
+        // Süre doldu, vefat tarihi geçti
+        document.getElementById('countdown').innerHTML =
+          '<div style="font-size:1.8rem; font-weight:700; color:#f44336; text-align:center; width:100%;">' +
+          'Mustafa Kemal Atatürk\'ün vefat tarihi çoktan geçti. Onun mirası sonsuza dek yaşayacak.' +
+          '</div>';
+        clearInterval(intervalID);
+        return;
+      }
+
+      const saniye = Math.floor((fark / 1000) % 60);
+      const dakika = Math.floor((fark / 1000 / 60) % 60);
+      const saat = Math.floor((fark / (1000 * 60 * 60)) % 24);
+      const gun = Math.floor(fark / (1000 * 60 * 60 * 24));
+
+      document.getElementById('days').textContent = gun;
+      document.getElementById('hours').textContent = pad2(saat);
+      document.getElementById('minutes').textContent = pad2(dakika);
+      document.getElementById('seconds').textContent = pad2(saniye);
+    }
+
+    updateCountdown();
+    const intervalID = setInterval(updateCountdown, 1000);
+  </script>
+
+</body>
+</html>
