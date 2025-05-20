@@ -1,122 +1,287 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Geri Sayım</title>
-  <style>
-    body {
-      background: #000;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      min-height: 100vh;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Geri Sayım - Atatürk Temalı</title>
+<style>
+  /* Global reset ve box-sizing */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 40px 20px;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  /* Üst menü ve çizgi */
+  nav {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    border-bottom: 1.5px solid #666;
+    padding-bottom: 16px;
+    margin-bottom: 40px;
+  }
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    user-select: none;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  nav a:hover,
+  nav a:focus {
+    background-color: #00ffff;
+    color: #000;
+    outline: none;
+  }
+  nav a:focus-visible {
+    outline: 2px solid #00ffff;
+    outline-offset: 2px;
+  }
+
+  #homeBtn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    color: #ccc;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: inherit;
+    user-select: none;
+    padding: 0;
+    transition: color 0.3s ease;
+    text-decoration: underline;
+    z-index: 1000;
+  }
+  #homeBtn:hover,
+  #homeBtn:focus {
+    color: #00ffff;
+    outline: none;
+    text-decoration: none;
+  }
+  #homeBtn:focus-visible {
+    outline: 2px solid #00ffff;
+    outline-offset: 2px;
+  }
+
+  /* En yakın gün kutusu */
+  #nearestEventBox {
+    border: 2.5px solid #fff;
+    border-radius: 40px;
+    padding: 24px 40px;
+    max-width: 90vw;
+    text-align: center;
+    user-select: none;
+    color: #fff;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    margin-bottom: 50px;
+    box-shadow: 0 0 12px 3px rgba(255, 255, 255, 0.8);
+    transition: box-shadow 0.3s ease;
+  }
+  #nearestEventBox:hover,
+  #nearestEventBox:focus {
+    box-shadow: 0 0 20px 6px rgba(255, 255, 255, 1);
+    outline: none;
+  }
+  #nearestEventBox:focus-visible {
+    outline: 3px solid #00ffff;
+    outline-offset: 6px;
+  }
+
+  #nearestEventBox h2 {
+    margin: 0 0 12px 0;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  #nearestEventBox h2:hover,
+  #nearestEventBox h2:focus {
+    color: #00ffff;
+    transform: scale(1.07);
+    outline: none;
+  }
+  #nearestEventBox h2:focus-visible {
+    outline: 2px solid #00ffff;
+    outline-offset: 2px;
+  }
+
+  #nearestEventBox .date {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  #countdown {
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin-bottom: 50px;
+    user-select: none;
+    text-align: center;
+  }
+
+  #progressBarContainer {
+    width: 80%;
+    max-width: 600px;
+    height: 14px;
+    background-color: #222;
+    border-radius: 50px;
+    box-shadow: inset 0 0 8px #111;
+  }
+  #progressBar {
+    height: 100%;
+    width: 0%;
+    background-color: #fff;
+    border-radius: 50px;
+    transition: width 0.5s ease-out;
+  }
+
+  @media (max-width: 480px) {
+    #nearestEventBox h2 {
+      font-size: 1.5rem;
     }
-    header {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      margin-bottom: 40px;
+    #nearestEventBox {
+      padding: 18px 24px;
     }
-    header a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    header a:hover {
-      text-shadow: 0 0 8px #fff;
-    }
-    h2 {
-      font-size: 1.8rem;
-      margin-bottom: 10px;
+    #nearestEventBox .date {
+      font-size: 1.1rem;
     }
     #countdown {
-      font-size: 1.3rem;
-      margin-bottom: 30px;
-      text-align: center;
+      font-size: 1.1rem;
     }
-    .progress {
-      width: 80%;
-      max-width: 500px;
-      height: 12px;
-      background: #222;
-      border-radius: 40px;
-      overflow: hidden;
+    #progressBarContainer {
+      width: 90%;
     }
-    .bar {
-      height: 100%;
-      background: #fff;
-      width: 0%;
-      transition: width 0.4s ease;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-<header>
-  <a href="index.html">Ana Sayfa</a>
-  <a href="galeri.html">Galeri</a>
-  <a href="hayati.html">Hayatı</a>
-  <a href="gerisayim.html">Geri Sayım</a>
-  <a href="ayarlar.html">Ayarlar</a>
-</header>
+<nav aria-label="Sayfa menüsü">
+  <a href="index.html" tabindex="0">Ana Sayfa</a>
+  <a href="galeri.html" tabindex="0">Galeri</a>
+  <a href="hayati.html" tabindex="0">Hayatı</a>
+  <a href="ayarlar.html" tabindex="0">Ayarlar</a>
+</nav>
 
-<h2 id="eventName"></h2>
-<div id="eventDate"></div>
-<div id="countdown"></div>
+<button id="homeBtn" onclick="location.href='index.html'" title="Ana Sayfa">Ana Sayfa</button>
 
-<div class="progress">
-  <div class="bar" id="bar"></div>
+<div id="nearestEventBox" tabindex="0" aria-label="En yakın önemli gün bilgisi">
+  <h2 id="eventName" title="Etkinlik adı" tabindex="0"></h2>
+  <div class="date" id="eventDate" aria-live="polite"></div>
+</div>
+
+<div id="countdown" aria-live="polite"></div>
+
+<div id="progressBarContainer" aria-label="Geri sayım ilerleme çubuğu">
+  <div id="progressBar"></div>
 </div>
 
 <script>
-const events = [
-  { name: "Cumhuriyetin İlanı", date: "10/29" },
-  { name: "Atatürk'ün Doğum Günü", date: "05/19" },
-  { name: "Zafer Bayramı", date: "08/30" }
-];
+  const importantDates = [
+    { name: "Şapka Kanunu", date: "1925-02-17" },
+    { name: "Tekke, zaviye ve türbelerin kapatılması", date: "1925-11-25" },
+    { name: "Tarikatların kaldırılması", date: "1925-11-26" },
+    { name: "Harf Devrimi", date: "1928-11-01" },
+    { name: "Türk Tarih Kurumu'nun kurulması", date: "1931-01-01" },
+    { name: "Türk Dil Kurumu'nun kurulması", date: "1932-01-01" },
+    { name: "Kadınlara seçme ve seçilme hakkı", date: "1934-12-05" },
+    { name: "Soyadı Kanunu", date: "1934-06-21" }
+  ];
 
-function getNextEvent() {
-  const now = new Date();
-  const year = now.getFullYear();
+  function createDateForYear(dateString, year) {
+    const parts = dateString.split("-");
+    return new Date(year, parseInt(parts[1],10) - 1, parseInt(parts[2],10));
+  }
 
-  const futureEvents = events.map(e => {
-    const [month, day] = e.date.split('/');
-    let date = new Date(`${year}-${month}-${day}T00:00:00`);
-    if (date < now) date.setFullYear(year + 1);
-    return { ...e, date };
-  });
+  function getNextImportantDate(dates) {
+    const now = new Date();
+    const currentYear = now.getFullYear();
 
-  futureEvents.sort((a, b) => a.date - b.date);
-  return futureEvents[0];
-}
+    let futureDates = dates.map(d => {
+      let eventDate = createDateForYear(d.date, currentYear);
+      if(eventDate < now){
+        eventDate.setFullYear(currentYear + 1);
+      }
+      return {...d, nextDate: eventDate};
+    });
 
-function updateCountdown() {
-  const event = getNextEvent();
-  document.getElementById("eventName").textContent = event.name;
-  document.getElementById("eventDate").textContent = event.date.toLocaleDateString('tr-TR');
+    futureDates.sort((a,b) => a.nextDate - b.nextDate);
+    return futureDates[0];
+  }
 
-  const now = new Date();
-  const diff = event.date - now;
+  function formatDate(date) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('tr-TR', options);
+  }
 
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
-  const minutes = Math.floor(diff / (1000 * 60)) % 60;
-  const seconds = Math.floor(diff / 1000) % 60;
+  function startCountdown(event) {
+    const countdownEl = document.getElementById("countdown");
+    const progressBar = document.getElementById("progressBar");
+    const eventNameEl = document.getElementById("eventName");
+    const eventDateEl = document.getElementById("eventDate");
 
-  document.getElementById("countdown").textContent =
-    `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye kaldı`;
+    let startDate = new Date(event.nextDate);
+    startDate.setFullYear(startDate.getFullYear() - 1);
 
-  const total = event.date - new Date(event.date.getFullYear() - 1, event.date.getMonth(), event.date.getDate());
-  const progress = ((now - (new Date(event.date.getFullYear() - 1, event.date.getMonth(), event.date.getDate()))) / total) * 100;
-  document.getElementById("bar").style.width = `${progress.toFixed(2)}%`;
-}
+    eventNameEl.textContent = event.name;
+    eventDateEl.textContent = formatDate(event.nextDate);
 
-updateCountdown();
-setInterval(updateCountdown, 1000);
+    function update() {
+      const now = new Date();
+      let diff = event.nextDate - now;
+
+      if(diff <= 0){
+        countdownEl.textContent = "Bugün!";
+        progressBar.style.width = "100%";
+        clearInterval(interval);
+        return;
+      }
+
+      const days = Math.floor(diff / (1000*60*60*24));
+      const hours = Math.floor((diff / (1000*60*60)) % 24);
+      const minutes = Math.floor((diff / (1000*60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      countdownEl.textContent = `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye kaldı`;
+
+      const totalPeriod = event.nextDate - startDate;
+      const elapsed = now - startDate;
+      let percent = (elapsed / totalPeriod) * 100;
+      if(percent > 100) percent = 100;
+      if(percent < 0) percent = 0;
+
+      progressBar.style.width = percent + "%";
+    }
+
+    update();
+    const interval = setInterval(update, 1000);
+  }
+
+  const nextEvent = getNextImportantDate(importantDates);
+  startCountdown(nextEvent);
 </script>
 
 </body>
