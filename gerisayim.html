@@ -9,8 +9,8 @@
       margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #000;
       color: #fff;
-      transition: background-color 0.3s, color 0.3s;
       display: flex; flex-direction: column; min-height: 100vh;
+      transition: background-color 0.3s, color 0.3s;
     }
     .header {
       display: flex; justify-content: center; gap: 15px;
@@ -80,6 +80,7 @@
     .event-list ul {
       list-style-type: none;
       padding-left: 0;
+      margin: 0;
     }
     .event-list li {
       padding: 8px 12px;
@@ -142,7 +143,7 @@
     <div class="event-list">
       <h2 style="color:#b30000; user-select:none;">Yaklaşan Özel Günler</h2>
       <ul id="events">
-        <!-- Liste JS ile dolacak -->
+        <!-- Liste JS ile doldurulacak -->
       </ul>
     </div>
 
@@ -150,7 +151,6 @@
   </div>
 
   <script>
-    // Özel günler: isim ve tarih (ay-gün)
     const specialEvents = [
       {name: "Atatürk'ün Doğumu", date: "1881-05-19"},
       {name: "Samsun'a Çıkış", date: "1919-05-19"},
@@ -158,73 +158,72 @@
       {name: "Sivas Kongresi", date: "1919-09-04"},
       {name: "Türkiye Cumhuriyeti'nin İlanı", date: "1923-10-29"},
       {name: "Atatürk'ün Vefatı", date: "1938-11-10"},
-      {name: "Cumhuriyet Bayramı", date: "2025-10-29"}, // gelecek yıl için güncel
+      {name: "Cumhuriyet Bayramı", date: "2025-10-29"},
       {name: "23 Nisan Ulusal Egemenlik ve Çocuk Bayramı", date: "2025-04-23"},
       {name: "19 Mayıs Atatürk'ü Anma, Gençlik ve Spor Bayramı", date: "2025-05-19"},
       {name: "30 Ağustos Zafer Bayramı", date: "2025-08-30"}
     ];
 
-    // Bugün tarihi
-    const now = new Date();
-
-    // En yakın özel günün tarihini bul
     function getNextEvent() {
-      const todayYear = now.getFullYear();
+      const now = new Date();
+      const thisYear = now.getFullYear();
       let upcoming = null;
-      for (let ev of specialEvents) {
+
+      for (const ev of specialEvents) {
         let evDate = new Date(ev.date);
-        // Eğer yıl belirtilmemiş ise bu yıl olarak ayarlanabilir
+
+        // Tarih eskiyse (Atatürk dönemi gibi) bu yıl olarak ayarla
         if (evDate.getFullYear() < 1900) {
-          evDate.setFullYear(todayYear);
-          if (evDate < now) evDate.setFullYear(todayYear + 1);
+          evDate.setFullYear(thisYear);
+          if (evDate < now) evDate.setFullYear(thisYear + 1);
         }
-        // Güncellenmiş tarih
-        if (!upcoming || evDate < upcoming) {
+        
+        if (!upcoming || evDate < upcoming.date) {
           if (evDate >= now) {
-            upcoming = evDate;
-            upcoming.name = ev.name;
+            upcoming = {name: ev.name, date: evDate};
           }
         }
       }
       return upcoming;
     }
 
-    // Geri sayımı güncelle
     function updateCountdown() {
-      const eventDate = getNextEvent();
-      if (!eventDate) return;
+      const event = getNextEvent();
+      if (!event) return;
 
-      const distance = eventDate - new Date();
+      const now = new Date();
+      const diff = event.date - now;
 
-      if (distance < 0) {
+      if (diff < 0) {
         document.getElementById("countdown").innerHTML = "<p>Özel gün geçti.</p>";
         return;
       }
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((distance / 1000 / 60) % 60);
-      const seconds = Math.floor((distance / 1000) % 60);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
 
-      document.getElementById("days").textContent = days.toString().padStart(2, "0");
-      document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
-      document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
-      document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0");
+      document.getElementById("days").textContent = String(days).padStart(2, '0');
+      document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
     }
 
-    // Tüm özel günleri listele
     function populateEvents() {
       const ul = document.getElementById("events");
       ul.innerHTML = "";
-      const todayYear = now.getFullYear();
+      const now = new Date();
+      const thisYear = now.getFullYear();
 
-      // Gelecek yıllar için tarih ayarı
       specialEvents.forEach(ev => {
         let evDate = new Date(ev.date);
+
         if (evDate.getFullYear() < 1900) {
-          evDate.setFullYear(todayYear);
-          if (evDate < now) evDate.setFullYear(todayYear + 1);
+          evDate.setFullYear(thisYear);
+          if (evDate < now) evDate.setFullYear(thisYear + 1);
         }
+
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         const dateString = evDate.toLocaleDateString('tr-TR', options);
         const li = document.createElement("li");
@@ -233,19 +232,10 @@
       });
     }
 
-    // İlk yüklemede ve her saniye geri sayımı güncelle
+    // Sayfa yüklendiğinde listeyi doldur ve geri sayımı başlat
     populateEvents();
     updateCountdown();
     setInterval(updateCountdown, 1000);
-
-    // Tema kontrolü
-    const darkMode = localStorage.getItem('darkMode');
-    if(darkMode === 'false') {
-      document.body.style.backgroundColor = '#fff';
-      document.body.style.color = '#000';
-      document.querySelectorAll('.btn').forEach(btn => {
-        btn.style.backgroundColor = '#e0e0e0';
-        btn.style.color = '#000';
-        btn.style.borderColor = '#bbb';
-      });
-     
+  </script>
+</body>
+</html>
