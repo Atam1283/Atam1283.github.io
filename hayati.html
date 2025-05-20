@@ -1,239 +1,223 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Atatürk'ün Hayatı</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     body {
       margin: 0;
-      padding: 0;
-      font-family: "Segoe UI", sans-serif;
+      padding: 0 5vw 40px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #000;
-      color: #fff;
+      color: #eee;
+      box-sizing: border-box;
     }
 
-    nav {
+    nav.menu {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
+      background: #111;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 10px 20px;
-      z-index: 1000;
-      flex-wrap: wrap;
+      z-index: 100;
+      box-shadow: 0 0 10px #000;
     }
 
-    .nav-left, .nav-right {
+    .menu-left a {
+      color: white;
+      font-size: 18px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .menu-left a:hover {
+      color: #ff2c2c;
+    }
+
+    .menu-right {
       display: flex;
       gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
+    .menu-right a {
       background: #222;
-      padding: 8px 12px;
-      border-radius: 5px;
-      border: 1px solid white;
+      color: white;
+      border: 1px solid #eee;
+      padding: 6px 10px;
       font-size: 14px;
+      border-radius: 5px;
+      text-decoration: none;
       display: flex;
       align-items: center;
       gap: 5px;
       transition: 0.3s;
     }
 
-    nav a:hover {
-      background-color: #ff2c2c;
-      border-color: #ff2c2c;
-    }
-
-    .lang-btn {
-      background: #444;
-      border: 1px solid #aaa;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 13px;
-    }
-
-    .lang-btn:hover {
+    .menu-right a:hover {
       background: #ff2c2c;
       border-color: #ff2c2c;
     }
 
+    .menu-right a.hide {
+      display: none;
+    }
+
     h1 {
-      margin-top: 80px;
       text-align: center;
+      padding-top: 80px;
+      color: #fff;
       font-size: 6vw;
       text-shadow: 0 0 10px white;
+      margin-bottom: 30px;
     }
 
     .timeline {
       max-width: 900px;
-      margin: 30px auto;
-      padding: 0 20px;
+      margin: 0 auto;
     }
 
     .event {
+      background-color: rgba(255, 255, 255, 0.04);
       border-left: 4px solid #fff;
-      padding-left: 15px;
-      margin-bottom: 25px;
+      padding: 20px;
+      margin: 20px 0;
       position: relative;
+      border-radius: 6px;
     }
 
     .event::before {
-      content: '';
-      width: 12px;
-      height: 12px;
-      background: #fff;
+      content: "";
       position: absolute;
-      left: -8px;
-      top: 5px;
+      top: 20px;
+      left: -18px;
+      width: 16px;
+      height: 16px;
+      background-color: #fff;
       border-radius: 50%;
-    }
-
-    .event h3 {
-      margin: 0;
-      font-size: 20px;
-      color: #fff;
-    }
-
-    .event p {
-      margin: 5px 0 0;
-      font-size: 16px;
-      color: #ccc;
+      border: 3px solid #000;
     }
 
     .event.red::before {
-      background: #ff2c2c;
+      background-color: #ff2c2c;
+    }
+
+    .event h3 {
+      margin: 0 0 5px;
+      font-size: 4.5vw;
+      color: #fff;
     }
 
     .event.red h3 {
       color: #ff2c2c;
     }
 
+    .event p {
+      margin: 0;
+      font-size: 4vw;
+      color: #ddd;
+      line-height: 1.5;
+    }
+
     .event.red p {
       color: #ffaaaa;
     }
 
-    @media (max-width: 600px) {
+    @media (min-width: 768px) {
       h1 {
-        font-size: 32px;
-      }
-
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav a, .lang-btn {
-        font-size: 12px;
-        padding: 6px 10px;
+        font-size: 48px;
       }
 
       .event h3 {
-        font-size: 18px;
+        font-size: 20px;
       }
 
       .event p {
-        font-size: 14px;
+        font-size: 16px;
+      }
+
+      .event::before {
+        left: -30px;
+        width: 20px;
+        height: 20px;
       }
     }
   </style>
 </head>
 <body>
-
-  <nav>
-    <div class="nav-left">
-      <a href="index.html"><i class="fas fa-home"></i> <span class="nav-home">Ana Sayfa</span></a>
-      <a href="galeri.html"><i class="fas fa-image"></i> Galeri</a>
-      <a href="hayati.html" id="hayat-btn"><i class="fas fa-user"></i> Hayatı</a>
-      <a href="geri-sayim.html"><i class="fas fa-clock"></i> Geri Sayım</a>
-      <a href="ayarlar.html"><i class="fas fa-cog"></i> Ayarlar</a>
+  <!-- Üst Menü -->
+  <nav class="menu">
+    <div class="menu-left">
+      <a href="index.html"><i class="fas fa-home"></i> <span id="home-text">Ana Sayfa</span></a>
     </div>
-    <div class="nav-right">
-      <button class="lang-btn" onclick="setLang('tr')">TR</button>
-      <button class="lang-btn" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" onclick="setLang('az')">AZ</button>
+    <div class="menu-right">
+      <a href="galeri.html"><i class="fas fa-image"></i> Galeri</a>
+      <a href="hayati.html" class="hide"><i class="fas fa-user"></i> Hayatı</a>
+      <a href="gerisayim.html"><i class="fas fa-hourglass-half"></i> Geri Sayım</a>
+      <a href="ayarlar.html"><i class="fas fa-cog"></i> Ayarlar</a>
     </div>
   </nav>
 
   <h1 id="page-title">Mustafa Kemal Atatürk'ün Hayatı</h1>
 
   <div class="timeline" id="timeline">
-    <div class="event"><h3 data-id="y1">1881</h3><p data-id="t1">Selanik'te doğdu.</p></div>
-    <div class="event"><h3 data-id="y2">1893</h3><p data-id="t2">Askerî Rüştiye'ye başladı, "Kemal" adını aldı.</p></div>
-    <div class="event"><h3 data-id="y3">1905</h3><p data-id="t3">Harp Akademisi'nden mezun oldu.</p></div>
-    <div class="event"><h3 data-id="y4">1915</h3><p data-id="t4">Çanakkale’de destan yazdı.</p></div>
-    <div class="event"><h3 data-id="y5">1919</h3><p data-id="t5">Samsun'a çıkarak Kurtuluş Savaşı’nı başlattı.</p></div>
-    <div class="event"><h3 data-id="y6">1920</h3><p data-id="t6">TBMM'yi açtı.</p></div>
-    <div class="event"><h3 data-id="y7">1923</h3><p data-id="t7">Cumhuriyeti ilan etti, Cumhurbaşkanı oldu.</p></div>
-    <div class="event"><h3 data-id="y8">1934</h3><p data-id="t8">"Atatürk" soyadını aldı.</p></div>
-    <div class="event red"><h3 data-id="y9">10 Kasım 1938</h3><p data-id="t9">Dolmabahçe Sarayı'nda vefat etti.</p></div>
+    <div class="event" data-id="1">
+      <h3>1881</h3>
+      <p>Selanik'te doğdu.</p>
+    </div>
+    <div class="event" data-id="2">
+      <h3>1893</h3>
+      <p>Selanik Askerî Rüştiyesi'ne başladı ve "Kemal" ismini aldı.</p>
+    </div>
+    <div class="event" data-id="3">
+      <h3>1905</h3>
+      <p>Harp Akademisi'ni kurmay yüzbaşı olarak bitirdi.</p>
+    </div>
+    <div class="event" data-id="4">
+      <h3>1915</h3>
+      <p>Çanakkale Savaşı'nda büyük başarı gösterdi.</p>
+    </div>
+    <div class="event" data-id="5">
+      <h3>19 Mayıs 1919</h3>
+      <p>Samsun'a çıkarak Kurtuluş Savaşı’nı başlattı.</p>
+    </div>
+    <div class="event" data-id="6">
+      <h3>1920</h3>
+      <p>Türkiye Büyük Millet Meclisi'ni açtı.</p>
+    </div>
+    <div class="event" data-id="7">
+      <h3>1923</h3>
+      <p>Cumhuriyet ilan edildi ve Atatürk ilk Cumhurbaşkanı oldu.</p>
+    </div>
+    <div class="event" data-id="8">
+      <h3>1934</h3>
+      <p>Soyadı Kanunu ile “Atatürk” soyadını aldı.</p>
+    </div>
+    <div class="event red" data-id="9">
+      <h3>10 Kasım 1938</h3>
+      <p>Dolmabahçe Sarayı'nda vefat etti.</p>
+    </div>
   </div>
 
   <script>
+    // Sayfalar arasında dili koru
+    const lang = localStorage.getItem("lang") || "tr";
     const translations = {
-      tr: {
-        home: "Ana Sayfa",
-        title: "Mustafa Kemal Atatürk'ün Hayatı",
-        events: [
-          ["1881", "Selanik'te doğdu."],
-          ["1893", "Askerî Rüştiye'ye başladı, \"Kemal\" adını aldı."],
-          ["1905", "Harp Akademisi'nden mezun oldu."],
-          ["1915", "Çanakkale’de destan yazdı."],
-          ["1919", "Samsun'a çıkarak Kurtuluş Savaşı’nı başlattı."],
-          ["1920", "TBMM'yi açtı."],
-          ["1923", "Cumhuriyeti ilan etti, Cumhurbaşkanı oldu."],
-          ["1934", "\"Atatürk\" soyadını aldı."],
-          ["10 Kasım 1938", "Dolmabahçe Sarayı'nda vefat etti."]
-        ]
-      },
-      en: {
-        home: "Home",
-        title: "Life of Mustafa Kemal Atatürk",
-        events: [
-          ["1881", "Born in Thessaloniki."],
-          ["1893", "Started military school, received name 'Kemal'."],
-          ["1905", "Graduated from Military Academy."],
-          ["1915", "Made history at Gallipoli."],
-          ["1919", "Started War of Independence in Samsun."],
-          ["1920", "Opened the Turkish Grand Assembly."],
-          ["1923", "Declared the Republic, became President."],
-          ["1934", "Received the surname 'Atatürk'."],
-          ["Nov 10, 1938", "Passed away in Dolmabahçe Palace."]
-        ]
-      }
+      tr: { home: "Ana Sayfa", title: "Mustafa Kemal Atatürk'ün Hayatı" },
+      en: { home: "Home", title: "Life of Mustafa Kemal Atatürk" },
+      az: { home: "Ana Səhifə", title: "Mustafa Kamal Atatürkün Həyatı" }
     };
 
-    function setLang(lang) {
-      localStorage.setItem("lang", lang);
-      applyLang(lang);
+    if (translations[lang]) {
+      document.getElementById("home-text").textContent = translations[lang].home;
+      document.getElementById("page-title").textContent = translations[lang].title;
     }
-
-    function applyLang(lang) {
-      const data = translations[lang] || translations.tr;
-      document.querySelector(".nav-home").textContent = data.home;
-      document.getElementById("page-title").textContent = data.title;
-      data.events.forEach((event, i) => {
-        document.querySelector(`[data-id="y${i + 1}"]`).textContent = event[0];
-        document.querySelector(`[data-id="t${i + 1}"]`).textContent = event[1];
-      });
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const lang = localStorage.getItem("lang") || "tr";
-      applyLang(lang);
-      document.getElementById("hayat-btn").style.display = "none";
-    });
   </script>
-
 </body>
 </html>
