@@ -1,76 +1,42 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Atatürk'ün Hayatı - Atatürk Temalı Site</title>
-<style>
-  *, *::before, *::after { box-sizing: border-box; }
-  body {
-    margin: 0; padding: 80px 20px 40px;
-    background: #000; color: #eee;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    min-height: 100vh; user-select: none; position: relative;
-    line-height: 1.5;
-  }
-  #navButtons {
-    position: fixed; top: 15px; left: 50%; transform: translateX(-50%);
-    display: flex; gap: 14px; z-index: 1000;
-  }
-  #navButtons button {
-    background: none;
-    border: 2px solid #c30a0a;
-    color: #eee;
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 8px 20px;
-    border-radius: 28px;
-    cursor: pointer;
-    user-select: none;
-    font-family: inherit;
-    transition: all 0.3s ease;
-  }
-  #navButtons button:hover,
-  #navButtons button:focus {
-    background-color: #c30a0a;
-    color: #fff;
-    outline: none;
-  }
-  #navButtons button:focus-visible {
-    outline: 2px solid #fff;
-    outline-offset: 2px;
-  }
-  main {
-    max-width: 720px;
-    margin: 100px auto 0;
-    padding: 0 12px;
-  }
-  h1 {
-    font-size: 2.8rem;
-    color: #c30a0a;
-    font-weight: 900;
-    margin-bottom: 24px;
-    user-select: text;
-  }
-  p {
-    font-size: 1.15rem;
-    margin-bottom: 20px;
-    color: #ddd;
-    user-select: text;
-  }
-  #bottomLine {
-    margin-top: 80px;
-    width: 90vw;
-    max-width: 700px;
-    border-top: 2px solid #222;
-    box-shadow: 0 0 12px 1px #c30a0a44 inset;
-  }
-  @media (max-width: 480px) {
-    h1 {
-      font-size: 2.2rem;
-    }
-    p {
-      font-size: 1rem;
-    }
-  }
-</
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mustafa Kemal Atatürk - Hayatı</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.ico">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Ana Sayfa</a>
+      <a href="hayati.html" class="active">Hayatı</a>
+      <a href="galeri.html">Galeri</a>
+      <a href="gerisayim.html">Geri Sayım</a>
+      <a href="ayarlar.html">Ayarlar</a>
+    </nav>
+  </header>
+
+  <main class="content">
+    <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
+    <hr class="red-line">
+    <section>
+      <h2>Çocukluk ve Eğitim Yılları</h2>
+      <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. İlk öğrenimine Şemsi Efendi Mektebi'nde başladı. Askeri eğitime yönelerek Manastır Askerî İdadisi, ardından İstanbul Harp Okulu'nda eğitim gördü ve 1905 yılında kurmay yüzbaşı olarak mezun oldu.</p>
+
+      <h2>Askeri Başarıları</h2>
+      <p>Atatürk, 1911'de Trablusgarp Savaşı'na gönüllü olarak katıldı. Balkan Savaşları ve Çanakkale Savaşları'nda büyük başarılar gösterdi. Özellikle 1915'teki Anafartalar Zaferi, onun askeri dehasını ortaya koydu.</p>
+
+      <h2>Kurtuluş Savaşı ve Cumhuriyet</h2>
+      <p>Mondros Ateşkes Anlaşması sonrası Anadolu'ya geçerek 1919'da Samsun'a çıktı. Erzurum ve Sivas kongreleri ile ulusal direnişi örgütledi. 1920'de TBMM'yi açtı. 1922'de Büyük Taarruz ile Türk ordusu zafer kazandı ve 1923'te Türkiye Cumhuriyeti'ni ilan etti. İlk Cumhurbaşkanı seçildi.</p>
+
+      <h2>İnkılaplar ve Modern Türkiye</h2>
+      <p>Atatürk, hukuk, eğitim, dil ve giyim alanlarında köklü reformlar yaptı. Halifeliği kaldırdı, kadınlara seçme ve seçilme hakkı tanıdı. 1934'te Soyadı Kanunu ile "Atatürk" soyadını aldı. Laiklik, çağdaşlık ve bilimsellik ilkelerini benimsedi.</p>
+
+      <h2>Vefatı</h2>
+      <p>Mustafa Kemal Atatürk, 10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayata gözlerini yumdu. Türk milleti tarafından derin bir sevgi ve özlemle anılmaktadır.</p>
+    </section>
+  </main>
+</body>
+</html>
