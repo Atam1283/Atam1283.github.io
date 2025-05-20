@@ -30,12 +30,30 @@
     top: 0;
     z-index: 1000;
   }
-  nav .logo {
-    font-weight: 700;
-    font-size: 1.5rem;
+  /* Sayfa butonları grubu */
+  #pageButtons {
+    display: flex;
+    gap: 20px;
+  }
+  #pageButtons a {
     color: #fff;
-    letter-spacing: 0.1em;
-    text-shadow: 0 0 8px #ffffffbb;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 6px 14px;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    user-select: none;
+  }
+  #pageButtons a:hover,
+  #pageButtons a:focus {
+    background-color: #00ffff;
+    color: #000;
+    outline: none;
+  }
+  #pageButtons a:focus-visible {
+    outline: 2px solid #00ffff;
+    outline-offset: 2px;
   }
   /* Arama kutusu */
   #searchForm {
@@ -120,12 +138,25 @@
     #searchForm {
       max-width: 200px;
     }
+    #pageButtons {
+      gap: 12px;
+    }
+    #pageButtons a {
+      font-size: 0.9rem;
+      padding: 4px 10px;
+    }
   }
 </style>
 </head>
 <body>
 <nav>
-  <div class="logo" tabindex="0">LOGO</div>
+  <div id="pageButtons" role="navigation" aria-label="Sayfa menüsü">
+    <a href="index.html" tabindex="0">Ana Sayfa</a>
+    <a href="galeri.html" tabindex="0">Galeri</a>
+    <a href="hayati.html" tabindex="0">Hayatı</a>
+    <a href="gerisayim.html" tabindex="0">Geri Sayım</a>
+    <a href="ayarlar.html" tabindex="0">Ayarlar</a>
+  </div>
   <form id="searchForm" role="search" aria-label="Site içi arama">
     <input type="search" id="searchInput" placeholder="Arama yapın..." aria-label="Arama kutusu" autocomplete="off" />
     <button type="submit" id="searchButton" aria-label="Ara">Ara</button>
