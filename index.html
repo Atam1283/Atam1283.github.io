@@ -11,14 +11,14 @@
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
-  /* Sabit üst menü (hayatı sayfası gibi) */
+  /* Sabit üst menü */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
     background-color: #111;
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 50px;
     padding: 15px 0;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0,0,0,0.8);
@@ -27,34 +27,43 @@
     color: white;
     text-decoration: none;
     font-weight: 600;
-    font-size: 1.15rem;
-    padding: 6px 12px;
-    border-radius: 6px;
-    transition: background-color 0.3s, color 0.3s;
+    font-size: 1.2rem;
     display: flex;
     align-items: center;
     gap: 8px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
   }
   nav a:hover {
     background-color: #ff4d4d;
     color: white;
   }
+  nav a svg {
+    width: 22px;
+    height: 22px;
+    fill: white;
+    transition: fill 0.3s;
+  }
+  nav a:hover svg {
+    fill: #fff0f0;
+  }
 
-  /* Ayarlar ikonu butonu */
+  /* Ayarlar ikonu ve dropdown */
   .settings {
     position: fixed;
-    top: 15px;
+    top: 12px;
     right: 20px;
     z-index: 1100;
   }
   .settings-button {
-    font-size: 28px;
+    font-size: 26px;
     background: transparent;
     border: none;
     color: white;
     cursor: pointer;
-    padding: 5px 10px;
-    border-radius: 6px;
+    padding: 6px 10px;
+    border-radius: 8px;
     user-select: none;
     transition: background-color 0.3s;
   }
@@ -67,8 +76,8 @@
     top: 42px;
     right: 0;
     background-color: #222;
-    border-radius: 8px;
-    min-width: 140px;
+    border-radius: 10px;
+    min-width: 150px;
     box-shadow: 0 0 10px rgba(255,255,255,0.2);
     user-select: none;
   }
@@ -78,10 +87,14 @@
     background: none;
     border: none;
     color: white;
-    padding: 10px 15px;
+    padding: 12px 18px;
     font-size: 1rem;
     text-align: left;
     cursor: pointer;
+    border-bottom: 1px solid #444;
+  }
+  .dropdown-menu button:last-child {
+    border-bottom: none;
   }
   .dropdown-menu button:hover {
     background-color: #ff4d4d;
@@ -91,40 +104,66 @@
     font-weight: bold;
   }
 
-  /* İçerik için üstten boşluk bırak */
+  /* İçerik alanı üstten boşluk */
   main {
-    padding: 100px 20px 40px;
+    padding: 110px 20px 40px;
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
   }
+  main h1 {
+    margin-bottom: 10px;
+    font-size: 2.8rem;
+  }
+  #quote {
+    font-style: italic;
+    font-size: 1.6rem;
+    margin: 20px 0 5px;
+  }
+  #quote-source {
+    color: #bbb;
+    font-size: 1.1rem;
+  }
 
-  @media (max-width:600px) {
+  @media (max-width: 600px) {
     nav {
-      gap: 25px;
+      gap: 30px;
       padding: 12px 0;
     }
     nav a {
       font-size: 1rem;
-      padding: 4px 8px;
+      padding: 5px 8px;
+    }
+    nav a svg {
+      width: 18px;
+      height: 18px;
     }
     .settings-button {
-      font-size: 24px;
-      padding: 3px 8px;
+      font-size: 22px;
+      padding: 5px 8px;
     }
   }
 </style>
 </head>
 <body>
 
-<!-- Menü -->
+<!-- Üst Menü -->
 <nav aria-label="Ana Menü">
-  <a href="hayati.html" id="menu-life" tabindex="0">Hayatı</a>
-  <a href="galeri.html" id="menu-gallery" tabindex="0">Galeri</a>
-  <a href="gerisayim.html" id="menu-countdown" tabindex="0">Geri Sayım</a>
+  <a href="hayati.html" aria-label="Hayatı" id="menu-life" tabindex="0">
+    <!-- Hayatı ikonu (kitap simgesi) -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 2H6a2 2 0 0 0-2 2v16a1 1 0 0 0 1.447.894L12 17.118l6.553 3.776A1 1 0 0 0 20 20V4a2 2 0 0 0-2-2z"/></svg> Hayatı
+  </a>
+  <a href="galeri.html" aria-label="Galeri" id="menu-gallery" tabindex="0">
+    <!-- Galeri ikonu (fotoğraf simgesi) -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2zM8.5 14.5l2.5 3.01L14.5 13l4.5 6H5l3.5-4.5z"/></svg> Galeri
+  </a>
+  <a href="gerisayim.html" aria-label="Geri Sayım" id="menu-countdown" tabindex="0">
+    <!-- Geri Sayım ikonu (saat simgesi) -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1a11 11 0 1 0 11 11A11.012 11.012 0 0 0 12 1zm0 20a9 9 0 1 1 9-9 9.01 9.01 0 0 1-9 9zm1-9.414V7h-2v6h6v-2z"/></svg> Geri Sayım
+  </a>
 </nav>
 
-<!-- Ayarlar menüsü -->
+<!-- Ayarlar ve Dil Seçenekleri -->
 <div class="settings" aria-label="Ayarlar menüsü">
   <button
     class="settings-button"
@@ -136,7 +175,7 @@
   >⚙️</button>
   <div class="dropdown-menu" id="settingsDropdown" role="menu" aria-hidden="true">
     <button type="button" id="btnLangMenu" aria-haspopup="true" aria-expanded="false" aria-controls="languageDropdown">Dil</button>
-    <div class="dropdown-menu" id="languageDropdown" role="menu" aria-label="Dil seçenekleri" aria-hidden="true" style="right: 140px; top: 0; position: absolute;">
+    <div class="dropdown-menu" id="languageDropdown" role="menu" aria-label="Dil seçenekleri" aria-hidden="true" style="right: 150px; top: 0; position: absolute;">
       <button type="button" data-lang="tr">Türkçe</button>
       <button type="button" data-lang="en">English</button>
       <button type="button" data-lang="az">Azərbaycan</button>
@@ -144,42 +183,57 @@
   </div>
 </div>
 
-<!-- Ana içerik -->
 <main>
   <h1 id="main-title">Mustafa Kemal Atatürk</h1>
-  <p id="quote" style="font-style: italic; font-size: 1.5rem; margin-top: 20px;">Yurtta sulh, cihanda sulh.</p>
-  <p id="quote-source" style="color: #bbb;">Mustafa Kemal Atatürk</p>
+  <p id="quote"></p>
+  <p id="quote-source"></p>
 
   <section class="search-section" style="margin-top: 40px;">
     <form onsubmit="aramaYap(); return false;">
-      <input type="text" id="arama" placeholder="Atatürk, Cumhuriyet, Türkiye..." style="padding: 12px; width: 70%; border-radius: 6px; border: none; font-size: 1rem; outline: none;"/>
-      <button type="submit" id="btn-search" style="padding: 12px 20px; background-color: #ff4d4d; color: white; border: none; border-radius: 6px; margin-left: 10px; cursor: pointer; font-weight: bold;">Ara</button>
+      <input
+        type="text"
+        id="arama"
+        placeholder="Atatürk, Cumhuriyet, Türkiye..."
+        style="padding: 12px; width: 70%; border-radius: 6px; border: none; font-size: 1rem; outline: none;"
+      />
+      <button
+        type="submit"
+        id="btn-search"
+        style="padding: 12px 20px; background-color: #ff4d4d; color: white; border: none; border-radius: 6px; margin-left: 10px; cursor: pointer; font-weight: bold;"
+      >Ara</button>
     </form>
   </section>
 </main>
 
 <script>
+  // Alıntılar dizisi (her yenilemede rastgele seçilecek)
+  const quotes = [
+    { text: "Yurtta sulh, cihanda sulh.", author: "Mustafa Kemal Atatürk" },
+    { text: "Egemenlik, kayıtsız şartsız milletindir.", author: "Mustafa Kemal Atatürk" },
+    { text: "Hayatta en hakiki mürşit ilimdir.", author: "Mustafa Kemal Atatürk" },
+    { text: "Beni görmek demek, mutlaka yüzümü görmek değildir.", author: "Mustafa Kemal Atatürk" },
+    { text: "Türkiye Cumhuriyeti ilelebet payidar kalacaktır.", author: "Mustafa Kemal Atatürk" }
+  ];
+
+  // Dil çeviri sözlüğü
   const translations = {
     tr: {
       searchPlaceholder: "Atatürk, Cumhuriyet, Türkiye...",
       searchButton: "Ara",
       title: "Mustafa Kemal Atatürk",
-      menu: { life: "Hayatı", gallery: "Galeri", countdown: "Geri Sayım" },
-      quoteSource: "Mustafa Kemal Atatürk"
+      menu: { life: "Hayatı", gallery: "Galeri", countdown: "Geri Sayım" }
     },
     en: {
       searchPlaceholder: "Atatürk, Republic, Turkey...",
       searchButton: "Search",
       title: "Mustafa Kemal Atatürk",
-      menu: { life: "Life", gallery: "Gallery", countdown: "Countdown" },
-      quoteSource: "Mustafa Kemal Atatürk"
+      menu: { life: "Life", gallery: "Gallery", countdown: "Countdown" }
     },
     az: {
       searchPlaceholder: "Atatürk, Cümhuriyyət, Türkiyə...",
       searchButton: "Axtar",
       title: "Mustafa Kamal Atatürk",
-      menu: { life: "Həyatı", gallery: "Qalereya", countdown: "Geri Sayım" },
-      quoteSource: "Mustafa Kamal Atatürk"
+      menu: { life: "Həyatı", gallery: "Qalereya", countdown: "Geri Sayım" }
     }
   };
 
@@ -190,7 +244,7 @@
     menuLife: document.getElementById('menu-life'),
     menuGallery: document.getElementById('menu-gallery'),
     menuCountdown: document.getElementById('menu-countdown'),
-    quote: document.getElementById('quote'),
+    quoteText: document.getElementById('quote'),
     quoteSource: document.getElementById('quote-source'),
     settingsBtn: document.getElementById('settingsBtn'),
     settingsDropdown: document.getElementById('settingsDropdown'),
@@ -208,11 +262,12 @@
     el.menuLife.textContent = t.menu.life;
     el.menuGallery.textContent = t.menu.gallery;
     el.menuCountdown.textContent = t.menu.countdown;
-    el.quoteSource.textContent = t.quoteSource;
+  }
 
-    document.querySelectorAll('#languageDropdown button').forEach(btn => {
-      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-    });
+  function showRandomQuote() {
+    const q = quotes[Math.floor(Math.random() * quotes.length)];
+    el.quoteText.textContent = `"${q.text}"`;
+    el.quoteSource.textContent = q.author;
   }
 
   function aramaYap() {
@@ -227,6 +282,7 @@
     window.open(url, '_blank');
   }
 
+  // Ayarlar menüsü açma-kapama
   el.settingsBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     const visible = el.settingsDropdown.style.display === 'block';
@@ -263,9 +319,13 @@
     el.langBtn.setAttribute('aria-expanded', false);
   });
 
-  // Sayfa açıldığında dil ayarını uygula
-  const savedLang = localStorage.getItem('siteLang') || 'tr';
-  setLanguage(savedLang);
+  // Sayfa yüklendiğinde
+  window.addEventListener('load', () => {
+    const savedLang = localStorage.getItem('siteLang') || 'tr';
+    setLanguage(savedLang);
+    showRandomQuote();
+  });
 </script>
+
 </body>
 </html>
