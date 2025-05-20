@@ -1,41 +1,172 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mustafa Kemal Atatürk - Hayatı</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="favicon.ico">
+  <style>
+    /* Reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 0; background-color: #000; color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex; flex-direction: column; min-height: 100vh;
+      line-height: 1.6;
+    }
+    
+    /* Üst menü */
+    header {
+      background-color: #111;
+      border-bottom: 2px solid #b22222;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 6px 10px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      background-color: #b22222;
+      color: #fff;
+      outline: none;
+    }
+
+    nav a[aria-current="page"] {
+      background-color: #b22222;
+      color: #fff;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    main {
+      flex-grow: 1;
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.8rem;
+      font-weight: 900;
+      margin-bottom: 15px;
+      letter-spacing: 0.1em;
+      user-select: none;
+      color: #fff;
+    }
+
+    hr {
+      border: none;
+      border-bottom: 2px solid #555;
+      margin: 10px 0 30px 0;
+    }
+
+    /* İçerik bölümü */
+    section {
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: #b22222;
+      margin-bottom: 15px;
+      border-left: 5px solid #b22222;
+      padding-left: 12px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #ddd;
+      text-align: justify;
+      margin-bottom: 15px;
+    }
+
+    /* Alıntılar */
+    blockquote {
+      border-left: 4px solid #b22222;
+      padding-left: 15px;
+      color: #ccc;
+      font-style: italic;
+      margin: 20px 0;
+      background-color: #111;
+      border-radius: 5px;
+    }
+
+    /* Resimler */
+    .portrait {
+      float: right;
+      margin: 0 0 20px 20px;
+      max-width: 220px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #b22222;
+    }
+
+    /* Responsive */
+    @media (max-width: 720px) {
+      .portrait {
+        float: none;
+        display: block;
+        margin: 0 auto 20px auto;
+        max-width: 80%;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
-    <nav>
-      <a href="index.html">Ana Sayfa</a>
-      <a href="hayati.html" class="active">Hayatı</a>
-      <a href="galeri.html">Galeri</a>
-      <a href="gerisayim.html">Geri Sayım</a>
-      <a href="ayarlar.html">Ayarlar</a>
+    <nav aria-label="Ana navigasyon">
+      <a href="index.html" tabindex="0">Ana Sayfa</a>
+      <a href="galeri.html" tabindex="0">Galeri</a>
+      <a href="hayati.html" tabindex="0" aria-current="page">Hayatı</a>
+      <a href="gerisayim.html" tabindex="0">Geri Sayım</a>
+      <a href="ayarlar.html" tabindex="0">Ayarlar</a>
     </nav>
   </header>
 
-  <main class="content">
+  <main>
     <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
-    <hr class="red-line">
+    <hr />
+
     <section>
-      <h2>Çocukluk ve Eğitim Yılları</h2>
-      <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. İlk öğrenimine Şemsi Efendi Mektebi'nde başladı. Askeri eğitime yönelerek Manastır Askerî İdadisi, ardından İstanbul Harp Okulu'nda eğitim gördü ve 1905 yılında kurmay yüzbaşı olarak mezun oldu.</p>
+      <h2>Çocukluk ve Gençlik Yılları (1881-1905)</h2>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Atatürk_as_a_Young_Man.jpg" alt="Genç Atatürk" class="portrait" />
+      <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. İlk öğrenimine mahalle mektebinde başladıktan sonra Şemsi Efendi Okulu ve Selanik Mülkiye Rüştiyesi'nde eğitim gördü. Askeri eğitime yöneldi ve 1902 yılında Harp Okulu'ndan, 1905 yılında da Harp Akademisi'nden mezun oldu.</p>
+    </section>
 
-      <h2>Askeri Başarıları</h2>
-      <p>Atatürk, 1911'de Trablusgarp Savaşı'na gönüllü olarak katıldı. Balkan Savaşları ve Çanakkale Savaşları'nda büyük başarılar gösterdi. Özellikle 1915'teki Anafartalar Zaferi, onun askeri dehasını ortaya koydu.</p>
+    <section>
+      <h2>Askeri Kariyer ve İnkılaplar (1905-1923)</h2>
+      <p>Mustafa Kemal, Osmanlı ordusunda çeşitli görevlerde bulundu ve özellikle Trablusgarp Savaşı, Balkan Savaşları ve I. Dünya Savaşı'nda önemli başarılar gösterdi. Çanakkale Savaşı'nda Anafartalar Grup Komutanı olarak büyük kahramanlıklar gösterdi. Mondros Mütarekesi sonrasında ülkenin işgali üzerine Samsun’a çıkarak Milli Mücadele’yi başlattı. 1923 yılında Türkiye Cumhuriyeti’nin kurucusu ve ilk Cumhurbaşkanı oldu.</p>
+    </section>
 
-      <h2>Kurtuluş Savaşı ve Cumhuriyet</h2>
-      <p>Mondros Ateşkes Anlaşması sonrası Anadolu'ya geçerek 1919'da Samsun'a çıktı. Erzurum ve Sivas kongreleri ile ulusal direnişi örgütledi. 1920'de TBMM'yi açtı. 1922'de Büyük Taarruz ile Türk ordusu zafer kazandı ve 1923'te Türkiye Cumhuriyeti'ni ilan etti. İlk Cumhurbaşkanı seçildi.</p>
+    <section>
+      <h2>Cumhuriyet Dönemi ve Reformlar (1923-1938)</h2>
+      <p>Atatürk, Cumhuriyet’in ilanından sonra hızlı ve köklü reformlarla Türkiye’yi çağdaşlaştırmayı amaçladı. Eğitimden hukuka, ekonomiden toplumsal yapıya kadar birçok alanda reformlar gerçekleştirdi. Latin alfabesinin kabulü, kadınlara seçme ve seçilme hakkının verilmesi, laiklik ve devletçilik ilkeleri bu dönemde hayat buldu. 10 Kasım 1938'de İstanbul’da Dolmabahçe Sarayı’nda hayata gözlerini yumdu.</p>
+    </section>
 
-      <h2>İnkılaplar ve Modern Türkiye</h2>
-      <p>Atatürk, hukuk, eğitim, dil ve giyim alanlarında köklü reformlar yaptı. Halifeliği kaldırdı, kadınlara seçme ve seçilme hakkı tanıdı. 1934'te Soyadı Kanunu ile "Atatürk" soyadını aldı. Laiklik, çağdaşlık ve bilimsellik ilkelerini benimsedi.</p>
-
-      <h2>Vefatı</h2>
-      <p>Mustafa Kemal Atatürk, 10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayata gözlerini yumdu. Türk milleti tarafından derin bir sevgi ve özlemle anılmaktadır.</p>
+    <section>
+      <h2>Atatürk'ten Anlamlı Bir Söz</h2>
+      <blockquote>
+        “Yurtta sulh, cihanda sulh.” <br />
+        <small><em>— Mustafa Kemal Atatürk</em></small>
+      </blockquote>
     </section>
   </main>
 </body>
