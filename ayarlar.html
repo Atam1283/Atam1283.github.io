@@ -1,201 +1,265 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ayarlar</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #000;
-      color: #fff;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ayarlar</title>
+<style>
+  body {
+    margin: 0;
+    padding: 20px 30px;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    #top-menu {
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      right: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      background-color: transparent;
-    }
+  nav {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    gap: 20px;
+  }
 
-    #top-menu a {
-      background: #222;
-      color: white;
-      border: 1.5px solid #eee;
-      padding: 8px 15px;
-      font-size: 16px;
-      border-radius: 6px;
-      text-decoration: none;
-      margin-left: 8px;
-      cursor: pointer;
-      transition: background 0.3s, color 0.3s, border-color 0.3s;
-      font-weight: 600;
-      user-select: none;
-    }
+  #pageButtons {
+    display: flex;
+    gap: 15px;
+  }
+  #pageButtons a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px 14px;
+    border-radius: 25px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    user-select: none;
+  }
+  #pageButtons a:hover,
+  #pageButtons a:focus {
+    color: #00ffff;
+    border-color: #00ffff;
+    outline: none;
+  }
+  #pageButtons a:focus-visible {
+    outline: 2px solid #00ffff;
+    outline-offset: 2px;
+  }
 
-    #top-menu a:hover {
-      background: #ff2c2c;
-      color: white;
-      border-color: #ff2c2c;
-    }
+  #searchForm {
+    flex: 1;
+    max-width: 300px;
+    display: flex;
+  }
 
-    .menu-left,
-    .menu-right {
-      display: flex;
-      align-items: center;
-    }
+  #searchInput {
+    flex: 1;
+    padding: 8px 14px;
+    font-size: 1rem;
+    border-radius: 25px 0 0 25px;
+    border: 2px solid #fff;
+    background-color: #000;
+    color: #fff;
+    outline-offset: 2px;
+  }
+  #searchInput::placeholder {
+    color: #bbb;
+  }
+  #searchInput:focus {
+    border-color: #00ffff;
+    outline: none;
+  }
 
-    h1 {
-      text-align: center;
-      padding-top: 100px;
-      font-size: 6vw;
-      font-weight: 700;
-      text-shadow: 0 0 10px white;
-      margin-bottom: 50px;
-    }
+  #searchButton {
+    padding: 8px 18px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 0 25px 25px 0;
+    border: 2px solid #fff;
+    border-left: none;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  #searchButton:hover,
+  #searchButton:focus {
+    background-color: #00ffff;
+    color: #000;
+    outline: none;
+  }
+  #searchButton:focus-visible {
+    outline: 2px solid #00ffff;
+    outline-offset: 2px;
+  }
 
-    .settings {
-      max-width: 600px;
-      margin: 0 auto 100px;
-      background-color: #111;
-      padding: 30px 20px;
-      border-radius: 10px;
-      border: 1px solid #333;
-      text-align: center;
-      box-shadow: 0 0 15px rgba(255,44,44,0.5);
-    }
+  h1 {
+    margin: 0 0 25px 0;
+    font-weight: 700;
+    font-size: 2.4rem;
+    user-select: none;
+  }
 
-    .settings h2 {
-      font-size: 26px;
-      margin-bottom: 30px;
-      border-bottom: 2px solid #ff2c2c;
-      padding-bottom: 12px;
-      font-weight: 700;
-    }
+  #quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    font-weight: 500;
+    max-width: 700px;
+    text-align: center;
+    user-select: none;
+  }
+  #quoteSource {
+    margin-top: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ccc;
+    text-align: center;
+    user-select: none;
+  }
 
-    .settings button {
-      margin: 10px 10px 0 0;
-      padding: 12px 25px;
-      font-size: 18px;
-      background-color: #222;
-      color: white;
-      border: 1.5px solid #eee;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.3s, border-color 0.3s;
-      user-select: none;
-      min-width: 120px;
-    }
+  #settings {
+    margin-top: 40px;
+    max-width: 700px;
+    width: 100%;
+    color: #fff;
+  }
 
-    .settings button:hover {
-      background-color: #ff2c2c;
-      border-color: #ff2c2c;
-    }
+  label {
+    display: block;
+    margin: 15px 0 6px;
+    font-weight: 600;
+    font-size: 1rem;
+  }
 
-    @media (max-width: 768px) {
-      #top-menu a {
-        font-size: 14px;
-        padding: 6px 12px;
-        margin-left: 6px;
-      }
-      h1 {
-        font-size: 10vw;
-        padding-top: 80px;
-        margin-bottom: 30px;
-      }
-      .settings h2 {
-        font-size: 22px;
-        margin-bottom: 20px;
-      }
-      .settings button {
-        font-size: 16px;
-        padding: 10px 20px;
-        min-width: 90px;
-      }
-    }
-  </style>
+  select, input[type="checkbox"] {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 2px solid #00ffff;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    outline-offset: 2px;
+    transition: border-color 0.3s ease;
+  }
+  select:focus, input[type="checkbox"]:focus {
+    border-color: #fff;
+    outline: none;
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+  }
+</style>
 </head>
 <body>
-  <div id="top-menu">
-    <div class="menu-left">
-      <a href="index.html" id="nav-anasayfa">Ana Sayfa</a>
+  <nav>
+    <div id="pageButtons" role="navigation" aria-label="Sayfa menüsü">
+      <a href="index.html" tabindex="0">Ana Sayfa</a>
+      <a href="galeri.html" tabindex="0">Galeri</a>
+      <a href="hayati.html" tabindex="0">Hayatı</a>
+      <a href="gerisayim.html" tabindex="0">Geri Sayım</a>
+      <a href="ayarlar.html" tabindex="0" aria-current="page">Ayarlar</a>
     </div>
-    <div class="menu-right">
-      <a href="galeri.html" id="nav-galeri">Galeri</a>
-      <a href="hayati.html" id="nav-hayati">Hayatı</a>
-      <a href="geri-sayim.html" id="nav-gerisayim">Geri Sayım</a>
-    </div>
-  </div>
 
-  <h1 id="page-title">Ayarlar</h1>
+    <form id="searchForm" role="search" aria-label="Site içi arama">
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="Arama yapın..."
+        aria-label="Arama kutusu"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button type="submit" id="searchButton" aria-label="Ara">Ara</button>
+    </form>
+  </nav>
 
-  <div class="settings">
-    <h2 id="lang-title">Dil Seçimi</h2>
-    <button onclick="setLang('tr')" id="btn-tr">Türkçe</button>
-    <button onclick="setLang('en')" id="btn-en">English</button>
-    <button onclick="setLang('az')" id="btn-az">Azərbaycan</button>
-  </div>
+  <main>
+    <h1>Mustafa Kemal Atatürk</h1>
+    <p id="quote" aria-live="polite" aria-atomic="true" tabindex="0"></p>
+    <p id="quoteSource" aria-live="polite" aria-atomic="true" tabindex="0"></p>
 
-  <script>
-    const translations = {
-      tr: {
-        'page-title': 'Ayarlar',
-        'lang-title': 'Dil Seçimi',
-        'nav-anasayfa': 'Ana Sayfa',
-        'nav-galeri': 'Galeri',
-        'nav-hayati': 'Hayatı',
-        'nav-gerisayim': 'Geri Sayım',
-        'btn-tr': 'Türkçe',
-        'btn-en': 'English',
-        'btn-az': 'Azərbaycan',
-      },
-      en: {
-        'page-title': 'Settings',
-        'lang-title': 'Language Selection',
-        'nav-anasayfa': 'Home',
-        'nav-galeri': 'Gallery',
-        'nav-hayati': 'Life',
-        'nav-gerisayim': 'Countdown',
-        'btn-tr': 'Turkish',
-        'btn-en': 'English',
-        'btn-az': 'Azerbaijani',
-      },
-      az: {
-        'page-title': 'Ayarlar',
-        'lang-title': 'Dil Seçimi',
-        'nav-anasayfa': 'Ana Səhifə',
-        'nav-galeri': 'Qalereya',
-        'nav-hayati': 'Həyatı',
-        'nav-gerisayim': 'Sayma',
-        'btn-tr': 'Türkcə',
-        'btn-en': 'İngiliscə',
-        'btn-az': 'Azərbaycan',
-      }
-    };
+    <section id="settings" aria-label="Ayarlar">
+      <label for="themeSelect">Tema Seçimi:</label>
+      <select id="themeSelect" aria-describedby="themeDesc">
+        <option value="dark" selected>Koyu Tema</option>
+        <option value="light">Açık Tema</option>
+      </select>
+      <p id="themeDesc" style="font-size:0.9rem; color:#aaa; margin-top:4px;">
+        Temanızı seçin (şimdilik sadece görünüm değişikliği)
+      </p>
 
-    function updateTexts(lang) {
-      for (const id in translations[lang]) {
-        const el = document.getElementById(id);
-        if (el) el.textContent = translations[lang][id];
-      }
+      <label class="checkbox-label" for="showQuotes">
+        <input type="checkbox" id="showQuotes" checked />
+        Sayfada Atatürk sözlerini göster
+      </label>
+    </section>
+  </main>
+
+<script>
+  const quotes = [
+    { text: "Egemenlik, kayıtsız şartsız milletindir.", source: "1923 TBMM Açılış Konuşması" },
+    { text: "Hayatta en hakiki mürşit ilimdir.", source: "1923 Söylev" },
+    { text: "Yurtta sulh, cihanda sulh.", source: "1931" },
+    { text: "Beni görmek demek mutlaka yüzümü görmek değildir. Benim fikirlerimi, benim duygularımı anlıyorsanız bu kâfidir.", source: "1923 Söylev" },
+    { text: "İstikbal göklerdedir.", source: "1927" },
+    { text: "Milletin bağımsızlığı yine milletin azim ve kararıyla kurtarılacaktır.", source: "1920 Nutuk" },
+    { text: "Türk milletinin karakteri yüksektir; Türk milleti çalışkandır; Türk milleti zekidir.", source: "1927 Söylev" },
+    { text: "Bir millet sanattan ve sanatkârdan mahrumsa, tam bir hayata malik olamaz.", source: "1923 Söylev" }
+  ];
+
+  function displayRandomQuote() {
+    const quoteEl = document.getElementById('quote');
+    const sourceEl = document.getElementById('quoteSource');
+    const showQuotes = document.getElementById('showQuotes').checked;
+
+    if (!showQuotes) {
+      quoteEl.textContent = "";
+      sourceEl.textContent = "";
+      return;
     }
 
-    function setLang(lang) {
-      localStorage.setItem('lang', lang);
-      window.location.href = 'index.html';  // otomatik ana sayfaya yönlendir
-    }
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    const selected = quotes[randomIndex];
+    quoteEl.textContent = `"${selected.text}"`;
+    sourceEl.textContent = `— ${selected.source}`;
+  }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const savedLang = localStorage.getItem('lang') || 'tr';
-      updateTexts(savedLang);
+  window.onload = () => {
+    displayRandomQuote();
+
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const query = document.getElementById('searchInput').value.trim();
+      if(query.length > 0) {
+        const siteURL = location.hostname;
+        const searchURL = `https://www.google.com/search?q=site:${siteURL}+${encodeURIComponent(query)}`;
+        window.open(searchURL, '_blank');
+      }
     });
-  </script>
+
+    document.getElementById('showQuotes').addEventListener('change', () => {
+      displayRandomQuote();
+    });
+
+    document.getElementById('themeSelect').addEventListener('change', (e) => {
+      // Şimdilik sadece uyarı
+      alert("Tema seçimi henüz aktif değil.");
+    });
+  };
+</script>
 </body>
 </html>
