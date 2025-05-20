@@ -7,17 +7,21 @@
   <style>
     body {
       margin: 0;
-      padding: 20px;
+      padding: 0;
       background-color: black;
       color: white;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
     }
     nav {
+      background-color: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      padding: 15px 20px;
       display: flex;
       justify-content: center;
-      gap: 20px;
-      margin-bottom: 30px;
+      gap: 25px;
+      position: relative;
+      z-index: 1;
     }
     nav a {
       color: white;
@@ -30,16 +34,24 @@
       color: #ff4d4d;
     }
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px white;
+      font-size: 2.8rem;
+      margin-top: 40px;
+      margin-bottom: 30px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 0 15px white;
+      position: relative;
+      z-index: 1;
     }
-    #life-text {
-      max-width: 800px;
-      margin: 0 auto;
-      font-size: 1.2rem;
-      line-height: 1.6;
+    #content {
+      max-width: 900px;
+      margin: 0 auto 60px;
+      font-size: 1.25rem;
+      line-height: 1.7;
       color: #ddd;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
     }
   </style>
 </head>
@@ -52,32 +64,32 @@
 
   <h1 id="title">Mustafa Kemal Atatürk'ün Hayatı</h1>
 
-  <div id="life-text">
-    Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Türkiye Cumhuriyeti'nin kurucusu ve ilk cumhurbaşkanıdır...
+  <div id="content">
+    Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Türkiye Cumhuriyeti'nin kurucusu ve ilk cumhurbaşkanıdır. Eğitim hayatına askerî okullarda başlamış, Kurtuluş Savaşı'nı yönetmiş ve modern Türkiye'nin temellerini atmıştır.
   </div>
 
   <script>
     const translations = {
       tr: {
         title: "Mustafa Kemal Atatürk'ün Hayatı",
-        content: "Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Türkiye Cumhuriyeti'nin kurucusu ve ilk cumhurbaşkanıdır...",
+        content: "Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Türkiye Cumhuriyeti'nin kurucusu ve ilk cumhurbaşkanıdır. Eğitim hayatına askerî okullarda başlamış, Kurtuluş Savaşı'nı yönetmiş ve modern Türkiye'nin temellerini atmıştır.",
         menu: { home: "Anasayfa", gallery: "Galeri", countdown: "Geri Sayım" }
       },
       en: {
         title: "Life of Mustafa Kemal Atatürk",
-        content: "Mustafa Kemal Atatürk was born in 1881 in Thessaloniki. He is the founder and first president of the Republic of Turkey...",
+        content: "Mustafa Kemal Atatürk was born in 1881 in Thessaloniki. He is the founder and first president of the Republic of Turkey. He started his education in military schools, led the War of Independence, and laid the foundations of modern Turkey.",
         menu: { home: "Home", gallery: "Gallery", countdown: "Countdown" }
       },
       az: {
         title: "Mustafa Kamal Atatürkün Həyatı",
-        content: "Mustafa Kamal Atatürk 1881-ci ildə Selanikdə anadan olmuşdur. O, Türkiyə Respublikasının qurucusu və ilk prezidenti olmuşdur...",
+        content: "Mustafa Kamal Atatürk 1881-ci ildə Selanikdə anadan olmuşdur. O, Türkiyə Respublikasının qurucusu və ilk prezidenti olmuşdur. Təhsilini hərbi məktəblərdə başlamış, Milli Azadlıq Müharibəsini idarə etmiş və müasir Türkiyənin təməlini qoymuşdur.",
         menu: { home: "Ana Səhifə", gallery: "Qalereya", countdown: "Geri Sayım" }
       }
     };
 
     const el = {
       title: document.getElementById('title'),
-      lifeText: document.getElementById('life-text'),
+      content: document.getElementById('content'),
       menuHome: document.getElementById('menu-home'),
       menuGallery: document.getElementById('menu-gallery'),
       menuCountdown: document.getElementById('menu-countdown')
@@ -87,7 +99,7 @@
       if (!translations[lang]) lang = 'tr';
       const t = translations[lang];
       el.title.textContent = t.title;
-      el.lifeText.textContent = t.content;
+      el.content.textContent = t.content;
       el.menuHome.textContent = t.menu.home;
       el.menuGallery.textContent = t.menu.gallery;
       el.menuCountdown.textContent = t.menu.countdown;
