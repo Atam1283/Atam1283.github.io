@@ -65,21 +65,31 @@
     padding: 40px 20px;
     max-width: 960px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
   h1 {
     font-size: 3rem;
     margin-bottom: 20px;
     color: #fff;
     text-shadow: 0 0 12px #ffffffcc;
+    user-select: none;
   }
-  p {
-    line-height: 1.6;
-    font-size: 1.1rem;
+  #quote {
+    font-size: 1.4rem;
+    font-style: italic;
+    max-width: 700px;
+    line-height: 1.5;
     color: #fff;
+    text-shadow: 0 0 6px #fff;
+    user-select: none;
+    margin-top: 0;
   }
   /* Butonlar */
   .btn-container {
-    margin-top: 30px;
+    margin-top: 40px;
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
@@ -109,6 +119,10 @@
     h1 {
       font-size: 2.2rem;
     }
+    #quote {
+      font-size: 1.1rem;
+      max-width: 90vw;
+    }
     .btn-container {
       justify-content: center;
     }
@@ -127,9 +141,8 @@
   </ul>
 </nav>
 <main>
-  <h1>Hoşgeldiniz</h1>
-  <p>Bu modern ve uyumlu tasarım ile GitHub Pages üzerinde profesyonel bir site deneyimi yaşayın. Menü, renkler ve butonlar tüm sayfalarda tutarlı olacak şekilde tasarlandı.</p>
-  <p>Sol üstteki LOGO yerine dilersen kendi ismini veya site adını koyabilirsin.</p>
+  <h1>Mustafa Kemal Atatürk</h1>
+  <p id="quote" aria-live="polite" aria-atomic="true" tabindex="0"></p>
   <div class="btn-container" role="navigation" aria-label="Sayfa linkleri">
     <a href="galeri.html" class="btn" tabindex="0">Galeri</a>
     <a href="hayati.html" class="btn" tabindex="0">Hayatı</a>
@@ -137,5 +150,25 @@
     <a href="ayarlar.html" class="btn" tabindex="0">Ayarlar</a>
   </div>
 </main>
+<script>
+  const quotes = [
+    "Egemenlik, kayıtsız şartsız milletindir.",
+    "Hayatta en hakiki mürşit ilimdir.",
+    "Yurtta sulh, cihanda sulh.",
+    "Beni görmek demek mutlaka yüzümü görmek değildir. Benim fikirlerimi, benim duygularımı anlıyorsanız bu kâfidir.",
+    "İstikbal göklerdedir.",
+    "Milletin bağımsızlığı yine milletin azim ve kararıyla kurtarılacaktır.",
+    "Türk milletinin karakteri yüksektir; Türk milleti çalışkandır; Türk milleti zekidir.",
+    "Bir millet sanattan ve sanatkârdan mahrumsa, tam bir hayata malik olamaz."
+  ];
+
+  function displayRandomQuote() {
+    const quoteEl = document.getElementById('quote');
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    quoteEl.textContent = `"${quotes[randomIndex]}"`;
+  }
+
+  window.onload = displayRandomQuote;
+</script>
 </body>
 </html>
