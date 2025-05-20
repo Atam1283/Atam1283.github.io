@@ -1,215 +1,138 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mustafa Kemal Atatürk</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: black;
-      color: white;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      text-align: center;
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      background-color: rgba(255, 255, 255, 0.05);
-    }
-    .settings {
-      position: relative;
-    }
-    .settings-button {
-      font-size: 24px;
-      background: transparent;
-      border: none;
-      color: white;
-      cursor: pointer;
-      padding: 5px 10px;
-    }
-    .first-dropdown {
-      display: none;
-      position: absolute;
-      top: 38px;
-      left: 0;
-      background-color: #222;
-      border-radius: 8px;
-      min-width: 100px;
-      box-shadow: 0 0 10px rgba(255,255,255,0.2);
-      z-index: 10;
-    }
-    .first-dropdown button {
-      width: 100%;
-      background: none;
-      border: none;
-      color: white;
-      padding: 10px;
-      text-align: left;
-      cursor: pointer;
-    }
-    .first-dropdown button:hover,
-    .language-dropdown button:hover {
-      background-color: #ff4d4d;
-    }
-    .language-dropdown {
-      display: none;
-      position: absolute;
-      top: 0;
-      left: 100%;
-      background-color: #222;
-      border-radius: 8px;
-      min-width: 120px;
-      box-shadow: 0 0 10px rgba(255,255,255,0.2);
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      padding: 15px 10px;
-      background-color: rgba(255, 255, 255, 0.05);
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-    nav a:hover {
-      color: #ff4d4d;
-    }
-    .search-section {
-      margin: 30px auto;
-      max-width: 600px;
-      padding: 20px;
-    }
-    .search-section input[type="text"] {
-      width: 70%;
-      padding: 10px;
-      font-size: 1rem;
-      border-radius: 6px;
-      border: none;
-      outline: none;
-    }
-    .search-section button {
-      padding: 10px 15px;
-      font-size: 1rem;
-      border-radius: 6px;
-      border: none;
-      margin-left: 10px;
-      background-color: #ff4d4d;
-      color: white;
-      cursor: pointer;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ana Sayfa - Modern Tasarım</title>
+<style>
+  /* Genel Reset & Stil */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  /* Menü */
+  nav {
+    background: #111;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    box-shadow: 0 0 10px #00ffff44;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  nav .logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #00ffff;
+    letter-spacing: 0.1em;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+  }
+  nav ul li a {
+    color: #eee;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  nav ul li a:hover,
+  nav ul li a:focus-visible {
+    background-color: #00ffff;
+    color: #000;
+    outline: none;
+  }
+  /* Ana içerik */
+  main {
+    flex: 1;
+    padding: 40px 20px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #00ffff;
+    text-shadow: 0 0 8px #00ffffaa;
+  }
+  p {
+    line-height: 1.6;
+    font-size: 1.1rem;
+    color: #ccc;
+  }
+  /* Butonlar */
+  .btn-container {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    background: #111;
+    border: 2px solid #00ffff;
+    color: #00ffff;
+    padding: 12px 28px;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    user-select: none;
+  }
+  .btn:hover,
+  .btn:focus-visible {
+    background-color: #00ffff;
+    color: #000;
+    outline: none;
+  }
+  /* Responsive */
+  @media (max-width: 600px) {
     h1 {
-      font-size: 2.6rem;
-      margin: 20px 0 10px;
-      text-shadow: 0 0 15px white;
+      font-size: 2.2rem;
     }
-    .quote {
-      font-size: 1.6rem;
-      font-style: italic;
-      margin-bottom: 40px;
+    .btn-container {
+      justify-content: center;
     }
-    @media (max-width: 600px) {
-      nav {
-        flex-direction: column;
-        gap: 10px;
-      }
-      .search-section input[type="text"] {
-        width: 100%;
-        margin-bottom: 10px;
-      }
-      .search-section button {
-        width: 100%;
-        margin-left: 0;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <header>
-    <div class="settings">
-      <button class="settings-button" aria-label="Ayarlar">⚙️</button>
-      <div class="first-dropdown">
-        <button id="btnLangMenu">Dil</button>
-        <div class="language-dropdown">
-          <button data-lang="tr">Türkçe</button>
-          <button data-lang="en">English</button>
-          <button data-lang="az">Azərbaycan</button>
-        </div>
-      </div>
-    </div>
-    <h1 id="main-title">Mustafa Kemal Atatürk</h1>
-  </header>
-
-  <nav>
-    <a href="hayati.html">📖 Hayatı</a>
-    <a href="galeri.html">🖼️ Galeri</a>
-    <a href="gerisayim.html">⏳ Geri Sayım</a>
-  </nav>
-
-  <section class="search-section">
-    <form onsubmit="aramaYap(); return false;">
-      <input type="text" id="arama" placeholder="Atatürk, Cumhuriyet, Türkiye..." />
-      <button type="submit">Ara</button>
-    </form>
-  </section>
-
-  <div class="quote" id="quote"></div>
-
-  <script>
-    const quoteList = [
-      "Yurtta sulh, cihanda sulh.",
-      "Benim naçiz vücudum elbet bir gün toprak olacaktır.",
-      "Egemenlik, kayıtsız şartsız milletindir.",
-      "Hayatta en hakiki mürşit ilimdir, fendir.",
-      "Ne mutlu Türküm diyene!",
-      "Milletin bağımsızlığını yine milletin azmi ve kararı kurtaracaktır.",
-      "Türk çocuğu ecdadını tanıdıkça daha büyük işler yapmak için kendinde kuvvet bulacaktır."
-    ];
-
-    function rastgeleSoz() {
-      const index = Math.floor(Math.random() * quoteList.length);
-      document.getElementById('quote').textContent = quoteList[index];
-    }
-
-    function aramaYap() {
-      const query = document.getElementById('arama').value.trim();
-      if (!query) return;
-      const searchUrl =
-        "https://www.google.com/search?q=" +
-        encodeURIComponent(query + " site:tdk.gov.tr OR site:tr.wikipedia.org");
-      window.open(searchUrl, "_blank");
-    }
-
-    // Dil menüsü
-    const settingsBtn = document.querySelector('.settings-button');
-    const firstDropdown = document.querySelector('.first-dropdown');
-    const langBtn = document.getElementById('btnLangMenu');
-    const langDropdown = document.querySelector('.language-dropdown');
-
-    settingsBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      firstDropdown.style.display = firstDropdown.style.display === 'block' ? 'none' : 'block';
-      langDropdown.style.display = 'none';
-    });
-
-    langBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      langDropdown.style.display = langDropdown.style.display === 'block' ? 'none' : 'block';
-    });
-
-    document.addEventListener('click', () => {
-      firstDropdown.style.display = 'none';
-      langDropdown.style.display = 'none';
-    });
-
-    // Sayfa yüklendiğinde rastgele söz göster
-    document.addEventListener('DOMContentLoaded', rastgeleSoz);
-  </script>
+<nav>
+  <div class="logo" tabindex="0">LOGO</div>
+  <ul>
+    <li><a href="index.html" tabindex="0">Ana Sayfa</a></li>
+    <li><a href="galeri.html" tabindex="0">Galeri</a></li>
+    <li><a href="hayati.html" tabindex="0">Hayatı</a></li>
+    <li><a href="gerisayim.html" tabindex="0">Geri Sayım</a></li>
+    <li><a href="ayarlar.html" tabindex="0">Ayarlar</a></li>
+  </ul>
+</nav>
+<main>
+  <h1>Hoşgeldiniz</h1>
+  <p>Bu modern ve uyumlu tasarım ile GitHub Pages üzerinde profesyonel bir site deneyimi yaşayın. Menü, renkler ve butonlar tüm sayfalarda tutarlı olacak şekilde tasarlandı.</p>
+  <p>Sol üstteki LOGO yerine dilersen kendi ismini veya site adını koyabilirsin.</p>
+  <div class="btn-container" role="navigation" aria-label="Sayfa linkleri">
+    <a href="galeri.html" class="btn" tabindex="0">Galeri</a>
+    <a href="hayati.html" class="btn" tabindex="0">Hayatı</a>
+    <a href="gerisayim.html" class="btn" tabindex="0">Geri Sayım</a>
+    <a href="ayarlar.html" class="btn" tabindex="0">Ayarlar</a>
+  </div>
+</main>
 </body>
 </html>
