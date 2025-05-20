@@ -4,76 +4,63 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Atatürk'ün Hayatı</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     body {
       margin: 0;
       padding: 0 5vw 40px;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #000;
+      background: #000;
       color: #eee;
       box-sizing: border-box;
     }
 
-    nav.menu {
+    .menu {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       background: #111;
+      padding: 10px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 20px;
-      z-index: 100;
-      box-shadow: 0 0 10px #000;
+      z-index: 999;
     }
 
-    .menu-left a {
+    .menu a {
       color: white;
-      font-size: 18px;
       text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    .menu-left a:hover {
-      color: #ff2c2c;
-    }
-
-    .menu-right {
-      display: flex;
-      gap: 10px;
-    }
-
-    .menu-right a {
-      background: #222;
-      color: white;
-      border: 1px solid #eee;
-      padding: 6px 10px;
+      margin-left: 10px;
       font-size: 14px;
+      padding: 6px 12px;
+      border: 1px solid #eee;
       border-radius: 5px;
-      text-decoration: none;
       display: flex;
       align-items: center;
       gap: 5px;
+      background-color: #222;
       transition: 0.3s;
     }
 
-    .menu-right a:hover {
+    .menu a:hover {
       background: #ff2c2c;
       border-color: #ff2c2c;
     }
 
-    .menu-right a.hide {
+    .menu-left a {
+      font-size: 16px;
+    }
+
+    .menu .hide {
       display: none;
     }
 
     h1 {
       text-align: center;
-      padding-top: 80px;
-      color: #fff;
+      margin-top: 90px;
       font-size: 6vw;
+      color: #fff;
       text-shadow: 0 0 10px white;
       margin-bottom: 30px;
     }
@@ -133,34 +120,34 @@
       h1 {
         font-size: 48px;
       }
-
       .event h3 {
         font-size: 20px;
       }
-
       .event p {
         font-size: 16px;
       }
-
       .event::before {
         left: -30px;
         width: 20px;
         height: 20px;
       }
+      .menu a {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Üst Menü -->
+
   <nav class="menu">
     <div class="menu-left">
       <a href="index.html"><i class="fas fa-home"></i> <span id="home-text">Ana Sayfa</span></a>
     </div>
     <div class="menu-right">
-      <a href="galeri.html"><i class="fas fa-image"></i> Galeri</a>
-      <a href="hayati.html" class="hide"><i class="fas fa-user"></i> Hayatı</a>
-      <a href="gerisayim.html"><i class="fas fa-hourglass-half"></i> Geri Sayım</a>
-      <a href="ayarlar.html"><i class="fas fa-cog"></i> Ayarlar</a>
+      <a href="galeri.html"><i class="fas fa-image"></i><span> Galeri</span></a>
+      <a href="hayati.html" class="hide"><i class="fas fa-user"></i><span> Hayatı</span></a>
+      <a href="gerisayim.html"><i class="fas fa-hourglass-half"></i><span> Geri Sayım</span></a>
+      <a href="ayarlar.html"><i class="fas fa-cog"></i><span> Ayarlar</span></a>
     </div>
   </nav>
 
@@ -205,19 +192,5 @@
     </div>
   </div>
 
-  <script>
-    // Sayfalar arasında dili koru
-    const lang = localStorage.getItem("lang") || "tr";
-    const translations = {
-      tr: { home: "Ana Sayfa", title: "Mustafa Kemal Atatürk'ün Hayatı" },
-      en: { home: "Home", title: "Life of Mustafa Kemal Atatürk" },
-      az: { home: "Ana Səhifə", title: "Mustafa Kamal Atatürkün Həyatı" }
-    };
-
-    if (translations[lang]) {
-      document.getElementById("home-text").textContent = translations[lang].home;
-      document.getElementById("page-title").textContent = translations[lang].title;
-    }
-  </script>
 </body>
 </html>
