@@ -6,11 +6,11 @@
 <title>Geri Sayım</title>
 <style>
   body {
-    background-color: black;
-    color: white;
+    background-color: #000;
+    color: #fff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    padding: 80px 20px 20px 20px;
+    padding: 80px 20px 20px;
     text-align: center;
   }
   header {
@@ -28,8 +28,8 @@
     gap: 10px;
   }
   nav a {
-    color: white;
-    font-weight: bold;
+    color: #fff;
+    font-weight: 700;
     font-size: 18px;
     text-decoration: none;
     padding: 8px 15px;
@@ -40,27 +40,42 @@
   nav a:hover {
     background-color: #ff2c2c;
     border-color: #ff2c2c;
-    color: white;
+    color: #fff;
   }
   h1 {
     margin-bottom: 40px;
     font-weight: 700;
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
   #countdown {
     font-size: 3rem;
-    font-weight: bold;
+    font-weight: 700;
     margin-bottom: 20px;
     letter-spacing: 2px;
   }
   #description {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 40px;
   }
   footer {
     margin-top: 60px;
     font-size: 0.9rem;
     color: #666;
+  }
+  @media (max-width: 600px) {
+    nav a {
+      font-size: 14px;
+      padding: 6px 12px;
+    }
+    h1 {
+      font-size: 2rem;
+    }
+    #countdown {
+      font-size: 2.2rem;
+    }
+    #description {
+      font-size: 1rem;
+    }
   }
 </style>
 </head>
@@ -86,7 +101,6 @@
 </footer>
 
 <script>
-  // Çoklu dil metinleri
   const texts = {
     tr: {
       "page-title": "Geri Sayım",
@@ -123,27 +137,21 @@
       const el = document.getElementById(id);
       if(el) el.textContent = texts[lang][id];
     });
-    // Update description text
     const desc = document.getElementById('description');
     if(desc) desc.textContent = texts[lang].description;
   }
 
-  // Geri sayım hesaplama
   function countdown(targetDate) {
     const now = new Date();
     let diff = targetDate - now;
-
     if (diff < 0) {
-      // Eğer tarih geçtiyse, bir sonraki yılın aynı tarihine ayarla
       targetDate.setFullYear(targetDate.getFullYear() + 1);
       diff = targetDate - now;
     }
-
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
     const minutes = Math.floor((diff / (1000 * 60)) % 60);
     const seconds = Math.floor((diff / 1000) % 60);
-
     return { days, hours, minutes, seconds };
   }
 
@@ -152,18 +160,15 @@
   }
 
   function updateCountdown() {
-    const targetDate = new Date(new Date().getFullYear(), 10, 19, 0, 0, 0); // 19 Kasım (Atatürk'ün doğumu)
+    const targetDate = new Date(new Date().getFullYear(), 10, 19, 0, 0, 0); // 19 Kasım
     const cd = countdown(targetDate);
     const countdownEl = document.getElementById('countdown');
     countdownEl.textContent = 
       `${formatTime(cd.days)} : ${formatTime(cd.hours)} : ${formatTime(cd.minutes)} : ${formatTime(cd.seconds)}`;
   }
 
-  // Dil seçimi ve metin güncelleme
   const userLang = localStorage.getItem("lang") || "tr";
   updateTexts(userLang);
-
-  // İlk çağrı ve her saniye güncelle
   updateCountdown();
   setInterval(updateCountdown, 1000);
 </script>
