@@ -3,16 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>En Yakın Önemli Gün - Geri Sayım</title>
+<title>Geri Sayım</title>
 <style>
-  /* Global reset ve box-sizing */
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-
   body {
     margin: 0;
-    padding: 80px 20px 40px 20px; /* üst menü için boşluk */
+    padding: 20px 30px;
     background-color: #000;
     color: #fff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -20,232 +15,233 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
   }
 
-  /* Üst menü */
-  #top-menu {
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    right: 15px;
+  nav {
+    width: 100%;
+    max-width: 900px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 100;
+    margin-bottom: 40px;
+    gap: 20px;
   }
 
-  #top-menu a {
-    background: #222;
-    color: white;
-    border: 1.5px solid #eee;
-    padding: 6px 12px;
-    font-size: 16px;
-    border-radius: 5px;
+  #pageButtons {
+    display: flex;
+    gap: 15px;
+  }
+  #pageButtons a {
+    color: #fff;
     text-decoration: none;
-    margin-left: 8px;
-    cursor: pointer;
-    transition: background 0.3s, color 0.3s;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px 14px;
+    border-radius: 25px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
     user-select: none;
   }
-  #top-menu a:first-child {
-    margin-left: 0;
-  }
-
-  #top-menu a:hover,
-  #top-menu a:focus {
-    background: #ff2c2c;
-    color: white;
-    border-color: #ff2c2c;
+  #pageButtons a:hover,
+  #pageButtons a:focus {
+    color: #00ffff;
+    border-color: #00ffff;
     outline: none;
   }
-  #top-menu a:focus-visible {
-    outline: 2px solid #ff2c2c;
+  #pageButtons a:focus-visible {
+    outline: 2px solid #00ffff;
     outline-offset: 2px;
   }
 
-  /* En yakın gün kutusu */
-  #nearestEventBox {
-    border: 2.5px solid #fff;
-    border-radius: 40px;
-    padding: 24px 40px;
-    max-width: 90vw;
+  #searchForm {
+    flex: 1;
+    max-width: 300px;
+    display: flex;
+  }
+
+  #searchInput {
+    flex: 1;
+    padding: 8px 14px;
+    font-size: 1rem;
+    border-radius: 25px 0 0 25px;
+    border: 2px solid #fff;
+    background-color: #000;
+    color: #fff;
+    outline-offset: 2px;
+  }
+  #searchInput::placeholder {
+    color: #bbb;
+  }
+  #searchInput:focus {
+    border-color: #00ffff;
+    outline: none;
+  }
+
+  #searchButton {
+    padding: 8px 18px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 0 25px 25px 0;
+    border: 2px solid #fff;
+    border-left: none;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  #searchButton:hover,
+  #searchButton:focus {
+    background-color: #00ffff;
+    color: #000;
+    outline: none;
+  }
+  #searchButton:focus-visible {
+    outline: 2px solid #00ffff;
+    outline-offset: 2px;
+  }
+
+  h1 {
+    margin: 0 0 25px 0;
+    font-weight: 700;
+    font-size: 2.4rem;
+    user-select: none;
+  }
+
+  #quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    font-weight: 500;
+    max-width: 700px;
     text-align: center;
     user-select: none;
-    color: #fff;
-    font-weight: 400;
-    letter-spacing: 0.03em;
-    margin-bottom: 50px;
-    box-shadow: 0 0 12px 3px rgba(255, 255, 255, 0.8);
-    transition: box-shadow 0.3s ease;
   }
-  #nearestEventBox:hover,
-  #nearestEventBox:focus {
-    box-shadow: 0 0 20px 6px rgba(255, 255, 255, 1);
-    outline: none;
-  }
-  #nearestEventBox:focus-visible {
-    outline: 3px solid #ff2c2c;
-    outline-offset: 6px;
-  }
-
-  /* Başlık - event name */
-  #nearestEventBox h2 {
-    margin: 0 0 12px 0;
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    cursor: pointer;
-    transition: color 0.3s ease, transform 0.3s ease;
-  }
-  #nearestEventBox h2:hover,
-  #nearestEventBox h2:focus {
-    color: #ff2c2c;
-    transform: scale(1.07);
-    outline: none;
-  }
-  #nearestEventBox h2:focus-visible {
-    outline: 2px solid #ff2c2c;
-    outline-offset: 2px;
-  }
-
-  #nearestEventBox .date {
-    font-size: 1.3rem;
+  #quoteSource {
+    margin-top: 8px;
+    font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 8px;
+    color: #ccc;
+    text-align: center;
+    user-select: none;
   }
 
   #countdown {
-    font-size: 1.4rem;
-    font-weight: 400;
-    letter-spacing: 0.02em;
-    margin-bottom: 50px;
+    margin-top: 40px;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #00ffff;
     user-select: none;
-    text-align: center;
-  }
-
-  #progressBarContainer {
-    width: 80%;
-    max-width: 600px;
-    height: 14px;
-    background-color: #222;
-    border-radius: 50px;
-    box-shadow: inset 0 0 8px #111;
-  }
-  #progressBar {
-    height: 100%;
-    width: 0%;
-    background-color: #ff2c2c;
-    border-radius: 50px;
-    transition: width 0.5s ease-out;
   }
 
   @media (max-width: 480px) {
-    #nearestEventBox h2 {
-      font-size: 1.5rem;
+    nav {
+      flex-direction: column;
+      gap: 15px;
+      align-items: stretch;
     }
-    #nearestEventBox {
-      padding: 18px 24px;
+    #searchForm {
+      max-width: 100%;
     }
-    #nearestEventBox .date {
-      font-size: 1.1rem;
+    #pageButtons {
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
     }
     #countdown {
-      font-size: 1.1rem;
-    }
-    #progressBarContainer {
-      width: 90%;
-    }
-    #top-menu a {
-      font-size: 14px;
-      padding: 5px 10px;
-      margin-left: 4px;
+      font-size: 1.6rem;
+      margin-top: 30px;
     }
   }
 </style>
 </head>
 <body>
+  <nav>
+    <div id="pageButtons" role="navigation" aria-label="Sayfa menüsü">
+      <a href="index.html" tabindex="0">Ana Sayfa</a>
+      <a href="galeri.html" tabindex="0">Galeri</a>
+      <a href="hayati.html" tabindex="0">Hayatı</a>
+      <a href="gerisayim.html" tabindex="0" aria-current="page">Geri Sayım</a>
+      <a href="ayarlar.html" tabindex="0">Ayarlar</a>
+    </div>
 
-<div id="top-menu" role="navigation" aria-label="Ana Menü">
-  <a href="index.html" id="nav-anasayfa">Ana Sayfa</a>
-  <div>
-    <a href="galeri.html" id="nav-galeri">Galeri</a>
-    <a href="hayati.html" id="nav-hayati">Hayatı</a>
-    <a href="geri-sayim.html" id="nav-gerisayim">Geri Sayım</a>
-  </div>
-</div>
+    <form id="searchForm" role="search" aria-label="Site içi arama">
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="Arama yapın..."
+        aria-label="Arama kutusu"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button type="submit" id="searchButton" aria-label="Ara">Ara</button>
+    </form>
+  </nav>
 
-<div id="nearestEventBox" tabindex="0" aria-label="En yakın önemli gün bilgisi">
-  <h2 id="eventName" title="Etkinlik adı" tabindex="0"></h2>
-  <div class="date" id="eventDate" aria-live="polite"></div>
-</div>
+  <main>
+    <h1>Mustafa Kemal Atatürk</h1>
+    <p id="quote" aria-live="polite" aria-atomic="true" tabindex="0"></p>
+    <p id="quoteSource" aria-live="polite" aria-atomic="true" tabindex="0"></p>
 
-<div id="countdown" aria-live="polite"></div>
-
-<div id="progressBarContainer" aria-label="Geri sayım ilerleme çubuğu">
-  <div id="progressBar"></div>
-</div>
+    <div id="countdown" aria-live="polite" aria-atomic="true" tabindex="0"></div>
+  </main>
 
 <script>
-  const importantDates = [
-    { name: "Şapka Kanunu", date: "1925-02-17" },
-    { name: "Tekke, zaviye ve türbelerin kapatılması", date: "1925-11-25" },
-    { name: "Tarikatların kaldırılması", date: "1925-11-26" },
-    { name: "Harf Devrimi", date: "1928-11-01" },
-    { name: "Türk Tarih Kurumu'nun kurulması", date: "1931-01-01" },
-    { name: "Türk Dil Kurumu'nun kurulması", date: "1932-01-01" },
-    { name: "Kadınlara seçme ve seçilme hakkı", date: "1934-12-05" },
-    { name: "Soyadı Kanunu", date: "1934-06-21" }
+  const quotes = [
+    { text: "Egemenlik, kayıtsız şartsız milletindir.", source: "1923 TBMM Açılış Konuşması" },
+    { text: "Hayatta en hakiki mürşit ilimdir.", source: "1923 Söylev" },
+    { text: "Yurtta sulh, cihanda sulh.", source: "1931" },
+    { text: "Beni görmek demek mutlaka yüzümü görmek değildir. Benim fikirlerimi, benim duygularımı anlıyorsanız bu kâfidir.", source: "1923 Söylev" },
+    { text: "İstikbal göklerdedir.", source: "1927" },
+    { text: "Milletin bağımsızlığı yine milletin azim ve kararıyla kurtarılacaktır.", source: "1920 Nutuk" },
+    { text: "Türk milletinin karakteri yüksektir; Türk milleti çalışkandır; Türk milleti zekidir.", source: "1927 Söylev" },
+    { text: "Bir millet sanattan ve sanatkârdan mahrumsa, tam bir hayata malik olamaz.", source: "1923 Söylev" }
   ];
 
-  function createDateForYear(dateString, year) {
-    const parts = dateString.split("-");
-    return new Date(year, parseInt(parts[1],10) - 1, parseInt(parts[2],10));
+  function displayRandomQuote() {
+    const quoteEl = document.getElementById('quote');
+    const sourceEl = document.getElementById('quoteSource');
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    const selected = quotes[randomIndex];
+    quoteEl.textContent = `"${selected.text}"`;
+    sourceEl.textContent = `— ${selected.source}`;
   }
 
-  function getNextImportantDate(dates) {
+  function updateCountdown() {
+    // Geri sayım için önemli tarih: 10 Kasım 1938 09:05 (Atatürk'ün vefat zamanı)
+    const targetDate = new Date('1938-11-10T09:05:00');
     const now = new Date();
-    const currentYear = now.getFullYear();
 
-    let futureDates = dates.map(d => {
-      let eventDate = createDateForYear(d.date, currentYear);
-      if(eventDate < now){
-        eventDate.setFullYear(currentYear + 1);
+    // Tarih geçmişse sayacı durdurabiliriz, ya da farklı mesaj gösterebiliriz.
+    if (now > targetDate) {
+      document.getElementById('countdown').textContent = "Atatürk'ün vefatının üzerinden zaman geçti.";
+      return;
+    }
+
+    const diff = targetDate - now;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById('countdown').textContent =
+      `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye kaldı.`;
+  }
+
+  window.onload = () => {
+    displayRandomQuote();
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const query = document.getElementById('searchInput').value.trim();
+      if(query.length > 0) {
+        const siteURL = location.hostname;
+        const searchURL = `https://www.google.com/search?q=site:${siteURL}+${encodeURIComponent(query)}`;
+        window.open(searchURL, '_blank');
       }
-      return {...d, nextDate: eventDate};
     });
-
-    futureDates.sort((a,b) => a.nextDate - b.nextDate);
-    return futureDates[0];
-  }
-
-  function formatDate(date) {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return date.toLocaleDateString('tr-TR', options);
-  }
-
-  function startCountdown(event) {
-    const countdownEl = document.getElementById("countdown");
-    const progressBar = document.getElementById("progressBar");
-    const eventNameEl = document.getElementById("eventName");
-    const eventDateEl = document.getElementById("eventDate");
-
-    let startDate = new Date(event.nextDate);
-    startDate.setFullYear(startDate.getFullYear() - 1);
-
-    eventNameEl.textContent = event.name;
-    eventDateEl.textContent = formatDate(event.nextDate);
-
-    function update() {
-      const now = new Date();
-      let diff = event.nextDate - now;
-
-      if(diff <= 0){
-        countdownEl.textContent = "Bugün!";
-        progressBar.style.width = "100%";
-        clearInterval(interval);
-        return;
-      }
-
-      const days = Math.floor(diff / (1000*60*60*24));
-      const
+  };
+</script>
+</body>
+</html>
