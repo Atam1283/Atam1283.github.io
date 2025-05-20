@@ -7,82 +7,110 @@
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background: black;
-      color: white;
+      background: #000;
+      color: #fff;
       font-family: 'Segoe UI', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: 40px 20px;
+      min-height: 100vh;
     }
-
-    nav {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      background: #111;
+    header {
       width: 100%;
-      padding: 16px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 30px;
     }
-
-    nav a {
-      color: white;
+    header a {
+      color: #fff;
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s;
     }
-
-    nav a:hover {
+    header a:hover {
       color: #fff;
-      text-decoration: underline;
+      text-shadow: 0 0 8px #fff;
     }
-
     h1 {
       font-size: 2.4rem;
-      margin: 50px 0 10px;
-      font-weight: bold;
-      text-align: center;
+      margin: 0 0 20px;
+      letter-spacing: 0.06em;
+      user-select: none;
     }
-
-    #quote {
-      font-size: 1.4rem;
+    .quote {
+      font-size: 1.3rem;
+      margin: 20px 0 10px;
       text-align: center;
-      max-width: 600px;
-      margin-bottom: 12px;
+      font-style: italic;
     }
-
-    #source {
+    .source {
       font-size: 1rem;
-      opacity: 0.7;
+      color: #ccc;
       text-align: center;
       margin-bottom: 40px;
+    }
+    .search-box {
+      max-width: 600px;
+      width: 100%;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      background: #222;
+      color: #fff;
+      outline: none;
+      box-shadow: 0 0 10px #fff;
+    }
+    input[type="text"]::placeholder {
+      color: #aaa;
     }
   </style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Ana Sayfa</a>
-    <a href="galeri.html">Galeri</a>
-    <a href="hayati.html">Hayatı</a>
-    <a href="gerisayim.html">Geri Sayım</a>
-    <a href="ayarlar.html">Ayarlar</a>
-  </nav>
 
-  <h1>Mustafa Kemal Atatürk</h1>
-  <div id="quote"></div>
-  <div id="source"></div>
+<header>
+  <a href="index.html">Ana Sayfa</a>
+  <a href="galeri.html">Galeri</a>
+  <a href="hayati.html">Hayatı</a>
+  <a href="gerisayim.html">Geri Sayım</a>
+  <a href="ayarlar.html">Ayarlar</a>
+</header>
 
-  <script>
-    const quotes = [
-      { text: "Yurtta sulh, cihanda sulh.", source: "Ankara, 1931" },
-      { text: "Beni görmek demek mutlaka yüzümü görmek değildir.", source: "Söylev, 1923" },
-      { text: "Hayatta en hakiki mürşit ilimdir.", source: "Samsun, 1924" },
-      { text: "Egemenlik, kayıtsız şartsız milletindir.", source: "TBMM Açılışı, 1920" },
-      { text: "Milletin bağımsızlığını, yine milletin azim ve kararı kurtaracaktır.", source: "Nutuk, 1927" }
-    ];
-    const random = quotes[Math.floor(Math.random() * quotes.length)];
-    document.getElementById("quote").textContent = `"${random.text}"`;
-    document.getElementById("source").textContent = `– ${random.source}`;
-  </script>
+<h1>Mustafa Kemal Atatürk</h1>
+
+<div class="quote" id="quoteText"></div>
+<div class="source" id="quoteSource"></div>
+
+<div class="search-box">
+  <input type="text" placeholder="Ara..." onkeydown="if(event.key==='Enter'){search(this.value)}">
+</div>
+
+<script>
+  const quotes = [
+    { text: "Benim naçiz vücudum elbet bir gün toprak olacaktır.", source: "TBMM, 1927" },
+    { text: "Egemenlik, kayıtsız şartsız milletindir.", source: "Ankara, 1923" },
+    { text: "Yurtta sulh, cihanda sulh.", source: "Ankara, 1931" },
+    { text: "Hayatta en hakiki mürşit ilimdir.", source: "Samsun, 1924" },
+    { text: "Milletin bağımsızlığını, yine milletin azim ve kararı kurtaracaktır.", source: "Erzurum, 1919" }
+  ];
+
+  function randomQuote() {
+    const quote = quotes[Math.floor(Math.random() * quotes.length)];
+    document.getElementById('quoteText').textContent = `"${quote.text}"`;
+    document.getElementById('quoteSource').textContent = `— ${quote.source}`;
+  }
+
+  function search(query) {
+    window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+  }
+
+  randomQuote();
+</script>
+
 </body>
 </html>
