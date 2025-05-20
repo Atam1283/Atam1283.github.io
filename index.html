@@ -1,92 +1,126 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Ana Sayfa</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mustafa Kemal Atatürk - Ana Sayfa</title>
   <style>
-    /* Genel stil */
-    *, *::before, *::after { box-sizing: border-box; }
     body {
-      margin:0; padding:40px 20px;
-      background:#000; color:#fff;
-      font-family:'Segoe UI',sans-serif;
-      text-align:center;
+      margin: 0; padding: 20px;
+      background: #000;
+      color: #fff;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
     }
-    /* Üst menü */
     nav {
-      width:100%; max-width:900px;
-      margin:0 auto 30px;
-      display:flex; justify-content:center; gap:24px;
-      border-bottom:1.5px solid #666; padding-bottom:16px;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto 30px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      border-bottom: 1.5px solid #666;
+      padding-bottom: 16px;
     }
     nav a {
-      color:#fff; text-decoration:none;
-      font-weight:600; font-size:1rem;
-      padding:4px 8px; border-radius:6px;
-      transition:background-color .3s,color .3s;
-      user-select:none;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      transition: background-color 0.3s, color 0.3s;
+      user-select: none;
+      cursor: pointer;
     }
-    nav a:hover, nav a:focus {
-      background:#fff; color:#000; outline:none;
+    nav a:hover,
+    nav a:focus {
+      background: #fff;
+      color: #000;
+      outline: none;
     }
     nav a:focus-visible {
-      outline:2px solid #00ffff; outline-offset:2px;
+      outline: 2px solid #00ffff;
+      outline-offset: 2px;
     }
-    /* Gri ayırıcı çizgi */
-    hr { 
-      width:90vw; max-width:900px; height:1.5px; background:#444;
-      border:none; margin:24px auto; box-shadow:0 0 6px #444;
+    hr {
+      width: 90vw;
+      max-width: 900px;
+      border: none;
+      border-bottom: 2px solid #555;
+      margin: 24px auto;
+      box-shadow: none;
     }
-    /* Başlık & içerik */
-    h1 { margin:0; font-size:2.4rem; }
-    .quote { font-style:italic; margin:20px 0 10px; font-size:1.3rem; }
-    .source{ color:#ccc; margin-bottom:40px; }
-    /* Arama kutusu */
-    .search-box { max-width:600px; margin:0 auto; }
-    .search-box input {
-      width:100%; padding:14px 20px;
-      border:none; border-radius:30px;
-      background:#222; color:#fff; font-size:1.1rem;
-      box-shadow:0 0 10px #fff; outline:none;
+    .title {
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      user-select: none;
     }
-    .search-box input::placeholder { color:#aaa; }
-    @media (max-width:480px){
-      h1{ font-size:1.8rem; }
-      .quote{ font-size:1.1rem; }
+    .quote {
+      font-size: 1.3rem;
+      margin: 8px auto;
+      max-width: 700px;
+      font-style: italic;
+      user-select: none;
+    }
+    .source {
+      font-size: 1rem;
+      margin-top: 4px;
+      color: #ccc;
+      user-select: none;
+    }
+    input[type="search"] {
+      background: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 1rem;
+      width: 260px;
+      max-width: 80vw;
+      outline-offset: 3px;
+      outline-color: #00ffff;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
 
-<nav aria-label="Sayfa menüsü">
-  <a href="index.html">Ana Sayfa</a>
-  <a href="galeri.html">Galeri</a>
-  <a href="hayati.html">Hayatı</a>
-  <a href="gerisayim.html">Geri Sayım</a>
-  <a href="ayarlar.html">Ayarlar</a>
-</nav>
-<hr/>
+  <nav>
+    <a href="index.html" aria-current="page">Ana Sayfa</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="hayati.html">Hayatı</a>
+    <a href="gerisayim.html">Geri Sayım</a>
+    <a href="ayarlar.html">Ayarlar</a>
+  </nav>
 
-<h1>Mustafa Kemal Atatürk</h1>
-<div class="quote" id="quoteText"></div>
-<div class="source" id="quoteSource"></div>
+  <div class="title">Mustafa Kemal Atatürk</div>
 
-<div class="search-box">
-  <input type="text" placeholder="Ara..." onkeydown="if(event.key==='Enter')search(this.value)"/>
-</div>
+  <div class="quote" id="quote"></div>
+  <div class="source" id="source"></div>
 
-<script>
-  const quotes = [
-    {text:"Yurtta sulh, cihanda sulh.",source:"Ankara,1931"},
-    {text:"Egemenlik, kayıtsız şartsız milletindir.",source:"TBMM,1920"},
-    {text:"Hayatta en hakiki mürşit ilimdir.",source:"Samsun,1924"}
-  ];
-  const q=quotes[Math.floor(Math.random()*quotes.length)];
-  document.getElementById('quoteText').textContent = `"${q.text}"`;
-  document.getElementById('quoteSource').textContent = `– ${q.source}`;
-  function search(v){ if(v.trim())window.open('https://www.google.com/search?q='+encodeURIComponent(v),'_blank'); }
-</script>
+  <input type="search" placeholder="Ara..." aria-label="Sayfada ara" />
+
+  <hr />
+
+  <script>
+    const quotes = [
+      { text: "Yurtta sulh, cihanda sulh.", source: "1923, Türkiye Cumhuriyeti'nin ilk yılları" },
+      { text: "Hayatta en hakiki mürşit ilimdir.", source: "1924, Nutuk" },
+      { text: "Egemenlik, kayıtsız şartsız milletindir.", source: "1921, Anayasa" },
+      { text: "Benim naçiz vücudum elbet bir gün toprak olacaktır.", source: "1938, Vasiyet" },
+      { text: "Milletin istiklalini yine milletin azim ve kararı kurtaracaktır.", source: "1919, Samsun Nutku" },
+      { text: "Sanatsız kalan bir milletin hayat damarlarından biri kopmuş demektir.", source: "1923, Ankara Nutku" }
+    ];
+
+    function showRandomQuote() {
+      const index = Math.floor(Math.random() * quotes.length);
+      document.getElementById("quote").textContent = `“${quotes[index].text}”`;
+      document.getElementById("source").textContent = `— ${quotes[index].source}`;
+    }
+
+    showRandomQuote();
+  </script>
 
 </body>
 </html>
