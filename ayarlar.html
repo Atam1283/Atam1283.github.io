@@ -1,149 +1,237 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ayarlar</title>
-<style>
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #000;
-    color: #fff;
-    padding-top: 70px;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ayarlar</title>
 
-  nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: #111;
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    padding: 15px 0;
-    box-shadow: 0 2px 8px rgba(255,255,255,0.15);
-    z-index: 999;
-  }
-  nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
-    padding: 6px 12px;
-    border-radius: 5px;
-    transition: background 0.3s, color 0.3s;
-  }
-  nav a:hover {
-    background: #ff2c2c;
-    color: white;
-  }
+  <!-- Font Awesome CDN -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    rel="stylesheet"
+  />
 
-  main {
-    max-width: 600px;
-    margin: 30px auto;
-    padding: 20px;
-    background-color: #111;
-    border-radius: 10px;
-    border: 1px solid #333;
-  }
+  <style>
+    :root {
+      --primary-red: #ff2c2c;
+      --dark-bg: #000;
+      --dark-card-bg: #111;
+      --text-color: #eee;
+      --hover-shadow: 0 0 15px #ff2c2caa;
+      --btn-border: 1.5px solid #eee;
+    }
 
-  h1 {
-    text-align: center;
-    font-size: 3rem;
-    margin-bottom: 25px;
-  }
+    body {
+      margin: 0;
+      background-color: var(--dark-bg);
+      color: var(--text-color);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding-top: 100px;
+      user-select: none;
+    }
 
-  .lang-btn {
-    cursor: pointer;
-    background-color: #222;
-    border: 1.5px solid #eee;
-    color: white;
-    padding: 10px 20px;
-    margin: 5px 10px 5px 0;
-    font-size: 16px;
-    border-radius: 5px;
-    transition: background 0.3s, border-color 0.3s;
-  }
-  .lang-btn:hover {
-    background-color: #ff2c2c;
-    border-color: #ff2c2c;
-  }
-</style>
+    nav#top-menu {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      z-index: 100;
+      font-weight: 600;
+    }
+
+    nav#top-menu a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--dark-card-bg);
+      border: var(--btn-border);
+      border-radius: 8px;
+      color: var(--text-color);
+      font-size: 16px;
+      padding: 10px 20px;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 0 8px transparent;
+      transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        color 0.3s ease;
+    }
+
+    nav#top-menu a:hover {
+      background-color: var(--primary-red);
+      border-color: var(--primary-red);
+      box-shadow: var(--hover-shadow);
+      color: white;
+    }
+
+    nav#top-menu a i {
+      font-size: 20px;
+    }
+
+    h1#page-title {
+      text-align: center;
+      font-size: 4rem;
+      color: var(--primary-red);
+      text-shadow: 0 0 25px var(--primary-red);
+      margin-bottom: 50px;
+    }
+
+    .settings {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: var(--dark-card-bg);
+      padding: 25px 30px;
+      border-radius: 14px;
+      box-shadow: 0 0 28px #ff2c2c88;
+      font-size: 1.3rem;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    .settings h2 {
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--primary-red);
+      padding-bottom: 8px;
+      color: var(--primary-red);
+      font-size: 2rem;
+    }
+
+    .settings button {
+      margin: 10px 10px 0 0;
+      padding: 12px 25px;
+      font-size: 1.1rem;
+      background-color: var(--dark-bg);
+      color: var(--text-color);
+      border: var(--btn-border);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+      user-select: none;
+    }
+
+    .settings button:hover {
+      background-color: var(--primary-red);
+      border-color: var(--primary-red);
+      color: white;
+    }
+
+    #msg {
+      margin-top: 25px;
+      font-size: 1.1rem;
+      color: var(--primary-red);
+      text-align: center;
+      height: 1.3rem;
+      user-select: none;
+      min-height: 1.3rem;
+    }
+
+    @media (max-width: 768px) {
+      nav#top-menu a {
+        font-size: 15px;
+        padding: 8px 16px;
+      }
+      nav#top-menu a i {
+        font-size: 18px;
+      }
+      h1#page-title {
+        font-size: 3.2rem;
+      }
+      .settings {
+        padding: 20px 20px;
+        font-size: 1.1rem;
+      }
+      .settings h2 {
+        font-size: 1.8rem;
+      }
+      .settings button {
+        font-size: 1rem;
+        padding: 10px 18px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" id="link-anasayfa">Ana Sayfa</a>
-    <a href="galeri.html" id="link-galeri">Galeri</a>
-    <a href="geri-sayim.html" id="link-gerisayim">Geri Sayım</a>
-    <a href="ayarlar.html" id="link-ayarlari">Ayarlar</a>
+  <nav id="top-menu">
+    <a href="index.html"><i class="fa-solid fa-house"></i><span data-i18n="navHome">Ana Sayfa</span></a>
+    <a href="galeri.html"><i class="fa-solid fa-image"></i><span data-i18n="navGallery">Galeri</span></a>
+    <a href="geri-sayim.html"><i class="fa-solid fa-hourglass-half"></i><span data-i18n="navCountdown">Geri Sayım</span></a>
+    <a href="ayarlar.html"><i class="fa-solid fa-gear"></i><span data-i18n="navSettings">Ayarlar</span></a>
   </nav>
 
-  <main>
-    <h1 id="page-title">Ayarlar</h1>
+  <h1 id="page-title" data-i18n="settingsTitle">Ayarlar</h1>
 
-    <div id="lang-selection">
-      <button class="lang-btn" onclick="setLang('tr')">Türkçe</button>
-      <button class="lang-btn" onclick="setLang('en')">English</button>
-      <button class="lang-btn" onclick="setLang('az')">Azərbaycan</button>
-    </div>
-  </main>
+  <div class="settings">
+    <h2 data-i18n="languageSelection">Dil Seçimi</h2>
+    <button onclick="setLang('tr')">Türkçe</button>
+    <button onclick="setLang('en')">English</button>
+    <button onclick="setLang('az')">Azərbaycan</button>
+
+    <div id="msg"></div>
+  </div>
 
   <script>
-    const translations = {
+    // Çoklu dil metinleri
+    const i18n = {
       tr: {
-        pageTitle: "Ayarlar",
-        links: {
-          anasayfa: "Ana Sayfa",
-          galeri: "Galeri",
-          gerisayim: "Geri Sayım",
-          ayarlari: "Ayarlar"
-        }
+        navHome: "Ana Sayfa",
+        navGallery: "Galeri",
+        navCountdown: "Geri Sayım",
+        navSettings: "Ayarlar",
+        settingsTitle: "Ayarlar",
+        languageSelection: "Dil Seçimi",
+        languageChanged: "Dil başarıyla değiştirildi."
       },
       en: {
-        pageTitle: "Settings",
-        links: {
-          anasayfa: "Home",
-          galeri: "Gallery",
-          gerisayim: "Countdown",
-          ayarlari: "Settings"
-        }
+        navHome: "Home",
+        navGallery: "Gallery",
+        navCountdown: "Countdown",
+        navSettings: "Settings",
+        settingsTitle: "Settings",
+        languageSelection: "Select Language",
+        languageChanged: "Language changed successfully."
       },
       az: {
-        pageTitle: "Ayarlar",
-        links: {
-          anasayfa: "Ana Səhifə",
-          galeri: "Qalereya",
-          gerisayim: "Geri Sayım",
-          ayarlari: "Ayarlar"
-        }
+        navHome: "Ana Səhifə",
+        navGallery: "Qalereya",
+        navCountdown: "Geri Sayım",
+        navSettings: "Parametrlər",
+        settingsTitle: "Parametrlər",
+        languageSelection: "Dil Seçimi",
+        languageChanged: "Dil uğurla dəyişdirildi."
       }
     };
 
-    function applyLanguage(lang) {
-      document.documentElement.lang = lang;
-      const t = translations[lang] || translations.tr;
-
-      document.getElementById("page-title").textContent = t.pageTitle;
-
-      document.getElementById("link-anasayfa").textContent = t.links.anasayfa;
-      document.getElementById("link-galeri").textContent = t.links.galeri;
-      document.getElementById("link-gerisayim").textContent = t.links.gerisayim;
-      document.getElementById("link-ayarlari").textContent = t.links.ayarlari;
+    // Sayfadaki data-i18n öğelerini güncelle
+    function updateTexts(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if(i18n[lang] && i18n[lang][key]){
+          el.textContent = i18n[lang][key];
+        }
+      });
     }
 
+    // Dil seçimi fonksiyonu
     function setLang(lang) {
-      localStorage.setItem("lang", lang);
-      applyLanguage(lang);
-      alert("Dil başarıyla değiştirildi.");
+      localStorage.setItem('lang', lang);
+      updateTexts(lang);
+      const msg = document.getElementById('msg');
+      msg.textContent = i18n[lang].languageChanged;
+      setTimeout(() => { msg.textContent = ''; }, 3000);
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const lang = localStorage.getItem("lang") || "tr";
-      applyLanguage(lang);
+    // Sayfa yüklendiğinde localStorage'den dili al ve uygula
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('lang') || 'tr';
+      updateTexts(savedLang);
     });
   </script>
+
 </body>
 </html>
