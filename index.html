@@ -5,209 +5,176 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mustafa Kemal Atatürk - Ana Sayfa</title>
   <style>
-    /* Reset ve genel stiller */
-    *, *::before, *::after { box-sizing: border-box; }
     body {
-      margin: 0; padding: 0; background-color: #000; color: #fff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex; flex-direction: column; min-height: 100vh;
+      margin: 0; padding: 0; font-family: Arial, sans-serif;
+      background-color: #000; color: #fff;
+      transition: background-color 0.3s, color 0.3s;
     }
-
-    /* Üst menü */
-    header {
-      background-color: #111;
-      border-bottom: 2px solid #b22222; /* Kırmızı çizgi */
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+    .header {
+      display: flex; justify-content: center; gap: 15px;
+      background: #111; padding: 12px 0;
+      border-bottom: 1px solid #555;
     }
-
-    nav {
-      display: flex;
-      gap: 20px;
-    }
-
-    nav a {
-      color: #fff;
+    .btn {
+      padding: 8px 18px; font-weight: bold;
+      border: 1px solid #444; border-radius: 4px;
+      background-color: #222; color: #fff;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.2s, color 0.2s;
       text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 6px 10px;
-      border-radius: 4px;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      display: flex; align-items: center;
     }
-
-    nav a:hover,
-    nav a:focus-visible {
-      background-color: #b22222; /* kırmızı vurgu */
-      color: #fff;
-      outline: none;
+    .btn:hover {
+      background-color: #555;
     }
-
-    /* Arama kutusu */
-    form#searchForm {
+    .search-container {
       flex-grow: 1;
       max-width: 400px;
-      margin-left: 40px;
-      position: relative;
+      display: flex;
+      justify-content: center;
     }
-
-    form#searchForm input[type="search"] {
-      width: 100%;
-      padding: 8px 12px;
-      font-size: 1rem;
-      border: 2px solid #fff;
-      border-radius: 25px;
-      background: transparent;
+    .search-input {
+      width: 100%; max-width: 100%;
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1px solid #555;
+      background-color: transparent;
       color: #fff;
+      font-size: 16px;
       outline: none;
-      transition: border-color 0.3s ease;
+      transition: border-color 0.3s;
     }
-
-    form#searchForm input[type="search"]:focus {
-      border-color: #b22222;
+    .search-input::placeholder {
+      color: #ccc;
     }
-
-    form#searchForm button {
-      position: absolute;
-      right: 8px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 1.2rem;
-      cursor: pointer;
+    .search-input:focus {
+      border-color: #fff;
     }
-
-    /* Ana içerik */
-    main {
-      flex-grow: 1;
-      padding: 40px 20px;
+    .content {
       max-width: 900px;
-      margin: 0 auto;
+      margin: 40px auto;
+      padding: 0 15px;
       text-align: center;
+      border-top: 2px solid #555;
+    }
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
       user-select: none;
     }
-
-    main h1 {
-      font-size: 2.6rem;
-      font-weight: 900;
-      margin-bottom: 20px;
-      letter-spacing: 0.1em;
-      color: #fff;
-    }
-
-    main #quote {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: #fff;
-      line-height: 1.3;
-    }
-
-    main #source {
-      font-size: 1rem;
+    #quoteBox {
+      margin-top: 20px;
       font-style: italic;
-      color: #bbb;
+      font-size: 22px;
+      color: #ddd;
     }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      nav {
-        gap: 12px;
-      }
-      form#searchForm {
-        margin-left: 20px;
-        max-width: 100%;
-      }
-      main h1 {
-        font-size: 2rem;
-      }
-      main #quote {
-        font-size: 1.2rem;
-      }
+    #quoteSource {
+      margin-top: 8px;
+      font-size: 16px;
+      color: #999;
+    }
+    .highlight {
+      color: #fff;
+    }
+    .separator {
+      border-top: 1px solid #555;
+      margin: 30px 0;
     }
   </style>
 </head>
 <body>
-  <header>
-    <nav aria-label="Ana navigasyon">
-      <a href="index.html" tabindex="0">Ana Sayfa</a>
-      <a href="galeri.html" tabindex="0">Galeri</a>
-      <a href="hayati.html" tabindex="0">Hayatı</a>
-      <a href="gerisayim.html" tabindex="0">Geri Sayım</a>
-      <a href="ayarlar.html" tabindex="0">Ayarlar</a>
-    </nav>
+  <div class="header">
+    <a href="index.html" class="btn">Ana Sayfa</a>
+    <a href="galeri.html" class="btn">Galeri</a>
+    <a href="hayati.html" class="btn">Hayatı</a>
+    <a href="gerisayim.html" class="btn">Geri Sayım</a>
+    <a href="ayarlar.html" class="btn">Ayarlar</a>
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Ara..." />
+    </div>
+  </div>
 
-    <form id="searchForm" role="search" aria-label="Site araması" onsubmit="return performSearch()">
-      <input type="search" id="searchInput" placeholder="Ara..." aria-label="Arama kutusu" autocomplete="off" />
-      <button type="submit" aria-label="Ara">&#128269;</button>
-    </form>
-  </header>
-
-  <main>
+  <div class="content">
     <h1>Mustafa Kemal Atatürk</h1>
-    <div id="quote" tabindex="0" aria-live="polite"></div>
-    <div id="source" aria-live="polite"></div>
-  </main>
+    <div id="quoteBox">
+      <div id="quoteText"></div>
+      <div id="quoteSource"></div>
+    </div>
+  </div>
 
   <script>
+    // Atatürk sözleri ve kaynakları
     const quotes = [
       { text: "Yurtta sulh, cihanda sulh.", source: "1923 Nutuk" },
-      { text: "Egemenlik, kayıtsız şartsız milletindir.", source: "1920 TBMM Açılışı" },
+      { text: "Egemenlik, kayıtsız şartsız milletindir.", source: "1921 Anayasası" },
+      { text: "Hayatta en hakiki mürşit ilimdir.", source: "1923 Söylev" },
+      { text: "Milli mücadele, milletin istiklal savaşıdır.", source: "Nutuk, 1927" },
+      { text: "Bütün ümidim gençliktedir.", source: "1927 Nutuk" },
       { text: "Benim naçiz vücudum elbet bir gün toprak olacaktır.", source: "1938 Vasiyet" },
-      { text: "Hayatta en hakiki mürşit ilimdir.", source: "1924 Sivas Kongresi" },
-      { text: "Milletin bağımsızlığını, yine milletin azim ve kararı kurtaracaktır.", source: "1921 TBMM" },
-      { text: "Türk milleti zekidir.", source: "1923 İzmir İktisat Kongresi" },
-      { text: "İstikbal göklerdedir.", source: "1927 Atatürk'ün Gençliğe Hitabesi" },
-      { text: "Zafer, zafer benimdir diyebilenindir.", source: "1922 Sakarya Meydan Muharebesi" },
-      { text: "Türkiye Cumhuriyeti ilelebet payidar kalacaktır.", source: "1927 Nutuk" }
+      { text: "Muasır medeniyet seviyesine ulaşmak.", source: "Cumhuriyet hedefi" }
     ];
 
     function randomQuote() {
-      const idx = Math.floor(Math.random() * quotes.length);
-      return quotes[idx];
+      const index = Math.floor(Math.random() * quotes.length);
+      return quotes[index];
     }
 
-    function displayQuote() {
+    // Söz gösterme ayarı
+    const showQuotes = localStorage.getItem('showQuotes');
+    const quoteBox = document.getElementById('quoteBox');
+    const quoteText = document.getElementById('quoteText');
+    const quoteSource = document.getElementById('quoteSource');
+
+    // Rastgele söz göster
+    if(showQuotes !== 'false') {
       const q = randomQuote();
-      document.getElementById('quote').textContent = `"${q.text}"`;
-      document.getElementById('source').textContent = q.source;
+      quoteText.textContent = `"${q.text}"`;
+      quoteSource.textContent = `- ${q.source}`;
+      quoteBox.style.display = 'block';
+    } else {
+      quoteBox.style.display = 'none';
     }
 
-    // İlk yüklemede göster
-    displayQuote();
-
-    // Sayfa her yenilendiğinde farklı bir söz gelsin
-    // (Dilersen localStorage ile aynı söz tekrar gelmesini engelleyebilirsin)
-
-    // Basit site içi arama (örnek: sadece linklerde arama yapıyor)
-    function performSearch() {
-      const input = document.getElementById('searchInput').value.trim().toLowerCase();
-      if (!input) return false;
-      // Basit demo amaçlı sayfa linklerinde arama
-      const pages = {
-        'ana sayfa': 'index.html',
-        'galeri': 'galeri.html',
-        'hayatı': 'hayati.html',
-        'geri sayım': 'gerisayim.html',
-        'ayarlar': 'ayarlar.html'
-      };
-
-      // Arama sonucu eşleşen sayfa varsa yönlendir
-      for (const key in pages) {
-        if (key.includes(input)) {
-          window.location.href = pages[key];
-          return false;
-        }
-      }
-      alert('Arama sonucu bulunamadı.');
-      return false;
+    // Tema ayarını uygula
+    const darkMode = localStorage.getItem('darkMode');
+    if(darkMode === 'false') {
+      document.body.style.backgroundColor = '#fff';
+      document.body.style.color = '#000';
+      document.querySelectorAll('.highlight').forEach(el => {
+        el.style.color = '#000';
+      });
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.style.backgroundColor = '#e0e0e0';
+        btn.style.color = '#000';
+        btn.style.borderColor = '#bbb';
+      });
+      document.querySelectorAll('.separator').forEach(line => {
+        line.style.borderColor = '#ccc';
+      });
+      document.querySelector('.search-input').style.color = '#000';
+      document.querySelector('.search-input').style.borderColor = '#bbb';
+      document.querySelector('.search-input').style.backgroundColor = '#fff';
+      document.querySelector('.search-input').placeholder = 'Ara...';
+    } else {
+      // Koyu tema varsayılan, CSS zaten koyu
+      document.body.style.backgroundColor = '#000';
+      document.body.style.color = '#fff';
+      document.querySelectorAll('.highlight').forEach(el => {
+        el.style.color = '#fff';
+      });
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.style.backgroundColor = '#222';
+        btn.style.color = '#fff';
+        btn.style.borderColor = '#444';
+      });
+      document.querySelectorAll('.separator').forEach(line => {
+        line.style.borderColor = '#555';
+      });
+      document.querySelector('.search-input').style.color = '#fff';
+      document.querySelector('.search-input').style.borderColor = '#555';
+      document.querySelector('.search-input').style.backgroundColor = 'transparent';
+      document.querySelector('.search-input').placeholder = 'Ara...';
     }
   </script>
 </body>
