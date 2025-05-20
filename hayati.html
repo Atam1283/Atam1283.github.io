@@ -1,5 +1,117 @@
 <!DOCTYPE html>
+<html lang="tr"><!DOCTYPE html>
 <html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Atatürk'ün Hayatı</title>
+<style>
+  /* Mevcut stilini koruyalım */
+  body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+  #top-menu {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+  }
+  #top-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    margin-left: 10px;
+  }
+  #top-menu a:hover {
+    color: #ff2c2c;
+  }
+  h1 {
+    margin-top: 100px;
+    font-size: 2.5rem;
+  }
+  p {
+    line-height: 1.8;
+    margin-top: 20px;
+    font-size: 1.1rem;
+  }
+</style>
+</head>
+<body>
+  <div id="top-menu">
+    <a id="link-anasayfa" href="index.html">Ana Sayfa</a>
+    <div>
+      <a id="link-galeri" href="galeri.html">Galeri</a>
+      <a id="link-ayarlari" href="ayarlar.html">Ayarlar</a>
+    </div>
+  </div>
+
+  <h1 id="page-title">Atatürk'ün Hayatı</h1>
+
+  <p id="content">
+    Mustafa Kemal Atatürk, Türkiye Cumhuriyeti'nin kurucusu ve ilk Cumhurbaşkanıdır. 1881 yılında Selanik'te doğmuş, askeri eğitimini tamamladıktan sonra Türk milletinin bağımsızlığı için mücadele etmiştir.
+  </p>
+
+  <script>
+    const translations = {
+      tr: {
+        pageTitle: "Atatürk'ün Hayatı",
+        content: "Mustafa Kemal Atatürk, Türkiye Cumhuriyeti'nin kurucusu ve ilk Cumhurbaşkanıdır. 1881 yılında Selanik'te doğmuş, askeri eğitimini tamamladıktan sonra Türk milletinin bağımsızlığı için mücadele etmiştir.",
+        links: {
+          anasayfa: "Ana Sayfa",
+          galeri: "Galeri",
+          ayarlari: "Ayarlar"
+        }
+      },
+      en: {
+        pageTitle: "Atatürk's Biography",
+        content: "Mustafa Kemal Atatürk is the founder and first President of the Republic of Turkey. He was born in 1881 in Salonika and after completing his military education, he fought for the independence of the Turkish nation.",
+        links: {
+          anasayfa: "Home",
+          galeri: "Gallery",
+          ayarlari: "Settings"
+        }
+      },
+      az: {
+        pageTitle: "Atatürkün Həyatı",
+        content: "Mustafa Kamal Atatürk Türkiyə Respublikasının qurucusu və ilk Prezidentidir. O, 1881-ci ildə Salonikdə doğulub və hərbi təhsilini bitirdikdən sonra türk millətinin müstəqilliyi uğrunda mübarizə aparıb.",
+        links: {
+          anasayfa: "Ana Səhifə",
+          galeri: "Qalereya",
+          ayarlari: "Ayarlar"
+        }
+      }
+    };
+
+    function applyLanguage(lang) {
+      document.documentElement.lang = lang;
+
+      const t = translations[lang];
+
+      document.getElementById("page-title").textContent = t.pageTitle;
+      document.getElementById("content").textContent = t.content;
+
+      document.getElementById("link-anasayfa").textContent = t.links.anasayfa;
+      document.getElementById("link-galeri").textContent = t.links.galeri;
+      document.getElementById("link-ayarlari").textContent = t.links.ayarlari;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const lang = localStorage.getItem("lang") || "tr";
+      applyLanguage(lang);
+    });
+  </script>
+</body>
+</html>
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
