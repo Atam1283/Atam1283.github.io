@@ -1,126 +1,151 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mustafa Kemal Atatürk - Ana Sayfa</title>
-  <style>
-    body {
-      margin: 0; padding: 20px;
-      background: #000;
-      color: #fff;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      text-align: center;
-    }
-    nav {
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto 30px;
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      border-bottom: 1.5px solid #666;
-      padding-bottom: 16px;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 6px 14px;
-      border-radius: 8px;
-      transition: background-color 0.3s, color 0.3s;
-      user-select: none;
-      cursor: pointer;
-    }
-    nav a:hover,
-    nav a:focus {
-      background: #fff;
-      color: #000;
-      outline: none;
-    }
-    nav a:focus-visible {
-      outline: 2px solid #00ffff;
-      outline-offset: 2px;
-    }
-    hr {
-      width: 90vw;
-      max-width: 900px;
-      border: none;
-      border-bottom: 2px solid #555;
-      margin: 24px auto;
-      box-shadow: none;
-    }
-    .title {
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mustafa Kemal Atatürk - Ana Sayfa</title>
+<style>
+  /* Reset & genel stil */
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 40px 20px; background-color: #000; color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+  }
+
+  /* Üst menü - butonlar + arama */
+  #topMenu {
+    position: fixed; top: 10px; left: 0; right: 0;
+    background: #111; display: flex; justify-content: center; align-items: center;
+    gap: 20px; padding: 10px 0; box-shadow: 0 0 12px #00ffffaa;
+    z-index: 9999;
+  }
+  #topMenu button {
+    background: none; border: none; color: #00ffff;
+    font-weight: 600; font-size: 1rem; cursor: pointer;
+    padding: 6px 12px; border-radius: 30px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  #topMenu button:hover,
+  #topMenu button:focus-visible {
+    background: #00ffff; color: #000; outline: none;
+  }
+  #searchForm {
+    flex: 1; max-width: 400px; display: flex; justify-content: center;
+  }
+  #searchInput {
+    width: 100%; padding: 8px 14px; border-radius: 25px;
+    border: 2px solid #00ffff; background: transparent;
+    color: #fff; font-size: 1rem; transition: border-color 0.3s ease;
+  }
+  #searchInput::placeholder {
+    color: #ccc;
+  }
+  #searchInput:focus {
+    outline: none; border-color: #fff;
+    background-color: rgba(255,255,255,0.1);
+  }
+
+  /* Sayfa içeriği */
+  #content {
+    margin-top: 90px;
+    text-align: center;
+    max-width: 700px;
+  }
+
+  #ataturkName {
+    font-size: 3rem; font-weight: 900; color: #00ffff;
+    margin-bottom: 10px;
+    user-select: none;
+    /* Hareket etmemesi için transform yok */
+  }
+
+  #quote {
+    font-size: 1.6rem; font-style: italic; margin-bottom: 5px;
+    color: #fff;
+    user-select: none;
+  }
+
+  #quoteSource {
+    font-size: 1rem; font-weight: 600; color: #ccc;
+    user-select: none;
+  }
+
+  /* Alt çizgi */
+  #bottomLine {
+    margin-top: 50px; width: 90vw; max-width: 700px;
+    border-top: 2px solid #444;
+    box-shadow: 0 0 12px 1px #00ffff44 inset;
+  }
+
+  @media (max-width: 480px) {
+    #ataturkName {
       font-size: 2.4rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      user-select: none;
     }
-    .quote {
-      font-size: 1.3rem;
-      margin: 8px auto;
-      max-width: 700px;
-      font-style: italic;
-      user-select: none;
+    #quote {
+      font-size: 1.2rem;
     }
-    .source {
-      font-size: 1rem;
-      margin-top: 4px;
-      color: #ccc;
-      user-select: none;
-    }
-    input[type="search"] {
-      background: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 8px 14px;
-      font-size: 1rem;
-      width: 260px;
-      max-width: 80vw;
-      outline-offset: 3px;
-      outline-color: #00ffff;
-      margin-top: 10px;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" aria-current="page">Ana Sayfa</a>
-    <a href="galeri.html">Galeri</a>
-    <a href="hayati.html">Hayatı</a>
-    <a href="gerisayim.html">Geri Sayım</a>
-    <a href="ayarlar.html">Ayarlar</a>
-  </nav>
+<!-- Üst Menü -->
+<nav id="topMenu" aria-label="Site Ana Navigasyonu">
+  <button onclick="location.href='index.html'" aria-current="page">Ana Sayfa</button>
+  <button onclick="location.href='galeri.html'">Galeri</button>
+  <button onclick="location.href='hayati.html'">Hayatı</button>
+  <button onclick="location.href='gerisayim.html'">Geri Sayım</button>
+  <button onclick="location.href='ayarlar.html'">Ayarlar</button>
+  <form id="searchForm" role="search" onsubmit="return searchSite(event)">
+    <input id="searchInput" type="search" placeholder="Ara..." aria-label="Site içinde ara" />
+  </form>
+</nav>
 
-  <div class="title">Mustafa Kemal Atatürk</div>
+<!-- Ana içerik -->
+<main id="content" role="main">
+  <h1 id="ataturkName" aria-label="Mustafa Kemal Atatürk">Mustafa Kemal Atatürk</h1>
+  <blockquote id="quote" aria-live="polite" aria-atomic="true"></blockquote>
+  <cite id="quoteSource" aria-live="polite" aria-atomic="true"></cite>
+</main>
 
-  <div class="quote" id="quote"></div>
-  <div class="source" id="source"></div>
+<div id="bottomLine"></div>
 
-  <input type="search" placeholder="Ara..." aria-label="Sayfada ara" />
+<script>
+  // Atatürk sözleri ve kaynakları
+  const quotes = [
+    { text: "Egemenlik, kayıtsız şartsız milletindir.", source: "1920 TBMM Açılış Konuşması" },
+    { text: "Yurtta sulh, cihanda sulh.", source: "1931, 7. Milletlerarası Hukuk Kongresi" },
+    { text: "Hayatta en hakiki mürşit ilimdir.", source: "1923, İzmir İktisat Kongresi" },
+    { text: "Beni görmek demek, mutlaka yüzümü görmek değildir.", source: "1923, Söylev" },
+    { text: "Ne mutlu Türküm diyene!", source: "1933, Bayrak Töreni" },
+    { text: "Milletin bağımsızlığı tehlikedeyse, o milletin fertleri el birliği ile savaşmalıdır.", source: "1921, Sakarya Meydan Muharebesi" },
+    { text: "İstikbal göklerdedir.", source: "1927, Gençliğe Hitabe" },
+    { text: "Türk milleti, karakteri ve alışkanlıkları bakımından son derece sağlam temellidir.", source: "1924, Nutuk" },
+    { text: "Büyük hedeflere ulaşmak için, azim ve kararlılık şarttır.", source: "1925, Konya Seyahati" }
+  ];
 
-  <hr />
+  // Her sayfa yenilendiğinde rastgele söz göster
+  function showRandomQuote() {
+    const idx = Math.floor(Math.random() * quotes.length);
+    document.getElementById('quote').textContent = `"${quotes[idx].text}"`;
+    document.getElementById('quoteSource').textContent = `— ${quotes[idx].source}`;
+  }
+  showRandomQuote();
 
-  <script>
-    const quotes = [
-      { text: "Yurtta sulh, cihanda sulh.", source: "1923, Türkiye Cumhuriyeti'nin ilk yılları" },
-      { text: "Hayatta en hakiki mürşit ilimdir.", source: "1924, Nutuk" },
-      { text: "Egemenlik, kayıtsız şartsız milletindir.", source: "1921, Anayasa" },
-      { text: "Benim naçiz vücudum elbet bir gün toprak olacaktır.", source: "1938, Vasiyet" },
-      { text: "Milletin istiklalini yine milletin azim ve kararı kurtaracaktır.", source: "1919, Samsun Nutku" },
-      { text: "Sanatsız kalan bir milletin hayat damarlarından biri kopmuş demektir.", source: "1923, Ankara Nutku" }
-    ];
-
-    function showRandomQuote() {
-      const index = Math.floor(Math.random() * quotes.length);
-      document.getElementById("quote").textContent = `“${quotes[index].text}”`;
-      document.getElementById("source").textContent = `— ${quotes[index].source}`;
+  // Basit site içi arama simülasyonu
+  function searchSite(e){
+    e.preventDefault();
+    const query = document.getElementById('searchInput').value.trim().toLowerCase();
+    if(!query){
+      alert('Lütfen arama terimi giriniz.');
+      return false;
     }
-
-    showRandomQuote();
-  </script>
+    // Basit demo: sadece alert ile arama terimini gösteriyoruz.
+    alert(`Aranıyor: ${query}\n(Not: Arama özelliği geliştirilebilir.)`);
+    return false;
+  }
+</script>
 
 </body>
 </html>
