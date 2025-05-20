@@ -1,47 +1,70 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ayarlar</title>
   <style>
     body {
       margin: 0;
-      padding: 40px 20px;
-      background-color: #000;
-      color: #fff;
+      padding: 0;
+      background: black;
+      color: white;
       font-family: 'Segoe UI', sans-serif;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
+
     nav {
-      margin-bottom: 30px;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-    }
-    #searchBar {
-      margin: 30px auto;
-      max-width: 400px;
-      width: 90%;
-    }
-    #searchBar input {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      background: #111;
       width: 100%;
-      padding: 10px 15px;
-      border-radius: 25px;
-      border: none;
-      background-color: #222;
+      padding: 16px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
       color: #fff;
+      text-decoration: underline;
+    }
+
+    input[type="text"] {
+      margin: 40px auto 20px;
+      padding: 10px 20px;
       font-size: 1rem;
+      border-radius: 30px;
+      border: none;
+      outline: none;
+      background: white;
+      color: black;
+      width: 80%;
+      max-width: 400px;
+    }
+
+    .settings {
+      margin-top: 40px;
+      max-width: 600px;
+      width: 100%;
       text-align: center;
     }
-    section {
-      margin-top: 50px;
+
+    .settings label {
+      display: block;
+      margin: 20px 0 10px;
     }
-    .setting-option {
-      margin: 20px 0;
+
+    .settings select,
+    .settings input[type="checkbox"] {
+      margin: 0 auto;
     }
   </style>
 </head>
@@ -54,28 +77,18 @@
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
 
-  <div id="searchBar">
-    <input type="text" placeholder="Arama yapın...">
+  <input type="text" placeholder="Ayarları ara..." />
+
+  <div class="settings">
+    <label for="language">Dil Seçimi:</label>
+    <select id="language">
+      <option value="tr">Türkçe</option>
+      <option value="en">English</option>
+      <option value="az">Azərbaycan</option>
+    </select>
+
+    <label for="darkMode">Karanlık Mod:</label>
+    <input type="checkbox" id="darkMode" checked />
   </div>
-
-  <section>
-    <h2>Ayarlar</h2>
-    <div class="setting-option">
-      <label for="themeSelect">Tema Seçimi:</label><br />
-      <select id="themeSelect">
-        <option value="dark" selected>Koyu</option>
-        <option value="light">Açık</option>
-      </select>
-    </div>
-
-    <div class="setting-option">
-      <label for="langSelect">Dil Seçimi:</label><br />
-      <select id="langSelect">
-        <option value="tr" selected>Türkçe</option>
-        <option value="en">İngilizce</option>
-        <option value="az">Azerice</option>
-      </select>
-    </div>
-  </section>
 </body>
 </html>
