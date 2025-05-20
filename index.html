@@ -1,115 +1,91 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mustafa Kemal Atatürk</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Ana Sayfa</title>
   <style>
+    /* Genel stil */
+    *, *::before, *::after { box-sizing: border-box; }
     body {
-      margin: 0;
-      background: #000;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      min-height: 100vh;
+      margin:0; padding:40px 20px;
+      background:#000; color:#fff;
+      font-family:'Segoe UI',sans-serif;
+      text-align:center;
     }
-    header {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      margin-bottom: 30px;
+    /* Üst menü */
+    nav {
+      width:100%; max-width:900px;
+      margin:0 auto 30px;
+      display:flex; justify-content:center; gap:24px;
+      border-bottom:1.5px solid #666; padding-bottom:16px;
     }
-    header a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
+    nav a {
+      color:#fff; text-decoration:none;
+      font-weight:600; font-size:1rem;
+      padding:4px 8px; border-radius:6px;
+      transition:background-color .3s,color .3s;
+      user-select:none;
     }
-    header a:hover {
-      color: #fff;
-      text-shadow: 0 0 8px #fff;
+    nav a:hover, nav a:focus {
+      background:#fff; color:#000; outline:none;
     }
-    h1 {
-      font-size: 2.4rem;
-      margin: 0 0 20px;
-      letter-spacing: 0.06em;
-      user-select: none;
+    nav a:focus-visible {
+      outline:2px solid #00ffff; outline-offset:2px;
     }
-    .quote {
-      font-size: 1.3rem;
-      margin: 20px 0 10px;
-      text-align: center;
-      font-style: italic;
+    /* Gri ayırıcı çizgi */
+    hr { 
+      width:90vw; max-width:900px; height:1.5px; background:#444;
+      border:none; margin:24px auto; box-shadow:0 0 6px #444;
     }
-    .source {
-      font-size: 1rem;
-      color: #ccc;
-      text-align: center;
-      margin-bottom: 40px;
+    /* Başlık & içerik */
+    h1 { margin:0; font-size:2.4rem; }
+    .quote { font-style:italic; margin:20px 0 10px; font-size:1.3rem; }
+    .source{ color:#ccc; margin-bottom:40px; }
+    /* Arama kutusu */
+    .search-box { max-width:600px; margin:0 auto; }
+    .search-box input {
+      width:100%; padding:14px 20px;
+      border:none; border-radius:30px;
+      background:#222; color:#fff; font-size:1.1rem;
+      box-shadow:0 0 10px #fff; outline:none;
     }
-    .search-box {
-      max-width: 600px;
-      width: 100%;
-    }
-    input[type="text"] {
-      width: 100%;
-      padding: 14px 20px;
-      border: none;
-      border-radius: 30px;
-      font-size: 1.1rem;
-      background: #222;
-      color: #fff;
-      outline: none;
-      box-shadow: 0 0 10px #fff;
-    }
-    input[type="text"]::placeholder {
-      color: #aaa;
+    .search-box input::placeholder { color:#aaa; }
+    @media (max-width:480px){
+      h1{ font-size:1.8rem; }
+      .quote{ font-size:1.1rem; }
     }
   </style>
 </head>
 <body>
 
-<header>
+<nav aria-label="Sayfa menüsü">
   <a href="index.html">Ana Sayfa</a>
   <a href="galeri.html">Galeri</a>
   <a href="hayati.html">Hayatı</a>
   <a href="gerisayim.html">Geri Sayım</a>
   <a href="ayarlar.html">Ayarlar</a>
-</header>
+</nav>
+<hr/>
 
 <h1>Mustafa Kemal Atatürk</h1>
-
 <div class="quote" id="quoteText"></div>
 <div class="source" id="quoteSource"></div>
 
 <div class="search-box">
-  <input type="text" placeholder="Ara..." onkeydown="if(event.key==='Enter'){search(this.value)}">
+  <input type="text" placeholder="Ara..." onkeydown="if(event.key==='Enter')search(this.value)"/>
 </div>
 
 <script>
   const quotes = [
-    { text: "Benim naçiz vücudum elbet bir gün toprak olacaktır.", source: "TBMM, 1927" },
-    { text: "Egemenlik, kayıtsız şartsız milletindir.", source: "Ankara, 1923" },
-    { text: "Yurtta sulh, cihanda sulh.", source: "Ankara, 1931" },
-    { text: "Hayatta en hakiki mürşit ilimdir.", source: "Samsun, 1924" },
-    { text: "Milletin bağımsızlığını, yine milletin azim ve kararı kurtaracaktır.", source: "Erzurum, 1919" }
+    {text:"Yurtta sulh, cihanda sulh.",source:"Ankara,1931"},
+    {text:"Egemenlik, kayıtsız şartsız milletindir.",source:"TBMM,1920"},
+    {text:"Hayatta en hakiki mürşit ilimdir.",source:"Samsun,1924"}
   ];
-
-  function randomQuote() {
-    const quote = quotes[Math.floor(Math.random() * quotes.length)];
-    document.getElementById('quoteText').textContent = `"${quote.text}"`;
-    document.getElementById('quoteSource').textContent = `— ${quote.source}`;
-  }
-
-  function search(query) {
-    window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
-  }
-
-  randomQuote();
+  const q=quotes[Math.floor(Math.random()*quotes.length)];
+  document.getElementById('quoteText').textContent = `"${q.text}"`;
+  document.getElementById('quoteSource').textContent = `– ${q.source}`;
+  function search(v){ if(v.trim())window.open('https://www.google.com/search?q='+encodeURIComponent(v),'_blank'); }
 </script>
 
 </body>
