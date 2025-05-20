@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Atatürk'ün Hayatı</title>
   <style>
-    /* Genel gövde ve renk ayarları */
+    /* Genel body ve renkler */
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #000;
-      color: #f0f0f0;
-      padding-top: 80px;
-      line-height: 1.7;
+      color: #eee;
+      padding-top: 100px;
+      line-height: 1.8;
     }
 
-    /* Üst menü stili */
+    /* Üst menü container */
     #top-menu {
       position: fixed;
       top: 15px;
@@ -23,81 +23,80 @@
       right: 15px;
       display: flex;
       justify-content: center;
-      gap: 30px;
+      gap: 20px;
       align-items: center;
       z-index: 100;
-      background-color: #111;
-      padding: 12px 0;
-      border-radius: 12px;
-      box-shadow: 0 0 20px #ff2c2caa;
       user-select: none;
       font-weight: 600;
-      font-size: 18px;
     }
 
+    /* Menüdeki linkler buton gibi */
     #top-menu a {
-      background: #222;
-      color: #f0f0f0;
-      border: 2px solid #eee;
-      padding: 10px 18px;
-      border-radius: 10px;
+      background-color: #222;
+      border: 1.5px solid #eee;
+      color: white;
       text-decoration: none;
-      transition: background 0.35s, color 0.35s, border-color 0.35s;
+      padding: 9px 18px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+      box-shadow: 0 0 8px transparent;
     }
 
     #top-menu a:hover {
-      background: #ff2c2c;
-      color: white;
+      background-color: #ff2c2c;
       border-color: #ff2c2c;
+      color: white;
+      box-shadow: 0 0 12px #ff2c2caa;
     }
 
-    /* İçerik alanı */
-    main {
-      max-width: 720px;
-      margin: 0 auto 60px auto;
-      background-color: #121212;
-      border-radius: 14px;
-      padding: 35px 40px;
-      box-shadow: 0 0 30px #ff2c2c88;
-      font-size: 1.3rem;
-    }
-
-    h1 {
+    /* Başlık */
+    h1#page-title {
       font-size: 4rem;
-      margin-bottom: 30px;
       color: #ff2c2c;
       text-align: center;
       text-shadow: 0 0 20px #ff2c2caa;
+      margin-bottom: 40px;
       user-select: none;
     }
 
-    p {
-      margin-bottom: 24px;
+    /* Ana içerik container */
+    main {
+      max-width: 800px;
+      margin: 0 auto 60px;
+      background-color: #111;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 25px #ff2c2c88;
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+
+    main p {
+      margin-bottom: 28px;
       text-align: justify;
     }
 
-    /* Responsive ayarlar */
+    /* Responsive */
     @media (max-width: 768px) {
-      #top-menu {
-        gap: 20px;
-        font-size: 16px;
-      }
       #top-menu a {
         padding: 8px 14px;
+        font-size: 15px;
+      }
+      h1#page-title {
+        font-size: 3.2rem;
       }
       main {
         margin: 20px 15px 60px 15px;
-        font-size: 1.15rem;
-        padding: 30px 25px;
-      }
-      h1 {
-        font-size: 3.2rem;
+        font-size: 1.1rem;
+        padding: 25px 20px;
       }
     }
 
     @media (max-width: 400px) {
       main {
-        font-size: 1.05rem;
+        font-size: 1rem;
       }
     }
   </style>
@@ -114,32 +113,42 @@
   <main>
     <h1 id="page-title">Atatürk'ün Hayatı</h1>
     <p id="content">
-      Mustafa Kemal Atatürk, 1881 yılında Osmanlı İmparatorluğu’nun Selanik şehrinde dünyaya gelmiştir. Askeri eğitimini başarıyla tamamlayarak subay rütbesine ulaşan Atatürk, dönemin zor ve karışık siyasi şartlarında milletinin bağımsızlığı için büyük bir mücadeleye öncülük etmiştir.
+      Mustafa Kemal Atatürk, 1881 yılında Osmanlı İmparatorluğu'nun Selanik şehrinde doğmuştur. Askeri eğitim hayatına başladığı Harp Okulu’nu üstün başarıyla tamamladıktan sonra kısa sürede önemli rütbelere ulaşmış, zorluklar içinde geçen gençlik yıllarında ülkesinin geleceği için kendini adeta vakfetmiştir.
     </p>
     <p>
-      1919 yılında Samsun’a çıkarak Kurtuluş Savaşı’nı başlatan Atatürk, halkını birleştirip modern Türkiye Cumhuriyeti’ni kurma hedefiyle yola çıkmıştır. Savaş boyunca stratejik dehası ve liderlik vasıflarıyla hem askeri hem de siyasi alanlarda önemli başarılara imza atmıştır.
+      I. Dünya Savaşı'nın ardından Osmanlı’nın çöküş döneminde, milletinin bağımsızlığını ve geleceğini garanti altına almak amacıyla 1919 yılında Samsun’a çıkarak Kurtuluş Savaşı’nı başlatmıştır. Bu savaşta hem askeri strateji dehası hem de karizmatik liderliğiyle Türk milletini birleştirmiş, yurdun dört bir yanından destek alarak zorlu şartlara rağmen zafer kazanmıştır.
     </p>
     <p>
-      Cumhuriyet’in ilanından sonra, eğitimden hukuka, ekonomiden kültüre kadar pek çok alanda devrim niteliğinde reformlar gerçekleştirmiştir. Atatürk, çağdaşlaşma yolunda Türk milletine rehberlik ederek Türkiye’yi laik, demokratik ve modern bir devlet haline getirmiştir.
+      29 Ekim 1923'te Türkiye Cumhuriyeti’ni ilan eden Atatürk, bu yeni devletin temellerini çağdaş, laik ve demokratik prensipler üzerine atmıştır. Eğitim sisteminden hukuk düzenine, ekonomik kalkınmadan kültürel reformlara kadar pek çok alanda köklü değişiklikler yapmış, ülkenin hızlıca modernleşmesini sağlamıştır.
     </p>
     <p>
-      Ölümüne kadar bilim, eğitim ve kültür alanlarına büyük önem vermiş, gençlerin eğitimine yatırım yapmış ve milletin ilerlemesi için kapsamlı çalışmalar yürütmüştür. Atatürk, sadece Türkiye’nin değil, dünya tarihinin de saygın liderlerinden biri olarak anılmaktadır.
+      Atatürk’ün reformları arasında Latin alfabesinin kabulü, kadın haklarının genişletilmesi, eğitimde laikleşme, ve sosyal yaşamda kadın erkek eşitliğinin teşvik edilmesi en dikkat çekici adımlardır. Bu değişikliklerle Türkiye, yalnızca bir devlet değil aynı zamanda bir millet olarak da çağdaş dünyaya entegre olmuştur.
+    </p>
+    <p>
+      Ölümüne kadar bilim ve eğitime büyük önem veren Atatürk, gençlere ve eğitimcilere yol göstermiştir. “Hayatta en hakiki mürşit ilimdir,” sözü onun çağdaşlaşma ve gelişme vizyonunu özetler niteliktedir. Türkiye Cumhuriyeti’nin kurucusu olarak, sadece tarihimizin değil, dünya tarihinin en saygın liderlerinden biri olarak kabul edilir.
+    </p>
+    <p>
+      Atatürk'ün mirası, bugün Türkiye'nin her köşesinde hissedilmekte ve onun açtığı yolda ilerlemek üzere yeni nesiller yetişmektedir. Onun vizyonu ve idealleri, çağdaş Türkiye'nin temel taşı olmaya devam etmektedir.
     </p>
   </main>
 
   <script>
-    // Çok dilli metinler
+    // Çoklu dil metinleri
     const translations = {
       tr: {
         pageTitle: "Atatürk'ün Hayatı",
         content: `
-          Mustafa Kemal Atatürk, 1881 yılında Osmanlı İmparatorluğu’nun Selanik şehrinde dünyaya gelmiştir. Askeri eğitimini başarıyla tamamlayarak subay rütbesine ulaşan Atatürk, dönemin zor ve karışık siyasi şartlarında milletinin bağımsızlığı için büyük bir mücadeleye öncülük etmiştir.
+          Mustafa Kemal Atatürk, 1881 yılında Osmanlı İmparatorluğu'nun Selanik şehrinde doğmuştur. Askeri eğitim hayatına başladığı Harp Okulu’nu üstün başarıyla tamamladıktan sonra kısa sürede önemli rütbelere ulaşmış, zorluklar içinde geçen gençlik yıllarında ülkesinin geleceği için kendini adeta vakfetmiştir.
 
-          1919 yılında Samsun’a çıkarak Kurtuluş Savaşı’nı başlatan Atatürk, halkını birleştirip modern Türkiye Cumhuriyeti’ni kurma hedefiyle yola çıkmıştır. Savaş boyunca stratejik dehası ve liderlik vasıflarıyla hem askeri hem de siyasi alanlarda önemli başarılara imza atmıştır.
+          I. Dünya Savaşı'nın ardından Osmanlı’nın çöküş döneminde, milletinin bağımsızlığını ve geleceğini garanti altına almak amacıyla 1919 yılında Samsun’a çıkarak Kurtuluş Savaşı’nı başlatmıştır. Bu savaşta hem askeri strateji dehası hem de karizmatik liderliğiyle Türk milletini birleştirmiş, yurdun dört bir yanından destek alarak zorlu şartlara rağmen zafer kazanmıştır.
 
-          Cumhuriyet’in ilanından sonra, eğitimden hukuka, ekonomiden kültüre kadar pek çok alanda devrim niteliğinde reformlar gerçekleştirmiştir. Atatürk, çağdaşlaşma yolunda Türk milletine rehberlik ederek Türkiye’yi laik, demokratik ve modern bir devlet haline getirmiştir.
+          29 Ekim 1923'te Türkiye Cumhuriyeti’ni ilan eden Atatürk, bu yeni devletin temellerini çağdaş, laik ve demokratik prensipler üzerine atmıştır. Eğitim sisteminden hukuk düzenine, ekonomik kalkınmadan kültürel reformlara kadar pek çok alanda köklü değişiklikler yapmış, ülkenin hızlıca modernleşmesini sağlamıştır.
 
-          Ölümüne kadar bilim, eğitim ve kültür alanlarına büyük önem vermiş, gençlerin eğitimine yatırım yapmış ve milletin ilerlemesi için kapsamlı çalışmalar yürütmüştür. Atatürk, sadece Türkiye’nin değil, dünya tarihinin de saygın liderlerinden biri olarak anılmaktadır.
+          Atatürk’ün reformları arasında Latin alfabesinin kabulü, kadın haklarının genişletilmesi, eğitimde laikleşme, ve sosyal yaşamda kadın erkek eşitliğinin teşvik edilmesi en dikkat çekici adımlardır. Bu değişikliklerle Türkiye, yalnızca bir devlet değil aynı zamanda bir millet olarak da çağdaş dünyaya entegre olmuştur.
+
+          Ölümüne kadar bilim ve eğitime büyük önem veren Atatürk, gençlere ve eğitimcilere yol göstermiştir. “Hayatta en hakiki mürşit ilimdir,” sözü onun çağdaşlaşma ve gelişme vizyonunu özetler niteliktedir. Türkiye Cumhuriyeti’nin kurucusu olarak, sadece tarihimizin değil, dünya tarihinin en saygın liderlerinden biri olarak kabul edilir.
+
+          Atatürk'ün mirası, bugün Türkiye'nin her köşesinde hissedilmekte ve onun açtığı yolda ilerlemek üzere yeni nesiller yetişmektedir. Onun vizyonu ve idealleri, çağdaş Türkiye'nin temel taşı olmaya devam etmektedir.
         `,
         links: {
           anasayfa: "Ana Sayfa",
@@ -151,13 +160,17 @@
       en: {
         pageTitle: "Atatürk's Biography",
         content: `
-          Mustafa Kemal Atatürk was born in 1881 in the city of Salonika, then part of the Ottoman Empire. After completing his military education with distinction, he rose to the rank of officer and became a leading figure in the fight for his nation's independence during difficult political times.
+          Mustafa Kemal Atatürk was born in 1881 in Salonika, then part of the Ottoman Empire. After excelling in his military education, he quickly rose through the ranks and dedicated himself to the future of his country during challenging times.
 
-          In 1919, he landed in Samsun to start the War of Independence, uniting the people under his leadership with the goal of establishing the modern Republic of Turkey. Throughout the war, his strategic genius and leadership brought significant military and political successes.
+          Following World War I and the collapse of the Ottoman Empire, he launched the War of Independence in 1919 by landing in Samsun. With his strategic genius and charismatic leadership, he united the Turkish people and led them to victory against difficult odds.
 
-          After the proclamation of the Republic, Atatürk carried out revolutionary reforms in education, law, economy, and culture. He guided the Turkish nation towards modernization, establishing Turkey as a secular, democratic, and modern state.
+          On October 29, 1923, Atatürk proclaimed the Republic of Turkey, laying its foundations on modern, secular, and democratic principles. He carried out profound reforms in education, law, economy, and culture, rapidly modernizing the country.
 
-          Until his death, Atatürk prioritized science, education, and culture, investing in the youth and working tirelessly for the advancement of the nation. He is remembered as one of the most respected leaders not only in Turkey but also in world history.
+          Among his reforms were the adoption of the Latin alphabet, expansion of women's rights, secularization of education, and promotion of gender equality in social life. These changes integrated Turkey not only as a state but also as a nation into the modern world.
+
+          Until his death, Atatürk emphasized science and education, guiding youth and educators. His famous saying, “The truest guide in life is science,” reflects his vision for modernization and progress. As the founder of the Republic of Turkey, he remains one of the most respected leaders in world history.
+
+          Atatürk's legacy is felt in every corner of Turkey today, with new generations growing up to continue the path he set. His vision and ideals remain the foundation of contemporary Turkey.
         `,
         links: {
           anasayfa: "Home",
@@ -169,8 +182,8 @@
       az: {
         pageTitle: "Atatürkün Həyatı",
         content: `
-          Mustafa Kamal Atatürk 1881-ci ildə Osmanlı İmperiyasının Salonik şəhərində anadan olmuşdur. Hərbi təhsilini müvəffəqiyyətlə başa vuraraq zabit rütbəsinə yüksəlmiş, mürəkkəb siyasi şəraitdə xalqının müstəqilliyi uğrunda böyük mübarizəyə rəhbərlik etmişdir.
+          Mustafa Kamal Atatürk 1881-ci ildə Osmanlı İmperiyasının Salonik şəhərində anadan olmuşdur. Hərbi təhsilini müvəffəqiyyətlə başa vuraraq qısa müddətdə yüksək rütbələrə yüksəlmiş və mürəkkəb dövrlərdə vətəninin gələcəyi üçün özünü fəda etmişdir.
 
-          1919-cu ildə Samsuna çıxaraq Azadlıq Müharibəsini başlamış, xalqını birləşdirərək müasir Türkiyə Respublikasını yaratmaq məqsədilə yola çıxmışdır. Müharibə ərzində strateji dahiliyi və liderlik keyfiyyətləri ilə həm hərbi, həm siyasi sahələrdə mühüm uğurlar qazanmışdır.
+          I Dünya Müharibəsindən sonra Osmanlı İmperiyasının dağılması dövründə 1919-cu ildə Samsuna çıxaraq Azadlıq Müharibəsini başlamışdır. Strateji dahiliyi və liderlik qabiliyyəti ilə türk xalqını birləşdirərək ağır şərtlərə baxmayaraq zəfərə aparmışdır.
 
-          Cümhuriyyətin elanından sonra, təhsildən hüquqa, iqtisadiyyatdan mədəniyyətə qədər bir çox sahədə inqilabi islahatlar həyata keçirmişdir. Atatürk Türkiyə xalqını müasir, demokratik və dünyə
+          29 Oktyabr 1923-cü ildə Türkiyə Respublikasını elan etmiş, bu yeni dövlətin əsaslarını müasir, laik və demokratik prinsiplər üzərində qurmuş
