@@ -3,167 +3,236 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Atatürk Galeri</title>
+<title>Galeri</title>
 <style>
+  /* Temel stil */
   body {
-    background-color: black;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    padding: 80px 20px 20px 20px;
-  }
-  header {
-    position: fixed;
-    top: 0; left: 0; width: 100%;
+    padding: 20px 30px;
     background-color: #000;
-    padding: 15px 20px;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav {
+    width: 100%;
+    max-width: 900px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 8px rgba(255,255,255,0.15);
-    z-index: 1000;
-  }
-  header nav a {
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    text-decoration: none;
-    padding: 8px 15px;
-    border: 1.5px solid #eee;
-    border-radius: 6px;
-    transition: background 0.3s, color 0.3s;
-    margin-left: 10px;
-  }
-  header nav a:hover {
-    background-color: #ff2c2c;
-    border-color: #ff2c2c;
-    color: white;
-  }
-  h1 {
     margin-bottom: 40px;
-    font-weight: 700;
-    font-size: 2rem;
-    text-align: center;
-  }
-  main {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
     gap: 20px;
   }
-  .gallery-item {
-    background-color: #111;
-    border: 1.5px solid #333;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(255,44,44,0.4);
-    transition: transform 0.3s;
+
+  #pageButtons {
+    display: flex;
+    gap: 15px;
   }
-  .gallery-item:hover {
-    transform: scale(1.05);
-    border-color: #ff2c2c;
-    box-shadow: 0 0 15px #ff2c2c;
-  }
-  .gallery-item img {
-    width: 100%;
-    display: block;
-    border-bottom: 1.5px solid #333;
-  }
-  .gallery-caption {
-    padding: 10px 15px;
+  #pageButtons a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
     font-size: 1rem;
+    padding: 8px 14px;
+    border-radius: 25px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    user-select: none;
+  }
+  #pageButtons a:hover,
+  #pageButtons a:focus {
+    color: #00ffff;
+    border-color: #00ffff;
+    outline: none;
+  }
+  #pageButtons a:focus-visible {
+    outline: 2px solid #00ffff;
+    outline-offset: 2px;
+  }
+
+  #searchForm {
+    flex: 1;
+    max-width: 300px;
+    display: flex;
+  }
+
+  #searchInput {
+    flex: 1;
+    padding: 8px 14px;
+    font-size: 1rem;
+    border-radius: 25px 0 0 25px;
+    border: 2px solid #fff;
+    background-color: #000;
+    color: #fff;
+    outline-offset: 2px;
+  }
+  #searchInput::placeholder {
+    color: #bbb;
+  }
+  #searchInput:focus {
+    border-color: #00ffff;
+    outline: none;
+  }
+
+  #searchButton {
+    padding: 8px 18px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 0 25px 25px 0;
+    border: 2px solid #fff;
+    border-left: none;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  #searchButton:hover,
+  #searchButton:focus {
+    background-color: #00ffff;
+    color: #000;
+    outline: none;
+  }
+  #searchButton:focus-visible {
+    outline: 2px solid #00ffff;
+    outline-offset: 2px;
+  }
+
+  h1 {
+    margin: 0 0 25px 0;
+    font-weight: 700;
+    font-size: 2.4rem;
+    user-select: none;
+  }
+
+  #quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    font-weight: 500;
+    max-width: 700px;
     text-align: center;
+    user-select: none;
+  }
+  #quoteSource {
+    margin-top: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ccc;
+    text-align: center;
+    user-select: none;
+  }
+
+  /* Galeri bölümü */
+  #galleryContainer {
+    max-width: 900px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+    gap: 15px;
+    margin-top: 40px;
+  }
+  #galleryContainer img {
+    width: 100%;
+    border-radius: 12px;
+    border: 2px solid #00ffff;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  #galleryContainer img:hover,
+  #galleryContainer img:focus {
+    transform: scale(1.05);
+    outline: none;
+  }
+
+  @media (max-width: 480px) {
+    nav {
+      flex-direction: column;
+      gap: 15px;
+      align-items: stretch;
+    }
+    #searchForm {
+      max-width: 100%;
+    }
+    #pageButtons {
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
   }
 </style>
 </head>
 <body>
-<header>
   <nav>
-    <a href="index.html" id="link-anasayfa">Ana Sayfa</a>
-    <a href="hayati.html" id="link-hayati">Hayatı</a>
-    <a href="galeri.html" id="link-galeri">Galeri</a>
-    <a href="geri-sayim.html" id="link-gerisayim">Geri Sayım</a>
-    <a href="ayarlar.html" id="link-ayarlari">Ayarlar</a>
+    <div id="pageButtons" role="navigation" aria-label="Sayfa menüsü">
+      <a href="index.html" tabindex="0">Ana Sayfa</a>
+      <a href="galeri.html" tabindex="0" aria-current="page">Galeri</a>
+      <a href="hayati.html" tabindex="0">Hayatı</a>
+      <a href="gerisayim.html" tabindex="0">Geri Sayım</a>
+      <a href="ayarlar.html" tabindex="0">Ayarlar</a>
+    </div>
+
+    <form id="searchForm" role="search" aria-label="Site içi arama">
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="Arama yapın..."
+        aria-label="Arama kutusu"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button type="submit" id="searchButton" aria-label="Ara">Ara</button>
+    </form>
   </nav>
-</header>
 
-<main>
-  <h1 id="page-title">Atatürk Galerisi</h1>
-  <div class="gallery-grid">
-    <div class="gallery-item">
-      <img src="images/atatürk1.jpg" alt="Atatürk Fotoğraf 1" />
-      <div class="gallery-caption" id="caption1">Genç Atatürk, Selanik yılları</div>
-    </div>
-    <div class="gallery-item">
-      <img src="images/atatürk2.jpg" alt="Atatürk Fotoğraf 2" />
-      <div class="gallery-caption" id="caption2">Samsun'a çıkışı, 1919</div>
-    </div>
-    <div class="gallery-item">
-      <img src="images/atatürk3.jpg" alt="Atatürk Fotoğraf 3" />
-      <div class="gallery-caption" id="caption3">Cumhuriyet'in ilanı</div>
-    </div>
-    <div class="gallery-item">
-      <img src="images/atatürk4.jpg" alt="Atatürk Fotoğraf 4" />
-      <div class="gallery-caption" id="caption4">Atatürk ve gençler</div>
-    </div>
-  </div>
-</main>
+  <main>
+    <h1>Mustafa Kemal Atatürk</h1>
+    <p id="quote" aria-live="polite" aria-atomic="true" tabindex="0"></p>
+    <p id="quoteSource" aria-live="polite" aria-atomic="true" tabindex="0"></p>
 
-<script>
-  const texts = {
-    tr: {
-      "page-title": "Atatürk Galerisi",
-      "link-anasayfa": "Ana Sayfa",
-      "link-hayati": "Hayatı",
-      "link-galeri": "Galeri",
-      "link-gerisayim": "Geri Sayım",
-      "link-ayarlari": "Ayarlar",
-      "caption1": "Genç Atatürk, Selanik yılları",
-      "caption2": "Samsun'a çıkışı, 1919",
-      "caption3": "Cumhuriyet'in ilanı",
-      "caption4": "Atatürk ve gençler"
-    },
-    en: {
-      "page-title": "Atatürk Gallery",
-      "link-anasayfa": "Home",
-      "link-hayati": "Life",
-      "link-galeri": "Gallery",
-      "link-gerisayim": "Countdown",
-      "link-ayarlari": "Settings",
-      "caption1": "Young Atatürk, Thessaloniki years",
-      "caption2": "Arrival in Samsun, 1919",
-      "caption3": "Declaration of the Republic",
-      "caption4": "Atatürk and the youth"
-    },
-    az: {
-      "page-title": "Atatürk Qalereyası",
-      "link-anasayfa": "Ana Səhifə",
-      "link-hayati": "Həyatı",
-      "link-galeri": "Qalereya",
-      "link-gerisayim": "Geri Sayım",
-      "link-ayarlari": "Ayarlar",
-      "caption1": "Gənc Atatürk, Selanik illəri",
-      "caption2": "Samsuna çıxışı, 1919",
-      "caption3": "Cümhuriyyətin elan olunması",
-      "caption4": "Atatürk və gənclər"
+    <section id="galleryContainer" aria-label="Atatürk galerisi">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Atatürk_1919.jpg/320px-Atatürk_1919.jpg" alt="Mustafa Kemal Atatürk, 1919" tabindex="0" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Mustafa_Kemal_Atatürk_1925.jpg/320px-Mustafa_Kemal_Atatürk_1925.jpg" alt="Mustafa Kemal Atatürk, 1925" tabindex="0" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Atatürk_in_Ankara.jpg/320px-Atatürk_in_Ankara.jpg" alt="Mustafa Kemal Atatürk, Ankara" tabindex="0" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/AtaturkAnkara1924.jpg/320px-AtaturkAnkara1924.jpg" alt="Mustafa Kemal Atatürk, 1924" tabindex="0" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Atatürk_and_Monument.jpg/320px-Atatürk_and_Monument.jpg" alt="Atatürk Anıtı" tabindex="0" />
+    </section>
+  </main>
+
+  <script>
+    const quotes = [
+      { text: "Egemenlik, kayıtsız şartsız milletindir.", source: "1923 TBMM Açılış Konuşması" },
+      { text: "Hayatta en hakiki mürşit ilimdir.", source: "1923 Söylev" },
+      { text: "Yurtta sulh, cihanda sulh.", source: "1931" },
+      { text: "Beni görmek demek mutlaka yüzümü görmek değildir. Benim fikirlerimi, benim duygularımı anlıyorsanız bu kâfidir.", source: "1923 Söylev" },
+      { text: "İstikbal göklerdedir.", source: "1927" },
+      { text: "Milletin bağımsızlığı yine milletin azim ve kararıyla kurtarılacaktır.", source: "1920 Nutuk" },
+      { text: "Türk milletinin karakteri yüksektir; Türk milleti çalışkandır; Türk milleti zekidir.", source: "1927 Söylev" },
+      { text: "Bir millet sanattan ve sanatkârdan mahrumsa, tam bir hayata malik olamaz.", source: "1923 Söylev" }
+    ];
+
+    function displayRandomQuote() {
+      const quoteEl = document.getElementById('quote');
+      const sourceEl = document.getElementById('quoteSource');
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const selected = quotes[randomIndex];
+      quoteEl.textContent = `"${selected.text}"`;
+      sourceEl.textContent = `— ${selected.source}`;
     }
-  };
 
-  function updateTexts(lang) {
-    if (!texts[lang]) lang = "tr";
+    window.onload = displayRandomQuote;
 
-    Object.keys(texts[lang]).forEach(id => {
-      const el = document.getElementById(id);
-      if(el) el.textContent = texts[lang][id];
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const query = document.getElementById('searchInput').value.trim();
+      if(query.length > 0) {
+        const siteURL = location.hostname;
+        const searchURL = `https://www.google.com/search?q=site:${siteURL}+${encodeURIComponent(query)}`;
+        window.open(searchURL, '_blank');
+      }
     });
-  }
-
-  // Dil seçimi
-  const userLang = localStorage.getItem("lang") || "tr";
-  updateTexts(userLang);
-</script>
+  </script>
 </body>
 </html>
