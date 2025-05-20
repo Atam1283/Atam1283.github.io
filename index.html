@@ -2,90 +2,97 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mustafa Kemal Atatürk</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
     body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
       background-color: #000;
       color: #fff;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
     }
 
     header {
       background-color: #111;
-      border-bottom: 2px solid red;
-    }
-
-    nav {
+      padding: 1rem 2rem;
       display: flex;
-      justify-content: center;
-      padding: 1rem;
-      gap: 2rem;
-      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #c00;
     }
 
     nav a {
       color: white;
+      margin: 0 1rem;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: bold;
       transition: color 0.3s;
-      border-bottom: 2px solid transparent;
     }
 
     nav a:hover {
-      color: red;
-      border-color: red;
+      color: #ff0000;
     }
 
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .search-container {
       text-align: center;
-      padding: 2rem;
+      margin-top: 80px;
     }
 
-    .atatürk {
-      font-size: 3rem;
-      font-weight: bold;
-      color: white;
-      margin-bottom: 1rem;
+    .search-box {
+      padding: 12px 20px;
+      border: 2px solid #fff;
+      background-color: transparent;
+      color: #fff;
+      font-size: 1.1rem;
+      width: 60%;
+      border-radius: 10px;
     }
 
-    .söz {
-      font-size: 1.5rem;
+    .quote-container {
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .quote {
+      font-size: 1.6rem;
       font-style: italic;
-      margin-bottom: 0.5rem;
+      color: #fff;
     }
 
-    .kaynak {
-      font-size: 1rem;
-      color: #ccc;
+    .author {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      color: #ff0000;
     }
 
     footer {
+      margin-top: 80px;
       text-align: center;
       padding: 1rem;
-      background-color: #111;
-      border-top: 2px solid red;
       font-size: 0.9rem;
+      border-top: 1px solid #333;
+      color: #777;
+    }
+
+    @media (max-width: 768px) {
+      .search-box {
+        width: 90%;
+      }
+
+      nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
     }
   </style>
 </head>
 <body>
-
   <header>
+    <div style="font-size: 1.4rem; font-weight: bold; color: white;">
+      Mustafa Kemal Atatürk
+    </div>
     <nav>
       <a href="index.html">Ana Sayfa</a>
       <a href="hayati.html">Hayatı</a>
@@ -95,39 +102,48 @@
     </nav>
   </header>
 
-  <main>
-    <div class="atatürk">Mustafa Kemal Atatürk</div>
-    <div class="söz" id="soz"></div>
-    <div class="kaynak" id="kaynak"></div>
-  </main>
+  <div class="search-container">
+    <input class="search-box" type="text" placeholder="Aramak istediğiniz kelimeyi yazın..." />
+  </div>
+
+  <div class="quote-container" id="quote-section">
+    <!-- Söz buraya JS ile gelecek -->
+  </div>
 
   <footer>
-    &copy; 2025 Atatürk Temalı Web Sitesi. Tüm hakları saklıdır.
+    &copy; 2025 Mustafa Kemal Atatürk Web Sitesi | Tüm hakları saklıdır.
   </footer>
 
   <script>
-    const sozler = [
+    const quotes = [
       {
-        metin: "Yurtta sulh, cihanda sulh.",
-        kaynak: "Ankara, 20 Nisan 1931"
+        text: "Yurtta sulh, cihanda sulh.",
+        source: "1923, Ankara"
       },
       {
-        metin: "Egemenlik, kayıtsız şartsız milletindir.",
-        kaynak: "TBMM Açılışı, 23 Nisan 1920"
+        text: "Hayatta en hakiki mürşit ilimdir.",
+        source: "1924, Konya"
       },
       {
-        metin: "Benim naçiz vücudum elbet bir gün toprak olacaktır; fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır.",
-        kaynak: "1927, Nutuk"
+        text: "Benim naçiz vücudum elbet bir gün toprak olacaktır; fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır.",
+        source: "1933, Cumhuriyet Bayramı"
       },
       {
-        metin: "Hayatta en hakiki mürşit ilimdir, fendir.",
-        kaynak: "1924, Samsun Öğretmenler Toplantısı"
+        text: "Egemenlik, kayıtsız şartsız milletindir.",
+        source: "1920, Türkiye Büyük Millet Meclisi"
       }
     ];
 
-    const rastgele = sozler[Math.floor(Math.random() * sozler.length)];
-    document.getElementById("soz").textContent = `"${rastgele.metin}"`;
-    document.getElementById("kaynak").textContent = `– ${rastgele.kaynak}`;
+    function showRandomQuote() {
+      const quote = quotes[Math.floor(Math.random() * quotes.length)];
+      const quoteSection = document.getElementById('quote-section');
+      quoteSection.innerHTML = `
+        <div class="quote">"${quote.text}"</div>
+        <div class="author">- ${quote.source}</div>
+      `;
+    }
+
+    showRandomQuote();
   </script>
 </body>
 </html>
