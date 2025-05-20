@@ -1,66 +1,96 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Geri Sayım</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mustafa Kemal Atatürk - Geri Sayım</title>
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
     body {
-      margin:0; padding:40px 20px;
-      background:#000; color:#fff;
-      font-family:'Segoe UI',sans-serif;
-      text-align:center;
+      margin: 0; padding: 20px;
+      background: #000;
+      color: #fff;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
     }
-    nav { /* aynısı */ }
-    nav a:hover,nav a:focus{ background:#fff;color:#000;}
-    nav a:focus-visible{outline:2px solid #00ffff;outline-offset:2px;}
-    hr { width:90vw;max-width:900px;height:1.5px;background:#444;border:none;margin:24px auto;box-shadow:0 0 6px #444;}
-    #countdown { font-size:1.3rem; margin-top:30px;}
-    .progress { width:80%; max-width:500px; height:12px; background:#222; border-radius:40px; margin:30px auto;}
-    .progress .bar{ height:100%; background:#fff; width:0; transition:width .4s;}
+    nav {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto 30px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      border-bottom: 1.5px solid #666;
+      padding-bottom: 16px;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      transition: background-color 0.3s, color 0.3s;
+      user-select: none;
+      cursor: pointer;
+    }
+    nav a:hover,
+    nav a:focus {
+      background: #fff;
+      color: #000;
+      outline: none;
+    }
+    nav a:focus-visible {
+      outline: 2px solid #00ffff;
+      outline-offset: 2px;
+    }
+    hr {
+      width: 90vw;
+      max-width: 900px;
+      border: none;
+      border-bottom: 2px solid #555;
+      margin: 24px auto;
+      box-shadow: none;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-weight: 700;
+      text-align: center;
+    }
+    #countdown {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-top: 30px;
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff;
+      user-select: none;
+    }
   </style>
 </head>
 <body>
 
-<nav aria-label="Sayfa menüsü">
-  <a href="index.html">Ana Sayfa</a>
-  <a href="galeri.html">Galeri</a>
-  <a href="hayati.html">Hayatı</a>
-  <a href="gerisayim.html">Geri Sayım</a>
-  <a href="ayarlar.html">Ayarlar</a>
-</nav>
-<hr/>
+  <nav>
+    <a href="index.html">Ana Sayfa</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="hayati.html">Hayatı</a>
+    <a href="gerisayim.html" aria-current="page">Geri Sayım</a>
+    <a href="ayarlar.html">Ayarlar</a>
+  </nav>
 
-<div id="eventName" style="font-size:1.6rem;font-weight:600;"></div>
-<div id="countdown"></div>
-<div class="progress"><div class="bar" id="bar"></div></div>
+  <h1>Atatürk'ün Vefatına Kalan Süre</h1>
 
-<script>
-  const ev=[{n:"Cumhuriyet",d:"10/29"},{n:"19 Mayıs",d:"05/19"},{n:"Zafer",d:"08/30"}];
-  function nxt(){
-    const now=new Date(),y=now.getFullYear();
-    const lst=ev.map(e=>{
-      let [m,d]=e.d.split('/');
-      let dt=new Date(`${y}-${m}-${d}`);
-      if(dt<now)dt.setFullYear(y+1);
-      return{n:e.n,date:dt};
-    }).sort((a,b)=>a.date-b.date);
-    return lst[0];
-  }
-  function upd(){
-    const e=nxt(),n=e.n,dt=e.date;
-    document.getElementById("eventName").textContent=n;
-    const diff=dt-new Date();
-    const D=Math.floor(diff/864e5),H=Math.floor(diff/36e5)%24,M=Math.floor(diff/6e4)%60,S=Math.floor(diff/1e3)%60;
-    document.getElementById("countdown").textContent=
-      `${D}g ${H}s ${M}dk ${S}s kaldı`;
-    const start=new Date(dt.getFullYear()-1,dt.getMonth(),dt.getDate());
-    let p=(new Date()-start)/(dt-start)*100;
-    document.getElementById("bar").style.width=Math.min(p,100)+'%';
-  }
-  upd(); setInterval(upd,1e3);
-</script>
+  <div id="countdown" aria-live="polite" aria-atomic="true">Yükleniyor...</div>
 
-</body>
-</html>
+  <hr />
+
+  <script>
+    // Atatürk'ün vefat tarihi
+    const targetDate = new Date('1938-11-10T09:05:00');
+
+    function updateCountdown() {
+      const now = new Date();
+      let diff = targetDate - now;
+      if(diff < 0) {
+        document.getElementById('countdown').textContent = "
