@@ -31,6 +31,31 @@
       color: #ff2c2c;
     }
 
+    #menu {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      z-index: 10;
+    }
+
+    #menu button {
+      background: #222;
+      color: white;
+      border: 1.5px solid #eee;
+      margin-left: 8px;
+      padding: 6px 12px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    #menu button:hover {
+      background: #ff2c2c;
+      color: white;
+      border-color: #ff2c2c;
+    }
+
     h1 {
       text-align: center;
       padding-top: 70px;
@@ -95,19 +120,18 @@
       a#anasayfa {
         font-size: 16px;
       }
-
+      #menu button {
+        font-size: 14px;
+      }
       h1 {
         font-size: 48px;
       }
-
       .event h3 {
         font-size: 20px;
       }
-
       .event p {
         font-size: 16px;
       }
-
       .event::before {
         left: -30px;
         width: 20px;
@@ -120,6 +144,12 @@
 <body>
 
   <a id="anasayfa" href="index.html">← <span id="home-text">Ana Sayfa</span></a>
+
+  <nav id="menu">
+    <button onclick="setLang('tr')">Türkçe</button>
+    <button onclick="setLang('en')">English</button>
+    <button onclick="setLang('az')">Azərbaycan</button>
+  </nav>
 
   <h1 id="page-title">Mustafa Kemal Atatürk'ün Hayatı</h1>
 
@@ -212,30 +242,9 @@
     };
 
     function applyLanguage(lang) {
-      // Geçersiz dil gelirse tr olarak al
       if (!translations[lang]) lang = "tr";
-
-      // Başlık ve ana sayfa linki
       document.getElementById("page-title").textContent = translations[lang].title;
       document.getElementById("home-text").textContent = translations[lang].home;
-
-      // Zaman çizelgesi metinleri
       translations[lang].timeline.forEach((item, idx) => {
         const yearEl = document.querySelector(`[data-id="year-${idx + 1}"]`);
-        const textEl = document.querySelector(`[data-id="text-${idx + 1}"]`);
-        if (yearEl) yearEl.textContent = item.year;
-        if (textEl) textEl.textContent = item.text;
-      });
-    }
-
-    // localStorage'den dili al, yoksa tr olarak ayarla
-    const lang = localStorage.getItem("lang");
-    if (lang === "en" || lang === "az") {
-      applyLanguage(lang);
-    } else {
-      applyLanguage("tr");
-    }
-  </script>
-
-</body>
-</html>
+        const textEl
