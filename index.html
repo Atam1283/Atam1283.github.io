@@ -1,39 +1,116 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mustafa Kemal Atatürk</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+
+    header {
+      background-color: #111;
+      padding: 20px;
+      border-bottom: 3px solid #e40000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: #fff;
+      margin-left: 15px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #e40000;
+    }
+
+    main {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .quote {
+      font-size: 1.8rem;
+      font-style: italic;
+      margin: 30px 0 10px;
+    }
+
+    .source {
+      font-size: 1rem;
+      color: #bbb;
+    }
+
+    .search-box {
+      margin-top: 40px;
+    }
+
+    input[type="text"] {
+      width: 60%;
+      padding: 15px;
+      font-size: 1rem;
+      border: 2px solid #e40000;
+      border-radius: 5px;
+      background-color: #000;
+      color: #fff;
+    }
+
+    input::placeholder {
+      color: #aaa;
+    }
+
+    @media (max-width: 600px) {
+      input[type="text"] {
+        width: 90%;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
+    <div class="logo">MUSTAFA KEMAL ATATÜRK</div>
     <nav>
-      <a href="index.html" class="active">Ana Sayfa</a>
+      <a href="index.html">Ana Sayfa</a>
       <a href="hayati.html">Hayatı</a>
       <a href="galeri.html">Galeri</a>
       <a href="gerisayim.html">Geri Sayım</a>
       <a href="ayarlar.html">Ayarlar</a>
     </nav>
   </header>
-
-  <main class="centered">
-    <div class="quote-box">
-      <p id="quote">"Yurtta sulh, cihanda sulh."</p>
-      <span>- Mustafa Kemal Atatürk</span>
+  <main>
+    <div class="quote" id="quote"></div>
+    <div class="source" id="source"></div>
+    <div class="search-box">
+      <input type="text" placeholder="Ara..." />
     </div>
   </main>
 
   <script>
     const quotes = [
-      { text: "Yurtta sulh, cihanda sulh.", source: "Mustafa Kemal Atatürk" },
-      { text: "Beni görmek demek mutlaka yüzümü görmek değildir.", source: "Mustafa Kemal Atatürk" },
-      { text: "Egemenlik, kayıtsız şartsız milletindir.", source: "Mustafa Kemal Atatürk" },
-      { text: "Hayatta en hakiki mürşit ilimdir.", source: "Mustafa Kemal Atatürk" },
+      { text: "Yurtta sulh, cihanda sulh.", source: "Ankara, 1931" },
+      { text: "Hayatta en hakiki mürşit ilimdir.", source: "Samsun, 1924" },
+      { text: "Egemenlik, kayıtsız şartsız milletindir.", source: "TBMM, 1920" },
+      { text: "Beni görmek demek mutlaka yüzümü görmek değildir.", source: "Anıtkabir Defteri" },
+      { text: "Benim naçiz vücudum elbet bir gün toprak olacaktır.", source: "TBMM, 1933" }
     ];
+
     const random = quotes[Math.floor(Math.random() * quotes.length)];
-    document.getElementById("quote").textContent = `"${random.text}"`;
+    document.getElementById("quote").innerText = `"${random.text}"`;
+    document.getElementById("source").innerText = `– ${random.source}`;
   </script>
 </body>
 </html>
