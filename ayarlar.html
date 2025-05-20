@@ -1,265 +1,81 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ayarlar</title>
-<style>
-  body {
-    margin: 0;
-    padding: 20px 30px;
-    background-color: #000;
-    color: #fff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  nav {
-    width: 100%;
-    max-width: 900px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 40px;
-    gap: 20px;
-  }
-
-  #pageButtons {
-    display: flex;
-    gap: 15px;
-  }
-  #pageButtons a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 8px 14px;
-    border-radius: 25px;
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
-    user-select: none;
-  }
-  #pageButtons a:hover,
-  #pageButtons a:focus {
-    color: #00ffff;
-    border-color: #00ffff;
-    outline: none;
-  }
-  #pageButtons a:focus-visible {
-    outline: 2px solid #00ffff;
-    outline-offset: 2px;
-  }
-
-  #searchForm {
-    flex: 1;
-    max-width: 300px;
-    display: flex;
-  }
-
-  #searchInput {
-    flex: 1;
-    padding: 8px 14px;
-    font-size: 1rem;
-    border-radius: 25px 0 0 25px;
-    border: 2px solid #fff;
-    background-color: #000;
-    color: #fff;
-    outline-offset: 2px;
-  }
-  #searchInput::placeholder {
-    color: #bbb;
-  }
-  #searchInput:focus {
-    border-color: #00ffff;
-    outline: none;
-  }
-
-  #searchButton {
-    padding: 8px 18px;
-    font-size: 1rem;
-    font-weight: 700;
-    border-radius: 0 25px 25px 0;
-    border: 2px solid #fff;
-    border-left: none;
-    background-color: #000;
-    color: #fff;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  #searchButton:hover,
-  #searchButton:focus {
-    background-color: #00ffff;
-    color: #000;
-    outline: none;
-  }
-  #searchButton:focus-visible {
-    outline: 2px solid #00ffff;
-    outline-offset: 2px;
-  }
-
-  h1 {
-    margin: 0 0 25px 0;
-    font-weight: 700;
-    font-size: 2.4rem;
-    user-select: none;
-  }
-
-  #quote {
-    font-size: 1.3rem;
-    font-style: italic;
-    font-weight: 500;
-    max-width: 700px;
-    text-align: center;
-    user-select: none;
-  }
-  #quoteSource {
-    margin-top: 8px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #ccc;
-    text-align: center;
-    user-select: none;
-  }
-
-  #settings {
-    margin-top: 40px;
-    max-width: 700px;
-    width: 100%;
-    color: #fff;
-  }
-
-  label {
-    display: block;
-    margin: 15px 0 6px;
-    font-weight: 600;
-    font-size: 1rem;
-  }
-
-  select, input[type="checkbox"] {
-    padding: 8px 12px;
-    font-size: 1rem;
-    border-radius: 8px;
-    border: 2px solid #00ffff;
-    background-color: #000;
-    color: #fff;
-    cursor: pointer;
-    outline-offset: 2px;
-    transition: border-color 0.3s ease;
-  }
-  select:focus, input[type="checkbox"]:focus {
-    border-color: #fff;
-    outline: none;
-  }
-
-  .checkbox-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    user-select: none;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayarlar</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+    }
+    nav {
+      margin-bottom: 30px;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+    #searchBar {
+      margin: 30px auto;
+      max-width: 400px;
+      width: 90%;
+    }
+    #searchBar input {
+      width: 100%;
+      padding: 10px 15px;
+      border-radius: 25px;
+      border: none;
+      background-color: #222;
+      color: #fff;
+      font-size: 1rem;
+      text-align: center;
+    }
+    section {
+      margin-top: 50px;
+    }
+    .setting-option {
+      margin: 20px 0;
+    }
+  </style>
 </head>
 <body>
   <nav>
-    <div id="pageButtons" role="navigation" aria-label="Sayfa menüsü">
-      <a href="index.html" tabindex="0">Ana Sayfa</a>
-      <a href="galeri.html" tabindex="0">Galeri</a>
-      <a href="hayati.html" tabindex="0">Hayatı</a>
-      <a href="gerisayim.html" tabindex="0">Geri Sayım</a>
-      <a href="ayarlar.html" tabindex="0" aria-current="page">Ayarlar</a>
-    </div>
-
-    <form id="searchForm" role="search" aria-label="Site içi arama">
-      <input
-        type="search"
-        id="searchInput"
-        placeholder="Arama yapın..."
-        aria-label="Arama kutusu"
-        autocomplete="off"
-        spellcheck="false"
-      />
-      <button type="submit" id="searchButton" aria-label="Ara">Ara</button>
-    </form>
+    <a href="index.html">Ana Sayfa</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="hayati.html">Hayatı</a>
+    <a href="gerisayim.html">Geri Sayım</a>
+    <a href="ayarlar.html">Ayarlar</a>
   </nav>
 
-  <main>
-    <h1>Mustafa Kemal Atatürk</h1>
-    <p id="quote" aria-live="polite" aria-atomic="true" tabindex="0"></p>
-    <p id="quoteSource" aria-live="polite" aria-atomic="true" tabindex="0"></p>
+  <div id="searchBar">
+    <input type="text" placeholder="Arama yapın...">
+  </div>
 
-    <section id="settings" aria-label="Ayarlar">
-      <label for="themeSelect">Tema Seçimi:</label>
-      <select id="themeSelect" aria-describedby="themeDesc">
-        <option value="dark" selected>Koyu Tema</option>
-        <option value="light">Açık Tema</option>
+  <section>
+    <h2>Ayarlar</h2>
+    <div class="setting-option">
+      <label for="themeSelect">Tema Seçimi:</label><br />
+      <select id="themeSelect">
+        <option value="dark" selected>Koyu</option>
+        <option value="light">Açık</option>
       </select>
-      <p id="themeDesc" style="font-size:0.9rem; color:#aaa; margin-top:4px;">
-        Temanızı seçin (şimdilik sadece görünüm değişikliği)
-      </p>
+    </div>
 
-      <label class="checkbox-label" for="showQuotes">
-        <input type="checkbox" id="showQuotes" checked />
-        Sayfada Atatürk sözlerini göster
-      </label>
-    </section>
-  </main>
-
-<script>
-  const quotes = [
-    { text: "Egemenlik, kayıtsız şartsız milletindir.", source: "1923 TBMM Açılış Konuşması" },
-    { text: "Hayatta en hakiki mürşit ilimdir.", source: "1923 Söylev" },
-    { text: "Yurtta sulh, cihanda sulh.", source: "1931" },
-    { text: "Beni görmek demek mutlaka yüzümü görmek değildir. Benim fikirlerimi, benim duygularımı anlıyorsanız bu kâfidir.", source: "1923 Söylev" },
-    { text: "İstikbal göklerdedir.", source: "1927" },
-    { text: "Milletin bağımsızlığı yine milletin azim ve kararıyla kurtarılacaktır.", source: "1920 Nutuk" },
-    { text: "Türk milletinin karakteri yüksektir; Türk milleti çalışkandır; Türk milleti zekidir.", source: "1927 Söylev" },
-    { text: "Bir millet sanattan ve sanatkârdan mahrumsa, tam bir hayata malik olamaz.", source: "1923 Söylev" }
-  ];
-
-  function displayRandomQuote() {
-    const quoteEl = document.getElementById('quote');
-    const sourceEl = document.getElementById('quoteSource');
-    const showQuotes = document.getElementById('showQuotes').checked;
-
-    if (!showQuotes) {
-      quoteEl.textContent = "";
-      sourceEl.textContent = "";
-      return;
-    }
-
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    const selected = quotes[randomIndex];
-    quoteEl.textContent = `"${selected.text}"`;
-    sourceEl.textContent = `— ${selected.source}`;
-  }
-
-  window.onload = () => {
-    displayRandomQuote();
-
-    document.getElementById('searchForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const query = document.getElementById('searchInput').value.trim();
-      if(query.length > 0) {
-        const siteURL = location.hostname;
-        const searchURL = `https://www.google.com/search?q=site:${siteURL}+${encodeURIComponent(query)}`;
-        window.open(searchURL, '_blank');
-      }
-    });
-
-    document.getElementById('showQuotes').addEventListener('change', () => {
-      displayRandomQuote();
-    });
-
-    document.getElementById('themeSelect').addEventListener('change', (e) => {
-      // Şimdilik sadece uyarı
-      alert("Tema seçimi henüz aktif değil.");
-    });
-  };
-</script>
+    <div class="setting-option">
+      <label for="langSelect">Dil Seçimi:</label><br />
+      <select id="langSelect">
+        <option value="tr" selected>Türkçe</option>
+        <option value="en">İngilizce</option>
+        <option value="az">Azerice</option>
+      </select>
+    </div>
+  </section>
 </body>
 </html>
