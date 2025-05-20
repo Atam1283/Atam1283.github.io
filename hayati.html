@@ -15,42 +15,42 @@
       box-sizing: border-box;
     }
 
-    a#anasayfa {
-      color: white;
+    /* Üst Menü Stili */
+    #top-menu {
       position: fixed;
-      top: 15px;
-      left: 15px;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 4vw;
-      z-index: 10;
-      transition: color 0.3s;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
     }
 
-    a#anasayfa:hover {
-      color: #ff2c2c;
+    #top-menu .left-buttons,
+    #top-menu .right-buttons {
+      display: flex;
+      gap: 10px;
     }
 
-    #menu {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      z-index: 10;
-    }
-
-    #menu button {
+    #top-menu a,
+    #top-menu button {
       background: #222;
       color: white;
       border: 1.5px solid #eee;
-      margin-left: 8px;
       padding: 6px 12px;
       font-size: 16px;
       border-radius: 5px;
       cursor: pointer;
-      transition: background 0.3s, color 0.3s;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
     }
 
-    #menu button:hover {
+    #top-menu a:hover,
+    #top-menu button:hover {
       background: #ff2c2c;
       color: white;
       border-color: #ff2c2c;
@@ -58,7 +58,7 @@
 
     h1 {
       text-align: center;
-      padding-top: 70px;
+      padding-top: 100px;
       color: #fff;
       font-size: 6vw;
       text-shadow: 0 0 10px white;
@@ -117,12 +117,6 @@
     }
 
     @media (min-width: 768px) {
-      a#anasayfa {
-        font-size: 16px;
-      }
-      #menu button {
-        font-size: 14px;
-      }
       h1 {
         font-size: 48px;
       }
@@ -139,20 +133,23 @@
       }
     }
   </style>
-
 </head>
 <body>
 
-  <a id="anasayfa" href="index.html">← <span id="home-text">Ana Sayfa</span></a>
-
-  <nav id="menu">
-    <button onclick="location.href='galeri.html'">Galeri</button>
-    <button onclick="location.href='hayatı.html'">Hayatı</button>
-    <button onclick="location.href='sayac.html'">Geri Sayım</button>
-    <button onclick="location.href='ayarlar.html'">Ayarlar</button>
-    <button onclick="setLang('tr')">Türkçe</button>
-    <button onclick="setLang('en')">English</button>
-    <button onclick="setLang('az')">Azərbaycan</button>
+  <!-- Üst Menü -->
+  <nav id="top-menu">
+    <div class="left-buttons">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="galeri.html">Galeri</a>
+      <a href="hayati.html">Hayatı</a>
+      <a href="gerisayim.html">Geri Sayım</a>
+    </div>
+    <div class="right-buttons">
+      <a href="ayarlar.html">Ayarlar</a>
+      <button onclick="setLang('tr')">Türkçe</button>
+      <button onclick="setLang('en')">English</button>
+      <button onclick="setLang('az')">Azərbaycan</button>
+    </div>
   </nav>
 
   <h1 id="page-title">Mustafa Kemal Atatürk'ün Hayatı</h1>
@@ -196,9 +193,41 @@
     </div>
   </div>
 
-  <!-- script kısmı aynen devam ediyor -->
   <script>
-    // Mevcut script'in buraya devamı eklenmeli (dil çevirme fonksiyonları vb.)
-  </script>
-</body>
-</html>
+    const translations = {
+      tr: {
+        home: "Ana Sayfa",
+        title: "Mustafa Kemal Atatürk'ün Hayatı",
+        timeline: [
+          { year: "1881", text: "Selanik'te doğdu." },
+          { year: "1893", text: "Selanik Askerî Rüştiyesi'ne başladı ve \"Kemal\" ismini aldı." },
+          { year: "1905", text: "Harp Akademisi'ni kurmay yüzbaşı olarak bitirdi." },
+          { year: "1915", text: "Çanakkale Savaşı'nda büyük başarı gösterdi." },
+          { year: "19 Mayıs 1919", text: "Samsun'a çıkarak Kurtuluş Savaşı’nı başlattı." },
+          { year: "1920", text: "Türkiye Büyük Millet Meclisi'ni açtı." },
+          { year: "1923", text: "Cumhuriyet ilan edildi ve Atatürk ilk Cumhurbaşkanı oldu." },
+          { year: "1934", text: "Soyadı Kanunu ile “Atatürk” soyadını aldı." },
+          { year: "10 Kasım 1938", text: "Dolmabahçe Sarayı'nda vefat etti." }
+        ]
+      },
+      en: {
+        home: "Home",
+        title: "Life of Mustafa Kemal Atatürk",
+        timeline: [
+          { year: "1881", text: "Born in Thessaloniki." },
+          { year: "1893", text: "Started at Thessaloniki Military Secondary School and got the name \"Kemal\"." },
+          { year: "1905", text: "Graduated from War Academy as staff captain." },
+          { year: "1915", text: "Achieved great success in the Gallipoli Campaign." },
+          { year: "May 19, 1919", text: "Landed in Samsun and started the War of Independence." },
+          { year: "1920", text: "Opened the Grand National Assembly of Turkey." },
+          { year: "1923", text: "Republic declared and Atatürk became the first President." },
+          { year: "1934", text: "Received the surname “Atatürk” by the Surname Law." },
+          { year: "November 10, 1938", text: "Passed away at Dolmabahçe Palace." }
+        ]
+      },
+      az: {
+        home: "Ana Səhifə",
+        title: "Mustafa Kamal Atatürkün Həyatı",
+        timeline: [
+          { year: "1881", text: "Salonikdə doğuldu." },
+          { year: "1893", text: "Saloniki Hər8
