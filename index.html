@@ -31,22 +31,9 @@
       font-weight: bold;
       transition: 0.3s;
       font-size: 1.1rem;
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
     nav a:hover {
       color: #ff4d4d;
-    }
-    /* İkon stil örneği */
-    nav a svg {
-      width: 20px;
-      height: 20px;
-      fill: white;
-      transition: fill 0.3s;
-    }
-    nav a:hover svg {
-      fill: #ff4d4d;
     }
     h1 {
       font-size: 2.8rem;
@@ -210,6 +197,15 @@
       .language-dropdown {
         top: 110px !important;
       }
+      /* AYARLAR İKONU MOBİLDE HAFİF KAYDIRILDI */
+      .settings {
+        top: 5px !important;
+        right: 5px !important;
+      }
+      .settings-button {
+        font-size: 24px;
+        padding: 3px 8px;
+      }
     }
   </style>
 </head>
@@ -228,21 +224,9 @@
   </div>
   <!-- Menü -->
   <nav>
-    <a href="hayati.html" id="menu-life" aria-label="Hayatı">
-      <!-- Hayatı ikonu (kitap simgesi) -->
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 2H9a2 2 0 0 0-2 2v16a1 1 0 0 0 1.447.894L12 18l3.553 2.894A1 1 0 0 0 17 20V4a2 2 0 0 0-2-2z"/></svg>
-      Hayatı
-    </a>
-    <a href="galeri.html" id="menu-gallery" aria-label="Galeri">
-      <!-- Galeri ikonu (fotoğraf simgesi) -->
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14h18zM9 7l2 3 3-4 4 6H5l4-5z"/></svg>
-      Galeri
-    </a>
-    <a href="gerisayim.html" id="menu-countdown" aria-label="Geri Sayım">
-      <!-- Geri Sayım ikonu (zamanlayıcı simgesi) -->
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 7a5 5 0 1 0 5 5 5.006 5.006 0 0 0-5-5zm0-5a1 1 0 0 0-1 1v2h2V3a1 1 0 0 0-1-1zM4.93 5.61a1 1 0 1 0-1.86.78l1 2.4a1 1 0 1 0 1.86-.78zM19.07 5.61a1 1 0 1 0-1.86-.78l1 2.4a1 1 0 1 0 1.86.78z"/></svg>
-      Geri Sayım
-    </a>
+    <a href="hayati.html" id="menu-life">Hayatı</a>
+    <a href="galeri.html" id="menu-gallery">Galeri</a>
+    <a href="gerisayim.html" id="menu-countdown">Geri Sayım</a>
   </nav>
   <!-- Arama -->
   <section class="search-section">
@@ -316,4 +300,23 @@
     function aramaYap() {
       const query = el.searchInput.value.trim();
       if (!query) return;
-      const lang = localStorage.get
+      const lang = localStorage.getItem('siteLang') || 'tr';
+      let siteFilter = '';
+      if (lang === 'tr') siteFilter = ' site:ataturk.gov.tr OR site:ataturk.net ';
+      else if (lang === 'en') siteFilter = ' site:en.ataturk.net OR site:en.wikipedia.org ';
+      else if (lang === 'az') siteFilter = ' site:az.wikipedia.org ';
+      const url = 'https://www.google.com/search?q=' + encodeURIComponent(query + siteFilter);
+      window.open(url, '_blank');
+    }
+    const settingsBtn = document.querySelector('.settings-button');
+    const firstDropdown = document.getElementById('firstDropdown');
+    const langBtn = document.getElementById('btnLangMenu');
+    const languageDropdown = document.getElementById('languageDropdown');
+    settingsBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const visible = firstDropdown.style.display === 'block';
+      firstDropdown.style.display = visible ? 'none' : 'block';
+      settingsBtn.setAttribute('aria-expanded', !visible);
+      if (visible) {
+        languageDropdown.style.display = 'none';
+        langBtn.setAttribute('aria
