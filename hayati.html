@@ -1,64 +1,94 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Atatürk'ün Hayatı</title>
-<style>
-  body {
-    background-color: black;
-    color: white;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding-top: 70px; /* menü alanı kadar boşluk */
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atatürk'ün Hayatı</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000;
+      color: #fff;
+      padding-top: 70px; /* Menü yüksekliği kadar boşluk */
+    }
 
-  /* Menü çubuğu */
-  nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: #111;
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    padding: 15px 0;
-    box-shadow: 0 2px 8px rgba(255,255,255,0.15);
-    z-index: 999;
-  }
-  nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
-    padding: 6px 12px;
-    border-radius: 5px;
-    transition: background 0.3s, color 0.3s;
-  }
-  nav a:hover {
-    background: #ff2c2c;
-    color: white;
-  }
+    #top-menu {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      align-items: center;
+      z-index: 100;
+      background-color: #111;
+      padding: 10px 0;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ff2c2c;
+    }
 
-  main {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    font-size: 1.2rem;
-    line-height: 1.7;
-  }
+    #top-menu a {
+      background: #222;
+      color: white;
+      border: 1.5px solid #eee;
+      padding: 8px 16px;
+      font-size: 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
+      user-select: none;
+    }
 
-  h1 {
-    text-align: center;
-    font-size: 2.8rem;
-  }
+    #top-menu a:hover {
+      background: #ff2c2c;
+      color: white;
+      border-color: #ff2c2c;
+    }
 
-</style>
+    main {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 30px 20px;
+      background-color: #111;
+      border-radius: 12px;
+      border: 1px solid #333;
+      box-shadow: 0 0 15px rgba(255, 44, 44, 0.5);
+      font-size: 1.25rem;
+      line-height: 1.7;
+      text-align: justify;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3.8rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #ff2c2c;
+      user-select: none;
+    }
+
+    @media (max-width: 768px) {
+      #top-menu a {
+        font-size: 16px;
+        padding: 6px 12px;
+      }
+
+      main {
+        margin: 30px 15px;
+        font-size: 1.1rem;
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <nav>
+  <nav id="top-menu">
     <a href="index.html" id="link-anasayfa">Ana Sayfa</a>
     <a href="galeri.html" id="link-galeri">Galeri</a>
     <a href="geri-sayim.html" id="link-gerisayim">Geri Sayım</a>
@@ -73,6 +103,7 @@
   </main>
 
   <script>
+    // Çok dilli metinler
     const translations = {
       tr: {
         pageTitle: "Atatürk'ün Hayatı",
@@ -106,6 +137,7 @@
       }
     };
 
+    // Dil uygulama fonksiyonu
     function applyLanguage(lang) {
       document.documentElement.lang = lang;
 
@@ -120,6 +152,7 @@
       document.getElementById("link-ayarlari").textContent = t.links.ayarlari;
     }
 
+    // Sayfa yüklendiğinde localStorage'dan dili al ve uygula
     document.addEventListener("DOMContentLoaded", () => {
       const lang = localStorage.getItem("lang") || "tr";
       applyLanguage(lang);
