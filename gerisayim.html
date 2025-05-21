@@ -3,199 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Atatürk Özel Gün Geri Sayımı</title>
+  <title>Geri Sayım</title>
   <style>
     body {
-      margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #000;
       color: #fff;
-      display: flex; flex-direction: column; min-height: 100vh;
       transition: background-color 0.3s, color 0.3s;
     }
     .header {
-      display: flex; justify-content: center; gap: 15px;
-      background: #111; padding: 12px 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      background: #111;
+      padding: 12px 0;
       border-bottom: 1px solid #555;
       user-select: none;
-      flex-shrink: 0;
     }
     .btn {
-      padding: 8px 18px; font-weight: 600;
-      border: 1px solid #444; border-radius: 4px;
-      background-color: #222; color: #fff;
+      padding: 8px 18px;
+      font-weight: 600;
+      border: 1px solid #444;
+      border-radius: 4px;
+      background-color: #222;
+      color: #fff;
       cursor: pointer;
       text-decoration: none;
       transition: background-color 0.2s ease;
-      display: flex; align-items: center;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
     }
     .btn:hover {
       background-color: #b30000;
-      color: #fff;
       border-color: #b30000;
     }
+    .btn[aria-current="page"] {
+      background-color: #b30000;
+      border-color: #b30000;
+      cursor: default;
+      pointer-events: none;
+    }
     .content {
-      flex-grow: 1;
-      max-width: 700px;
-      margin: 50px auto 60px auto;
-      padding: 20px;
-      text-align: center;
-      border-top: 2px solid #555;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
     h1 {
-      font-size: 38px;
+      font-size: 36px;
+      text-align: center;
       margin-bottom: 30px;
-      user-select: none;
       color: #fff;
       text-shadow: 0 0 8px #b30000;
     }
-    .countdown {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
+    #countdown {
       font-size: 28px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 30px;
-    }
-    .countdown div {
-      background: #111;
-      padding: 20px 30px;
-      border-radius: 8px;
-      border: 2px solid #b30000;
-      min-width: 80px;
-      box-shadow: 0 0 10px #b30000;
-    }
-    .label {
-      font-size: 14px;
-      margin-top: 8px;
-      color: #b30000;
-      user-select: none;
-    }
-    .event-list {
-      max-width: 600px;
-      margin: 0 auto;
-      text-align: left;
-      color: #ccc;
-    }
-    .event-list ul {
-      list-style-type: none;
-      padding-left: 0;
-      margin: 0;
-    }
-    .event-list li {
-      padding: 8px 12px;
-      border-bottom: 1px solid #333;
-      display: flex;
-      justify-content: space-between;
-      font-weight: 600;
-      cursor: default;
-      transition: background-color 0.2s ease;
-    }
-    .event-list li:hover {
-      background-color: #330000;
-    }
-    .event-name {
-      color: #fff;
-    }
-    .event-date {
-      color: #b30000;
-    }
-    .footer-note {
-      margin-top: 40px;
-      font-size: 13px;
-      color: #777;
-      user-select: none;
+      text-align: center;
+      color: #ff6666;
     }
   </style>
 </head>
 <body>
-
   <div class="header">
     <a href="index.html" class="btn">Ana Sayfa</a>
     <a href="galeri.html" class="btn">Galeri</a>
     <a href="hayati.html" class="btn">Hayatı</a>
-    <a href="gerisayim.html" class="btn">Geri Sayım</a>
+    <a href="gerisayim.html" class="btn" aria-current="page">Geri Sayım</a>
     <a href="ayarlar.html" class="btn">Ayarlar</a>
   </div>
 
   <div class="content">
-    <h1>Atatürk Özel Günleri Geri Sayımı</h1>
-
-    <div class="countdown" id="countdown">
-      <div>
-        <div id="days">00</div>
-        <div class="label">Gün</div>
-      </div>
-      <div>
-        <div id="hours">00</div>
-        <div class="label">Saat</div>
-      </div>
-      <div>
-        <div id="minutes">00</div>
-        <div class="label">Dakika</div>
-      </div>
-      <div>
-        <div id="seconds">00</div>
-        <div class="label">Saniye</div>
-      </div>
-    </div>
-
-    <div class="event-list">
-      <h2 style="color:#b30000; user-select:none;">Yaklaşan Özel Günler</h2>
-      <ul id="events">
-        <!-- Liste JS ile doldurulacak -->
-      </ul>
-    </div>
-
-    <p class="footer-note">Tüm tarih ve bilgiler Atatürk'ün hayatına ve Türkiye Cumhuriyeti tarihine dayanır.</p>
+    <h1>Özel Gün İçin Geri Sayım</h1>
+    <div id="countdown">Yükleniyor...</div>
   </div>
 
   <script>
-    const specialEvents = [
-      {name: "Atatürk'ün Doğumu", date: "1881-05-19"},
-      {name: "Samsun'a Çıkış", date: "1919-05-19"},
-      {name: "Erzurum Kongresi", date: "1919-07-23"},
-      {name: "Sivas Kongresi", date: "1919-09-04"},
-      {name: "Türkiye Cumhuriyeti'nin İlanı", date: "1923-10-29"},
-      {name: "Atatürk'ün Vefatı", date: "1938-11-10"},
-      {name: "Cumhuriyet Bayramı", date: "2025-10-29"},
-      {name: "23 Nisan Ulusal Egemenlik ve Çocuk Bayramı", date: "2025-04-23"},
-      {name: "19 Mayıs Atatürk'ü Anma, Gençlik ve Spor Bayramı", date: "2025-05-19"},
-      {name: "30 Ağustos Zafer Bayramı", date: "2025-08-30"}
-    ];
-
-    function getNextEvent() {
-      const now = new Date();
-      const thisYear = now.getFullYear();
-      let upcoming = null;
-
-      for (const ev of specialEvents) {
-        let evDate = new Date(ev.date);
-
-        // Tarih eskiyse (Atatürk dönemi gibi) bu yıl olarak ayarla
-        if (evDate.getFullYear() < 1900) {
-          evDate.setFullYear(thisYear);
-          if (evDate < now) evDate.setFullYear(thisYear + 1);
-        }
-        
-        if (!upcoming || evDate < upcoming.date) {
-          if (evDate >= now) {
-            upcoming = {name: ev.name, date: evDate};
-          }
-        }
-      }
-      return upcoming;
-    }
+    const targetDate = new Date("2025-10-29T00:00:00"); // Örnek: Cumhuriyet Bayramı
+    const countdownElement = document.getElementById("countdown");
 
     function updateCountdown() {
-      const event = getNextEvent();
-      if (!event) return;
-
       const now = new Date();
-      const diff = event.date - now;
+      const diff = targetDate - now;
 
-      if (diff < 0) {
-        document.getElementById("countdown").innerHTML = "<p>Özel gün geçti.</p>";
+      if (diff <= 0) {
+        countdownElement.textContent = "Zaman geldi!";
         return;
       }
 
@@ -204,38 +98,26 @@
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
 
-      document.getElementById("days").textContent = String(days).padStart(2, '0');
-      document.getElementById("hours").textContent = String(hours).padStart(2, '0');
-      document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
-      document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+      countdownElement.textContent = `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye`;
     }
 
-    function populateEvents() {
-      const ul = document.getElementById("events");
-      ul.innerHTML = "";
-      const now = new Date();
-      const thisYear = now.getFullYear();
-
-      specialEvents.forEach(ev => {
-        let evDate = new Date(ev.date);
-
-        if (evDate.getFullYear() < 1900) {
-          evDate.setFullYear(thisYear);
-          if (evDate < now) evDate.setFullYear(thisYear + 1);
-        }
-
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const dateString = evDate.toLocaleDateString('tr-TR', options);
-        const li = document.createElement("li");
-        li.innerHTML = `<span class="event-name">${ev.name}</span> <span class="event-date">${dateString}</span>`;
-        ul.appendChild(li);
-      });
-    }
-
-    // Sayfa yüklendiğinde listeyi doldur ve geri sayımı başlat
-    populateEvents();
     updateCountdown();
     setInterval(updateCountdown, 1000);
+
+    // Tema uyarlama
+    const darkMode = localStorage.getItem('darkMode');
+    if (darkMode === 'false') {
+      document.body.style.backgroundColor = '#fff';
+      document.body.style.color = '#000';
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.style.backgroundColor = '#e0e0e0';
+        btn.style.color = '#000';
+        btn.style.borderColor = '#bbb';
+      });
+    } else {
+      document.body.style.backgroundColor = '#000';
+      document.body.style.color = '#fff';
+    }
   </script>
 </body>
 </html>
