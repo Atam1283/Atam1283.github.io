@@ -1,140 +1,55 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mustafa Kemal Atatürk - Ana Sayfa</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #000;
-      color: #fff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      user-select: none;
-    }
-    header {
-      background-color: #1a1a1a;
-      border-bottom: 2px solid #b22222;
-      padding: 10px 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      overflow-x: auto;
-    }
-    nav {
-      display: flex;
-      gap: 20px;
-      padding: 0 20px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    nav a {
-      flex-shrink: 0;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 6px 10px;
-      border-radius: 4px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      white-space: nowrap;
-    }
-    nav a:hover,
-    nav a:focus-visible {
-      background-color: #b22222;
-      color: #fff;
-      outline: none;
-    }
-    nav a[aria-current="page"] {
-      background-color: #b22222;
-      color: #fff;
-      pointer-events: none;
-      cursor: default;
-    }
-    main {
-      flex-grow: 1;
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    h1 {
-      font-size: 2.6rem;
-      font-weight: 900;
-      letter-spacing: 0.1em;
-      margin-bottom: 30px;
-      color: #fff;
-      user-select: none;
-    }
-    #quoteBox {
-      margin-top: 20px;
-      font-style: italic;
-      font-size: 22px;
-      color: #ddd;
-    }
-    #quoteSource {
-      margin-top: 8px;
-      font-size: 16px;
-      color: #999;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mustafa Kemal Atatürk - Ana Sayfa</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <nav aria-label="Ana navigasyon">
-      <a href="index.html" aria-current="page">Ana Sayfa</a>
-      <a href="galeri.html">Galeri</a>
-      <a href="hayati.html">Hayatı</a>
-      <a href="gerisayim.html">Geri Sayım</a>
-      <a href="ayarlar.html">Ayarlar</a>
-    </nav>
-  </header>
-  <main>
-    <h1>Mustafa Kemal Atatürk</h1>
-    <div id="quoteBox">
-      <div id="quoteText"></div>
-      <div id="quoteSource"></div>
-    </div>
-  </main>
-  <script>
-    const quotes = [
-      { text: "Yurtta sulh, cihanda sulh.", source: "1923 Nutuk" },
-      { text: "Egemenlik, kayıtsız şartsız milletindir.", source: "1921 Anayasası" },
-      { text: "Hayatta en hakiki mürşit ilimdir.", source: "1923 Söylev" },
-      { text: "Milli mücadele, milletin istiklal savaşıdır.", source: "Nutuk, 1927" },
-      { text: "Bütün ümidim gençliktedir.", source: "1927 Nutuk" },
-      { text: "Benim naçiz vücudum elbet bir gün toprak olacaktır.", source: "1938 Vasiyet" },
-      { text: "Muasır medeniyet seviyesine ulaşmak.", source: "Cumhuriyet hedefi" }
-    ];
-    function randomQuote() {
-      const index = Math.floor(Math.random() * quotes.length);
-      return quotes[index];
-    }
-    const showQuotes = localStorage.getItem('showQuotes');
-    const quoteBox = document.getElementById('quoteBox');
-    const quoteText = document.getElementById('quoteText');
-    const quoteSource = document.getElementById('quoteSource');
-    if (showQuotes !== 'false') {
-      const q = randomQuote();
-      quoteText.textContent = `"${q.text}"`;
-      quoteSource.textContent = `- ${q.source}`;
-      quoteBox.style.display = 'block';
-    } else {
-      quoteBox.style.display = 'none';
-    }
-    const darkMode = localStorage.getItem('darkMode');
-    if (darkMode === 'false') {
-      document.body.style.backgroundColor = '#fff';
-      document.body.style.color = '#000';
-    } else {
-      document.body.style.backgroundColor = '#000';
-      document.body.style.color = '#fff';
-    }
-  </script>
+    <header>
+        <nav>
+            <a href="index.html" class="active">Ana Sayfa</a>
+            <a href="galeri.html">Galeri</a>
+            <a href="hayati.html">Hayatı</a>
+            <a href="gerisayim.html">Geri Sayım</a>
+            <a href="ayarlar.html">Ayarlar</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Mustafa Kemal Atatürk</h1>
+            <p class="quote">"Yurtta sulh, cihanda sulh."</p>
+            <p class="source">- 1923 Nutuk</p>
+            <p>
+                Türk milletinin önderi, Türkiye Cumhuriyeti'nin kurucusu ve ilk Cumhurbaşkanı Mustafa Kemal Atatürk, sadece askeri dehasıyla değil, aynı zamanda devrimci fikirleri, modernleşme vizyonu ve evrensel barışa olan inancıyla da tüm dünyada tanınan bir liderdir.
+            </p>
+            <p>
+                Bu site, onun yaşamına, başarılarına, sözlerine ve bize miras bıraktığı değerlere ışık tutmayı amaçlamaktadır.
+            </p>
+        </section>
+
+        <section>
+            <h2>Son Eklenenler</h2>
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
+                <div style="background-color: #222; padding: 20px; border-radius: 8px; flex: 1; min-width: 280px; max-width: 350px;">
+                    <h3>Yeni Fotoğraf</h3>
+                    <img src="placeholder_galeri1.jpg" alt="Atatürk Fotoğrafı" style="width: 100%; height: auto; margin-bottom: 15px;">
+                    <p>Galeriye eklenen yeni bir fotoğraf.</p>
+                    <a href="galeri.html" style="color: #c0392b; text-decoration: none;">Daha Fazla Gör</a>
+                </div>
+                <div style="background-color: #222; padding: 20px; border-radius: 8px; flex: 1; min-width: 280px; max-width: 350px;">
+                    <h3>Hayatından Bir Kesit</h3>
+                    <p>Atatürk'ün Samsun'a çıkışı hakkında kısa bir özet eklendi.</p>
+                    <a href="hayati.html" style="color: #c0392b; text-decoration: none;">Devamını Oku</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Mustafa Kemal Atatürk Sayfası. Tüm hakları saklıdır.</p>
+    </footer>
 </body>
 </html>
