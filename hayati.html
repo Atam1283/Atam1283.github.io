@@ -17,12 +17,12 @@
         .timeline::before {
             content: '';
             position: absolute;
-            width: 3px;
-            background-color: #c0392b; /* Kırmızı çizgi */
+            width: 4px; /* Çizgi kalınlığı */
+            background-color: #e74c3c; /* Kırmızı çizgi */
             top: 0;
             bottom: 0;
             left: 50%;
-            margin-left: -1.5px;
+            margin-left: -2px; /* Çizginin tam ortalanması */
         }
 
         .timeline-item {
@@ -31,48 +31,56 @@
             width: 50%;
         }
 
-        .timeline-item:nth-child(odd) {
+        .timeline-item:nth-child(odd) { /* Soldaki öğeler */
             left: 0;
-            padding-right: 30px;
+            padding-right: 40px; /* Daha fazla boşluk */
             text-align: right;
         }
 
-        .timeline-item:nth-child(even) {
+        .timeline-item:nth-child(even) { /* Sağdaki öğeler */
             left: 50%;
-            padding-left: 30px;
+            padding-left: 40px; /* Daha fazla boşluk */
             text-align: left;
         }
 
         .timeline-item::after {
             content: '';
             position: absolute;
-            width: 15px;
-            height: 15px;
-            background-color: #c0392b; /* Kırmızı nokta */
+            width: 18px; /* Daha büyük nokta */
+            height: 18px;
+            background-color: #e74c3c; /* Kırmızı nokta */
+            border: 3px solid #f0f0f0; /* Beyaz çerçeve */
             border-radius: 50%;
             top: 15px;
             z-index: 1;
+            box-shadow: 0 0 8px rgba(231, 76, 60, 0.7); /* Kırmızı parlama */
         }
 
         .timeline-item:nth-child(odd)::after {
-            right: -7.5px;
+            right: -11px; /* Noktayı çizgiye hizala */
         }
 
         .timeline-item:nth-child(even)::after {
-            left: -7.5px;
+            left: -11px; /* Noktayı çizgiye hizala */
         }
 
         .timeline-content {
-            background-color: #222;
-            padding: 25px;
+            background-color: #2a2a2a; /* İçerik arka planı */
+            padding: 30px; /* Daha fazla boşluk */
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .timeline-content:hover {
+            background-color: #333; /* Hover efekti */
+            transform: translateY(-3px);
         }
 
         .timeline-content h3 {
             margin-top: 0;
             color: #ffffff;
-            font-size: 1.5em;
+            font-size: 1.6em; /* Daha büyük başlık */
+            margin-bottom: 15px;
         }
 
         .timeline-content p {
@@ -82,16 +90,17 @@
 
         .timeline-date {
             font-weight: bold;
-            color: #c0392b;
-            font-size: 1.1em;
+            color: #e74c3c; /* Kırmızı tarih */
+            font-size: 1.2em;
             margin-bottom: 10px;
             display: block;
+            letter-spacing: 0.5px;
         }
 
         /* Mobil için Zaman Çizelgesi */
         @media (max-width: 768px) {
             .timeline::before {
-                left: 15px; /* Sadece sol tarafta çizgi */
+                left: 15px;
             }
             .timeline-item {
                 width: 100%;
@@ -102,6 +111,9 @@
             }
             .timeline-item::after {
                 left: 8px !important;
+            }
+            .timeline-content {
+                padding: 20px;
             }
         }
     </style>
@@ -127,47 +139,79 @@
                     <div class="timeline-content">
                         <span class="timeline-date">1881</span>
                         <h3>Doğumu</h3>
-                        <p>Selanik'te Ali Rıza Efendi ve Zübeyde Hanım'ın oğlu olarak dünyaya geldi.</p>
+                        <p>Selanik'te, Ali Rıza Efendi ve Zübeyde Hanım'ın çocuğu olarak dünyaya geldi. Asıl adı Mustafa'dır.</p>
                     </div>
                 </div>
 
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <span class="timeline-date">1905</span>
+                        <span class="timeline-date">1893</span>
+                        <h3>Askeri Okula Giriş</h3>
+                        <p>Askeri Rüştiye'ye girerek "Kemal" adını aldı.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">1905</div>
+                    <div class="timeline-content">
                         <h3>Harp Akademisi'nden Mezuniyet</h3>
-                        <p>Kurmay Yüzbaşı rütbesiyle Harp Akademisi'ni bitirerek askerlik kariyerine başladı.</p>
+                        <p>Kurmay Yüzbaşı rütbesiyle Harp Akademisi'ni bitirerek askerlik kariyerine başladı. İlk görev yeri Şam'dır.</p>
                     </div>
                 </div>
 
                 <div class="timeline-item">
+                    <div class="timeline-date">1915</div>
                     <div class="timeline-content">
-                        <span class="timeline-date">1915</span>
                         <h3>Çanakkale Zaferi</h3>
-                        <p>Çanakkale Cephesi'nde Conkbayırı ve Anafartalar'da gösterdiği başarılarla adını duyurdu.</p>
+                        <p>Çanakkale Cephesi'nde Conkbayırı ve Anafartalar'da gösterdiği askeri deha ile dünya tarihine geçti.</p>
                     </div>
                 </div>
 
-                <div class="timeline-item">
+                <div class="timeline-item" id="samsun-donemi">
+                    <div class="timeline-date">1919</div>
                     <div class="timeline-content">
-                        <span class="timeline-date">1919</span>
                         <h3>Samsun'a Çıkış</h3>
-                        <p>19 Mayıs'ta Samsun'a çıkarak Milli Mücadele'yi başlattı.</p>
+                        <p>19 Mayıs'ta Samsun'a çıkarak Milli Mücadele'yi başlattı. Amasya Genelgesi, Erzurum ve Sivas Kongreleri ile örgütlenme sürecini hızlandırdı.</p>
                     </div>
                 </div>
 
-                <div class="timeline-item">
+                 <div class="timeline-item">
+                    <div class="timeline-date">1920</div>
                     <div class="timeline-content">
-                        <span class="timeline-date">1923</span>
+                        <h3>TBMM'nin Açılışı</h3>
+                        <p>23 Nisan 1920'de Ankara'da Büyük Millet Meclisi'ni açtı. Milli iradenin temsilcisi olarak yeni bir yönetim kurdu.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" id="baskomutanlik-donemi">
+                    <div class="timeline-date">1921-1922</div>
+                    <div class="timeline-content">
+                        <h3>Başkomutanlık ve Büyük Zaferler</h3>
+                        <p>Sakarya Meydan Muharebesi ve Büyük Taarruz ile düşmanı yurttan attı. Başkomutanlık görevini üstlendi.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" id="cumhuriyet-ilani">
+                    <div class="timeline-date">1923</div>
+                    <div class="timeline-content">
                         <h3>Cumhuriyet'in İlanı</h3>
-                        <p>29 Ekim 1923'te Türkiye Cumhuriyeti'ni ilan ederek ilk Cumhurbaşkanı oldu.</p>
+                        <p>29 Ekim 1923'te Türkiye Cumhuriyeti'ni ilan ederek ilk Cumhurbaşkanı oldu ve yeni bir dönemi başlattı.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" id="nutuk-donemi">
+                    <div class="timeline-date">1927</div>
+                    <div class="timeline-content">
+                        <h3>Nutuk'u Okuması</h3>
+                        <p>Cumhuriyet Halk Fırkası'nın İkinci Kurultayı'nda 6 gün süren "Nutuk" adlı büyük söylevini okudu.</p>
                     </div>
                 </div>
 
                 <div class="timeline-item">
+                    <div class="timeline-date">1938</div>
                     <div class="timeline-content">
-                        <span class="timeline-date">1938</span>
-                        <h3>Vefatı</h3>
-                        <p>10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayatını kaybetti.</p>
+                        <h3>Ebediyete İntikali</h3>
+                        <p>10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayatını kaybetti. Türk milletini derin yasa boğdu.</p>
                     </div>
                 </div>
                 </div>
