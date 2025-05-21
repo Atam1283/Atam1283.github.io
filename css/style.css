@@ -34,48 +34,14 @@
       object-fit: cover;
     }
 
-    /* Menü üstte, sağa hizalı ve simetrik */
-    #cssmenu {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 10px;
-      margin-right: 20px;
-      align-items: center;
-      height: 50px;
-    }
-
-    #cssmenu ul {
-      display: flex;
-      gap: 20px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    #cssmenu ul li {
-      list-style: none;
-    }
-
-    #cssmenu ul li a {
-      text-decoration: none;
-      font-family: Arial, sans-serif;
-      font-size: 15px;
-      color: #333;
-      padding: 10px 15px;
-      display: inline-block;
-      transition: color 0.3s ease;
-    }
-
-    #cssmenu ul li:hover > a {
-      color: #007BFF;
-    }
-
-    /* Arama kutusunu menünün altına ve sağa hizala */
+    /* Arama kutusu yukarı taşındı, sola değil sağa hizalı */
     .search-container {
       display: flex;
       justify-content: flex-end;
       margin: 5px 20px 20px 0;
       padding-top: 0;
+      height: 50px;
+      align-items: center;
     }
 
     .search-container input[type="text"] {
@@ -116,26 +82,6 @@
       <div class="wrap-header zerogrid">
         <div class="row" style="position: relative; height: 90px;">
           <a href="index.html" class="logo"><img src="images/logo.png" alt="Logo" /></a>
-
-          <div id="cssmenu">
-            <ul>
-              <li class="active"><a href="index.html"><h5>ANASAYFA</h5></a></li>
-              <li><a href="#">Galeri</a>
-                <ul>
-                  <li><a href="kzkls.html">Atatürk kulesi</a></li>
-                  <li><a href="stnblbgz.html">Atatürk Boğazı</a></li>
-                  <li><a href="dlmbhcsry.html">Atatürk Sarayı</a></li>
-                  <li><a href="sltnhmtmydn.html">Atatürk Meydanı</a></li>
-                  <li><a href="sltnhmtcm.html">Atatürk Camii</a></li>
-                  <li><a href="yrbtnsrnc.html">Atatürk Sarıncı</a></li>
-                  <li><a href="tpkpsrymzs.html">Atatürk Sarayı Müzesi</a></li>
-                  <li><a href="kplcrs.html">Atatürk Çarşı</a></li>
-                </ul>
-              </li>
-              <li><a href="single.html">Geri Sayım</a></li>
-              <li><a href="contact.html">Ayarlar</a></li>
-            </ul>
-          </div>
         </div>
         <div class="search-container">
           <input type="text" placeholder="Sitede ara..." />
