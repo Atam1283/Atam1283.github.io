@@ -11,87 +11,78 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #000;
       color: #fff;
-      transition: background-color 0.3s, color 0.3s;
       line-height: 1.6;
     }
-    ::-webkit-scrollbar {
-      height: 8px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #444;
-    }
 
-    /* Üst menü - Ana sayfadakiyle aynı */
+    /* Yatay scroll özellikli menü */
     header {
       background-color: #111;
-      border-bottom: 2px solid #444;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      padding: 10px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      flex-wrap: wrap;
+      border-bottom: 2px solid #666;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
     }
 
-    header nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+    nav {
+      display: inline-flex;
+      padding: 10px 15px;
       gap: 15px;
     }
 
-    header nav a {
+    nav a {
       color: #fff;
       text-decoration: none;
       font-weight: 600;
       font-size: 1rem;
-      padding: 6px 12px;
+      padding: 8px 16px;
       border-radius: 4px;
-      background-color: #222;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      background-color: transparent;
+      transition: background-color 0.3s ease;
+      flex-shrink: 0;
     }
 
-    header nav a:hover,
-    header nav a:focus-visible {
+    nav a:hover,
+    nav a:focus-visible {
       background-color: #b30000;
       color: #fff;
       outline: none;
     }
 
-    header nav a[aria-current="page"] {
+    nav a.active,
+    nav a[aria-current="page"] {
       background-color: #b30000;
       color: #fff;
       pointer-events: none;
-      cursor: default;
     }
 
     h1 {
       font-size: 42px;
       margin: 40px 20px 30px;
-      user-select: none;
       text-align: center;
+      color: #fff;
       text-shadow: 0 0 8px #b30000;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: auto;
+      padding: 0 20px 60px;
     }
 
     h2 {
       color: #b30000;
       margin-top: 30px;
       margin-bottom: 10px;
-      user-select: none;
     }
 
     p {
       margin-bottom: 15px;
       font-size: 16px;
       color: #ddd;
-      padding: 0 20px;
     }
 
     ul {
-      padding-left: 40px;
+      padding-left: 20px;
       margin-bottom: 20px;
       color: #ccc;
     }
@@ -102,7 +93,15 @@
 
     .separator {
       border-top: 1px solid #555;
-      margin: 40px 20px;
+      margin: 40px 0;
+    }
+
+    ::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #666;
     }
   </style>
 </head>
@@ -111,37 +110,35 @@
     <nav aria-label="Ana navigasyon">
       <a href="index.html">Ana Sayfa</a>
       <a href="galeri.html">Galeri</a>
-      <a href="hayati.html" aria-current="page">Hayatı</a>
+      <a href="hayati.html" class="active" aria-current="page">Hayatı</a>
       <a href="gerisayim.html">Geri Sayım</a>
       <a href="ayarlar.html">Ayarlar</a>
     </nav>
   </header>
 
   <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
-
-  <p><strong>Erken Dönem:</strong> Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. İlk eğitimini mahalle mektebinde aldıktan sonra Şemsi Efendi Okulu'na devam etti. Daha sonra Selanik Mülkiye Rüştiyesi ve Manastır Askeri İdadisi'nde eğitimini sürdürdü.</p>
-
-  <p><strong>Askeri Eğitim ve Kariyer:</strong> 1905 yılında Harp Okulu'ndan teğmen olarak mezun oldu. Harp Akademisi'nde eğitimini tamamlayarak kurmay yüzbaşı unvanını aldı. Balkan Savaşları ve I. Dünya Savaşı'nda çeşitli cephelerde görev yaptı. Çanakkale Savaşı'ndaki başarısıyla büyük ün kazandı.</p>
-
-  <p><strong>Milli Mücadele ve Cumhuriyetin Kuruluşu:</strong> 1919 yılında Samsun'a çıkarak Türk Kurtuluş Savaşı'nı başlattı. Erzurum ve Sivas Kongrelerinde milli iradeyi temsil etti. 1920'de TBMM'nin açılmasıyla Meclis Başkanı oldu. 1923'te Türkiye Cumhuriyeti'ni ilan ederek ilk cumhurbaşkanı oldu.</p>
-
-  <h2>Reformlar ve Modernleşme</h2>
-  <ul>
-    <li>Harf Devrimi: Latin alfabesinin kabulü</li>
-    <li>Kadın Hakları: Kadınlara seçme ve seçilme hakkı verilmesi</li>
-    <li>Hukuk Devrimi: Medeni Kanun’un kabulü</li>
-    <li>Eğitim Reformları: Tevhid-i Tedrisat Kanunu</li>
-    <li>Ekonomi ve Sanayi: Sanayi yatırımlarının artırılması</li>
-  </ul>
-
-  <p><strong>Son Yılları ve Mirası:</strong> Atatürk, 10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayata veda etti. Ardında modern Türkiye Cumhuriyeti'nin temelini atan büyük bir lider ve devlet adamı olarak unutulmaz bir miras bıraktı.</p>
-
-  <div class="separator"></div>
-
-  <p style="text-align:center; font-size: 14px; color: #888; user-select:none;">
-    Kaynaklar: 
-    <a href="https://tr.wikipedia.org/wiki/Mustafa_Kemal_Atat%C3%BCrk" target="_blank" style="color:#b30000; text-decoration:none;">Vikipedi</a>, 
-    <a href="https://www.ataturk.com.tr" target="_blank" style="color:#b30000; text-decoration:none;">Atatürk Araştırma Merkezi</a>
-  </p>
+  <div class="content">
+    <h2>Erken Dönem</h2>
+    <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. İlk eğitimini mahalle mektebinde aldıktan sonra Şemsi Efendi Okulu'na devam etti.</p>
+    <h2>Askeri Eğitim ve Kariyer</h2>
+    <p>1905 yılında Harp Okulu'ndan teğmen olarak mezun oldu. Harp Akademisi'ni de kurmay yüzbaşı olarak tamamladı. Çanakkale Savaşı'ndaki başarısı büyük takdir kazandı.</p>
+    <h2>Milli Mücadele ve Cumhuriyet</h2>
+    <p>1919’da Samsun’a çıkarak Kurtuluş Savaşı’nı başlattı. 1920'de TBMM’yi açtı. 1923’te Cumhuriyet’i ilan etti ve ilk cumhurbaşkanı oldu.</p>
+    <h2>Reformlar</h2>
+    <ul>
+      <li>Harf Devrimi</li>
+      <li>Kadın Hakları</li>
+      <li>Medeni Kanun</li>
+      <li>Eğitim Reformları</li>
+      <li>Sanayi Yatırımları</li>
+    </ul>
+    <h2>Son Yıllar</h2>
+    <p>Atatürk, 10 Kasım 1938’de Dolmabahçe Sarayı’nda vefat etti. Türk milletine büyük bir miras bıraktı.</p>
+    <div class="separator"></div>
+    <p style="text-align:center; font-size: 14px; color: #888;">
+      Kaynaklar: <a href="https://tr.wikipedia.org/wiki/Mustafa_Kemal_Atat%C3%BCrk" target="_blank" style="color:#b30000; text-decoration:none;">Vikipedi</a>, 
+      <a href="https://www.ataturk.com.tr" target="_blank" style="color:#b30000; text-decoration:none;">Atatürk Araştırma Merkezi</a>
+    </p>
+  </div>
 </body>
 </html>
