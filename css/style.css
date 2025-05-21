@@ -16,6 +16,7 @@
       font-family: Arial, sans-serif;
       min-height: 100vh;
       position: relative;
+      background: #fff;
     }
 
     .wrap-body {
@@ -25,7 +26,6 @@
       position: relative;
     }
 
-    /* Üst menü çubuğu */
     header {
       width: 100%;
       background-color: #fff;
@@ -34,17 +34,10 @@
       position: fixed;
       top: 0; left: 0;
       z-index: 10000;
-    }
-
-    /* Menü ve logo kapsayıcı */
-    .wrap-header {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 5px 20px;
       display: flex;
+      justify-content: center;
       align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
+      padding: 10px 20px;
     }
 
     /* Logo */
@@ -54,49 +47,12 @@
       border-radius: 65px;
     }
 
-    /* Menü */
-    #cssmenu {
-      flex-grow: 1;
-      margin-left: 40px;
-    }
-
-    #cssmenu ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 30px;
-      justify-content: flex-start;
-      align-items: center;
-    }
-
-    #cssmenu ul li {
-      position: relative;
-    }
-
-    #cssmenu ul li a {
-      text-decoration: none;
-      font-size: 16px;
-      color: #333;
-      padding: 10px 12px;
-      font-weight: 600;
-      display: block;
-      transition: color 0.3s ease;
-    }
-
-    #cssmenu ul li:hover > a {
-      color: #c8102e;
-    }
-
-    /* Alt menü kaldırıldı */
-    #cssmenu ul li ul {
-      display: none !important;
-    }
-
     /* Arama kutusu */
     .search-container {
       max-width: 250px;
       margin-left: 20px;
+      flex-grow: 1;
+      max-width: 300px;
     }
 
     .search-container input[type="text"] {
@@ -155,64 +111,32 @@
       z-index: 1001;
     }
 
-    /* Responsive - mobil */
-    @media (max-width: 768px) {
-      .wrap-header {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-      }
-
-      #cssmenu ul {
-        flex-direction: column;
-        gap: 10px;
-        width: 100%;
-        text-align: center;
-      }
-
-      .search-container {
-        width: 100%;
-        max-width: none;
-        margin-left: 0;
-      }
-
-      .logo {
-        margin-bottom: 10px;
-      }
-    }
-
-    /* İçerik aşağı kayacak ki üstteki sabit menü görünür olsun */
+    /* İçerik aşağı kayacak ki üstteki sabit header görünür olsun */
     #container {
       padding-top: 70px;
       min-height: 400px;
+    }
+
+    /* Responsive - mobil */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .search-container {
+        max-width: 100%;
+        margin-left: 0;
+      }
     }
   </style>
 </head>
 <body>
   <div class="wrap-body">
     <header>
-      <div class="wrap-header">
-        <a href="index.html" class="logo"><img src="images/logo.png" alt="Logo" /></a>
-
-        <nav id="cssmenu">
-          <ul>
-            <li><a href="index.html">ANASAYFA</a></li>
-            <li><a href="kzkls.html">Atatürk Kulesi</a></li>
-            <li><a href="stnblbgz.html">Atatürk Boğazı</a></li>
-            <li><a href="dlmbhcsry.html">Atatürk Sarayı</a></li>
-            <li><a href="sltnhmtmydn.html">Atatürk Meydanı</a></li>
-            <li><a href="sltnhmtcm.html">Atatürk Camii</a></li>
-            <li><a href="yrbtnsrnc.html">Atatürk Sarıncı</a></li>
-            <li><a href="tpkpsrymzs.html">Atatürk Sarayı Müzesi</a></li>
-            <li><a href="kplcrs.html">Atatürk Çarşı</a></li>
-            <li><a href="single.html">Geri Sayım</a></li>
-            <li><a href="contact.html">Ayarlar</a></li>
-          </ul>
-        </nav>
-
-        <div class="search-container">
-          <input type="text" placeholder="Sitede ara..." />
-        </div>
+      <a href="index.html" class="logo"><img src="images/logo.png" alt="Logo" /></a>
+      <div class="search-container">
+        <input type="text" placeholder="Sitede ara..." />
       </div>
     </header>
 
@@ -228,7 +152,6 @@
       </div>
     </section>
 
-    <footer></footer>
   </div>
 
   <div class="copyright">© Tüm Hakları Saklıdır</div>
