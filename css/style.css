@@ -35,9 +35,10 @@
       top: 0; left: 0;
       z-index: 10000;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       padding: 10px 20px;
+      gap: 20px;
     }
 
     /* Logo */
@@ -49,10 +50,8 @@
 
     /* Arama kutusu */
     .search-container {
-      max-width: 250px;
-      margin-left: 20px;
-      flex-grow: 1;
       max-width: 300px;
+      flex-grow: 1;
     }
 
     .search-container input[type="text"] {
@@ -122,11 +121,11 @@
       header {
         flex-direction: column;
         gap: 10px;
+        align-items: flex-start;
       }
 
       .search-container {
         max-width: 100%;
-        margin-left: 0;
       }
     }
   </style>
