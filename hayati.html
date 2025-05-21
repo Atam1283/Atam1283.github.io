@@ -13,113 +13,115 @@
       color: #fff;
       transition: background-color 0.3s, color 0.3s;
       line-height: 1.6;
-      overflow-x: auto;
-    }
-    ::-webkit-scrollbar {
-      height: 8px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #b30000;
+      overflow-x: hidden;
     }
 
     header {
       background-color: #1a1a1a;
-      border-bottom: 2px solid #b30000;
-      padding: 10px 0;
+      border-bottom: 2px solid #444;
       position: sticky;
       top: 0;
       z-index: 1000;
-      overflow-x: auto;
-    }
-    header nav {
-      display: flex;
-      gap: 20px;
-      padding: 0 20px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    header nav a {
-      flex-shrink: 0;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 6px 10px;
-      border-radius: 4px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      white-space: nowrap;
-    }
-    header nav a:hover,
-    header nav a:focus-visible {
-      background-color: #b30000;
-      color: #fff;
-      outline: none;
-    }
-    header nav a[aria-current="page"] {
-      background-color: #b30000;
-      color: #fff;
-      pointer-events: none;
-      cursor: default;
     }
 
-    .content {
-      max-width: 900px;
-      margin: 40px auto 60px auto;
-      padding: 0 20px;
-      border-top: 2px solid #555;
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      padding: 12px 10px;
     }
+
+    nav a {
+      padding: 8px 16px;
+      font-weight: 600;
+      text-decoration: none;
+      color: #fff;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+      background-color: #222;
+      border: 1px solid #444;
+    }
+
+    nav a:hover,
+    nav a.active {
+      background-color: #b30000;
+      border-color: #b30000;
+      color: #fff;
+    }
+
     h1 {
       font-size: 42px;
-      margin-bottom: 30px;
-      user-select: none;
+      margin: 40px 20px 30px;
       text-align: center;
       color: #fff;
       text-shadow: 0 0 8px #b30000;
     }
+
     h2 {
       color: #b30000;
-      margin-top: 30px;
-      margin-bottom: 10px;
-      user-select: none;
+      margin: 30px 0 10px;
     }
+
+    .content {
+      max-width: 900px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+      border-top: 2px solid #555;
+    }
+
     p {
       margin-bottom: 15px;
       font-size: 16px;
       color: #ddd;
     }
+
     ul {
       padding-left: 20px;
       margin-bottom: 20px;
       color: #ccc;
     }
+
     ul li {
       margin-bottom: 8px;
     }
+
     .separator {
       border-top: 1px solid #555;
       margin: 40px 0;
+    }
+
+    ::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #b30000;
     }
   </style>
 </head>
 <body>
   <header>
-    <nav aria-label="Ana navigasyon">
+    <nav>
       <a href="index.html">Ana Sayfa</a>
       <a href="galeri.html">Galeri</a>
-      <a href="hayati.html" aria-current="page">Hayatı</a>
+      <a href="hayati.html" class="active">Hayatı</a>
       <a href="gerisayim.html">Geri Sayım</a>
       <a href="ayarlar.html">Ayarlar</a>
     </nav>
   </header>
 
+  <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
   <div class="content">
-    <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
     <h2>Erken Dönem</h2>
     <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. İlk eğitimini mahalle mektebinde aldıktan sonra Şemsi Efendi Okulu'na devam etti. Daha sonra Selanik Mülkiye Rüştiyesi ve Manastır Askeri İdadisi'nde eğitimini sürdürdü.</p>
+
     <h2>Askeri Eğitim ve Kariyer</h2>
     <p>1905 yılında Harp Okulu'ndan teğmen olarak mezun oldu. Harp Akademisi'nde eğitimini tamamlayarak kurmay yüzbaşı unvanını aldı. Balkan Savaşları ve I. Dünya Savaşı'nda çeşitli cephelerde görev yaptı. Çanakkale Savaşı'ndaki başarısıyla büyük ün kazandı.</p>
+
     <h2>Milli Mücadele ve Cumhuriyetin Kuruluşu</h2>
     <p>1919 yılında Samsun'a çıkarak Türk Kurtuluş Savaşı'nı başlattı. Erzurum ve Sivas Kongrelerinde milli iradeyi temsil etti. 1920'de TBMM'nin açılmasıyla Meclis Başkanı oldu. 1923'te Türkiye Cumhuriyeti'ni ilan ederek ilk cumhurbaşkanı oldu.</p>
+
     <h2>Reformlar ve Modernleşme</h2>
     <ul>
       <li>Harf Devrimi: Latin alfabesinin kabulü</li>
@@ -128,11 +130,16 @@
       <li>Eğitim Reformları: Tevhid-i Tedrisat Kanunu</li>
       <li>Ekonomi ve Sanayi: Sanayi yatırımlarının artırılması</li>
     </ul>
+
     <h2>Son Yılları ve Mirası</h2>
     <p>Atatürk, 10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayata veda etti. Ardında modern Türkiye Cumhuriyeti'nin temelini atan büyük bir lider ve devlet adamı olarak unutulmaz bir miras bıraktı.</p>
+
     <div class="separator"></div>
-    <p style="text-align:center; font-size: 14px; color: #888; user-select:none;">
-      Kaynaklar: <a href="https://tr.wikipedia.org/wiki/Mustafa_Kemal_Atat%C3%BCrk" target="_blank" style="color:#b30000; text-decoration:none;">Vikipedi</a>, <a href="https://www.ataturk.com.tr" target="_blank" style="color:#b30000; text-decoration:none;">Atatürk Araştırma Merkezi</a>
+
+    <p style="text-align:center; font-size: 14px; color: #888;">
+      Kaynaklar:
+      <a href="https://tr.wikipedia.org/wiki/Mustafa_Kemal_Atat%C3%BCrk" target="_blank" style="color:#b30000; text-decoration:none;">Vikipedi</a>,
+      <a href="https://www.ataturk.com.tr" target="_blank" style="color:#b30000; text-decoration:none;">Atatürk Araştırma Merkezi</a>
     </p>
   </div>
 
@@ -141,15 +148,13 @@
     if (darkMode === 'false') {
       document.body.style.backgroundColor = '#fff';
       document.body.style.color = '#000';
-      document.querySelectorAll('nav a').forEach(btn => {
+      document.querySelectorAll('a').forEach(btn => {
         btn.style.backgroundColor = '#e0e0e0';
         btn.style.color = '#000';
+        btn.style.borderColor = '#bbb';
       });
-      const current = document.querySelector('nav a[aria-current="page"]');
-      if (current) {
-        current.style.backgroundColor = '#b30000';
-        current.style.color = '#fff';
-      }
+      document.querySelector('a.active').style.backgroundColor = '#b30000';
+      document.querySelector('a.active').style.color = '#fff';
     }
   </script>
 </body>
