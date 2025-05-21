@@ -6,7 +6,9 @@
   <title>Mustafa Kemal Atatürk - Hayatı</title>
   <style>
     body {
-      margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #000;
       color: #fff;
       transition: background-color 0.3s, color 0.3s;
@@ -16,10 +18,10 @@
       display: flex;
       justify-content: center;
       gap: 15px;
+      flex-wrap: wrap;
       background: #111;
       padding: 12px 0;
       border-bottom: 1px solid #555;
-      user-select: none;
     }
     .btn {
       padding: 8px 18px;
@@ -33,17 +35,11 @@
       transition: background-color 0.2s ease;
       display: flex;
       align-items: center;
-      white-space: nowrap;
     }
-    .btn:hover {
+    .btn:hover,
+    .btn.active {
       background-color: #b30000;
       border-color: #b30000;
-    }
-    .btn[aria-current="page"] {
-      background-color: #b30000;
-      border-color: #b30000;
-      cursor: default;
-      pointer-events: none;
     }
     .content {
       max-width: 900px;
@@ -85,10 +81,11 @@
   </style>
 </head>
 <body>
+
   <div class="header">
     <a href="index.html" class="btn">Ana Sayfa</a>
     <a href="galeri.html" class="btn">Galeri</a>
-    <a href="hayati.html" class="btn" aria-current="page">Hayatı</a>
+    <a href="hayati.html" class="btn active">Hayatı</a>
     <a href="gerisayim.html" class="btn">Geri Sayım</a>
     <a href="ayarlar.html" class="btn">Ayarlar</a>
   </div>
@@ -125,9 +122,8 @@
   </div>
 
   <script>
-    // Tema ayarını uygula
     const darkMode = localStorage.getItem('darkMode');
-    if(darkMode === 'false') {
+    if (darkMode === 'false') {
       document.body.style.backgroundColor = '#fff';
       document.body.style.color = '#000';
       document.querySelectorAll('.btn').forEach(btn => {
@@ -135,21 +131,10 @@
         btn.style.color = '#000';
         btn.style.borderColor = '#bbb';
       });
-      document.querySelectorAll('.separator').forEach(line => {
-        line.style.borderColor = '#ccc';
-      });
-    } else {
-      document.body.style.backgroundColor = '#000';
-      document.body.style.color = '#fff';
-      document.querySelectorAll('.btn').forEach(btn => {
-        btn.style.backgroundColor = '#222';
-        btn.style.color = '#fff';
-        btn.style.borderColor = '#444';
-      });
-      document.querySelectorAll('.separator').forEach(line => {
-        line.style.borderColor = '#555';
-      });
+      document.querySelector('.btn.active').style.backgroundColor = '#b30000';
+      document.querySelector('.btn.active').style.color = '#fff';
     }
   </script>
+
 </body>
 </html>
