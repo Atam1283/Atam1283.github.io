@@ -6,38 +6,56 @@
     <title>Mustafa Kemal Atatürk - Galeri</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Galeriye özel stil */
+        /* Galeriye özel stil (style.css'ten sonra yüklenmeli) */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            gap: 30px; /* Boşluk artırıldı */
             justify-content: center;
-            margin-top: 30px;
+            margin-top: 40px;
         }
         .gallery-item {
-            background-color: #222;
-            border-radius: 8px;
-            overflow: hidden; /* Resmin köşelerini yuvarlamak için */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            background-color: #2a2a2a; /* İçerik arka planı */
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
             text-align: center;
-            padding-bottom: 15px; /* Başlık ve açıklama için boşluk */
+            padding-bottom: 20px; /* Daha fazla boşluk */
+            border: 1px solid #3a3a3a; /* Hafif kenarlık */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px); /* Hafif yukarı kalkma */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
         }
         .gallery-item img {
             width: 100%;
-            height: 200px; /* Sabit yükseklik, nesneyi sığdır */
+            height: 250px; /* Biraz daha büyük görseller */
             object-fit: cover;
             display: block;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e74c3c; /* Kırmızı alt çizgi */
         }
         .gallery-item h3 {
             margin: 0 15px 10px;
-            font-size: 1.2em;
-            color: #fff;
+            font-size: 1.4em; /* Daha büyük başlık */
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
         .gallery-item p {
-            font-size: 0.9em;
-            color: #a0a0a0;
+            font-size: 1em;
+            color: #b0b0b0; /* Açık gri açıklama metni */
             margin: 0 15px;
+        }
+
+        /* Mobil için Galeri */
+        @media (max-width: 600px) {
+            .gallery-grid {
+                grid-template-columns: 1fr; /* Tek sütun */
+            }
+            .gallery-item img {
+                height: 200px;
+            }
         }
     </style>
 </head>
@@ -55,37 +73,38 @@
     <main>
         <section>
             <h2>Görsel Galeri</h2>
-            <p>Mustafa Kemal Atatürk'ün farklı dönemlerine ait seçkin fotoğraflar ve tarihi görseller.</p>
+            <p>Mustafa Kemal Atatürk'ün farklı dönemlerine ait seçkin fotoğraflar ve tarihi görsellerden oluşan zengin bir koleksiyon.</p>
 
             <div class="gallery-grid">
                 <div class="gallery-item">
                     <img src="galeri/samsun.jpg" alt="Atatürk Samsun'da">
                     <h3>Samsun'a Çıkış</h3>
-                    <p>19 Mayıs 1919 - Milli Mücadele'nin başlangıcı.</p>
+                    <p>19 Mayıs 1919 - Milli Mücadele'nin başlangıcı, Bağımsızlık ateşi.</p>
                 </div>
                 <div class="gallery-item">
                     <img src="galeri/cumhuriyet.jpg" alt="Cumhuriyet İlanı">
                     <h3>Cumhuriyet'in İlanı</h3>
-                    <p>29 Ekim 1923 - Türkiye Cumhuriyeti'nin kuruluşu.</p>
+                    <p>29 Ekim 1923 - Türk milletinin egemenliğini taçlandıran büyük gün.</p>
                 </div>
                 <div class="gallery-item">
                     <img src="galeri/nutuk.jpg" alt="Atatürk Nutuk Okurken">
-                    <h3>Büyük Nutuk</h3>
-                    <p>1927 - Atatürk'ün 6 günlük tarihi konuşması.</p>
+                    <h3>Büyük Nutuk Okunuşu</h3>
+                    <p>1927 - Gelecek nesillere ışık tutan tarihi konuşma.</p>
                 </div>
-                <div classembali.jpg" alt="Atatürk Anıtkabir'de">
+                <div class="gallery-item">
+                    <img src="galeri/anıtkabir.jpg" alt="Anıtkabir">
                     <h3>Anıtkabir</h3>
-                    <p>Türk milletinin Ata'sına minnetinin sembolü.</p>
+                    <p>Ulu Önder'in ebedi istirahatgahı ve Türk milletinin minnet anıtı.</p>
                 </div>
                 <div class="gallery-item">
                     <img src="galeri/okul.jpg" alt="Atatürk ve Okul Çocukları">
-                    <h3>Eğitime Verdiği Önem</h3>
-                    <p>Eğitim ve öğretime büyük önem veren lider.</p>
+                    <h3>Eğitim ve Çocuk Sevgisi</h3>
+                    <p>Gelecek nesillere olan inancının ve eğitim vizyonunun simgesi.</p>
                 </div>
                 <div class="gallery-item">
                     <img src="galeri/devrim.jpg" alt="Atatürk Devrimler">
                     <h3>Modern Türkiye'nin Mimarı</h3>
-                    <p>Birçok devrime imza atarak ülkeyi çağdaşlaştırdı.</p>
+                    <p>Laiklik, bilim ve akıl yolunda yapılan çağdaş devrimler.</p>
                 </div>
             </div>
             </section>
