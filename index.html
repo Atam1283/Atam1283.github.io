@@ -3,238 +3,138 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Atatürk Özel Gün Geri Sayımı</title>
+  <title>Mustafa Kemal Atatürk - Ana Sayfa</title>
   <style>
+    *, *::before, *::after { box-sizing: border-box; }
     body {
-      margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0; padding: 0;
       background-color: #000;
       color: #fff;
-      display: flex; flex-direction: column; min-height: 100vh;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    .header {
-      display: flex; justify-content: center; gap: 15px;
-      background: #111; padding: 12px 0;
-      border-bottom: 1px solid #b30000;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
       user-select: none;
-      flex-shrink: 0;
-      overflow-x: auto;
     }
-    .btn {
-      padding: 8px 18px; font-weight: 600;
-      border: 1px solid #444; border-radius: 4px;
-      background-color: #222; color: #fff;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background-color 0.2s ease;
-      display: flex; align-items: center;
-      white-space: nowrap;
-    }
-    .btn:hover {
-      background-color: #b30000;
-      color: #fff;
-      border-color: #b30000;
-    }
-    .content {
-      flex-grow: 1;
-      max-width: 700px;
-      margin: 50px auto 60px auto;
-      padding: 20px;
-      text-align: center;
-      border-top: 2px solid #555;
-    }
-    h1 {
-      font-size: 38px;
-      margin-bottom: 30px;
-      user-select: none;
-      color: #fff;
-      text-shadow: 0 0 8px #b30000;
-    }
-    .countdown {
+    header {
+      background-color: #111;
+      border-bottom: 2px solid #b22222;
       display: flex;
       justify-content: center;
-      gap: 20px;
-      font-size: 28px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    .countdown div {
-      background: #111;
-      padding: 20px 30px;
-      border-radius: 8px;
-      border: 2px solid #b30000;
-      min-width: 80px;
-      box-shadow: 0 0 10px #b30000;
-    }
-    .label {
-      font-size: 14px;
-      margin-top: 8px;
-      color: #b30000;
-      user-select: none;
-    }
-    .event-list {
-      max-width: 600px;
-      margin: 0 auto;
-      text-align: left;
-      color: #ccc;
-    }
-    .event-list ul {
-      list-style-type: none;
-      padding-left: 0;
-      margin: 0;
-    }
-    .event-list li {
-      padding: 8px 12px;
-      border-bottom: 1px solid #333;
+    nav {
       display: flex;
-      justify-content: space-between;
-      font-weight: 600;
-      cursor: default;
-      transition: background-color 0.2s ease;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
-    .event-list li:hover {
-      background-color: #330000;
-    }
-    .event-name {
+    nav a {
       color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 8px 16px;
+      border-radius: 4px;
+      background-color: #222;
+      border: 1px solid #444;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      white-space: nowrap;
     }
-    .event-date {
-      color: #b30000;
+    nav a:hover,
+    nav a:focus-visible {
+      background-color: #b22222;
+      color: #fff;
+      outline: none;
     }
-    .footer-note {
-      margin-top: 40px;
-      font-size: 13px;
-      color: #777;
+    nav a[aria-current="page"] {
+      background-color: #b22222;
+      color: #fff;
+      pointer-events: none;
+      cursor: default;
+    }
+    main {
+      flex-grow: 1;
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      margin-bottom: 30px;
+      color: #fff;
       user-select: none;
+    }
+    #quoteBox {
+      margin-top: 20px;
+      font-style: italic;
+      font-size: 22px;
+      color: #ddd;
+    }
+    #quoteSource {
+      margin-top: 8px;
+      font-size: 16px;
+      color: #999;
     }
   </style>
 </head>
 <body>
-
-  <div class="header">
-    <a href="index.html" class="btn">Ana Sayfa</a>
-    <a href="galeri.html" class="btn">Galeri</a>
-    <a href="hayati.html" class="btn">Hayatı</a>
-    <a href="gerisayim.html" class="btn">Geri Sayım</a>
-    <a href="ayarlar.html" class="btn">Ayarlar</a>
-  </div>
-
-  <div class="content">
-    <h1>Atatürk Özel Günleri Geri Sayımı</h1>
-
-    <div class="countdown" id="countdown">
-      <div>
-        <div id="days">00</div>
-        <div class="label">Gün</div>
-      </div>
-      <div>
-        <div id="hours">00</div>
-        <div class="label">Saat</div>
-      </div>
-      <div>
-        <div id="minutes">00</div>
-        <div class="label">Dakika</div>
-      </div>
-      <div>
-        <div id="seconds">00</div>
-        <div class="label">Saniye</div>
-      </div>
+  <header>
+    <nav aria-label="Ana navigasyon">
+      <a href="index.html" aria-current="page">Ana Sayfa</a>
+      <a href="galeri.html">Galeri</a>
+      <a href="hayati.html">Hayatı</a>
+      <a href="gerisayim.html">Geri Sayım</a>
+      <a href="ayarlar.html">Ayarlar</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Mustafa Kemal Atatürk</h1>
+    <div id="quoteBox">
+      <div id="quoteText"></div>
+      <div id="quoteSource"></div>
     </div>
-
-    <div class="event-list">
-      <h2 style="color:#b30000; user-select:none;">Yaklaşan Özel Günler</h2>
-      <ul id="events">
-        <!-- Liste JS ile doldurulacak -->
-      </ul>
-    </div>
-
-    <p class="footer-note">Tüm tarih ve bilgiler Atatürk'ün hayatına ve Türkiye Cumhuriyeti tarihine dayanır.</p>
-  </div>
-
+  </main>
   <script>
-    const specialEvents = [
-      {name: "Atatürk'ün Doğumu", date: "1881-05-19"},
-      {name: "Samsun'a Çıkış", date: "1919-05-19"},
-      {name: "Erzurum Kongresi", date: "1919-07-23"},
-      {name: "Sivas Kongresi", date: "1919-09-04"},
-      {name: "Türkiye Cumhuriyeti'nin İlanı", date: "1923-10-29"},
-      {name: "Atatürk'ün Vefatı", date: "1938-11-10"},
-      {name: "Cumhuriyet Bayramı", date: "2025-10-29"},
-      {name: "23 Nisan Ulusal Egemenlik ve Çocuk Bayramı", date: "2025-04-23"},
-      {name: "19 Mayıs Atatürk'ü Anma, Gençlik ve Spor Bayramı", date: "2025-05-19"},
-      {name: "30 Ağustos Zafer Bayramı", date: "2025-08-30"}
+    const quotes = [
+      { text: "Yurtta sulh, cihanda sulh.", source: "1923 Nutuk" },
+      { text: "Egemenlik, kayıtsız şartsız milletindir.", source: "1921 Anayasası" },
+      { text: "Hayatta en hakiki mürşit ilimdir.", source: "1923 Söylev" },
+      { text: "Milli mücadele, milletin istiklal savaşıdır.", source: "Nutuk, 1927" },
+      { text: "Bütün ümidim gençliktedir.", source: "1927 Nutuk" },
+      { text: "Benim naçiz vücudum elbet bir gün toprak olacaktır.", source: "1938 Vasiyet" },
+      { text: "Muasır medeniyet seviyesine ulaşmak.", source: "Cumhuriyet hedefi" }
     ];
-
-    function getNextEvent() {
-      const now = new Date();
-      const thisYear = now.getFullYear();
-      let upcoming = null;
-
-      for (const ev of specialEvents) {
-        let evDate = new Date(ev.date);
-        if (evDate.getFullYear() < 1900) {
-          evDate.setFullYear(thisYear);
-          if (evDate < now) evDate.setFullYear(thisYear + 1);
-        }
-
-        if (!upcoming || evDate < upcoming.date) {
-          if (evDate >= now) {
-            upcoming = {name: ev.name, date: evDate};
-          }
-        }
-      }
-      return upcoming;
+    function randomQuote() {
+      const index = Math.floor(Math.random() * quotes.length);
+      return quotes[index];
     }
-
-    function updateCountdown() {
-      const event = getNextEvent();
-      if (!event) return;
-
-      const now = new Date();
-      const diff = event.date - now;
-
-      if (diff < 0) {
-        document.getElementById("countdown").innerHTML = "<p>Özel gün geçti.</p>";
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      document.getElementById("days").textContent = String(days).padStart(2, '0');
-      document.getElementById("hours").textContent = String(hours).padStart(2, '0');
-      document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
-      document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+    const showQuotes = localStorage.getItem('showQuotes');
+    const quoteBox = document.getElementById('quoteBox');
+    const quoteText = document.getElementById('quoteText');
+    const quoteSource = document.getElementById('quoteSource');
+    if (showQuotes !== 'false') {
+      const q = randomQuote();
+      quoteText.textContent = `"${q.text}"`;
+      quoteSource.textContent = `- ${q.source}`;
+      quoteBox.style.display = 'block';
+    } else {
+      quoteBox.style.display = 'none';
     }
-
-    function populateEvents() {
-      const ul = document.getElementById("events");
-      ul.innerHTML = "";
-      const now = new Date();
-      const thisYear = now.getFullYear();
-
-      specialEvents.forEach(ev => {
-        let evDate = new Date(ev.date);
-        if (evDate.getFullYear() < 1900) {
-          evDate.setFullYear(thisYear);
-          if (evDate < now) evDate.setFullYear(thisYear + 1);
-        }
-
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const dateString = evDate.toLocaleDateString('tr-TR', options);
-        const li = document.createElement("li");
-        li.innerHTML = `<span class="event-name">${ev.name}</span> <span class="event-date">${dateString}</span>`;
-        ul.appendChild(li);
-      });
+    const darkMode = localStorage.getItem('darkMode');
+    if (darkMode === 'false') {
+      document.body.style.backgroundColor = '#fff';
+      document.body.style.color = '#000';
+    } else {
+      document.body.style.backgroundColor = '#000';
+      document.body.style.color = '#fff';
     }
-
-    populateEvents();
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>
