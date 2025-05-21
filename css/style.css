@@ -8,54 +8,56 @@
   <link href="images/logo.png" rel="apple-touch-icon" />
   <link rel="stylesheet" href="css/zerogrid.css" />
   <link rel="stylesheet" href="css/style.css" />
-
-  <!-- Font Awesome sosyal ikonlar için -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <style>
     html, body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
+      font-family: Arial, sans-serif;
       min-height: 100vh;
       position: relative;
-      font-family: Arial, sans-serif;
     }
 
     .wrap-body {
-      padding-bottom: 110px; /* Footer yüksekliği kadar boşluk */
+      padding-bottom: 110px; /* footer boşluğu */
       min-height: 100vh;
       box-sizing: border-box;
       position: relative;
     }
 
-    header .wrap-header {
-      position: relative;
-      padding: 10px 20px 0 20px;
-      height: auto;
-      text-align: center;
+    /* Üst menü çubuğu */
+    header {
+      width: 100%;
+      background-color: #fff;
+      border-bottom: 1px solid #ccc;
+      box-sizing: border-box;
+      position: fixed;
+      top: 0; left: 0;
+      z-index: 10000;
+    }
+
+    /* Menü ve logo kapsayıcı */
+    .wrap-header {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
     }
 
     /* Logo */
     .logo {
-      width: 225px;
-      max-width: 100%;
+      width: 140px;
       height: auto;
       border-radius: 65px;
-      margin: 0 auto 15px auto;
-      display: block;
-      object-fit: cover;
     }
 
-    /* Menü - eski konuma getirildi (logo altında ortalı) */
+    /* Menü */
     #cssmenu {
-      display: flex;
-      justify-content: center;
-      margin: 0;
-      padding: 0;
-      position: relative;
-      flex-wrap: wrap;
+      flex-grow: 1;
+      margin-left: 40px;
     }
 
     #cssmenu ul {
@@ -63,9 +65,9 @@
       margin: 0;
       padding: 0;
       display: flex;
-      gap: 25px;
-      flex-wrap: wrap;
-      justify-content: center;
+      gap: 30px;
+      justify-content: flex-start;
+      align-items: center;
     }
 
     #cssmenu ul li {
@@ -74,77 +76,45 @@
 
     #cssmenu ul li a {
       text-decoration: none;
-      font-family: Arial, sans-serif;
       font-size: 16px;
       color: #333;
-      padding: 10px 15px;
-      display: inline-block;
+      padding: 10px 12px;
+      font-weight: 600;
+      display: block;
       transition: color 0.3s ease;
     }
 
     #cssmenu ul li:hover > a {
-      color: #c8102e; /* kırmızı vurgu */
-    }
-
-    /* Alt menü (dropdown) */
-    #cssmenu ul li ul {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: white;
-      padding: 10px 0;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      display: none;
-      min-width: 180px;
-      z-index: 999;
-      border-radius: 4px;
-    }
-
-    #cssmenu ul li:hover ul {
-      display: block;
-    }
-
-    #cssmenu ul li ul li {
-      width: 100%;
-      padding: 0;
-    }
-
-    #cssmenu ul li ul li a {
-      padding: 8px 20px;
-      font-size: 14px;
-      color: #333;
-      display: block;
-    }
-
-    #cssmenu ul li ul li a:hover {
-      background-color: #f0f0f0;
       color: #c8102e;
     }
 
-    /* Arama kutusu - header altında, ortalı ve biraz boşlukla */
+    /* Alt menü kaldırıldı */
+    #cssmenu ul li ul {
+      display: none !important;
+    }
+
+    /* Arama kutusu */
     .search-container {
-      max-width: 320px;
-      margin: 10px auto 0 auto;
-      text-align: center;
+      max-width: 250px;
+      margin-left: 20px;
     }
 
     .search-container input[type="text"] {
       width: 100%;
-      padding: 9px 20px;
-      font-size: 16px;
+      padding: 7px 15px;
       border: 1px solid #ccc;
-      border-radius: 30px;
+      border-radius: 20px;
+      font-size: 14px;
       outline: none;
-      box-sizing: border-box;
-      transition: all 0.3s ease;
+      transition: border-color 0.3s ease;
     }
 
     .search-container input[type="text"]:focus {
       border-color: #c8102e;
-      box-shadow: 0 0 6px rgba(200,16,46,0.6);
+      box-shadow: 0 0 5px rgba(200,16,46,0.6);
     }
 
-    /* Footer sosyal medya ve alt çizgi */
+    /* Sosyal medya ve footer */
     .social-footer {
       border-top: 6px solid black;
       padding: 12px 20px;
@@ -171,10 +141,9 @@
       color: #c8102e;
     }
 
-    /* Telif hakkı yazısı */
     .copyright {
       position: fixed;
-      bottom: 56px; /* sosyal medya butonlarının hemen üstü */
+      bottom: 56px;
       left: 0;
       width: 100%;
       text-align: center;
@@ -186,107 +155,56 @@
       z-index: 1001;
     }
 
-    /* Mobil menü butonu */
-    .menu-toggle {
-      display: none;
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      cursor: pointer;
-      font-size: 28px;
-      color: #333;
-      user-select: none;
-      z-index: 1100;
-    }
-
     /* Responsive - mobil */
     @media (max-width: 768px) {
+      .wrap-header {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+
       #cssmenu ul {
-        display: none;
         flex-direction: column;
-        background: white;
-        position: absolute;
-        top: 55px;
-        left: 0;
-        right: 0;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        border-radius: 0 0 8px 8px;
-        z-index: 1099;
-      }
-
-      #cssmenu ul li {
+        gap: 10px;
+        width: 100%;
         text-align: center;
-        margin: 0;
       }
 
-      #cssmenu ul li ul {
-        position: static;
-        box-shadow: none;
-        background: #fafafa;
-        border-radius: 0;
-        display: none;
-        padding-left: 10px;
-      }
-
-      #cssmenu ul li:hover ul {
-        display: none; /* Hover dropdown iptal */
-      }
-
-      #cssmenu ul li.active > ul {
-        display: block;
-      }
-
-      #cssmenu ul li > a::after {
-        content: ' ▼';
-        font-size: 12px;
-      }
-
-      #cssmenu ul li.open > ul {
-        display: block;
-      }
-
-      /* Menü göster */
-      #cssmenu.active ul {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      /* Arama kutusu mobilde genişlik %90 */
       .search-container {
-        max-width: 90%;
-        margin: 10px auto 15px auto;
+        width: 100%;
+        max-width: none;
+        margin-left: 0;
       }
+
+      .logo {
+        margin-bottom: 10px;
+      }
+    }
+
+    /* İçerik aşağı kayacak ki üstteki sabit menü görünür olsun */
+    #container {
+      padding-top: 70px;
+      min-height: 400px;
     }
   </style>
 </head>
 <body>
   <div class="wrap-body">
     <header>
-      <div class="wrap-header zerogrid" style="position:relative;">
+      <div class="wrap-header">
         <a href="index.html" class="logo"><img src="images/logo.png" alt="Logo" /></a>
-
-        <!-- Menü toggle butonu mobil için -->
-        <div class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></div>
 
         <nav id="cssmenu">
           <ul>
-            <li class="active"><a href="index.html"><h5>ANASAYFA</h5></a></li>
-            <li>
-              <a href="#">Galeri</a>
-              <ul>
-                <li><a href="kzkls.html">Atatürk kulesi</a></li>
-                <li><a href="stnblbgz.html">Atatürk Boğazı</a></li>
-                <li><a href="dlmbhcsry.html">Atatürk Sarayı</a></li>
-                <li><a href="sltnhmtmydn.html">Atatürk Meydanı</a></li>
-                <li><a href="sltnhmtcm.html">Atatürk Camii</a></li>
-                <li><a href="yrbtnsrnc.html">Atatürk Sarıncı</a></li>
-                <li><a href="tpkpsrymzs.html">Atatürk Sarayı Müzesi</a></li>
-                <li><a href="kplcrs.html">Atatürk Çarşı</a></li>
-              </ul>
-            </li>
+            <li><a href="index.html">ANASAYFA</a></li>
+            <li><a href="kzkls.html">Atatürk Kulesi</a></li>
+            <li><a href="stnblbgz.html">Atatürk Boğazı</a></li>
+            <li><a href="dlmbhcsry.html">Atatürk Sarayı</a></li>
+            <li><a href="sltnhmtmydn.html">Atatürk Meydanı</a></li>
+            <li><a href="sltnhmtcm.html">Atatürk Camii</a></li>
+            <li><a href="yrbtnsrnc.html">Atatürk Sarıncı</a></li>
+            <li><a href="tpkpsrymzs.html">Atatürk Sarayı Müzesi</a></li>
+            <li><a href="kplcrs.html">Atatürk Çarşı</a></li>
             <li><a href="single.html">Geri Sayım</a></li>
             <li><a href="contact.html">Ayarlar</a></li>
           </ul>
@@ -310,45 +228,16 @@
       </div>
     </section>
 
-    <footer>
-      <div class="zerogrid">
-        <div class="wrap-footer">
-          <div class="row"></div>
-        </div>
-      </div>
-    </footer>
+    <footer></footer>
   </div>
 
-  <!-- Telif hakkı yazısı -->
   <div class="copyright">© Tüm Hakları Saklıdır</div>
 
-  <!-- Sosyal medya ve alt çizgi -->
   <div class="social-footer">
     <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
     <a href="https://twitter.com/" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
     <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
     <a href="https://www.youtube.com/" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
   </div>
-
-  <script>
-    // Mobil menü açma/kapatma
-    document.getElementById('menu-toggle').addEventListener('click', function() {
-      var menu = document.getElementById('cssmenu');
-      menu.classList.toggle('active');
-    });
-
-    // Alt menü açma (mobilde)
-    const menuItems = document.querySelectorAll('#cssmenu ul li > a');
-
-    menuItems.forEach(item => {
-      item.addEventListener('click', function(e) {
-        const parentLi = this.parentElement;
-        if (parentLi.querySelector('ul')) {
-          e.preventDefault(); // Linkin normal işlevini engelle
-          parentLi.classList.toggle('open');
-        }
-      });
-    });
-  </script>
 </body>
 </html>
