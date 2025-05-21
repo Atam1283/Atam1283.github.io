@@ -1,286 +1,605 @@
-/* style.css */
+/*
+Zerotheme.com | Free Html5 Responsive Templates
+Author URI: https://www.zerotheme.com/
+*/
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+/* ---------------------------------------------------------------------------- */
+/* ------------------------------------Reset----------------------------------- */
+/* ---------------------------------------------------------------------------- */
+a,abbr,acronym,address,applet,article,aside,audio,b,blockquote,big,body,center,canvas,caption,cite,code,command,datalist,dd,del,details,dfn,dl,div,dt,em,embed,fieldset,figcaption,figure,font,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,keygen,label,legend,li,meter,nav,object,ol,output,p,pre,progress,q,s,samp,section,small,span,source,strike,strong,sub,sup,table,tbody,tfoot,thead,th,tr,tdvideo,tt,u,ul,var{background:transparent;border:0 none;font-size:100%;margin:0;padding:0;border:0;outline:0;vertical-align:top;}ol, ul {list-style:none;}blockquote, q {quotes:none;}table, table td {padding:0;border:none;border-collapse:collapse;}img {vertical-align:top;}embed {vertical-align:top;}
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video {display:block;}
+mark, rp, rt, ruby, summary, time {display:inline;}
+input, textarea {border:0; padding:0; margin:0; outline: 0;}
+iframe {border:0; margin:0; padding:0;}
+input, textarea, select {margin:0; padding:0px;}
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #0a0a0a; /* Çok koyu gri/siyah */
-    color: #f0f0f0; /* Açık gri metin rengi */
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+
+/* ---------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------- */
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
-/* Başlık (Header) ve Navigasyon */
-header {
-    background-color: #1c1c1c; /* Koyu gri başlık arka planı */
-    padding: 15px 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Daha belirgin gölge */
-    border-bottom: 1px solid #3a3a3a; /* Alt çizgi */
+
+/* ---------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------- */
+
+html { -webkit-text-size-adjust: none;}
+.video embed,.video object,.video iframe { width: 100%;  height: auto;}
+img{max-width:100%;	height: auto;width: auto\9; /* ie8 */}
+
+a{color: #4C4C4C;text-decoration: none;}
+a:hover {text-decoration: none;}
+
+h1, h2 	{font-size: 25px;line-height: 25px;}
+h3, h4	{font-size: 20px;line-height: 20px;}
+h5, h6	{font-size: 16px;line-height: 16px;}
+
+p{margin: 10px 0;}
+
+.t-center{text-align: center;}
+.t-left{text-align: left;}
+.t-right{text-align: right;}
+.f-right{float: right;}
+.f-left{float: left;}
+
+.post{}
+.post:after, .post:before, article:after, article:before, section:after, section:before{clear: both; content: '\0020'; display: block; visibility: hidden; width: 0; height: 0;}
+
+.clear{content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
+.clearfix:after, .clearfix:before{clear: both; content: '\0020'; display: block; visibility: hidden; width: 0; height: 0;}
+
+/* ---------------------------------------------------------------------------- */
+/* ------------------------------------Html-Body------------------------------- */
+/* ---------------------------------------------------------------------------- */
+html, body {width:100%; padding:0; margin:0;}
+body {background: #ffffff;color: #3F3F3F;font: 14px/25px Arial, Helvetica, sans-serif;font-family: Montserrat, sans-serif;}
+body .wrap-body{}
+
+/* ---------------------------------------------------------------------------- */
+/* -------------------------------------Header--------------------------------- */
+/* ---------------------------------------------------------------------------- */
+header{}
+header .wrap-header{}
+
+
+header .logo img{display: inline-block;margin: 15px auto;padding: 10px;}
+@media all and (max-width: 768px){
+	header .logo{text-align:center;width: 100%;}
+	header .logo img{display:block;}
+}
+/* ---------------------------------------------------------------------------- */
+/* -------------------------------------Container------------------------------ */
+/* ---------------------------------------------------------------------------- */
+#container {}
+#container .wrap-container{}
+
+.header { margin: 20px 0 50px;}
+.header h1{font-size: 30px;margin-bottom: 10px;letter-spacing: 2px;}
+.header span{color: #686868;line-height: 1.4;font-size: 26px;font-weight:500;font-family: "Roboto",sans-serif;}
+
+
+/* ---MainContent-Article--- */
+#main-content{}
+#main-content .wrap-content{padding:30px 10px;position: relative;}
+
+#main-content .wrap-content h2{margin: 30px 0 20px;}
+
+.info{margin-top: 50px;}
+.info h2{margin-bottom: 20px;}
+
+article{margin-bottom: 50px;}
+article:after, article:before{clear: both; content: '\0020'; display: block; visibility: hidden; width: 0; height: 0;}
+article .art-header{}
+article .info{margin: 20px 0;}
+article .art-content{}
+
+
+/* ---------------------------------------------------------------------------- */
+/* -------------------------------------Footer--------------------------------- */
+/* ---------------------------------------------------------------------------- */
+footer{margin-top: 40px;}
+footer .wrap-footer{color: #384E4C;font-size: 13px;padding: 40px 20px;}
+footer .wrap-footer h3{margin-bottom: 10px;}
+footer .renk1{color: #ffffff;font-size: 13px;padding: 40px 20px;}
+/* ---------------------------------------------------------------------------- */
+/* -------------------------------------Button--------------------------------- */
+/* ---------------------------------------------------------------------------- */
+a.button{
+	cursor: pointer;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	border:1px solid #ffffff; 
+	display: inline-block;
+	text-decoration: none;
+	background: #303030;
+	margin: 10px 0;
+	padding: 10px 20px;
+	text-transform: uppercase;
+	color: #fff;
+}
+a.button:hover{opacity: 0.9;}
+
+a.button.bt1 {background: #ffffff;color: #000000;border:1px solid #000000;}
+a.button.bt2 {background: #0000ff;color: #ffffff;}
+
+/* ---------------------------------------------------------------------------- */
+/* -------------------------------------Contact-------------------------------- */
+/* ---------------------------------------------------------------------------- */
+.contact h2{margin: 30px 30px 20px 30px !important;}
+#contact_form {padding:0px 25px;}
+
+#ff label {cursor:pointer;margin:5px 0;display:block;font-weight:bold;}
+
+#ff input {display:block;width:100%;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px;color:#000;	border:1px solid #AFAFAF;padding:12px;margin: 5px 0 10px 0;font-size: 16px;max-height: 45px;}
+
+#ff textarea {display:block;width:100%;height:200px; border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px;background-color:#fff; color:#000;	border:1px solid #AFAFAF;padding:10px;margin: 5px 0 25px 0;}
+
+#ff .sendButton {cursor:pointer; background-color: rgba(255, 255, 255, 0.70);-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;;width:35%;color: #384E4C;}
+#ff .sendButton:hover {opacity: 0.8;}
+
+/* ---------------------------------------------------------------------------- */
+/* ------------------------------------Subcribe-------------------------------- */
+/* ---------------------------------------------------------------------------- */
+#subcribe {margin: 10px;}
+
+#subcribe input[type="text"] {
+    background:#fff;
+    color: #867B6E;
+    width: 200px;
+    padding: 16px;
+    }
+
+#subcribe input[type="submit"]{
+	background: #303030;
+	padding: 16px;
+	color: #ffffff;
+	cursor: pointer;
+	width: 110px;
+	outline: none;
+	}
+	
+/* ---------------------------------------------------------------------------- */
+/* -------------------------------Item-Effect---------------------------------- */
+/* ---------------------------------------------------------------------------- */	
+.item-container {
+	position: relative;
+	overflow: hidden;
+	display: inline-block;
+	text-align: center;
+	vertical-align: top;
+	margin-bottom: 20px;
+  border-radius: 12px;
+	background: -webkit-linear-gradient(left top, #447fff , #d4ebed); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(top right, #447fff, #d4ebed); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(top right, #447fff, #d4ebed); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to top right, #447fff , #d4ebed); /* Standard syntax (must be last)*/
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+.item-container img {
+	display: block;
+	width: 100%;
+	height: auto;
+	padding: 50px;
+	-webkit-transition: all .5s ease; /* Safari and Chrome */
+    -moz-transition: all .5s ease; /* Firefox */
+    -ms-transition: all .5s ease; /* IE 9 */
+    -o-transition: all .5s ease; /* Opera */
+    transition: all .5s ease;
+}
+.item-container .item-caption {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 10;
+	background: none;
+	width: 100%;
+	height: 100%;
+	-webkit-transition: all .5s ease; /* Safari and Chrome */
+    -moz-transition: all .5s ease; /* Firefox */
+    -ms-transition: all .5s ease; /* IE 9 */
+    -o-transition: all .5s ease; /* Opera */
+    transition: all .5s ease;
+}
+.item-caption-inner {
+	display: table;
+	width: 100%;
+	height: 100%;
+}
+.item-caption-inner1 {
+	display: table-cell;
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+}
+.item-container .item-caption h3, .item-container .item-caption span{
+	display: block;
+	text-align: center;
+	text-transform: uppercase;
+	color: #444;
+	display: none;
+}
+.item-container .item-caption h3{
+	font-size: 23px;
+	letter-spacing: 2px;
+	margin-bottom : 12px;
+}
+.item-container .item-caption span{
+	font-style: italic;
+	font-size: 12px;
 }
 
-nav {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
+.item-container:hover .item-caption {
+	background: rgba(255, 255, 255, 0.70);
 }
-
-nav a {
-    color: #f0f0f0; /* Menü metin rengi */
-    text-decoration: none;
-    padding: 10px 18px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    font-weight: 500;
+.item-container:hover .item-caption h3, .item-container:hover .item-caption span{
+	display: block;
 }
-
-nav a:hover {
-    background-color: #333; /* Üzerine gelindiğinde koyu gri */
-    color: #ffffff;
+/* ---------------------------------------------------------------------------- */
+/* -------------------------------Menu---------------------------------- */
+/* ---------------------------------------------------------------------------- */
+#cssmenu,
+#cssmenu ul,
+#cssmenu ul li,
+#cssmenu ul li a,
+#cssmenu #menu-button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  line-height: 1;
+  display: block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
-
-nav a.active {
-    background-color: #e74c3c; /* Aktif sayfa rengi: Kırmızı */
-    color: #ffffff;
-    font-weight: bold;
-    box-shadow: 0 0 10px rgba(231, 76, 60, 0.5); /* Kırmızı ışık efekti */
+#cssmenu:after,
+#cssmenu > ul:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
 }
-
-/* Ana İçerik Alanı */
-main {
-    flex-grow: 1;
-    padding: 60px 40px;
-    text-align: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    box-sizing: border-box;
+#cssmenu #menu-button {
+  display: none;
 }
-
-/* Başlıklar */
-h1, h2, h3 {
-    color: #ffffff; /* Beyaz başlık metni */
-    margin-bottom: 25px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px; /* Harf aralığı */
+#cssmenu {
+  z-index: 999;
+  display: inline-block;
+  float: right;
+  margin: 60px 0;
 }
-
-h1 {
-    font-size: 3.8em; /* Daha büyük */
-    margin-top: 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Hafif gölge */
+#cssmenu > ul > li {
+  float: left;
 }
-
-h2 {
-    font-size: 2.8em; /* Daha büyük */
-    border-bottom: 2px solid #e74c3c; /* Kırmızı alt çizgi */
-    padding-bottom: 10px;
-    display: inline-block; /* Çizginin başlıkla sınırlanması */
-    margin-bottom: 40px;
+#cssmenu.align-center > ul {
+  font-size: 0;
+  text-align: center;
 }
-
-h3 {
-    font-size: 2em; /* Daha büyük */
+#cssmenu.align-center > ul > li {
+  display: inline-block;
+  float: none;
 }
-
-p {
-    margin-bottom: 20px;
-    font-size: 1.15em; /* Daha büyük yazı */
-    color: #e0e0e0;
+#cssmenu.align-center ul ul {
+  text-align: left;
 }
-
-/* Ortak Bölüm Stil */
-section {
-    background-color: #1c1c1c; /* Bölüm arka planı */
-    padding: 45px; /* Daha fazla boşluk */
-    margin-bottom: 40px;
-    border-radius: 10px; /* Daha yuvarlak köşeler */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5); /* Daha belirgin gölge */
+#cssmenu.align-right > ul > li {
+  float: right;
+}
+#cssmenu > ul > li > a {
+  padding: 17px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: #666;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+#cssmenu > ul > li:hover > a {
+  color: #999;
+}
+#cssmenu > ul > li.has-sub > a {
+  padding-right: 30px;
+}
+#cssmenu > ul > li.has-sub > a:after {
+  position: absolute;
+  top: 22px;
+  right: 11px;
+  width: 8px;
+  height: 2px;
+  display: block;
+  background: #666;
+  content: '';
+}
+#cssmenu > ul > li.has-sub > a:before {
+  position: absolute;
+  top: 19px;
+  right: 14px;
+  display: block;
+  width: 2px;
+  height: 8px;
+  background: #666;
+  content: '';
+  -webkit-transition: all .25s ease;
+  -moz-transition: all .25s ease;
+  -ms-transition: all .25s ease;
+  -o-transition: all .25s ease;
+  transition: all .25s ease;
+}
+#cssmenu > ul > li.has-sub:hover > a:before {
+  top: 23px;
+  height: 0;
+}
+#cssmenu > ul > li.has-sub:hover > a:after,
+#cssmenu > ul > li.has-sub:hover > a:before{
+	background: #999;
+} 
+#cssmenu ul ul {
+  position: absolute;
+  left: -9999px;
+}
+#cssmenu.align-right ul ul {
+  text-align: right;
+}
+#cssmenu ul ul li {
+  height: 0;
+  -webkit-transition: all .25s ease;
+  -moz-transition: all .25s ease;
+  -ms-transition: all .25s ease;
+  -o-transition: all .25s ease;
+  transition: all .25s ease;
+}
+#cssmenu li:hover > ul {
+  left: auto;
+}
+#cssmenu.align-right li:hover > ul {
+  left: auto;
+  right: 0;
+}
+#cssmenu li:hover > ul > li {
+  height: 35px;
+}
+#cssmenu ul ul ul {
+  margin-left: 100%;
+  top: 0;
+}
+#cssmenu.align-right ul ul ul {
+  margin-left: 0;
+  margin-right: 100%;
+}
+#cssmenu ul ul li a {
+  border-bottom: 1px solid rgba(150, 150, 150, 0.15);
+  padding: 11px 15px;
+  width: 170px;
+  font-size: 12px;
+  text-decoration: none;
+  color: #dddddd;
+  font-weight: 400;
+  background: #3B3B3B;
+}
+#cssmenu ul ul li:last-child > a,
+#cssmenu ul ul li.last-item > a {
+  border-bottom: 0;
+}
+#cssmenu ul ul li:hover > a,
+#cssmenu ul ul li a:hover {
+  color: #ffffff;
+}
+#cssmenu ul ul li.has-sub > a:after {
+  position: absolute;
+  top: 16px;
+  right: 11px;
+  width: 8px;
+  height: 2px;
+  display: block;
+  background: #dddddd;
+  content: '';
+}
+#cssmenu.align-right ul ul li.has-sub > a:after {
+  right: auto;
+  left: 11px;
+}
+#cssmenu ul ul li.has-sub > a:before {
+  position: absolute;
+  top: 13px;
+  right: 14px;
+  display: block;
+  width: 2px;
+  height: 8px;
+  background: #dddddd;
+  content: '';
+  -webkit-transition: all .25s ease;
+  -moz-transition: all .25s ease;
+  -ms-transition: all .25s ease;
+  -o-transition: all .25s ease;
+  transition: all .25s ease;
+}
+#cssmenu.align-right ul ul li.has-sub > a:before {
+  right: auto;
+  left: 14px;
+}
+#cssmenu ul ul > li.has-sub:hover > a:before {
+  top: 17px;
+  height: 0;
+}
+@media all and (max-width: 768px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (-o-min-device-pixel-ratio: 2/1) and (max-width: 1024px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min-resolution: 192dpi) and (max-width: 1024px), only screen and (min-resolution: 2dppx) and (max-width: 1024px) {
+  #cssmenu {
+    width: 100%;
+	background: #3b3b3b;
+	margin: 0 0 50px;
+  }
+  #cssmenu ul {
+    width: 100%;
+    display: none;
+  }
+  #cssmenu.align-center > ul {
     text-align: left;
-    border: 1px solid #3a3a3a; /* Hafif kenarlık */
-}
-
-section.hero {
-    background-color: #0a0a0a; /* Arka plan rengiyle uyumlu */
-    box-shadow: none;
-    padding: 0;
-    margin-bottom: 70px; /* Daha fazla boşluk */
-    text-align: center;
-}
-
-section.hero .quote {
-    font-style: italic;
-    font-size: 2em; /* Daha büyük alıntı */
-    margin-top: 35px;
-    margin-bottom: 15px;
-    color: #e74c3c; /* Kırmızı alıntı metni */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-section.hero .source {
-    font-size: 1.1em;
-    color: #b0b0b0; /* Açık gri kaynak metni */
-}
-
-/* Footer */
-footer {
-    background-color: #1c1c1c;
-    color: #a0a0a0;
-    text-align: center;
-    padding: 25px 0;
-    margin-top: auto;
-    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.4);
-    border-top: 1px solid #3a3a3a;
-}
-
-/* Resimler */
-img {
-    max-width: 100%;
+  }
+  #cssmenu ul li {
+    width: 100%;
+    border-top: 1px solid rgba(120, 120, 120, 0.2);
+  }
+  #cssmenu ul ul li,
+  #cssmenu li:hover > ul > li {
     height: auto;
-    border-radius: 8px; /* Daha yuvarlak köşeler */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-/* Butonlar */
-button {
-    background-color: #e74c3c;
+  }
+  #cssmenu ul li a,
+  #cssmenu ul ul li a {
+    width: 100%;
+    border-bottom: 0;
+  }
+  #cssmenu > ul > li {
+    float: none;
+  }
+  #cssmenu ul ul li a {
+    padding-left: 25px;
+  }
+  #cssmenu ul ul ul li a {
+    padding-left: 35px;
+  }
+  #cssmenu ul ul li a {
+    color: #dddddd;
+    background: none;
+  }
+  #cssmenu ul ul li:hover > a,
+  #cssmenu ul ul li.active > a {
     color: #ffffff;
-    padding: 12px 25px; /* Daha büyük buton */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.1em;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin: 8px;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-button:hover {
-    background-color: #c0392b; /* Kırmızının daha koyu tonu */
-    transform: translateY(-2px); /* Hafif yukarı kalkma efekti */
-}
-
-/* Form Elemanları (Ayarlar için) */
-label {
+  }
+  #cssmenu ul ul,
+  #cssmenu ul ul ul,
+  #cssmenu.align-right ul ul {
+    position: relative;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    text-align: left;
+  }
+  #cssmenu > ul > li.has-sub > a:after,
+  #cssmenu > ul > li.has-sub > a:before,
+  #cssmenu ul ul > li.has-sub > a:after,
+  #cssmenu ul ul > li.has-sub > a:before {
+    display: none;
+  }
+  #cssmenu #menu-button {
     display: block;
-    margin-bottom: 12px;
-    font-weight: bold;
-    color: #f0f0f0;
-    font-size: 1.1em;
-}
-
-select, input[type="range"] {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 25px; /* Daha fazla boşluk */
-    border: 1px solid #4a4a4a; /* Koyu gri kenarlık */
-    background-color: #2a2a2a; /* Daha koyu input arka planı */
-    color: #f0f0f0;
-    border-radius: 5px;
-    box-sizing: border-box;
-    -webkit-appearance: none;
-    appearance: none;
-}
-
-/* Range slider stil */
-input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 24px; /* Daha büyük başparmak */
-    height: 24px;
-    border-radius: 50%;
-    background: #e74c3c; /* Kırmızı başparmak */
+    padding: 17px;
+    color: #dddddd;
     cursor: pointer;
-    margin-top: -10px; /* Dikey hizalama */
-    box-shadow: 0 0 5px rgba(231, 76, 60, 0.7); /* Kırmızı parlama */
-    border: 2px solid #ffffff; /* Beyaz çerçeve */
-}
-input[type="range"]::-moz-range-thumb {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: #e74c3c;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  #cssmenu #menu-button:after {
+    position: absolute;
+    top: 22px;
+    right: 17px;
+    display: block;
+    height: 4px;
+    width: 20px;
+    border-top: 2px solid #dddddd;
+    border-bottom: 2px solid #dddddd;
+    content: '';
+  }
+  #cssmenu #menu-button:before {
+    position: absolute;
+    top: 16px;
+    right: 17px;
+    display: block;
+    height: 2px;
+    width: 20px;
+    background: #dddddd;
+    content: '';
+  }
+  #cssmenu #menu-button.menu-opened:after {
+    top: 23px;
+    border: 0;
+    height: 2px;
+    width: 15px;
+    background: #ffffff;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  #cssmenu #menu-button.menu-opened:before {
+    top: 23px;
+    background: #ffffff;
+    width: 15px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+  #cssmenu .submenu-button {
+    position: absolute;
+    z-index: 99;
+    right: 0;
+    top: 0;
+    display: block;
+    border-left: 1px solid rgba(120, 120, 120, 0.2);
+    height: 46px;
+    width: 46px;
     cursor: pointer;
-    box-shadow: 0 0 5px rgba(231, 76, 60, 0.7);
-    border: 2px solid #ffffff;
-}
-input[type="range"]::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 6px; /* Daha kalın ray */
-    background: #4a4a4a;
-    border-radius: 3px;
-}
-input[type="range"]::-moz-range-track {
-    width: 100%;
-    height: 6px;
-    background: #4a4a4a;
-    border-radius: 3px;
-}
-
-/* Linkler (Genel) */
-a {
-    color: #e74c3c; /* Kırmızı link rengi */
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: #c0392b; /* Kırmızının daha koyu tonu */
-    text-decoration: underline;
-}
-
-/* Responsive Tasarım - Mobil uyumluluk */
-@media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        gap: 15px; /* Boşluk artırıldı */
-    }
-    nav a {
-        margin: 5px auto; /* Ortaya hizala */
-        width: calc(100% - 60px); /* Yan boşluklar */
-        max-width: 300px;
-        text-align: center;
-    }
-    main {
-        padding: 40px 25px;
-    }
-    h1 {
-        font-size: 3em;
-    }
-    h2 {
-        font-size: 2.2em;
-        padding-bottom: 8px;
-        margin-bottom: 30px;
-    }
-    .quote {
-        font-size: 1.6em;
-    }
-    section {
-        padding: 30px;
-    }
+  }
+  #cssmenu .submenu-button.submenu-opened {
+    background: #262626;
+  }
+  #cssmenu ul ul .submenu-button {
+    height: 34px;
+    width: 34px;
+  }
+  #cssmenu .submenu-button:after {
+    position: absolute;
+    top: 22px;
+    right: 19px;
+    width: 8px;
+    height: 2px;
+    display: block;
+    background: #dddddd;
+    content: '';
+  }
+  #cssmenu ul ul .submenu-button:after {
+    top: 15px;
+    right: 13px;
+  }
+  #cssmenu .submenu-button.submenu-opened:after {
+    background: #ffffff;
+  }
+  #cssmenu .submenu-button:before {
+    position: absolute;
+    top: 19px;
+    right: 22px;
+    display: block;
+    width: 2px;
+    height: 8px;
+    background: #dddddd;
+    content: '';
+  }
+  #cssmenu ul ul .submenu-button:before {
+    top: 12px;
+    right: 16px;
+  }
+  #cssmenu .submenu-button.submenu-opened:before {
+    display: none;
+  }
 }
 
-@media (max-width: 480px) {
-    h1 {
-        font-size: 2.5em;
-    }
-    h2 {
-        font-size: 1.8em;
-    }
-    p {
-        font-size: 1em;
-    }
-    .quote {
-        font-size: 1.4em;
-    }
-    nav a {
-        font-size: 0.9em;
-        padding: 10px 12px;
-    }
-    main {
-        padding: 25px 15px;
-    }
-    section {
-        padding: 20px;
-    }
+/* ---------------------------------------------------------------------------- */
+/* --------------------------------Google-Map---------------------------------- */
+/* ---------------------------------------------------------------------------- */
+.maps iframe{
+    pointer-events: none;
 }
