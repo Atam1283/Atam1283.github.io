@@ -12,8 +12,7 @@
   <!-- Font Awesome sosyal ikonlar için -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <script src="js/jquery-latest.min.js"></script>
-  <script src="js/script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <style>
     html, body {
@@ -25,7 +24,7 @@
     }
 
     .wrap-body {
-      padding-bottom: 110px; /* Footer yüksekliği kadar boşluk bırak */
+      padding-bottom: 110px; /* Footer yüksekliği kadar boşluk */
       min-height: 100vh;
       box-sizing: border-box;
       position: relative;
@@ -33,45 +32,50 @@
 
     header .wrap-header {
       position: relative;
-      padding-top: 10px;
-      padding-bottom: 5px;
-      height: 90px;
+      padding: 10px 20px 0 20px;
+      height: auto;
+      text-align: center;
     }
 
-    /* Logo büyüklüğü */
+    /* Logo */
     .logo {
-      position: absolute;
-      left: 20px;
-      top: 10px;
       width: 225px;
+      max-width: 100%;
       height: auto;
       border-radius: 65px;
+      margin: 0 auto 15px auto;
+      display: block;
       object-fit: cover;
     }
 
-    /* Menü sağa hizalı ve yukarıda */
+    /* Menü - eski konuma getirildi (logo altında ortalı) */
     #cssmenu {
       display: flex;
-      justify-content: flex-end;
-      margin-top: 0;
-      margin-right: 20px;
-      align-items: center;
-      height: 50px;
-      padding-top: 10px;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      flex-wrap: wrap;
     }
 
     #cssmenu ul {
-      display: flex;
-      gap: 20px;
+      list-style: none;
       margin: 0;
       padding: 0;
-      list-style: none;
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    #cssmenu ul li {
+      position: relative;
     }
 
     #cssmenu ul li a {
       text-decoration: none;
       font-family: Arial, sans-serif;
-      font-size: 15px;
+      font-size: 16px;
       color: #333;
       padding: 10px 15px;
       display: inline-block;
@@ -79,56 +83,68 @@
     }
 
     #cssmenu ul li:hover > a {
-      color: #007BFF;
+      color: #c8102e; /* kırmızı vurgu */
     }
 
-    /* Arama kutusu menünün sağ üstünde */
-    .search-container {
+    /* Alt menü (dropdown) */
+    #cssmenu ul li ul {
       position: absolute;
-      right: 20px;
-      top: 25px;
-      width: 250px;
+      top: 100%;
+      left: 0;
+      background: white;
+      padding: 10px 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      display: none;
+      min-width: 180px;
+      z-index: 999;
+      border-radius: 4px;
+    }
+
+    #cssmenu ul li:hover ul {
+      display: block;
+    }
+
+    #cssmenu ul li ul li {
+      width: 100%;
+      padding: 0;
+    }
+
+    #cssmenu ul li ul li a {
+      padding: 8px 20px;
+      font-size: 14px;
+      color: #333;
+      display: block;
+    }
+
+    #cssmenu ul li ul li a:hover {
+      background-color: #f0f0f0;
+      color: #c8102e;
+    }
+
+    /* Arama kutusu - header altında, ortalı ve biraz boşlukla */
+    .search-container {
+      max-width: 320px;
+      margin: 10px auto 0 auto;
+      text-align: center;
     }
 
     .search-container input[type="text"] {
       width: 100%;
-      padding: 8px 15px;
-      font-size: 15px;
+      padding: 9px 20px;
+      font-size: 16px;
       border: 1px solid #ccc;
       border-radius: 30px;
       outline: none;
-      transition: all 0.3s ease;
       box-sizing: border-box;
+      transition: all 0.3s ease;
     }
 
     .search-container input[type="text"]:focus {
-      border-color: #007BFF;
-      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      border-color: #c8102e;
+      box-shadow: 0 0 6px rgba(200,16,46,0.6);
     }
 
-    /* Footer içeriği gizlendi */
-    footer .row p,
-    footer .row h3,
-    footer .row span {
-      display: none;
-    }
-
-    /* Telif hakkı yazısı */
-    .copyright {
-      position: fixed;
-      bottom: 56px; /* Sosyal medya butonlarının hemen üstü */
-      left: 0;
-      width: 100%;
-      text-align: center;
-      color: #555;
-      font-size: 14px;
-      background-color: #fff;
-      padding: 6px 0;
-      box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
-      z-index: 1001;
-    }
-
-    /* Sosyal medya ve kalın siyah çizgi (footer) */
+    /* Footer sosyal medya ve alt çizgi */
     .social-footer {
       border-top: 6px solid black;
       padding: 12px 20px;
@@ -152,21 +168,114 @@
     }
 
     .social-footer a:hover {
-      color: #c8102e; /* Kırmızı vurgu */
+      color: #c8102e;
+    }
+
+    /* Telif hakkı yazısı */
+    .copyright {
+      position: fixed;
+      bottom: 56px; /* sosyal medya butonlarının hemen üstü */
+      left: 0;
+      width: 100%;
+      text-align: center;
+      color: #555;
+      font-size: 14px;
+      background-color: #fff;
+      padding: 6px 0;
+      box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+      z-index: 1001;
+    }
+
+    /* Mobil menü butonu */
+    .menu-toggle {
+      display: none;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      cursor: pointer;
+      font-size: 28px;
+      color: #333;
+      user-select: none;
+      z-index: 1100;
+    }
+
+    /* Responsive - mobil */
+    @media (max-width: 768px) {
+      #cssmenu ul {
+        display: none;
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 55px;
+        left: 0;
+        right: 0;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border-radius: 0 0 8px 8px;
+        z-index: 1099;
+      }
+
+      #cssmenu ul li {
+        text-align: center;
+        margin: 0;
+      }
+
+      #cssmenu ul li ul {
+        position: static;
+        box-shadow: none;
+        background: #fafafa;
+        border-radius: 0;
+        display: none;
+        padding-left: 10px;
+      }
+
+      #cssmenu ul li:hover ul {
+        display: none; /* Hover dropdown iptal */
+      }
+
+      #cssmenu ul li.active > ul {
+        display: block;
+      }
+
+      #cssmenu ul li > a::after {
+        content: ' ▼';
+        font-size: 12px;
+      }
+
+      #cssmenu ul li.open > ul {
+        display: block;
+      }
+
+      /* Menü göster */
+      #cssmenu.active ul {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      /* Arama kutusu mobilde genişlik %90 */
+      .search-container {
+        max-width: 90%;
+        margin: 10px auto 15px auto;
+      }
     }
   </style>
 </head>
 <body>
   <div class="wrap-body">
-    <!-- Header -->
     <header>
-      <div class="wrap-header zerogrid">
+      <div class="wrap-header zerogrid" style="position:relative;">
         <a href="index.html" class="logo"><img src="images/logo.png" alt="Logo" /></a>
 
-        <div id="cssmenu">
+        <!-- Menü toggle butonu mobil için -->
+        <div class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></div>
+
+        <nav id="cssmenu">
           <ul>
             <li class="active"><a href="index.html"><h5>ANASAYFA</h5></a></li>
-            <li><a href="#">Galeri</a>
+            <li>
+              <a href="#">Galeri</a>
               <ul>
                 <li><a href="kzkls.html">Atatürk kulesi</a></li>
                 <li><a href="stnblbgz.html">Atatürk Boğazı</a></li>
@@ -181,7 +290,7 @@
             <li><a href="single.html">Geri Sayım</a></li>
             <li><a href="contact.html">Ayarlar</a></li>
           </ul>
-        </div>
+        </nav>
 
         <div class="search-container">
           <input type="text" placeholder="Sitede ara..." />
@@ -189,7 +298,6 @@
       </div>
     </header>
 
-    <!-- Container -->
     <section id="container">
       <div class="zerogrid">
         <div class="wrap-container clearfix">
@@ -202,7 +310,6 @@
       </div>
     </section>
 
-    <!-- Footer boş bırakıldı -->
     <footer>
       <div class="zerogrid">
         <div class="wrap-footer">
@@ -212,15 +319,36 @@
     </footer>
   </div>
 
-  <!-- Telif hakkı yazısı sayfa altında -->
+  <!-- Telif hakkı yazısı -->
   <div class="copyright">© Tüm Hakları Saklıdır</div>
 
-  <!-- Sosyal medya ve siyah kalın çizgi sayfa en altında -->
+  <!-- Sosyal medya ve alt çizgi -->
   <div class="social-footer">
     <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
     <a href="https://twitter.com/" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
     <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
     <a href="https://www.youtube.com/" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
   </div>
+
+  <script>
+    // Mobil menü açma/kapatma
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      var menu = document.getElementById('cssmenu');
+      menu.classList.toggle('active');
+    });
+
+    // Alt menü açma (mobilde)
+    const menuItems = document.querySelectorAll('#cssmenu ul li > a');
+
+    menuItems.forEach(item => {
+      item.addEventListener('click', function(e) {
+        const parentLi = this.parentElement;
+        if (parentLi.querySelector('ul')) {
+          e.preventDefault(); // Linkin normal işlevini engelle
+          parentLi.classList.toggle('open');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
