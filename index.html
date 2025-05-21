@@ -13,20 +13,71 @@
 
   <style>
     body {
-      /* Arka plan rengi değişmedi */
+      margin: 0;
+      padding: 0;
     }
 
-    /* Menü biraz yukarı taşındı */
+    /* Menü yukarı ve sağa hizalanmış */
     #cssmenu {
+      display: flex;
+      justify-content: flex-end;
       margin-top: -10px;
+      margin-right: 20px;
+    }
+
+    #cssmenu ul {
+      display: flex;
+      gap: 15px;
+    }
+
+    #cssmenu ul li {
+      list-style: none;
+    }
+
+    #cssmenu ul li a {
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      color: #333;
+      padding: 10px 15px;
+      display: inline-block;
+    }
+
+    #cssmenu ul li:hover {
+      background-color: #eee;
+      border-radius: 5px;
     }
 
     .logo {
       object-fit: cover;
       border-radius: 65px;
+      position: absolute;
+      left: 20px;
+      top: 10px;
     }
 
-    /* Sol alttaki boş yazılar görünmesin diye footer düzenlendi */
+    /* Arama kutusu ortalanmış */
+    .search-container {
+      display: flex;
+      justify-content: center;
+      margin: 80px 0 30px;
+    }
+
+    .search-container input[type="text"] {
+      width: 50%;
+      padding: 10px 15px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 30px;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .search-container input[type="text"]:focus {
+      border-color: #666;
+    }
+
+    /* Footer gizlendi ve sadeleştirildi */
     footer .row p,
     footer .row h3,
     footer .row span {
@@ -44,10 +95,13 @@
 </head>
 <body>
   <div class="wrap-body">
+
     <!-- Header -->
     <header>
       <div class="wrap-header zerogrid">
         <div class="row">
+          <a href='index.html' class="logo"><img src="images/logo.png" width="100" height="100" /></a>
+
           <div id="cssmenu">
             <ul>
               <li class='active'><a href="index.html"><h5>ANASAYFA</h5></a></li>
@@ -67,25 +121,29 @@
               <li><a href="contact.html">Ayarlar</a></li>
             </ul>
           </div>
-          <a href='index.html' class="logo"><img src="images/logo.png" width="300" height="350" /></a>
         </div>
       </div>
     </header>
 
-    <!-- Container (içerik kısmı temizlendi) -->
+    <!-- Arama kutusu -->
+    <div class="search-container">
+      <input type="text" placeholder="Sitede ara...">
+    </div>
+
+    <!-- Container -->
     <section id="container">
       <div class="zerogrid">
         <div class="wrap-container clearfix">
           <div id="main-content">
             <div class="row wrap-content">
-              <!-- Ortadaki yazılar tamamen kaldırıldı -->
+              <!-- İçerik boş bırakıldı -->
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Footer (sol alttaki boş yazılar gizlendi) -->
+    <!-- Footer -->
     <footer>
       <div class="zerogrid">
         <div class="wrap-footer">
