@@ -22,32 +22,44 @@
       background: #b30000;
     }
 
-    .header {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      background: #111;
-      padding: 12px 0;
+    header {
+      background-color: #1a1a1a;
       border-bottom: 2px solid #b30000;
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      overflow-x: auto;
     }
-    .btn {
-      padding: 8px 18px;
-      font-weight: 600;
-      border: 1px solid #444;
-      border-radius: 4px;
-      background-color: #222;
-      color: #fff;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background-color 0.2s ease;
+    header nav {
       display: flex;
-      align-items: center;
+      gap: 20px;
+      padding: 0 20px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
-    .btn:hover,
-    .btn.active {
+    header nav a {
+      flex-shrink: 0;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 6px 10px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      white-space: nowrap;
+    }
+    header nav a:hover,
+    header nav a:focus-visible {
       background-color: #b30000;
-      border-color: #b30000;
+      color: #fff;
+      outline: none;
+    }
+    header nav a[aria-current="page"] {
+      background-color: #b30000;
+      color: #fff;
+      pointer-events: none;
+      cursor: default;
     }
 
     .content {
@@ -90,27 +102,24 @@
   </style>
 </head>
 <body>
-
-  <div class="header">
-    <a href="index.html" class="btn">Ana Sayfa</a>
-    <a href="galeri.html" class="btn">Galeri</a>
-    <a href="hayati.html" class="btn active">Hayatı</a>
-    <a href="gerisayim.html" class="btn">Geri Sayım</a>
-    <a href="ayarlar.html" class="btn">Ayarlar</a>
-  </div>
+  <header>
+    <nav aria-label="Ana navigasyon">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="galeri.html">Galeri</a>
+      <a href="hayati.html" aria-current="page">Hayatı</a>
+      <a href="gerisayim.html">Geri Sayım</a>
+      <a href="ayarlar.html">Ayarlar</a>
+    </nav>
+  </header>
 
   <div class="content">
     <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
-
     <h2>Erken Dönem</h2>
     <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. İlk eğitimini mahalle mektebinde aldıktan sonra Şemsi Efendi Okulu'na devam etti. Daha sonra Selanik Mülkiye Rüştiyesi ve Manastır Askeri İdadisi'nde eğitimini sürdürdü.</p>
-
     <h2>Askeri Eğitim ve Kariyer</h2>
     <p>1905 yılında Harp Okulu'ndan teğmen olarak mezun oldu. Harp Akademisi'nde eğitimini tamamlayarak kurmay yüzbaşı unvanını aldı. Balkan Savaşları ve I. Dünya Savaşı'nda çeşitli cephelerde görev yaptı. Çanakkale Savaşı'ndaki başarısıyla büyük ün kazandı.</p>
-
     <h2>Milli Mücadele ve Cumhuriyetin Kuruluşu</h2>
     <p>1919 yılında Samsun'a çıkarak Türk Kurtuluş Savaşı'nı başlattı. Erzurum ve Sivas Kongrelerinde milli iradeyi temsil etti. 1920'de TBMM'nin açılmasıyla Meclis Başkanı oldu. 1923'te Türkiye Cumhuriyeti'ni ilan ederek ilk cumhurbaşkanı oldu.</p>
-
     <h2>Reformlar ve Modernleşme</h2>
     <ul>
       <li>Harf Devrimi: Latin alfabesinin kabulü</li>
@@ -119,12 +128,9 @@
       <li>Eğitim Reformları: Tevhid-i Tedrisat Kanunu</li>
       <li>Ekonomi ve Sanayi: Sanayi yatırımlarının artırılması</li>
     </ul>
-
     <h2>Son Yılları ve Mirası</h2>
     <p>Atatürk, 10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayata veda etti. Ardında modern Türkiye Cumhuriyeti'nin temelini atan büyük bir lider ve devlet adamı olarak unutulmaz bir miras bıraktı.</p>
-
     <div class="separator"></div>
-
     <p style="text-align:center; font-size: 14px; color: #888; user-select:none;">
       Kaynaklar: <a href="https://tr.wikipedia.org/wiki/Mustafa_Kemal_Atat%C3%BCrk" target="_blank" style="color:#b30000; text-decoration:none;">Vikipedi</a>, <a href="https://www.ataturk.com.tr" target="_blank" style="color:#b30000; text-decoration:none;">Atatürk Araştırma Merkezi</a>
     </p>
@@ -135,15 +141,16 @@
     if (darkMode === 'false') {
       document.body.style.backgroundColor = '#fff';
       document.body.style.color = '#000';
-      document.querySelectorAll('.btn').forEach(btn => {
+      document.querySelectorAll('nav a').forEach(btn => {
         btn.style.backgroundColor = '#e0e0e0';
         btn.style.color = '#000';
-        btn.style.borderColor = '#bbb';
       });
-      document.querySelector('.btn.active').style.backgroundColor = '#b30000';
-      document.querySelector('.btn.active').style.color = '#fff';
+      const current = document.querySelector('nav a[aria-current="page"]');
+      if (current) {
+        current.style.backgroundColor = '#b30000';
+        current.style.color = '#fff';
+      }
     }
   </script>
-
 </body>
 </html>
