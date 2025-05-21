@@ -1,101 +1,98 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Galeri</title>
-<style>
-  body {
-    background-color: #000;
-    color: #fff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0; padding: 20px;
-  }
-  /* Üst menü */
-  header {
-    background-color: #1a1a1a;
-    border-bottom: 2px solid #b22222;
-    padding: 10px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    overflow-x: auto;
-  }
-  header nav {
-    display: flex;
-    gap: 20px;
-    padding: 0 20px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  header nav a {
-    flex-shrink: 0;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 6px 10px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    white-space: nowrap;
-  }
-  header nav a:hover,
-  header nav a:focus-visible {
-    background-color: #b22222;
-    color: #fff;
-    outline: none;
-  }
-  header nav a[aria-current="page"] {
-    background-color: #b22222;
-    color: #fff;
-    pointer-events: none;
-    cursor: default;
-  }
-  /* Başlık */
-  h1 {
-    text-align: center;
-    margin-top: 40px;
-    margin-bottom: 30px;
-    text-shadow: 0 0 8px #b30000;
-  }
-  /* Galeri grid */
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-    gap: 15px;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  .gallery img {
-    width: 100%;
-    height: auto;
-    border: 3px solid #b30000;
-    border-radius: 8px;
-    box-shadow: 0 0 10px #b30000;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-  }
-  .gallery img:hover {
-    transform: scale(1.05);
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mustafa Kemal Atatürk - Galeri</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Galeriye özel stil */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .gallery-item {
+            background-color: #222;
+            border-radius: 8px;
+            overflow: hidden; /* Resmin köşelerini yuvarlamak için */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            padding-bottom: 15px; /* Başlık ve açıklama için boşluk */
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 200px; /* Sabit yükseklik, nesneyi sığdır */
+            object-fit: cover;
+            display: block;
+            margin-bottom: 15px;
+        }
+        .gallery-item h3 {
+            margin: 0 15px 10px;
+            font-size: 1.2em;
+            color: #fff;
+        }
+        .gallery-item p {
+            font-size: 0.9em;
+            color: #a0a0a0;
+            margin: 0 15px;
+        }
+    </style>
 </head>
 <body>
-<header>
-  <nav aria-label="Ana navigasyon">
-    <a href="index.html" tabindex="0">Ana Sayfa</a>
-    <a href="galeri.html" tabindex="0" aria-current="page">Galeri</a>
-    <a href="hayati.html" tabindex="0">Hayatı</a>
-    <a href="gerisayim.html" tabindex="0">Geri Sayım</a>
-    <a href="ayarlar.html" tabindex="0">Ayarlar</a>
-  </nav>
-</header>
-<h1>Atatürk Galerisi</h1>
-<div class="gallery">
-  <img src="images/ataturk1.jpg" alt="Atatürk 1" />
-  <img src="images/ataturk2.jpg" alt="Atatürk 2" />
-  <img src="images/ataturk3.jpg" alt="Atatürk 3" />
-  <img src="images/ataturk4.jpg" alt="Atatürk 4" />
-</div>
+    <header>
+        <nav>
+            <a href="index.html">Ana Sayfa</a>
+            <a href="galeri.html" class="active">Galeri</a>
+            <a href="hayati.html">Hayatı</a>
+            <a href="gerisayim.html">Geri Sayım</a>
+            <a href="ayarlar.html">Ayarlar</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Görsel Galeri</h2>
+            <p>Mustafa Kemal Atatürk'ün farklı dönemlerine ait seçkin fotoğraflar ve tarihi görseller.</p>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="galeri/samsun.jpg" alt="Atatürk Samsun'da">
+                    <h3>Samsun'a Çıkış</h3>
+                    <p>19 Mayıs 1919 - Milli Mücadele'nin başlangıcı.</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="galeri/cumhuriyet.jpg" alt="Cumhuriyet İlanı">
+                    <h3>Cumhuriyet'in İlanı</h3>
+                    <p>29 Ekim 1923 - Türkiye Cumhuriyeti'nin kuruluşu.</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="galeri/nutuk.jpg" alt="Atatürk Nutuk Okurken">
+                    <h3>Büyük Nutuk</h3>
+                    <p>1927 - Atatürk'ün 6 günlük tarihi konuşması.</p>
+                </div>
+                <div classembali.jpg" alt="Atatürk Anıtkabir'de">
+                    <h3>Anıtkabir</h3>
+                    <p>Türk milletinin Ata'sına minnetinin sembolü.</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="galeri/okul.jpg" alt="Atatürk ve Okul Çocukları">
+                    <h3>Eğitime Verdiği Önem</h3>
+                    <p>Eğitim ve öğretime büyük önem veren lider.</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="galeri/devrim.jpg" alt="Atatürk Devrimler">
+                    <h3>Modern Türkiye'nin Mimarı</h3>
+                    <p>Birçok devrime imza atarak ülkeyi çağdaşlaştırdı.</p>
+                </div>
+            </div>
+            </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Mustafa Kemal Atatürk Sayfası. Tüm hakları saklıdır.</p>
+    </footer>
 </body>
 </html>
