@@ -8,46 +8,61 @@
     <style>
         /* Geri Sayım sayfasına özel stil */
         #countdown-container {
-            background-color: #222;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            background-color: #1c1c1c; /* İçerik arka planı */
+            padding: 50px; /* Daha fazla boşluk */
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.5);
             margin-top: 50px;
             text-align: center;
+            border: 1px solid #3a3a3a;
         }
         #countdown {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
+            gap: 40px; /* Boşluk artırıldı */
+            margin-top: 40px;
+            flex-wrap: wrap; /* Küçük ekranlarda alt alta geçsin */
         }
         .countdown-item {
-            background-color: #c0392b; /* Kırmızı kutular */
+            background-color: #e74c3c; /* Kırmızı kutular */
             color: #fff;
-            padding: 20px 30px;
+            padding: 25px 35px; /* Daha büyük */
             border-radius: 8px;
-            font-size: 2.5em;
+            font-size: 3em; /* Daha büyük sayı */
             font-weight: bold;
-            min-width: 100px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+            min-width: 120px; /* Minimum genişlik */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            border: 2px solid #f0f0f0; /* Beyaz kenarlık */
+            transition: transform 0.2s ease;
+        }
+        .countdown-item:hover {
+            transform: scale(1.05); /* Üzerine gelindiğinde büyüme efekti */
         }
         .countdown-item span {
             display: block;
             font-size: 0.4em;
             font-weight: normal;
-            margin-top: 5px;
+            margin-top: 8px; /* Boşluk artırıldı */
             text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.9); /* Hafif şeffaf beyaz */
+        }
+
+        #countdown-message {
+            margin-top: 40px;
+            font-size: 1.4em; /* Daha büyük mesaj */
+            color: #f0f0f0;
+            font-weight: bold;
         }
 
         @media (max-width: 600px) {
             #countdown {
-                flex-wrap: wrap;
-                gap: 15px;
+                gap: 20px;
             }
             .countdown-item {
-                font-size: 2em;
-                padding: 15px 20px;
-                min-width: 80px;
+                font-size: 2.5em;
+                padding: 20px 25px;
+                min-width: 100px;
             }
         }
     </style>
@@ -66,7 +81,7 @@
     <main>
         <section id="countdown-container">
             <h2>Geri Sayım</h2>
-            <p>Mustafa Kemal Atatürk'ü Anma Günü'ne kalan süre:</p>
+            <p>Ulu Önder Gazi Mustafa Kemal Atatürk'ü saygı ve minnetle anma gününe kalan süre:</p>
 
             <div id="countdown">
                 <div class="countdown-item">
@@ -86,7 +101,7 @@
                     <span>Saniye</span>
                 </div>
             </div>
-            <p id="countdown-message" style="margin-top: 30px; font-size: 1.2em; color: #a0a0a0;"></p>
+            <p id="countdown-message" style="margin-top: 30px; font-size: 1.2em; color: #f0f0f0;"></p>
         </section>
     </main>
 
@@ -114,8 +129,8 @@
 
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById("countdown").innerHTML = "";
-                document.getElementById("countdown-message").innerHTML = "Atatürk'ü saygı ve minnetle anıyoruz.";
+                document.getElementById("countdown").innerHTML = "<p>Ulu Önder Mustafa Kemal Atatürk'ü saygı ve minnetle anıyoruz.</p>";
+                document.getElementById("countdown-message").innerHTML = ""; // Mesajı boşalt
             }
         }, 1000);
     </script>
