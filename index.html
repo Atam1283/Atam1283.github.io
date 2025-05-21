@@ -7,7 +7,8 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; }
     body {
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
       background-color: #000;
       color: #fff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -17,31 +18,31 @@
       user-select: none;
     }
     header {
-      background-color: #1a1a1a; /* Menü arka planı hafif gri */
+      background-color: #1a1a1a;
       border-bottom: 2px solid #b22222;
+      padding: 10px 0;
       position: sticky;
       top: 0;
       z-index: 1000;
+      overflow-x: auto;
     }
     nav {
       display: flex;
-      justify-content: center;
-      padding: 10px 10px;
-      flex-wrap: nowrap;
+      gap: 20px;
+      padding: 0 20px;
       overflow-x: auto;
-      min-width: 100%;
+      -webkit-overflow-scrolling: touch;
     }
     nav a {
-      white-space: nowrap;
-      margin: 0 10px;
+      flex-shrink: 0;
       color: #fff;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
       font-size: 1rem;
-      padding: 6px 12px;
+      padding: 6px 10px;
       border-radius: 4px;
       transition: background-color 0.3s ease, color 0.3s ease;
-      flex-shrink: 0;
+      white-space: nowrap;
     }
     nav a:hover,
     nav a:focus-visible {
