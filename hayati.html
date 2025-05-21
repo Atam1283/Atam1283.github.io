@@ -1,84 +1,178 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Geri Sayım</title>
-<style>
-  body {
-    margin: 0; padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #000;
-    color: #fff;
-    line-height: 1.5;
-  }
-  header {
-    background-color: #111;
-    border-bottom: 2px solid #b22222;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 10px 15px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    user-select: none;
-    overflow-x: auto;
-    white-space: nowrap; /* Taşma durumunda satır kırma yok */
-  }
-  nav a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 16px;
-    font-weight: 600;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #222;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    text-decoration: none;
-    cursor: pointer;
-    flex-shrink: 0;
-    min-width: 70px;
-    transition: background-color 0.3s, border-color 0.3s;
-  }
-  nav a:hover,
-  nav a:focus-visible {
-    background-color: #b22222;
-    border-color: #b22222;
-    color: #fff;
-    outline: none;
-  }
-  nav a[aria-current="page"] {
-    background-color: #b22222;
-    border-color: #b22222;
-    pointer-events: none;
-    cursor: default;
-    color: #fff;
-  }
-  /* İçerik örneği */
-  .content {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 0 20px;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mustafa Kemal Atatürk - Hayatı</title>
+  <style>
+    body {
+      margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000;
+      color: #fff;
+      transition: background-color 0.3s, color 0.3s;
+      line-height: 1.6;
+    }
+    header {
+      background-color: #111;
+      border-bottom: 2px solid #b22222;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 5px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #b22222 transparent;
+    }
+    nav::-webkit-scrollbar {
+      height: 6px;
+    }
+    nav::-webkit-scrollbar-thumb {
+      background-color: #b22222;
+      border-radius: 3px;
+    }
+    nav a {
+      flex: 0 0 auto;
+      padding: 8px 14px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #fff;
+      background-color: #222;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      transition: background-color 0.3s, border-color 0.3s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      user-select: none;
+    }
+    nav a:hover,
+    nav a:focus-visible {
+      background-color: #b22222;
+      border-color: #b22222;
+      outline: none;
+    }
+    nav a[aria-current="page"] {
+      background-color: #b22222;
+      border-color: #b22222;
+      pointer-events: none;
+      cursor: default;
+      color: #fff;
+    }
+    .content {
+      max-width: 900px;
+      margin: 40px auto 60px auto;
+      padding: 0 20px;
+      border-top: 2px solid #555;
+    }
+    h1 {
+      font-size: 42px;
+      margin-bottom: 30px;
+      user-select: none;
+      text-align: center;
+      color: #fff;
+      text-shadow: 0 0 8px #b30000;
+    }
+    h2 {
+      color: #b30000;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      user-select: none;
+    }
+    p {
+      margin-bottom: 15px;
+      font-size: 16px;
+      color: #ddd;
+    }
+    ul {
+      padding-left: 20px;
+      margin-bottom: 20px;
+      color: #ccc;
+    }
+    ul li {
+      margin-bottom: 8px;
+    }
+    .separator {
+      border-top: 1px solid #555;
+      margin: 40px 0;
+    }
+    /* Tema ayar kodu aşağıda */
+  </style>
 </head>
 <body>
-<header>
-  <nav aria-label="Ana navigasyon">
-    <a href="index.html">Ana Sayfa</a>
-    <a href="galeri.html">Galeri</a>
-    <a href="hayati.html">Hayatı</a>
-    <a href="gerisayim.html" aria-current="page">Geri Sayım</a>
-    <a href="ayarlar.html">Ayarlar</a>
-  </nav>
-</header>
+  <header>
+    <nav aria-label="Ana navigasyon">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="galeri.html">Galeri</a>
+      <a href="hayati.html" aria-current="page">Hayatı</a>
+      <a href="gerisayim.html">Geri Sayım</a>
+      <a href="ayarlar.html">Ayarlar</a>
+    </nav>
+  </header>
 
-<div class="content">
-  <h1>Geri Sayım Sayfası</h1>
-  <p>İçerik buraya gelecek...</p>
-</div>
+  <div class="content">
+    <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
+
+    <h2>Erken Dönem</h2>
+    <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. İlk eğitimini mahalle mektebinde aldıktan sonra Şemsi Efendi Okulu'na devam etti. Daha sonra Selanik Mülkiye Rüştiyesi ve Manastır Askeri İdadisi'nde eğitimini sürdürdü.</p>
+
+    <h2>Askeri Eğitim ve Kariyer</h2>
+    <p>1905 yılında Harp Okulu'ndan teğmen olarak mezun oldu. Harp Akademisi'nde eğitimini tamamlayarak kurmay yüzbaşı unvanını aldı. Balkan Savaşları ve I. Dünya Savaşı'nda çeşitli cephelerde görev yaptı. Çanakkale Savaşı'ndaki başarısıyla büyük ün kazandı.</p>
+
+    <h2>Milli Mücadele ve Cumhuriyetin Kuruluşu</h2>
+    <p>1919 yılında Samsun'a çıkarak Türk Kurtuluş Savaşı'nı başlattı. Erzurum ve Sivas Kongrelerinde milli iradeyi temsil etti. 1920'de TBMM'nin açılmasıyla Meclis Başkanı oldu. 1923'te Türkiye Cumhuriyeti'ni ilan ederek ilk cumhurbaşkanı oldu.</p>
+
+    <h2>Reformlar ve Modernleşme</h2>
+    <ul>
+      <li>Harf Devrimi: Latin alfabesinin kabulü</li>
+      <li>Kadın Hakları: Kadınlara seçme ve seçilme hakkı verilmesi</li>
+      <li>Hukuk Devrimi: Medeni Kanun’un kabulü</li>
+      <li>Eğitim Reformları: Tevhid-i Tedrisat Kanunu</li>
+      <li>Ekonomi ve Sanayi: Sanayi yatırımlarının artırılması</li>
+    </ul>
+
+    <h2>Son Yılları ve Mirası</h2>
+    <p>Atatürk, 10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayata veda etti. Ardında modern Türkiye Cumhuriyeti'nin temelini atan büyük bir lider ve devlet adamı olarak unutulmaz bir miras bıraktı.</p>
+
+    <div class="separator"></div>
+
+    <p style="text-align:center; font-size: 14px; color: #888; user-select:none;">
+      Kaynaklar: <a href="https://tr.wikipedia.org/wiki/Mustafa_Kemal_Atat%C3%BCrk" target="_blank" style="color:#b30000; text-decoration:none;">Vikipedi</a>, <a href="https://www.ataturk.com.tr" target="_blank" style="color:#b30000; text-decoration:none;">Atatürk Araştırma Merkezi</a>
+    </p>
+  </div>
+
+  <script>
+    // Tema ayarını uygula
+    const darkMode = localStorage.getItem('darkMode');
+    if(darkMode === 'false') {
+      document.body.style.backgroundColor = '#fff';
+      document.body.style.color = '#000';
+      document.querySelectorAll('nav a').forEach(btn => {
+        btn.style.backgroundColor = '#e0e0e0';
+        btn.style.color = '#000';
+        btn.style.borderColor = '#bbb';
+      });
+      document.querySelectorAll('.separator').forEach(line => {
+        line.style.borderColor = '#ccc';
+      });
+    } else {
+      document.body.style.backgroundColor = '#000';
+      document.body.style.color = '#fff';
+      document.querySelectorAll('nav a').forEach(btn => {
+        btn.style.backgroundColor = '#222';
+        btn.style.color = '#fff';
+        btn.style.borderColor = '#444';
+      });
+      document.querySelectorAll('.separator').forEach(line => {
+        line.style.borderColor = '#555';
+      });
+    }
+  </script>
 </body>
 </html>
