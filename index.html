@@ -1,117 +1,140 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<html lang="tr">
 <head>
-
-    <!-- Basic Page Needs
-  ================================================== -->
-	<meta charset="utf-8">
-	<title>Atatürk</title>
-	<meta name="description" content="Free Responsive Html5 Css3 Templates | zerotheme.com">
-	<meta name="author" content="www.zerotheme.com">
-	
-    <!-- Mobile Specific Metas
-  ================================================== -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <!-- Favicons -->
+  <meta charset="utf-8">
+  <title>Atatürk</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="images/logo.png" rel="icon">
   <link href="images/logo.png" rel="apple-touch-icon">
-    <!-- CSS
-  ================================================== -->
-  	<link rel="stylesheet" href="css/zerogrid.css">
-	<link rel="stylesheet" href="css/style.css">
-	
-	<script src="js/jquery-latest.min.js"></script>
-	<script src="js/script.js"></script>
-	
-	
-	<!--[if lt IE 8]>
-       <div style=' clear: both; text-align:center; position: relative;'>
-         <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-           <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
-        </a>
-      </div>
-    <![endif]-->
-    <!--[if lt IE 9]>
-		<script src="js/html5.js"></script>
-		<script src="js/css3-mediaqueries.js"></script>
-	<![endif]-->
-    <style>
-    	body
-    	{
-  
-  }
-  .asd
-  {
-  	object-fit: cover; border-radius: 65px;
-  }
-    </style>
+
+  <link rel="stylesheet" href="css/zerogrid.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/jquery-latest.min.js"></script>
+  <script src="js/script.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+
+    /* Üst Menü Stili */
+    #cssmenu ul {
+      list-style: none;
+      margin: 0;
+      padding: 1rem 2rem;
+      display: flex;
+      gap: 20px;
+      justify-content: flex-end;
+      background-color: #111;
+    }
+
+    #cssmenu ul li {
+      position: relative;
+    }
+
+    #cssmenu ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    #cssmenu ul li:hover > a {
+      color: red;
+    }
+
+    #cssmenu ul li ul {
+      position: absolute;
+      display: none;
+      top: 100%;
+      left: 0;
+      background: #222;
+      padding: 0.5rem 0;
+      z-index: 99;
+    }
+
+    #cssmenu ul li:hover ul {
+      display: block;
+    }
+
+    #cssmenu ul li ul li a {
+      padding: 0.5rem 1rem;
+      display: block;
+      white-space: nowrap;
+    }
+
+    /* Logo Stili */
+    .logo {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 100px;
+    }
+
+    header {
+      position: relative;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #111;
+      color: #aaa;
+      padding: 20px 0;
+      text-align: center;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
-<div class="wrap-body">
+  <div class="wrap-body">
 
-<!--////////////////////////////////////Header-->
-<header>
-	<div class="wrap-header zerogrid">
-		<div class="row">
-			<div id="cssmenu">
-				<ul>
-				   <li class='active'><a href="index.html"><h5>ANASAYFA</h5></a></li>
-				   <li><a href="#">Galeri</a>
-							<ul>
-							   <li><a href='kzkls.html'>Atatürk kulesi</a></li>
-							   <li><a href='stnblbgz.html'>Atatürk Boğazı</a></li>
-							   <li><a href='dlmbhcsry.html'>Atatürk Sarayı</a></li>
-							   <li><a href='sltnhmtmydn.html'>Atatürk Meydanı</a></li>
-							   <li><a href='sltnhmtcm.html'>Atatürk Camii</a></li>
-							   <li><a href='yrbtnsrnc.html'>Atatürk Sarıncı</a></li>
-							   <li><a href='tpkpsrymzs.html'>Atatürk Sarayı Müzesi</a></li>
-							   <li><a href='kplcrs.html'>Atatürk Çarşı</a></li>
-							</ul>
-				   </li>
-				   <li><a href="single.html">Geri Sayım</a></li>
-				   <li><a href="contact.html">Ayarlar</a></li>
-				</ul>
-			</div>
-			<a href='index.html' class="logo"><img src="images/logo.png" width="300" height="350" /></a>
-		</div>
-	</div>
-</header>
+    <!-- HEADER -->
+    <header>
+      <div class="wrap-header zerogrid" style="padding-top: 0;">
+        <div class="row" style="position: relative;">
+          <a href="index.html" class="logo">
+            <img src="images/logo.png" width="100" alt="Logo">
+          </a>
+          <div id="cssmenu">
+            <ul>
+              <li class='active'><a href="index.html">Anasayfa</a></li>
+              <li><a href="#">Galeri</a>
+                <ul>
+                  <li><a href='kzkls.html'>Atatürk Kulesi</a></li>
+                  <li><a href='stnblbgz.html'>Atatürk Boğazı</a></li>
+                  <li><a href='dlmbhcsry.html'>Atatürk Sarayı</a></li>
+                  <li><a href='sltnhmtmydn.html'>Atatürk Meydanı</a></li>
+                  <li><a href='sltnhmtcm.html'>Atatürk Camii</a></li>
+                  <li><a href='yrbtnsrnc.html'>Atatürk Sarnıcı</a></li>
+                  <li><a href='tpkpsrymzs.html'>Saray Müzesi</a></li>
+                  <li><a href='kplcrs.html'>Atatürk Çarşı</a></li>
+                </ul>
+              </li>
+              <li><a href="single.html">Geri Sayım</a></li>
+              <li><a href="contact.html">Ayarlar</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
 
+    <!-- İÇERİK YOK, ORTADAKİ METİN KALDIRILDI -->
 
-<!--////////////////////////////////////Container-->
-<section id="container">
-	<div class="zerogrid">
-		<div class="wrap-container clearfix">
-			<div id="main-content">
-				<div class="row wrap-content"><!--Start Box-->
-					<div class="header">
-						<h1 align="center">Atatürk'un Tanıtımı 31</h1>
-						<p align="center"><span>Atatürk'un güzellikleri 31</br>Atatürk'un gezilecek Yerleri ne dio olm</span></p>
-					</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+    <!-- FOOTER -->
+    <footer>
+      <div class="zerogrid">
+        <div class="wrap-footer">
+          <div class="row">
+            <p><strong>© Tüm Hakları Saklıdır | Atatürk Sitesi</strong></p>
+          </div>
+        </div>
+      </div>
+    </footer>
 
-<!--////////////////////////////////////Footer-->
-<footer>
-	<div class="zerogrid">
-		<div class="wrap-footer">
-			<div class="row">
-				<h3>31</h3>
-				<p><span class="renk1"></span></br></p>
-				<p><span class="renk1"></span></br></p>
-				<p><span class="renk1"></span></br></p>
-				<span><strong>Telif Hakkı Saklı Değildir® 31<a href="contact.html" title="free website templates"></a></strong></span>
-			</div>
-		</div>
-	</div>
-</footer>
-
-</div>
-</body></html>
+  </div>
+</body>
+</html>
