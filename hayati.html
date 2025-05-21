@@ -1,225 +1,169 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mustafa Kemal Atatürk - Hayatı</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Hayatı sayfasına özel stil */
-        .timeline {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px 0;
-        }
+  <meta charset="utf-8" />
+  <title>AtatÃ¼rk</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link href="images/logo.png" rel="icon" />
+  <link href="images/logo.png" rel="apple-touch-icon" />
+  <link rel="stylesheet" href="css/zerogrid.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/jquery-latest.min.js"></script>
+  <script src="js/script.js"></script>
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            width: 4px; /* Çizgi kalınlığı */
-            background-color: #e74c3c; /* Kırmızı çizgi */
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -2px; /* Çizginin tam ortalanması */
-        }
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
 
-        .timeline-item {
-            padding: 10px 0;
-            position: relative;
-            width: 50%;
-        }
+    header .wrap-header {
+      position: relative;
+      padding-top: 10px;
+      padding-bottom: 5px;
+    }
 
-        .timeline-item:nth-child(odd) { /* Soldaki öğeler */
-            left: 0;
-            padding-right: 40px; /* Daha fazla boşluk */
-            text-align: right;
-        }
+    /* Logo boyutu 1.5 kat arttÄ± (150px * 1.5 = 225px) */
+    .logo {
+      position: absolute;
+      left: 20px;
+      top: 10px;
+      width: 225px;
+      height: auto;
+      border-radius: 65px;
+      object-fit: cover;
+    }
 
-        .timeline-item:nth-child(even) { /* Sağdaki öğeler */
-            left: 50%;
-            padding-left: 40px; /* Daha fazla boşluk */
-            text-align: left;
-        }
+    /* MenÃ¼ Ã¼stte, saÄŸa hizalÄ± ve simetrik */
+    #cssmenu {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 10px;
+      margin-right: 20px;
+      align-items: center;
+      height: 50px;
+    }
 
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 18px; /* Daha büyük nokta */
-            height: 18px;
-            background-color: #e74c3c; /* Kırmızı nokta */
-            border: 3px solid #f0f0f0; /* Beyaz çerçeve */
-            border-radius: 50%;
-            top: 15px;
-            z-index: 1;
-            box-shadow: 0 0 8px rgba(231, 76, 60, 0.7); /* Kırmızı parlama */
-        }
+    #cssmenu ul {
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
 
-        .timeline-item:nth-child(odd)::after {
-            right: -11px; /* Noktayı çizgiye hizala */
-        }
+    #cssmenu ul li {
+      list-style: none;
+    }
 
-        .timeline-item:nth-child(even)::after {
-            left: -11px; /* Noktayı çizgiye hizala */
-        }
+    #cssmenu ul li a {
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      color: #333;
+      padding: 10px 15px;
+      display: inline-block;
+      transition: color 0.3s ease;
+    }
 
-        .timeline-content {
-            background-color: #2a2a2a; /* İçerik arka planı */
-            padding: 30px; /* Daha fazla boşluk */
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-        .timeline-content:hover {
-            background-color: #333; /* Hover efekti */
-            transform: translateY(-3px);
-        }
+    #cssmenu ul li:hover > a {
+      color: #007BFF;
+    }
 
-        .timeline-content h3 {
-            margin-top: 0;
-            color: #ffffff;
-            font-size: 1.6em; /* Daha büyük başlık */
-            margin-bottom: 15px;
-        }
+    /* Arama kutusunu menÃ¼nÃ¼n altÄ±na ve saÄŸa hizala */
+    .search-container {
+      display: flex;
+      justify-content: flex-end;
+      margin: 5px 20px 20px 0;
+      padding-top: 0;
+    }
 
-        .timeline-content p {
-            font-size: 1em;
-            color: #e0e0e0;
-        }
+    .search-container input[type="text"] {
+      width: 250px;
+      padding: 8px 15px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 30px;
+      outline: none;
+      transition: all 0.3s ease;
+    }
 
-        .timeline-date {
-            font-weight: bold;
-            color: #e74c3c; /* Kırmızı tarih */
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            display: block;
-            letter-spacing: 0.5px;
-        }
+    .search-container input[type="text"]:focus {
+      border-color: #007BFF;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
 
-        /* Mobil için Zaman Çizelgesi */
-        @media (max-width: 768px) {
-            .timeline::before {
-                left: 15px;
-            }
-            .timeline-item {
-                width: 100%;
-                left: 0 !important;
-                padding-left: 45px;
-                padding-right: 15px;
-                text-align: left !important;
-            }
-            .timeline-item::after {
-                left: 8px !important;
-            }
-            .timeline-content {
-                padding: 20px;
-            }
-        }
-    </style>
+    /* Footer sadeleÅŸtirildi */
+    footer .row p,
+    footer .row h3,
+    footer .row span {
+      display: none;
+    }
+
+    footer .row::after {
+      content: "Â© TÃ¼m HaklarÄ± SaklÄ±dÄ±r";
+      display: block;
+      color: #888;
+      text-align: center;
+      padding: 10px 0;
+    }
+  </style>
 </head>
 <body>
+  <div class="wrap-body">
+    <!-- Header -->
     <header>
-        <nav>
-            <a href="index.html">Ana Sayfa</a>
-            <a href="galeri.html">Galeri</a>
-            <a href="hayati.html" class="active">Hayatı</a>
-            <a href="gerisayim.html">Geri Sayım</a>
-            <a href="ayarlar.html">Ayarlar</a>
-        </nav>
+      <div class="wrap-header zerogrid">
+        <div class="row" style="position: relative; height: 90px;">
+          <a href="index.html" class="logo"><img src="images/logo.png" alt="Logo" /></a>
+
+          <div id="cssmenu">
+            <ul>
+              <li class="active"><a href="index.html"><h5>ANASAYFA</h5></a></li>
+              <li><a href="#">Galeri</a>
+                <ul>
+                  <li><a href="kzkls.html">AtatÃ¼rk kulesi</a></li>
+                  <li><a href="stnblbgz.html">AtatÃ¼rk BoÄŸazÄ±</a></li>
+                  <li><a href="dlmbhcsry.html">AtatÃ¼rk SarayÄ±</a></li>
+                  <li><a href="sltnhmtmydn.html">AtatÃ¼rk MeydanÄ±</a></li>
+                  <li><a href="sltnhmtcm.html">AtatÃ¼rk Camii</a></li>
+                  <li><a href="yrbtnsrnc.html">AtatÃ¼rk SarÄ±ncÄ±</a></li>
+                  <li><a href="tpkpsrymzs.html">AtatÃ¼rk SarayÄ± MÃ¼zesi</a></li>
+                  <li><a href="kplcrs.html">AtatÃ¼rk Ã‡arÅŸÄ±</a></li>
+                </ul>
+              </li>
+              <li><a href="single.html">Geri SayÄ±m</a></li>
+              <li><a href="contact.html">Ayarlar</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="search-container">
+          <input type="text" placeholder="Sitede ara..." />
+        </div>
+      </div>
     </header>
 
-    <main>
-        <section>
-            <h2>Mustafa Kemal Atatürk'ün Hayatı</h2>
-            <p>Türkiye Cumhuriyeti'nin kurucusu Gazi Mustafa Kemal Atatürk'ün doğumundan ebediyete intikaline kadar geçen süreçte yaşanan önemli olaylar ve dönüm noktaları.</p>
+    <!-- Container -->
+    <section id="container">
+      <div class="zerogrid">
+        <div class="wrap-container clearfix">
+          <div id="main-content">
+            <div class="row wrap-content">
+              <!-- Ä°Ã§erik boÅŸ -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-date">1881</span>
-                        <h3>Doğumu</h3>
-                        <p>Selanik'te, Ali Rıza Efendi ve Zübeyde Hanım'ın çocuğu olarak dünyaya geldi. Asıl adı Mustafa'dır.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-date">1893</span>
-                        <h3>Askeri Okula Giriş</h3>
-                        <p>Askeri Rüştiye'ye girerek "Kemal" adını aldı.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-date">1905</div>
-                    <div class="timeline-content">
-                        <h3>Harp Akademisi'nden Mezuniyet</h3>
-                        <p>Kurmay Yüzbaşı rütbesiyle Harp Akademisi'ni bitirerek askerlik kariyerine başladı. İlk görev yeri Şam'dır.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-date">1915</div>
-                    <div class="timeline-content">
-                        <h3>Çanakkale Zaferi</h3>
-                        <p>Çanakkale Cephesi'nde Conkbayırı ve Anafartalar'da gösterdiği askeri deha ile dünya tarihine geçti.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item" id="samsun-donemi">
-                    <div class="timeline-date">1919</div>
-                    <div class="timeline-content">
-                        <h3>Samsun'a Çıkış</h3>
-                        <p>19 Mayıs'ta Samsun'a çıkarak Milli Mücadele'yi başlattı. Amasya Genelgesi, Erzurum ve Sivas Kongreleri ile örgütlenme sürecini hızlandırdı.</p>
-                    </div>
-                </div>
-
-                 <div class="timeline-item">
-                    <div class="timeline-date">1920</div>
-                    <div class="timeline-content">
-                        <h3>TBMM'nin Açılışı</h3>
-                        <p>23 Nisan 1920'de Ankara'da Büyük Millet Meclisi'ni açtı. Milli iradenin temsilcisi olarak yeni bir yönetim kurdu.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item" id="baskomutanlik-donemi">
-                    <div class="timeline-date">1921-1922</div>
-                    <div class="timeline-content">
-                        <h3>Başkomutanlık ve Büyük Zaferler</h3>
-                        <p>Sakarya Meydan Muharebesi ve Büyük Taarruz ile düşmanı yurttan attı. Başkomutanlık görevini üstlendi.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item" id="cumhuriyet-ilani">
-                    <div class="timeline-date">1923</div>
-                    <div class="timeline-content">
-                        <h3>Cumhuriyet'in İlanı</h3>
-                        <p>29 Ekim 1923'te Türkiye Cumhuriyeti'ni ilan ederek ilk Cumhurbaşkanı oldu ve yeni bir dönemi başlattı.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item" id="nutuk-donemi">
-                    <div class="timeline-date">1927</div>
-                    <div class="timeline-content">
-                        <h3>Nutuk'u Okuması</h3>
-                        <p>Cumhuriyet Halk Fırkası'nın İkinci Kurultayı'nda 6 gün süren "Nutuk" adlı büyük söylevini okudu.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-date">1938</div>
-                    <div class="timeline-content">
-                        <h3>Ebediyete İntikali</h3>
-                        <p>10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayatını kaybetti. Türk milletini derin yasa boğdu.</p>
-                    </div>
-                </div>
-                </div>
-        </section>
-    </main>
-
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Mustafa Kemal Atatürk Sayfası. Tüm hakları saklıdır.</p>
+      <div class="zerogrid">
+        <div class="wrap-footer">
+          <div class="row"></div>
+        </div>
+      </div>
     </footer>
+  </div>
 </body>
 </html>
