@@ -12,58 +12,38 @@
       transition: background-color 0.3s, color 0.3s;
       line-height: 1.6;
     }
-    header {
-      background-color: #111;
-      border-bottom: 2px solid #b22222;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    nav {
+    .header {
       display: flex;
       justify-content: center;
-      gap: 10px;
-      padding: 10px 5px;
-      overflow-x: auto;
-      scrollbar-width: thin;
-      scrollbar-color: #b22222 transparent;
-    }
-    nav::-webkit-scrollbar {
-      height: 6px;
-    }
-    nav::-webkit-scrollbar-thumb {
-      background-color: #b22222;
-      border-radius: 3px;
-    }
-    nav a {
-      flex: 0 0 auto;
-      padding: 8px 14px;
-      font-weight: 600;
-      font-size: 1rem;
-      color: #fff;
-      background-color: #222;
-      border-radius: 4px;
-      text-decoration: none;
-      border: 1px solid transparent;
-      white-space: nowrap;
-      transition: background-color 0.3s, border-color 0.3s;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
+      gap: 15px;
+      background: #111;
+      padding: 12px 0;
+      border-bottom: 1px solid #555;
       user-select: none;
     }
-    nav a:hover,
-    nav a:focus-visible {
-      background-color: #b22222;
-      border-color: #b22222;
-      outline: none;
-    }
-    nav a[aria-current="page"] {
-      background-color: #b22222;
-      border-color: #b22222;
-      pointer-events: none;
-      cursor: default;
+    .btn {
+      padding: 8px 18px;
+      font-weight: 600;
+      border: 1px solid #444;
+      border-radius: 4px;
+      background-color: #222;
       color: #fff;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.2s ease;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+    .btn:hover {
+      background-color: #b30000;
+      border-color: #b30000;
+    }
+    .btn[aria-current="page"] {
+      background-color: #b30000;
+      border-color: #b30000;
+      cursor: default;
+      pointer-events: none;
     }
     .content {
       max-width: 900px;
@@ -102,19 +82,16 @@
       border-top: 1px solid #555;
       margin: 40px 0;
     }
-    /* Tema ayar kodu aşağıda */
   </style>
 </head>
 <body>
-  <header>
-    <nav aria-label="Ana navigasyon">
-      <a href="index.html">Ana Sayfa</a>
-      <a href="galeri.html">Galeri</a>
-      <a href="hayati.html" aria-current="page">Hayatı</a>
-      <a href="gerisayim.html">Geri Sayım</a>
-      <a href="ayarlar.html">Ayarlar</a>
-    </nav>
-  </header>
+  <div class="header">
+    <a href="index.html" class="btn">Ana Sayfa</a>
+    <a href="galeri.html" class="btn">Galeri</a>
+    <a href="hayati.html" class="btn" aria-current="page">Hayatı</a>
+    <a href="gerisayim.html" class="btn">Geri Sayım</a>
+    <a href="ayarlar.html" class="btn">Ayarlar</a>
+  </div>
 
   <div class="content">
     <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
@@ -153,7 +130,7 @@
     if(darkMode === 'false') {
       document.body.style.backgroundColor = '#fff';
       document.body.style.color = '#000';
-      document.querySelectorAll('nav a').forEach(btn => {
+      document.querySelectorAll('.btn').forEach(btn => {
         btn.style.backgroundColor = '#e0e0e0';
         btn.style.color = '#000';
         btn.style.borderColor = '#bbb';
@@ -164,7 +141,7 @@
     } else {
       document.body.style.backgroundColor = '#000';
       document.body.style.color = '#fff';
-      document.querySelectorAll('nav a').forEach(btn => {
+      document.querySelectorAll('.btn').forEach(btn => {
         btn.style.backgroundColor = '#222';
         btn.style.color = '#fff';
         btn.style.borderColor = '#444';
