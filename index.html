@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>Atatürk</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link href="images/logo.png" rel="icon">
-  <link href="images/logo.png" rel="apple-touch-icon">
-  <link rel="stylesheet" href="css/zerogrid.css">
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link href="images/logo.png" rel="icon" />
+  <link href="images/logo.png" rel="apple-touch-icon" />
+  <link rel="stylesheet" href="css/zerogrid.css" />
+  <link rel="stylesheet" href="css/style.css" />
   <script src="js/jquery-latest.min.js"></script>
   <script src="js/script.js"></script>
 
@@ -23,12 +23,12 @@
       padding-bottom: 5px;
     }
 
-    /* Logo büyütüldü ve pozisyonu korundu */
+    /* Logo boyutu 1.5 kat arttı (150px * 1.5 = 225px) */
     .logo {
       position: absolute;
       left: 20px;
       top: 10px;
-      width: 150px;
+      width: 225px;
       height: auto;
       border-radius: 65px;
       object-fit: cover;
@@ -70,19 +70,18 @@
       color: #007BFF;
     }
 
-    /* Arama kutusu menünün hemen altında ve ortalanmış */
+    /* Arama kutusunu menünün altına ve sağa hizala */
     .search-container {
       display: flex;
-      justify-content: center;
-      margin: 15px 0 30px;
-      padding-top: 60px; /* Logo yüksekliği ile çakışmaması için */
+      justify-content: flex-end;
+      margin: 5px 20px 20px 0;
+      padding-top: 0;
     }
 
     .search-container input[type="text"] {
-      width: 50%;
-      max-width: 400px;
-      padding: 10px 15px;
-      font-size: 16px;
+      width: 250px;
+      padding: 8px 15px;
+      font-size: 15px;
       border: 1px solid #ccc;
       border-radius: 30px;
       outline: none;
@@ -91,7 +90,7 @@
 
     .search-container input[type="text"]:focus {
       border-color: #007BFF;
-      box-shadow: 0 0 5px rgba(0,123,255,0.5);
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
     }
 
     /* Footer sadeleştirildi */
@@ -112,26 +111,25 @@
 </head>
 <body>
   <div class="wrap-body">
-
     <!-- Header -->
     <header>
       <div class="wrap-header zerogrid">
-        <div class="row" style="position: relative; height: 70px;">
-          <a href='index.html' class="logo"><img src="images/logo.png" alt="Logo" /></a>
+        <div class="row" style="position: relative; height: 90px;">
+          <a href="index.html" class="logo"><img src="images/logo.png" alt="Logo" /></a>
 
           <div id="cssmenu">
             <ul>
-              <li class='active'><a href="index.html"><h5>ANASAYFA</h5></a></li>
+              <li class="active"><a href="index.html"><h5>ANASAYFA</h5></a></li>
               <li><a href="#">Galeri</a>
                 <ul>
-                  <li><a href='kzkls.html'>Atatürk kulesi</a></li>
-                  <li><a href='stnblbgz.html'>Atatürk Boğazı</a></li>
-                  <li><a href='dlmbhcsry.html'>Atatürk Sarayı</a></li>
-                  <li><a href='sltnhmtmydn.html'>Atatürk Meydanı</a></li>
-                  <li><a href='sltnhmtcm.html'>Atatürk Camii</a></li>
-                  <li><a href='yrbtnsrnc.html'>Atatürk Sarıncı</a></li>
-                  <li><a href='tpkpsrymzs.html'>Atatürk Sarayı Müzesi</a></li>
-                  <li><a href='kplcrs.html'>Atatürk Çarşı</a></li>
+                  <li><a href="kzkls.html">Atatürk kulesi</a></li>
+                  <li><a href="stnblbgz.html">Atatürk Boğazı</a></li>
+                  <li><a href="dlmbhcsry.html">Atatürk Sarayı</a></li>
+                  <li><a href="sltnhmtmydn.html">Atatürk Meydanı</a></li>
+                  <li><a href="sltnhmtcm.html">Atatürk Camii</a></li>
+                  <li><a href="yrbtnsrnc.html">Atatürk Sarıncı</a></li>
+                  <li><a href="tpkpsrymzs.html">Atatürk Sarayı Müzesi</a></li>
+                  <li><a href="kplcrs.html">Atatürk Çarşı</a></li>
                 </ul>
               </li>
               <li><a href="single.html">Geri Sayım</a></li>
@@ -139,13 +137,11 @@
             </ul>
           </div>
         </div>
+        <div class="search-container">
+          <input type="text" placeholder="Sitede ara..." />
+        </div>
       </div>
     </header>
-
-    <!-- Arama kutusu -->
-    <div class="search-container">
-      <input type="text" placeholder="Sitede ara...">
-    </div>
 
     <!-- Container -->
     <section id="container">
