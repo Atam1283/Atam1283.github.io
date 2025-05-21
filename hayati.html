@@ -1,147 +1,181 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mustafa Kemal Atatürk - Hayatı</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #000;
-      color: #fff;
-      line-height: 1.6;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mustafa Kemal Atatürk - Hayatı</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Hayatı sayfasına özel stil */
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
 
-    /* Ana sayfa ile birebir menü */
-    header {
-      background-color: #111;
-      border-bottom: 2px solid #b22222;
-      overflow-x: auto;
-      white-space: nowrap;
-      -webkit-overflow-scrolling: touch;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background-color: #c0392b; /* Kırmızı çizgi */
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1.5px;
+        }
 
-    nav {
-      display: inline-flex;
-      padding: 10px 20px;
-      gap: 20px;
-    }
+        .timeline-item {
+            padding: 10px 0;
+            position: relative;
+            width: 50%;
+        }
 
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 6px 10px;
-      border-radius: 4px;
-      background-color: transparent;
-      transition: background-color 0.3s ease;
-      flex-shrink: 0;
-    }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 30px;
+            text-align: right;
+        }
 
-    nav a:hover,
-    nav a:focus-visible {
-      background-color: #b22222;
-      color: #fff;
-      outline: none;
-    }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 30px;
+            text-align: left;
+        }
 
-    nav a.active,
-    nav a[aria-current="page"] {
-      background-color: #b22222;
-      color: #fff;
-      pointer-events: none;
-    }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: #c0392b; /* Kırmızı nokta */
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
 
-    h1 {
-      font-size: 42px;
-      margin: 40px 20px 30px;
-      text-align: center;
-      color: #fff;
-      text-shadow: 0 0 8px #b30000;
-    }
+        .timeline-item:nth-child(odd)::after {
+            right: -7.5px;
+        }
 
-    .content {
-      max-width: 900px;
-      margin: auto;
-      padding: 0 20px 60px;
-    }
+        .timeline-item:nth-child(even)::after {
+            left: -7.5px;
+        }
 
-    h2 {
-      color: #b30000;
-      margin-top: 30px;
-      margin-bottom: 10px;
-    }
+        .timeline-content {
+            background-color: #222;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
 
-    p {
-      margin-bottom: 15px;
-      font-size: 16px;
-      color: #ddd;
-    }
+        .timeline-content h3 {
+            margin-top: 0;
+            color: #ffffff;
+            font-size: 1.5em;
+        }
 
-    ul {
-      padding-left: 20px;
-      margin-bottom: 20px;
-      color: #ccc;
-    }
+        .timeline-content p {
+            font-size: 1em;
+            color: #e0e0e0;
+        }
 
-    ul li {
-      margin-bottom: 8px;
-    }
+        .timeline-date {
+            font-weight: bold;
+            color: #c0392b;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            display: block;
+        }
 
-    .separator {
-      border-top: 1px solid #555;
-      margin: 40px 0;
-    }
-
-    ::-webkit-scrollbar {
-      height: 6px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #b22222;
-    }
-  </style>
+        /* Mobil için Zaman Çizelgesi */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 15px; /* Sadece sol tarafta çizgi */
+            }
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 45px;
+                padding-right: 15px;
+                text-align: left !important;
+            }
+            .timeline-item::after {
+                left: 8px !important;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <nav aria-label="Ana navigasyon">
-      <a href="index.html">Ana Sayfa</a>
-      <a href="galeri.html">Galeri</a>
-      <a href="hayati.html" class="active" aria-current="page">Hayatı</a>
-      <a href="gerisayim.html">Geri Sayım</a>
-      <a href="ayarlar.html">Ayarlar</a>
-    </nav>
-  </header>
+    <header>
+        <nav>
+            <a href="index.html">Ana Sayfa</a>
+            <a href="galeri.html">Galeri</a>
+            <a href="hayati.html" class="active">Hayatı</a>
+            <a href="gerisayim.html">Geri Sayım</a>
+            <a href="ayarlar.html">Ayarlar</a>
+        </nav>
+    </header>
 
-  <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
-  <div class="content">
-    <h2>Erken Dönem</h2>
-    <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. İlk eğitimini mahalle mektebinde aldıktan sonra Şemsi Efendi Okulu'na devam etti.</p>
-    <h2>Askeri Eğitim ve Kariyer</h2>
-    <p>1905 yılında Harp Okulu'ndan teğmen olarak mezun oldu. Harp Akademisi'ni de kurmay yüzbaşı olarak tamamladı. Çanakkale Savaşı'ndaki başarısı büyük takdir kazandı.</p>
-    <h2>Milli Mücadele ve Cumhuriyet</h2>
-    <p>1919’da Samsun’a çıkarak Kurtuluş Savaşı’nı başlattı. 1920'de TBMM’yi açtı. 1923’te Cumhuriyet’i ilan etti ve ilk cumhurbaşkanı oldu.</p>
-    <h2>Reformlar</h2>
-    <ul>
-      <li>Harf Devrimi</li>
-      <li>Kadın Hakları</li>
-      <li>Medeni Kanun</li>
-      <li>Eğitim Reformları</li>
-      <li>Sanayi Yatırımları</li>
-    </ul>
-    <h2>Son Yıllar</h2>
-    <p>Atatürk, 10 Kasım 1938’de Dolmabahçe Sarayı’nda vefat etti. Türk milletine büyük bir miras bıraktı.</p>
-    <div class="separator"></div>
-    <p style="text-align:center; font-size: 14px; color: #888;">
-      Kaynaklar: <a href="https://tr.wikipedia.org/wiki/Mustafa_Kemal_Atat%C3%BCrk" target="_blank" style="color:#b30000; text-decoration:none;">Vikipedi</a>, 
-      <a href="https://www.ataturk.com.tr" target="_blank" style="color:#b30000; text-decoration:none;">Atatürk Araştırma Merkezi</a>
-    </p>
-  </div>
+    <main>
+        <section>
+            <h2>Mustafa Kemal Atatürk'ün Hayatı</h2>
+            <p>Türkiye Cumhuriyeti'nin kurucusu Gazi Mustafa Kemal Atatürk'ün doğumundan ebediyete intikaline kadar geçen süreçte yaşanan önemli olaylar ve dönüm noktaları.</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1881</span>
+                        <h3>Doğumu</h3>
+                        <p>Selanik'te Ali Rıza Efendi ve Zübeyde Hanım'ın oğlu olarak dünyaya geldi.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1905</span>
+                        <h3>Harp Akademisi'nden Mezuniyet</h3>
+                        <p>Kurmay Yüzbaşı rütbesiyle Harp Akademisi'ni bitirerek askerlik kariyerine başladı.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1915</span>
+                        <h3>Çanakkale Zaferi</h3>
+                        <p>Çanakkale Cephesi'nde Conkbayırı ve Anafartalar'da gösterdiği başarılarla adını duyurdu.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1919</span>
+                        <h3>Samsun'a Çıkış</h3>
+                        <p>19 Mayıs'ta Samsun'a çıkarak Milli Mücadele'yi başlattı.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1923</span>
+                        <h3>Cumhuriyet'in İlanı</h3>
+                        <p>29 Ekim 1923'te Türkiye Cumhuriyeti'ni ilan ederek ilk Cumhurbaşkanı oldu.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">1938</span>
+                        <h3>Vefatı</h3>
+                        <p>10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayatını kaybetti.</p>
+                    </div>
+                </div>
+                </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Mustafa Kemal Atatürk Sayfası. Tüm hakları saklıdır.</p>
+    </footer>
 </body>
 </html>
