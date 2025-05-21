@@ -16,12 +16,11 @@
     .header {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
       gap: 15px;
+      flex-wrap: wrap;
       background: #111;
       padding: 12px 0;
       border-bottom: 1px solid #555;
-      user-select: none;
     }
     .btn {
       padding: 8px 18px;
@@ -35,76 +34,64 @@
       transition: background-color 0.2s ease;
       display: flex;
       align-items: center;
-      white-space: nowrap;
     }
-    .btn:hover {
+    .btn:hover,
+    .btn.active {
       background-color: #b30000;
       border-color: #b30000;
-    }
-    .btn[aria-current="page"] {
-      background-color: #b30000;
-      border-color: #b30000;
-      cursor: default;
-      pointer-events: none;
-    }
-    .content {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
     }
     h1 {
-      font-size: 36px;
       text-align: center;
-      margin-bottom: 30px;
-      color: #fff;
+      margin: 40px 20px 20px 20px;
+      font-size: 36px;
       text-shadow: 0 0 8px #b30000;
     }
     #countdown {
-      font-size: 28px;
       text-align: center;
+      font-size: 24px;
+      margin-top: 10px;
       color: #ff6666;
     }
   </style>
 </head>
 <body>
+
   <div class="header">
     <a href="index.html" class="btn">Ana Sayfa</a>
     <a href="galeri.html" class="btn">Galeri</a>
     <a href="hayati.html" class="btn">Hayatı</a>
-    <a href="gerisayim.html" class="btn" aria-current="page">Geri Sayım</a>
+    <a href="gerisayim.html" class="btn active">Geri Sayım</a>
     <a href="ayarlar.html" class="btn">Ayarlar</a>
   </div>
 
-  <div class="content">
-    <h1>Özel Gün İçin Geri Sayım</h1>
-    <div id="countdown">Yükleniyor...</div>
-  </div>
+  <h1>Özel Gün İçin Geri Sayım</h1>
+  <div id="countdown">Yükleniyor...</div>
 
   <script>
-    const targetDate = new Date("2025-10-29T00:00:00"); // Örnek: Cumhuriyet Bayramı
-    const countdownElement = document.getElementById("countdown");
+    const hedefTarih = new Date("2025-10-29T00:00:00");
+    const kutu = document.getElementById("countdown");
 
-    function updateCountdown() {
-      const now = new Date();
-      const diff = targetDate - now;
+    function geriSayimGuncelle() {
+      const simdi = new Date();
+      const fark = hedefTarih - simdi;
 
-      if (diff <= 0) {
-        countdownElement.textContent = "Zaman geldi!";
+      if (fark <= 0) {
+        kutu.textContent = "Zaman geldi!";
         return;
       }
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
+      const gun = Math.floor(fark / (1000 * 60 * 60 * 24));
+      const saat = Math.floor((fark / (1000 * 60 * 60)) % 24);
+      const dakika = Math.floor((fark / (1000 * 60)) % 60);
+      const saniye = Math.floor((fark / 1000) % 60);
 
-      countdownElement.textContent = `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye`;
+      kutu.textContent = `${gun} gün ${saat} saat ${dakika} dakika ${saniye} saniye`;
     }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    setInterval(geriSayimGuncelle, 1000);
+    geriSayimGuncelle();
 
-    // Tema uyarlama
+    // Tema uyarlaması
     const darkMode = localStorage.getItem('darkMode');
     if (darkMode === 'false') {
       document.body.style.backgroundColor = '#fff';
@@ -114,9 +101,8 @@
         btn.style.color = '#000';
         btn.style.borderColor = '#bbb';
       });
-    } else {
-      document.body.style.backgroundColor = '#000';
-      document.body.style.color = '#fff';
+      document.querySelector('.btn.active').style.backgroundColor = '#b30000';
+      document.querySelector('.btn.active').style.color = '#fff';
     }
   </script>
 </body>
