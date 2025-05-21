@@ -17,7 +17,7 @@
       user-select: none;
     }
     header {
-      background-color: #111;
+      background-color: #1a1a1a; /* Menü arka planı hafif gri */
       border-bottom: 2px solid #b22222;
       position: sticky;
       top: 0;
@@ -26,9 +26,10 @@
     nav {
       display: flex;
       justify-content: center;
-      padding: 10px 0;
+      padding: 10px 10px;
       flex-wrap: nowrap;
       overflow-x: auto;
+      min-width: 100%;
     }
     nav a {
       white-space: nowrap;
@@ -37,9 +38,10 @@
       text-decoration: none;
       font-weight: bold;
       font-size: 1rem;
-      padding: 6px 10px;
+      padding: 6px 12px;
       border-radius: 4px;
       transition: background-color 0.3s ease, color 0.3s ease;
+      flex-shrink: 0;
     }
     nav a:hover,
     nav a:focus-visible {
