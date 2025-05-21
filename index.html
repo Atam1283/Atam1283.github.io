@@ -19,26 +19,23 @@
     header {
       background-color: #111;
       border-bottom: 2px solid #b22222;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      padding: 10px 20px;
       position: sticky;
       top: 0;
       z-index: 1000;
     }
     nav {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 15px;
-      max-width: 100%;
+      padding: 10px 0;
+      flex-wrap: nowrap;
+      overflow-x: auto;
     }
     nav a {
+      white-space: nowrap;
+      margin: 0 10px;
       color: #fff;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: bold;
       font-size: 1rem;
       padding: 6px 10px;
       border-radius: 4px;
@@ -61,6 +58,7 @@
       padding: 40px 20px;
       max-width: 900px;
       margin: 0 auto;
+      text-align: center;
     }
     h1 {
       font-size: 2.6rem;
@@ -68,85 +66,18 @@
       letter-spacing: 0.1em;
       margin-bottom: 30px;
       color: #fff;
-      text-align: center;
+      user-select: none;
     }
     #quoteBox {
       margin-top: 20px;
       font-style: italic;
       font-size: 22px;
       color: #ddd;
-      text-align: center;
     }
     #quoteSource {
       margin-top: 8px;
       font-size: 16px;
       color: #999;
-    }
-    section {
-      background-color: #111;
-      border: 2px solid #b22222;
-      border-radius: 12px;
-      padding: 20px 30px;
-      margin-top: 40px;
-      box-shadow: 0 0 20px #b22222;
-    }
-    section h2 {
-      font-size: 1.8rem;
-      margin-bottom: 15px;
-      color: #fff;
-      border-bottom: 1px solid #b22222;
-      padding-bottom: 8px;
-    }
-    label {
-      display: block;
-      margin: 15px 0 8px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: #ddd;
-    }
-    input[type="checkbox"],
-    input[type="radio"] {
-      transform: scale(1.2);
-      margin-right: 10px;
-      vertical-align: middle;
-      cursor: pointer;
-    }
-    select {
-      padding: 8px 12px;
-      border-radius: 6px;
-      border: none;
-      font-size: 1rem;
-      background-color: #222;
-      color: #fff;
-      cursor: pointer;
-      user-select: none;
-      transition: background-color 0.3s ease;
-    }
-    select:hover, select:focus {
-      background-color: #333;
-      outline: none;
-    }
-    button {
-      background-color: #b22222;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 8px;
-      color: white;
-      font-weight: 700;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      user-select: none;
-      margin-top: 20px;
-    }
-    button:hover, button:focus {
-      background-color: #a11a1a;
-      outline: none;
-    }
-    p.info {
-      font-size: 1rem;
-      color: #bbb;
-      margin-top: 8px;
     }
   </style>
 </head>
@@ -166,38 +97,7 @@
       <div id="quoteText"></div>
       <div id="quoteSource"></div>
     </div>
-
-    <section aria-labelledby="tema-baslik">
-      <h2 id="tema-baslik">Tema Ayarları</h2>
-      <label for="darkModeToggle">
-        <input type="checkbox" id="darkModeToggle" />
-        Koyu Tema Modunu Aç/Kapat
-      </label>
-      <p class="info">Şu anda koyu tema varsayılan olarak açıktır.</p>
-    </section>
-
-    <section aria-labelledby="dil-baslik">
-      <h2 id="dil-baslik">Dil Ayarları</h2>
-      <label for="languageSelect">Site dili seçin:</label>
-      <select id="languageSelect" name="language">
-        <option value="tr" selected>Türkçe</option>
-        <option value="en">İngilizce</option>
-        <option value="az">Azerice</option>
-      </select>
-    </section>
-
-    <section aria-labelledby="sozler-baslik">
-      <h2 id="sozler-baslik">Atatürk Sözleri Ayarları</h2>
-      <label for="showQuotes">
-        <input type="checkbox" id="showQuotes" checked />
-        Ana sayfada Atatürk sözlerini göster
-      </label>
-      <p class="info">İsterseniz ana sayfada rastgele sözlerin görünmesini kapatabilirsiniz.</p>
-    </section>
-
-    <button type="button" id="saveSettingsBtn">Ayarları Kaydet</button>
   </main>
-
   <script>
     const quotes = [
       { text: "Yurtta sulh, cihanda sulh.", source: "1923 Nutuk" },
@@ -208,52 +108,30 @@
       { text: "Benim naçiz vücudum elbet bir gün toprak olacaktır.", source: "1938 Vasiyet" },
       { text: "Muasır medeniyet seviyesine ulaşmak.", source: "Cumhuriyet hedefi" }
     ];
-
+    function randomQuote() {
+      const index = Math.floor(Math.random() * quotes.length);
+      return quotes[index];
+    }
+    const showQuotes = localStorage.getItem('showQuotes');
     const quoteBox = document.getElementById('quoteBox');
     const quoteText = document.getElementById('quoteText');
     const quoteSource = document.getElementById('quoteSource');
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const languageSelect = document.getElementById('languageSelect');
-    const showQuotes = document.getElementById('showQuotes');
-    const saveBtn = document.getElementById('saveSettingsBtn');
-
-    // Ayarları yükle
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedDarkMode = localStorage.getItem('darkMode');
-      const savedLanguage = localStorage.getItem('language');
-      const savedShowQuotes = localStorage.getItem('showQuotes');
-
-      darkModeToggle.checked = savedDarkMode !== 'false';
-      applyTheme(darkModeToggle.checked);
-
-      if (savedLanguage) languageSelect.value = savedLanguage;
-      if (savedShowQuotes !== null) showQuotes.checked = savedShowQuotes === 'true';
-
-      if (showQuotes.checked) {
-        const q = quotes[Math.floor(Math.random() * quotes.length)];
-        quoteText.textContent = `"${q.text}"`;
-        quoteSource.textContent = `- ${q.source}`;
-        quoteBox.style.display = 'block';
-      } else {
-        quoteBox.style.display = 'none';
-      }
-    });
-
-    // Tema uygula
-    function applyTheme(isDark) {
-      document.body.style.backgroundColor = isDark ? '#000' : '#fff';
-      document.body.style.color = isDark ? '#fff' : '#000';
+    if (showQuotes !== 'false') {
+      const q = randomQuote();
+      quoteText.textContent = `"${q.text}"`;
+      quoteSource.textContent = `- ${q.source}`;
+      quoteBox.style.display = 'block';
+    } else {
+      quoteBox.style.display = 'none';
     }
-
-    // Kaydet
-    saveBtn.addEventListener('click', () => {
-      localStorage.setItem('darkMode', darkModeToggle.checked);
-      localStorage.setItem('language', languageSelect.value);
-      localStorage.setItem('showQuotes', showQuotes.checked);
-      alert('Ayarlar kaydedildi!');
-      applyTheme(darkModeToggle.checked);
-      location.reload(); // Tema ve söz yeniden uygulasın diye sayfa yenilenebilir
-    });
+    const darkMode = localStorage.getItem('darkMode');
+    if (darkMode === 'false') {
+      document.body.style.backgroundColor = '#fff';
+      document.body.style.color = '#000';
+    } else {
+      document.body.style.backgroundColor = '#000';
+      document.body.style.color = '#fff';
+    }
   </script>
 </body>
 </html>
