@@ -17,17 +17,39 @@
       padding: 0;
     }
 
-    /* Menü yukarı ve sağa hizalanmış */
+    header .wrap-header {
+      position: relative;
+      padding-top: 10px;
+      padding-bottom: 5px;
+    }
+
+    /* Logo büyütüldü ve pozisyonu korundu */
+    .logo {
+      position: absolute;
+      left: 20px;
+      top: 10px;
+      width: 150px;
+      height: auto;
+      border-radius: 65px;
+      object-fit: cover;
+    }
+
+    /* Menü üstte, sağa hizalı ve simetrik */
     #cssmenu {
       display: flex;
       justify-content: flex-end;
-      margin-top: -10px;
+      margin-top: 10px;
       margin-right: 20px;
+      align-items: center;
+      height: 50px;
     }
 
     #cssmenu ul {
       display: flex;
-      gap: 15px;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
     }
 
     #cssmenu ul li {
@@ -41,30 +63,24 @@
       color: #333;
       padding: 10px 15px;
       display: inline-block;
+      transition: color 0.3s ease;
     }
 
-    #cssmenu ul li:hover {
-      background-color: #eee;
-      border-radius: 5px;
+    #cssmenu ul li:hover > a {
+      color: #007BFF;
     }
 
-    .logo {
-      object-fit: cover;
-      border-radius: 65px;
-      position: absolute;
-      left: 20px;
-      top: 10px;
-    }
-
-    /* Arama kutusu ortalanmış */
+    /* Arama kutusu menünün hemen altında ve ortalanmış */
     .search-container {
       display: flex;
       justify-content: center;
-      margin: 80px 0 30px;
+      margin: 15px 0 30px;
+      padding-top: 60px; /* Logo yüksekliği ile çakışmaması için */
     }
 
     .search-container input[type="text"] {
       width: 50%;
+      max-width: 400px;
       padding: 10px 15px;
       font-size: 16px;
       border: 1px solid #ccc;
@@ -74,10 +90,11 @@
     }
 
     .search-container input[type="text"]:focus {
-      border-color: #666;
+      border-color: #007BFF;
+      box-shadow: 0 0 5px rgba(0,123,255,0.5);
     }
 
-    /* Footer gizlendi ve sadeleştirildi */
+    /* Footer sadeleştirildi */
     footer .row p,
     footer .row h3,
     footer .row span {
@@ -99,8 +116,8 @@
     <!-- Header -->
     <header>
       <div class="wrap-header zerogrid">
-        <div class="row">
-          <a href='index.html' class="logo"><img src="images/logo.png" width="100" height="100" /></a>
+        <div class="row" style="position: relative; height: 70px;">
+          <a href='index.html' class="logo"><img src="images/logo.png" alt="Logo" /></a>
 
           <div id="cssmenu">
             <ul>
@@ -136,7 +153,7 @@
         <div class="wrap-container clearfix">
           <div id="main-content">
             <div class="row wrap-content">
-              <!-- İçerik boş bırakıldı -->
+              <!-- İçerik boş -->
             </div>
           </div>
         </div>
