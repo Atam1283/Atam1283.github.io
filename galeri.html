@@ -12,30 +12,42 @@
     margin: 0; padding: 20px;
   }
   /* Üst menü */
-  .header {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    background: #111;
-    padding: 12px 0;
-    border-bottom: 1px solid #555;
-  }
-  .btn {
-    padding: 8px 18px;
-    font-weight: 600;
-    border: 1px solid #444;
-    border-radius: 4px;
-    background-color: #222;
-    color: #fff;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.2s ease;
+  header {
+    background-color: #111;
+    border-bottom: 2px solid #b22222;
     display: flex;
     align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
-  .btn:hover {
-    background-color: #b30000;
-    border-color: #b30000;
+  header nav {
+    display: flex;
+    gap: 20px;
+  }
+  header nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  header nav a:hover,
+  header nav a:focus-visible {
+    background-color: #b22222;
+    color: #fff;
+    outline: none;
+  }
+  header nav a[aria-current="page"] {
+    background-color: #b22222;
+    color: #fff;
+    pointer-events: none;
+    cursor: default;
   }
   /* Başlık */
   h1 {
@@ -68,13 +80,15 @@
 </head>
 <body>
 
-<div class="header">
-  <a href="index.html" class="btn">Ana Sayfa</a>
-  <a href="galeri.html" class="btn">Galeri</a>
-  <a href="hayati.html" class="btn">Hayatı</a>
-  <a href="gerisayim.html" class="btn">Geri Sayım</a>
-  <a href="ayarlar.html" class="btn">Ayarlar</a>
-</div>
+<header>
+  <nav aria-label="Ana navigasyon">
+    <a href="index.html" tabindex="0">Ana Sayfa</a>
+    <a href="galeri.html" tabindex="0" aria-current="page">Galeri</a>
+    <a href="hayati.html" tabindex="0">Hayatı</a>
+    <a href="gerisayim.html" tabindex="0">Geri Sayım</a>
+    <a href="ayarlar.html" tabindex="0">Ayarlar</a>
+  </nav>
+</header>
 
 <h1>Atatürk Galerisi</h1>
 
