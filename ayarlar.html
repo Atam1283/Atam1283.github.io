@@ -1,232 +1,227 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mustafa Kemal Atatürk - Ayarlar</title>
-  <style>
-    /* Reset */
-    *, *::before, *::after { box-sizing: border-box; }
-    body {
-      margin: 0; padding: 0;
-      background-color: #000;
-      color: #fff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      user-select: none;
-    }
-    header {
-      background-color: #1a1a1a;
-      border-bottom: 2px solid #b22222;
-      padding: 10px 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      overflow-x: auto;
-    }
-    nav {
-      display: flex;
-      gap: 20px;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 6px 10px;
-      border-radius: 4px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    nav a:hover,
-    nav a:focus-visible {
-      background-color: #b22222;
-      color: #fff;
-      outline: none;
-    }
-    nav a[aria-current="page"] {
-      background-color: #b22222;
-      color: #fff;
-      pointer-events: none;
-      cursor: default;
-    }
-    main {
-      flex-grow: 1;
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    h1 {
-      font-size: 2.6rem;
-      font-weight: 900;
-      letter-spacing: 0.1em;
-      margin-bottom: 30px;
-      color: #fff;
-      user-select: none;
-      text-align: center;
-    }
-    section {
-      background-color: #111;
-      border: 2px solid #b22222;
-      border-radius: 12px;
-      padding: 20px 30px;
-      margin-bottom: 30px;
-      box-shadow: 0 0 20px #b22222;
-    }
-    section h2 {
-      font-size: 1.8rem;
-      margin-bottom: 15px;
-      color: #fff;
-      border-bottom: 1px solid #b22222;
-      padding-bottom: 8px;
-    }
-    label {
-      display: block;
-      margin: 15px 0 8px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: #ddd;
-    }
-    input[type="checkbox"],
-    input[type="radio"] {
-      transform: scale(1.2);
-      margin-right: 10px;
-      vertical-align: middle;
-      cursor: pointer;
-    }
-    select {
-      padding: 8px 12px;
-      border-radius: 6px;
-      border: none;
-      font-size: 1rem;
-      background-color: #222;
-      color: #fff;
-      cursor: pointer;
-      user-select: none;
-      transition: background-color 0.3s ease;
-    }
-    select:hover, select:focus {
-      background-color: #333;
-      outline: none;
-    }
-    button {
-      background-color: #b22222;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 8px;
-      color: white;
-      font-weight: 700;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      user-select: none;
-      margin-top: 20px;
-    }
-    button:hover, button:focus {
-      background-color: #a11a1a;
-      outline: none;
-    }
-    p.info {
-      font-size: 1rem;
-      color: #bbb;
-      margin-top: 8px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mustafa Kemal Atatürk - Ayarlar</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ayarlar sayfasına özel stil */
+        #settings-form {
+            background-color: #222;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            margin-top: 50px;
+            text-align: left; /* Form elemanları soldan hizalı */
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #ffffff;
+            display: block; /* Her label kendi satırında olsun */
+        }
+        .form-group select,
+        .form-group input[type="range"] {
+            width: calc(100% - 22px); /* Padding ve border hesaplaması */
+            padding: 12px;
+            border: 1px solid #333;
+            background-color: #3a3a3a; /* Daha koyu input arka planı */
+            color: #e0e0e0;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box; /* Padding'i genişliğe dahil et */
+            -webkit-appearance: none; /* Range slider için varsayılan stili kaldır */
+            appearance: none;
+        }
+
+        /* Range slider stil */
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #c0392b; /* Başparmak rengi */
+            cursor: pointer;
+            margin-top: -8px; /* Dikey hizalama */
+            box-shadow: 0 0 2px rgba(0,0,0,0.5);
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #c0392b;
+            cursor: pointer;
+            box-shadow: 0 0 2px rgba(0,0,0,0.5);
+        }
+        input[type="range"]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 5px;
+            background: #555;
+            border-radius: 3px;
+        }
+        input[type="range"]::-moz-range-track {
+            width: 100%;
+            height: 5px;
+            background: #555;
+            border-radius: 3px;
+        }
+
+        #current-font-size {
+            font-weight: bold;
+            color: #c0392b;
+            margin-left: 10px;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <nav aria-label="Ana navigasyon">
-      <a href="index.html" tabindex="0">Ana Sayfa</a>
-      <a href="galeri.html" tabindex="0">Galeri</a>
-      <a href="hayati.html" tabindex="0">Hayatı</a>
-      <a href="gerisayim.html" tabindex="0">Geri Sayım</a>
-      <a href="ayarlar.html" tabindex="0" aria-current="page">Ayarlar</a>
-    </nav>
-  </header>
-  <main>
-    <h1>Site Ayarları</h1>
+    <header>
+        <nav>
+            <a href="index.html">Ana Sayfa</a>
+            <a href="galeri.html">Galeri</a>
+            <a href="hayati.html">Hayatı</a>
+            <a href="gerisayim.html">Geri Sayım</a>
+            <a href="ayarlar.html" class="active">Ayarlar</a>
+        </nav>
+    </header>
 
-    <section aria-labelledby="tema-baslik">
-      <h2 id="tema-baslik">Tema Ayarları</h2>
-      <label for="darkModeToggle">
-        <input type="checkbox" id="darkModeToggle" />
-        Koyu Tema Modunu Aç/Kapat
-      </label>
-      <p class="info">Şu anda koyu tema varsayılan olarak açıktır.</p>
-    </section>
+    <main>
+        <section>
+            <h2>Site Ayarları</h2>
+            <p>Sitenin görünümünü ve davranışını kişiselleştirin.</p>
 
-    <section aria-labelledby="dil-baslik">
-      <h2 id="dil-baslik">Dil Ayarları</h2>
-      <label for="languageSelect">Site dili seçin:</label>
-      <select id="languageSelect" name="language">
-        <option value="tr" selected>Türkçe</option>
-        <option value="en">İngilizce</option>
-        <option value="az">Azerice</option>
-      </select>
-    </section>
+            <form id="settings-form">
+                <div class="form-group">
+                    <label for="theme-select">Tema Seçimi:</label>
+                    <select id="theme-select">
+                        <option value="dark">Koyu Tema (Varsayılan)</option>
+                        <option value="light">Açık Tema</option>
+                        </select>
+                </div>
 
-    <section aria-labelledby="sozler-baslik">
-      <h2 id="sozler-baslik">Atatürk Sözleri Ayarları</h2>
-      <label for="showQuotes">
-        <input type="checkbox" id="showQuotes" checked />
-        Ana sayfada Atatürk sözlerini göster
-      </label>
-      <p class="info">İsterseniz ana sayfada rastgele sözlerin görünmesini kapatabilirsiniz.</p>
-    </section>
+                <div class="form-group">
+                    <label for="font-size-slider">Yazı Tipi Boyutu: <span id="current-font-size">16px</span></label>
+                    <input type="range" id="font-size-slider" min="14" max="24" value="16">
+                </div>
 
-    <button type="button" id="saveSettingsBtn" aria-label="Ayarları Kaydet">Ayarları Kaydet</button>
-  </main>
+                <button type="button" id="apply-settings">Ayarları Kaydet</button>
+            </form>
+        </section>
+    </main>
 
-  <script>
-    // Ayarları localStorage'da sakla
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const languageSelect = document.getElementById('languageSelect');
-    const showQuotes = document.getElementById('showQuotes');
-    const saveBtn = document.getElementById('saveSettingsBtn');
+    <footer>
+        <p>&copy; 2025 Mustafa Kemal Atatürk Sayfası. Tüm hakları saklıdır.</p>
+    </footer>
 
-    // Varsayılan tema koyu, sayfa siyah zeminli olduğu için checkbox aktif olacak
-    darkModeToggle.checked = true;
+    <script>
+        // Ayarların uygulanması için JavaScript
+        const themeSelect = document.getElementById('theme-select');
+        const fontSizeSlider = document.getElementById('font-size-slider');
+        const currentFontSizeSpan = document.getElementById('current-font-size');
+        const applySettingsButton = document.getElementById('apply-settings');
 
-    // Kaydedilmiş ayarları yükle
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedDarkMode = localStorage.getItem('darkMode');
-      const savedLanguage = localStorage.getItem('language');
-      const savedShowQuotes = localStorage.getItem('showQuotes');
+        // Sayfa yüklendiğinde veya ayarlar değiştiğinde temayı ve yazı tipini uygula
+        function applyThemeAndFontSize() {
+            const selectedTheme = localStorage.getItem('theme') || 'dark';
+            const savedFontSize = localStorage.getItem('fontSize') || '16';
 
-      if (savedDarkMode !== null) {
-        darkModeToggle.checked = savedDarkMode === 'true';
-        applyTheme(darkModeToggle.checked);
-      }
+            // Temayı uygula
+            if (selectedTheme === 'light') {
+                document.body.style.backgroundColor = '#f0f0f0';
+                document.body.style.color = '#333';
+                document.querySelectorAll('header, footer, section, .gallery-item, .countdown-item, .timeline-content, #settings-form').forEach(el => {
+                    el.style.backgroundColor = '#ffffff';
+                    el.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+                });
+                document.querySelectorAll('h1, h2, h3').forEach(el => el.style.color = '#000');
+                document.querySelectorAll('nav a').forEach(el => el.style.color = '#333');
+                document.querySelector('nav a.active').style.backgroundColor = '#2980b9'; // Mavi aktif sekme
+                document.querySelector('.hero .quote').style.color = '#2980b9';
+                document.querySelector('.timeline::before').style.backgroundColor = '#2980b9';
+                document.querySelectorAll('.timeline-item::after').forEach(el => el.style.backgroundColor = '#2980b9');
+                document.querySelectorAll('.timeline-date').forEach(el => el.style.color = '#2980b9');
+                document.querySelectorAll('button').forEach(el => el.style.backgroundColor = '#2980b9');
+                document.querySelectorAll('button:hover').forEach(el => el.style.backgroundColor = '#3498db');
+                document.querySelectorAll('a').forEach(el => el.style.color = '#2980b9');
 
-      if (savedLanguage) {
-        languageSelect.value = savedLanguage;
-      }
+                document.querySelectorAll('select, input[type="range"]').forEach(el => {
+                    el.style.backgroundColor = '#eee';
+                    el.style.color = '#333';
+                    el.style.borderColor = '#ccc';
+                });
+                // Range slider thumb renk değişimi
+                const styleSheet = document.createElement('style');
+                styleSheet.type = 'text/css';
+                styleSheet.innerText = `
+                    input[type="range"]::-webkit-slider-thumb { background: #2980b9 !important; }
+                    input[type="range"]::-moz-range-thumb { background: #2980b9 !important; }
+                `;
+                document.head.appendChild(styleSheet);
 
-      if (savedShowQuotes !== null) {
-        showQuotes.checked = savedShowQuotes === 'true';
-      }
-    });
 
-    // Tema uygula (şimdilik sadece body arka plan rengini değiştiriyor)
-    function applyTheme(isDark) {
-      if (isDark) {
-        document.body.style.backgroundColor = '#000';
-        document.body.style.color = '#fff';
-      } else {
-        document.body.style.backgroundColor = '#fff';
-        document.body.style.color = '#000';
-      }
-    }
+            } else { // Dark theme
+                document.body.style.backgroundColor = '#0d0d0d';
+                document.body.style.color = '#e0e0e0';
+                document.querySelectorAll('header, footer, section, .gallery-item, .countdown-item, .timeline-content, #settings-form').forEach(el => {
+                    el.style.backgroundColor = '#1a1a1a';
+                    el.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+                });
+                document.querySelectorAll('h1, h2, h3').forEach(el => el.style.color = '#ffffff');
+                document.querySelectorAll('nav a').forEach(el => el.style.color = '#e0e0e0');
+                document.querySelector('nav a.active').style.backgroundColor = '#c0392b'; // Kırmızı aktif sekme
+                document.querySelector('.hero .quote').style.color = '#c0392b';
+                document.querySelector('.timeline::before').style.backgroundColor = '#c0392b';
+                document.querySelectorAll('.timeline-item::after').forEach(el => el.style.backgroundColor = '#c0392b');
+                document.querySelectorAll('.timeline-date').forEach(el => el.style.color = '#c0392b');
+                document.querySelectorAll('button').forEach(el => el.style.backgroundColor = '#c0392b');
+                document.querySelectorAll('button:hover').forEach(el => el.style.backgroundColor = '#e74c3c');
+                 document.querySelectorAll('a').forEach(el => el.style.color = '#e0e0e0');
 
-    // Kaydet butonu
-    saveBtn.addEventListener('click', () => {
-      localStorage.setItem('darkMode', darkModeToggle.checked);
-      localStorage.setItem('language', languageSelect.value);
-      localStorage.setItem('showQuotes', showQuotes.checked);
-      alert('Ayarlar kaydedildi!');
-      applyTheme(darkModeToggle.checked);
-    });
-  </script>
+
+                document.querySelectorAll('select, input[type="range"]').forEach(el => {
+                    el.style.backgroundColor = '#222';
+                    el.style.color = '#e0e0e0';
+                    el.style.borderColor = '#333';
+                });
+                 // Range slider thumb renk değişimi
+                 const styleSheet = document.createElement('style');
+                 styleSheet.type = 'text/css';
+                 styleSheet.innerText = `
+                     input[type="range"]::-webkit-slider-thumb { background: #c0392b !important; }
+                     input[type="range"]::-moz-range-thumb { background: #c0392b !important; }
+                 `;
+                 document.head.appendChild(styleSheet);
+            }
+
+            // Yazı tipi boyutunu uygula
+            document.body.style.fontSize = `${savedFontSize}px`;
+            currentFontSizeSpan.textContent = `${savedFontSize}px`;
+
+            themeSelect.value = selectedTheme;
+            fontSizeSlider.value = savedFontSize;
+        }
+
+        // Ayarları kaydetme ve uygulama
+        applySettingsButton.addEventListener('click', function() {
+            localStorage.setItem('theme', themeSelect.value);
+            localStorage.setItem('fontSize', fontSizeSlider.value);
+            applyThemeAndFontSize();
+            alert('Ayarlar kaydedildi!');
+        });
+
+        // Sayfa yüklendiğinde ayarları uygula
+        window.addEventListener('load', applyThemeAndFontSize);
+
+        // Slider değeri değiştikçe güncel yazı tipi boyutunu göster
+        fontSizeSlider.addEventListener('input', function() {
+            currentFontSizeSpan.textContent = `${this.value}px`;
+        });
+    </script>
 </body>
 </html>
