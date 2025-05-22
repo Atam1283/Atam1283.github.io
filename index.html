@@ -15,8 +15,15 @@
     body {
       margin: 0;
       padding: 0;
-      background-color: #fff;
       font-family: Arial, sans-serif;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .wrap-body {
+      flex: 1;
     }
 
     header .wrap-header {
@@ -39,7 +46,6 @@
       display: flex;
       justify-content: flex-end;
       margin: 5px 20px 20px 0;
-      padding-top: 0;
     }
 
     .search-container input[type="text"] {
@@ -57,30 +63,38 @@
       box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
     }
 
+    /* Footer - kemalataturk.net tarzı */
     footer {
-      background-color: #111;
-      padding: 30px 0;
-    }
-
-    footer .social-icons {
+      background-color: #000;
+      padding: 30px 0 10px;
+      border-top: 1px solid #444;
       text-align: center;
-      margin-bottom: 20px;
     }
 
-    footer .social-icons a {
-      margin: 0 10px;
+    .social-icons {
+      margin-bottom: 10px;
+    }
+
+    .social-icons a {
+      margin: 0 8px;
       display: inline-block;
+      transition: transform 0.3s;
     }
 
-    footer .social-icons img {
-      width: 30px;
-      height: 30px;
+    .social-icons a:hover {
+      transform: scale(1.1);
+    }
+
+    .social-icons img {
+      width: 24px;
+      height: 24px;
+      filter: brightness(0) invert(1); /* beyaz görünüm */
     }
 
     footer p {
-      color: #aaa;
-      font-size: 14px;
-      text-align: center;
+      color: #ccc;
+      font-size: 13px;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -98,29 +112,28 @@
       </div>
     </header>
 
-    <!-- Container -->
+    <!-- Ana içerik (boş) -->
     <section id="container">
       <div class="zerogrid">
         <div class="wrap-container clearfix">
           <div id="main-content">
             <div class="row wrap-content">
-              <!-- İçerik boş -->
+              <!-- İçerik buraya -->
             </div>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- Footer -->
-    <footer>
-      <div class="social-icons">
-        <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Instagram" /></a>
-        <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Twitter" /></a>
-        <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="YouTube" /></a>
-        <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="GitHub" /></a>
-      </div>
-      <p>© 2025 Tüm Hakları Saklıdır - atam1283.github.io</p>
-    </footer>
   </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-icons">
+      <a href="#" target="_blank" title="Instagram"><img src="https://kemalataturk.net/img/ig.svg" alt="Instagram" /></a>
+      <a href="#" target="_blank" title="YouTube"><img src="https://kemalataturk.net/img/yt.svg" alt="YouTube" /></a>
+      <a href="#" target="_blank" title="Twitter"><img src="https://kemalataturk.net/img/tw.svg" alt="Twitter" /></a>
+    </div>
+    <p>© 2025 Tüm Hakları Saklıdır - atam1283.github.io</p>
+  </footer>
 </body>
 </html>
