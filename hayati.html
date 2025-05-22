@@ -2,42 +2,55 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8" />
-<title>Atatürk - Hayatı</title>
+<title>Hayatı - Atatürk</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
+  /* GENEL */
   body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #fff;
     color: #222;
-    padding-bottom: 70px;
+    padding-bottom: 70px; /* Footer için boşluk */
   }
 
-  /* HEADER */
-  .header-wrapper {
-    background: white;
-    padding: 10px 20px;
+  /* ÜST MENU ve LOGO */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    /* Gri çizgiyi kaldırmak için aşağıdaki özellikler tamamen kaldırıldı */
-    border-bottom: none !important;
-    box-shadow: none !important;
-    position: relative;
-    z-index: 1000;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    z-index: 1100;
+    /* Anasayfadaki menünün altında gri çizgi yok */
   }
 
   .logo {
     width: 120px;
     height: auto;
     display: block;
+    object-fit: contain;
   }
 
   nav.menu {
-    margin-left: 20px;
-    white-space: nowrap;
-    overflow-x: auto;
     flex-grow: 1;
+    margin-left: 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  nav.menu::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  nav.menu::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
   }
 
   nav.menu a {
@@ -46,60 +59,52 @@
     color: #000;
     text-decoration: none;
     font-weight: 600;
-    border-bottom: 3px solid transparent;
-    transition: all 0.3s ease;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 15px;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.3s ease, color 0.3s ease;
   }
 
   nav.menu a:hover,
   nav.menu a.active {
-    border-bottom: 3px solid #e30b17;
     color: #e30b17;
+    border-bottom-color: #e30b17;
   }
 
-  nav.menu::-webkit-scrollbar {
-    height: 5px;
-  }
-  nav.menu::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 10px;
-  }
-
-  /* İçerik */
-  .content {
+  /* İÇERİK ALANI */
+  main.content {
     max-width: 900px;
-    margin: 30px auto 100px;
+    margin: 110px auto 100px; /* Header yüksekliği + boşluk */
     padding: 0 20px;
   }
 
-  .section {
+  /* BÖLÜMLER */
+  section {
     margin-bottom: 40px;
   }
 
-  .section h2 {
+  section h2 {
     border-bottom: 2px solid #e30b17;
     padding-bottom: 5px;
     color: #e30b17;
+    font-weight: 700;
   }
 
-  /* Sosyal medya footer: Ana sayfadaki ile birebir */
-  .footer-social {
-    background: #000;
-    color: #fff;
-    padding: 10px 0;
+  /* SOSYAL MEDYA ALANI - FOOTER */
+  footer.footer-social {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
+    background: #000;
     display: flex;
     justify-content: center;
     gap: 40px;
-    z-index: 1000;
+    padding: 10px 0;
+    z-index: 1100;
   }
 
-  .footer-social a {
-    display: inline-flex;
+  footer.footer-social a {
+    display: flex;
     align-items: center;
     justify-content: center;
     width: 36px;
@@ -108,29 +113,32 @@
     transition: fill 0.3s ease;
   }
 
-  .footer-social svg {
-    width: 100%;
-    height: 100%;
+  footer.footer-social svg {
+    width: 24px;
+    height: 24px;
     fill: #fff;
     transition: fill 0.3s ease;
   }
 
-  .footer-social a:hover svg {
+  footer.footer-social a:hover svg {
     fill: #e30b17;
   }
 
+  /* Responsive */
   @media (max-width: 600px) {
-    .header-wrapper {
-      flex-direction: column;
-      align-items: flex-start;
+    header {
+      flex-wrap: wrap;
+      padding: 10px 15px;
     }
+
     nav.menu {
       margin-left: 0;
       margin-top: 10px;
       width: 100%;
       overflow-x: scroll;
     }
-    .footer-social {
+
+    footer.footer-social {
       gap: 25px;
       padding: 10px 0;
     }
@@ -139,48 +147,53 @@
 </head>
 <body>
 
-<div class="header-wrapper">
-  <img src="images/logo.png" alt="Logo" class="logo" />
-  <nav class="menu">
+<header>
+  <img src="images/logo.png" alt="Atatürk Logo" class="logo" />
+  <nav class="menu" role="navigation" aria-label="Ana Menü">
     <a href="index.html">Anasayfa</a>
     <a href="hayatı.html" class="active">Hayatı</a>
     <a href="galeri.html">Galeri</a>
     <a href="gerisayim.html">Geri Sayım</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
-</div>
+</header>
 
-<div class="content">
-  <!-- İçerikler buraya -->
-  <div class="section">
+<main class="content" role="main">
+  <section>
     <h2>Çocukluk ve Gençlik</h2>
-    <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu...</p>
-  </div>
-  <!-- Diğer bölümler -->
-</div>
+    <p>Mustafa Kemal Atatürk, 1881 yılında Selanik’te doğmuştur. İlk öğrenimini burada tamamladıktan sonra askeri eğitim hayatına başlamıştır.</p>
+  </section>
 
-<div class="footer-social" aria-label="Sosyal Medya">
+  <section>
+    <h2>Askerî Hayatı</h2>
+    <p>Askerî eğitimini tamamladıktan sonra Osmanlı ordusunda çeşitli görevlerde bulunmuş ve deneyim kazanmıştır.</p>
+  </section>
+
+  <section>
+    <h2>Milli Mücadele</h2>
+    <p>Birinci Dünya Savaşı sonrasında Anadolu’da başlayan bağımsızlık mücadelesinin lideri olarak öne çıkmıştır.</p>
+  </section>
+
+  <section>
+    <h2>Cumhuriyetin Kuruluşu</h2>
+    <p>1923 yılında Türkiye Cumhuriyeti’ni kurarak modern Türkiye’nin temellerini atmıştır.</p>
+  </section>
+
+  <section>
+    <h2>Reformlar</h2>
+    <p>Eğitim, hukuk, ekonomi ve sosyal alanlarda pek çok reform gerçekleştirerek ülkeyi çağdaşlaştırmıştır.</p>
+  </section>
+</main>
+
+<footer class="footer-social" role="contentinfo" aria-label="Sosyal Medya">
   <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
       <path d="M22 12a10 10 0 1 0-11.5 9.87v-6.99H8v-2.88h2.5v-2.2c0-2.46 1.47-3.82 3.72-3.82 1.08 0 2.22.2 2.22.2v2.44h-1.24c-1.22 0-1.6.76-1.6 1.54v1.84h2.72l-.44 2.88h-2.28v6.99A10 10 0 0 0 22 12z"/>
     </svg>
   </a>
   <a href="https://twitter.com" target="_blank" aria-label="Twitter">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
       <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.28 4.28 0 0 0 1.88-2.37 8.59 8.59 0 0 1-2.7 1.03 4.28 4.28 0 0 0-7.29 3.9 12.14 12.14 0 0 1-8.82-4.47 4.28 4.28 0 0 0 1.32 5.72 4.25 4.25 0 0 1-1.94-.53v.05a4.28 4.28 0 0 0 3.44 4.19 4.28 4.28 0 0 1-1.93.07 4.28 4.28 0 0 0 4 3 8.6 8.6 0 0 1-5.33 1.83A8.78 8.78 0 0 1 2 18.57a12.13 12.13 0 0 0 6.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.19 0-.38-.01-.56A8.7 8.7 0 0 0 22.46 6z"/>
     </svg>
   </a>
-  <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm8 3a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-5 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"/>
-    </svg>
-  </a>
-  <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path d="M4.98 3.5C3.33 3.5 2 4.8 2 6.4c0 1.57 1.28 2.9 2.98 2.9h.03c1.72 0 2.98-1.33 2.98-2.9-.02-1.6-1.27-2.9-3-2.9zM2.4 8.7h5.13v11.3H2.4V8.7zM9.58 8.7h4.92v1.5h.07c.69-1.3 2.37-2.7 4.9-2.7 5.25 0 6.2 3.46 6.2 7.95v9.55H20v-8.43c0-2.01-.04-4.6-2.8-4.6-2.8 0-3.23 2.19-3.23 4.45v8.58H9.58V8.7z"/>
-    </svg>
-  </a>
-</div>
-
-</body>
-</html>
+  <a href="https://www.instagram.com" target="_blank" aria-label="
