@@ -10,7 +10,8 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background: #fff;
-      padding-bottom: 80px;
+      padding-top: 140px; /* Menü ve logoya yer bırak */
+      padding-bottom: 80px; /* Footer için boşluk */
     }
     .logo {
       position: fixed;
@@ -21,6 +22,7 @@
       border-radius: 10px;
       background: #fff;
       padding: 5px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Plaka efekti */
     }
     nav.menu {
       position: fixed;
@@ -32,6 +34,7 @@
       z-index: 1000;
       overflow-x: auto;
       white-space: nowrap;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Plaka efekti */
     }
     nav.menu a {
       display: inline-block;
@@ -65,6 +68,14 @@
       font-size: 9px;
       color: #666;
       margin-top: 3px;
+    }
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.7;
+      color: #222;
+      font-size: 16px;
     }
     footer {
       position: fixed;
@@ -113,11 +124,13 @@
   <a href="index.html" class="logo">
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
+
   <!-- Sağ üstte değişen söz -->
   <div class="quote-box" id="quote-box">
     <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
     <div class="quote-source" id="quote-source">— TBMM, 1920</div>
   </div>
+
   <!-- Menü -->
   <nav class="menu">
     <a href="index.html">Anasayfa</a>
@@ -132,24 +145,17 @@
   </nav>
 
   <!-- İçerik -->
-  <main style="margin-top: 160px; padding: 20px; max-width: 900px; margin-left: auto; margin-right: auto; font-family: Arial, sans-serif; line-height: 1.7; color: #222;">
-    <h2 style="color: #e30b17;">Mustafa Kemal Atatürk'ün Hayatı</h2>
-    <p>
-      Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım’dır. Küçük yaşta babasını kaybeden Atatürk, eğitimine annesinin isteğiyle Mahalle Mektebi’nde başladı. Daha sonra modern eğitim veren Şemsi Efendi Mektebi’ne geçti. Orta öğrenimini Selanik Mülkiye Rüştiyesi ve Askerî Rüştiye’de tamamladıktan sonra Manastır Askerî İdadisi’ni bitirdi. 1899’da İstanbul’daki Harp Okulu’na girerek 1902’de Teğmen, 1905’te Harp Akademisi’nden Kurmay Yüzbaşı olarak mezun oldu.
-    </p>
-    <p>
-      Askerî kariyerinde Trablusgarp ve Balkan Savaşları'na katıldı. 1915’te Çanakkale Cephesi’nde gösterdiği üstün başarılarla Anafartalar Kahramanı olarak tanındı. 1916’da Tuğgeneral oldu. 1919’da Samsun’a çıkarak Kurtuluş Savaşı’nı başlattı. Erzurum ve Sivas Kongreleri’ni düzenleyerek halkı örgütledi. 23 Nisan 1920’de Türkiye Büyük Millet Meclisi’ni kurdu ve başkan seçildi.
-    </p>
-    <p>
-      1921’de Sakarya Meydan Muharebesi’nde büyük zafer kazandı, 1922’de Başkomutanlık Meydan Muharebesi ile düşman ordularını yendi. 29 Ekim 1923’te Cumhuriyet ilan edildi ve Mustafa Kemal, Türkiye Cumhuriyeti’nin ilk Cumhurbaşkanı oldu. 1934’te kendisine “Atatürk” soyadı verildi.
-    </p>
-    <p>
-      Atatürk, modern bir Türkiye için kapsamlı reformlar gerçekleştirdi. Halifeliği kaldırdı, Medeni Kanun’u kabul etti, Latin alfabesini getirdi. Kadınlara seçme ve seçilme hakkı tanıdı. Ekonomi, eğitim, hukuk, tarım ve kültür alanlarında büyük dönüşümler yaptı. “Yurtta sulh, cihanda sulh” ilkesiyle barışçıl bir dış politika benimsedi.
-    </p>
-    <p>
-      Atatürk, 10 Kasım 1938’de İstanbul Dolmabahçe Sarayı’nda hayata gözlerini yumdu. Türk milleti onu minnet ve saygıyla anmaktadır. Devrimleri ve ilkeleri, çağdaş Türkiye Cumhuriyeti'nin temelini oluşturmaya devam etmektedir.
-    </p>
-  </main>
+  <div class="content">
+    <h2>Mustafa Kemal Atatürk’ün Hayatı</h2>
+    <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım’dır. İlköğrenimini Şemsi Efendi Mektebi'nde tamamladıktan sonra askerî eğitimine devam etti.</p>
+    <p>1893’te Selanik Askerî Rüştiyesi'ne başladı. Burada matematik öğretmeni ona “Kemal” adını verdi. Daha sonra Manastır Askerî İdadisi, İstanbul Harp Okulu ve Harp Akademisi’nde eğitim gördü.</p>
+    <p>1905’te kurmay yüzbaşı olarak mezun oldu ve Şam’da 5. Ordu’da göreve başladı. 1909’da İstanbul’daki 31 Mart Vakası’nı bastırmak için Hareket Ordusu'na katıldı.</p>
+    <p>1911’de Trablusgarp Savaşı’na katıldı. Balkan Savaşları'nda Çanakkale cephesinde büyük başarılar gösterdi. 1915’te Anafartalar Grup Komutanlığı’na getirildi ve Çanakkale Zaferi'nin kazanılmasında büyük rol oynadı.</p>
+    <p>1919’da Samsun’a çıkarak Kurtuluş Savaşı'nı başlattı. Erzurum ve Sivas kongreleriyle ulusal direnişi örgütledi. 23 Nisan 1920’de Türkiye Büyük Millet Meclisi’ni açtı.</p>
+    <p>1921’de Sakarya Meydan Muharebesi, 1922’de Büyük Taarruz zaferleriyle işgallere son verdi. 29 Ekim 1923’te Türkiye Cumhuriyeti’ni ilan etti ve ilk Cumhurbaşkanı oldu.</p>
+    <p>Atatürk, eğitim, hukuk, ekonomi ve sosyal alanlarda pek çok reform gerçekleştirdi. 1934’te Soyadı Kanunu ile “Atatürk” soyadını aldı.</p>
+    <p>10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayatını kaybetti. Türkiye Cumhuriyeti’nin kurucusu olarak Türk milletinin kalbinde ölümsüzleşmiştir.</p>
+  </div>
 
   <!-- Footer -->
   <footer>
