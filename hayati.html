@@ -13,7 +13,6 @@
     html, body {
       overflow-x: hidden;
     }
-
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -28,7 +27,6 @@
       width: 100%;
       background: #fff;
       z-index: 1200;
-  
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
@@ -83,6 +81,7 @@
       padding: 0 20px;
       line-height: 1.8;
       font-size: 16px;
+      text-align: left;
     }
     main {
       margin-top: 20px;
@@ -91,74 +90,10 @@
       align-items: center;
       min-height: 60vh;
     }
-.menu-image-container img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
-    .typewriter-box {
-      color: #e30b17;
-      position: fixed;
-      margin-right: 80%;
-    }
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: #000;
-      height: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 28px;
-      z-index: 1000;
-    }
-    footer a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 40px;
-      height: 40px;
-      border: 1px solid #888;
-      border-radius: 50%;
-      color: #fff;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    footer a:hover {
-      border-color: #e30b17;
-      color: #e30b17;
-    }
-    footer svg {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
-    }
-    @media (max-width: 800px) {
-      header, .quote-box {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav.menu {
-        font-size: 14px;
-      }
-    }
-    @media (max-width: 600px) {
-      .logo img { width: 80px; }
-      .quote-box { font-size: 10px; max-width: 150px; }
-      nav.menu a { padding: 12px 10px; font-size: 13px; }
-      main { margin-top: 120px; }
-      .typewriter-box { font-size: 14px; }
-      footer { height: 50px; }
-      footer a { width: 32px; height: 32px;}
-      footer svg { width: 16px; height: 16px;}
-    }
     section {
       margin-bottom: 40px;
+      text-align: left;
     }
-
     section h2 {
       border-left: 5px solid #e30b17;
       padding-left: 10px;
@@ -166,7 +101,9 @@
       color: #e30b17;
       font-weight: bold;
     }
-
+    p {
+      color: #fff;
+    }
     .social-icons {
       max-width: 900px;
       margin: 0 auto 40px;
@@ -175,7 +112,6 @@
       gap: 40px;
     }
     .social-icons a {
-
       display: flex;
       align-items: center;
       justify-content: center;
@@ -193,7 +129,6 @@
     .social-icons a:hover svg {
       fill: #e30b17;
     }
-
     footer.footer-social {
       position: fixed;
       bottom: 0;
@@ -206,41 +141,31 @@
       padding: 10px 0;
       z-index: 1100;
     }
-    p
-    {
-      color: #fff;
-    }
     footer.footer-social svg {
       width: 24px;
       height: 24px;
       fill: #fff;
       transition: fill 0.3s ease;
     }
-
     footer.footer-social a:hover svg {
       fill: #e30b17;
     }
-
-    @media (max-width: 600px) {
-      header {
-        flex-wrap: wrap;
-        padding: 10px 15px;
+    @media (max-width: 800px) {
+      header, .quote-box {
+        flex-direction: column;
+        align-items: flex-start;
       }
-
       nav.menu {
-        margin-left: 0;
-        margin-top: 10px;
-        width: 100%;
+        font-size: 14px;
       }
-
-      .social-icons {
-        gap: 25px;
-      }
-
-      footer.footer-social {
-        gap: 25px;
-        padding: 10px 0;
-      }
+    }
+    @media (max-width: 600px) {
+      .logo img { width: 80px; }
+      .quote-box { font-size: 10px; max-width: 150px; }
+      nav.menu a { padding: 12px 10px; font-size: 13px; }
+      main { margin-top: 120px; }
+      footer.footer-social { gap: 25px; }
+      .social-icons { gap: 25px; }
     }
   </style>
 </head>
@@ -269,22 +194,22 @@
   <main class="content" role="main">
     <section>
       <h2>Çocukluk ve Gençlik Yılları</h2>
-      <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım’dır. Küçük yaşlarda eğitimine başlamış, önce Şemsi Efendi Mektebi'nde sonra da askeri okullarda öğrenim görmüştür.</p>
+      <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. Küçük yaşlarda eğitimine başlamış, önce Şemsi Efendi Mektebi'nde sonra da askeri okullarda öğrenim görmüştür.</p>
     </section>
 
     <section>
       <h2>Askeri Kariyeri</h2>
-      <p>Askeri eğitimini başarıyla tamamlayan Atatürk, çeşitli cephelerde görev almış, Trablusgarp ve Çanakkale Savaşları’nda önemhi başarılara imza atmıştır. Askeri yetenekleri ve liderliği ile dikkat çekmiştir.</p>
+      <p>Askeri eğitimini başarıyla tamamlayan Atatürk, çeşitli cephelerde görev almış, Trablusgarp ve Çanakkale Savaşları'nda önemli başarılara imza atmıştır. Askeri yetenekleri ve liderliği ile dikkat çekmiştir.</p>
     </section>
 
     <section>
       <h2>Kurtuluş Savaşı ve Milli Mücadele</h2>
-      <p>1919 yılında Samsun’a çıkarak Kurtuluş Savaşı’nı başlatan Mustafa Kemal, Türk milletinin bağımsızlık mücadelesine önderlik etmiştir. Erzurum ve Sivas kongreleriyle milli iradeyi temsil eden bir lider olarak öne çıkmıştır.</p>
+      <p>1919 yılında Samsun'a çıkarak Kurtuluş Savaşı'nı başlatan Mustafa Kemal, Türk milletinin bağımsızlık mücadelesine önderlik etmiştir. Erzurum ve Sivas kongreleriyle milli iradeyi temsil eden bir lider olarak öne çıkmıştır.</p>
     </section>
 
     <section>
       <h2>Cumhuriyetin İlanı</h2>
-      <p>29 Ekim 1923’te Türkiye Cumhuriyeti’ni ilan etmiş ve ülkenin ilk cumhurbaşkanı olmuştur. Egemenliğin millete ait olduğunu vurgulamış ve laik, çağdaş bir devlet yapısı oluşturmuştur.</p>
+      <p>29 Ekim 1923'te Türkiye Cumhuriyeti'ni ilan etmiş ve ülkenin ilk cumhurbaşkanı olmuştur. Egemenliğin millete ait olduğunu vurgulamış ve laik, çağdaş bir devlet yapısı oluşturmuştur.</p>
     </section>
 
     <section>
@@ -294,7 +219,7 @@
 
     <section>
       <h2>Ölümü</h2>
-      <p>Mustafa Kemal Atatürk, 10 Kasım 1938 tarihinde İstanbul Dolmabahçe Sarayı’nda vefat etmiştir. Ardında bağımsız, laik ve çağdaş bir Türkiye bırakmıştır. Türk milleti onu saygı, sevgi ve minnetle anmaktadır.</p>
+      <p>Mustafa Kemal Atatürk, 10 Kasım 1938 tarihinde İstanbul Dolmabahçe Sarayı'nda vefat etmiştir. Ardında bağımsız, laik ve çağdaş bir Türkiye bırakmıştır. Türk milleti onu saygı, sevgi ve minnetle anmaktadır.</p>
     </section>
   </main>
 
@@ -324,7 +249,6 @@
     </a>
   </footer>
 
-  <!-- index.html'den alınan otomatik söz değiştirme kodu -->
   <script>
     // Alıntı kutusu otomatik değişimi
     const quotes = [
@@ -339,7 +263,7 @@
       document.getElementById("quote-text").textContent = quotes[quoteIndex].text;
       document.getElementById("quote-source").textContent = quotes[quoteIndex].source;
     }
-    setInterval(updateQuote, 5000); // 5 saniyede bir değiştir
+    setInterval(updateQuote, 5000);
   </script>
 </body>
 </html>
