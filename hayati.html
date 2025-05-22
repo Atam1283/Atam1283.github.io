@@ -5,15 +5,16 @@
   <title>Hayatı - Atatürk</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    /* GENEL */
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #fff;
       color: #222;
-      line-height: 1.6;
-      padding-bottom: 80px;
+      padding-bottom: 70px;
     }
 
+    /* ÜST MENU ve LOGO */
     header {
       position: fixed;
       top: 0;
@@ -24,22 +25,27 @@
       align-items: center;
       padding: 10px 20px;
       box-sizing: border-box;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+      z-index: 1100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
-
     .logo {
       width: 120px;
       height: auto;
+      display: block;
+      object-fit: contain;
     }
-
     nav.menu {
       flex-grow: 1;
       margin-left: 20px;
       overflow-x: auto;
       white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none;  /* IE and Edge */
     }
-
+    nav.menu::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
+    }
     nav.menu a {
       display: inline-block;
       padding: 14px 20px;
@@ -48,38 +54,35 @@
       font-weight: 600;
       font-size: 15px;
       border-bottom: 3px solid transparent;
-      transition: 0.3s;
+      transition: border-color 0.3s ease, color 0.3s ease;
     }
-
     nav.menu a:hover,
     nav.menu a.active {
       color: #e30b17;
       border-bottom-color: #e30b17;
     }
 
+    /* İÇERİK ALANI */
     main.content {
       max-width: 900px;
-      margin: 110px auto 0;
-      padding: 20px;
+      margin: 110px auto 100px;
+      padding: 0 20px;
+      line-height: 1.6;
+      font-size: 16px;
     }
 
+    /* BÖLÜMLER */
     section {
       margin-bottom: 40px;
     }
-
     section h2 {
-      border-left: 4px solid #e30b17;
-      padding-left: 10px;
+      border-bottom: 2px solid #e30b17;
+      padding-bottom: 5px;
       color: #e30b17;
-      font-size: 22px;
-      margin-bottom: 10px;
+      font-weight: 700;
     }
 
-    section p {
-      font-size: 17px;
-      color: #333;
-    }
-
+    /* FOOTER */
     footer.footer-social {
       position: fixed;
       bottom: 0;
@@ -92,36 +95,39 @@
       padding: 10px 0;
       z-index: 1100;
     }
-
     footer.footer-social a {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 36px;
       height: 36px;
+      cursor: pointer;
+      transition: fill 0.3s ease;
     }
-
     footer.footer-social svg {
       width: 24px;
       height: 24px;
       fill: #fff;
-      transition: 0.3s;
+      transition: fill 0.3s ease;
     }
-
     footer.footer-social a:hover svg {
       fill: #e30b17;
     }
 
+    /* Responsive */
     @media (max-width: 600px) {
       header {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-wrap: wrap;
+        padding: 10px 15px;
       }
-
       nav.menu {
         margin-left: 0;
         margin-top: 10px;
         width: 100%;
+      }
+      footer.footer-social {
+        gap: 25px;
+        padding: 10px 0;
       }
     }
   </style>
@@ -129,7 +135,7 @@
 <body>
   <header>
     <img src="images/logo.png" alt="Atatürk Logo" class="logo" />
-    <nav class="menu" aria-label="Ana Menü">
+    <nav class="menu" role="navigation" aria-label="Ana Menü">
       <a href="index.html">Anasayfa</a>
       <a href="hayatı.html" class="active">Hayatı</a>
       <a href="galeri.html">Galeri</a>
@@ -138,7 +144,7 @@
     </nav>
   </header>
 
-  <main class="content">
+  <main class="content" role="main">
     <section>
       <h2>Çocukluk ve Gençlik</h2>
       <p>Mustafa Kemal Atatürk, 1881 yılında Selanik’te doğmuştur. İlk öğrenimini burada tamamladıktan sonra askeri eğitim hayatına başlamıştır.</p>
@@ -161,15 +167,21 @@
     </section>
   </main>
 
-  <footer class="footer-social" aria-label="Sosyal Medya">
+  <footer class="footer-social" role="contentinfo" aria-label="Sosyal Medya">
     <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.87v-6.99H8v-2.88h2.5v-2.2c0-2.46 1.47-3.82 3.72-3.82 1.08 0 2.22.2 2.22.2v2.44h-1.24c-1.22 0-1.6.76-1.6 1.54v1.84h2.72l-.44 2.88h-2.28v6.99A10 10 0 0 0 22 12z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
+        <path d="M22 12a10 10 0 1 0-11.5 9.87v-6.99H8v-2.88h2.5v-2.2c0-2.46 1.47-3.82 3.72-3.82 1.08 0 2.22.2 2.22.2v2.44h-1.24c-1.22 0-1.6.76-1.6 1.54v1.84h2.72l-.44 2.88h-2.28v6.99A10 10 0 0 0 22 12z"/>
+      </svg>
     </a>
     <a href="https://twitter.com" target="_blank" aria-label="Twitter">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.28 4.28 0 0 0 1.88-2.37 8.59 8.59 0 0 1-2.7 1.03 4.28 4.28 0 0 0-7.29 3.9 12.14 12.14 0 0 1-8.82-4.47 4.28 4.28 0 0 0 1.32 5.72 4.25 4.25 0 0 1-1.94-.53v.05a4.28 4.28 0 0 0 3.44 4.19 4.28 4.28 0 0 1-1.93.07 4.28 4.28 0 0 0 4 3 8.6 8.6 0 0 1-5.33 1.83A8.78 8.78 0 0 1 2 18.57a12.13 12.13 0 0 0 6.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.19 0-.38-.01-.56A8.7 8.7 0 0 0 22.46 6z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
+        <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.28 4.28 0 0 0 1.88-2.37 8.59 8.59 0 0 1-2.7 1.03 4.28 4.28 0 0 0-7.29 3.9 12.14 12.14 0 0 1-8.82-4.47 4.28 4.28 0 0 0 1.32 5.72 4.25 4.25 0 0 1-1.94-.53v.05a4.28 4.28 0 0 0 3.44 4.19 4.28 4.28 0 0 1-1.93.07 4.28 4.28 0 0 0 4 3 8.6 8.6 0 0 1-5.33 1.83A8.78 8.78 0 0 1 2 18.57a12.13 12.13 0 0 0 6.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.19 0-.38-.01-.56A8.7 8.7 0 0 0 22.46 6z"/>
+      </svg>
     </a>
     <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5.25-.75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
+        <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5.25-.88a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+      </svg>
     </a>
   </footer>
 </body>
