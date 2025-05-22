@@ -76,18 +76,6 @@
       display: block;
       margin: 0 auto;
     }
-    .typewriter-box {
-      margin: 40px auto;
-      max-width: 90%;
-      font-size: 16px;
-      color: #000;
-      font-family: monospace;
-      border-left: 2px solid #e30b17;
-      padding-left: 10px;
-      white-space: pre-wrap;
-      overflow-wrap: break-word;
-      min-height: 80px;
-    }
     footer {
       position: fixed;
       bottom: 0;
@@ -154,10 +142,8 @@
   </nav>
   <!-- Görsel -->
   <div class="menu-image-container">
-    <!-- Görsel kaldırıldı -->
+    <img src="images/ataturk5.jpg" alt="Atatürk" />
   </div>
-  <!-- Daktilo kutusu -->
-  <div class="typewriter-box" id="typewriter-box"></div>
   <!-- Footer -->
   <footer>
     <a href="mailto:email@example.com" aria-label="Gmail">
@@ -190,32 +176,6 @@
       document.getElementById("quote-source").textContent = quotes[quoteIndex].source;
     }
     setInterval(updateQuote, 5000);
-    const messages = [
-      "Hazırlayan: Muhammed Efe KORKMAZ",
-      "Bu site Atatürk'ü tanıtmak amacıyla yapılmıştır.",
-      "İçeriğinde hayatı, sözleri, devrimleri yer almaktadır."
-    ];
-    let msgIndex = 0;
-    const typewriterBox = document.getElementById("typewriter-box");
-    function showMessage() {
-      typewriterBox.textContent = "";
-      let text = messages[msgIndex];
-      let i = 0;
-      function typeChar() {
-        if (i < text.length) {
-          typewriterBox.textContent += text.charAt(i);
-          i++;
-          setTimeout(typeChar, 50);
-        } else {
-          setTimeout(() => {
-            msgIndex = (msgIndex + 1) % messages.length;
-            showMessage();
-          }, 5000);
-        }
-      }
-      typeChar();
-    }
-    showMessage();
   </script>
 </body>
 </html>
