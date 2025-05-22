@@ -11,6 +11,7 @@
       background: #fff;
       padding-bottom: 70px;
     }
+
     /* Logo */
     .logo {
       position: fixed;
@@ -24,6 +25,7 @@
       background: #fff;
       padding: 5px;
     }
+
     /* Menü */
     nav.menu {
       position: fixed;
@@ -53,6 +55,7 @@
     nav.menu::-webkit-scrollbar {
       display: none;
     }
+
     /* Sağ üstte değişen söz */
     .quote-box {
       position: fixed;
@@ -74,6 +77,7 @@
       margin-top: 3px;
       text-align: right;
     }
+
     /* Menü altı görsel */
     .menu-image-container {
       margin-top: 130px;
@@ -83,6 +87,18 @@
       max-width: 100%;
       height: auto;
     }
+
+    /* Fotoğraf altı açıklama */
+    .image-caption {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #444;
+      text-align: center;
+      font-style: italic;
+      transition: opacity 0.5s ease-in-out;
+      opacity: 1;
+    }
+
     /* Footer */
     footer {
       position: fixed;
@@ -125,11 +141,13 @@
   <a href="index.html" class="logo">
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
+
   <!-- Sağ üstte değişen yazı -->
   <div class="quote-box" id="quote-box">
     <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
     <div class="quote-source" id="quote-source">— TBMM, 1920</div>
   </div>
+
   <!-- Menü -->
   <nav class="menu">
     <a href="index.html">Anasayfa</a>
@@ -142,37 +160,41 @@
     <a href="kronoloji.html">Kronoloji</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
+
   <!-- Menü altı görsel -->
   <div class="menu-image-container">
     <img src="images/ataturk5.jpg" alt="Atatürk" class="menu-image" />
   </div>
+
+  <!-- Fotoğraf altı açıklama -->
+  <div class="image-caption" id="image-caption">
+    Bu site Mustafa Kemal Atatürk'ün yaşamını tanıtmak için hazırlanmıştır.
+  </div>
+
   <!-- Footer -->
   <footer>
     <a href="mailto:email@example.com" aria-label="Gmail">
-      <!-- Gmail SVG -->
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/>
       </svg>
     </a>
     <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-      <!-- Instagram SVG -->
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
       </svg>
     </a>
     <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-      <!-- Facebook SVG -->
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M22 12A10 10 0 1 0 10 22v-7h-2v-3h2v-2c0-2.2 1.3-3.5 3.3-3.5.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.7h2.6L15 15h-2v7a10 10 0 0 0 9-10z"/>
       </svg>
     </a>
     <a href="https://twitter.com" target="_blank" aria-label="Twitter">
-      <!-- Twitter SVG -->
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.3 4.3 0 0 0 1.88-2.37c-.84.5-1.78.86-2.77 1.06a4.28 4.28 0 0 0-7.29 3.9A12.13 12.13 0 0 1 3.15 4.6a4.28 4.28 0 0 0 1.33 5.71 4.24 4.24 0 0 1-1.94-.54v.05a4.28 4.28 0 0 0 3.43 4.2 4.27 4.27 0 0 1-1.93.07 4.29 4.29 0 0 0 4 2.97 8.6 8.6 0 0 1-5.3 1.83A8.82 8.82 0 0 1 2 19.54a12.13 12.13 0 0 0 6.56 1.92c7.88 0 12.2-6.53 12.2-12.2v-.56A8.6 8.6 0 0 0 24 5.13a8.4 8.4 0 0 1-2.43.67 4.27 4.27 0 0 0 1.89-2.35z"/>
       </svg>
     </a>
   </footer>
+
   <script>
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "— TBMM, 1920" },
@@ -180,13 +202,34 @@
       { text: '"Hayatta en hakiki mürşit ilimdir."', source: "— Atatürk" },
       { text: '"Türk milleti çalışkandır, zekidir."', source: "— Atatürk" }
     ];
-    let index = 0;
+
+    let quoteIndex = 0;
     function changeQuote() {
-      index = (index + 1) % quotes.length;
-      document.getElementById("quote-text").textContent = quotes[index].text;
-      document.getElementById("quote-source").textContent = quotes[index].source;
+      quoteIndex = (quoteIndex + 1) % quotes.length;
+      document.getElementById("quote-text").textContent = quotes[quoteIndex].text;
+      document.getElementById("quote-source").textContent = quotes[quoteIndex].source;
     }
     setInterval(changeQuote, 5000);
+
+    // Fotoğraf altı açıklama
+    const captions = [
+      "Bu site Mustafa Kemal Atatürk'ün yaşamını tanıtmak için hazırlanmıştır.",
+      "Hazırlayan: Ahmet Yılmaz",
+      "Milli değerleri tanıtmayı amaçlayan bir kaynak.",
+      "Atatürk’ün fikirlerini yaşatma amacı taşır.",
+      "Türk gençliği için bilgi ve ilham kaynağıdır."
+    ];
+    let captionIndex = 0;
+    function changeCaption() {
+      const captionEl = document.getElementById("image-caption");
+      captionEl.style.opacity = 0;
+      setTimeout(() => {
+        captionIndex = (captionIndex + 1) % captions.length;
+        captionEl.textContent = captions[captionIndex];
+        captionEl.style.opacity = 1;
+      }, 500);
+    }
+    setInterval(changeCaption, 5000);
   </script>
 </body>
 </html>
