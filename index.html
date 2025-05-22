@@ -16,7 +16,6 @@
       padding-bottom: 80px;
     }
 
-    /* Logo */
     .logo {
       position: fixed;
       top: 10px;
@@ -29,7 +28,6 @@
       padding: 5px;
     }
 
-    /* Menü */
     nav.menu {
       position: fixed;
       top: 80px;
@@ -62,7 +60,6 @@
       display: none;
     }
 
-    /* Sağ üst söz kutusu */
     .quote-box {
       position: fixed;
       top: 10px;
@@ -73,7 +70,6 @@
       text-align: right;
       font-family: Arial, sans-serif;
       z-index: 1200;
-      animation: fadeIn 1s ease-in-out;
     }
 
     .quote-source {
@@ -82,9 +78,8 @@
       margin-top: 3px;
     }
 
-    /* Menü altı görsel */
     .menu-image-container {
-      margin-top: 160px;
+      margin-top: 170px; /* Menü + logo yüksekliği kadar boşluk */
       text-align: center;
       position: relative;
       z-index: 1;
@@ -97,9 +92,8 @@
       margin: auto;
     }
 
-    /* Daktilo kutusu */
     .typewriter-box {
-      margin: 30px auto;
+      margin: 40px auto;
       max-width: 90%;
       font-size: 16px;
       color: #000;
@@ -108,7 +102,7 @@
       padding-left: 10px;
       white-space: pre-wrap;
       overflow-wrap: break-word;
-      animation: blink-caret 1s step-end infinite;
+      min-height: 80px;
     }
 
     @keyframes blink-caret {
@@ -116,12 +110,6 @@
       50% { border-color: #e30b17 }
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0 }
-      to { opacity: 1 }
-    }
-
-    /* Footer */
     footer {
       position: fixed;
       bottom: 0;
@@ -221,6 +209,7 @@
   </footer>
 
   <script>
+    // Değişen sözler
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "— TBMM, 1920" },
       { text: '"Yurtta sulh, cihanda sulh."', source: "— Atatürk" },
@@ -237,35 +226,36 @@
 
     setInterval(updateQuote, 5000);
 
-    // Daktilo animasyon
+    // Daktilo metinleri tek tek göster
     const messages = [
-      "Bu web sitesi, Gazi Mustafa Kemal Atatürk'ün hayatını ve mirasını tanıtmak amacıyla hazırlanmıştır.",
-      "İçeriğinde Atatürk'ün hayatı, sözleri, eserleri, devrimleri ve Nutuk gibi önemli başlıklar yer almaktadır.",
-      "Bu sayfa, Muhammed Efe KORKMAZ tarafından hazırlanmıştır."
+      "Hazırlayan: Muhammed Efe KORKMAZ",
+      "Bu site Atatürk'ü tanıtmak amacıyla yapılmıştır.",
+      "İçeriğinde hayatı, sözleri, devrimleri yer almaktadır."
     ];
 
-    let messageIndex = 0;
-    let charIndex = 0;
+    let msgIndex = 0;
     const typewriterBox = document.getElementById("typewriter-box");
 
-    function typeWriter() {
-      if (messageIndex < messages.length) {
-        if (charIndex < messages[messageIndex].length) {
-          typewriterBox.textContent += messages[messageIndex].charAt(charIndex);
-          charIndex++;
-          setTimeout(typeWriter, 40);
+    function showMessage() {
+      typewriterBox.textContent = "";
+      let text = messages[msgIndex];
+      let i = 0;
+      function typeChar() {
+        if (i < text.length) {
+          typewriterBox.textContent += text.charAt(i);
+          i++;
+          setTimeout(typeChar, 50);
         } else {
-          messageIndex++;
-          charIndex = 0;
           setTimeout(() => {
-            typewriterBox.textContent += "\n\n";
-            typeWriter();
-          }, 2000);
+            msgIndex = (msgIndex + 1) % messages.length;
+            showMessage();
+          }, 5000);
         }
       }
+      typeChar();
     }
 
-    typeWriter();
+    showMessage();
   </script>
 </body>
 </html>
