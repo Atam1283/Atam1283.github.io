@@ -2,10 +2,18 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
-  <title>Atatürk</title>
+  <title>Hayatı - Atatürk</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    * { box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      overflow-x: hidden;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -69,18 +77,21 @@
       border-bottom: 3px solid #e30b17;
       color: #e30b17;
     }
+    main.content {
+      max-width: 900px;
+      margin: 120px auto 20px; /* Menüden biraz aşağı */
+      padding: 0 20px;
+      line-height: 1.8;
+      font-size: 16px;
+    }
     main {
       margin-top: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 60vh;
-      position: relative; /* Yeni eklendi */
     }
-    .menu-image-container {
-      position: relative; /* Yeni eklendi */
-    }
-    .menu-image-container img {
+.menu-image-container img {
       max-width: 100%;
       height: auto;
       border-radius: 8px;
@@ -88,15 +99,8 @@
     }
     .typewriter-box {
       color: #e30b17;
-      position: absolute; /* Değiştirildi */
-      left: 20px; /* Yeni eklendi */
-      top: 50%; /* Yeni eklendi */
-      transform: translateY(-50%); /* Yeni eklendi */
-      font-size: 18px; /* Büyütüldü */
-      width: 300px; /* Yeni eklendi */
-      background: rgba(0,0,0,0.5); /* Yeni eklendi */
-      padding: 10px; /* Yeni eklendi */
-      border-radius: 5px; /* Yeni eklendi */
+      position: fixed;
+      margin-right: 80%;
     }
     footer {
       position: fixed;
@@ -146,14 +150,99 @@
       .quote-box { font-size: 10px; max-width: 150px; }
       nav.menu a { padding: 12px 10px; font-size: 13px; }
       main { margin-top: 120px; }
-      .typewriter-box { 
-        font-size: 14px;
-        width: 200px;
-        left: 10px;
-      }
+      .typewriter-box { font-size: 14px; }
       footer { height: 50px; }
       footer a { width: 32px; height: 32px;}
       footer svg { width: 16px; height: 16px;}
+    }
+    section {
+      margin-bottom: 40px;
+    }
+
+    section h2 {
+      border-left: 5px solid #e30b17;
+      padding-left: 10px;
+      margin-bottom: 10px;
+      color: #e30b17;
+      font-weight: bold;
+    }
+
+    /* Sosyal medya ikonlarının ana sayfadakine benzer görünümü */
+
+    .social-icons {
+      max-width: 900px;
+      margin: 0 auto 40px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+    }
+    .social-icons a {
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      transition: fill 0.3s ease;
+    }
+    .social-icons svg {
+      width: 24px;
+      height: 24px;
+      fill: #000;
+      transition: fill 0.3s ease;
+    }
+    .social-icons a:hover svg {
+      fill: #e30b17;
+    }
+
+    footer.footer-social {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 10px 0;
+      z-index: 1100;
+    }
+    p
+    {
+      color: #fff;
+    }
+    footer.footer-social svg {
+      width: 24px;
+      height: 24px;
+      fill: #fff;
+      transition: fill 0.3s ease;
+    }
+
+    footer.footer-social a:hover svg {
+      fill: #e30b17;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-wrap: wrap;
+        padding: 10px 15px;
+      }
+
+      nav.menu {
+        margin-left: 0;
+        margin-top: 10px;
+        width: 100%;
+      }
+
+      .social-icons {
+        gap: 25px;
+      }
+
+      footer.footer-social {
+        gap: 25px;
+        padding: 10px 0;
+      }
     }
   </style>
 </head>
@@ -167,8 +256,8 @@
       <div class="quote-source" id="quote-source">— TBMM, 1920</div>
     </div>
     <nav class="menu" role="navigation" aria-label="Ana menü">
-      <a href="index.html" class="active">Anasayfa</a>
-      <a href="hayati.html">Hayatı</a>
+      <a href="index.html">Anasayfa</a>
+      <a href="hayati.html" class="active">Hayatı</a>
       <a href="galeri.html">Galeri</a>
       <a href="sozleri.html">Sözleri</a>
       <a href="eserleri.html">Eserleri</a>
@@ -178,73 +267,44 @@
       <a href="ayarlar.html">Ayarlar</a>
     </nav>
   </header>
-  
-  <main>
-    <div class="menu-image-container">
-      <img src="images/ataturk5.jpg" alt="Atatürk portresi" />
-      <div class="typewriter-box" id="typewriter-box"></div>
-    </div>
+
+  <main class="content" role="main">
+    <section>
+      <h2>Çocukluk ve Gençlik Yılları</h2>
+      <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım’dır. Küçük yaşlarda eğitimine başlamış, önce Şemsi Efendi Mektebi'nde sonra da askeri okullarda öğrenim görmüştür.</p>
+    </section>
+
+    <section>
+      <h2>Askeri Kariyeri</h2>
+      <p>Askeri eğitimini başarıyla tamamlayan Atatürk, çeşitli cephelerde görev almış, Trablusgarp ve Çanakkale Savaşları’nda önemli başarılara imza atmıştır. Askeri yetenekleri ve liderliği ile dikkat çekmiştir.</p>
+    </section>
+
+    <section>
+      <h2>Kurtuluş Savaşı ve Milli Mücadele</h2>
+      <p>1919 yılında Samsun’a çıkarak Kurtuluş Savaşı’nı başlatan Mustafa Kemal, Türk milletinin bağımsızlık mücadelesine önderlik etmiştir. Erzurum ve Sivas kongreleriyle milli iradeyi temsil eden bir lider olarak öne çıkmıştır.</p>
+    </section>
+
+    <section>
+      <h2>Cumhuriyetin İlanı</h2>
+      <p>29 Ekim 1923’te Türkiye Cumhuriyeti’ni ilan etmiş ve ülkenin ilk cumhurbaşkanı olmuştur. Egemenliğin millete ait olduğunu vurgulamış ve laik, çağdaş bir devlet yapısı oluşturmuştur.</p>
+    </section>
+
+    <section>
+      <h2>İnkılaplar</h2>
+      <p>Harf Devrimi, Medeni Kanun, Eğitim Reformu, Şapka Kanunu gibi birçok inkılapla toplumsal dönüşümü gerçekleştirmiştir. Kadınlara seçme ve seçilme hakkı tanınarak toplumsal eşitlik sağlanmıştır.</p>
+    </section>
+
+    <section>
+      <h2>Ölümü</h2>
+      <p>Mustafa Kemal Atatürk, 10 Kasım 1938 tarihinde İstanbul Dolmabahçe Sarayı’nda vefat etmiştir. Ardında bağımsız, laik ve çağdaş bir Türkiye bırakmıştır. Türk milleti onu saygı, sevgi ve minnetle anmaktadır.</p>
+    </section>
   </main>
-  <footer>
-    <a href="mailto:email@example.com" aria-label="E-posta">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/>
-      </svg>
-    </a>
-    <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1-.001 4.001A2 2 0 0 1 12 9zm4.5-3a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
-      </svg>
-    </a>
+
+  <!-- Ana sayfadaki sosyal ikonları buraya ekliyoruz -->
+  <div class="social-icons" aria-label="Sosyal Medya İkonları">
     <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M22 12A10 10 0 1 0 10 22v-7h-2v-3h2v-2c0-2.2 1.3-3.5 3.3-3.5.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.7h2.6L15 15h-2v7a10 10 0 0 0 9-10z"/>
+        <path d="M22 12a10 10 0 1 0-11.5 9.87v-6.99H8v-2.88h2.5v-2.2c0-2.46 1.47-3.82 3.72-3.82 1.08 0 2.22.2 2.22.2v2.44h-1.24c-1.22 0-1.6.76-1.6 1.54v1.84h2.72l-.44 2.88h-2.28v6.99A10 10 0 0 0 22 12z"/>
       </svg>
     </a>
-  </footer>
-  <script>
-    // Alıntı kutusu otomatik değişimi
-    const quotes = [
-      { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "— TBMM, 1920" },
-      { text: '"Yurtta sulh, cihanda sulh."', source: "— Atatürk" },
-      { text: '"Hayatta en hakiki mürşit ilimdir."', source: "— Atatürk" },
-      { text: '"Türk milleti çalışkandır, zekidir."', source: "— Atatürk" }
-    ];
-    let quoteIndex = 0;
-    function updateQuote() {
-      quoteIndex = (quoteIndex + 1) % quotes.length;
-      document.getElementById("quote-text").textContent = quotes[quoteIndex].text;
-      document.getElementById("quote-source").textContent = quotes[quoteIndex].source;
-    }
-    setInterval(updateQuote, 5000);
-
-    // Daktilo kutusu animasyonu
-    const messages = [
-      "Hazırlayan: Muhammed Efe KORKMAZ",
-      "Bu site Atatürk'ü tanıtmak amacıyla yapılmıştır.",
-      "İçeriğinde hayatı, sözleri, devrimleri yer almaktadır."
-    ];
-    let msgIndex = 0;
-    const typewriterBox = document.getElementById("typewriter-box");
-    function showMessage() {
-      typewriterBox.textContent = "";
-      let text = messages[msgIndex];
-      let i = 0;
-      function typeChar() {
-        if (i < text.length) {
-          typewriterBox.textContent += text.charAt(i);
-          i++;
-          setTimeout(typeChar, 50);
-        } else {
-          setTimeout(() => {
-            msgIndex = (msgIndex + 1) % messages.length;
-            showMessage();
-          }, 5000);
-        }
-      }
-      typeChar();
-    }
-    showMessage();
-  </script>
-</body>
-</html>
+    <a href="https://twitter
