@@ -1,117 +1,315 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Kemal Atatürk</title>
-<style>
-  body {
-    margin: 0;
-    background-color: #000;
-    color: #fff;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  }
-  .menu-image-container {
-    background-color: #000;
-    text-align: center;
-    padding: 0;
-  }
-  .menu-image {
-    max-width: 50%; /* Resim yarı yarıya küçültüldü */
-    height: auto;
-    display: inline-block;
-    background-color: #000;
-  }
-  .image-bottom-bar {
-    background-color: #fff;
-    height: 80px;
-    width: 100%;
-    margin-top: 10px;
-  }
-  nav.menu {
-    background-color: #111;
-    padding: 10px 0;
-    text-align: center;
-  }
-  nav.menu a {
-    color: #fff;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 18px;
-  }
-  nav.menu a:hover {
-    color: #f00;
-  }
-  h1 {
-    font-weight: bold;
-    font-size: 40px;
-    margin: 20px 0 10px 0;
-    text-align: center;
-  }
-  .quote {
-    font-size: 18px;
-    font-style: italic;
-    margin: 10px 20px 30px 20px;
-    text-align: center;
-  }
-  .quote-source {
-    font-size: 14px;
-    margin-bottom: 30px;
-    text-align: center;
-    color: #aaa;
-  }
-  footer {
-    background-color: #000;
-    padding: 20px 0;
-    text-align: center;
-  }
-  footer a {
-    margin: 0 12px;
-    color: #fff;
-    font-size: 26px;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  footer a:hover {
-    color: #f00;
-  }
-</style>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-/>
+  <meta charset="utf-8" />
+  <title>Atatürk</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      padding-bottom: 90px; /* Footer için */
+      min-height: 100vh;
+      padding-top: 120px; /* Menü + logo yüksekliği kadar boşluk */
+      box-sizing: border-box;
+    }
+
+    /* Logo ve Menü kapsayıcı */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      z-index: 1500;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid #d9d9d9;
+      height: 120px;
+      padding: 10px 15px;
+      box-sizing: border-box;
+    }
+
+    /* Logo */
+    .logo {
+      flex: 0 0 auto;
+      width: 120px;
+      height: auto;
+      margin-right: 20px;
+      border-radius: 10px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+
+    /* Menü */
+    nav.menu {
+      flex: 1 1 auto;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* Firefox */
+    }
+    nav.menu::-webkit-scrollbar {
+      display: none;
+    }
+    nav.menu a {
+      display: inline-block;
+      padding: 14px 20px;
+      color: #000;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+    nav.menu a:hover {
+      border-bottom: 3px solid #e30b17;
+      color: #e30b17;
+    }
+
+    /* Sağ üstte değişen yazı */
+    .quote-box {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      color: #222;
+      font-weight: 300;
+      font-size: 9.6px;
+      max-width: 250px;
+      text-align: right;
+      font-family: Arial, sans-serif;
+      z-index: 1600;
+      line-height: 1.2;
+    }
+    .quote-source {
+      font-size: 8px;
+      font-weight: 300;
+      color: #666;
+      margin-top: 3px;
+      text-align: right;
+    }
+
+    /* Menü altı görsel */
+    .menu-image-container {
+      margin-top: 0;
+      text-align: center;
+      z-index: 100; /* Menünün altında kalacak */
+      position: relative;
+    }
+    .menu-image-container img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      user-select: none;
+    }
+
+    /* Footer */
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      z-index: 1000;
+    }
+    footer a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #888;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      color: #fff;
+      text-decoration: none;
+    }
+    footer a:hover {
+      border-color: #e30b17;
+      color: #e30b17;
+    }
+    footer svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    /* Alt bilgi alanı */
+    .bottom-info {
+      position: fixed;
+      bottom: 70px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 16px;
+      color: #222;
+      font-weight: 600;
+      font-family: 'Courier New', Courier, monospace;
+      min-height: 24px;
+      user-select: none;
+      white-space: nowrap;
+      overflow: hidden;
+      letter-spacing: 2px;
+      z-index: 1100;
+    }
+    .author {
+      position: fixed;
+      bottom: 30px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+      font-family: Arial, sans-serif;
+      font-weight: 400;
+      z-index: 1100;
+    }
+
+    /* Responsive küçük ekran için */
+    @media (max-width: 480px) {
+      header {
+        height: 100px;
+        padding: 5px 10px;
+      }
+      .logo {
+        width: 90px;
+        margin-right: 10px;
+      }
+      nav.menu a {
+        padding: 10px 14px;
+        font-size: 13px;
+      }
+      .quote-box {
+        max-width: 150px;
+        font-size: 8px;
+        top: 5px;
+        right: 5px;
+      }
+      .bottom-info {
+        font-size: 14px;
+      }
+      .author {
+        font-size: 12px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <!-- Sağ üstte değişen yazı -->
+  <div class="quote-box" id="quote-box">
+    <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
+    <div class="quote-source" id="quote-source">— TBMM, 1920</div>
+  </div>
+
+  <header>
+    <!-- Logo -->
+    <a href="index.html" class="logo" aria-label="Ana Sayfa">
+      <img src="images/logo.png" alt="Logo" />
+    </a>
+
+    <!-- Menü -->
+    <nav class="menu" role="navigation" aria-label="Ana Menü">
+      <a href="index.html">Anasayfa</a>
+      <a href="hayati.html">Hayatı</a>
+      <a href="galeri.html">Galeri</a>
+      <a href="sozleri.html">Sözleri</a>
+      <a href="eserleri.html">Eserleri</a>
+      <a href="devrimler.html">Devrimleri</a>
+      <a href="nutuk.html">Nutuk</a>
+      <a href="kronoloji.html">Kronoloji</a>
+      <a href="ayarlar.html">Ayarlar</a>
+    </nav>
+  </header>
+
+  <!-- Menü altı görsel -->
   <div class="menu-image-container">
-    <img
-      src="images/ataturk5.jpg"
-      alt="Atatürk"
-      class="menu-image"
-    />
-    <div class="image-bottom-bar"></div>
+    <img src="images/ataturk5.jpg" alt="Atatürk" class="menu-image" />
   </div>
 
-  <nav class="menu">
-    <a href="index.html">Ana Sayfa</a>
-    <a href="hayati.html">Hayatı</a>
-    <a href="galeri.html">Galeri</a>
-    <a href="gerisayim.html">Geri Sayım</a>
-    <a href="ayarlar.html">Ayarlar</a>
-  </nav>
+  <!-- Alt bilgi yazısı animasyonlu -->
+  <div class="bottom-info" id="animated-text"></div>
+  <div class="author">Hazırlayan: Muhammed Efe KORKMAZ</div>
 
-  <h1>ATATÜRK</h1>
-
-  <div class="quote">
-    "Hayatta en hakiki mürşit ilimdir."
-  </div>
-  <div class="quote-source">— Mustafa Kemal Atatürk</div>
-
+  <!-- Footer -->
   <footer>
-    <a href="mailto:example@gmail.com" aria-label="Gmail"><i class="fa-solid fa-envelope"></i></a>
-    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="mailto:email@example.com" aria-label="Gmail" title="Gmail">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/>
+      </svg>
+    </a>
+    <a href="https://www.instagram.com" target="_blank" aria-label="Instagram" title="Instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+      </svg>
+    </a>
+    <a href="https://www.facebook.com" target="_blank" aria-label="Facebook" title="Facebook">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M22 12A10 10 0 1 0 10 22v-7h-2v-3h2v-2c0-2.2 1.3-3.5 3.3-3.5.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.7h2.6L15 15h-2v7a10 10 0 0 0 9-10z"/>
+      </svg>
+    </a>
+    <a href="https://twitter.com" target="_blank" aria-label="Twitter" title="Twitter">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.3 4.3 0 0 0 1.88-2.37c-.84.5-1.78.86-2.77 1.06a4.28 4.28 0 0 0-7.29 3.9A12.13 12.13 0 0 1 3.15 4.6a4.28 4.28 0 0 0 1.33 5.71 4.24 4.24 0 0 1-1.94-.54v.05a4.28 4.28 0 0 0 3.43 4.2 4.27 4.27 0 0 1-1.93.07 4.29 4.29 0 0 0 4 2.97 8.6 8.6 0 0 1-5.3 1.83A8.82 8.82 0 0 1 2 19.54a12.13 12.13 0 0 0 6.56 1.92c7.88 0 12.2-6.53 12.2-12.2v-.56A8.6 8.6 0 0 0 24 5.13a8.4 8.4 0 0 1-2.43.67 4.27 4.27 0 0 0 1.89-2.35z"/>
+      </svg>
+    </a>
   </footer>
+
+  <script>
+    const texts = [
+      "Bu site Atatürk'ü anmak ve eserlerini tanıtmak amacıyla hazırlanmıştır.",
+      "Amaç, genç nesillere Atatürk'ün düşüncelerini ve mirasını aktarmaktır.",
+      "Atatürk'ün devrimlerini ve Türk tarihindeki yerini anlatır.",
+      "Milli değerlerimize sahip çıkmayı teşvik eden bir platformdur."
+    ];
+
+    let currentTextIndex = 0;
+    let currentCharIndex = 0;
+    const typingSpeed = 80; // ms per karakter
+    const displayDuration = 5000; // toplam 5 saniye
+
+    const animatedText = document.getElementById("animated-text");
+
+    function typeText(text, callback) {
+      animatedText.textContent = "";
+      currentCharIndex = 0;
+
+      function type() {
+        if (currentCharIndex < text.length) {
+          animatedText.textContent += text.charAt(currentCharIndex);
+          currentCharIndex++;
+          setTimeout(type, typingSpeed);
+        } else {
+          setTimeout(callback, displayDuration - text.length * typingSpeed);
+        }
+      }
+
+      type();
+    }
+
+    function startTypingLoop() {
+      typeText(texts[currentTextIndex], () => {
+        currentTextIndex = (currentTextIndex + 1) % texts.length;
+        startTypingLoop();
+      });
+    }
+
+    startTypingLoop();
+  </script>
 </body>
 </html>
