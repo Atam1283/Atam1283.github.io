@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
-  <title>Atatürk</title>
+  <title>Atatürk'ün Hayatı</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     * { box-sizing: border-box; }
@@ -10,8 +10,9 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background: #fff;
-      padding-top: 140px; /* Menü ve logoya yer bırak */
-      padding-bottom: 80px; /* Footer için boşluk */
+      padding-top: 160px;
+      padding-bottom: 80px;
+      overflow-x: hidden;
     }
     .logo {
       position: fixed;
@@ -22,7 +23,7 @@
       border-radius: 10px;
       background: #fff;
       padding: 5px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Plaka efekti */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     nav.menu {
       position: fixed;
@@ -34,7 +35,7 @@
       z-index: 1000;
       overflow-x: auto;
       white-space: nowrap;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Plaka efekti */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     }
     nav.menu a {
       display: inline-block;
@@ -68,14 +69,6 @@
       font-size: 9px;
       color: #666;
       margin-top: 3px;
-    }
-    .content {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      line-height: 1.7;
-      color: #222;
-      font-size: 16px;
     }
     footer {
       position: fixed;
@@ -117,6 +110,23 @@
         max-width: 160px;
       }
     }
+    main {
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+    h2 {
+      color: #e30b17;
+      font-size: 22px;
+      margin-top: 0;
+    }
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+    }
   </style>
 </head>
 <body>
@@ -125,10 +135,10 @@
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
 
-  <!-- Sağ üstte değişen söz -->
+  <!-- Alıntı -->
   <div class="quote-box" id="quote-box">
-    <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
-    <div class="quote-source" id="quote-source">— TBMM, 1920</div>
+    <div id="quote-text">"Yurtta sulh, cihanda sulh."</div>
+    <div class="quote-source" id="quote-source">— Atatürk</div>
   </div>
 
   <!-- Menü -->
@@ -145,17 +155,28 @@
   </nav>
 
   <!-- İçerik -->
-  <div class="content">
-    <h2>Mustafa Kemal Atatürk’ün Hayatı</h2>
-    <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım’dır. İlköğrenimini Şemsi Efendi Mektebi'nde tamamladıktan sonra askerî eğitimine devam etti.</p>
-    <p>1893’te Selanik Askerî Rüştiyesi'ne başladı. Burada matematik öğretmeni ona “Kemal” adını verdi. Daha sonra Manastır Askerî İdadisi, İstanbul Harp Okulu ve Harp Akademisi’nde eğitim gördü.</p>
-    <p>1905’te kurmay yüzbaşı olarak mezun oldu ve Şam’da 5. Ordu’da göreve başladı. 1909’da İstanbul’daki 31 Mart Vakası’nı bastırmak için Hareket Ordusu'na katıldı.</p>
-    <p>1911’de Trablusgarp Savaşı’na katıldı. Balkan Savaşları'nda Çanakkale cephesinde büyük başarılar gösterdi. 1915’te Anafartalar Grup Komutanlığı’na getirildi ve Çanakkale Zaferi'nin kazanılmasında büyük rol oynadı.</p>
-    <p>1919’da Samsun’a çıkarak Kurtuluş Savaşı'nı başlattı. Erzurum ve Sivas kongreleriyle ulusal direnişi örgütledi. 23 Nisan 1920’de Türkiye Büyük Millet Meclisi’ni açtı.</p>
-    <p>1921’de Sakarya Meydan Muharebesi, 1922’de Büyük Taarruz zaferleriyle işgallere son verdi. 29 Ekim 1923’te Türkiye Cumhuriyeti’ni ilan etti ve ilk Cumhurbaşkanı oldu.</p>
-    <p>Atatürk, eğitim, hukuk, ekonomi ve sosyal alanlarda pek çok reform gerçekleştirdi. 1934’te Soyadı Kanunu ile “Atatürk” soyadını aldı.</p>
-    <p>10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayatını kaybetti. Türkiye Cumhuriyeti’nin kurucusu olarak Türk milletinin kalbinde ölümsüzleşmiştir.</p>
-  </div>
+  <main>
+    <section>
+      <h2>Çocukluk ve Gençlik</h2>
+      <p>1881 yılında Selanik'te doğdu. Mahalle Mektebi, Şemsi Efendi Mektebi, Askerî Rüştiye ve Harp Okulu'nda eğitim aldı.</p>
+    </section>
+    <section>
+      <h2>Askerî Hayatı</h2>
+      <p>Trablusgarp, Balkan Savaşları, Çanakkale ve diğer cephelerde başarıyla görev yaptı.</p>
+    </section>
+    <section>
+      <h2>Milli Mücadele</h2>
+      <p>1919'da Samsun'a çıkarak Kurtuluş Savaşı'nı başlattı. Erzurum ve Sivas Kongreleri'ni düzenledi.</p>
+    </section>
+    <section>
+      <h2>Cumhuriyetin Kuruluşu</h2>
+      <p>29 Ekim 1923'te Cumhuriyet ilan edildi ve Mustafa Kemal Atatürk ilk Cumhurbaşkanı oldu.</p>
+    </section>
+    <section>
+      <h2>Reformlar</h2>
+      <p>Harf devrimi, kılık kıyafet değişikliği, medeni kanun, kadın hakları gibi birçok alanda köklü değişiklik yaptı.</p>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer>
@@ -178,10 +199,10 @@
 
   <script>
     const quotes = [
-      { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "— TBMM, 1920" },
       { text: '"Yurtta sulh, cihanda sulh."', source: "— Atatürk" },
       { text: '"Hayatta en hakiki mürşit ilimdir."', source: "— Atatürk" },
-      { text: '"Türk milleti çalışkandır, zekidir."', source: "— Atatürk" }
+      { text: '"Ne mutlu Türküm diyene!"', source: "— Atatürk" },
+      { text: '"Benim naçiz vücudum elbet bir gün toprak olacaktır."', source: "— Atatürk" }
     ];
     let quoteIndex = 0;
     function updateQuote() {
