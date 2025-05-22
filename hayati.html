@@ -2,215 +2,177 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
-  <title>Atatürk'ün Hayatı</title>
+  <title>Hayatı - Atatürk</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #fff;
-      padding-top: 160px;
-      padding-bottom: 80px;
-      overflow-x: hidden;
+      color: #222;
+      padding-bottom: 70px;
     }
-    .logo {
+    header {
       position: fixed;
-      top: 10px;
-      left: 10px;
-      width: 120px;
-      z-index: 1100;
-      border-radius: 10px;
-      background: #fff;
-      padding: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    nav.menu {
-      position: fixed;
-      top: 80px;
+      top: 0;
       left: 0;
       width: 100%;
       background: #fff;
-      border-bottom: 2px solid #d9d9d9;
-      z-index: 1000;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      box-sizing: border-box;
+      z-index: 1100;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    .logo {
+      width: 120px;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+    nav.menu {
+      flex-grow: 1;
+      margin-left: 20px;
       overflow-x: auto;
       white-space: nowrap;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      -webkit-overflow-scrolling: touch;
+    }
+    nav.menu::-webkit-scrollbar {
+      display: none;
+    }
+    nav.menu {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
     nav.menu a {
       display: inline-block;
       padding: 14px 20px;
       color: #000;
       text-decoration: none;
+      font-weight: 600;
       font-size: 15px;
-      font-weight: bold;
       border-bottom: 3px solid transparent;
-      transition: all 0.3s ease;
+      transition: border-color 0.3s ease, color 0.3s ease;
     }
-    nav.menu a:hover {
-      border-bottom: 3px solid #e30b17;
+    nav.menu a:hover,
+    nav.menu a.active {
       color: #e30b17;
+      border-bottom-color: #e30b17;
     }
-    nav.menu::-webkit-scrollbar {
-      display: none;
-    }
-    .quote-box {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      color: #222;
-      font-size: 10px;
-      max-width: 250px;
-      text-align: right;
-      font-family: Arial, sans-serif;
-      z-index: 1200;
-    }
-    .quote-source {
-      font-size: 9px;
-      color: #666;
-      margin-top: 3px;
-    }
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: #000;
-      height: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 30px;
-      z-index: 1000;
-    }
-    footer a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 40px;
-      height: 40px;
-      border: 1px solid #888;
-      border-radius: 50%;
-      color: #fff;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    footer a:hover {
-      border-color: #e30b17;
-      color: #e30b17;
-    }
-    footer svg {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
-    }
-    @media (max-width: 600px) {
-      .quote-box {
-        font-size: 9px;
-        max-width: 160px;
-      }
-    }
-    main {
-      padding: 20px;
-      max-width: 1000px;
-      margin: auto;
+    main.content {
+      max-width: 900px;
+      margin: 110px auto 100px;
+      padding: 0 20px;
     }
     section {
       margin-bottom: 40px;
     }
-    h2 {
+    section h2 {
+      border-bottom: 2px solid #e30b17;
+      padding-bottom: 5px;
       color: #e30b17;
-      font-size: 22px;
-      margin-top: 0;
+      font-weight: 700;
     }
-    p {
-      font-size: 15px;
-      line-height: 1.6;
+    footer.footer-social {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 10px 0;
+      z-index: 1100;
+    }
+    footer.footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      transition: fill 0.3s ease;
+    }
+    footer.footer-social svg {
+      width: 24px;
+      height: 24px;
+      fill: #fff;
+      transition: fill 0.3s ease;
+    }
+    footer.footer-social a:hover svg {
+      fill: #e30b17;
+    }
+    @media (max-width: 600px) {
+      header {
+        flex-wrap: wrap;
+        padding: 10px 15px;
+      }
+      nav.menu {
+        margin-left: 0;
+        margin-top: 10px;
+        width: 100%;
+        overflow-x: scroll;
+      }
+      footer.footer-social {
+        gap: 25px;
+        padding: 10px 0;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Logo -->
-  <a href="index.html" class="logo">
-    <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
-  </a>
+  <header>
+    <img src="images/logo.png" alt="Atatürk Logo" class="logo" />
+    <nav class="menu" role="navigation" aria-label="Ana Menü">
+      <a href="index.html">Anasayfa</a>
+      <a href="hayatı.html" class="active">Hayatı</a>
+      <a href="galeri.html">Galeri</a>
+      <a href="gerisayim.html">Geri Sayım</a>
+      <a href="ayarlar.html">Ayarlar</a>
+    </nav>
+  </header>
 
-  <!-- Alıntı -->
-  <div class="quote-box" id="quote-box">
-    <div id="quote-text">"Yurtta sulh, cihanda sulh."</div>
-    <div class="quote-source" id="quote-source">— Atatürk</div>
-  </div>
-
-  <!-- Menü -->
-  <nav class="menu">
-    <a href="index.html">Anasayfa</a>
-    <a href="hayati.html">Hayatı</a>
-    <a href="galeri.html">Galeri</a>
-    <a href="sozleri.html">Sözleri</a>
-    <a href="eserleri.html">Eserleri</a>
-    <a href="devrimler.html">Devrimleri</a>
-    <a href="nutuk.html">Nutuk</a>
-    <a href="kronoloji.html">Kronoloji</a>
-    <a href="ayarlar.html">Ayarlar</a>
-  </nav>
-
-  <!-- İçerik -->
-  <main>
+  <main class="content" role="main">
     <section>
       <h2>Çocukluk ve Gençlik</h2>
-      <p>1881 yılında Selanik'te doğdu. Mahalle Mektebi, Şemsi Efendi Mektebi, Askerî Rüştiye ve Harp Okulu'nda eğitim aldı.</p>
+      <p>Mustafa Kemal Atatürk, 1881 yılında Selanik’te doğmuştur. İlk öğrenimini burada tamamladıktan sonra askeri eğitim hayatına başlamıştır.</p>
     </section>
     <section>
       <h2>Askerî Hayatı</h2>
-      <p>Trablusgarp, Balkan Savaşları, Çanakkale ve diğer cephelerde başarıyla görev yaptı.</p>
+      <p>Askerî eğitimini tamamladıktan sonra Osmanlı ordusunda çeşitli görevlerde bulunmuş ve deneyim kazanmıştır.</p>
     </section>
     <section>
       <h2>Milli Mücadele</h2>
-      <p>1919'da Samsun'a çıkarak Kurtuluş Savaşı'nı başlattı. Erzurum ve Sivas Kongreleri'ni düzenledi.</p>
+      <p>Birinci Dünya Savaşı sonrasında Anadolu’da başlayan bağımsızlık mücadelesinin lideri olarak öne çıkmıştır.</p>
     </section>
     <section>
       <h2>Cumhuriyetin Kuruluşu</h2>
-      <p>29 Ekim 1923'te Cumhuriyet ilan edildi ve Mustafa Kemal Atatürk ilk Cumhurbaşkanı oldu.</p>
+      <p>1923 yılında Türkiye Cumhuriyeti’ni kurarak modern Türkiye’nin temellerini atmıştır.</p>
     </section>
     <section>
       <h2>Reformlar</h2>
-      <p>Harf devrimi, kılık kıyafet değişikliği, medeni kanun, kadın hakları gibi birçok alanda köklü değişiklik yaptı.</p>
+      <p>Eğitim, hukuk, ekonomi ve sosyal alanlarda pek çok reform gerçekleştirerek ülkeyi çağdaşlaştırmıştır.</p>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer>
-    <a href="mailto:email@example.com" aria-label="Gmail">
+  <footer class="footer-social" role="contentinfo" aria-label="Sosyal Medya">
+    <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/>
+        <path d="M22 12a10 10 0 1 0-11.5 9.87v-6.99H8v-2.88h2.5v-2.2c0-2.46 1.47-3.82 3.72-3.82 1.08 0 2.22.2 2.22.2v2.44h-1.24c-1.22 0-1.6.76-1.6 1.54v1.84h2.72l-.44 2.88h-2.28v6.99A10 10 0 0 0 22 12z"/>
+      </svg>
+    </a>
+    <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.28 4.28 0 0 0 1.88-2.37 8.59 8.59 0 0 1-2.7 1.03 4.28 4.28 0 0 0-7.29 3.9 12.14 12.14 0 0 1-8.82-4.47 4.28 4.28 0 0 0 1.32 5.72 4.25 4.25 0 0 1-1.94-.53v.05a4.28 4.28 0 0 0 3.44 4.19 4.28 4.28 0 0 1-1.93.07 4.28 4.28 0 0 0 4 3 8.6 8.6 0 0 1-5.33 1.83A8.78 8.78 0 0 1 2 18.57a12.13 12.13 0 0 0 6.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.19 0-.38-.01-.56A8.7 8.7 0 0 0 22.46 6z"/>
       </svg>
     </a>
     <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-      </svg>
-    </a>
-    <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M22 12A10 10 0 1 0 10 22v-7h-2v-3h2v-2c0-2.2 1.3-3.5 3.3-3.5.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.7h2.6L15 15h-2v7a10 10 0 0 0 9-10z"/>
+        <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5.25-.75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5z"/>
       </svg>
     </a>
   </footer>
-
-  <script>
-    const quotes = [
-      { text: '"Yurtta sulh, cihanda sulh."', source: "— Atatürk" },
-      { text: '"Hayatta en hakiki mürşit ilimdir."', source: "— Atatürk" },
-      { text: '"Ne mutlu Türküm diyene!"', source: "— Atatürk" },
-      { text: '"Benim naçiz vücudum elbet bir gün toprak olacaktır."', source: "— Atatürk" }
-    ];
-    let quoteIndex = 0;
-    function updateQuote() {
-      quoteIndex = (quoteIndex + 1) % quotes.length;
-      document.getElementById("quote-text").textContent = quotes[quoteIndex].text;
-      document.getElementById("quote-source").textContent = quotes[quoteIndex].source;
-    }
-    setInterval(updateQuote, 5000);
-  </script>
 </body>
 </html>
