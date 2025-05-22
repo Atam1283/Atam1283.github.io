@@ -6,28 +6,93 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
+  /* HTML içindeki body kuralları buraya taşındı */
+  padding-bottom: 90px;
+  min-height: 100vh;
+  padding-top: 120px;
+  box-sizing: border-box;
 }
 
-/* Üst Menü */
-.menu {
-  background-color: #111;
+/* Üst Menü (Header) */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff; /* Orijinal HTML'deki header arka plan rengi */
+  z-index: 1500;
   display: flex;
+  align-items: center;
+  border-bottom: 2px solid #d9d9d9;
+  height: 120px;
+  padding: 10px 15px;
+  box-sizing: border-box;
+}
+
+.logo {
+  flex: 0 0 auto;
+  width: 120px;
+  height: auto;
+  margin-right: 20px;
+  border-radius: 10px;
+  background: #fff;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #900;
+}
+
+.logo img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+/* Menü */
+.menu {
+  /* background-color: #111; /* Eski style.css'ten */
+  display: flex; /* Eski style.css'ten */
+  justify-content: center; /* Eski style.css'ten */
+  padding: 10px 0; /* Eski style.css'ten */
+  border-bottom: 1px solid #900; /* Eski style.css'ten */
+
+  /* HTML içindeki nav.menu kuralları buraya taşındı */
+  flex: 1 1 auto;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.menu::-webkit-scrollbar {
+  display: none;
 }
 
 .menu a {
-  color: #fff;
+  /* Eski style.css'ten */
+  color: #fff; 
   text-decoration: none;
   margin: 0 20px;
   font-weight: 600;
   font-size: 1rem;
   transition: color 0.3s ease;
+
+  /* HTML içindeki nav.menu a kuralları buraya taşındı ve çakışanlar düzeltildi */
+  display: inline-block;
+  padding: 14px 20px;
+  color: #000; /* HTML'deki renk, eski #fff ile çakışabilir. HTML'deki siyahı korudum. */
+  font-size: 15px; /* HTML'deki font boyutu */
+  font-weight: bold; /* HTML'deki font ağırlığı */
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
 }
 
 .menu a:hover {
+  /* Eski style.css'ten */
   color: #f44336; /* kırmızı vurgu */
+  /* HTML içindeki nav.menu a:hover kuralları buraya taşındı */
+  border-bottom: 3px solid #e30b17; /* HTML'deki hover border rengi */
+  color: #e30b17; /* HTML'deki hover rengi */
 }
 
 /* Menüdeki fotoğraf kapsayıcısı */
@@ -37,8 +102,8 @@ body {
   margin: 20px auto 40px;
   border-radius: 0;
   overflow: hidden;
-  height: 300px; /* Bu yükseklik önemli */
-  background-image: url('../images/ataturk5.jpg'); /* YOL BURADA */
+  height: 300px;
+  background-image: url('../images/ataturk5.jpg'); /* FOTOĞRAF YOLU BURADA! */
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain; /* Veya 'cover' */
@@ -47,11 +112,35 @@ body {
   align-items: center;
 }
 
-.menu-image-container img { /* HTML'de img etiketi varsa gizlemek için */
+/* Eğer HTML'de bu kapsayıcının içinde bir <img> etiketi varsa onu gizle */
+.menu-image-container img {
   display: none;
 }
 
-/* Ana içerik */
+/* Alıntı Kutusu */
+.quote-box {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  color: #222;
+  font-weight: 300;
+  font-size: 9.6px;
+  max-width: 250px;
+  text-align: right;
+  font-family: Arial, sans-serif;
+  z-index: 1600;
+  line-height: 1.2;
+}
+
+.quote-source {
+  font-size: 8px;
+  font-weight: 300;
+  color: #666;
+  margin-top: 3px;
+  text-align: right;
+}
+
+/* Ana içerik (eğer kullanılacaksa) */
 .main-content {
   max-width: 900px;
   margin: 0 auto 60px;
@@ -65,11 +154,11 @@ body {
   font-weight: 700;
   margin-bottom: 20px;
   color: #fff;
-  user-select: none;
+  user-select: none; /* seçilemez */
 }
 
 /* Atatürk sözü */
-.quote {
+.quote { /* Zaten yukarıda tanımlı, bu tekrar gibi ama main-content içindeki quote için olabilir. */
   font-style: italic;
   font-size: 1.4rem;
   color: #ccc;
@@ -80,6 +169,78 @@ body {
 .source {
   font-size: 1rem;
   color: #888;
+}
+
+/* Footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #000;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  z-index: 1000;
+}
+
+footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #888;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  color: #fff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  border-color: #e30b17;
+  color: #e30b17;
+}
+
+footer svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* Bottom Info */
+.bottom-info {
+  position: fixed;
+  bottom: 70px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  color: #222;
+  font-weight: 600;
+  font-family: 'Courier New', Courier, monospace;
+  min-height: 24px;
+  user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  letter-spacing: 2px;
+  z-index: 1100;
+}
+
+/* Author */
+.author {
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  z-index: 1100;
 }
 
 /* Responsive ayarları */
@@ -101,5 +262,30 @@ body {
   footer svg {
     width: 18px;
     height: 18px;
+  }
+  /* Ek olarak, HTML içindeki 480px responsive kuralları buraya taşındı */
+  header {
+    height: 100px;
+    padding: 5px 10px;
+  }
+  .logo {
+    width: 90px;
+    margin-right: 10px;
+  }
+  nav.menu a {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+  .quote-box {
+    max-width: 150px;
+    font-size: 8px;
+    top: 5px;
+    right: 5px;
+  }
+  .bottom-info {
+    font-size: 14px;
+  }
+  .author {
+    font-size: 12px;
   }
 }
