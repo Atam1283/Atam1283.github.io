@@ -4,11 +4,20 @@
   <meta charset="utf-8" />
   <title>Atatürk</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
+  <link rel="stylesheet" href="style.css"> <style>
+    /*
+     * DİKKAT: Normalde tüm CSS kodları harici bir dosyada (style.css gibi) tutulmalıdır.
+     * Ancak, önceki konuşmalarınızda <style> etiketi içinde bazı CSS kodları vardı.
+     * Bu kodları geçici olarak burada tuttum.
+     * Eğer style.css dosyasında zaten benzer kurallar varsa, bu içerideki <style>
+     * etiketini ve içindeki CSS kodlarını silmelisiniz.
+     * Şu anki durumda, çakışmaları önlemek için style.css'te verdiğim kodlar
+     * bu internal style'dan daha spesifik olabilir veya eklenebilir.
+     */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #fff;
+      background: #fff; /* Bu arka plan rengi, style.css'teki #000 ile çakışabilir */
       padding-bottom: 90px;
       min-height: 100vh;
       padding-top: 120px;
@@ -45,7 +54,7 @@
       border-radius: 10px;
       object-fit: contain;
     }
-    nav.menu {
+    nav.menu { /* Bu kural style.css'deki .menu a ile çakışabilir */
       flex: 1 1 auto;
       overflow-x: auto;
       white-space: nowrap;
@@ -55,7 +64,7 @@
     nav.menu::-webkit-scrollbar {
       display: none;
     }
-    nav.menu a {
+    nav.menu a { /* Bu kural style.css'deki .menu a ile çakışabilir */
       display: inline-block;
       padding: 14px 20px;
       color: #000;
@@ -66,7 +75,7 @@
       transition: all 0.3s ease;
       white-space: nowrap;
     }
-    nav.menu a:hover {
+    nav.menu a:hover { /* Bu kural style.css'deki .menu a:hover ile çakışabilir */
       border-bottom: 3px solid #e30b17;
       color: #e30b17;
     }
@@ -90,12 +99,7 @@
       margin-top: 3px;
       text-align: right;
     }
-    .menu-image-container {
-      margin-top: 0;
-      text-align: center;
-      z-index: 100;
-      position: relative;
-    }
+    /* .menu-image-container artık style.css'ten yönetiliyor, bu kısmı burada tutmuyoruz. */
     footer {
       position: fixed;
       bottom: 0;
@@ -210,8 +214,7 @@
     </nav>
   </header>
 
-  <div class="menu-image-container"></div>
-
+  <div class="menu-image-container"></div> 
   <div class="bottom-info" id="animated-text"></div>
   <div class="author">Hazırlayan: Muhammed Efe KORKMAZ</div>
 
@@ -228,4 +231,9 @@
     </a>
     <a href="https://www.facebook.com" target="_blank" aria-label="Facebook" title="Facebook">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M22 12A
+        <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.72 9-5.18 9-10.95z"/>
+      </svg>
+    </a>
+  </footer>
+</body>
+</html>
