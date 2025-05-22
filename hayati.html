@@ -1,135 +1,147 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hayatı - Atatürk</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hayatı - Atatürk</title>
+<style>
+  /* Gövde ve genel */
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fff;
+    padding-bottom: 70px;
+  }
 
-    .header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: #fff;
-      z-index: 1000;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-    }
+  /* Üst sabit alan (logo + menü) */
+  .header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: #fff;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    z-index: 1100;
+  }
 
-    .logo {
-      width: 120px;
-      height: auto;
-    }
+  /* Logo */
+  .logo {
+    width: 120px;
+    height: auto;
+    object-fit: contain;
+  }
 
-    nav.menu {
-      display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      white-space: nowrap;
-    }
+  /* Menü */
+  nav.menu {
+    display: flex;
+    gap: 25px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none; /* Firefox */
+  }
+  nav.menu::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+  nav.menu a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    padding-bottom: 5px;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  nav.menu a:hover,
+  nav.menu a:focus {
+    color: #e30b17;
+    border-bottom-color: #e30b17;
+  }
 
-    nav.menu a {
-      color: #000;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 15px;
-      padding: 10px 5px;
-      transition: 0.3s;
-    }
+  /* İçerik alanı menünün altından başlasın */
+  .content {
+    max-width: 900px;
+    margin: 110px auto 100px;
+    padding: 0 20px;
+    font-size: 16px;
+    line-height: 1.6;
+  }
 
-    nav.menu a:hover {
-      color: #e30b17;
-      border-bottom: 3px solid #e30b17;
-    }
-
-    nav.menu::-webkit-scrollbar {
-      display: none;
-    }
-
-    .content {
-      padding: 160px 20px 60px;
-      max-width: 900px;
-      margin: auto;
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    .footer {
-      background-color: #000;
-      color: #fff;
-      padding: 30px 20px;
-      text-align: center;
-    }
-
-    .footer svg {
-      width: 30px;
-      height: 30px;
-      margin: 0 10px;
-      fill: white;
-      transition: 0.3s;
-    }
-
-    .footer svg:hover {
-      fill: #e30b17;
-    }
-
-    @media (max-width: 600px) {
-      .header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px;
-      }
-      .content {
-        padding-top: 200px;
-      }
-    }
-  </style>
+  /* Footer - sosyal medya ve siyah şerit */
+  .footer {
+    background-color: #000;
+    color: #fff;
+    padding: 30px 20px;
+    text-align: center;
+  }
+  .footer .social-icons {
+    display: inline-flex;
+    gap: 25px;
+  }
+  .footer svg {
+    width: 30px;
+    height: 30px;
+    fill: white;
+    transition: fill 0.3s ease;
+    cursor: pointer;
+  }
+  .footer svg:hover,
+  .footer svg:focus {
+    fill: #e30b17;
+  }
+</style>
 </head>
 <body>
-  <div class="header">
-    <img src="images/logo.png" alt="Logo" class="logo" />
-    <nav class="menu">
+
+  <header class="header">
+    <img src="images/logo.png" alt="Atatürk Logo" class="logo" />
+    <nav class="menu" aria-label="Ana Menü">
       <a href="index.html">Ana Sayfa</a>
-      <a href="hayatı.html">Hayatı</a>
+      <a href="hayatı.html" aria-current="page">Hayatı</a>
       <a href="galeri.html">Galeri</a>
       <a href="gerisayim.html">Geri Sayım</a>
       <a href="ayarlar.html">Ayarlar</a>
     </nav>
-  </div>
+  </header>
 
-  <div class="content">
+  <main class="content" role="main">
     <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
-    <p><strong>Çocukluk ve Gençlik:</strong> 1881 yılında Selanik'te doğan Atatürk, küçük yaşlardan itibaren eğitimine önem verdi. Askeri okullarda aldığı eğitim, onun disiplinli ve vizyon sahibi bir lider olmasının temelini oluşturdu.</p>
-    <p><strong>Askerî Hayatı:</strong> Trablusgarp ve Balkan Savaşları'nda gösterdiği başarılarla tanındı. I. Dünya Savaşı’nda Çanakkale’deki kahramanlığı ile büyük ün kazandı.</p>
-    <p><strong>Milli Mücadele:</strong> 1919’da Samsun’a çıkarak Kurtuluş Savaşı’nı başlattı. Türkiye Cumhuriyeti’nin temellerini attı ve halkı örgütleyerek bağımsızlığı sağladı.</p>
-    <p><strong>Cumhuriyetin Kuruluşu:</strong> 1923’te Türkiye Cumhuriyeti’ni kurdu ve ilk Cumhurbaşkanı oldu. Egemenliğin millete ait olduğunu ilan etti.</p>
-    <p><strong>Reformlar:</strong> Eğitim, hukuk, dil, kıyafet ve takvim gibi alanlarda köklü reformlar yaptı. Modern Türkiye'nin mimarı olarak anıldı.</p>
-  </div>
+    <section>
+      <h2>Çocukluk ve Gençlik</h2>
+      <p>1881 yılında Selanik'te doğan Atatürk, küçük yaşlardan itibaren eğitimine önem verdi. Askeri okullarda aldığı eğitim, onun disiplinli ve vizyon sahibi bir lider olmasının temelini oluşturdu.</p>
+    </section>
+    <section>
+      <h2>Askerî Hayatı</h2>
+      <p>Trablusgarp ve Balkan Savaşları'nda gösterdiği başarılarla tanındı. I. Dünya Savaşı’nda Çanakkale’deki kahramanlığı ile büyük ün kazandı.</p>
+    </section>
+    <section>
+      <h2>Milli Mücadele</h2>
+      <p>1919’da Samsun’a çıkarak Kurtuluş Savaşı’nı başlattı. Türkiye Cumhuriyeti’nin temellerini attı ve halkı örgütleyerek bağımsızlığı sağladı.</p>
+    </section>
+    <section>
+      <h2>Cumhuriyetin Kuruluşu</h2>
+      <p>1923’te Türkiye Cumhuriyeti’ni kurdu ve ilk Cumhurbaşkanı oldu. Egemenliğin millete ait olduğunu ilan etti.</p>
+    </section>
+    <section>
+      <h2>Reformlar</h2>
+      <p>Eğitim, hukuk, dil, kıyafet ve takvim gibi alanlarda köklü reformlar yaptı. Modern Türkiye'nin mimarı olarak anıldı.</p>
+    </section>
+  </main>
 
-  <div class="footer">
-    <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-        <path d="M224,202A54,54,0,1,0,278,256,54,54,0,0,0,224,202Zm124-41a28,28,0,1,0,28,28A28,28,0,0,0,348,161ZM224,338a82,82,0,1,1,82-82A82,82,0,0,1,224,338Zm124-202H100A98,98,0,0,0,2,234V378a98,98,0,0,0,98,98H348a98,98,0,0,0,98-98V234A98,98,0,0,0,348,136Z"/>
-      </svg>
-    </a>
-    <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-        <path d="M459,151a158,158,0,0,1-45,12,78,78,0,0,0,34-43,158,158,0,0,1-50,19,78,78,0,0,0-133,71A221,221,0,0,1,93,133a78,78,0,0,0,24,104A77,77,0,0,1,87,229v1a78,78,0,0,0,62,76,78,78,0,0,1-35,1,78,78,0,0,0,73,54A157,157,0,0,1,64,407,222,222,0,0,0,186,440c134,0,207-111,207-207q0-5,0-10A148,148,0,0,0,459,151Z"/>
-      </svg>
-    </a>
-    <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-        <path d="M279,288l14-92H208V138c0-25,12-50,52-50h40V6S269,0,240,0c-73,0-121,44-121,124v70H80v92h39V512h89V288Z"/>
-      </svg>
-    </a>
-  </div>
+  <footer class="footer" role="contentinfo" aria-label="Sosyal medya bağlantıları">
+    <div class="social-icons">
+      <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" aria-hidden="true"><path d="M224,202A54,54,0,1,0,278,256,54,54,0,0,0,224,202Zm124-41a28,28,0,1,0,28,28A28,28,0,0,0,348,161ZM224,338a82,82,0,1,1,82-82A82,82,0,0,1,224,338Zm124-202H100A98,98,0,0,0,2,234V378a98,98,0,0,0,98,98H348a98,98,0,0,0,98-98V234A98,98,0,0,0,348,136Z"/></svg>
+      </a>
+      <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true"><path d="M459,151a158,158,0,0,1-45,12,78,78,0,0,0,34-43,158,158,0,0,1-50,19,78,78,0,0,0-133,71A221,221,0,0,1,93,133a78,78,0,0,0,24,104A77,77,0,0,1,87,229v1a78,78,0,0,0,62,76,78,78,0,0,1-35,1,78,78,0,0,0,73,54A157,157,0,0,1,64,407,222,222,0,0,0,186,440c134,0,207-111,207-207q0-5,0-10A148,148,0,0,0,459,151Z"/></svg>
+      </a>
+      <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" aria-hidden="true"><path d="M279,288l14-92H208V138c0-25,12-50,52-50h40V6S269,0,240,0c-73,0-121,44-121,124v70H80v92h39V512h89V288Z"/></svg>
+      </a>
+    </div>
+  </footer>
+
 </body>
 </html>
