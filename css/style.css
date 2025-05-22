@@ -38,7 +38,7 @@ body {
   border-radius: 0; /* Köşeler düz */
   overflow: hidden; /* Taşmayı gizle */
   height: 300px; /* Görsel için sabit bir yükseklik belirleyin, ihtiyaca göre ayarlayın */
-  background-image: url('images/ataturk5.jpg'); /* Atatürk görselinin yolu */
+  background-image: url('../images/ataturk5.jpg'); /* YOL GÜNCELLENDİ: css klasöründen çıkıp images klasörüne gir */
   background-repeat: no-repeat; /* Görselin tekrarlamasını engelle */
   background-position: center; /* Görseli yatay ve dikey olarak ortala */
   background-size: contain; /* Görseli oranını bozmadan kapsayıcıya sığdır (alternatif: 'cover') */
