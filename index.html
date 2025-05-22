@@ -5,9 +5,7 @@
   <title>Atatürk</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -21,7 +19,6 @@
       top: 10px;
       left: 10px;
       width: 120px;
-      height: auto;
       z-index: 1100;
       border-radius: 10px;
       background: #fff;
@@ -79,17 +76,15 @@
     }
 
     .menu-image-container {
-      margin-top: 170px; /* Menü + logo yüksekliği kadar boşluk */
+      padding-top: 122px; /* 80px menü + 42px alt boşluk çizgisi */
       text-align: center;
-      position: relative;
-      z-index: 1;
     }
 
     .menu-image-container img {
       max-width: 100%;
       height: auto;
       display: block;
-      margin: auto;
+      margin: 0 auto;
     }
 
     .typewriter-box {
@@ -103,11 +98,6 @@
       white-space: pre-wrap;
       overflow-wrap: break-word;
       min-height: 80px;
-    }
-
-    @keyframes blink-caret {
-      from, to { border-color: transparent }
-      50% { border-color: #e30b17 }
     }
 
     footer {
@@ -209,7 +199,6 @@
   </footer>
 
   <script>
-    // Değişen sözler
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "— TBMM, 1920" },
       { text: '"Yurtta sulh, cihanda sulh."', source: "— Atatürk" },
@@ -226,7 +215,6 @@
 
     setInterval(updateQuote, 5000);
 
-    // Daktilo metinleri tek tek göster
     const messages = [
       "Hazırlayan: Muhammed Efe KORKMAZ",
       "Bu site Atatürk'ü tanıtmak amacıyla yapılmıştır.",
