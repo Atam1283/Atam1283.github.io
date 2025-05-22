@@ -32,18 +32,25 @@ body {
 
 /* Menüdeki fotoğraf kapsayıcısı */
 .menu-image-container {
-  max-width: 600px;
-  width: 90%;
-  margin: 20px auto 40px;
-  border-radius: 8px;
-  overflow: hidden;
+  max-width: 90%; /* Kapsayıcının maksimum genişliğini ayarlayın */
+  width: 100%; /* Tam genişlik almasını sağlayın */
+  margin: 20px auto 40px; /* Üst, alt ve otomatik sağ/sol boşluk */
+  border-radius: 0; /* Köşeler düz */
+  overflow: hidden; /* Taşmayı gizle */
+  height: 300px; /* Görsel için sabit bir yükseklik belirleyin, ihtiyaca göre ayarlayın */
+  background-image: url('images/ataturk5.jpg'); /* Atatürk görselinin yolu */
+  background-repeat: no-repeat; /* Görselin tekrarlamasını engelle */
+  background-position: center; /* Görseli yatay ve dikey olarak ortala */
+  background-size: contain; /* Görseli oranını bozmadan kapsayıcıya sığdır (alternatif: 'cover') */
+  /* Eğer HTML'de bir <img> etiketi varsa onu gizlemek için: */
+  display: flex; /* İçeriği hizalamak için flexbox kullanın */
+  justify-content: center; /* İçeriği yatayda ortala */
+  align-items: center; /* İçeriği dikeyde ortala */
 }
 
+/* Eğer HTML'de bu kapsayıcının içinde bir <img> etiketi varsa onu gizle */
 .menu-image-container img {
-  width: 100%;
-  height: auto; /* Oran korunur */
-  display: block;
-  border-radius: 8px;
+  display: none;
 }
 
 /* Ana içerik */
@@ -88,5 +95,14 @@ body {
   }
   .quote {
     font-size: 1.1rem;
+  }
+  /* Mobil cihazlarda footer ikon boyutları */
+  footer a {
+    width: 35px;
+    height: 35px;
+  }
+  footer svg {
+    width: 18px;
+    height: 18px;
   }
 }
