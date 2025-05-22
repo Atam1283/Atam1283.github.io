@@ -31,6 +31,7 @@
       box-sizing: border-box;
     }
 
+    /* Logo */
     .logo {
       flex: 0 0 auto;
       width: 120px;
@@ -49,12 +50,13 @@
       object-fit: contain;
     }
 
+    /* Menü */
     nav.menu {
       flex: 1 1 auto;
       overflow-x: auto;
       white-space: nowrap;
       -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
+      scrollbar-width: none; /* Firefox */
     }
     nav.menu::-webkit-scrollbar {
       display: none;
@@ -75,6 +77,7 @@
       color: #e30b17;
     }
 
+    /* Sağ üstte değişen yazı */
     .quote-box {
       position: fixed;
       top: 10px;
@@ -96,20 +99,24 @@
       text-align: right;
     }
 
+    /* Menü altı görsel küçültüldü */
     .menu-image-container {
       margin-top: 0;
       text-align: center;
-      z-index: 100;
+      z-index: 100; /* Menünün altında kalacak */
       position: relative;
     }
     .menu-image-container img {
-      max-width: 100%;
+      max-width: 70%;  /* küçültüldü */
       height: auto;
       display: block;
       margin: 0 auto;
       user-select: none;
+      border-radius: 10px;
+      object-fit: contain;
     }
 
+    /* Footer */
     footer {
       position: fixed;
       bottom: 0;
@@ -120,7 +127,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 30px;
+      gap: 40px;
       z-index: 1000;
     }
     footer a {
@@ -129,22 +136,22 @@
       align-items: center;
       width: 40px;
       height: 40px;
-      border: 1px solid #888;
       border-radius: 50%;
       transition: all 0.3s ease;
       color: #fff;
       text-decoration: none;
+      font-size: 0; /* sadece svg gözükmesi için */
     }
     footer a:hover {
-      border-color: #e30b17;
       color: #e30b17;
     }
     footer svg {
-      width: 20px;
-      height: 20px;
+      width: 24px;
+      height: 24px;
       fill: currentColor;
     }
 
+    /* Alt bilgi yazısı animasyonlu */
     .bottom-info {
       position: fixed;
       bottom: 70px;
@@ -162,19 +169,8 @@
       letter-spacing: 2px;
       z-index: 1100;
     }
-    .author {
-      position: fixed;
-      bottom: 30px;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      font-size: 14px;
-      color: #555;
-      font-family: Arial, sans-serif;
-      font-weight: 400;
-      z-index: 1100;
-    }
 
+    /* Responsive küçük ekran için */
     @media (max-width: 480px) {
       header {
         height: 100px;
@@ -197,22 +193,23 @@
       .bottom-info {
         font-size: 14px;
       }
-      .author {
-        font-size: 12px;
-      }
     }
   </style>
 </head>
 <body>
+  <!-- Sağ üstte değişen yazı -->
   <div class="quote-box" id="quote-box">
     <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
     <div class="quote-source" id="quote-source">— TBMM, 1920</div>
   </div>
 
   <header>
+    <!-- Logo -->
     <a href="index.html" class="logo" aria-label="Ana Sayfa">
       <img src="images/logo.png" alt="Logo" />
     </a>
+
+    <!-- Menü -->
     <nav class="menu" role="navigation" aria-label="Ana Menü">
       <a href="index.html">Anasayfa</a>
       <a href="hayati.html">Hayatı</a>
@@ -226,15 +223,21 @@
     </nav>
   </header>
 
+  <!-- Menü altı görsel küçültülmüş -->
   <div class="menu-image-container">
     <img src="images/ataturk5.jpg" alt="Atatürk" class="menu-image" />
   </div>
 
+  <!-- Alt bilgi yazısı animasyonlu -->
   <div class="bottom-info" id="animated-text"></div>
-  <div class="author">Hazırlayan: Muhammed Efe KORKMAZ</div>
 
+  <!-- Footer -->
   <footer>
-    <!-- Footer bağlantıları (svg'ler dahil) -->
-  </footer>
-</body>
-</html>
+    <a href="mailto:email@example.com" aria-label="Gmail" title="Gmail" >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
+        <path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/>
+      </svg>
+    </a>
+    <a href="https://www.instagram.com" target="_blank" aria-label="Instagram" title="Instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
+        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1
