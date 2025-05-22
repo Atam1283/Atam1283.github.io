@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Atatürk'ün Hayatı</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hayatı</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #fff;
+      background: #fff;
       padding-top: 140px;
-      padding-bottom: 60px;
     }
 
     .logo {
@@ -25,6 +20,7 @@
       height: auto;
       z-index: 1100;
       border-radius: 10px;
+      object-fit: contain;
       background: #fff;
       padding: 5px;
     }
@@ -61,70 +57,56 @@
       display: none;
     }
 
-    .ataturk-image {
-      display: block;
-      max-width: 100%;
-      height: auto;
-      margin: 0 auto 20px auto;
-      margin-top: 10px;
-      border-bottom: 2px solid #d9d9d9;
-    }
-
     .content {
       padding: 20px;
-      max-width: 800px;
-      margin: auto;
-      line-height: 1.7;
-      font-size: 16px;
-      color: #222;
+      max-width: 900px;
+      margin: 0 auto;
+      box-sizing: border-box;
+      line-height: 1.6;
+      font-size: 17px;
     }
 
-    @media (max-width: 768px) {
-      nav.menu a {
-        font-size: 14px;
-        padding: 12px 16px;
+    @media screen and (max-width: 768px) {
+      .content {
+        padding: 15px;
+        font-size: 16px;
       }
 
       .logo {
         width: 90px;
       }
 
-      .content {
-        padding: 15px;
-        font-size: 15px;
+      nav.menu a {
+        font-size: 14px;
+        padding: 12px 16px;
       }
     }
   </style>
 </head>
 <body>
 
-  <img src="images/logo.png" alt="Logo" class="logo">
+  <img src="images/logo.png" alt="Logo" class="logo" />
 
   <nav class="menu">
     <a href="index.html">Ana Sayfa</a>
-    <a href="hayati.html">Hayatı</a>
+    <a href="hayatı.html" style="color: #e30b17; border-bottom: 3px solid #e30b17;">Hayatı</a>
     <a href="galeri.html">Galeri</a>
     <a href="gerisayim.html">Geri Sayım</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
 
-  <img src="images/ataturk.jpg" alt="Mustafa Kemal Atatürk" class="ataturk-image">
-
   <div class="content">
-    <h2>Mustafa Kemal Atatürk'ün Hayatı</h2>
+    <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
     <p>
-      Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Askeri eğitiminin ardından Osmanlı ordusunda çeşitli görevlerde bulundu.
-      1919 yılında Samsun'a çıkarak Kurtuluş Savaşı'nı başlattı ve Türk milletinin bağımsızlık mücadelesine önderlik etti.
+      Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Askeri eğitimi boyunca gösterdiği başarılar, onun Türk milletinin kaderinde belirleyici bir lider olacağının habercisiydi. 
+      Osmanlı İmparatorluğu'nun son dönemlerinde çeşitli cephelerde görev aldı. 1915 Çanakkale Savaşı'nda kazandığı zafer, onun ününü tüm yurda yaydı.
     </p>
     <p>
-      29 Ekim 1923'te Türkiye Cumhuriyeti'ni ilan etti ve ülkenin ilk cumhurbaşkanı oldu. Eğitim, hukuk, ekonomi, kadın hakları gibi birçok alanda
-      reformlar gerçekleştirdi. "Egemenlik, kayıtsız şartsız milletindir" sözüyle halkın iradesine verdiği önemi vurguladı.
+      1919'da Samsun'a çıkarak Kurtuluş Savaşı'nı başlattı. 1923'te Türkiye Cumhuriyeti'ni kurdu ve ilk Cumhurbaşkanı oldu. 
+      Eğitim, hukuk, dil ve kültür alanında birçok inkılap gerçekleştirdi. 1934 yılında Soyadı Kanunu ile "Atatürk" soyadını aldı.
     </p>
     <p>
-      Atatürk, 10 Kasım 1938 tarihinde İstanbul'da hayata gözlerini yumdu. Ardında çağdaş, laik ve demokratik bir Türkiye bırakmıştır.
-    </p>
-    <p>
-      Hayatı boyunca bilim, sanat ve akılcılığı ön planda tutan Atatürk, tüm dünyada saygıyla anılmaktadır.
+      10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayata gözlerini yumdu. Atatürk, Türk milletinin hafızasında bağımsızlık ve çağdaşlık mücadelesinin simgesi olarak yaşamaktadır.
     </p>
   </div>
 
