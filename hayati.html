@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Atatürk'ün Hayatı</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #fff;
-      padding-bottom: 100px;
+      background-color: #fff;
+      padding-top: 140px;
+      padding-bottom: 60px;
     }
 
     .logo {
@@ -18,10 +23,10 @@
       left: 10px;
       width: 120px;
       height: auto;
+      z-index: 1100;
       border-radius: 10px;
       background: #fff;
       padding: 5px;
-      z-index: 1100;
     }
 
     nav.menu {
@@ -47,56 +52,79 @@
       transition: all 0.3s ease;
     }
 
-    nav.menu a:hover,
-    nav.menu a.active {
+    nav.menu a:hover {
       border-bottom: 3px solid #e30b17;
       color: #e30b17;
     }
 
+    nav.menu::-webkit-scrollbar {
+      display: none;
+    }
+
+    .ataturk-image {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto 20px auto;
+      margin-top: 10px;
+      border-bottom: 2px solid #d9d9d9;
+    }
+
     .content {
-      max-width: 900px;
-      margin: 180px auto 40px;
-      padding: 0 20px;
-      line-height: 1.6;
-      font-size: 17px;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.7;
+      font-size: 16px;
       color: #222;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
+      nav.menu a {
+        font-size: 14px;
+        padding: 12px 16px;
+      }
+
+      .logo {
+        width: 90px;
+      }
+
       .content {
-        margin-top: 200px;
+        padding: 15px;
+        font-size: 15px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Logo -->
-  <img src="resimler/logo.png" alt="Logo" class="logo" />
+  <img src="images/logo.png" alt="Logo" class="logo">
 
-  <!-- Menü -->
   <nav class="menu">
-    <a href="index.html">Anasayfa</a>
-    <a href="hayatı.html" class="active">Hayatı</a>
+    <a href="index.html">Ana Sayfa</a>
+    <a href="hayati.html">Hayatı</a>
     <a href="galeri.html">Galeri</a>
     <a href="gerisayim.html">Geri Sayım</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
 
-  <!-- İçerik -->
+  <img src="images/ataturk.jpg" alt="Mustafa Kemal Atatürk" class="ataturk-image">
+
   <div class="content">
-    <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
+    <h2>Mustafa Kemal Atatürk'ün Hayatı</h2>
     <p>
-      Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğmuştur. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. Eğitim hayatına Şemsi Efendi İlkokulu'nda başlamış, ardından askeri okullarda öğrenim görmüştür.
+      Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Askeri eğitiminin ardından Osmanlı ordusunda çeşitli görevlerde bulundu.
+      1919 yılında Samsun'a çıkarak Kurtuluş Savaşı'nı başlattı ve Türk milletinin bağımsızlık mücadelesine önderlik etti.
     </p>
     <p>
-      1905 yılında Harp Akademisi'nden Kurmay Yüzbaşı olarak mezun olan Atatürk, çeşitli cephelerde görev yapmıştır. Çanakkale Savaşı'ndaki başarıları ile halkın büyük takdirini kazanmıştır.
+      29 Ekim 1923'te Türkiye Cumhuriyeti'ni ilan etti ve ülkenin ilk cumhurbaşkanı oldu. Eğitim, hukuk, ekonomi, kadın hakları gibi birçok alanda
+      reformlar gerçekleştirdi. "Egemenlik, kayıtsız şartsız milletindir" sözüyle halkın iradesine verdiği önemi vurguladı.
     </p>
     <p>
-      1919'da Samsun'a çıkarak Kurtuluş Savaşı'nı başlatmış, 1923'te Türkiye Cumhuriyeti'ni kurmuştur. Aynı yıl cumhurbaşkanı seçilmiştir. Atatürk, yaşamı boyunca birçok devrim gerçekleştirmiştir.
+      Atatürk, 10 Kasım 1938 tarihinde İstanbul'da hayata gözlerini yumdu. Ardında çağdaş, laik ve demokratik bir Türkiye bırakmıştır.
     </p>
     <p>
-      10 Kasım 1938 tarihinde Dolmabahçe Sarayı'nda hayata gözlerini yummuştur. Atatürk, sadece Türk milletinin değil, tüm dünyanın saygı duyduğu bir liderdir.
+      Hayatı boyunca bilim, sanat ve akılcılığı ön planda tutan Atatürk, tüm dünyada saygıyla anılmaktadır.
     </p>
   </div>
 
