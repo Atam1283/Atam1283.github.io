@@ -12,7 +12,6 @@
       padding-bottom: 70px;
     }
 
-    /* Logo */
     .logo {
       position: fixed;
       top: 10px;
@@ -26,7 +25,6 @@
       padding: 5px;
     }
 
-    /* Menü */
     nav.menu {
       position: fixed;
       top: 80px;
@@ -38,6 +36,7 @@
       overflow-x: auto;
       white-space: nowrap;
     }
+
     nav.menu a {
       display: inline-block;
       padding: 14px 20px;
@@ -48,65 +47,70 @@
       border-bottom: 3px solid transparent;
       transition: all 0.3s ease;
     }
+
     nav.menu a:hover {
       border-bottom: 3px solid #e30b17;
       color: #e30b17;
     }
+
     nav.menu::-webkit-scrollbar {
       display: none;
     }
 
-    /* Sağ üstte değişen söz */
     .quote-box {
       position: fixed;
       top: 10px;
       right: 10px;
       color: #222;
       font-weight: 300;
-      font-size: 9.6px;
+      font-size: 10px;
       max-width: 250px;
       text-align: right;
       font-family: Arial, sans-serif;
       z-index: 1200;
       line-height: 1.2;
-    }
-    .quote-source {
-      font-size: 8px;
-      font-weight: 300;
-      color: #666;
-      margin-top: 3px;
-      text-align: right;
+      animation: fadeIn 1s ease-in-out;
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out;
     }
 
-    /* Menü altı görsel */
-    .menu-image-container {
-      margin-top: 130px;
-      text-align: center;
-      z-index: 1;
-      position: relative;
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
+
+    .menu-image-container {
+      margin-top: 160px;
+      text-align: center;
+    }
+
     .menu-image-container img {
       max-width: 100%;
       height: auto;
-      display: block;
     }
 
-    /* Kayan yazı */
-    .typing-container {
-      margin: 20px auto 0;
-      padding: 10px 20px;
-      max-width: 90%;
-      font-size: 14px;
-      font-weight: bold;
-      color: #000;
+    .marquee-box {
+      margin: 20px auto 0 auto;
+      padding: 10px 0;
+      width: 100%;
+      overflow: hidden;
       white-space: normal;
-      word-break: break-word;
-      font-family: 'Courier New', monospace;
-      min-height: 40px;
       text-align: center;
     }
 
-    /* Footer */
+    .marquee-content {
+      display: inline-block;
+      animation: scrollText 20s linear infinite;
+      font-size: 14px;
+      font-weight: bold;
+      color: #000;
+    }
+
+    @keyframes scrollText {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
     footer {
       position: fixed;
       bottom: 0;
@@ -120,6 +124,7 @@
       gap: 30px;
       z-index: 1000;
     }
+
     footer a {
       display: flex;
       justify-content: center;
@@ -132,23 +137,25 @@
       color: #fff;
       text-decoration: none;
     }
+
     footer a:hover {
       border-color: #e30b17;
       color: #e30b17;
     }
+
     footer svg {
       width: 20px;
       height: 20px;
       fill: currentColor;
     }
 
-    @media (max-width: 600px) {
+    @media screen and (max-width: 600px) {
       .quote-box {
-        font-size: 8px;
+        font-size: 9px;
         max-width: 180px;
       }
-      .quote-source {
-        font-size: 7px;
+      .marquee-content {
+        font-size: 12px;
       }
     }
   </style>
@@ -158,12 +165,6 @@
   <a href="index.html" class="logo">
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
-
-  <!-- Sağ üstte değişen yazı -->
-  <div class="quote-box" id="quote-box">
-    <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
-    <div class="quote-source" id="quote-source">— TBMM, 1920</div>
-  </div>
 
   <!-- Menü -->
   <nav class="menu">
@@ -183,8 +184,13 @@
     <img src="images/ataturk5.jpg" alt="Atatürk" />
   </div>
 
-  <!-- Kayan yazı -->
-  <div class="typing-container" id="typing"></div>
+  <!-- Akan yazı -->
+  <div class="marquee-box">
+    <div class="marquee-content" id="marquee-text">Bu sitenin hazırlanma amacı Atatürk'ü tanıtmak ve yaşatmaktır.</div>
+  </div>
+
+  <!-- Sağ üstte değişen yazı -->
+  <div class="quote-box" id="quote-box">Hazırlayan: Muhammed Efe KORKMAZ</div>
 
   <!-- Footer -->
   <footer>
@@ -211,46 +217,24 @@
   </footer>
 
   <script>
-    // Sağ üstteki sözler
     const quotes = [
-      { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "— TBMM, 1920" },
-      { text: '"Yurtta sulh, cihanda sulh."', source: "— Atatürk" },
-      { text: '"Hayatta en hakiki mürşit ilimdir."', source: "— Atatürk" },
-      { text: '"Türk milleti çalışkandır, zekidir."', source: "— Atatürk" }
+      "Hazırlayan: Muhammed Efe KORKMAZ",
+      "Kaynak: T.C. İnkılap Tarihi Kitapları",
+      "Kaynak: TDK, Vikipedi, Resmi Arşivler",
+      "Bu sayfa Atatürk'ü anmak için hazırlandı"
     ];
 
-    let quoteIndex = 0;
+    let quoteBox = document.getElementById("quote-box");
+    let currentIndex = 0;
+
     setInterval(() => {
-      quoteIndex = (quoteIndex + 1) % quotes.length;
-      document.getElementById("quote-text").textContent = quotes[quoteIndex].text;
-      document.getElementById("quote-source").textContent = quotes[quoteIndex].source;
+      quoteBox.style.opacity = 0;
+      setTimeout(() => {
+        currentIndex = (currentIndex + 1) % quotes.length;
+        quoteBox.textContent = quotes[currentIndex];
+        quoteBox.style.opacity = 1;
+      }, 500);
     }, 5000);
-
-    // Kayan yazı klavye efekti
-    const messages = [
-      "Bu site Atatürk'ün hayatını anlatmak amacıyla hazırlanmıştır.",
-      "Site geliştiricisi: Muhammed Efe KORKMAZ",
-      "Tüm içerikler güvenilir kaynaklardan derlenmiştir.",
-      "Görseller ve bilgiler eğitim amacıyla sunulmaktadır."
-    ];
-    let messageIndex = 0;
-    let charIndex = 0;
-    const typingElement = document.getElementById("typing");
-
-    function typeMessage() {
-      if (charIndex <= messages[messageIndex].length) {
-        typingElement.textContent = messages[messageIndex].substring(0, charIndex);
-        charIndex++;
-        setTimeout(typeMessage, 50);
-      } else {
-        setTimeout(() => {
-          messageIndex = (messageIndex + 1) % messages.length;
-          charIndex = 0;
-          typeMessage();
-        }, 3000);
-      }
-    }
-    typeMessage();
   </script>
 </body>
 </html>
