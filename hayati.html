@@ -2,146 +2,122 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Atatürk'ün Hayatı</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #fff;
+      background: #fff;
     }
 
-    header {
+    .logo {
       position: fixed;
-      top: 0;
+      top: 10px;
+      left: 10px;
+      width: 120px;
+      height: auto;
+      z-index: 1100;
+      border-radius: 10px;
+      object-fit: contain;
+      background: #fff;
+      padding: 5px;
+    }
+
+    nav.menu {
+      position: fixed;
+      top: 80px;
+      left: 0;
       width: 100%;
       background: #fff;
       border-bottom: 2px solid #d9d9d9;
       z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
+      overflow-x: auto;
+      white-space: nowrap;
     }
 
-    .logo {
-      width: 120px;
-      height: auto;
-      border-radius: 10px;
-    }
-
-    nav a {
-      margin: 0 10px;
-      text-decoration: none;
+    nav.menu a {
+      display: inline-block;
+      padding: 14px 20px;
       color: #000;
-      font-weight: bold;
+      text-decoration: none;
       font-size: 15px;
+      font-weight: bold;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s ease;
     }
 
-    nav a:hover {
+    nav.menu a:hover {
+      border-bottom: 3px solid #e30b17;
       color: #e30b17;
-      border-bottom: 2px solid #e30b17;
     }
 
-    main {
-      padding: 160px 20px 80px 20px;
+    .content {
+      padding: 180px 20px 100px;
       max-width: 900px;
-      margin: 0 auto;
+      margin: auto;
     }
 
-    section {
-      margin-bottom: 60px;
-    }
-
-    section h2 {
+    h2 {
       color: #e30b17;
-      font-size: 24px;
-      border-bottom: 2px solid #e30b17;
-      padding-bottom: 5px;
-    }
-
-    section p {
-      line-height: 1.6;
-      margin-top: 10px;
     }
 
     .footer {
       background: #000;
       color: #fff;
+      padding: 20px 0;
       text-align: center;
-      padding: 20px 10px;
     }
 
     .footer svg {
-      margin: 0 8px;
-      vertical-align: middle;
-      fill: white;
       width: 24px;
       height: 24px;
-    }
-
-    @media (max-width: 600px) {
-      nav {
-        display: block;
-        text-align: center;
-      }
-
-      nav a {
-        display: inline-block;
-        margin: 10px 0;
-      }
-
-      .logo {
-        width: 90px;
-      }
+      margin: 0 10px;
+      fill: white;
+      vertical-align: middle;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="images/logo.png" alt="Logo" class="logo">
-    <nav>
-      <a href="index.html">Ana Sayfa</a>
-      <a href="hayatı.html">Hayatı</a>
-      <a href="galeri.html">Galeri</a>
-      <a href="gerisayim.html">Geri Sayım</a>
-      <a href="ayarlar.html">Ayarlar</a>
-    </nav>
-  </header>
+  <img src="images/logo.png" alt="Logo" class="logo" />
 
-  <main>
-    <section id="cocukluk">
-      <h2>Çocukluk ve Gençlik</h2>
-      <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Mahalle Mektebi'nde başlayan eğitim hayatı, Şemsi Efendi Okulu'yla modern bir çizgiye taşındı. Genç yaşta askerî eğitim almaya karar verdi ve bu yolda ilerleyerek Harp Okulu'nu bitirdi.</p>
-    </section>
+  <nav class="menu">
+    <a href="index.html">Anasayfa</a>
+    <a href="hayatı.html" style="display: none;">Hayatı</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="gerisayim.html">Geri Sayım</a>
+    <a href="ayarlar.html">Ayarlar</a>
+  </nav>
 
-    <section id="askeri">
-      <h2>Askerî Hayatı</h2>
-      <p>Atatürk'ün askerî kariyeri Trablusgarp ve Balkan Savaşları'yla başladı. Çanakkale Savaşı’ndaki başarıları, onun bir kahraman olarak tanınmasına neden oldu. Bu süreçte liderlik vasfını kanıtladı.</p>
-    </section>
+  <div class="content">
+    <h2>Çocukluk ve Gençlik</h2>
+    <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Mahalle mektebinde kısa bir süre eğitim aldıktan sonra modern eğitim veren Şemsi Efendi Okulu'na geçti. Genç yaşlarında askerî eğitime ilgi duymaya başladı ve bu ilgi onu ileride Harp Okulu'na yönlendirdi.</p>
 
-    <section id="milli-mucadele">
-      <h2>Milli Mücadele</h2>
-      <p>1919 yılında Samsun'a çıkarak Kurtuluş Savaşı'nı başlattı. Erzurum ve Sivas Kongreleri, halkın bağımsızlık iradesini yansıtıyordu. 1920’de Türkiye Büyük Millet Meclisi kurularak yeni bir dönemin kapısı aralandı.</p>
-    </section>
+    <h2>Askerî Hayatı</h2>
+    <p>Harp Akademisi'nden Kurmay Yüzbaşı olarak mezun olan Mustafa Kemal, Trablusgarp ve Balkan Savaşları'nda gösterdiği başarılarla dikkat çekti. Çanakkale Savaşı'nda büyük bir savunma başarısına imza attı ve ulusal kahraman olarak tanındı.</p>
 
-    <section id="cumhuriyet">
-      <h2>Cumhuriyetin Kuruluşu</h2>
-      <p>29 Ekim 1923'te Cumhuriyet ilan edildi. Mustafa Kemal Atatürk, oy birliğiyle Türkiye Cumhuriyeti’nin ilk Cumhurbaşkanı seçildi. Bu dönemde birçok çağdaş reform hayata geçirildi.</p>
-    </section>
+    <h2>Milli Mücadele</h2>
+    <p>1919 yılında Samsun'a çıkarak Türk milletinin bağımsızlık mücadelesini başlattı. Erzurum ve Sivas Kongreleri ile ulusal iradeyi esas alan bir yol izledi. 23 Nisan 1920'de TBMM'yi açarak yeni bir dönemin kapılarını araladı.</p>
 
-    <section id="reformlar">
-      <h2>Reformlar</h2>
-      <p>Atatürk, toplumu çağdaşlaştırmak adına eğitim, hukuk, kılık-kıyafet ve takvim gibi birçok alanda devrim yaptı. Kadınlara seçme ve seçilme hakkı verilmesiyle toplumda eşitlik anlayışı gelişti.</p>
-    </section>
-  </main>
+    <h2>Cumhuriyetin Kuruluşu</h2>
+    <p>1 Kasım 1922'de saltanat kaldırıldı, 29 Ekim 1923'te Türkiye Cumhuriyeti ilan edildi ve Mustafa Kemal, Cumhurbaşkanı seçildi. Bu dönemde hukuk, eğitim, ekonomi ve toplum alanlarında kapsamlı reformlar gerçekleştirildi.</p>
+
+    <h2>Reformlar</h2>
+    <p>Latin harflerinin kabulü, kadınlara seçme ve seçilme hakkı verilmesi, soyadı kanunu gibi birçok devrim gerçekleştirilerek Türkiye'nin çağdaş bir devlet olma yolunda ilerlemesi sağlandı.</p>
+  </div>
 
   <footer class="footer">
-    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M..."/></svg></a>
-    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M..."/></svg></a>
-    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M..."/></svg></a>
-    <p>&copy; 2025 Muhammed Efe KORKMAZ</p>
+    <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+      <svg viewBox="0 0 24 24"><path d="M22 12..."/></svg>
+    </a>
+    <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+      <svg viewBox="0 0 24 24"><path d="M22.46 6..."/></svg>
+    </a>
+    <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.2..."/></svg>
+    </a>
+    <p style="margin-top: 10px;">© 2025 Tüm Hakları Saklıdır</p>
   </footer>
 </body>
 </html>
