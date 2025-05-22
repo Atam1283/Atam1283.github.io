@@ -1,95 +1,86 @@
+/* Genel ayarlar */
 body {
   margin: 0;
-  font-family: 'Roboto', Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   background: #fff;
-  padding-bottom: 70px; /* footer yüksekliği kadar boşluk */
+  color: #111;
+  padding-bottom: 80px; /* Alt menü yüksekliği kadar boşluk bırak */
 }
 
-/* Logo sol üstte, gölgesiz */
+/* Logo (sol üstte) */
 .logo {
   position: fixed;
   top: 10px;
   left: 10px;
   width: 120px;
+  z-index: 1000;
+}
+.logo img {
+  width: 100%;
   height: auto;
-  z-index: 1100;
-  border-radius: 10px;
-  object-fit: contain;
-  background: #fff;
-  padding: 5px;
-}
-
-/* Menü kısmı */
-header {
-  position: fixed;
-  top: 70px; /* logo altına yerleşecek */
-  left: 10px;
-  right: 10px;
-  background-color: #111;
   border-radius: 8px;
-  padding: 8px 15px;
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
-  z-index: 1099;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  padding: 4px;
+  background: #fff;
 }
 
-header nav a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
+/* Değişen söz kutusu (sağ üstte) */
+.soz-kutusu {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background: #f3f3f3;
+  padding: 8px 14px;
+  border-left: 3px solid #e30b17;
+  font-size: 14px;
+  border-radius: 4px;
+  max-width: 220px;
+  z-index: 1000;
+}
+
+/* Ana içerik */
+.icerik {
+  padding: 140px 20px 20px 20px;
+  text-align: center;
+}
+.icerik h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+.icerik p {
   font-size: 16px;
-  padding: 8px 12px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  color: #333;
 }
 
-header nav a:hover,
-header nav a.active {
-  background-color: #b30000;
-  color: #fff;
-}
-
-/* Footer */
+/* Alt sabit menü */
 footer {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #000;
   height: 60px;
+  background: #000;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 30px;
   z-index: 1000;
 }
-
 footer a {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
-  border: 1px solid #888;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  transition: all 0.3s ease;
-  color: #fff;
-  text-decoration: none;
-  font-size: 20px;
+  background: #111;
+  transition: background 0.3s, transform 0.2s;
 }
-
 footer a:hover {
-  border-color: #e30b17;
-  color: #e30b17;
-  cursor: pointer;
+  background: #e30b17;
+  transform: scale(1.05);
 }
-
-footer svg {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-  transition: fill 0.3s ease;
+footer img {
+  width: 22px;
+  height: 22px;
+  filter: invert(1); /* ikonlar beyaz görünsün */
 }
