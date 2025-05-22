@@ -1,203 +1,92 @@
+/* Genel ayarlar */
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #fff;
-  padding-bottom: 90px; /* Footer için */
-  min-height: 100vh;
-  padding-top: 120px; /* Menü + logo yüksekliği kadar boşluk */
-  box-sizing: border-box;
-}
-
-/* Logo ve Menü kapsayıcı */
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #fff;
-  z-index: 1500;
-  display: flex;
-  align-items: center;
-  border-bottom: 2px solid #d9d9d9;
-  height: 120px;
-  padding: 10px 15px;
-  box-sizing: border-box;
-}
-
-/* Logo */
-.logo {
-  flex: 0 0 auto;
-  width: 120px;
-  height: auto;
-  margin-right: 20px;
-  border-radius: 10px;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.logo img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  object-fit: contain;
-}
-
-/* Menü */
-nav.menu {
-  flex: 1 1 auto;
-  overflow-x: auto;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
-}
-nav.menu::-webkit-scrollbar {
-  display: none;
-}
-nav.menu a {
-  display: inline-block;
-  padding: 14px 20px;
-  color: #000;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: bold;
-  border-bottom: 3px solid transparent;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-nav.menu a:hover {
-  border-bottom: 3px solid #e30b17;
-  color: #e30b17;
-}
-
-/* Sağ üstte değişen yazı */
-.quote-box {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  color: #222;
-  font-weight: 300;
-  font-size: 9.6px;
-  max-width: 250px;
-  text-align: right;
-  font-family: Arial, sans-serif;
-  z-index: 1600;
-  line-height: 1.2;
-}
-.quote-source {
-  font-size: 8px;
-  font-weight: 300;
-  color: #666;
-  margin-top: 3px;
-  text-align: right;
-}
-
-/* Menü altı görsel */
-.menu-image-container {
-  margin-top: 0;
-  text-align: center;
-  z-index: 100; /* Menünün altında kalacak */
-  position: relative;
-}
-.menu-image-container img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  user-select: none;
-}
-
-/* Footer */
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
   background-color: #000;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  z-index: 1000;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
 }
-footer a {
+
+/* Üst Menü */
+.menu {
+  background-color: #111;
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  border: 1px solid #888;
-  border-radius: 50%;
-  transition: all 0.3s ease;
+  padding: 10px 0;
+  border-bottom: 1px solid #900;
+}
+
+.menu a {
   color: #fff;
   text-decoration: none;
-}
-footer a:hover {
-  border-color: #e30b17;
-  color: #e30b17;
-}
-footer svg {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-}
-
-/* Alt bilgi alanı */
-.bottom-info {
-  position: fixed;
-  bottom: 70px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  font-size: 16px;
-  color: #222;
+  margin: 0 20px;
   font-weight: 600;
-  font-family: 'Courier New', Courier, monospace;
-  min-height: 24px;
-  user-select: none;
-  white-space: nowrap;
-  overflow: hidden;
-  letter-spacing: 2px;
-  z-index: 1100;
-}
-.author {
-  position: fixed;
-  bottom: 30px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  font-size: 14px;
-  color: #555;
-  font-family: Arial, sans-serif;
-  font-weight: 400;
-  z-index: 1100;
+  font-size: 1rem;
+  transition: color 0.3s ease;
 }
 
-/* Responsive küçük ekran için */
-@media (max-width: 480px) {
-  header {
-    height: 100px;
-    padding: 5px 10px;
+.menu a:hover {
+  color: #f44336; /* kırmızı vurgu */
+}
+
+/* Menüdeki fotoğraf kapsayıcısı */
+.menu-image-container {
+  max-width: 600px;
+  width: 90%;
+  margin: 20px auto 40px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.menu-image-container img {
+  width: 100%;
+  height: auto; /* Oran korunur */
+  display: block;
+  border-radius: 8px;
+}
+
+/* Ana içerik */
+.main-content {
+  max-width: 900px;
+  margin: 0 auto 60px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* Atatürk ismi */
+.main-content h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #fff;
+  user-select: none; /* seçilemez */
+}
+
+/* Atatürk sözü */
+.quote {
+  font-style: italic;
+  font-size: 1.4rem;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+/* Kaynak bilgisi */
+.source {
+  font-size: 1rem;
+  color: #888;
+}
+
+/* Responsive ayarları */
+@media (max-width: 768px) {
+  .menu a {
+    margin: 0 10px;
+    font-size: 0.9rem;
   }
-  .logo {
-    width: 90px;
-    margin-right: 10px;
+  .main-content h1 {
+    font-size: 2rem;
   }
-  nav.menu a {
-    padding: 10px 14px;
-    font-size: 13px;
-  }
-  .quote-box {
-    max-width: 150px;
-    font-size: 8px;
-    top: 5px;
-    right: 5px;
-  }
-  .bottom-info {
-    font-size: 14px;
-  }
-  .author {
-    font-size: 12px;
+  .quote {
+    font-size: 1.1rem;
   }
 }
