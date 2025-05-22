@@ -2,61 +2,57 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Atatürk</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mustafa Kemal Atatürk</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-<!-- Sol üstte logo -->
-<a href="index.html" class="logo">
-  <img src="images/logo.png" alt="Logo" />
-</a>
-
-<!-- Sağ üstte değişen Atatürk sözü -->
-<div class="soz-kutusu" id="sozKutusu"></div>
-
-<!-- İçerik -->
-<main class="icerik">
-  <h1>Mustafa Kemal Atatürk</h1>
-  <p>Bu alan sitenizin tanıtımını ya da güncel bilgileri içerebilir.</p>
-</main>
-
-<!-- Sabit alt menü -->
-<footer>
-  <a href="mailto:email@example.com" aria-label="Gmail">
-    <img src="icons/gmail.svg" alt="Gmail" />
+  <!-- Sol üst logo -->
+  <a href="index.html" class="logo">
+    <img src="images/logo.png" alt="Logo" />
   </a>
-  <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-    <img src="icons/instagram.svg" alt="Instagram" />
-  </a>
-  <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-    <img src="icons/facebook.svg" alt="Facebook" />
-  </a>
-  <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">
-    <img src="icons/twitter.svg" alt="Twitter" />
-  </a>
-</footer>
 
-<script>
-  // Atatürk sözleri
-  const sozler = [
-    "Yurtta sulh, cihanda sulh.",
-    "Beni görmek demek mutlaka yüzümü görmek değildir.",
-    "Hayatta en hakiki mürşit ilimdir.",
-    "Egemenlik, kayıtsız şartsız milletindir.",
-    "Muhtaç olduğun kudret, damarlarındaki asil kanda mevcuttur."
-  ];
+  <!-- Sağ üstte değişen söz -->
+  <div class="soz-kutusu" id="sozKutusu">Yurtta sulh, cihanda sulh.</div>
 
-  function rastgeleSoz() {
-    const kutu = document.getElementById('sozKutusu');
-    const secilen = sozler[Math.floor(Math.random() * sozler.length)];
-    kutu.textContent = secilen;
-  }
+  <!-- Ana içerik -->
+  <div class="icerik">
+    <h1>Mustafa Kemal Atatürk</h1>
+    <p>Hayatını Türk milletine adamış liderin izinden gidiyoruz.</p>
+  </div>
 
-  window.onload = rastgeleSoz;
-</script>
+  <!-- Alt menü -->
+  <footer>
+    <a href="mailto:email@example.com" title="Gmail">
+      <img src="icons/gmail.svg" alt="Gmail">
+    </a>
+    <a href="https://www.instagram.com" title="Instagram" target="_blank">
+      <img src="icons/instagram.svg" alt="Instagram">
+    </a>
+    <a href="https://www.facebook.com" title="Facebook" target="_blank">
+      <img src="icons/facebook.svg" alt="Facebook">
+    </a>
+    <a href="https://www.twitter.com" title="Twitter" target="_blank">
+      <img src="icons/twitter.svg" alt="Twitter">
+    </a>
+  </footer>
+
+  <!-- Değişen sözler -->
+  <script>
+    const sozler = [
+      "Yurtta sulh, cihanda sulh.",
+      "Benim naçiz vücudum elbet bir gün toprak olacaktır.",
+      "Egemenlik, kayıtsız şartsız milletindir.",
+      "Hayatta en hakiki mürşit ilimdir."
+    ];
+    const kutu = document.getElementById("sozKutusu");
+    setInterval(() => {
+      const rastgele = Math.floor(Math.random() * sozler.length);
+      kutu.textContent = sozler[rastgele];
+    }, 5000);
+  </script>
 
 </body>
 </html>
