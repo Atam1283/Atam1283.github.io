@@ -77,7 +77,6 @@
       border-bottom: 3px solid #e30b17;
       color: #e30b17;
     }
-
     main.content {
       max-width: 900px;
       margin: 120px auto 20px; /* Menüden biraz aşağı */
@@ -85,7 +84,77 @@
       line-height: 1.8;
       font-size: 16px;
     }
-
+    main {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 60vh;
+    }
+.menu-image-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .typewriter-box {
+      color: #e30b17;
+      position: fixed;
+      margin-right: 80%;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 28px;
+      z-index: 1000;
+    }
+    footer a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #888;
+      border-radius: 50%;
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    footer a:hover {
+      border-color: #e30b17;
+      color: #e30b17;
+    }
+    footer svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+    @media (max-width: 800px) {
+      header, .quote-box {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav.menu {
+        font-size: 14px;
+      }
+    }
+    @media (max-width: 600px) {
+      .logo img { width: 80px; }
+      .quote-box { font-size: 10px; max-width: 150px; }
+      nav.menu a { padding: 12px 10px; font-size: 13px; }
+      main { margin-top: 120px; }
+      .typewriter-box { font-size: 14px; }
+      footer { height: 50px; }
+      footer a { width: 32px; height: 32px;}
+      footer svg { width: 16px; height: 16px;}
+    }
     section {
       margin-bottom: 40px;
     }
@@ -108,6 +177,7 @@
       gap: 40px;
     }
     .social-icons a {
+
       display: flex;
       align-items: center;
       justify-content: center;
@@ -138,7 +208,10 @@
       padding: 10px 0;
       z-index: 1100;
     }
-
+    p
+    {
+      color: #fff;
+    }
     footer.footer-social svg {
       width: 24px;
       height: 24px;
@@ -175,15 +248,24 @@
 </head>
 <body>
   <header>
-    <img src="images/logo.png" alt="Atatürk Logo" class="logo" />
-    <nav class="menu" role="navigation" aria-label="Ana Menü">
+    <a href="index.html" class="logo" aria-label="Anasayfa">
+      <img src="images/logo.png" alt="Atatürk Logo" />
+    </a>
+    <div class="quote-box" id="quote-box">
+      <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
+      <div class="quote-source" id="quote-source">— TBMM, 1920</div>
+    </div>
+    <nav class="menu" role="navigation" aria-label="Ana menü">
       <a href="index.html">Anasayfa</a>
-      <a href="hayatı.html" class="active">Hayatı</a>
+      <a href="hayati.html" class="active">Hayatı</a>
       <a href="galeri.html">Galeri</a>
-      <a href="gerisayim.html">Geri Sayım</a>
+      <a href="sozleri.html">Sözleri</a>
+      <a href="eserleri.html">Eserleri</a>
+      <a href="devrimler.html">Devrimleri</a>
+      <a href="nutuk.html">Nutuk</a>
+      <a href="kronoloji.html">Kronoloji</a>
       <a href="ayarlar.html">Ayarlar</a>
     </nav>
-    <!-- Burada slogan yok -->
   </header>
 
   <main class="content" role="main">
