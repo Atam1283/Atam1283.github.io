@@ -1,179 +1,131 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Atatürk - Hayatı</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hayatı - Atatürk</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #fff;
-      padding-bottom: 80px;
     }
 
-    /* Üst beyaz plaka */
-    .header-wrapper {
-      background: white;
-      padding: 10px 0;
-      position: relative;
-      z-index: 10;
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #fff;
+      z-index: 1000;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
-    .header-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1000px;
-      margin: auto;
-      padding: 0 20px;
-      flex-wrap: wrap;
-    }
-
     .logo {
+      float: left;
+      padding: 10px;
       width: 120px;
       height: auto;
-      border-radius: 10px;
-      background: #fff;
-      padding: 4px;
-      object-fit: contain;
     }
 
     nav.menu {
-      width: 100%;
-      margin-top: 10px;
       overflow-x: auto;
       white-space: nowrap;
+      padding: 20px 0 10px 140px;
     }
 
     nav.menu a {
       display: inline-block;
-      padding: 14px 20px;
+      padding: 10px 20px;
       color: #000;
       text-decoration: none;
-      font-size: 15px;
       font-weight: bold;
-      border-bottom: 3px solid transparent;
-      transition: all 0.3s ease;
+      font-size: 15px;
+      transition: 0.3s;
     }
 
-    nav.menu a:hover,
-    nav.menu a.active {
-      border-bottom: 3px solid #e30b17;
+    nav.menu a:hover {
       color: #e30b17;
+      border-bottom: 3px solid #e30b17;
+    }
+
+    .content {
+      padding: 180px 20px 60px;
+      line-height: 1.6;
+      font-size: 16px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .footer {
+      background-color: #000;
+      color: #fff;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .footer svg {
+      width: 30px;
+      height: 30px;
+      margin: 0 10px;
+      fill: white;
+      transition: 0.3s;
+    }
+
+    .footer svg:hover {
+      fill: #e30b17;
     }
 
     nav.menu::-webkit-scrollbar {
       display: none;
     }
 
-    /* İçerik */
-    main.content {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
-
-    main.content h2 {
-      border-bottom: 3px solid #e30b17;
-      padding-bottom: 5px;
-      margin-top: 40px;
-    }
-
-    main.content p {
-      line-height: 1.6;
-      margin-top: 10px;
-      font-size: 16px;
-      color: #333;
-    }
-
-    /* Sosyal medya alt şerit */
-    footer.social-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #000;
-      padding: 10px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    footer.social-bar a {
-      margin: 0 15px;
-      color: #fff;
-      text-decoration: none;
-      font-size: 24px;
-      transition: color 0.3s ease;
-    }
-
-    footer.social-bar a:hover {
-      color: #e30b17;
-    }
-
-    footer.social-bar svg {
-      width: 24px;
-      height: 24px;
-      fill: currentColor;
-      vertical-align: middle;
+    @media (max-width: 600px) {
+      nav.menu {
+        padding-left: 120px;
+      }
+      .content {
+        padding-top: 200px;
+      }
     }
   </style>
 </head>
 <body>
-
-<!-- Üst Beyaz Plaka (Logo + Menü) -->
-<div class="header-wrapper">
-  <div class="header-content">
-    <img src="images/atatürk_logo.png" alt="Atatürk Logo" class="logo" />
+  <div class="header">
+    <img src="images/logo.png" alt="Logo" class="logo" />
     <nav class="menu">
       <a href="index.html">Ana Sayfa</a>
-      <a href="hayati.html" class="active">Hayatı</a>
+      <a href="hayatı.html">Hayatı</a>
       <a href="galeri.html">Galeri</a>
       <a href="gerisayim.html">Geri Sayım</a>
       <a href="ayarlar.html">Ayarlar</a>
     </nav>
   </div>
-</div>
 
-<!-- İçerik -->
-<main class="content">
-  <h1>M. Kemal Atatürk'ün Hayatı</h1>
+  <div class="content">
+    <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
+    <p><strong>Çocukluk ve Gençlik:</strong> 1881 yılında Selanik'te doğan Atatürk, küçük yaşlardan itibaren eğitimine önem verdi. Askeri okullarda aldığı eğitim, onun disiplinli ve vizyon sahibi bir lider olmasının temelini oluşturdu.</p>
+    <p><strong>Askerî Hayatı:</strong> Trablusgarp ve Balkan Savaşları'nda gösterdiği başarılarla tanındı. I. Dünya Savaşı’nda Çanakkale’deki kahramanlığı ile büyük ün kazandı.</p>
+    <p><strong>Milli Mücadele:</strong> 1919’da Samsun’a çıkarak Kurtuluş Savaşı’nı başlattı. Türkiye Cumhuriyeti’nin temellerini attı ve halkı örgütleyerek bağımsızlığı sağladı.</p>
+    <p><strong>Cumhuriyetin Kuruluşu:</strong> 1923’te Türkiye Cumhuriyeti’ni kurdu ve ilk Cumhurbaşkanı oldu. Egemenliğin millete ait olduğunu ilan etti.</p>
+    <p><strong>Reformlar:</strong> Eğitim, hukuk, dil, kıyafet ve takvim gibi alanlarda köklü reformlar yaptı. Modern Türkiye'nin mimarı olarak anıldı.</p>
+  </div>
 
-  <h2>Çocukluk ve Gençlik</h2>
-  <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Eğitim hayatı boyunca disiplinli ve azimli bir öğrenci olarak dikkat çekti...</p>
-
-  <h2>Askerî Hayatı</h2>
-  <p>1905 yılında Harp Okulu'ndan mezun olan Atatürk, Osmanlı ordusunda çeşitli görevlerde bulundu...</p>
-
-  <h2>Milli Mücadele</h2>
-  <p>1919'da Samsun'a çıkarak Kurtuluş Savaşı'nı başlatan Atatürk...</p>
-
-  <h2>Cumhuriyetin Kuruluşu</h2>
-  <p>1923 yılında Cumhuriyet ilan edildi. Atatürk, yeni devletin ilk cumhurbaşkanı oldu...</p>
-
-  <h2>Reformlar</h2>
-  <p>Harf Devrimi, kadın hakları, eğitim reformları ve laiklik gibi önemli değişikliklerle Atatürk, Türkiye'nin çağdaşlaşmasını sağladı.</p>
-</main>
-
-<!-- Sosyal Medya Alt Şerit -->
-<footer class="social-bar">
-  <!-- SVG ikonlar buraya -->
-  <a href="https://facebook.com" target="_blank" aria-label="Facebook">
-    <!-- Facebook SVG -->
-  </a>
-  <a href="https://twitter.com" target="_blank" aria-label="Twitter">
-    <!-- Twitter SVG -->
-  </a>
-  <a href="https://instagram.com" target="_blank" aria-label="Instagram">
-    <!-- Instagram SVG -->
-  </a>
-  <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
-    <!-- LinkedIn SVG -->
-  </a>
-</footer>
-
+  <div class="footer">
+    <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path d="M224,202A54,54,0,1,0,278,256,54,54,0,0,0,224,202Zm124-41a28,28,0,1,0,28,28A28,28,0,0,0,348,161ZM224,338a82,82,0,1,1,82-82A82,82,0,0,1,224,338Zm124-202H100A98,98,0,0,0,2,234V378a98,98,0,0,0,98,98H348a98,98,0,0,0,98-98V234A98,98,0,0,0,348,136Z"/>
+      </svg>
+    </a>
+    <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M459,151a158,158,0,0,1-45,12,78,78,0,0,0,34-43,158,158,0,0,1-50,19,78,78,0,0,0-133,71A221,221,0,0,1,93,133a78,78,0,0,0,24,104A77,77,0,0,1,87,229v1a78,78,0,0,0,62,76,78,78,0,0,1-35,1,78,78,0,0,0,73,54A157,157,0,0,1,64,407,222,222,0,0,0,186,440c134,0,207-111,207-207q0-5,0-10A148,148,0,0,0,459,151Z"/>
+      </svg>
+    </a>
+    <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+        <path d="M279,288l14-92H208V138c0-25,12-50,52-50h40V6S269,0,240,0c-73,0-121,44-121,124v70H80v92h39V512h89V288Z"/>
+      </svg>
+    </a>
+  </div>
 </body>
 </html>
