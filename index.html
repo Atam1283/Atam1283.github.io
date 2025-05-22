@@ -9,36 +9,57 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background: #fff;
-      padding-bottom: 90px; /* Footer ve alt yazı için boşluk */
-      position: relative;
+      padding-bottom: 90px; /* Footer için */
       min-height: 100vh;
+      padding-top: 120px; /* Menü + logo yüksekliği kadar boşluk */
+      box-sizing: border-box;
+    }
+
+    /* Logo ve Menü kapsayıcı */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      z-index: 1500;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid #d9d9d9;
+      height: 120px;
+      padding: 10px 15px;
+      box-sizing: border-box;
     }
 
     /* Logo */
     .logo {
-      position: fixed;
-      top: 10px;
-      left: 10px;
+      flex: 0 0 auto;
       width: 120px;
       height: auto;
-      z-index: 1100;
+      margin-right: 20px;
+      border-radius: 10px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo img {
+      width: 100%;
+      height: auto;
       border-radius: 10px;
       object-fit: contain;
-      background: #fff;
-      padding: 5px;
     }
 
     /* Menü */
     nav.menu {
-      position: fixed;
-      top: 80px;
-      left: 0;
-      width: 100%;
-      background: #fff;
-      border-bottom: 2px solid #d9d9d9;
-      z-index: 1000;
+      flex: 1 1 auto;
       overflow-x: auto;
       white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* Firefox */
+    }
+    nav.menu::-webkit-scrollbar {
+      display: none;
     }
     nav.menu a {
       display: inline-block;
@@ -49,16 +70,14 @@
       font-weight: bold;
       border-bottom: 3px solid transparent;
       transition: all 0.3s ease;
+      white-space: nowrap;
     }
     nav.menu a:hover {
       border-bottom: 3px solid #e30b17;
       color: #e30b17;
     }
-    nav.menu::-webkit-scrollbar {
-      display: none;
-    }
 
-    /* Sağ üstte değişen söz */
+    /* Sağ üstte değişen yazı */
     .quote-box {
       position: fixed;
       top: 10px;
@@ -69,7 +88,7 @@
       max-width: 250px;
       text-align: right;
       font-family: Arial, sans-serif;
-      z-index: 1200;
+      z-index: 1600;
       line-height: 1.2;
     }
     .quote-source {
@@ -82,12 +101,17 @@
 
     /* Menü altı görsel */
     .menu-image-container {
-      margin-top: 130px;
+      margin-top: 0;
       text-align: center;
+      z-index: 100; /* Menünün altında kalacak */
+      position: relative;
     }
     .menu-image-container img {
       max-width: 100%;
       height: auto;
+      display: block;
+      margin: 0 auto;
+      user-select: none;
     }
 
     /* Footer */
@@ -142,6 +166,7 @@
       white-space: nowrap;
       overflow: hidden;
       letter-spacing: 2px;
+      z-index: 1100;
     }
     .author {
       position: fixed;
@@ -153,33 +178,64 @@
       color: #555;
       font-family: Arial, sans-serif;
       font-weight: 400;
+      z-index: 1100;
+    }
+
+    /* Responsive küçük ekran için */
+    @media (max-width: 480px) {
+      header {
+        height: 100px;
+        padding: 5px 10px;
+      }
+      .logo {
+        width: 90px;
+        margin-right: 10px;
+      }
+      nav.menu a {
+        padding: 10px 14px;
+        font-size: 13px;
+      }
+      .quote-box {
+        max-width: 150px;
+        font-size: 8px;
+        top: 5px;
+        right: 5px;
+      }
+      .bottom-info {
+        font-size: 14px;
+      }
+      .author {
+        font-size: 12px;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Logo -->
-  <a href="index.html" class="logo">
-    <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
-  </a>
-
   <!-- Sağ üstte değişen yazı -->
   <div class="quote-box" id="quote-box">
     <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
     <div class="quote-source" id="quote-source">— TBMM, 1920</div>
   </div>
 
-  <!-- Menü -->
-  <nav class="menu">
-    <a href="index.html">Anasayfa</a>
-    <a href="hayati.html">Hayatı</a>
-    <a href="galeri.html">Galeri</a>
-    <a href="sozleri.html">Sözleri</a>
-    <a href="eserleri.html">Eserleri</a>
-    <a href="devrimler.html">Devrimleri</a>
-    <a href="nutuk.html">Nutuk</a>
-    <a href="kronoloji.html">Kronoloji</a>
-    <a href="ayarlar.html">Ayarlar</a>
-  </nav>
+  <header>
+    <!-- Logo -->
+    <a href="index.html" class="logo" aria-label="Ana Sayfa">
+      <img src="images/logo.png" alt="Logo" />
+    </a>
+
+    <!-- Menü -->
+    <nav class="menu" role="navigation" aria-label="Ana Menü">
+      <a href="index.html">Anasayfa</a>
+      <a href="hayati.html">Hayatı</a>
+      <a href="galeri.html">Galeri</a>
+      <a href="sozleri.html">Sözleri</a>
+      <a href="eserleri.html">Eserleri</a>
+      <a href="devrimler.html">Devrimleri</a>
+      <a href="nutuk.html">Nutuk</a>
+      <a href="kronoloji.html">Kronoloji</a>
+      <a href="ayarlar.html">Ayarlar</a>
+    </nav>
+  </header>
 
   <!-- Menü altı görsel -->
   <div class="menu-image-container">
@@ -192,26 +248,22 @@
 
   <!-- Footer -->
   <footer>
-    <a href="mailto:email@example.com" aria-label="Gmail">
-      <!-- Gmail SVG -->
+    <a href="mailto:email@example.com" aria-label="Gmail" title="Gmail">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/>
       </svg>
     </a>
-    <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-      <!-- Instagram SVG -->
+    <a href="https://www.instagram.com" target="_blank" aria-label="Instagram" title="Instagram">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
       </svg>
     </a>
-    <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-      <!-- Facebook SVG -->
+    <a href="https://www.facebook.com" target="_blank" aria-label="Facebook" title="Facebook">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M22 12A10 10 0 1 0 10 22v-7h-2v-3h2v-2c0-2.2 1.3-3.5 3.3-3.5.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.7h2.6L15 15h-2v7a10 10 0 0 0 9-10z"/>
       </svg>
     </a>
-    <a href="https://twitter.com" target="_blank" aria-label="Twitter">
-      <!-- Twitter SVG -->
+    <a href="https://twitter.com" target="_blank" aria-label="Twitter" title="Twitter">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.3 4.3 0 0 0 1.88-2.37c-.84.5-1.78.86-2.77 1.06a4.28 4.28 0 0 0-7.29 3.9A12.13 12.13 0 0 1 3.15 4.6a4.28 4.28 0 0 0 1.33 5.71 4.24 4.24 0 0 1-1.94-.54v.05a4.28 4.28 0 0 0 3.43 4.2 4.27 4.27 0 0 1-1.93.07 4.29 4.29 0 0 0 4 2.97 8.6 8.6 0 0 1-5.3 1.83A8.82 8.82 0 0 1 2 19.54a12.13 12.13 0 0 0 6.56 1.92c7.88 0 12.2-6.53 12.2-12.2v-.56A8.6 8.6 0 0 0 24 5.13a8.4 8.4 0 0 1-2.43.67 4.27 4.27 0 0 0 1.89-2.35z"/>
       </svg>
@@ -228,8 +280,8 @@
 
     let currentTextIndex = 0;
     let currentCharIndex = 0;
-    const typingSpeed = 80; // ms per character
-    const displayDuration = 5000; // 5 saniye toplam süre
+    const typingSpeed = 80; // ms per karakter
+    const displayDuration = 5000; // toplam 5 saniye
 
     const animatedText = document.getElementById("animated-text");
 
