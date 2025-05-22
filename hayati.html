@@ -26,7 +26,7 @@
     padding: 10px 20px;
     box-sizing: border-box;
     z-index: 1100;
-    /* Anasayfadaki menünün altında gri çizgi yok */
+    /* Menü altındaki çizgi kaldırıldı, border yok */
   }
 
   .logo {
@@ -45,12 +45,11 @@
   }
 
   nav.menu::-webkit-scrollbar {
-    height: 5px;
+    display: none; /* Scrollbar tamamen gizlendi */
   }
-
-  nav.menu::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 10px;
+  nav.menu {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
   }
 
   nav.menu a {
@@ -196,4 +195,6 @@
       <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.28 4.28 0 0 0 1.88-2.37 8.59 8.59 0 0 1-2.7 1.03 4.28 4.28 0 0 0-7.29 3.9 12.14 12.14 0 0 1-8.82-4.47 4.28 4.28 0 0 0 1.32 5.72 4.25 4.25 0 0 1-1.94-.53v.05a4.28 4.28 0 0 0 3.44 4.19 4.28 4.28 0 0 1-1.93.07 4.28 4.28 0 0 0 4 3 8.6 8.6 0 0 1-5.33 1.83A8.78 8.78 0 0 1 2 18.57a12.13 12.13 0 0 0 6.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.19 0-.38-.01-.56A8.7 8.7 0 0 0 22.46 6z"/>
     </svg>
   </a>
-  <a href="https://www.instagram.com" target="_blank" aria-label="
+  <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
+      <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25
