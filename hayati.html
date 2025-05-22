@@ -1,193 +1,221 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
+  <title>Atatürk</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Atatürk Ana Sayfa</title>
   <style>
-    /* Genel sıfırlama ve temel stiller */
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       background: #fff;
-      color: #222;
-      padding-bottom: 70px;
-      overflow-x: hidden;
+      padding-bottom: 80px;
     }
-    /* Header: logo ve menü */
-    header.header {
+    .logo {
       position: fixed;
-      top: 0; left: 0; right: 0;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-      height: 60px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      top: 10px;
+      left: 10px;
+      width: 120px;
       z-index: 1100;
-    }
-    header.header img.logo {
-      height: 40px;
-      width: auto;
-      object-fit: contain;
-      user-select: none;
+      border-radius: 10px;
+      background: #fff;
+      padding: 5px;
     }
     nav.menu {
-      display: flex;
-      gap: 25px;
+      position: fixed;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-bottom: 2px solid #d9d9d9;
+      z-index: 1000;
       overflow-x: auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
       white-space: nowrap;
+    }
+    nav.menu a {
+      display: inline-block;
+      padding: 14px 20px;
+      color: #000;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s ease;
+    }
+    nav.menu a:hover {
+      border-bottom: 3px solid #e30b17;
+      color: #e30b17;
     }
     nav.menu::-webkit-scrollbar {
       display: none;
     }
-    nav.menu a {
-      font-weight: bold;
-      font-size: 15px;
-      color: #000;
-      text-decoration: none;
-      padding-bottom: 5px;
-      border-bottom: 3px solid transparent;
-      line-height: 40px;
-      transition: border-color 0.3s ease, color 0.3s ease;
-      user-select: none;
-    }
-    nav.menu a:hover,
-    nav.menu a:focus {
-      color: #e30b17;
-      border-bottom-color: #e30b17;
-      outline: none;
-    }
-    /* Sağ üstteki Atatürk sözleri kutusu */
     .quote-box {
       position: fixed;
       top: 10px;
       right: 10px;
-      max-width: 250px;
-      font-size: 12px;
       color: #222;
-      font-weight: 300;
-      font-family: 'Arial', sans-serif;
+      font-size: 10px;
+      max-width: 250px;
+      text-align: right;
+      font-family: Arial, sans-serif;
       z-index: 1200;
-      background: rgba(255,255,255,0.85);
-      padding: 8px 12px;
-      border-radius: 8px;
-      box-shadow: 0 0 6px rgba(0,0,0,0.1);
-      user-select: none;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
-    /* Ana içerik */
-    main.content {
-      max-width: 900px;
-      margin: 80px auto 100px;
-      padding: 0 20px;
+    .quote-source {
+      font-size: 9px;
+      color: #666;
+      margin-top: 3px;
+    }
+    .menu-image-container {
+      padding-top: 122px; /* 80px menü + 42px alt boşluk çizgisi */
+      text-align: center;
+    }
+    .menu-image-container img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .typewriter-box {
+      margin: 40px auto;
+      max-width: 90%;
       font-size: 16px;
-      line-height: 1.6;
-      user-select: text;
-    }
-    main.content h1 {
-      font-size: 28px;
-      margin-bottom: 20px;
-      text-align: center;
-      color: #e30b17;
-      user-select: none;
-    }
-    main.content p {
-      margin-bottom: 18px;
-      text-align: justify;
-    }
-    /* Daktilo efektli yazı */
-    #typed-text {
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 18px;
-      font-weight: normal;
-      line-height: 1.4;
-      min-height: 80px;
+      color: #000;
+      font-family: monospace;
+      border-left: 2px solid #e30b17;
+      padding-left: 10px;
       white-space: pre-wrap;
-      margin-top: 40px;
-      color: #444;
+      overflow-wrap: break-word;
+      min-height: 80px;
     }
-    /* Alt sosyal medya alanı ve siyah şerit */
-    footer.footer {
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
       background-color: #000;
-      color: #fff;
-      padding: 30px 20px;
-      text-align: center;
-      user-select: none;
-    }
-    footer.footer .social-icons {
-      display: inline-flex;
-      gap: 30px;
+      height: 60px;
+      display: flex;
       justify-content: center;
+      align-items: center;
+      gap: 30px;
+      z-index: 1000;
     }
-    footer.footer .social-icons a {
+    footer a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #888;
+      border-radius: 50%;
       color: #fff;
-      transition: color 0.3s ease;
-      display: inline-block;
-      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
     }
-    footer.footer .social-icons a:hover,
-    footer.footer .social-icons a:focus {
+    footer a:hover {
+      border-color: #e30b17;
       color: #e30b17;
-      outline: none;
     }
-    footer.footer svg {
-      width: 32px;
-      height: 32px;
+    footer svg {
+      width: 20px;
+      height: 20px;
       fill: currentColor;
-      vertical-align: middle;
+    }
+    @media (max-width: 600px) {
+      .quote-box {
+        font-size: 9px;
+        max-width: 160px;
+      }
     }
   </style>
 </head>
 <body>
-
-<header class="header" role="banner">
-  <img src="images/logo.png" alt="Atatürk Logo" class="logo" />
-  <nav class="menu" role="navigation" aria-label="Ana Menü">
-    <a href="index.html" aria-current="page">Ana Sayfa</a>
-    <a href="hayatı.html">Hayatı</a>
+  <!-- Logo -->
+  <a href="index.html" class="logo">
+    <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
+  </a>
+  <!-- Sağ üstte değişen söz -->
+  <div class="quote-box" id="quote-box">
+    <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
+    <div class="quote-source" id="quote-source">— TBMM, 1920</div>
+  </div>
+  <!-- Menü -->
+  <nav class="menu">
+    <a href="index.html">Anasayfa</a>
+    <a href="hayati.html">Hayatı</a>
     <a href="galeri.html">Galeri</a>
-    <a href="gerisayim.html">Geri Sayım</a>
+    <a href="sozleri.html">Sözleri</a>
+    <a href="eserleri.html">Eserleri</a>
+    <a href="devrimler.html">Devrimleri</a>
+    <a href="nutuk.html">Nutuk</a>
+    <a href="kronoloji.html">Kronoloji</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
-</header>
-
-<div class="quote-box" aria-live="polite" aria-atomic="true" id="quoteBox">
-  "Egemenlik, kayıtsız şartsız milletindir." — Türkiye Büyük Millet Meclisi, 1920
-</div>
-
-<main class="content" role="main" tabindex="0">
-  <h1>Mustafa Kemal Atatürk</h1>
-  <p>
-    Mustafa Kemal Atatürk, modern Türkiye Cumhuriyeti’nin kurucusu ve ilk cumhurbaşkanıdır. 
-    1881 yılında Selanik'te doğmuş, eğitim hayatı boyunca askeri ve bilimsel alanlarda üstün başarı göstermiştir.
-  </p>
-  <p>
-    Atatürk, Kurtuluş Savaşı'nı yöneterek Türkiye'nin bağımsızlığını kazanmasını sağlamış ve pek çok reformla 
-    ülkeyi modernleştirmiştir. Eğitim, hukuk, dil, ekonomi gibi pek çok alanda köklü değişikliklere öncülük etmiştir.
-  </p>
-  <p>
-    Türkiye Cumhuriyeti'nin temellerini atan Atatürk, evrensel değerlere sahip bir lider olarak dünya tarihine geçmiştir.
-  </p>
-
-  <div id="typed-text" aria-live="polite" aria-atomic="true"></div>
-</main>
-
-<footer class="footer" role="contentinfo" aria-label="Sosyal medya bağlantıları">
-  <div class="social-icons">
-    <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" aria-hidden="true"><path d="M224,202A54,54,0,1,0,278,256,54,54,0,0,0,224,202Zm124-41a28,28,0,1,0,28,28A28,28,0,0,0,348,161ZM224,338a82,82,0,1,1,82-82A82,82,0,0,1,224,338Zm124-202H100A98,98,0,0,0,2,234V378a98,98,0,0,0,98,98H348a98,98,0,0,0,98-98V234A98,98,0,0,0,348,136Z"/></svg>
+  <!-- Görsel -->
+  <div class="menu-image-container">
+    <!-- Görsel kaldırıldı -->
+  </div>
+  <!-- Daktilo kutusu -->
+  <div class="typewriter-box" id="typewriter-box"></div>
+  <!-- Footer -->
+  <footer>
+    <a href="mailto:email@example.com" aria-label="Gmail">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/>
+      </svg>
     </a>
-    <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true"><path d="M459,151a158,158,0,0,1-45,12,78,78,0,0,0,34-43,158,158,0,0,1-50,19,78,78,0,0,0-133,71A221,221,0,0,1,93,133a78,78,0,0,0,24,104A77,77,0,0,1,87,229v1a78,78,0,0,0,62,76,78,78,0,0,1-35,1,78,78,0,0,0,73,54A157,157,0,0,1,64,407,222,222,0,0,0,186,440c134,0,207-111,207-207q0-5,0-10A148,148,0,0,0,459,151Z"/></svg>
+    <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+      </svg>
     </a>
     <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-      <svg xmlns="http://www.w3.org/200
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M22 12A10 10 0 1 0 10 22v-7h-2v-3h2v-2c0-2.2 1.3-3.5 3.3-3.5.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.7h2.6L15 15h-2v7a10 10 0 0 0 9-10z"/>
+      </svg>
+    </a>
+  </footer>
+  <script>
+    const quotes = [
+      { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "— TBMM, 1920" },
+      { text: '"Yurtta sulh, cihanda sulh."', source: "— Atatürk" },
+      { text: '"Hayatta en hakiki mürşit ilimdir."', source: "— Atatürk" },
+      { text: '"Türk milleti çalışkandır, zekidir."', source: "— Atatürk" }
+    ];
+    let quoteIndex = 0;
+    function updateQuote() {
+      quoteIndex = (quoteIndex + 1) % quotes.length;
+      document.getElementById("quote-text").textContent = quotes[quoteIndex].text;
+      document.getElementById("quote-source").textContent = quotes[quoteIndex].source;
+    }
+    setInterval(updateQuote, 5000);
+    const messages = [
+      "Hazırlayan: Muhammed Efe KORKMAZ",
+      "Bu site Atatürk'ü tanıtmak amacıyla yapılmıştır.",
+      "İçeriğinde hayatı, sözleri, devrimleri yer almaktadır."
+    ];
+    let msgIndex = 0;
+    const typewriterBox = document.getElementById("typewriter-box");
+    function showMessage() {
+      typewriterBox.textContent = "";
+      let text = messages[msgIndex];
+      let i = 0;
+      function typeChar() {
+        if (i < text.length) {
+          typewriterBox.textContent += text.charAt(i);
+          i++;
+          setTimeout(typeChar, 50);
+        } else {
+          setTimeout(() => {
+            msgIndex = (msgIndex + 1) % messages.length;
+            showMessage();
+          }, 5000);
+        }
+      }
+      typeChar();
+    }
+    showMessage();
+  </script>
+</body>
+</html>
