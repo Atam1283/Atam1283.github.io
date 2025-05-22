@@ -15,15 +15,9 @@
     body {
       margin: 0;
       padding: 0;
+      background: #fff;
+      color: #000;
       font-family: Arial, sans-serif;
-      background-color: #fff;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    .wrap-body {
-      flex: 1;
     }
 
     header .wrap-header {
@@ -42,10 +36,46 @@
       object-fit: cover;
     }
 
+    #cssmenu {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 10px;
+      margin-right: 20px;
+      align-items: center;
+      height: 50px;
+    }
+
+    #cssmenu ul {
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    #cssmenu ul li {
+      list-style: none;
+    }
+
+    #cssmenu ul li a {
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      color: #333;
+      padding: 10px 15px;
+      display: inline-block;
+      transition: color 0.3s ease;
+    }
+
+    #cssmenu ul li:hover > a {
+      color: #007BFF;
+    }
+
     .search-container {
       display: flex;
       justify-content: flex-end;
       margin: 5px 20px 20px 0;
+      padding-top: 0;
     }
 
     .search-container input[type="text"] {
@@ -63,38 +93,54 @@
       box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
     }
 
-    /* Footer - kemalataturk.net tarzı */
     footer {
-      background-color: #000;
-      padding: 30px 0 10px;
-      border-top: 1px solid #444;
+      margin-top: 40px;
+      border-top: 1px solid #ccc;
+      padding: 15px 0;
+      background: #f9f9f9;
       text-align: center;
+      position: relative;
     }
 
+    /* Sosyal medya ikon kapsayıcısı */
     .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
       margin-bottom: 10px;
     }
 
     .social-icons a {
-      margin: 0 8px;
-      display: inline-block;
-      transition: transform 0.3s;
+      display: flex;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      text-decoration: none;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     }
 
     .social-icons a:hover {
-      transform: scale(1.1);
+      background-color: #007BFF;
+      border-color: #007BFF;
+      color: #fff;
     }
 
-    .social-icons img {
-      width: 24px;
-      height: 24px;
-      filter: brightness(0) invert(1); /* beyaz görünüm */
+    .social-icons svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
     }
 
     footer p {
-      color: #ccc;
-      font-size: 13px;
-      margin-top: 10px;
+      font-size: 14px;
+      color: #555;
+      margin: 0;
     }
   </style>
 </head>
@@ -105,6 +151,26 @@
       <div class="wrap-header zerogrid">
         <div class="row" style="position: relative; height: 90px;">
           <a href="index.html" class="logo"><img src="images/logo.png" alt="Logo" /></a>
+
+          <div id="cssmenu">
+            <ul>
+              <li class="active"><a href="index.html"><h5>ANASAYFA</h5></a></li>
+              <li><a href="#">Galeri</a>
+                <ul>
+                  <li><a href="kzkls.html">Atatürk kulesi</a></li>
+                  <li><a href="stnblbgz.html">Atatürk Boğazı</a></li>
+                  <li><a href="dlmbhcsry.html">Atatürk Sarayı</a></li>
+                  <li><a href="sltnhmtmydn.html">Atatürk Meydanı</a></li>
+                  <li><a href="sltnhmtcm.html">Atatürk Camii</a></li>
+                  <li><a href="yrbtnsrnc.html">Atatürk Sarıncı</a></li>
+                  <li><a href="tpkpsrymzs.html">Atatürk Sarayı Müzesi</a></li>
+                  <li><a href="kplcrs.html">Atatürk Çarşı</a></li>
+                </ul>
+              </li>
+              <li><a href="single.html">Geri Sayım</a></li>
+              <li><a href="contact.html">Ayarlar</a></li>
+            </ul>
+          </div>
         </div>
         <div class="search-container">
           <input type="text" placeholder="Sitede ara..." />
@@ -112,28 +178,48 @@
       </div>
     </header>
 
-    <!-- Ana içerik (boş) -->
+    <!-- Container -->
     <section id="container">
       <div class="zerogrid">
         <div class="wrap-container clearfix">
           <div id="main-content">
             <div class="row wrap-content">
-              <!-- İçerik buraya -->
+              <!-- İçerik boş -->
             </div>
           </div>
         </div>
       </div>
     </section>
-  </div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="social-icons">
-      <a href="#" target="_blank" title="Instagram"><img src="https://kemalataturk.net/img/ig.svg" alt="Instagram" /></a>
-      <a href="#" target="_blank" title="YouTube"><img src="https://kemalataturk.net/img/yt.svg" alt="YouTube" /></a>
-      <a href="#" target="_blank" title="Twitter"><img src="https://kemalataturk.net/img/tw.svg" alt="Twitter" /></a>
-    </div>
-    <p>© 2025 Tüm Hakları Saklıdır - atam1283.github.io</p>
-  </footer>
+    <!-- Footer -->
+    <footer>
+      <div class="social-icons">
+        <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+        <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 22.4.36a9.12 9.12 0 0 1-2.88 1.1 4.52 4.52 0 0 0-7.7 4.13A12.86 12.86 0 0 1 1.64 2.16a4.52 4.52 0 0 0 1.4 6.05 4.52 4.52 0 0 1-2.05-.57v.06a4.52 4.52 0 0 0 3.63 4.44 4.52 4.52 0 0 1-2.04.08 4.52 4.52 0 0 0 4.22 3.13A9.05 9.05 0 0 1 1 19.54a12.79 12.79 0 0 0 6.92 2.03c8.3 0 12.84-6.88 12.84-12.83 0-.2 0-.42-.02-.62A9.22 9.22 0 0 0 23 3z"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+            <circle cx="12" cy="12" r="5" />
+            <circle cx="17.5" cy="6.5" r="1.5" />
+          </svg>
+        </a>
+        <a href="mailto:email@example.com" aria-label="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M4 4h16v16H4z" fill="none" stroke="currentColor" stroke-width="2" />
+            <polyline points="4,4 12,13 20,4" fill="none" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </a>
+      </div>
+      <p>© Tüm Hakları Saklıdır</p>
+    </footer>
+  </div>
 </body>
 </html>
