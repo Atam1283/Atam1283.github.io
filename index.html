@@ -11,25 +11,47 @@
       font-family: Arial, sans-serif;
       background: #fff;
       padding-bottom: 80px;
+      min-height: 100vh;
     }
-    .logo {
+    header {
       position: fixed;
-      top: 10px;
-      left: 10px;
-      width: 120px;
-      z-index: 1100;
-      border-radius: 10px;
+      top: 0;
+      left: 0;
+      width: 100%;
       background: #fff;
-      padding: 5px;
+      z-index: 1200;
+      border-bottom: 2px solid #d9d9d9;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 10px 10px 0 10px;
+    }
+    .logo img {
+      width: 120px;
+      border-radius: 10px;
+      display: block;
+    }
+    .quote-box {
+      margin-top: 10px;
+      color: #222;
+      font-size: 12px;
+      max-width: 250px;
+      text-align: right;
+      font-family: Arial, sans-serif;
+    }
+    .quote-source {
+      font-size: 10px;
+      color: #666;
+      margin-top: 3px;
     }
     nav.menu {
       position: fixed;
-      top: 80px;
+      top: 75px;
       left: 0;
       width: 100%;
       background: #fff;
       border-bottom: 2px solid #d9d9d9;
-      z-index: 1000;
+      z-index: 1100;
       overflow-x: auto;
       white-space: nowrap;
     }
@@ -43,50 +65,35 @@
       border-bottom: 3px solid transparent;
       transition: all 0.3s ease;
     }
-    nav.menu a:hover {
+    nav.menu a:hover, nav.menu a.active {
       border-bottom: 3px solid #e30b17;
       color: #e30b17;
     }
-    nav.menu::-webkit-scrollbar {
-      display: none;
-    }
-    .quote-box {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      color: #222;
-      font-size: 10px;
-      max-width: 250px;
-      text-align: right;
-      font-family: Arial, sans-serif;
-      z-index: 1200;
-    }
-    .quote-source {
-      font-size: 9px;
-      color: #666;
-      margin-top: 3px;
-    }
-    .menu-image-container {
-      padding-top: 122px; /* 80px menü + 42px alt boşluk çizgisi */
-      text-align: center;
+    main {
+      margin-top: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 60vh;
     }
     .menu-image-container img {
       max-width: 100%;
       height: auto;
-      display: block;
-      margin: 0 auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      margin-bottom: 20px;
     }
     .typewriter-box {
-      margin: 40px auto;
       max-width: 90%;
-      font-size: 16px;
+      font-size: 17px;
       color: #000;
       font-family: monospace;
       border-left: 2px solid #e30b17;
-      padding-left: 10px;
-      white-space: pre-wrap;
-      overflow-wrap: break-word;
+      padding-left: 12px;
       min-height: 80px;
+      margin-bottom: 30px;
+      background: #f8f8f8;
+      border-radius: 4px;
     }
     footer {
       position: fixed;
@@ -98,7 +105,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 30px;
+      gap: 28px;
       z-index: 1000;
     }
     footer a {
@@ -122,27 +129,39 @@
       height: 20px;
       fill: currentColor;
     }
-    @media (max-width: 600px) {
-      .quote-box {
-        font-size: 9px;
-        max-width: 160px;
+    @media (max-width: 800px) {
+      header, .quote-box {
+        flex-direction: column;
+        align-items: flex-start;
       }
+      nav.menu {
+        font-size: 14px;
+      }
+    }
+    @media (max-width: 600px) {
+      .logo img { width: 80px; }
+      .quote-box { font-size: 10px; max-width: 150px; }
+      nav.menu a { padding: 12px 10px; font-size: 13px; }
+      main { margin-top: 120px; }
+      .typewriter-box { font-size: 14px; }
+      footer { height: 50px; }
+      footer a { width: 32px; height: 32px;}
+      footer svg { width: 16px; height: 16px;}
     }
   </style>
 </head>
 <body>
-  <!-- Logo -->
-  <a href="index.html" class="logo">
-    <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
-  </a>
-  <!-- Sağ üstte değişen söz -->
-  <div class="quote-box" id="quote-box">
-    <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
-    <div class="quote-source" id="quote-source">— TBMM, 1920</div>
-  </div>
-  <!-- Menü -->
-  <nav class="menu">
-    <a href="index.html">Anasayfa</a>
+  <header>
+    <a href="index.html" class="logo" aria-label="Anasayfa">
+      <img src="images/logo.png" alt="Atatürk Logo" />
+    </a>
+    <div class="quote-box" id="quote-box">
+      <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
+      <div class="quote-source" id="quote-source">— TBMM, 1920</div>
+    </div>
+  </header>
+  <nav class="menu" role="navigation" aria-label="Ana menü">
+    <a href="index.html" class="active">Anasayfa</a>
     <a href="hayati.html">Hayatı</a>
     <a href="galeri.html">Galeri</a>
     <a href="sozleri.html">Sözleri</a>
@@ -152,22 +171,21 @@
     <a href="kronoloji.html">Kronoloji</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
-  <!-- Görsel -->
-  <div class="menu-image-container">
-    <img src="images/ataturk5.jpg" alt="Atatürk" />
-      </div>
-  <!-- Daktilo kutusu -->
-  <div class="typewriter-box" id="typewriter-box"></div>
-  <!-- Footer -->
+  <main>
+    <div class="menu-image-container">
+      <img src="images/ataturk5.jpg" alt="Atatürk portresi" />
+    </div>
+    <div class="typewriter-box" id="typewriter-box"></div>
+  </main>
   <footer>
-    <a href="mailto:email@example.com" aria-label="Gmail">
+    <a href="mailto:email@example.com" aria-label="E-posta">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/>
       </svg>
     </a>
     <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.00[...]"/>
       </svg>
     </a>
     <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
@@ -175,7 +193,9 @@
         <path d="M22 12A10 10 0 1 0 10 22v-7h-2v-3h2v-2c0-2.2 1.3-3.5 3.3-3.5.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.7h2.6L15 15h-2v7a10 10 0 0 0 9-10z"/>
       </svg>
     </a>
-    <script>
+  </footer>
+  <script>
+    // Alıntı kutusu otomatik değişimi
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "— TBMM, 1920" },
       { text: '"Yurtta sulh, cihanda sulh."', source: "— Atatürk" },
@@ -189,6 +209,8 @@
       document.getElementById("quote-source").textContent = quotes[quoteIndex].source;
     }
     setInterval(updateQuote, 5000);
+
+    // Daktilo kutusu animasyonu
     const messages = [
       "Hazırlayan: Muhammed Efe KORKMAZ",
       "Bu site Atatürk'ü tanıtmak amacıyla yapılmıştır.",
@@ -216,6 +238,5 @@
     }
     showMessage();
   </script>
-  </footer>
 </body>
 </html>
