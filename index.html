@@ -1,162 +1,125 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Atatürk Temalı Site</title>
-  <style>
-    /* Genel sıfırlamalar */
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #000;
-      color: #fff;
-    }
-    a {
-      color: #fff;
-      text-decoration: none;
-    }
-    a:hover {
-      color: #f44336; /* Kırmızı vurgu */
-    }
-    header {
-      background-color: #111;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header nav a {
-      margin: 0 10px;
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-    header nav a.active {
-      border-bottom: 2px solid #f44336;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kemal Atatürk</title>
+<style>
+  body {
+    margin: 0;
+    background-color: #000;
+    color: #fff;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+  /* Menü ve genel stiller */
+  .menu {
+    background-color: #111;
+    padding: 10px 0;
+    text-align: center;
+  }
+  .menu a {
+    color: #fff;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .menu a:hover {
+    color: #f00;
+  }
 
-    /* Menü altı görsel */
-    .menu-image-container {
-      background-color: #000; /* Siyah arka plan */
-      padding: 20px 0 40px 0; /* Üst 20px, alt 40px boşluk */
-      text-align: center;
-    }
-    .image-wrapper {
-      display: inline-block;
-      background-color: #000; /* Resim çevresi siyah */
-      padding: 0 10px; /* Sağ sol siyah boşluk */
-      border-radius: 10px;
-    }
-    .menu-image-container img.menu-image {
-      max-width: 70%; /* Küçültülmüş */
-      height: auto;
-      display: block;
-      margin: 0 auto;
-      border-radius: 10px;
-      object-fit: contain;
-    }
+  /* Resim ve altındaki beyaz alan */
+  .menu-image-container {
+    background-color: #000; /* Yanlar siyah */
+    padding: 20px 0 0 0;
+    text-align: center;
+  }
+  .menu-image {
+    max-width: 100%;
+    height: auto;
+    display: inline-block;
+    background-color: #000; /* Resmin etrafı siyah */
+  }
+  .image-bottom-bar {
+    background-color: #fff;
+    height: 80px;
+    width: 100%;
+    margin-top: 10px;
+  }
 
-    /* Ana içerik */
-    main {
-      padding: 0 20px 60px 20px;
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    main h1 {
-      font-size: 2.5rem;
-      margin-bottom: 15px;
-      color: #f44336;
-    }
-    main p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 30px;
-    }
-
-    /* Footer */
-    footer {
-      background-color: #111;
-      padding: 15px 0;
-      text-align: center;
-      position: relative;
-      bottom: 0;
-      width: 100%;
-    }
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin-bottom: 5px;
-    }
-    .social-icons a {
-      color: #fff;
-      font-size: 1.8rem;
-      transition: color 0.3s ease;
-    }
-    .social-icons a:hover {
-      color: #f44336;
-    }
-    /* Basit ikonlar için inline SVG kullandım */
-    .social-icons svg {
-      fill: currentColor;
-      width: 28px;
-      height: 28px;
-      vertical-align: middle;
-    }
-  </style>
+  /* Başlık */
+  h1 {
+    font-weight: bold;
+    font-size: 40px;
+    margin: 20px 0 10px 0;
+    text-align: center;
+  }
+  /* Alt metin ve sosyal ikonlar */
+  .quote {
+    font-size: 18px;
+    font-style: italic;
+    margin: 10px 20px 30px 20px;
+    text-align: center;
+  }
+  .quote-source {
+    font-size: 14px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #aaa;
+  }
+  /* Sosyal medya ikonları bölümü */
+  footer {
+    background-color: #000;
+    padding: 20px 0;
+    text-align: center;
+  }
+  footer a {
+    margin: 0 12px;
+    color: #fff;
+    font-size: 26px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  footer a:hover {
+    color: #f00;
+  }
+</style>
+<!-- Google Fonts veya ikonlar için FontAwesome ekleyelim -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="#" class="active">Ana Sayfa</a>
-      <a href="#">Hayatı</a>
-      <a href="#">Galeri</a>
-      <a href="#">Geri Sayım</a>
-      <a href="#">Ayarlar</a>
-    </nav>
-  </header>
+  <nav class="menu">
+    <a href="index.html">Ana Sayfa</a>
+    <a href="hayati.html">Hayatı</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="gerisayim.html">Geri Sayım</a>
+    <a href="ayarlar.html">Ayarlar</a>
+  </nav>
 
   <div class="menu-image-container">
-    <div class="image-wrapper">
-      <img src="images/ataturk5.jpg" alt="Atatürk" class="menu-image" />
-    </div>
+    <img
+      src="images/ataturk5.jpg"
+      alt="Atatürk"
+      class="menu-image"
+    />
+    <div class="image-bottom-bar"></div>
   </div>
 
-  <main>
-    <h1>Mustafa Kemal Atatürk</h1>
-    <p>
-      Türkiye Cumhuriyeti'nin kurucusu ve ilk Cumhurbaşkanı olan Mustafa Kemal Atatürk,
-      modern Türkiye'nin şekillenmesinde öncü rol oynamıştır. Bilim, eğitim ve laiklik
-      ilkeleri doğrultusunda gerçekleştirdiği devrimlerle dünya tarihine adını yazdırmıştır.
-    </p>
-  </main>
+  <h1>ATATÜRK</h1>
+
+  <div class="quote">
+    "Hayatta en hakiki mürşit ilimdir."
+  </div>
+  <div class="quote-source">— Mustafa Kemal Atatürk</div>
 
   <footer>
-    <div class="social-icons" aria-label="Sosyal Medya Bağlantıları">
-      <a href="mailto:example@gmail.com" aria-label="E-posta">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-        </svg>
-      </a>
-      <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.12 8.44 9.88v-6.99h-2.54v-2.89h2.54v-2.2c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.45h-1.25c-1.23 0-1.61.76-1.61 1.54v1.9h2.74l-.44 2.89h-2.3v6.99C18.34 21.12 22 16.99 22 12z"/>
-        </svg>
-      </a>
-      <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.28 4.28 0 001.88-2.37 8.59 8.59 0 01-2.72 1.04 4.27 4.27 0 00-7.28 3.89 12.1 12.1 0 01-8.8-4.46 4.27 4.27 0 001.32 5.7 4.24 4.24 0 01-1.93-.53v.05a4.27 4.27 0 003.43 4.18 4.3 4.3 0 01-1.92.07 4.27 4.27 0 003.98 2.97A8.57 8.57 0 012 18.58a12.1 12.1 0 006.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.19 0-.38-.01-.57A8.7 8.7 0 0022.46 6z"/>
-        </svg>
-      </a>
-      <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5A3.75 3.75 0 0020 16.25v-8.5A3.75 3.75 0 0016.25 4h-8.5zm8.5 2a1 1 0 110 2 1 1 0 010-2zm-4.25 2a5.25 5.25 0 110 10.5 5.25 5.25 0 010-10.5zm0 2a3.25 3.25 0 100 6.5 3.25 3.25 0 000-6.5z"/>
-        </svg>
-      </a>
-    </div>
-    <small>&copy; 2025 Mustafa Kemal Atatürk Temalı Site</small>
+    <a href="mailto:example@gmail.com" aria-label="Gmail"><i class="fa-solid fa-envelope"></i></a>
+    <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
   </footer>
 </body>
 </html>
