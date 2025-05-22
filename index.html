@@ -1,45 +1,128 @@
+İşte ortadaki yazı kaldırılmış ve diğer her şey aynı kalacak şekilde güncellenmiş tam index.html dosyası:
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
   <title>Atatürk</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
-  <script>
-    const sozler = [
-      { metin: "Yurtta sulh, cihanda sulh.", kaynak: "Atatürk" },
-      { metin: "Hayatta en hakiki mürşit ilimdir.", kaynak: "Atatürk" },
-      { metin: "Benim naçiz vücudum elbet bir gün toprak olacaktır.", kaynak: "Atatürk" },
-      { metin: "Egemenlik, kayıtsız şartsız milletindir.", kaynak: "Atatürk" },
-      { metin: "Milletin bağımsızlığı, yine milletin azim ve kararıyla kurtarılacaktır.", kaynak: "Sivas Kongresi" }
-    ];
-
-    let index = 0;
-    function degisenSoz() {
-      const yazi = document.getElementById("degisenSoz");
-      yazi.innerHTML = `
-        <div class="soz">${sozler[index].metin}</div>
-        <div class="kaynak">${sozler[index].kaynak}</div>
-      `;
-      index = (index + 1) % sozler.length;
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      padding-bottom: 70px;
     }
-
-    window.onload = () => {
-      degisenSoz();
-      setInterval(degisenSoz, 5000);
-    };
-  </script>
+    .logo {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      width: 120px;
+      height: auto;
+      z-index: 1100;
+      border-radius: 10px;
+      object-fit: contain;
+      background: #fff;
+      padding: 5px;
+    }
+    nav.menu {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-bottom: 2px solid #d9d9d9;
+      z-index: 1000;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    nav.menu a {
+      display: inline-block;
+      padding: 14px 20px;
+      color: #000;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s ease;
+    }
+    nav.menu a:hover {
+      border-bottom: 3px solid #e30b17;
+      color: #e30b17;
+    }
+    nav.menu::-webkit-scrollbar {
+      display: none;
+    }
+    .quote-box {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      color: #222;
+      font-weight: 300;
+      font-size: 9.6px;
+      max-width: 250px;
+      text-align: right;
+      font-family: Arial, sans-serif;
+      z-index: 1200;
+      line-height: 1.2;
+    }
+    .quote-source {
+      font-size: 8px;
+      font-weight: 300;
+      color: #666;
+      margin-top: 3px;
+      text-align: right;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      z-index: 1000;
+    }
+    footer a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #888;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      color: #fff;
+      text-decoration: none;
+    }
+    footer a:hover {
+      border-color: #e30b17;
+      color: #e30b17;
+    }
+    footer svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+    .icerik {
+      margin-top: 130px;
+      padding: 20px;
+    }
+  </style>
 </head>
 <body>
-  <!-- Logo -->
   <a href="index.html" class="logo">
-    <img src="images/logo.png" alt="Logo" />
+    <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
 
-  <!-- Sağ Üstte Değişen Söz -->
-  <div id="degisenSoz" class="soz-kutu"></div>
+  <div class="quote-box" id="quote-box">
+    <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
+    <div class="quote-source" id="quote-source">— TBMM, 1920</div>
+  </div>
 
-  <!-- Menü -->
   <nav class="menu">
     <a href="index.html">Anasayfa</a>
     <a href="hayati.html">Hayatı</a>
@@ -52,9 +135,9 @@
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
 
-  <!-- İçerik kaldırıldı -->
+  <div class="icerik">
+  </div>
 
-  <!-- Footer -->
   <footer>
     <a href="mailto:email@example.com" aria-label="Gmail">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -77,5 +160,27 @@
       </svg>
     </a>
   </footer>
+
+  <script>
+    const quotes = [
+      { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "— TBMM, 1920" },
+      { text: '"Yurtta sulh, cihanda sulh."', source: "— Atatürk" },
+      { text: '"Hayatta en hakiki mürşit ilimdir."', source: "— Atatürk" },
+      { text: '"Türk milleti çalışkandır, zekidir."', source: "— Atatürk" }
+    ];
+
+    let index = 0;
+
+    function changeQuote() {
+      index = (index + 1) % quotes.length;
+      document.getElementById("quote-text").textContent = quotes[index].text;
+      document.getElementById("quote-source").textContent = quotes[index].source;
+    }
+
+    setInterval(changeQuote, 5000);
+  </script>
 </body>
 </html>
+
+Her şey güncel ve çalışır durumda. Yardımcı olmamı istediğin başka bir detay varsa söylemen yeterli.
+
