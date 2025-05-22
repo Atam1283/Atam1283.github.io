@@ -123,32 +123,55 @@
     .social-icons svg {
       width: 24px;
       height: 24px;
-      fill: #000;
+      fill: #fff;
       transition: fill 0.3s ease;
     }
     .social-icons a:hover svg {
       fill: #e30b17;
     }
-    footer.footer-social {
+    footer {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      background: #000;
+      background-color: #000;
+      height: 60px;
       display: flex;
       justify-content: center;
-      gap: 40px;
-      padding: 10px 0;
-      z-index: 1100;
+      align-items: center;
+      gap: 28px;
+      z-index: 1000;
     }
-    footer.footer-social svg {
-      width: 24px;
-      height: 24px;
-      fill: #fff;
-      transition: fill 0.3s ease;
+    footer a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #888;
+      border-radius: 50%;
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s ease;
     }
-    footer.footer-social a:hover svg {
-      fill: #e30b17;
+    footer a:hover {
+      border-color: #e30b17;
+      color: #e30b17;
+    }
+    footer svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+    .typewriter-box {
+      color: #e30b17;
+      position: absolute;
+      left: 20px;
+      bottom: 80px;
+      font-size: 16px;
+      background: rgba(0,0,0,0.7);
+      padding: 10px;
+      border-radius: 5px;
     }
     @media (max-width: 800px) {
       header, .quote-box {
@@ -164,7 +187,14 @@
       .quote-box { font-size: 10px; max-width: 150px; }
       nav.menu a { padding: 12px 10px; font-size: 13px; }
       main { margin-top: 120px; }
-      footer.footer-social { gap: 25px; }
+      .typewriter-box { 
+        font-size: 14px;
+        left: 10px;
+        bottom: 70px;
+      }
+      footer { height: 50px; }
+      footer a { width: 32px; height: 32px;}
+      footer svg { width: 16px; height: 16px;}
       .social-icons { gap: 25px; }
     }
   </style>
@@ -234,9 +264,15 @@
         <path d="M22 5.13a8.2 8.2 0 0 1-2.36.65 4.1 4.1 0 0 0 1.8-2.27 8.3 8.3 0 0 1-2.6 1 4.1 4.1 0 0 0-7 3.74 11.64 11.64 0 0 1-8.45-4.3 4.1 4.1 0 0 0 1.27 5.48 4.1 4.1 0 0 1-1.86-.52v.05a4.1 4.1 0 0 0 3.3 4.02 4.1 4.1 0 0 1-1.85.07 4.1 4.1 0 0 0 3.83 2.85 8.23 8.23 0 0 1-5.1 1.76 11.6 11.6 0 0 0 6.3 1.85c7.55 0 11.68-6.26 11.68-11.68 0-.18 0-.36-.01-.54a8.4 8.4 0 0 0 2.05-2.14z"/>
       </svg>
     </a>
+    <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1-.001 4.001A2 2 0 0 1 12 9zm4.5-3a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+      </svg>
+    </a>
   </div>
 
-  <footer class="footer-social">
+  <footer>
+    <div class="typewriter-box" id="typewriter-box"></div>
     <a href="mailto:email@example.com" aria-label="E-posta">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/>
@@ -245,6 +281,11 @@
     <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1-.001 4.001A2 2 0 0 1 12 9zm4.5-3a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+      </svg>
+    </a>
+    <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M22 12A10 10 0 1 0 10 22v-7h-2v-3h2v-2c0-2.2 1.3-3.5 3.3-3.5.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.7h2.6L15 15h-2v7a10 10 0 0 0 9-10z"/>
       </svg>
     </a>
   </footer>
@@ -264,6 +305,34 @@
       document.getElementById("quote-source").textContent = quotes[quoteIndex].source;
     }
     setInterval(updateQuote, 5000);
+
+    // Daktilo kutusu animasyonu
+    const messages = [
+      "Hazırlayan: Muhammed Efe KORKMAZ",
+      "Bu site Atatürk'ü tanıtmak amacıyla yapılmıştır.",
+      "İçeriğinde hayatı, sözleri, devrimleri yer almaktadır."
+    ];
+    let msgIndex = 0;
+    const typewriterBox = document.getElementById("typewriter-box");
+    function showMessage() {
+      typewriterBox.textContent = "";
+      let text = messages[msgIndex];
+      let i = 0;
+      function typeChar() {
+        if (i < text.length) {
+          typewriterBox.textContent += text.charAt(i);
+          i++;
+          setTimeout(typeChar, 50);
+        } else {
+          setTimeout(() => {
+            msgIndex = (msgIndex + 1) % messages.length;
+            showMessage();
+          }, 5000);
+        }
+      }
+      typeChar();
+    }
+    showMessage();
   </script>
 </body>
 </html>
