@@ -29,6 +29,7 @@
       background: #fff;
       display: flex;
       align-items: center;
+      justify-content: space-between;
       padding: 10px 20px;
       box-sizing: border-box;
       z-index: 1100;
@@ -38,7 +39,6 @@
     .logo {
       width: 120px;
       height: auto;
-      display: block;
       object-fit: contain;
     }
 
@@ -51,9 +51,11 @@
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
+
     nav.menu::-webkit-scrollbar {
       display: none;
     }
+
     nav.menu a {
       display: inline-block;
       padding: 14px 20px;
@@ -64,15 +66,25 @@
       border-bottom: 3px solid transparent;
       transition: border-color 0.3s ease, color 0.3s ease;
     }
+
     nav.menu a:hover,
     nav.menu a.active {
       color: #e30b17;
       border-bottom-color: #e30b17;
     }
 
+    .slogan-box {
+      color: #e30b17;
+      font-weight: bold;
+      font-size: 13px;
+      white-space: nowrap;
+      padding-left: 20px;
+      margin-left: auto;
+    }
+
     main.content {
       max-width: 900px;
-      margin: 110px auto 100px;
+      margin: 130px auto 100px;
       padding: 0 20px;
       line-height: 1.8;
       font-size: 16px;
@@ -119,11 +131,20 @@
         flex-wrap: wrap;
         padding: 10px 15px;
       }
+
       nav.menu {
         margin-left: 0;
         margin-top: 10px;
         width: 100%;
       }
+
+      .slogan-box {
+        margin-top: 10px;
+        font-size: 12px;
+        width: 100%;
+        text-align: right;
+      }
+
       footer.footer-social {
         gap: 25px;
         padding: 10px 0;
@@ -141,6 +162,7 @@
       <a href="gerisayim.html">Geri Sayım</a>
       <a href="ayarlar.html">Ayarlar</a>
     </nav>
+    <div class="slogan-box" id="slogan">"Benim naçiz vücudum elbet bir gün toprak olacaktır."</div>
   </header>
 
   <main class="content" role="main">
@@ -177,14 +199,31 @@
 
   <footer class="footer-social" role="contentinfo" aria-label="Sosyal Medya">
     <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.87v-6.99H8v-2.88h2.5v-2.2c0-2.46 1.47-3.82 3.72-3.82 1.08 0 2.22.2 2.22.2v2.44h-1.24c-1.22 0-1.6.76-1.6 1.54v1.84h2.72l-.44 2.88h-2.28v6.99A10 10 0 0 0 22 12z"/></svg>
+      <!-- Facebook SVG -->
     </a>
     <a href="https://twitter.com" target="_blank" aria-label="Twitter">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.28 4.28 0 0 0 1.88-2.37 8.59 8.59 0 0 1-2.7 1.03 4.28 4.28 0 0 0-7.29 3.9 12.14 12.14 0 0 1-8.82-4.47 4.28 4.28 0 0 0 1.32 5.72 4.25 4.25 0 0 1-1.94-.53v.05a4.28 4.28 0 0 0 3.44 4.19 4.28 4.28 0 0 1-1.93.07 4.28 4.28 0 0 0 4 3 8.6 8.6 0 0 1-5.33 1.83A8.78 8.78 0 0 1 2 18.57a12.13 12.13 0 0 0 6.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.19 0-.38-.01-.56A8.7 8.7 0 0 0 22.46 6z"/></svg>
+      <!-- Twitter SVG -->
     </a>
     <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5.25-.88a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+      <!-- Instagram SVG -->
     </a>
   </footer>
+
+  <script>
+    const sozler = [
+      '"Yurtta sulh, cihanda sulh."',
+      '"Beni görmek demek mutlaka yüzümü görmek değildir."',
+      '"Egemenlik, kayıtsız şartsız milletindir."',
+      '"Hayatta en hakiki mürşit ilimdir."',
+      '"Milletin bağımsızlığını yine milletin azim ve kararı kurtaracaktır."',
+      '"Benim naçiz vücudum elbet bir gün toprak olacaktır."'
+    ];
+
+    let i = 0;
+    setInterval(() => {
+      document.getElementById("slogan").textContent = sozler[i];
+      i = (i + 1) % sozler.length;
+    }, 5000);
+  </script>
 </body>
 </html>
