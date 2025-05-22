@@ -18,7 +18,7 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #fff;
       color: #222;
-      padding-bottom: 70px;
+      padding-bottom: 120px; /* footer + sosyal ikonlar için ekstra boşluk */
     }
 
     header {
@@ -29,7 +29,6 @@
       background: #fff;
       display: flex;
       align-items: center;
-      justify-content: space-between;
       padding: 10px 20px;
       box-sizing: border-box;
       z-index: 1100;
@@ -73,18 +72,9 @@
       border-bottom-color: #e30b17;
     }
 
-    .slogan-box {
-      color: #e30b17;
-      font-weight: bold;
-      font-size: 13px;
-      white-space: nowrap;
-      padding-left: 20px;
-      margin-left: auto;
-    }
-
     main.content {
       max-width: 900px;
-      margin: 130px auto 100px;
+      margin: 120px auto 20px; /* Menüden biraz aşağı */
       padding: 0 20px;
       line-height: 1.8;
       font-size: 16px;
@@ -100,6 +90,34 @@
       margin-bottom: 10px;
       color: #e30b17;
       font-weight: bold;
+    }
+
+    /* Sosyal medya ikonlarının ana sayfadakine benzer görünümü */
+
+    .social-icons {
+      max-width: 900px;
+      margin: 0 auto 40px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+    }
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      transition: fill 0.3s ease;
+    }
+    .social-icons svg {
+      width: 24px;
+      height: 24px;
+      fill: #000;
+      transition: fill 0.3s ease;
+    }
+    .social-icons a:hover svg {
+      fill: #e30b17;
     }
 
     footer.footer-social {
@@ -138,11 +156,8 @@
         width: 100%;
       }
 
-      .slogan-box {
-        margin-top: 10px;
-        font-size: 12px;
-        width: 100%;
-        text-align: right;
+      .social-icons {
+        gap: 25px;
       }
 
       footer.footer-social {
@@ -162,7 +177,7 @@
       <a href="gerisayim.html">Geri Sayım</a>
       <a href="ayarlar.html">Ayarlar</a>
     </nav>
-    <div class="slogan-box" id="slogan">"Benim naçiz vücudum elbet bir gün toprak olacaktır."</div>
+    <!-- Burada slogan yok -->
   </header>
 
   <main class="content" role="main">
@@ -197,33 +212,11 @@
     </section>
   </main>
 
-  <footer class="footer-social" role="contentinfo" aria-label="Sosyal Medya">
+  <!-- Ana sayfadaki sosyal ikonları buraya ekliyoruz -->
+  <div class="social-icons" aria-label="Sosyal Medya İkonları">
     <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-      <!-- Facebook SVG -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M22 12a10 10 0 1 0-11.5 9.87v-6.99H8v-2.88h2.5v-2.2c0-2.46 1.47-3.82 3.72-3.82 1.08 0 2.22.2 2.22.2v2.44h-1.24c-1.22 0-1.6.76-1.6 1.54v1.84h2.72l-.44 2.88h-2.28v6.99A10 10 0 0 0 22 12z"/>
+      </svg>
     </a>
-    <a href="https://twitter.com" target="_blank" aria-label="Twitter">
-      <!-- Twitter SVG -->
-    </a>
-    <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-      <!-- Instagram SVG -->
-    </a>
-  </footer>
-
-  <script>
-    const sozler = [
-      '"Yurtta sulh, cihanda sulh."',
-      '"Beni görmek demek mutlaka yüzümü görmek değildir."',
-      '"Egemenlik, kayıtsız şartsız milletindir."',
-      '"Hayatta en hakiki mürşit ilimdir."',
-      '"Milletin bağımsızlığını yine milletin azim ve kararı kurtaracaktır."',
-      '"Benim naçiz vücudum elbet bir gün toprak olacaktır."'
-    ];
-
-    let i = 0;
-    setInterval(() => {
-      document.getElementById("slogan").textContent = sozler[i];
-      i = (i + 1) % sozler.length;
-    }, 5000);
-  </script>
-</body>
-</html>
+    <a href="https://twitter
