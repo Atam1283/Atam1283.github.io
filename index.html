@@ -5,13 +5,18 @@
   <title>Atatürk</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #fff;
-      padding-bottom: 70px;
+      padding-bottom: 80px;
     }
 
+    /* Logo */
     .logo {
       position: fixed;
       top: 10px;
@@ -20,11 +25,11 @@
       height: auto;
       z-index: 1100;
       border-radius: 10px;
-      object-fit: contain;
       background: #fff;
       padding: 5px;
     }
 
+    /* Menü */
     nav.menu {
       position: fixed;
       top: 80px;
@@ -57,60 +62,66 @@
       display: none;
     }
 
+    /* Sağ üst söz kutusu */
     .quote-box {
       position: fixed;
       top: 10px;
       right: 10px;
       color: #222;
-      font-weight: 300;
       font-size: 10px;
       max-width: 250px;
       text-align: right;
       font-family: Arial, sans-serif;
       z-index: 1200;
-      line-height: 1.2;
       animation: fadeIn 1s ease-in-out;
-      opacity: 1;
-      transition: opacity 0.5s ease-in-out;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .quote-source {
+      font-size: 9px;
+      color: #666;
+      margin-top: 3px;
     }
 
+    /* Menü altı görsel */
     .menu-image-container {
       margin-top: 160px;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
     .menu-image-container img {
       max-width: 100%;
       height: auto;
+      display: block;
+      margin: auto;
     }
 
-    .marquee-box {
-      margin: 20px auto 0 auto;
-      padding: 10px 0;
-      width: 100%;
-      overflow: hidden;
-      white-space: normal;
-      text-align: center;
-    }
-
-    .marquee-content {
-      display: inline-block;
-      animation: scrollText 20s linear infinite;
-      font-size: 14px;
-      font-weight: bold;
+    /* Daktilo kutusu */
+    .typewriter-box {
+      margin: 30px auto;
+      max-width: 90%;
+      font-size: 16px;
       color: #000;
+      font-family: monospace;
+      border-left: 2px solid #e30b17;
+      padding-left: 10px;
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+      animation: blink-caret 1s step-end infinite;
     }
 
-    @keyframes scrollText {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #e30b17 }
     }
 
+    @keyframes fadeIn {
+      from { opacity: 0 }
+      to { opacity: 1 }
+    }
+
+    /* Footer */
     footer {
       position: fixed;
       bottom: 0;
@@ -133,9 +144,9 @@
       height: 40px;
       border: 1px solid #888;
       border-radius: 50%;
-      transition: all 0.3s ease;
       color: #fff;
       text-decoration: none;
+      transition: all 0.3s ease;
     }
 
     footer a:hover {
@@ -149,13 +160,10 @@
       fill: currentColor;
     }
 
-    @media screen and (max-width: 600px) {
+    @media (max-width: 600px) {
       .quote-box {
         font-size: 9px;
-        max-width: 180px;
-      }
-      .marquee-content {
-        font-size: 12px;
+        max-width: 160px;
       }
     }
   </style>
@@ -165,6 +173,12 @@
   <a href="index.html" class="logo">
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
+
+  <!-- Sağ üstte değişen söz -->
+  <div class="quote-box" id="quote-box">
+    <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
+    <div class="quote-source" id="quote-source">— TBMM, 1920</div>
+  </div>
 
   <!-- Menü -->
   <nav class="menu">
@@ -179,18 +193,13 @@
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
 
-  <!-- Menü altı görsel -->
+  <!-- Görsel -->
   <div class="menu-image-container">
     <img src="images/ataturk5.jpg" alt="Atatürk" />
   </div>
 
-  <!-- Akan yazı -->
-  <div class="marquee-box">
-    <div class="marquee-content" id="marquee-text">Bu sitenin hazırlanma amacı Atatürk'ü tanıtmak ve yaşatmaktır.</div>
-  </div>
-
-  <!-- Sağ üstte değişen yazı -->
-  <div class="quote-box" id="quote-box">Hazırlayan: Muhammed Efe KORKMAZ</div>
+  <!-- Daktilo kutusu -->
+  <div class="typewriter-box" id="typewriter-box"></div>
 
   <!-- Footer -->
   <footer>
@@ -209,32 +218,54 @@
         <path d="M22 12A10 10 0 1 0 10 22v-7h-2v-3h2v-2c0-2.2 1.3-3.5 3.3-3.5.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.7h2.6L15 15h-2v7a10 10 0 0 0 9-10z"/>
       </svg>
     </a>
-    <a href="https://twitter.com" target="_blank" aria-label="Twitter">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.3 4.3 0 0 0 1.88-2.37c-.84.5-1.78.86-2.77 1.06a4.28 4.28 0 0 0-7.29 3.9A12.13 12.13 0 0 1 3.15 4.6a4.28 4.28 0 0 0 1.33 5.71 4.24 4.24 0 0 1-1.94-.54v.05a4.28 4.28 0 0 0 3.43 4.2 4.27 4.27 0 0 1-1.93.07 4.29 4.29 0 0 0 4 2.97 8.6 8.6 0 0 1-5.3 1.83A8.82 8.82 0 0 1 2 19.54a12.13 12.13 0 0 0 6.56 1.92c7.88 0 12.2-6.53 12.2-12.2v-.56A8.6 8.6 0 0 0 24 5.13a8.4 8.4 0 0 1-2.43.67 4.27 4.27 0 0 0 1.89-2.35z"/>
-      </svg>
-    </a>
   </footer>
 
   <script>
     const quotes = [
-      "Hazırlayan: Muhammed Efe KORKMAZ",
-      "Kaynak: T.C. İnkılap Tarihi Kitapları",
-      "Kaynak: TDK, Vikipedi, Resmi Arşivler",
-      "Bu sayfa Atatürk'ü anmak için hazırlandı"
+      { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "— TBMM, 1920" },
+      { text: '"Yurtta sulh, cihanda sulh."', source: "— Atatürk" },
+      { text: '"Hayatta en hakiki mürşit ilimdir."', source: "— Atatürk" },
+      { text: '"Türk milleti çalışkandır, zekidir."', source: "— Atatürk" }
+    ];
+    let quoteIndex = 0;
+
+    function updateQuote() {
+      quoteIndex = (quoteIndex + 1) % quotes.length;
+      document.getElementById("quote-text").textContent = quotes[quoteIndex].text;
+      document.getElementById("quote-source").textContent = quotes[quoteIndex].source;
+    }
+
+    setInterval(updateQuote, 5000);
+
+    // Daktilo animasyon
+    const messages = [
+      "Bu web sitesi, Gazi Mustafa Kemal Atatürk'ün hayatını ve mirasını tanıtmak amacıyla hazırlanmıştır.",
+      "İçeriğinde Atatürk'ün hayatı, sözleri, eserleri, devrimleri ve Nutuk gibi önemli başlıklar yer almaktadır.",
+      "Bu sayfa, Muhammed Efe KORKMAZ tarafından hazırlanmıştır."
     ];
 
-    let quoteBox = document.getElementById("quote-box");
-    let currentIndex = 0;
+    let messageIndex = 0;
+    let charIndex = 0;
+    const typewriterBox = document.getElementById("typewriter-box");
 
-    setInterval(() => {
-      quoteBox.style.opacity = 0;
-      setTimeout(() => {
-        currentIndex = (currentIndex + 1) % quotes.length;
-        quoteBox.textContent = quotes[currentIndex];
-        quoteBox.style.opacity = 1;
-      }, 500);
-    }, 5000);
+    function typeWriter() {
+      if (messageIndex < messages.length) {
+        if (charIndex < messages[messageIndex].length) {
+          typewriterBox.textContent += messages[messageIndex].charAt(charIndex);
+          charIndex++;
+          setTimeout(typeWriter, 40);
+        } else {
+          messageIndex++;
+          charIndex = 0;
+          setTimeout(() => {
+            typewriterBox.textContent += "\n\n";
+            typeWriter();
+          }, 2000);
+        }
+      }
+    }
+
+    typeWriter();
   </script>
 </body>
 </html>
