@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Atatürk Sitesi</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atatürk</title>
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     body {
+      margin: 0;
+      padding: 0;
       font-family: Arial, sans-serif;
       background-color: #fff;
       color: #000;
-      padding-top: 160px;
     }
 
     .logo {
@@ -33,23 +32,36 @@
       left: 0;
       width: 100%;
       background: #fff;
+      border-bottom: 1px solid #ccc;
       display: flex;
       justify-content: center;
-      border-bottom: 1px solid #ccc;
       z-index: 999;
       flex-wrap: wrap;
     }
 
     nav.menu a {
-      padding: 12px 16px;
-      text-decoration: none;
+      padding: 14px 20px;
       color: #000;
+      text-decoration: none;
       font-weight: bold;
       font-size: 14px;
+      transition: 0.3s;
     }
 
     nav.menu a:hover {
       color: #e30b17;
+    }
+
+    .main-image {
+      margin-top: 180px;
+      text-align: center;
+    }
+
+    .main-image img {
+      max-width: 90%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
 
     .quote-box {
@@ -57,66 +69,63 @@
       top: 10px;
       right: 10px;
       max-width: 250px;
-      font-size: 13px;
       background-color: #fff;
+      color: #000;
+      font-size: 13px;
       padding: 10px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       z-index: 1000;
+      animation: fadeIn 1s ease-in-out;
     }
 
-    .main-content {
-      text-align: center;
-      padding: 20px;
-    }
-
-    .main-content img {
-      max-width: 90%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
-
-    .typewriter {
+    .typewriter-container {
       max-width: 800px;
-      margin: 30px auto;
-      font-family: "Courier New", monospace;
+      margin: 40px auto 100px;
+      padding: 20px;
+      font-family: 'Courier New', monospace;
       font-size: 16px;
+      line-height: 1.6;
       white-space: pre-wrap;
       word-wrap: break-word;
-      padding: 10px;
-      background: #f9f9f9;
       border-left: 4px solid #e30b17;
-      min-height: 100px;
+      background: #f9f9f9;
+      animation: fadeIn 2s ease-in;
     }
 
     footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
       background: #000;
       color: #fff;
       text-align: center;
       font-size: 12px;
       padding: 10px 0;
-      margin-top: 60px;
+      z-index: 1000;
     }
 
-    @media (max-width: 768px) {
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @media screen and (max-width: 768px) {
       nav.menu {
         flex-direction: column;
+        align-items: center;
       }
 
       .quote-box {
         font-size: 12px;
         max-width: 90%;
       }
-
-      .logo {
-        width: 60px;
-      }
     }
   </style>
 </head>
 <body>
-  <img src="ataturk.jpg" alt="Logo" class="logo"/>
+
+  <img src="ataturk.jpg" alt="Atatürk" class="logo">
 
   <nav class="menu">
     <a href="index.html">Ana Sayfa</a>
@@ -130,9 +139,12 @@
     “Benim naçiz vücudum elbet bir gün toprak olacaktır; fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır.”<br><strong>— 1923, İzmir</strong>
   </div>
 
-  <div class="main-content">
-    <img src="ataturk-resmi.jpg" alt="Atatürk" />
-    <div class="typewriter" id="typewriterText"></div>
+  <div class="main-image">
+    <img src="ataturk-resmi.jpg" alt="Mustafa Kemal Atatürk">
+  </div>
+
+  <div class="typewriter-container" id="typewriterText">
+    <!-- Dinamik içerik buraya gelir -->
   </div>
 
   <footer>
@@ -150,9 +162,14 @@
 
     let quoteIndex = 0;
     setInterval(() => {
-      const [quote, source] = quotes[quoteIndex];
-      document.getElementById("quoteBox").innerHTML = `${quote}<br><strong>${source}</strong>`;
-      quoteIndex = (quoteIndex + 1) % quotes.length;
+      const quoteBox = document.getElementById("quoteBox");
+      quoteBox.style.opacity = 0;
+      setTimeout(() => {
+        const [quote, source] = quotes[quoteIndex];
+        quoteBox.innerHTML = `${quote}<br><strong>${source}</strong>`;
+        quoteBox.style.opacity = 1;
+        quoteIndex = (quoteIndex + 1) % quotes.length;
+      }, 500);
     }, 5000);
 
     const messages = [
