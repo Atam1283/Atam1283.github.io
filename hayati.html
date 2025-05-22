@@ -1,128 +1,184 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hayatı - Atatürk</title>
-<style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #fff;
-    padding-bottom: 70px;
-  }
-  /* Üst sabit alan, logo ve menü yan yana, tam hizalı */
-  .header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    background: #fff;
-    box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
-    display: flex;
-    align-items: center; /* yükseklik olarak hizala */
-    justify-content: space-between;
-    padding: 10px 20px;
-    z-index: 1100;
-    height: 60px; /* sabit yükseklik */
-  }
-  /* Logo */
-  .logo {
-    height: 40px; /* menü ile uyumlu yükseklik */
-    width: auto;
-    object-fit: contain;
-  }
-  /* Menü */
-  nav.menu {
-    display: flex;
-    gap: 25px;
-    overflow-x: auto;
-    white-space: nowrap;
-    scrollbar-width: none;
-  }
-  nav.menu::-webkit-scrollbar {
-    display: none;
-  }
-  nav.menu a {
-    color: #000;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 15px;
-    padding-bottom: 5px;
-    border-bottom: 3px solid transparent;
-    transition: border-color 0.3s, color 0.3s;
-    line-height: 40px; /* menü linklerinin yüksekliğini logoyla eşitle */
-  }
-  nav.menu a:hover,
-  nav.menu a:focus {
-    color: #e30b17;
-    border-bottom-color: #e30b17;
-  }
-  /* İçerik menünün altından başlasın */
-  .content {
-    max-width: 900px;
-    margin: 80px auto 100px;
-    padding: 0 20px;
-    font-size: 16px;
-    line-height: 1.6;
-  }
-  /* Footer - sosyal medya ve siyah şerit */
-  .footer {
-    background-color: #000;
-    color: #fff;
-    padding: 30px 20px;
-    text-align: center;
-  }
-  .footer .social-icons {
-    display: inline-flex;
-    gap: 25px;
-  }
-  .footer svg {
-    width: 30px;
-    height: 30px;
-    fill: white;
-    transition: fill 0.3s ease;
-    cursor: pointer;
-  }
-  .footer svg:hover,
-  .footer svg:focus {
-    fill: #e30b17;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atatürk Ana Sayfa</title>
+  <style>
+    /* Genel sıfırlama ve temel stiller */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #fff;
+      color: #222;
+      padding-bottom: 70px;
+      overflow-x: hidden;
+    }
+    /* Header: logo ve menü */
+    header.header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      height: 60px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 1100;
+    }
+    header.header img.logo {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+      user-select: none;
+    }
+    nav.menu {
+      display: flex;
+      gap: 25px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      white-space: nowrap;
+    }
+    nav.menu::-webkit-scrollbar {
+      display: none;
+    }
+    nav.menu a {
+      font-weight: bold;
+      font-size: 15px;
+      color: #000;
+      text-decoration: none;
+      padding-bottom: 5px;
+      border-bottom: 3px solid transparent;
+      line-height: 40px;
+      transition: border-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    nav.menu a:hover,
+    nav.menu a:focus {
+      color: #e30b17;
+      border-bottom-color: #e30b17;
+      outline: none;
+    }
+    /* Sağ üstteki Atatürk sözleri kutusu */
+    .quote-box {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      max-width: 250px;
+      font-size: 12px;
+      color: #222;
+      font-weight: 300;
+      font-family: 'Arial', sans-serif;
+      z-index: 1200;
+      background: rgba(255,255,255,0.85);
+      padding: 8px 12px;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
+      user-select: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    /* Ana içerik */
+    main.content {
+      max-width: 900px;
+      margin: 80px auto 100px;
+      padding: 0 20px;
+      font-size: 16px;
+      line-height: 1.6;
+      user-select: text;
+    }
+    main.content h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #e30b17;
+      user-select: none;
+    }
+    main.content p {
+      margin-bottom: 18px;
+      text-align: justify;
+    }
+    /* Daktilo efektli yazı */
+    #typed-text {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 18px;
+      font-weight: normal;
+      line-height: 1.4;
+      min-height: 80px;
+      white-space: pre-wrap;
+      margin-top: 40px;
+      color: #444;
+    }
+    /* Alt sosyal medya alanı ve siyah şerit */
+    footer.footer {
+      background-color: #000;
+      color: #fff;
+      padding: 30px 20px;
+      text-align: center;
+      user-select: none;
+    }
+    footer.footer .social-icons {
+      display: inline-flex;
+      gap: 30px;
+      justify-content: center;
+    }
+    footer.footer .social-icons a {
+      color: #fff;
+      transition: color 0.3s ease;
+      display: inline-block;
+      cursor: pointer;
+    }
+    footer.footer .social-icons a:hover,
+    footer.footer .social-icons a:focus {
+      color: #e30b17;
+      outline: none;
+    }
+    footer.footer svg {
+      width: 32px;
+      height: 32px;
+      fill: currentColor;
+      vertical-align: middle;
+    }
+  </style>
 </head>
 <body>
 
-<header class="header">
+<header class="header" role="banner">
   <img src="images/logo.png" alt="Atatürk Logo" class="logo" />
-  <nav class="menu" aria-label="Ana Menü">
-    <a href="index.html">Ana Sayfa</a>
-    <a href="hayatı.html" aria-current="page">Hayatı</a>
+  <nav class="menu" role="navigation" aria-label="Ana Menü">
+    <a href="index.html" aria-current="page">Ana Sayfa</a>
+    <a href="hayatı.html">Hayatı</a>
     <a href="galeri.html">Galeri</a>
     <a href="gerisayim.html">Geri Sayım</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
 </header>
 
-<main class="content" role="main">
-  <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
-  <section>
-    <h2>Çocukluk ve Gençlik</h2>
-    <p>1881 yılında Selanik'te doğan Atatürk, küçük yaşlardan itibaren eğitimine önem verdi. Askeri okullarda aldığı eğitim, onun disiplinli ve vizyon sahibi bir lider olmasının temelini oluşturdu.</p>
-  </section>
-  <section>
-    <h2>Askerî Hayatı</h2>
-    <p>Trablusgarp ve Balkan Savaşları'nda gösterdiği başarılarla tanındı. I. Dünya Savaşı’nda Çanakkale’deki kahramanlığı ile büyük ün kazandı.</p>
-  </section>
-  <section>
-    <h2>Milli Mücadele</h2>
-    <p>1919’da Samsun’a çıkarak Kurtuluş Savaşı’nı başlattı. Türkiye Cumhuriyeti’nin temellerini attı ve halkı örgütleyerek bağımsızlığı sağladı.</p>
-  </section>
-  <section>
-    <h2>Cumhuriyetin Kuruluşu</h2>
-    <p>1923’te Türkiye Cumhuriyeti’ni kurdu ve ilk Cumhurbaşkanı oldu. Egemenliğin millete ait olduğunu ilan etti.</p>
-  </section>
-  <section>
-    <h2>Reformlar</h2>
-    <p>Eğitim, hukuk, dil, kıyafet ve takvim gibi alanlarda köklü reformlar yaptı. Modern Türkiye'nin mimarı olarak anıldı.</p>
-  </section>
+<div class="quote-box" aria-live="polite" aria-atomic="true" id="quoteBox">
+  "Egemenlik, kayıtsız şartsız milletindir." — Türkiye Büyük Millet Meclisi, 1920
+</div>
+
+<main class="content" role="main" tabindex="0">
+  <h1>Mustafa Kemal Atatürk</h1>
+  <p>
+    Mustafa Kemal Atatürk, modern Türkiye Cumhuriyeti’nin kurucusu ve ilk cumhurbaşkanıdır. 
+    1881 yılında Selanik'te doğmuş, eğitim hayatı boyunca askeri ve bilimsel alanlarda üstün başarı göstermiştir.
+  </p>
+  <p>
+    Atatürk, Kurtuluş Savaşı'nı yöneterek Türkiye'nin bağımsızlığını kazanmasını sağlamış ve pek çok reformla 
+    ülkeyi modernleştirmiştir. Eğitim, hukuk, dil, ekonomi gibi pek çok alanda köklü değişikliklere öncülük etmiştir.
+  </p>
+  <p>
+    Türkiye Cumhuriyeti'nin temellerini atan Atatürk, evrensel değerlere sahip bir lider olarak dünya tarihine geçmiştir.
+  </p>
+
+  <div id="typed-text" aria-live="polite" aria-atomic="true"></div>
 </main>
 
 <footer class="footer" role="contentinfo" aria-label="Sosyal medya bağlantıları">
@@ -134,10 +190,4 @@
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true"><path d="M459,151a158,158,0,0,1-45,12,78,78,0,0,0,34-43,158,158,0,0,1-50,19,78,78,0,0,0-133,71A221,221,0,0,1,93,133a78,78,0,0,0,24,104A77,77,0,0,1,87,229v1a78,78,0,0,0,62,76,78,78,0,0,1-35,1,78,78,0,0,0,73,54A157,157,0,0,1,64,407,222,222,0,0,0,186,440c134,0,207-111,207-207q0-5,0-10A148,148,0,0,0,459,151Z"/></svg>
     </a>
     <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" aria-hidden="true"><path d="M279,288l14-92H208V138c0-25,12-50,52-50h40V6S269,0,240,0c-73,0-121,44-121,124v70H80v92h39V512h89V288Z"/></svg>
-    </a>
-  </div>
-</footer>
-
-</body>
-</html>
+      <svg xmlns="http://www.w3.org/200
