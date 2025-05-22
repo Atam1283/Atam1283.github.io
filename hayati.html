@@ -3,112 +3,145 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hayatı</title>
+  <title>Atatürk'ün Hayatı</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #fff;
-      padding-top: 140px;
+      background-color: #fff;
     }
 
-    .logo {
+    header {
       position: fixed;
-      top: 10px;
-      left: 10px;
-      width: 120px;
-      height: auto;
-      z-index: 1100;
-      border-radius: 10px;
-      object-fit: contain;
-      background: #fff;
-      padding: 5px;
-    }
-
-    nav.menu {
-      position: fixed;
-      top: 80px;
-      left: 0;
+      top: 0;
       width: 100%;
       background: #fff;
       border-bottom: 2px solid #d9d9d9;
       z-index: 1000;
-      overflow-x: auto;
-      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
     }
 
-    nav.menu a {
-      display: inline-block;
-      padding: 14px 20px;
-      color: #000;
+    .logo {
+      width: 120px;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    nav a {
+      margin: 0 10px;
       text-decoration: none;
-      font-size: 15px;
+      color: #000;
       font-weight: bold;
-      border-bottom: 3px solid transparent;
-      transition: all 0.3s ease;
+      font-size: 15px;
     }
 
-    nav.menu a:hover {
-      border-bottom: 3px solid #e30b17;
+    nav a:hover {
       color: #e30b17;
+      border-bottom: 2px solid #e30b17;
     }
 
-    nav.menu::-webkit-scrollbar {
-      display: none;
-    }
-
-    .content {
-      padding: 20px;
+    main {
+      padding: 160px 20px 80px 20px;
       max-width: 900px;
       margin: 0 auto;
-      box-sizing: border-box;
-      line-height: 1.6;
-      font-size: 17px;
     }
 
-    @media screen and (max-width: 768px) {
-      .content {
-        padding: 15px;
-        font-size: 16px;
+    section {
+      margin-bottom: 60px;
+    }
+
+    section h2 {
+      color: #e30b17;
+      font-size: 24px;
+      border-bottom: 2px solid #e30b17;
+      padding-bottom: 5px;
+    }
+
+    section p {
+      line-height: 1.6;
+      margin-top: 10px;
+    }
+
+    .footer {
+      background: #000;
+      color: #fff;
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    .footer svg {
+      margin: 0 8px;
+      vertical-align: middle;
+      fill: white;
+      width: 24px;
+      height: 24px;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        display: block;
+        text-align: center;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 10px 0;
       }
 
       .logo {
         width: 90px;
       }
-
-      nav.menu a {
-        font-size: 14px;
-        padding: 12px 16px;
-      }
     }
   </style>
 </head>
 <body>
+  <header>
+    <img src="images/logo.png" alt="Logo" class="logo">
+    <nav>
+      <a href="index.html">Ana Sayfa</a>
+      <a href="hayatı.html">Hayatı</a>
+      <a href="galeri.html">Galeri</a>
+      <a href="gerisayim.html">Geri Sayım</a>
+      <a href="ayarlar.html">Ayarlar</a>
+    </nav>
+  </header>
 
-  <img src="images/logo.png" alt="Logo" class="logo" />
+  <main>
+    <section id="cocukluk">
+      <h2>Çocukluk ve Gençlik</h2>
+      <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Mahalle Mektebi'nde başlayan eğitim hayatı, Şemsi Efendi Okulu'yla modern bir çizgiye taşındı. Genç yaşta askerî eğitim almaya karar verdi ve bu yolda ilerleyerek Harp Okulu'nu bitirdi.</p>
+    </section>
 
-  <nav class="menu">
-    <a href="index.html">Ana Sayfa</a>
-    <a href="hayatı.html" style="color: #e30b17; border-bottom: 3px solid #e30b17;">Hayatı</a>
-    <a href="galeri.html">Galeri</a>
-    <a href="gerisayim.html">Geri Sayım</a>
-    <a href="ayarlar.html">Ayarlar</a>
-  </nav>
+    <section id="askeri">
+      <h2>Askerî Hayatı</h2>
+      <p>Atatürk'ün askerî kariyeri Trablusgarp ve Balkan Savaşları'yla başladı. Çanakkale Savaşı’ndaki başarıları, onun bir kahraman olarak tanınmasına neden oldu. Bu süreçte liderlik vasfını kanıtladı.</p>
+    </section>
 
-  <div class="content">
-    <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
-    <p>
-      Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Askeri eğitimi boyunca gösterdiği başarılar, onun Türk milletinin kaderinde belirleyici bir lider olacağının habercisiydi. 
-      Osmanlı İmparatorluğu'nun son dönemlerinde çeşitli cephelerde görev aldı. 1915 Çanakkale Savaşı'nda kazandığı zafer, onun ününü tüm yurda yaydı.
-    </p>
-    <p>
-      1919'da Samsun'a çıkarak Kurtuluş Savaşı'nı başlattı. 1923'te Türkiye Cumhuriyeti'ni kurdu ve ilk Cumhurbaşkanı oldu. 
-      Eğitim, hukuk, dil ve kültür alanında birçok inkılap gerçekleştirdi. 1934 yılında Soyadı Kanunu ile "Atatürk" soyadını aldı.
-    </p>
-    <p>
-      10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayata gözlerini yumdu. Atatürk, Türk milletinin hafızasında bağımsızlık ve çağdaşlık mücadelesinin simgesi olarak yaşamaktadır.
-    </p>
-  </div>
+    <section id="milli-mucadele">
+      <h2>Milli Mücadele</h2>
+      <p>1919 yılında Samsun'a çıkarak Kurtuluş Savaşı'nı başlattı. Erzurum ve Sivas Kongreleri, halkın bağımsızlık iradesini yansıtıyordu. 1920’de Türkiye Büyük Millet Meclisi kurularak yeni bir dönemin kapısı aralandı.</p>
+    </section>
 
+    <section id="cumhuriyet">
+      <h2>Cumhuriyetin Kuruluşu</h2>
+      <p>29 Ekim 1923'te Cumhuriyet ilan edildi. Mustafa Kemal Atatürk, oy birliğiyle Türkiye Cumhuriyeti’nin ilk Cumhurbaşkanı seçildi. Bu dönemde birçok çağdaş reform hayata geçirildi.</p>
+    </section>
+
+    <section id="reformlar">
+      <h2>Reformlar</h2>
+      <p>Atatürk, toplumu çağdaşlaştırmak adına eğitim, hukuk, kılık-kıyafet ve takvim gibi birçok alanda devrim yaptı. Kadınlara seçme ve seçilme hakkı verilmesiyle toplumda eşitlik anlayışı gelişti.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M..."/></svg></a>
+    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M..."/></svg></a>
+    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M..."/></svg></a>
+    <p>&copy; 2025 Muhammed Efe KORKMAZ</p>
+  </footer>
 </body>
 </html>
