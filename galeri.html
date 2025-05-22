@@ -1,117 +1,167 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mustafa Kemal Atatürk - Galeri</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Galeriye özel stil (style.css'ten sonra yüklenmeli) */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px; /* Boşluk artırıldı */
-            justify-content: center;
-            margin-top: 40px;
-        }
-        .gallery-item {
-            background-color: #2a2a2a; /* İçerik arka planı */
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-            text-align: center;
-            padding-bottom: 20px; /* Daha fazla boşluk */
-            border: 1px solid #3a3a3a; /* Hafif kenarlık */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .gallery-item:hover {
-            transform: translateY(-5px); /* Hafif yukarı kalkma */
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 250px; /* Biraz daha büyük görseller */
-            object-fit: cover;
-            display: block;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #e74c3c; /* Kırmızı alt çizgi */
-        }
-        .gallery-item h3 {
-            margin: 0 15px 10px;
-            font-size: 1.4em; /* Daha büyük başlık */
-            color: #ffffff;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-        }
-        .gallery-item p {
-            font-size: 1em;
-            color: #b0b0b0; /* Açık gri açıklama metni */
-            margin: 0 15px;
-        }
-
-        /* Mobil için Galeri */
-        @media (max-width: 600px) {
-            .gallery-grid {
-                grid-template-columns: 1fr; /* Tek sütun */
-            }
-            .gallery-item img {
-                height: 200px;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <title>Atatürk</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      padding-bottom: 80px;
+    }
+    .logo {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      width: 120px;
+      z-index: 1100;
+      border-radius: 10px;
+      background: #fff;
+      padding: 5px;
+    }
+    nav.menu {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-bottom: 2px solid #d9d9d9;
+      z-index: 1000;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    nav.menu a {
+      display: inline-block;
+      padding: 14px 20px;
+      color: #000;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s ease;
+    }
+    nav.menu a:hover {
+      border-bottom: 3px solid #e30b17;
+      color: #e30b17;
+    }
+    nav.menu::-webkit-scrollbar {
+      display: none;
+    }
+    .quote-box {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      color: #222;
+      font-size: 10px;
+      max-width: 250px;
+      text-align: right;
+      font-family: Arial, sans-serif;
+      z-index: 1200;
+    }
+    .quote-source {
+      font-size: 9px;
+      color: #666;
+      margin-top: 3px;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      z-index: 1000;
+    }
+    footer a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #888;
+      border-radius: 50%;
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    footer a:hover {
+      border-color: #e30b17;
+      color: #e30b17;
+    }
+    footer svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+    @media (max-width: 600px) {
+      .quote-box {
+        font-size: 9px;
+        max-width: 160px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="index.html">Ana Sayfa</a>
-            <a href="galeri.html" class="active">Galeri</a>
-            <a href="hayati.html">Hayatı</a>
-            <a href="gerisayim.html">Geri Sayım</a>
-            <a href="ayarlar.html">Ayarlar</a>
-        </nav>
-    </header>
-
-    <main>
-        <section>
-            <h2>Görsel Galeri</h2>
-            <p>Mustafa Kemal Atatürk'ün farklı dönemlerine ait seçkin fotoğraflar ve tarihi görsellerden oluşan zengin bir koleksiyon.</p>
-
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="galeri/samsun.jpg" alt="Atatürk Samsun'da">
-                    <h3>Samsun'a Çıkış</h3>
-                    <p>19 Mayıs 1919 - Milli Mücadele'nin başlangıcı, Bağımsızlık ateşi.</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="galeri/cumhuriyet.jpg" alt="Cumhuriyet İlanı">
-                    <h3>Cumhuriyet'in İlanı</h3>
-                    <p>29 Ekim 1923 - Türk milletinin egemenliğini taçlandıran büyük gün.</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="galeri/nutuk.jpg" alt="Atatürk Nutuk Okurken">
-                    <h3>Büyük Nutuk Okunuşu</h3>
-                    <p>1927 - Gelecek nesillere ışık tutan tarihi konuşma.</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="galeri/anıtkabir.jpg" alt="Anıtkabir">
-                    <h3>Anıtkabir</h3>
-                    <p>Ulu Önder'in ebedi istirahatgahı ve Türk milletinin minnet anıtı.</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="galeri/okul.jpg" alt="Atatürk ve Okul Çocukları">
-                    <h3>Eğitim ve Çocuk Sevgisi</h3>
-                    <p>Gelecek nesillere olan inancının ve eğitim vizyonunun simgesi.</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="galeri/devrim.jpg" alt="Atatürk Devrimler">
-                    <h3>Modern Türkiye'nin Mimarı</h3>
-                    <p>Laiklik, bilim ve akıl yolunda yapılan çağdaş devrimler.</p>
-                </div>
-            </div>
-            </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Mustafa Kemal Atatürk Sayfası. Tüm hakları saklıdır.</p>
-    </footer>
+  <!-- Logo -->
+  <a href="index.html" class="logo">
+    <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
+  </a>
+  <!-- Sağ üstte değişen söz -->
+  <div class="quote-box" id="quote-box">
+    <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
+    <div class="quote-source" id="quote-source">— TBMM, 1920</div>
+  </div>
+  <!-- Menü -->
+  <nav class="menu">
+    <a href="index.html">Anasayfa</a>
+    <a href="hayati.html">Hayatı</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="sozleri.html">Sözleri</a>
+    <a href="eserleri.html">Eserleri</a>
+    <a href="devrimler.html">Devrimleri</a>
+    <a href="nutuk.html">Nutuk</a>
+    <a href="kronoloji.html">Kronoloji</a>
+    <a href="ayarlar.html">Ayarlar</a>
+  </nav>
+  <!-- Footer -->
+  <footer>
+    <a href="mailto:email@example.com" aria-label="Gmail">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/>
+      </svg>
+    </a>
+    <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+      </svg>
+    </a>
+    <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M22 12A10 10 0 1 0 10 22v-7h-2v-3h2v-2c0-2.2 1.3-3.5 3.3-3.5.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.7h2.6L15 15h-2v7a10 10 0 0 0 9-10z"/>
+      </svg>
+    </a>
+  </footer>
+  <script>
+    const quotes = [
+      { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "— TBMM, 1920" },
+      { text: '"Yurtta sulh, cihanda sulh."', source: "— Atatürk" },
+      { text: '"Hayatta en hakiki mürşit ilimdir."', source: "— Atatürk" },
+      { text: '"Türk milleti çalışkandır, zekidir."', source: "— Atatürk" }
+    ];
+    let quoteIndex = 0;
+    function updateQuote() {
+      quoteIndex = (quoteIndex + 1) % quotes.length;
+      document.getElementById("quote-text").textContent = quotes[quoteIndex].text;
+      document.getElementById("quote-source").textContent = quotes[quoteIndex].source;
+    }
+    setInterval(updateQuote, 5000);
+  </script>
 </body>
 </html>
