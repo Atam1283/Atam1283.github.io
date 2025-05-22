@@ -32,24 +32,22 @@ body {
 
 /* Menüdeki fotoğraf kapsayıcısı */
 .menu-image-container {
-  max-width: 90%; /* Kapsayıcının maksimum genişliğini ayarlayın */
-  width: 100%; /* Tam genişlik almasını sağlayın */
-  margin: 20px auto 40px; /* Üst, alt ve otomatik sağ/sol boşluk */
-  border-radius: 0; /* Köşeler düz */
-  overflow: hidden; /* Taşmayı gizle */
-  height: 300px; /* Görsel için sabit bir yükseklik belirleyin, ihtiyaca göre ayarlayın */
-  background-image: url('../images/ataturk5.jpg'); /* YOL GÜNCELLENDİ: css klasöründen çıkıp images klasörüne gir */
-  background-repeat: no-repeat; /* Görselin tekrarlamasını engelle */
-  background-position: center; /* Görseli yatay ve dikey olarak ortala */
-  background-size: contain; /* Görseli oranını bozmadan kapsayıcıya sığdır (alternatif: 'cover') */
-  /* Eğer HTML'de bir <img> etiketi varsa onu gizlemek için: */
-  display: flex; /* İçeriği hizalamak için flexbox kullanın */
-  justify-content: center; /* İçeriği yatayda ortala */
-  align-items: center; /* İçeriği dikeyde ortala */
+  max-width: 90%;
+  width: 100%;
+  margin: 20px auto 40px;
+  border-radius: 0;
+  overflow: hidden;
+  height: 300px; /* Bu yükseklik önemli */
+  background-image: url('../images/ataturk5.jpg'); /* YOL BURADA */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain; /* Veya 'cover' */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Eğer HTML'de bu kapsayıcının içinde bir <img> etiketi varsa onu gizle */
-.menu-image-container img {
+.menu-image-container img { /* HTML'de img etiketi varsa gizlemek için */
   display: none;
 }
 
@@ -67,7 +65,7 @@ body {
   font-weight: 700;
   margin-bottom: 20px;
   color: #fff;
-  user-select: none; /* seçilemez */
+  user-select: none;
 }
 
 /* Atatürk sözü */
@@ -96,7 +94,6 @@ body {
   .quote {
     font-size: 1.1rem;
   }
-  /* Mobil cihazlarda footer ikon boyutları */
   footer a {
     width: 35px;
     height: 35px;
