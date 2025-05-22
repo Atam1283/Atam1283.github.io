@@ -15,6 +15,8 @@
     body {
       margin: 0;
       padding: 0;
+      background-color: #fff;
+      font-family: Arial, sans-serif;
     }
 
     header .wrap-header {
@@ -55,18 +57,30 @@
       box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
     }
 
-    footer .row p,
-    footer .row h3,
-    footer .row span {
-      display: none;
+    footer {
+      background-color: #111;
+      padding: 30px 0;
     }
 
-    footer .row::after {
-      content: "© Tüm Hakları Saklıdır";
-      display: block;
-      color: #888;
+    footer .social-icons {
       text-align: center;
-      padding: 10px 0;
+      margin-bottom: 20px;
+    }
+
+    footer .social-icons a {
+      margin: 0 10px;
+      display: inline-block;
+    }
+
+    footer .social-icons img {
+      width: 30px;
+      height: 30px;
+    }
+
+    footer p {
+      color: #aaa;
+      font-size: 14px;
+      text-align: center;
     }
   </style>
 </head>
@@ -99,11 +113,13 @@
 
     <!-- Footer -->
     <footer>
-      <div class="zerogrid">
-        <div class="wrap-footer">
-          <div class="row"></div>
-        </div>
+      <div class="social-icons">
+        <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Instagram" /></a>
+        <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Twitter" /></a>
+        <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="YouTube" /></a>
+        <a href="#" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="GitHub" /></a>
       </div>
+      <p>© 2025 Tüm Hakları Saklıdır - atam1283.github.io</p>
     </footer>
   </div>
 </body>
