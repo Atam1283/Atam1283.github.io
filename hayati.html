@@ -2,54 +2,43 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8" />
-<title>Hayatı - Atatürk</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Atatürk - Hayatı</title>
 <style>
-  /* GENEL */
+  /* Genel */
   body {
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Arial, sans-serif;
     background: #fff;
-    color: #222;
-    padding-bottom: 70px; /* Footer için boşluk */
+    padding-bottom: 70px;
   }
 
-  /* ÜST MENU ve LOGO */
-  header {
+  /* Logo */
+  .logo {
     position: fixed;
-    top: 0;
+    top: 10px;
+    left: 10px;
+    width: 120px;
+    height: auto;
+    z-index: 1100;
+    border-radius: 10px;
+    object-fit: contain;
+    background: #fff;
+    padding: 5px;
+  }
+
+  /* Menü */
+  nav.menu {
+    position: fixed;
+    top: 80px;
     left: 0;
     width: 100%;
     background: #fff;
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    box-sizing: border-box;
-    z-index: 1100;
-    /* Menü altındaki çizgi kaldırıldı */
-  }
-
-  .logo {
-    width: 120px;
-    height: auto;
-    display: block;
-    object-fit: contain;
-  }
-
-  nav.menu {
-    flex-grow: 1;
-    margin-left: 20px;
+    border-bottom: none; /* Gri çizgi kaldırıldı */
+    z-index: 1000;
     overflow-x: auto;
     white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  nav.menu::-webkit-scrollbar {
-    display: none; /* Scrollbar tamamen gizlendi */
-  }
-  nav.menu {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Hafif gölge */
   }
 
   nav.menu a {
@@ -57,163 +46,123 @@
     padding: 14px 20px;
     color: #000;
     text-decoration: none;
-    font-weight: 600;
     font-size: 15px;
+    font-weight: bold;
     border-bottom: 3px solid transparent;
-    transition: border-color 0.3s ease, color 0.3s ease;
+    transition: all 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Ana sayfa ile aynı font */
   }
 
-  nav.menu a:hover,
-  nav.menu a.active {
+  nav.menu a:hover, nav.menu a.active {
+    border-bottom: 3px solid #e30b17;
     color: #e30b17;
-    border-bottom-color: #e30b17;
   }
 
-  /* İÇERİK ALANI */
+  nav.menu::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* İçerik */
   main.content {
     max-width: 900px;
-    margin: 110px auto 100px; /* Header yüksekliği + boşluk */
+    margin: 140px auto 100px; /* Menü yüksekliğine göre artırıldı */
     padding: 0 20px;
   }
 
-  /* BÖLÜMLER */
-  section {
-    margin-bottom: 40px;
-  }
-
-  section h2 {
-    border-bottom: 2px solid #e30b17;
+  main.content h2 {
+    border-bottom: 3px solid #e30b17;
     padding-bottom: 5px;
-    color: #e30b17;
-    font-weight: 700;
+    margin-top: 40px;
   }
 
-  /* SOSYAL MEDYA ALANI - FOOTER */
-  footer.footer-social {
+  main.content p {
+    line-height: 1.6;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+  }
+
+  /* Sosyal Medya Alt Şerit */
+  footer.social-bar {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     background: #000;
+    padding: 10px 0;
     display: flex;
     justify-content: center;
-    gap: 40px;
-    padding: 10px 0;
+    align-items: center;
     z-index: 1100;
   }
 
-  footer.footer-social a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    cursor: pointer;
-    transition: fill 0.3s ease;
+  footer.social-bar a {
+    margin: 0 15px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+    transition: color 0.3s ease;
   }
 
-  footer.footer-social svg {
+  footer.social-bar a:hover {
+    color: #e30b17;
+  }
+
+  footer.social-bar svg {
     width: 24px;
     height: 24px;
-    fill: #fff;
-    transition: fill 0.3s ease;
-  }
-
-  footer.footer-social a:hover svg {
-    fill: #e30b17;
-  }
-
-  /* Responsive */
-  @media (max-width: 600px) {
-    header {
-      flex-wrap: wrap;
-      padding: 10px 15px;
-    }
-
-    nav.menu {
-      margin-left: 0;
-      margin-top: 10px;
-      width: 100%;
-      overflow-x: scroll;
-    }
-
-    footer.footer-social {
-      gap: 25px;
-      padding: 10px 0;
-    }
+    fill: currentColor;
+    vertical-align: middle;
   }
 </style>
 </head>
 <body>
 
-<header>
-  <img src="images/logo.png" alt="Atatürk Logo" class="logo" />
-  <nav class="menu" role="navigation" aria-label="Ana Menü">
-    <a href="index.html">Anasayfa</a>
-    <a href="hayatı.html" class="active">Hayatı</a>
-    <a href="galeri.html">Galeri</a>
-    <a href="gerisayim.html">Geri Sayım</a>
-    <a href="ayarlar.html">Ayarlar</a>
-  </nav>
-</header>
+<!-- Logo -->
+<img src="images/atatürk_logo.png" alt="Atatürk Logo" class="logo" />
 
-<main class="content" role="main">
-  <section>
-    <h2>Çocukluk ve Gençlik</h2>
-    <p>Mustafa Kemal Atatürk, 1881 yılında Selanik’te doğmuştur. İlk öğrenimini burada tamamladıktan sonra askeri eğitim hayatına başlamıştır.</p>
-  </section>
+<!-- Menü -->
+<nav class="menu">
+  <a href="index.html">Ana Sayfa</a>
+  <a href="hayati.html" class="active">Hayatı</a>
+  <a href="galeri.html">Galeri</a>
+  <a href="gerisayim.html">Geri Sayım</a>
+  <a href="ayarlar.html">Ayarlar</a>
+</nav>
 
-  <section>
-    <h2>Askerî Hayatı</h2>
-    <p>Askerî eğitimini tamamladıktan sonra Osmanlı ordusunda çeşitli görevlerde bulunmuş ve deneyim kazanmıştır.</p>
-  </section>
+<!-- İçerik -->
+<main class="content">
+  <h1>M. Kemal Atatürk'ün Hayatı</h1>
 
-  <section>
-    <h2>Milli Mücadele</h2>
-    <p>Birinci Dünya Savaşı sonrasında Anadolu’da başlayan bağımsızlık mücadelesinin lideri olarak öne çıkmıştır.</p>
-  </section>
+  <h2>Çocukluk ve Gençlik</h2>
+  <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Eğitim hayatı boyunca disiplinli ve azimli bir öğrenci olarak dikkat çekti. Askerî okullarda aldığı eğitim, ilerideki liderliğinin temelini oluşturdu.</p>
 
-  <section>
-    <h2>Cumhuriyetin Kuruluşu</h2>
-    <p>1923 yılında Türkiye Cumhuriyeti’ni kurarak modern Türkiye’nin temellerini atmıştır.</p>
-  </section>
+  <h2>Askerî Hayatı</h2>
+  <p>1905 yılında Harp Okulu'ndan mezun olan Atatürk, Osmanlı ordusunda çeşitli görevlerde bulundu. Balkan Savaşları ve I. Dünya Savaşı sırasında gösterdiği başarılar, onun askeri dehasını ortaya koydu.</p>
 
-  <section>
-    <h2>Reformlar</h2>
-    <p>Eğitim, hukuk, ekonomi ve sosyal alanlarda pek çok reform gerçekleştirerek ülkeyi çağdaşlaştırmıştır.</p>
-  </section>
+  <h2>Milli Mücadele</h2>
+  <p>1919'da Samsun'a çıkarak Kurtuluş Savaşı'nı başlatan Atatürk, Türk milletinin bağımsızlık mücadelesinde liderlik yaptı. Erzurum ve Sivas Kongreleri ile milli birlik sağlandı ve Türkiye Cumhuriyeti'nin temelleri atıldı.</p>
+
+  <h2>Cumhuriyetin Kuruluşu</h2>
+  <p>1923 yılında Cumhuriyet ilan edildi. Atatürk, yeni devletin ilk cumhurbaşkanı oldu ve kapsamlı reformlarla modern Türkiye'yi inşa etmeye başladı.</p>
+
+  <h2>Reformlar</h2>
+  <p>Harf Devrimi, kadın hakları, eğitim reformları ve laiklik gibi önemli değişikliklerle Atatürk, Türkiye'nin çağdaşlaşmasını sağladı.</p>
 </main>
 
-<footer class="footer-social" role="contentinfo" aria-label="Sosyal Medya">
-  <!-- Facebook -->
-  <a href="https://www.facebook.com" target="_blank" aria-label="Facebook" rel="noopener">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
-      <path d="M22.675 0H1.325C.593 0 0 .593 0 1.326v21.348C0 23.407.593 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.466.099 2.797.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.763v2.31h3.59l-.467 3.622h-3.123V24h6.116c.73 0 1.324-.593 1.324-1.326V1.326C24 .593 23.407 0 22.675 0z"/>
-    </svg>
+<!-- Sosyal Medya Alt Şerit -->
+<footer class="social-bar" aria-label="Sosyal Medya">
+  <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.6 0 0 .6 0 1.337v21.326C0 23.4.6 24 1.325 24h11.494v-9.294H9.691v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.466.099 2.797.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.763v2.312h3.587l-.467 3.622h-3.12V24h6.116C23.4 24 24 23.4 24 22.663V1.337C24 .6 23.4 0 22.675 0z"/></svg>
   </a>
-  <!-- Twitter -->
-  <a href="https://twitter.com" target="_blank" aria-label="Twitter" rel="noopener">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
-      <path d="M23.954 4.569c-.885.39-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.724-.949.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.09-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616v.061c0 2.388 1.693 4.384 3.946 4.837-.734.2-1.5.232-2.224.084.626 1.956 2.444 3.377 4.6 3.417-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.396 4.768 2.212 7.557 2.212 9.054 0 14-7.497 14-13.986 0-.21 0-.423-.015-.633.961-.695 1.8-1.562 2.46-2.549z"/>
-    </svg>
+  <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 4.557a9.87 9.87 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.555-2.005.959-3.127 1.184a4.917 4.917 0 0 0-8.38 4.482A13.945 13.945 0 0 1 1.671 3.149 4.917 4.917 0 0 0 3.195 9.72 4.9 4.9 0 0 1 .96 9.1v.061a4.918 4.918 0 0 0 3.941 4.816 4.9 4.9 0 0 1-2.212.084 4.917 4.917 0 0 0 4.588 3.417 9.867 9.867 0 0 1-6.102 2.105c-.396 0-.787-.023-1.175-.068a13.951 13.951 0 0 0 7.557 2.212c9.054 0 14.002-7.503 14.002-14.002 0-.213-.005-.425-.014-.636A10.012 10.012 0 0 0 24 4.557z"/></svg>
   </a>
-  <!-- Instagram -->
-  <a href="https://www.instagram.com" target="_blank" aria-label="Instagram" rel="noopener">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
-      <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10a5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7a3.5 3.5 0 0 0 0-7zm4.75-.25a1.25 1.25 0 1 1 0 2.5a1.25 1.25 0 0 1 0-2.5z"/>
-    </svg>
+  <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.347 3.608 1.322.975.976 1.26 2.243 1.322 3.608.058 1.266.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.347 2.633-1.322 3.608-.976.975-2.243 1.26-3.608 1.322-1.266.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.347-3.608-1.322-.975-.976-1.26-2.243-1.322-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.347-2.633 1.322-3.608C4.53 2.58 5.797 2.295 7.163 2.233 8.429 2.175 8.809 2.163 12 2.163zm0-2.163C8.736 0 8.332.014 7.052.072 5.775.13 4.602.393 3.585 1.411 2.567 2.428 2.304 3.602 2.246 4.878.014 8.332 0 8.736 0 12c0 3.264.014 3.668.072 4.948.058 1.276.321 2.449 1.339 3.467 1.017 1.018 2.19 1.281 3.466 1.339 1.28.058 1.684.072 4.948.072s3.668-.014 4.948-.072c1.276-.058 2.449-.321 3.467-1.339 1.018-1.017 1.281-2.19 1.339-3.466.058-1.28.072-1.684.072-4.948s-.014-3.668-.072-4.948c-.058-1.276-.321-2.449-1.339-3.467-1.017-1.018-2.19-1.281-3.466-1.339C15.668.014 15.264 0 12 0zM12 5.838a6.163 6.163 0 1 0 0 12.324 6.163 6.163 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
   </a>
-  <!-- LinkedIn -->
-  <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn" rel="noopener">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
-      <path d="M20.447 20.452H16.89v-5.569c0-1.328-.026-3.037-1.852-3.037-1.854 0-2.137 1.447-2.137 2.942v5.664H9.337V9h3.396v1.561h.047c.472-.893 1.627-1.833 3.35-1.833 3.584 0 4.245 2.36 4.245 5.435v6.289zM5.337 7.433a1.976 1.976 0 1 1 0-3.951a1.976 1.976 0 0 1 0 3.951zM6.947 20.452H3.727V9h3.22v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.728v20.543C0 23.225.792 24 1.771 24h20.451c.978 0 1.778-.775 1.778-1.729V1.728C24 .774 23.203 0 22.225 0z"/>
-    </svg>
-  </a>
-  <!-- YouTube -->
-  <a href="https://www.youtube.com" target="_blank" aria-label="YouTube" rel="noopener">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
-      <path d="M23.498 6.186a2.85 2.85 0 0 0-2.004-2.01C19.633 3.5 12 3.5 12 3.5s-7.633 0-9.494.676a2.85 2.85 0 0 0-2.004 2.01A29.788 29.788 0 0 0 0 12a29.788 29.788 0 0 0 .502 5.814 2.85 2.85 0 0 0 2.004 2.01c1.861.676 9.494.676 9.494.676s7.633 0 9.494-.676a2.85 2.85 0 0 0 2.004-2.01A29.788 29.788 0 0 0 24 12a29.788 29.788 0 0 0-.502-5.814zM9.546 15.568V8.432L15.818 12l-6.272 3.568z"/>
-    </svg>
+  <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.225 0H1.771C.792 0 0 .774 0 1.728v20.543C0 23.225.792 24 1.771 24h20.451C23.2 24 24 23.225 24 22.271V1.728C24 .774 23.2 0 22.225 0zM7.09 20.452H3.54v-10.83h3.55v10.83zm-1.776-12.29c-1.14 0-2.063-.926-2.063-2.066 0-1.14.923-2.066 2.063-2.066s2.064.926 2.064 2.066c0 1.14-.924 2.066-2.064 2.066zm13.633 12.29h-3.55v-5.793c0-1.38-.027-3.155-1.922-3.155-1.922 0-2.217 1.5-2.217 3.05v5.898H9.313v-10.83h3.41v1.48h.048c.474-.9 1.634-1.85 3.36-1.85 3.595 0 4.256 2.367 4.256 5.444v6.756z"/></svg>
   </a>
 </footer>
 
