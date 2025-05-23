@@ -86,13 +86,6 @@
     }
     section {
       margin-bottom: 40px;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
     section h2 {
       border-left: 5px solid #e30b17;
@@ -213,39 +206,32 @@
       <a href="ayarlar.html">Ayarlar</a>
     </nav>
   </header>
-
   <main class="content" role="main">
-    <section id="childhood">
+    <section>
       <h2>Çocukluk ve Gençlik Yılları</h2>
       <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. Küçük yaşlarda eğitimine başlamış, önce Şemsi Efendi Mektebi'nde sonra da askeri okullarda öğrenim görmüştür.</p>
     </section>
-
-    <section id="military-career">
+    <section>
       <h2>Askeri Kariyeri</h2>
       <p>Askeri eğitimini başarıyla tamamlayan Atatürk, çeşitli cephelerde görev almış, Trablusgarp ve Çanakkale Savaşları'nda önemli başarılara imza atmıştır. Askeri yetenekleri ve liderliği ile dikkat çekmiştir.</p>
     </section>
-
-    <section id="independence-war">
+    <section>
       <h2>Kurtuluş Savaşı ve Milli Mücadele</h2>
       <p>1919 yılında Samsun'a çıkarak Kurtuluş Savaşı'nı başlatan Mustafa Kemal, Türk milletinin bağımsızlık mücadelesine önderlik etmiştir. Erzurum ve Sivas kongreleriyle milli iradeyi temsil eden bir lider olarak öne çıkmıştır.</p>
     </section>
-
-    <section id="republic">
+    <section>
       <h2>Cumhuriyetin İlanı</h2>
       <p>29 Ekim 1923'te Türkiye Cumhuriyeti'ni ilan etmiş ve ülkenin ilk cumhurbaşkanı olmuştur. Egemenliğin millete ait olduğunu vurgulamış ve laik, çağdaş bir devlet yapısı oluşturmuştur.</p>
     </section>
-
-    <section id="reforms">
+    <section>
       <h2>İnkılaplar</h2>
       <p>Harf Devrimi, Medeni Kanun, Eğitim Reformu, Şapka Kanunu gibi birçok inkılapla toplumsal dönüşümü gerçekleştirmiştir. Kadınlara seçme ve seçilme hakkı tanınarak toplumsal eşitlik sağlanmıştır.</p>
     </section>
-
-    <section id="death">
+    <section>
       <h2>Ölümü</h2>
       <p>Mustafa Kemal Atatürk, 10 Kasım 1938 tarihinde İstanbul Dolmabahçe Sarayı'nda vefat etmiştir. Ardında bağımsız, laik ve çağdaş bir Türkiye bırakmıştır. Türk milleti onu saygı, sevgi ve minnetle anmaktadır.</p>
     </section>
   </main>
-
   <footer>
     <div class="typewriter-box" id="typewriter-box"></div>
     <a href="mailto:email@example.com" aria-label="E-posta">
@@ -264,7 +250,6 @@
       </svg>
     </a>
   </footer>
-
   <script>
     // Alıntı kutusu otomatik değişimi
     const quotes = [
@@ -280,7 +265,6 @@
       document.getElementById("quote-source").textContent = quotes[quoteIndex].source;
     }
     setInterval(updateQuote, 5000);
-
     // Kaynak bilgileri için daktilo efekti
     const sources = [
       "Kaynak: Atatürk Araştırma Merkezi",
@@ -309,37 +293,6 @@
       typeChar();
     }
     showSource();
-
-    // Bölümler için kaydırma animasyonu
-    const sections = document.querySelectorAll('section');
-    
-    function checkVisibility() {
-      sections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        
-        if (sectionTop < windowHeight - 100) {
-          section.classList.add('visible');
-        }
-      });
-    }
-    
-    // Sayfa yüklendiğinde ve kaydırma yapıldığında kontrol et
-    window.addEventListener('load', checkVisibility);
-    window.addEventListener('scroll', checkVisibility);
-    
-    // Sayfa yüklendiğinde tüm bölümleri gizle (animasyon için)
-    document.addEventListener('DOMContentLoaded', () => {
-      sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-      });
-      
-      // İlk bölümü hemen göster
-      setTimeout(() => {
-        document.querySelector('section').classList.add('visible');
-      }, 300);
-    });
   </script>
 </body>
 </html>
