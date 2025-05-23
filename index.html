@@ -39,28 +39,13 @@
       max-width: 250px;
       text-align: right;
       font-family: Arial, sans-serif;
-      background: rgba(255,255,255,0.85);
+      background: #fff;
       padding: 7px 16px 7px 10px;
       border-radius: 10px;
-      box-shadow: 0 2px 12px rgba(227,11,23,0.08);
       margin-left: 16px;
       min-width: 120px;
-      animation: fadeInQuote 0.9s cubic-bezier(.4,0,.2,1);
+      box-shadow: none;
       position: relative;
-      overflow: hidden;
-    }
-    @keyframes fadeInQuote {
-      from { opacity: 0; transform: translateY(-10px);}
-      to   { opacity: 1; transform: translateY(0);}
-    }
-    .quote-box.shine {
-      box-shadow: 0 0 32px 4px #ffe5e6, 0 2px 12px rgba(227,11,23,0.08);
-      animation: shineEffect 1.6s;
-    }
-    @keyframes shineEffect {
-      0% { box-shadow: 0 0 32px 4px #ffe5e6, 0 2px 12px rgba(227,11,23,0.08);}
-      60% { box-shadow: 0 0 48px 16px #ffe5e6, 0 2px 12px rgba(227,11,23,0.13);}
-      100% { box-shadow: 0 0 32px 4px #ffe5e6, 0 2px 12px rgba(227,11,23,0.08);}
     }
     .quote-source {
       font-size: 10px;
@@ -122,6 +107,37 @@
       .quote-box { font-size: 11px; max-width: 140px; padding: 5px 8px; }
       .quote-source { font-size: 9px; }
     }
+
+    /* Bölümlere ve metinlere efektler */
+    .bolum {
+      width: 100%;
+      max-width: 700px;
+      margin-bottom: 32px;
+      animation: fadeInText 1s cubic-bezier(.4,0,.2,1) both;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    .bolum:nth-of-type(1) { animation-delay: 0.3s; }
+    .bolum:nth-of-type(2) { animation-delay: 0.6s; }
+    .bolum:nth-of-type(3) { animation-delay: 0.9s; }
+    .bolum:nth-of-type(4) { animation-delay: 1.2s; }
+    .bolum h2 {
+      color: #e30b17;
+      font-size: 1.15em;
+      margin-top: 0;
+      margin-bottom: 8px;
+      border-bottom: 1.5px solid #e30b17;
+      padding-bottom: 3.5px;
+      font-weight: bold;
+      letter-spacing: 0.2px;
+      background: linear-gradient(90deg, #fff 80%, #ffe5e6 100%);
+    }
+    @keyframes fadeInText {
+      to { opacity: 1; transform: translateY(0);}
+    }
+    @keyframes fadeInContent {
+      to { opacity: 1; transform: translateY(0);}
+    }
   </style>
 </head>
 <body>
@@ -146,10 +162,30 @@
     </nav>
   </header>
   <main class="content">
-    <h1>Mustafa Kemal Atatürk</h1>
-    <p>
-      Türkiye Cumhuriyeti'nin kurucusu ve ilk Cumhurbaşkanı olan Mustafa Kemal Atatürk, askeri ve siyasi dehası, çağdaşlaşma vizyonu ve liderliğiyle Türk milletinin tarihinde silinmez bir iz bırakmıştır. Cumhuriyetin ilanı, laiklik, eğitim ve toplumsal reformlar ile ülkemizin modernleşme yolunda öncülük etmiştir. Atatürk'ün ilke ve inkılapları, günümüzde de yolumuzu aydınlatmaya devam etmektedir.
-    </p>
+    <div class="bolum">
+      <h2>Atatürk Kimdir?</h2>
+      <p>
+        Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğmuş, askeri dehası ve liderlik vasıfları ile Türk milletinin kaderini değiştirmiştir. Bağımsızlık mücadelesinin başkomutanı, Türkiye Cumhuriyeti'nin kurucusu ve ilk Cumhurbaşkanıdır.
+      </p>
+    </div>
+    <div class="bolum">
+      <h2>Vizyonu ve Modernleşme</h2>
+      <p>
+        Atatürk, çağdaş bir Türkiye vizyonu ile eğitim, hukuk, bilim, kültür ve toplumsal yaşamda köklü reformlara öncülük etmiştir. “Hayatta en hakiki mürşit ilimdir” sözüyle bilimi rehber edinmiş, laiklik ilkesini benimsemiştir.
+      </p>
+    </div>
+    <div class="bolum">
+      <h2>İlke ve Devrimleri</h2>
+      <p>
+        Egemenliğin millete ait olması, kadınların toplumsal hayatta yer alması, eğitimde yenilikçilik, Latin alfabesinin kabulü ve ekonomik kalkınma Atatürk'ün temel devrimlerindendir. “Yurtta sulh, cihanda sulh” ilkesiyle barışçı bir dış politika izlemiştir.
+      </p>
+    </div>
+    <div class="bolum">
+      <h2>Mirası</h2>
+      <p>
+        Atatürk'ün ilke ve inkılapları, çağdaş ve demokratik Türkiye'nin temelini oluşturur. Onun “Ne mutlu Türküm diyene!” sözü, toplumsal birlik ve beraberliğin simgesi olmuştur.
+      </p>
+    </div>
   </main>
   <footer class="footer-social">
     <!-- Footerınız buraya gelecek -->
@@ -167,18 +203,15 @@
       quoteIndex = (quoteIndex + 1) % quotes.length;
       document.getElementById("quote-text").textContent = quotes[quoteIndex].text;
       document.getElementById("quote-source").textContent = quotes[quoteIndex].source;
-      // Parlama efekti
-      const box = document.getElementById('quote-box');
-      box.classList.remove('shine');
-      setTimeout(() => { box.classList.add('shine'); }, 10);
-      setTimeout(() => { box.classList.remove('shine'); }, 1700);
     }
     setInterval(updateQuote, 5000);
-    // İlk animasyon için kutuya parlama ver
-    document.addEventListener("DOMContentLoaded", function() {
-      const box = document.getElementById('quote-box');
-      box.classList.add('shine');
-      setTimeout(() => { box.classList.remove('shine'); }, 1500);
+
+    // Fade-in efektlerini tetiklemek için
+    document.addEventListener("DOMContentLoaded", function(){
+      document.querySelectorAll('.bolum').forEach(function(el){
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      });
     });
   </script>
 </body>
