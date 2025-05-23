@@ -33,21 +33,40 @@
       border-radius: 10px;
       display: block;
     }
-    .changing-quote {
-      margin-left: 16px;
-      padding: 8px 18px;
-      background: #f3f3f3;
-      border-radius: 10px;
-      font-size: 15px;
-      color: #e30b17;
-      font-weight: bold;
-      min-width: 220px;
+    .quote-box {
+      color: #000;
+      font-size: 12px;
+      max-width: 250px;
       text-align: right;
-      transition: background 0.4s;
-      box-shadow: 0 2px 8px rgba(227,11,23,0.04);
-      max-width: 320px;
-      overflow-x: auto;
-      white-space: nowrap;
+      font-family: Arial, sans-serif;
+      background: rgba(255,255,255,0.85);
+      padding: 7px 16px 7px 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(227,11,23,0.08);
+      margin-left: 16px;
+      min-width: 120px;
+      animation: fadeInQuote 0.9s cubic-bezier(.4,0,.2,1);
+      position: relative;
+      overflow: hidden;
+    }
+    @keyframes fadeInQuote {
+      from { opacity: 0; transform: translateY(-10px);}
+      to   { opacity: 1; transform: translateY(0);}
+    }
+    .quote-box.shine {
+      box-shadow: 0 0 32px 4px #ffe5e6, 0 2px 12px rgba(227,11,23,0.08);
+      animation: shineEffect 1.6s;
+    }
+    @keyframes shineEffect {
+      0% { box-shadow: 0 0 32px 4px #ffe5e6, 0 2px 12px rgba(227,11,23,0.08);}
+      60% { box-shadow: 0 0 48px 16px #ffe5e6, 0 2px 12px rgba(227,11,23,0.13);}
+      100% { box-shadow: 0 0 32px 4px #ffe5e6, 0 2px 12px rgba(227,11,23,0.08);}
+    }
+    .quote-source {
+      font-size: 10px;
+      color: #666;
+      margin-top: 3px;
+      transition: color 0.4s;
     }
     nav.menu {
       position: fixed;
@@ -100,7 +119,8 @@
       nav.menu { top: 60px; padding: 0 5px; }
       nav.menu a { padding: 10px 8px; font-size: 12px; }
       main.content { margin-top: 110px; }
-      .changing-quote { font-size: 12px; min-width: 120px; padding: 5px 10px; }
+      .quote-box { font-size: 11px; max-width: 140px; padding: 5px 8px; }
+      .quote-source { font-size: 9px; }
     }
   </style>
 </head>
@@ -109,7 +129,10 @@
     <a href="index.html" class="logo" aria-label="Anasayfa">
       <img src="images/logo.png" alt="Atatürk Logo" />
     </a>
-    <div class="changing-quote" id="changingQuote" aria-live="polite"></div>
+    <div class="quote-box" id="quote-box">
+      <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
+      <div class="quote-source" id="quote-source">— TBMM, 1920</div>
+    </div>
     <nav class="menu" role="navigation" aria-label="Ana menü">
       <a href="index.html" class="active">Anasayfa</a>
       <a href="hayati.html">Hayatı</a>
@@ -125,37 +148,38 @@
   <main class="content">
     <h1>Mustafa Kemal Atatürk</h1>
     <p>
-      Türkiye Cumhuriyeti'nin kurucusu ve ilk Cumhurbaşkanı olan Mustafa Kemal Atatürk, askeri ve siyasi dehası, çağdaşlaşma vizyonu ve liderliğiyle Türk milletinin tarihinde silinmez bir iz bırakmıştır.
-    </p>
-    <p>
-      Atatürk, Osmanlı İmparatorluğu'nun son döneminde yetişmiş, I. Dünya Savaşı'ndaki başarılarıyla öne çıkmış ve Kurtuluş Savaşı'nı başlatarak milletin bağımsızlığını kazanmasını sağlamıştır. 1923 yılında Cumhuriyet'i ilan etmiş, eğitimden hukuka, bilimden sanata kadar birçok alanda gerçekleştirdiği köklü reformlarla modern Türkiye'nin temellerini atmıştır.
-    </p>
-    <p>
-      Atatürk'ün ilke ve inkılapları, bugün de Türkiye'nin yolunu aydınlatmaya devam etmektedir.
+      Türkiye Cumhuriyeti'nin kurucusu ve ilk Cumhurbaşkanı olan Mustafa Kemal Atatürk, askeri ve siyasi dehası, çağdaşlaşma vizyonu ve liderliğiyle Türk milletinin tarihinde silinmez bir iz bırakmıştır. Cumhuriyetin ilanı, laiklik, eğitim ve toplumsal reformlar ile ülkemizin modernleşme yolunda öncülük etmiştir. Atatürk'ün ilke ve inkılapları, günümüzde de yolumuzu aydınlatmaya devam etmektedir.
     </p>
   </main>
   <footer class="footer-social">
     <!-- Footerınız buraya gelecek -->
   </footer>
   <script>
-    // 5 saniyede bir değişen yazılar (örnekler, Hayati sayfasındaki gibi)
+    // Hayatı sayfasındakiyle aynı sözler ve kaynaklar
     const quotes = [
-      "Hayatta en hakiki mürşit ilimdir, fendir.",
-      "Beni görmek demek mutlaka yüzümü görmek değildir.",
-      "Ne mutlu Türküm diyene!",
-      "Yurtta sulh, cihanda sulh.",
-      "Egemenlik, kayıtsız şartsız milletindir.",
-      "İstikbal göklerdedir.",
-      "Milletin bağımsızlığını yine milletin azmi ve kararı kurtaracaktır."
+      { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "— TBMM, 1920" },
+      { text: '"Yurtta sulh, cihanda sulh."', source: "— Atatürk" },
+      { text: '"Hayatta en hakiki mürşit ilimdir."', source: "— Atatürk" },
+      { text: '"Türk milleti çalışkandır, zekidir."', source: "— Atatürk" }
     ];
     let quoteIndex = 0;
-    function changeQuote() {
-      const quoteEl = document.getElementById('changingQuote');
-      quoteEl.textContent = quotes[quoteIndex];
+    function updateQuote() {
       quoteIndex = (quoteIndex + 1) % quotes.length;
+      document.getElementById("quote-text").textContent = quotes[quoteIndex].text;
+      document.getElementById("quote-source").textContent = quotes[quoteIndex].source;
+      // Parlama efekti
+      const box = document.getElementById('quote-box');
+      box.classList.remove('shine');
+      setTimeout(() => { box.classList.add('shine'); }, 10);
+      setTimeout(() => { box.classList.remove('shine'); }, 1700);
     }
-    changeQuote();
-    setInterval(changeQuote, 5000);
+    setInterval(updateQuote, 5000);
+    // İlk animasyon için kutuya parlama ver
+    document.addEventListener("DOMContentLoaded", function() {
+      const box = document.getElementById('quote-box');
+      box.classList.add('shine');
+      setTimeout(() => { box.classList.remove('shine'); }, 1500);
+    });
   </script>
 </body>
 </html>
