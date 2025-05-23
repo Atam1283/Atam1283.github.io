@@ -33,6 +33,22 @@
       border-radius: 10px;
       display: block;
     }
+    .changing-quote {
+      margin-left: 16px;
+      padding: 8px 18px;
+      background: #f3f3f3;
+      border-radius: 10px;
+      font-size: 15px;
+      color: #e30b17;
+      font-weight: bold;
+      min-width: 220px;
+      text-align: right;
+      transition: background 0.4s;
+      box-shadow: 0 2px 8px rgba(227,11,23,0.04);
+      max-width: 320px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
     nav.menu {
       position: fixed;
       top: 60px;
@@ -76,7 +92,6 @@
       overflow: hidden;
       box-sizing: border-box;
     }
-    /* ... (diğer mevcut stilleriniz buraya devam edecek) ... */
     @media (max-width: 900px) {
       main.content { padding: 22px 4vw 22px 4vw; max-width: 99vw; }
     }
@@ -85,6 +100,7 @@
       nav.menu { top: 60px; padding: 0 5px; }
       nav.menu a { padding: 10px 8px; font-size: 12px; }
       main.content { margin-top: 110px; }
+      .changing-quote { font-size: 12px; min-width: 120px; padding: 5px 10px; }
     }
   </style>
 </head>
@@ -93,6 +109,7 @@
     <a href="index.html" class="logo" aria-label="Anasayfa">
       <img src="images/logo.png" alt="Atatürk Logo" />
     </a>
+    <div class="changing-quote" id="changingQuote" aria-live="polite"></div>
     <nav class="menu" role="navigation" aria-label="Ana menü">
       <a href="index.html" class="active">Anasayfa</a>
       <a href="hayati.html">Hayatı</a>
@@ -106,11 +123,39 @@
     </nav>
   </header>
   <main class="content">
-    <!-- Ana sayfanızın mevcut içeriği buraya -->
-    <!-- ... -->
+    <h1>Mustafa Kemal Atatürk</h1>
+    <p>
+      Türkiye Cumhuriyeti'nin kurucusu ve ilk Cumhurbaşkanı olan Mustafa Kemal Atatürk, askeri ve siyasi dehası, çağdaşlaşma vizyonu ve liderliğiyle Türk milletinin tarihinde silinmez bir iz bırakmıştır.
+    </p>
+    <p>
+      Atatürk, Osmanlı İmparatorluğu'nun son döneminde yetişmiş, I. Dünya Savaşı'ndaki başarılarıyla öne çıkmış ve Kurtuluş Savaşı'nı başlatarak milletin bağımsızlığını kazanmasını sağlamıştır. 1923 yılında Cumhuriyet'i ilan etmiş, eğitimden hukuka, bilimden sanata kadar birçok alanda gerçekleştirdiği köklü reformlarla modern Türkiye'nin temellerini atmıştır.
+    </p>
+    <p>
+      Atatürk'ün ilke ve inkılapları, bugün de Türkiye'nin yolunu aydınlatmaya devam etmektedir.
+    </p>
   </main>
   <footer class="footer-social">
     <!-- Footerınız buraya gelecek -->
   </footer>
+  <script>
+    // 5 saniyede bir değişen yazılar (örnekler, Hayati sayfasındaki gibi)
+    const quotes = [
+      "Hayatta en hakiki mürşit ilimdir, fendir.",
+      "Beni görmek demek mutlaka yüzümü görmek değildir.",
+      "Ne mutlu Türküm diyene!",
+      "Yurtta sulh, cihanda sulh.",
+      "Egemenlik, kayıtsız şartsız milletindir.",
+      "İstikbal göklerdedir.",
+      "Milletin bağımsızlığını yine milletin azmi ve kararı kurtaracaktır."
+    ];
+    let quoteIndex = 0;
+    function changeQuote() {
+      const quoteEl = document.getElementById('changingQuote');
+      quoteEl.textContent = quotes[quoteIndex];
+      quoteIndex = (quoteIndex + 1) % quotes.length;
+    }
+    changeQuote();
+    setInterval(changeQuote, 5000);
+  </script>
 </body>
 </html>
