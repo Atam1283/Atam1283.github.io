@@ -102,6 +102,84 @@
       border-radius: 5px;
       max-width: 250px;
     }
+    /* Hoşgeldin kutusu */
+    .welcome-box {
+      background: rgba(255,255,255,0.95);
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      padding: 28px 26px 22px 26px;
+      margin: 38px 0 30px 0;
+      text-align: center;
+      max-width: 700px;
+      color: #1a1a1a;
+    }
+    .welcome-title {
+      font-size: 1.6em;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #e30b17;
+      letter-spacing: 0.5px;
+    }
+    .welcome-desc {
+      font-size: 1.12em;
+      margin-bottom: 16px;
+      color: #222;
+    }
+    .section-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      justify-content: center;
+      margin: 12px 0 0 0;
+    }
+    .section-card {
+      background: #fff;
+      border-radius: 9px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+      padding: 18px 22px;
+      min-width: 150px;
+      max-width: 200px;
+      flex: 1 1 150px;
+      text-align: center;
+      color: #e30b17;
+      font-weight: bold;
+      font-size: 1.08em;
+      letter-spacing: 0.2px;
+      text-decoration: none;
+      border: 2px solid #e30b17;
+      transition: background 0.18s, color 0.18s, border 0.18s;
+      cursor: pointer;
+    }
+    .section-card:hover {
+      background: #e30b17;
+      color: #fff;
+      border: 2px solid #b51a1a;
+    }
+    /* Bugün Atatürk köşesi */
+    .today-ataturk-box {
+      margin: 34px 0 0 0;
+      background: rgba(255,255,255,0.93);
+      color: #1a1a1a;
+      border-radius: 10px;
+      padding: 18px 20px 14px 20px;
+      max-width: 700px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(232,48,23,0.10);
+    }
+    .today-title {
+      color: #e30b17;
+      font-weight: bold;
+      font-size: 1.15em;
+      margin-bottom: 7px;
+    }
+    .today-content {
+      font-size: 1.04em;
+    }
+    .today-source {
+      color: #666;
+      font-size: 0.97em;
+      margin-top: 7px;
+    }
     footer {
       position: fixed;
       bottom: 0;
@@ -142,6 +220,9 @@
       }
       nav.menu {
         font-size: 14px;
+      }
+      .welcome-box, .today-ataturk-box {
+        max-width: 98vw;
       }
     }
     @media (max-width: 600px) {
@@ -186,6 +267,21 @@
         text-align: center;
         font-size: 14px;
       }
+      .welcome-box, .today-ataturk-box {
+        padding: 16px 4vw 13px 4vw;
+        margin-top: 22px;
+        font-size: 0.97em;
+      }
+      .section-cards {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .section-card {
+        max-width: 100%;
+        min-width: 0;
+        font-size: 1em;
+        padding: 13px 10px;
+      }
       footer { height: 50px; }
       footer a { width: 32px; height: 32px;}
       footer svg { width: 16px; height: 16px;}
@@ -215,9 +311,33 @@
   </header>
   
   <main>
+    <!-- Hoşgeldin ve tanıtım kutusu -->
+    <div class="welcome-box">
+      <div class="welcome-title">Mustafa Kemal Atatürk'e Adanmış Bir Siteye Hoşgeldiniz!</div>
+      <div class="welcome-desc">
+        Bu sitede Ulu Önder Mustafa Kemal Atatürk’ün hayatı, sözleri, fotoğrafları, devrimleri ve eserleri hakkında detaylı bilgiler bulabilir, onun ilkelerine ve düşüncelerine daha yakından tanıklık edebilirsiniz.<br>
+        <b>Keşfetmeye başlamak için aşağıdaki başlıklardan birine tıklayabilirsiniz:</b>
+      </div>
+      <div class="section-cards">
+        <a href="hayati.html" class="section-card">Hayatı</a>
+        <a href="galeri.html" class="section-card">Galeri</a>
+        <a href="sozleri.html" class="section-card">Sözleri</a>
+        <a href="devrimler.html" class="section-card">Devrimleri</a>
+        <a href="eserleri.html" class="section-card">Eserleri</a>
+        <a href="nutuk.html" class="section-card">Nutuk</a>
+        <a href="kronoloji.html" class="section-card">Kronoloji</a>
+      </div>
+    </div>
+    <!-- Ana görsel ve daktilo kutusu -->
     <div class="menu-image-container">
       <img src="images/ataturk5.jpg" alt="Atatürk portresi" />
       <div class="typewriter-box" id="typewriter-box"></div>
+    </div>
+    <!-- Bugün Atatürk köşesi -->
+    <div class="today-ataturk-box" id="today-ataturk-box" style="display:none;">
+      <div class="today-title">Bugün Atatürk</div>
+      <div class="today-content" id="today-content"></div>
+      <div class="today-source" id="today-source"></div>
     </div>
   </main>
   <footer>
@@ -279,6 +399,49 @@
       typeChar();
     }
     showMessage();
+
+    // Bugün Atatürk köşesi (örnek veriyle)
+    // Gerçek bir tarihsel API bağlanana kadar sabit veriyle çalışır
+    const todayEvents = [
+      {
+        date: "23 Mayıs 1920",
+        content: "Atatürk, Ankara’da, TBMM’de ilk kez gizli oturum düzenletti.",
+        source: "Kaynak: Atatürk Kronolojisi"
+      },
+      {
+        date: "19 Mayıs 1919",
+        content: "Mustafa Kemal Atatürk, Samsun’a çıkarak Kurtuluş Savaşı’nı başlattı.",
+        source: "Kaynak: Atatürk Kronolojisi"
+      },
+      {
+        date: "29 Ekim 1923",
+        content: "Cumhuriyet ilan edildi. Atatürk, Türkiye Cumhuriyeti’nin ilk Cumhurbaşkanı oldu.",
+        source: "Kaynak: Atatürk Kronolojisi"
+      },
+      {
+        date: "10 Kasım 1938",
+        content: "Atatürk, İstanbul Dolmabahçe Sarayı’nda hayata gözlerini yumdu.",
+        source: "Kaynak: Atatürk Kronolojisi"
+      }
+    ];
+    function showTodayAtaturk() {
+      // Bugünkü ay ve gün ile eşleşen olay varsa onu göster
+      const now = new Date();
+      const todayStr = ("0" + now.getDate()).slice(-2) + " " + 
+        now.toLocaleString("tr-TR", { month: "long" }).toLowerCase();
+      let found = null;
+      for (let e of todayEvents) {
+        if (e.date.startsWith(todayStr)) { found = e; break; }
+      }
+      // Eğer yoksa rastgele göster
+      if (!found) {
+        found = todayEvents[Math.floor(Math.random() * todayEvents.length)];
+      }
+      document.getElementById("today-content").textContent = `${found.date}: ${found.content}`;
+      document.getElementById("today-source").textContent = found.source;
+      document.getElementById("today-ataturk-box").style.display = "block";
+    }
+    showTodayAtaturk();
   </script>
 </body>
 </html>
