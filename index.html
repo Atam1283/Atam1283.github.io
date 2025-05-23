@@ -138,12 +138,72 @@
         transform: scale(1) translateY(0);
       }
     }
-    @media (max-width: 900px) {
-      main.content {padding: 14px 2vw;}
-      .modern-card {padding: 10px 2vw;}
-      .timeline {max-width: 95vw;}
+    /* Menü boyutu hayati.html ile aynı olsun */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      box-sizing: border-box;
+      z-index: 1100;
+    }
+    .logo {
+      width: 120px;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+    nav.menu {
+      flex-grow: 1;
+      margin-left: 20px;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+    nav.menu::-webkit-scrollbar {
+      display: none;
+    }
+    nav.menu {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    nav.menu a {
+      display: inline-block;
+      padding: 14px 20px;
+      color: #000;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      border-bottom: 3px solid transparent;
+      transition: border-color 0.3s ease, color 0.3s ease;
+    }
+    nav.menu a:hover,
+    nav.menu a.active {
+      color: #e30b17;
+      border-bottom-color: #e30b17;
     }
     @media (max-width: 600px) {
+      header {
+        flex-wrap: wrap;
+        padding: 10px 15px;
+      }
+      nav.menu {
+        margin-left: 0;
+        margin-top: 10px;
+        width: 100%;
+        overflow-x: scroll;
+      }
+      nav.menu a {
+        padding: 10px 8px;
+        font-size: 12px;
+      }
+      .logo {
+        width: 80px;
+      }
       main.content {padding: 6px 0; margin-top: 90px;}
       .ataturk-img-section {
         flex-direction: column;
