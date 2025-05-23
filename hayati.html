@@ -1,22 +1,16 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8" />
-  <title>Hayatı - Atatürk</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mustafa Kemal Atatürk - Hayatı</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html, body {
-      overflow-x: hidden;
-    }
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
       background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
       padding-bottom: 80px;
       min-height: 100vh;
     }
@@ -37,18 +31,6 @@
       width: 120px;
       border-radius: 10px;
       display: block;
-    }
-    .quote-box {
-      color: #000;
-      font-size: 12px;
-      max-width: 250px;
-      text-align: right;
-      font-family: Arial, sans-serif;
-    }
-    .quote-source {
-      font-size: 10px;
-      color: #666;
-      margin-top: 3px;
     }
     nav.menu {
       position: fixed;
@@ -76,26 +58,58 @@
       border-bottom: 3px solid #e30b17;
       color: #e30b17;
     }
-    main.content {
-      max-width: 900px;
-      margin: 120px auto 20px;
-      padding: 0 20px;
-      line-height: 1.8;
-      font-size: 16px;
-      text-align: left;
+    main {
+      margin-top: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 60vh;
+      padding: 0 20px 60px 20px;
     }
-    section {
-      margin-bottom: 40px;
+    #hayati-content {
+      max-width: 750px;
+      background: rgba(24,24,24,0.97);
+      border-radius: 12px;
+      box-shadow: 0 2px 16px rgba(44,0,0,0.08);
+      padding: 38px 28px 34px 28px;
+      margin: 0 auto 34px auto;
+      line-height: 1.7;
+      font-size: 1.08em;
+      letter-spacing: 0.02em;
+      /* Animasyon başlangıç değerleri */
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1.2s cubic-bezier(.4,0,.2,1), transform 1.2s cubic-bezier(.4,0,.2,1);
     }
-    section h2 {
-      border-left: 5px solid #e30b17;
-      padding-left: 10px;
-      margin-bottom: 10px;
+    #hayati-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #hayati-content h1 {
       color: #e30b17;
+      font-size: 2em;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+      text-align: center;
       font-weight: bold;
     }
-    p {
+    #hayati-content h2 {
       color: #fff;
+      font-size: 1.25em;
+      margin-top: 28px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #e30b17;
+      padding-bottom: 3px;
+      font-weight: bold;
+      letter-spacing: 0.2px;
+    }
+    #hayati-content img {
+      display: block;
+      margin: 24px auto 20px auto;
+      max-width: 280px;
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(224,48,23,0.10);
     }
     footer {
       position: fixed;
@@ -131,54 +145,20 @@
       height: 20px;
       fill: currentColor;
     }
-    .typewriter-box {
-      color: #e30b17;
-      position: fixed;
-      left: 20px;
-      bottom: 80px;
-      font-size: 14px;
-      background: rgba(0,0,0,0.7);
-      padding: 10px;
-      border-radius: 5px;
-    }
-    @media (max-width: 800px) {
-      header {
-        align-items: center;
-      }
-      nav.menu {
-        font-size: 14px;
+    @media (max-width: 900px) {
+      #hayati-content {
+        padding: 28px 5vw 28px 5vw;
+        max-width: 98vw;
       }
     }
     @media (max-width: 600px) {
       .logo img { width: 80px; }
-      .quote-box { 
-        position: fixed;
-        top: 15px;
-        right: 10px;
-        color: #000;
-        max-width: 180px;
-        font-size: 12px;
-      }
-      .quote-source {
-        font-size: 9px;
-        color: #666;
-      }
-      nav.menu { 
-        top: 60px;
-        padding: 0 5px;
-      }
-      nav.menu a { 
-        padding: 10px 8px; 
-        font-size: 12px; 
-      }
-      main.content { 
-        margin-top: 110px; 
-      }
-      .typewriter-box { 
-        font-size: 12px;
-        left: 10px;
-        bottom: 70px;
-      }
+      nav.menu { top: 60px; padding: 0 5px; }
+      nav.menu a { padding: 10px 8px; font-size: 12px; }
+      main { margin-top: 110px; }
+      #hayati-content { padding: 16px 2vw 15px 2vw; font-size: 0.98em; }
+      #hayati-content h1 { font-size: 1.25em; }
+      #hayati-content img { max-width: 98vw; }
       footer { height: 50px; }
       footer a { width: 32px; height: 32px;}
       footer svg { width: 16px; height: 16px;}
@@ -190,10 +170,6 @@
     <a href="index.html" class="logo" aria-label="Anasayfa">
       <img src="images/logo.png" alt="Atatürk Logo" />
     </a>
-    <div class="quote-box" id="quote-box">
-      <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
-      <div class="quote-source" id="quote-source">— TBMM, 1920</div>
-    </div>
     <nav class="menu" role="navigation" aria-label="Ana menü">
       <a href="index.html">Anasayfa</a>
       <a href="hayati.html" class="active">Hayatı</a>
@@ -206,34 +182,31 @@
       <a href="ayarlar.html">Ayarlar</a>
     </nav>
   </header>
-  <main class="content" role="main">
-    <section>
-      <h2>Çocukluk ve Gençlik Yılları</h2>
-      <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. Küçük yaşlarda eğitimine başlamış, önce Şemsi Efendi Mektebi'nde sonra da askeri okullarda öğrenim görmüştür.</p>
-    </section>
-    <section>
-      <h2>Askeri Kariyeri</h2>
-      <p>Askeri eğitimini başarıyla tamamlayan Atatürk, çeşitli cephelerde görev almış, Trablusgarp ve Çanakkale Savaşları'nda önemli başarılara imza atmıştır. Askeri yetenekleri ve liderliği ile dikkat çekmiştir.</p>
-    </section>
-    <section>
-      <h2>Kurtuluş Savaşı ve Milli Mücadele</h2>
-      <p>1919 yılında Samsun'a çıkarak Kurtuluş Savaşı'nı başlatan Mustafa Kemal, Türk milletinin bağımsızlık mücadelesine önderlik etmiştir. Erzurum ve Sivas kongreleriyle milli iradeyi temsil eden bir lider olarak öne çıkmıştır.</p>
-    </section>
-    <section>
-      <h2>Cumhuriyetin İlanı</h2>
-      <p>29 Ekim 1923'te Türkiye Cumhuriyeti'ni ilan etmiş ve ülkenin ilk cumhurbaşkanı olmuştur. Egemenliğin millete ait olduğunu vurgulamış ve laik, çağdaş bir devlet yapısı oluşturmuştur.</p>
-    </section>
-    <section>
-      <h2>İnkılaplar</h2>
-      <p>Harf Devrimi, Medeni Kanun, Eğitim Reformu, Şapka Kanunu gibi birçok inkılapla toplumsal dönüşümü gerçekleştirmiştir. Kadınlara seçme ve seçilme hakkı tanınarak toplumsal eşitlik sağlanmıştır.</p>
-    </section>
-    <section>
-      <h2>Ölümü</h2>
-      <p>Mustafa Kemal Atatürk, 10 Kasım 1938 tarihinde İstanbul Dolmabahçe Sarayı'nda vefat etmiştir. Ardında bağımsız, laik ve çağdaş bir Türkiye bırakmıştır. Türk milleti onu saygı, sevgi ve minnetle anmaktadır.</p>
-    </section>
+  <main>
+    <div id="hayati-content">
+      <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
+      <img src="images/ataturk_hayati.jpg" alt="Mustafa Kemal Atatürk" />
+      <p>
+        Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım’dır. İlk öğrenimine mahalle mektebinde başladı, ardından Şemsi Efendi Okulu’nda eğitim gördü. Askeri rüştiyeyi ve Manastır Askeri İdadisi’ni başarıyla bitirdikten sonra 1899’da İstanbul’daki Harp Okulu’na girdi. 1902’de teğmen, 1905’te kurmay yüzbaşı olarak mezun oldu.
+      </p>
+      <h2>Askeri Kariyer ve Milli Mücadele</h2>
+      <p>
+        Atatürk, çeşitli cephelerde görev yaptı. Trablusgarp Savaşı’nda (1911-1912), Balkan Savaşları’nda ve I. Dünya Savaşı’nda önemli roller üstlendi. Çanakkale Cephesi’ndeki başarıları, onun askeri dehasını tüm dünyaya gösterdi.
+      </p>
+      <p>
+        19 Mayıs 1919’da Samsun’a çıkarak Türk Kurtuluş Savaşı’nı başlattı. Erzurum ve Sivas Kongreleri’ni topladı. 23 Nisan 1920’de Türkiye Büyük Millet Meclisi’ni açtı. Sakarya Meydan Muharebesi ve Büyük Taarruz ile bağımsız Türkiye’nin temellerini attı.
+      </p>
+      <h2>Cumhuriyetin İlanı ve Reformlar</h2>
+      <p>
+        29 Ekim 1923’te Cumhuriyet ilan edildi ve Atatürk, Türkiye Cumhuriyeti’nin ilk Cumhurbaşkanı oldu. Laiklik, eğitim, hukuk, kadın hakları, dil ve ekonomi alanlarında birçok devrim gerçekleştirdi. Medeni Kanun’un kabulü, Latin alfabesine geçiş, kılık kıyafet, kadınlara seçme ve seçilme hakkı tanınması gibi reformlar, Türkiye’yi çağdaş bir ülke haline getirdi.
+      </p>
+      <h2>Vefatı</h2>
+      <p>
+        Atatürk, 10 Kasım 1938’de İstanbul’da Dolmabahçe Sarayı’nda hayata gözlerini yumdu. Türk milleti onu “Yurtta sulh, cihanda sulh” ilkesiyle, ileri görüşlülüğü ve devrimci kişiliğiyle daima saygı ve minnetle anmaktadır.
+      </p>
+    </div>
   </main>
   <footer>
-    <div class="typewriter-box" id="typewriter-box"></div>
     <a href="mailto:email@example.com" aria-label="E-posta">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/>
@@ -241,7 +214,7 @@
     </a>
     <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1-.001 4.001A2 2 0 0 1 12 9zm4.5-3a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 7.999A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm5.5 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
       </svg>
     </a>
     <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
@@ -251,48 +224,12 @@
     </a>
   </footer>
   <script>
-    // Alıntı kutusu otomatik değişimi
-    const quotes = [
-      { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "— TBMM, 1920" },
-      { text: '"Yurtta sulh, cihanda sulh."', source: "— Atatürk" },
-      { text: '"Hayatta en hakiki mürşit ilimdir."', source: "— Atatürk" },
-      { text: '"Türk milleti çalışkandır, zekidir."', source: "— Atatürk" }
-    ];
-    let quoteIndex = 0;
-    function updateQuote() {
-      quoteIndex = (quoteIndex + 1) % quotes.length;
-      document.getElementById("quote-text").textContent = quotes[quoteIndex].text;
-      document.getElementById("quote-source").textContent = quotes[quoteIndex].source;
-    }
-    setInterval(updateQuote, 5000);
-    // Kaynak bilgileri için daktilo efekti
-    const sources = [
-      "Kaynak: Atatürk Araştırma Merkezi",
-      "Kaynak: Türk Tarih Kurumu",
-      "Kaynak: Nutuk - Mustafa Kemal Atatürk",
-      "Kaynak: TC Kültür ve Turizm Bakanlığı"
-    ];
-    let sourceIndex = 0;
-    const typewriterBox = document.getElementById("typewriter-box");
-    function showSource() {
-      typewriterBox.textContent = "";
-      let text = sources[sourceIndex];
-      let i = 0;
-      function typeChar() {
-        if (i < text.length) {
-          typewriterBox.textContent += text.charAt(i);
-          i++;
-          setTimeout(typeChar, 50);
-        } else {
-          setTimeout(() => {
-            sourceIndex = (sourceIndex + 1) % sources.length;
-            showSource();
-          }, 5000);
-        }
-      }
-      typeChar();
-    }
-    showSource();
+    // Hayatı içeriği animasyonu
+    document.addEventListener("DOMContentLoaded", function() {
+      setTimeout(function(){
+        document.getElementById("hayati-content").classList.add("visible");
+      }, 200); // Zarif bir gecikme
+    });
   </script>
 </body>
 </html>
