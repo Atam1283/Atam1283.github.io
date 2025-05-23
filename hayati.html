@@ -1,196 +1,129 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8" />
-  <title>Galeri - Atatürk</title>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mustafa Kemal Atatürk - Hayatı</title>
   <style>
-    * {
+    body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      background: #000;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000;
       color: #fff;
+      line-height: 1.6;
     }
+    /* Yatay scroll özellikli menü */
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: #fff;
-      z-index: 1000;
-      padding: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo img {
-      width: 120px;
-      border-radius: 10px;
-    }
-    .quote-box {
-      color: #000;
-      text-align: right;
-      font-size: 12px;
-      max-width: 250px;
-    }
-    .quote-source {
-      font-size: 10px;
-      color: #666;
-    }
-    nav.menu {
-      position: fixed;
-      top: 60px;
-      left: 0;
-      width: 100%;
-      background: #fff;
-      padding: 10px;
-      z-index: 999;
+      background-color: #111;
+      border-bottom: 2px solid #666;
       overflow-x: auto;
       white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
     }
-    nav.menu a {
-      color: #000;
-      text-decoration: none;
+    nav {
+      display: inline-flex;
       padding: 10px 15px;
-      font-weight: bold;
-      border-bottom: 3px solid transparent;
+      gap: 15px;
     }
-    nav.menu a:hover, nav.menu a.active {
-      color: #e30b17;
-      border-bottom-color: #e30b17;
-    }
-    main.gallery {
-      margin-top: 120px;
-      padding: 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
-    }
-    .gallery-item {
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      transition: transform 0.3s;
-    }
-    .gallery-item:hover {
-      transform: scale(1.03);
-    }
-    .gallery-item img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .gallery-caption {
-      padding: 10px;
-      background: rgba(0,0,0,0.7);
-      text-align: center;
-    }
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #000;
-      padding: 10px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-    footer a {
+    nav a {
       color: #fff;
-      width: 40px;
-      height: 40px;
-      border: 1px solid #888;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 8px 16px;
+      border-radius: 4px;
+      background-color: transparent;
+      transition: background-color 0.3s ease;
+      flex-shrink: 0;
     }
-    footer a:hover {
-      color: #e30b17;
-      border-color: #e30b17;
+    nav a:hover,
+    nav a:focus-visible {
+      background-color: #b30000;
+      color: #fff;
+      outline: none;
     }
-    @media (max-width: 600px) {
-      .logo img { width: 80px; }
-      main.gallery { grid-template-columns: 1fr; }
-      nav.menu a { padding: 8px 10px; font-size: 14px; }
+    nav a.active,
+    nav a[aria-current="page"] {
+      background-color: #b30000;
+      color: #fff;
+      pointer-events: none;
+    }
+    h1 {
+      font-size: 42px;
+      margin: 40px 20px 30px;
+      text-align: center;
+      color: #fff;
+      text-shadow: 0 0 8px #b30000;
+    }
+    .content {
+      max-width: 900px;
+      margin: auto;
+      padding: 0 20px 60px;
+    }
+    h2 {
+      color: #b30000;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+    p {
+      margin-bottom: 15px;
+      font-size: 16px;
+      color: #ddd;
+    }
+    ul {
+      padding-left: 20px;
+      margin-bottom: 20px;
+      color: #ccc;
+    }
+    ul li {
+      margin-bottom: 8px;
+    }
+    .separator {
+      border-top: 1px solid #555;
+      margin: 40px 0;
+    }
+    ::-webkit-scrollbar {
+      height: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #666;
     }
   </style>
 </head>
 <body>
   <header>
-    <a href="index.html" class="logo">
-      <img src="images/logo.png" alt="Atatürk">
-    </a>
-    <div class="quote-box">
-      <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
-      <div class="quote-source">— TBMM, 1920</div>
-    </div>
+    <nav aria-label="Ana navigasyon">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="galeri.html">Galeri</a>
+      <a href="hayati.html" class="active" aria-current="page">Hayatı</a>
+      <a href="gerisayim.html">Geri Sayım</a>
+      <a href="ayarlar.html">Ayarlar</a>
+    </nav>
   </header>
-
-  <nav class="menu">
-    <a href="index.html">Anasayfa</a>
-    <a href="hayati.html">Hayatı</a>
-    <a href="galeri.html" class="active">Galeri</a>
-    <a href="sozleri.html">Sözleri</a>
-    <a href="eserleri.html">Eserleri</a>
-    <a href="devrimler.html">Devrimleri</a>
-    <a href="nutuk.html">Nutuk</a>
-    <a href="kronoloji.html">Kronoloji</a>
-  </nav>
-
-  <main class="gallery">
-    <div class="gallery-item">
-      <img src="images/ataturk1.jpeg" alt="Atatürk">
-      <div class="gallery-caption">Atatürk Portresi - 1</div>
-    </div>
-    <div class="gallery-item">
-      <img src="images/ataturk2.jpeg" alt="Atatürk">
-      <div class="gallery-caption">Atatürk Portresi - 2</div>
-    </div>
-    <div class="gallery-item">
-      <img src="images/ataturk3.jpeg" alt="Atatürk">
-      <div class="gallery-caption">Atatürk Portresi - 3</div>
-    </div>
-    <div class="gallery-item">
-      <img src="images/ataturk4.jpeg" alt="Atatürk">
-      <div class="gallery-caption">Atatürk Portresi - 4</div>
-    </div>
-    <div class="gallery-item">
-      <img src="images/ataturk5.jpg" alt="Atatürk">
-      <div class="gallery-caption">Atatürk Portresi - 5</div>
-    </div>
-    <div class="gallery-item">
-      <img src="images/ataturk6.jpg" alt="Atatürk">
-      <div class="gallery-caption">Atatürk Portresi - 6</div>
-    </div>
-  </main>
-
-  <footer>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-  </footer>
-
-  <script>
-    const quotes = [
-      {text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "— TBMM, 1920"},
-      {text: '"Yurtta sulh, cihanda sulh."', source: "— Atatürk"},
-      {text: '"Hayatta en hakiki mürşit ilimdir."', source: "— Atatürk"}
-    ];
-    let quoteIndex = 0;
-    
-    function changeQuote() {
-      quoteIndex = (quoteIndex + 1) % quotes.length;
-      document.getElementById('quote-text').textContent = quotes[quoteIndex].text;
-      document.querySelector('.quote-source').textContent = quotes[quoteIndex].source;
-      setTimeout(changeQuote, 5000);
-    }
-    setTimeout(changeQuote, 5000);
-  </script>
+  <h1>Mustafa Kemal Atatürk'ün Hayatı</h1>
+  <div class="content">
+    <h2>Erken Dönem</h2>
+    <p>Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. İlk eğitimini mahalle mektebinde aldıktan sonra Şemsi Efendi Okulu'na devam etti.</p>
+    <h2>Askeri Eğitim ve Kariyer</h2>
+    <p>1905 yılında Harp Okulu'ndan teğmen olarak mezun oldu. Harp Akademisi'ni de kurmay yüzbaşı olarak tamamladı. Çanakkale Savaşı'ndaki başarısı büyük takdir kazandı.</p>
+    <h2>Milli Mücadele ve Cumhuriyet</h2>
+    <p>1919’da Samsun’a çıkarak Kurtuluş Savaşı’nı başlattı. 1920'de TBMM’yi açtı. 1923’te Cumhuriyet’i ilan etti ve ilk cumhurbaşkanı oldu.</p>
+    <h2>Reformlar</h2>
+    <ul>
+      <li>Harf Devrimi</li>
+      <li>Kadın Hakları</li>
+      <li>Medeni Kanun</li>
+      <li>Eğitim Reformları</li>
+      <li>Sanayi Yatırımları</li>
+    </ul>
+    <h2>Son Yıllar</h2>
+    <p>Atatürk, 10 Kasım 1938’de Dolmabahçe Sarayı’nda vefat etti. Türk milletine büyük bir miras bıraktı.</p>
+    <div class="separator"></div>
+    <p style="text-align:center; font-size: 14px; color: #888;">
+      Kaynaklar: <a href="https://tr.wikipedia.org/wiki/Mustafa_Kemal_Atat%C3%BCrk" target="_blank" style="color:#b30000; text-decoration:none;">Vikipedi</a>, 
+      <a href="https://www.ataturk.com.tr" target="_blank" style="color:#b30000; text-decoration:none;">Atatürk Araştırma Merkezi</a>
+    </p>
+  </div>
 </body>
 </html>
