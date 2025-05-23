@@ -6,7 +6,6 @@
   <title>Mustafa Kemal Atatürk - Anasayfa</title>
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    /* Sadece anasayfanın modern içeriği ve animasyonları için ekstra stiller */
     main.content {
       display: flex;
       flex-direction: column;
@@ -22,6 +21,7 @@
       max-width: 900px;
       animation: fadeInContent 1.1s cubic-bezier(.4,0,.2,1) 0.1s both;
       overflow: hidden;
+      box-sizing: border-box;
     }
     @keyframes fadeInContent {
       from { opacity: 0; transform: translateY(40px);}
@@ -60,6 +60,7 @@
       opacity: 0;
       transform: translateY(30px);
       animation: fadeInBlock 1s cubic-bezier(.4,0,.2,1) 0.7s both;
+      box-sizing: border-box;
     }
     @keyframes fadeInBlock {
       to {
@@ -87,6 +88,7 @@
       max-width: 600px;
       opacity: 0;
       animation: fadeInBlock 1.1s cubic-bezier(.4,0,.2,1) 1.0s both;
+      box-sizing: border-box;
     }
     .timeline li {
       position: relative;
@@ -114,6 +116,7 @@
       transform: scale(0.98) translateY(-20px);
       animation: fadeInImg 1.2s cubic-bezier(.4,0,.2,1) 0.4s both;
       width: 100%;
+      box-sizing: border-box;
     }
     .ataturk-img-section img {
       width: 140px;
@@ -136,13 +139,31 @@
       }
     }
     @media (max-width: 900px) {
-      main.content {padding: 18px 2vw;}
-      .modern-card {padding: 16px 2vw;}
+      main.content {padding: 14px 2vw;}
+      .modern-card {padding: 10px 2vw;}
+      .timeline {max-width: 95vw;}
     }
     @media (max-width: 600px) {
-      main.content {padding: 8px 1vw;}
-      .ataturk-img-section img {width: 95px;}
-      .main-title {font-size: 1.3em;}
+      main.content {padding: 6px 0; margin-top: 90px;}
+      .ataturk-img-section {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 2vw;
+      }
+      .ataturk-img-section img {
+        width: 70vw;
+        max-width: 160px;
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+      .ataturk-img-section .caption {
+        max-width: 98vw;
+        font-size: 0.96em;
+      }
+      .main-title {font-size: 1.25em;}
+      .modern-card {padding: 8px 4vw; font-size: 1em;}
+      .timeline {padding-left: 7px;}
+      .timeline li {font-size: 1em; padding-left: 22px;}
     }
   </style>
 </head>
@@ -174,7 +195,7 @@
     </div>
     <ul class="timeline">
       <li><strong>1881:</strong> Selanik’te doğdu.</li>
-      <li><strong>1915:</strong> Çanakkale Zaferi’yle ulusal kahraman oldu.</li>
+      <li><strong>1915:</strong> Çanakkale Zaferi'yle ulusal kahraman oldu.</li>
       <li><strong>19 Mayıs 1919:</strong> Samsun’a çıkarak Kurtuluş Savaşı'nı başlattı.</li>
       <li><strong>1923:</strong> Cumhuriyet’i ilan etti, ilk Cumhurbaşkanı oldu.</li>
       <li><strong>1938:</strong> Sonsuzluğa uğurlandı, mirası sonsuza dek yaşayacak.</li>
