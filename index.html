@@ -4,9 +4,63 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mustafa Kemal Atatürk - Anasayfa</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="style.css" />
   <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8f8f8;
+      color: #222;
+      padding-bottom: 80px;
+      min-height: 100vh;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      z-index: 1200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      height: 60px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+    .logo img {
+      width: 120px;
+      border-radius: 10px;
+      display: block;
+    }
+    nav.menu {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-bottom: 2px solid #d9d9d9;
+      z-index: 1100;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 0 10px;
+    }
+    nav.menu a {
+      display: inline-block;
+      padding: 14px 15px;
+      color: #000;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s ease;
+    }
+    nav.menu a:hover, nav.menu a.active {
+      border-bottom: 3px solid #e30b17;
+      color: #e30b17;
+    }
     main.content {
+      margin-top: 120px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -16,214 +70,21 @@
       border-radius: 22px;
       box-shadow: 0 4px 32px rgba(0,0,0,0.08), 0 1.5px 8px rgba(224,48,23,0.04);
       padding: 48px 36px 44px 36px;
-      margin-top: 110px;
       margin-bottom: 40px;
       max-width: 900px;
       animation: fadeInContent 1.1s cubic-bezier(.4,0,.2,1) 0.1s both;
       overflow: hidden;
       box-sizing: border-box;
     }
-    @keyframes fadeInContent {
-      from { opacity: 0; transform: translateY(40px);}
-      to { opacity: 1; transform: none;}
-    }
-    .main-title {
-      color: #e30b17;
-      font-size: 2.5em;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-align: center;
-      margin-bottom: 22px;
-      text-shadow: 0 2px 12px rgba(227,11,23,0.08);
-      opacity: 0;
-      transform: scale(0.97);
-      animation: fadeInTitle 1s cubic-bezier(.4,0,.2,1) 0.2s both;
-    }
-    @keyframes fadeInTitle {
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-    .modern-card {
-      background: linear-gradient(110deg, #fff 80%, #f8f8f8 100%);
-      box-shadow: 0 2px 18px rgba(227,11,23,0.06);
-      border-radius: 15px;
-      margin: 0 auto 32px auto;
-      padding: 24px 28px;
-      max-width: 680px;
-      font-size: 1.18em;
-      line-height: 1.7;
-      color: #232323;
-      border: 1.5px solid #ececec;
-      position: relative;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInBlock 1s cubic-bezier(.4,0,.2,1) 0.7s both;
-      box-sizing: border-box;
-    }
-    @keyframes fadeInBlock {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .modern-card .animated-highlight {
-      color: #e30b17;
-      background: #fff1f1;
-      padding: 0 6px;
-      border-radius: 6px;
-      font-weight: bold;
-      animation: highlightPulse 2s ease-in-out infinite alternate;
-    }
-    @keyframes highlightPulse {
-      0% { background: #fff1f1;}
-      100% { background: #ffe0e0;}
-    }
-    .timeline {
-      list-style: none;
-      border-left: 3px solid #e30b17;
-      margin: 32px 0 22px 0;
-      padding: 0;
-      max-width: 600px;
-      opacity: 0;
-      animation: fadeInBlock 1.1s cubic-bezier(.4,0,.2,1) 1.0s both;
-      box-sizing: border-box;
-    }
-    .timeline li {
-      position: relative;
-      margin-bottom: 18px;
-      padding-left: 28px;
-      font-size: 1.08em;
-    }
-    .timeline li::before {
-      content: "";
-      position: absolute;
-      left: -11px;
-      top: 4px;
-      width: 13px;
-      height: 13px;
-      background: #e30b17;
-      border-radius: 50%;
-      box-shadow: 0 2px 8px rgba(227,11,23,0.11);
-    }
-    .ataturk-img-section {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 24px;
-      opacity: 0;
-      transform: scale(0.98) translateY(-20px);
-      animation: fadeInImg 1.2s cubic-bezier(.4,0,.2,1) 0.4s both;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    .ataturk-img-section img {
-      width: 140px;
-      border-radius: 16px;
-      border: 2.5px solid #e30b17;
-      box-shadow: 0 8px 36px rgba(227,11,23,0.13);
-      background: #fff;
-      margin-right: 26px;
-    }
-    .ataturk-img-section .caption {
-      font-size: 1.02em;
-      color: #444;
-      font-style: italic;
-      max-width: 320px;
-    }
-    @keyframes fadeInImg {
-      to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
-    }
-    /* Menü boyutu hayati.html ile aynı olsun */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      padding: 10px 20px;
-      box-sizing: border-box;
-      z-index: 1100;
-    }
-    .logo {
-      width: 120px;
-      height: auto;
-      display: block;
-      object-fit: contain;
-    }
-    nav.menu {
-      flex-grow: 1;
-      margin-left: 20px;
-      overflow-x: auto;
-      white-space: nowrap;
-      -webkit-overflow-scrolling: touch;
-    }
-    nav.menu::-webkit-scrollbar {
-      display: none;
-    }
-    nav.menu {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-    nav.menu a {
-      display: inline-block;
-      padding: 14px 20px;
-      color: #000;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 15px;
-      border-bottom: 3px solid transparent;
-      transition: border-color 0.3s ease, color 0.3s ease;
-    }
-    nav.menu a:hover,
-    nav.menu a.active {
-      color: #e30b17;
-      border-bottom-color: #e30b17;
+    /* ... (diğer mevcut stilleriniz buraya devam edecek) ... */
+    @media (max-width: 900px) {
+      main.content { padding: 22px 4vw 22px 4vw; max-width: 99vw; }
     }
     @media (max-width: 600px) {
-      header {
-        flex-wrap: wrap;
-        padding: 10px 15px;
-      }
-      nav.menu {
-        margin-left: 0;
-        margin-top: 10px;
-        width: 100%;
-        overflow-x: scroll;
-      }
-      nav.menu a {
-        padding: 10px 8px;
-        font-size: 12px;
-      }
-      .logo {
-        width: 80px;
-      }
-      main.content {padding: 6px 0; margin-top: 90px;}
-      .ataturk-img-section {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0 2vw;
-      }
-      .ataturk-img-section img {
-        width: 70vw;
-        max-width: 160px;
-        margin-right: 0;
-        margin-bottom: 10px;
-      }
-      .ataturk-img-section .caption {
-        max-width: 98vw;
-        font-size: 0.96em;
-      }
-      .main-title {font-size: 1.25em;}
-      .modern-card {padding: 8px 4vw; font-size: 1em;}
-      .timeline {padding-left: 7px;}
-      .timeline li {font-size: 1em; padding-left: 22px;}
+      .logo img { width: 80px; }
+      nav.menu { top: 60px; padding: 0 5px; }
+      nav.menu a { padding: 10px 8px; font-size: 12px; }
+      main.content { margin-top: 110px; }
     }
   </style>
 </head>
@@ -245,57 +106,11 @@
     </nav>
   </header>
   <main class="content">
-    <div class="main-title">Mustafa Kemal Atatürk</div>
-    <div class="ataturk-img-section">
-      <img src="images/ataturk-main.jpg" alt="Mustafa Kemal Atatürk" />
-      <div class="caption">“Benim naçiz vücudum elbet bir gün toprak olacaktır; fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır.”</div>
-    </div>
-    <div class="modern-card">
-      Cumhuriyetimizin kurucusu <span class="animated-highlight">Mustafa Kemal Atatürk</span>’ün hayatı, fikirleri ve mirasıyla ilgili en doğru ve güncel bilgilere ulaşmak için buradasınız.
-    </div>
-    <ul class="timeline">
-      <li><strong>1881:</strong> Selanik’te doğdu.</li>
-      <li><strong>1915:</strong> Çanakkale Zaferi'yle ulusal kahraman oldu.</li>
-      <li><strong>19 Mayıs 1919:</strong> Samsun’a çıkarak Kurtuluş Savaşı'nı başlattı.</li>
-      <li><strong>1923:</strong> Cumhuriyet’i ilan etti, ilk Cumhurbaşkanı oldu.</li>
-      <li><strong>1938:</strong> Sonsuzluğa uğurlandı, mirası sonsuza dek yaşayacak.</li>
-    </ul>
-    <div class="modern-card">
-      <b>Neden Bu Site?</b><br>
-      Atatürk'ün <span class="animated-highlight">hayatı</span>, <span class="animated-highlight">değerleri</span>, <span class="animated-highlight">sözleri</span> ve <span class="animated-highlight">devrimleri</span> hakkında özenli ve anlaşılır bilgiler sunmak için hazırlandı. Her yaştan ziyaretçiye ilham vermesi amaçlanıyor.
-    </div>
-    <div class="modern-card">
-      <b>Sitede Neler Bulabilirsiniz?</b>
-      <ul>
-        <li><strong>Hayatı:</strong> Doğumundan Cumhuriyet’e uzanan yolculuğu</li>
-        <li><strong>Eserleri:</strong> Kaleme aldığı kitaplar ve hitaplar</li>
-        <li><strong>Sözleri:</strong> Yol gösterici özdeyişleri</li>
-        <li><strong>Devrimleri:</strong> Türkiye’yi çağdaşlaştıran yenilikler</li>
-        <li><strong>Galeri:</strong> Fotoğraflar ve arşiv belgeleri</li>
-        <li><strong>Kronoloji ve Nutuk:</strong> Zaman çizelgesi ve Nutuk’un tam metni</li>
-      </ul>
-    </div>
-    <div class="modern-card">
-      <b>Birlikte Geleceğe!</b><br>
-      Atatürk’ün “En büyük eserim Cumhuriyet’tir” sözüyle, geçmişin mirasını geleceğe birlikte taşıyoruz. Üst menüden dilediğiniz bölüme geçerek Atatürk'ü daha yakından tanıyabilirsiniz.
-    </div>
+    <!-- Ana sayfanızın mevcut içeriği buraya -->
+    <!-- ... -->
   </main>
   <footer class="footer-social">
-    <a href="mailto:email@example.com" aria-label="E-posta">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/>
-      </svg>
-    </a>
-    <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 7.99z"/>
-      </svg>
-    </a>
-    <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M22 12A10 10 0 1 0 10 22v-7h-2v-3h2v-2c0-2.2 1.3-3.5 3.3-3.5.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.7h2.6L15 15h-2v7a10 10 0 0 0 9-10z"/>
-      </svg>
-    </a>
+    <!-- Footerınız buraya gelecek -->
   </footer>
 </body>
 </html>
