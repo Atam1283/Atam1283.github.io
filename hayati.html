@@ -23,7 +23,7 @@
       z-index: 1200;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: space-between;
       padding: 10px;
       height: 60px;
     }
@@ -32,18 +32,14 @@
       border-radius: 10px;
       display: block;
     }
-    /* Quote box mutlak pozisyonlu, sağ üstte ve header'a göre yerleşiyor */
     .quote-box {
-      position: absolute;
-      top: 10px;
-      right: 22px;
       color: #000;
       font-size: 12px;
       max-width: 250px;
       text-align: right;
       font-family: Arial, sans-serif;
+      position: static;
       background: none;
-      z-index: 1300;
       padding: 0;
       margin: 0;
       line-height: 1.3;
@@ -52,19 +48,6 @@
       font-size: 10px;
       color: #666;
       margin-top: 3px;
-    }
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: #fff;
-      z-index: 1200;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 10px;
-      height: 60px;
     }
     nav.menu {
       position: fixed;
@@ -110,7 +93,6 @@
       line-height: 1.7;
       font-size: 1.08em;
       letter-spacing: 0.02em;
-      /* Animasyon başlangıç değerleri */
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 1.2s cubic-bezier(.4,0,.2,1), transform 1.2s cubic-bezier(.4,0,.2,1);
@@ -145,37 +127,6 @@
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(224,48,23,0.10);
     }
-    @media (max-width: 900px) {
-      #hayati-content {
-        padding: 28px 5vw 28px 5vw;
-        max-width: 98vw;
-      }
-    }
-    @media (max-width: 600px) {
-      .logo img { width: 80px; }
-      nav.menu { top: 60px; padding: 0 5px; }
-      nav.menu a { padding: 10px 8px; font-size: 12px; }
-      main { margin-top: 110px; }
-      #hayati-content { padding: 16px 2vw 15px 2vw; font-size: 0.98em; }
-      #hayati-content h1 { font-size: 1.25em; }
-      #hayati-content img { max-width: 98vw; }
-      .quote-box {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        color: #000;
-        max-width: 150px;
-        font-size: 11px;
-        z-index: 1300;
-        background: rgba(255,255,255,0.7);
-        padding: 4px 7px;
-        border-radius: 6px;
-      }
-      .quote-source { font-size: 9px; }
-      footer { height: 50px; }
-      footer a { width: 32px; height: 32px;}
-      footer svg { width: 16px; height: 16px;}
-    }
     footer {
       position: fixed;
       bottom: 0;
@@ -209,6 +160,44 @@
       width: 20px;
       height: 20px;
       fill: currentColor;
+    }
+    @media (max-width: 800px) {
+      header {
+        align-items: center;
+      }
+      nav.menu {
+        font-size: 14px;
+      }
+      .quote-box { max-width: 180px; font-size: 12px; }
+      #hayati-content {
+        padding: 28px 5vw 28px 5vw;
+        max-width: 98vw;
+      }
+    }
+    @media (max-width: 600px) {
+      .logo img { width: 80px; }
+      nav.menu { top: 60px; padding: 0 5px; }
+      nav.menu a { padding: 10px 8px; font-size: 12px; }
+      main { margin-top: 110px; }
+      #hayati-content { padding: 16px 2vw 15px 2vw; font-size: 0.98em; }
+      #hayati-content h1 { font-size: 1.25em; }
+      #hayati-content img { max-width: 98vw; }
+      .quote-box {
+        position: fixed;
+        top: 15px;
+        right: 10px;
+        color: #000;
+        max-width: 150px;
+        font-size: 11px;
+        z-index: 2000;
+        background: rgba(255,255,255,0.7);
+        padding: 4px 7px;
+        border-radius: 6px;
+      }
+      .quote-source { font-size: 9px; }
+      footer { height: 50px; }
+      footer a { width: 32px; height: 32px;}
+      footer svg { width: 16px; height: 16px;}
     }
   </style>
 </head>
@@ -279,7 +268,7 @@
     document.addEventListener("DOMContentLoaded", function() {
       setTimeout(function(){
         document.getElementById("hayati-content").classList.add("visible");
-      }, 200); // Zarif bir gecikme
+      }, 200);
     });
 
     // Alıntı kutusu otomatik değişimi
