@@ -28,9 +28,10 @@
       background: #fff;
       z-index: 1200;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
-      padding: 10px 10px 0 10px;
+      padding: 10px;
+      height: 60px;
     }
     .logo img {
       width: 120px;
@@ -38,8 +39,7 @@
       display: block;
     }
     .quote-box {
-      margin-top: 10px;
-      color: #222;
+      color: #000; /* Yazı rengi siyah yapıldı */
       font-size: 12px;
       max-width: 250px;
       text-align: right;
@@ -60,10 +60,11 @@
       z-index: 1100;
       overflow-x: auto;
       white-space: nowrap;
+      padding: 0 10px;
     }
     nav.menu a {
       display: inline-block;
-      padding: 14px 20px;
+      padding: 14px 15px;
       color: #000;
       text-decoration: none;
       font-size: 15px;
@@ -141,9 +142,8 @@
       border-radius: 5px;
     }
     @media (max-width: 800px) {
-      header, .quote-box {
-        flex-direction: column;
-        align-items: flex-start;
+      header {
+        align-items: center;
       }
       nav.menu {
         font-size: 14px;
@@ -151,9 +151,29 @@
     }
     @media (max-width: 600px) {
       .logo img { width: 80px; }
-      .quote-box { font-size: 10px; max-width: 150px; }
-      nav.menu a { padding: 12px 10px; font-size: 13px; }
-      main.content { margin-top: 120px; }
+      .quote-box { 
+        position: fixed;
+        top: 15px;
+        right: 10px;
+        color: #000; /* Mobilde de siyah yapıldı */
+        max-width: 180px;
+        font-size: 12px;
+      }
+      .quote-source {
+        font-size: 9px;
+        color: #666;
+      }
+      nav.menu { 
+        top: 60px;
+        padding: 0 5px;
+      }
+      nav.menu a { 
+        padding: 10px 8px; 
+        font-size: 12px; 
+      }
+      main.content { 
+        margin-top: 110px; 
+      }
       .typewriter-box { 
         font-size: 12px;
         left: 10px;
