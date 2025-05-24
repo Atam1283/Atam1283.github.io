@@ -62,6 +62,50 @@
     nav.menu::-webkit-scrollbar {
       display: none;
     }
+    /* Dil seçici */
+    .lang-select-section {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      z-index: 1300;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px #0001;
+      padding: 5px 12px;
+    }
+    .lang-select-label {
+      font-weight: bold;
+      color: #222;
+      font-size: 1em;
+      font-family: Georgia, serif;
+    }
+    .lang-select {
+      padding: 4px 10px 4px 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background: #fff;
+      font-size: 1em;
+      color: #222;
+      outline: none;
+      transition: border 0.2s;
+      cursor: pointer;
+    }
+    .lang-select:focus {
+      border-color: #e30b17;
+    }
+    @media (max-width: 600px) {
+      .lang-select-section {
+        right: 6px;
+        top: 6px;
+        padding: 2px 7px;
+        font-size: .95em;
+      }
+      .lang-select-label { font-size: .93em; }
+      .lang-select { font-size: .95em; }
+    }
     .quote-container {
       position: fixed;
       top: 10px;
@@ -178,6 +222,52 @@
       0% { transform: translateY(0); }
       100% { transform: translateY(-10px);}
     }
+    /* Koyu tema için detaylı uyum */
+    body.dark {
+      background: #181818 !important;
+      color: #f2f2f2 !important;
+    }
+    body.dark .nutuk-card {
+      background: #232326;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.21);
+    }
+    body.dark .nutuk-card .nutuk-baslik {
+      color: #ff3d3c;
+    }
+    body.dark .nutuk-card .nutuk-ozet {
+      color: #e6e6e6;
+    }
+    body.dark .nutuk-card .nutuk-detay {
+      color: #bababa;
+    }
+    body.dark nav.menu {
+      background: #181818;
+      border-bottom: 2px solid #353535;
+    }
+    body.dark nav.menu a {
+      color: #f2f2f2;
+    }
+    body.dark nav.menu a.active,
+    body.dark nav.menu a:hover {
+      color: #ff3d3c;
+      border-bottom: 3px solid #ff3d3c;
+      background: transparent;
+    }
+    body.dark .lang-select-section {
+      background: #232326;
+      box-shadow: 0 2px 8px #0004;
+    }
+    body.dark .lang-select-label {
+      color: #ff3d3c;
+    }
+    body.dark .lang-select {
+      background: #232326;
+      color: #fff;
+      border: 1px solid #444;
+    }
+    body.dark .lang-select:focus {
+      border-color: #ff3d3c;
+    }
     footer {
       position: fixed;
       bottom: 0;
@@ -212,31 +302,18 @@
       height: 20px;
       fill: currentColor;
     }
-    @media (max-width: 600px) {
-      .quote-container {
-        max-width: 160px;
-      }
-      .quote-text {
-        font-size: 10px;
-      }
-      .quote-source {
-        font-size: 9px;
-      }
-      .menu-background {
-        height: 100px;
-      }
-      nav.menu {
-        top: 60px;
-        height: 50px;
-      }
-      nav.menu a {
-        padding: 10px 12px 9px 12px;
-        font-size: 13px;
-      }
-    }
   </style>
 </head>
 <body>
+  <!-- Dil seçici -->
+  <div class="lang-select-section">
+    <label class="lang-select-label" for="language">Dil</label>
+    <select id="language" class="lang-select">
+      <option value="tr">Türkçe</option>
+      <option value="en">English</option>
+      <option value="az">Azərbaycan dili</option>
+    </select>
+  </div>
   <a href="index.html" class="logo">
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
@@ -257,51 +334,132 @@
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
   <main>
-    <h1 style="font-size:2.1em; color:#e30b17; margin-bottom:18px; margin-top:18px; font-family:Georgia,serif; text-align:center;">
+    <h1 id="nutuk-title" style="font-size:2.1em; color:#e30b17; margin-bottom:18px; margin-top:18px; font-family:Georgia,serif; text-align:center;">
       Nutuk (Söylev)
     </h1>
-    <a href="https://publuu.com/flip-book/885789/1939815" class="nutuk-indir" target="_blank" rel="noopener">Nutuk İndir</a>
-    <div class="nutuk-grid">
-      <div class="nutuk-card" tabindex="0">
-        <div class="nutuk-baslik">Nutuk Nedir?</div>
-        <div class="nutuk-ozet">
-          Nutuk, Mustafa Kemal Atatürk’ün 15-20 Ekim 1927 tarihleri arasında CHP Kurultayı’nda altı gün boyunca okuduğu, Türk Kurtuluş Savaşı ve Cumhuriyet’in kuruluşunu anlatan, Türkiye’nin en önemli tarihsel belgelerinden biridir.
-        </div>
-        <div class="nutuk-detay">
-          Kaynak: 1927, TBMM, Ankara
-        </div>
-      </div>
-      <div class="nutuk-card" tabindex="0">
-        <div class="nutuk-baslik">Nutuk’un Bölümleri</div>
-        <div class="nutuk-ozet">
-          Nutuk; Mondros Mütarekesi sonrası Anadolu işgali, Samsun’a çıkış, kongreler, Milli Mücadele, Büyük Taarruz ve Cumhuriyet’in ilanına kadar yaşanan olayları detaylıca anlatır. Sonunda ise "Gençliğe Hitabe" yer alır.
-        </div>
-        <div class="nutuk-detay">
-          Ana bölümler: Başlangıç, Savaş Yılları, Cumhuriyet’in İlanı, Gençliğe Hitabe
-        </div>
-      </div>
-      <div class="nutuk-card" tabindex="0">
-        <div class="nutuk-baslik">Gençliğe Hitabe</div>
-        <div class="nutuk-ozet">
-          Atatürk’ün Türk gençliğine seslenişidir. Milli değerlerin, bağımsızlık ve Cumhuriyet’in korunmasının önemini vurgular.
-        </div>
-        <div class="nutuk-detay">
-          Son bölüm, 20 Ekim 1927
-        </div>
-      </div>
-      <div class="nutuk-card" tabindex="0">
-        <div class="nutuk-baslik">Tarihi Önemi</div>
-        <div class="nutuk-ozet">
-          Nutuk, dönemin tanığı olarak birincil kaynak değerindedir. Milli Mücadele’nin resmi anlatımıdır; Atatürk’ün olaylara bakışını ve Cumhuriyet’in kuruluş felsefesini içerir.
-        </div>
-        <div class="nutuk-detay">
-          Türkiye Cumhuriyeti’nin temel taşlarından biri kabul edilir.
-        </div>
-      </div>
+    <a id="nutuk-download" href="https://publuu.com/flip-book/885789/1939815" class="nutuk-indir" target="_blank" rel="noopener">Nutuk İndir</a>
+    <div class="nutuk-grid" id="nutuk-grid">
+      <!-- Kartlar JS ile doldurulacak -->
     </div>
   </main>
   <footer></footer>
   <script>
+    // Çoklu dil Nutuk içeriği
+    const NUTUK = {
+      tr: {
+        title: "Nutuk (Söylev)",
+        download: "Nutuk İndir",
+        cards: [
+          {
+            baslik: "Nutuk Nedir?",
+            ozet: "Nutuk, Mustafa Kemal Atatürk’ün 15-20 Ekim 1927 tarihleri arasında CHP Kurultayı’nda altı gün boyunca okuduğu, Türk Kurtuluş Savaşı ve Cumhuriyet’in kuruluşunu anlatan, Türkiye’nin en önemli tarihsel belgelerinden biridir.",
+            detay: "Kaynak: 1927, TBMM, Ankara"
+          },
+          {
+            baslik: "Nutuk’un Bölümleri",
+            ozet: "Nutuk; Mondros Mütarekesi sonrası Anadolu işgali, Samsun’a çıkış, kongreler, Milli Mücadele, Büyük Taarruz ve Cumhuriyet’in ilanına kadar yaşanan olayları detaylıca anlatır. Sonunda ise \"Gençliğe Hitabe\" yer alır.",
+            detay: "Ana bölümler: Başlangıç, Savaş Yılları, Cumhuriyet’in İlanı, Gençliğe Hitabe"
+          },
+          {
+            baslik: "Gençliğe Hitabe",
+            ozet: "Atatürk’ün Türk gençliğine seslenişidir. Milli değerlerin, bağımsızlık ve Cumhuriyet’in korunmasının önemini vurgular.",
+            detay: "Son bölüm, 20 Ekim 1927"
+          },
+          {
+            baslik: "Tarihi Önemi",
+            ozet: "Nutuk, dönemin tanığı olarak birincil kaynak değerindedir. Milli Mücadele’nin resmi anlatımıdır; Atatürk’ün olaylara bakışını ve Cumhuriyet’in kuruluş felsefesini içerir.",
+            detay: "Türkiye Cumhuriyeti’nin temel taşlarından biri kabul edilir."
+          }
+        ]
+      },
+      en: {
+        title: "The Speech (Nutuk)",
+        download: "Download Nutuk",
+        cards: [
+          {
+            baslik: "What is Nutuk?",
+            ozet: "Nutuk is a historical speech delivered by Mustafa Kemal Atatürk between October 15-20, 1927 at the CHP Congress, explaining the Turkish War of Independence and the foundation of the Republic.",
+            detay: "Source: 1927, Grand National Assembly of Turkey, Ankara"
+          },
+          {
+            baslik: "Sections of Nutuk",
+            ozet: "Nutuk details the events from the occupation of Anatolia after the Armistice of Mondros, the landing at Samsun, congresses, the National Struggle, the Great Offensive, and the proclamation of the Republic. It ends with the 'Address to the Youth.'",
+            detay: "Main sections: Introduction, War Years, Proclamation of the Republic, Address to the Youth"
+          },
+          {
+            baslik: "Address to the Youth",
+            ozet: "It is Atatürk’s address to Turkish youth, emphasizing the importance of national values, independence, and the protection of the Republic.",
+            detay: "Final section, October 20, 1927"
+          },
+          {
+            baslik: "Historical Importance",
+            ozet: "Nutuk is a primary source and the official narrative of the National Struggle; it contains Atatürk’s perspective and the founding philosophy of the Republic.",
+            detay: "Considered one of the cornerstones of the Republic of Turkey."
+          }
+        ]
+      },
+      az: {
+        title: "Nutuk (Söyləv)",
+        download: "Nutuku Yüklə",
+        cards: [
+          {
+            baslik: "Nutuk nədir?",
+            ozet: "Nutuk Mustafa Kamal Atatürkün 1927-ci il oktyabrın 15-20-də CHP Qurultayında altı gün ərzində oxuduğu, Türk Qurtuluş Savaşı və Cümhuriyyətin quruluşunu izah edən əsas tarixi sənəddir.",
+            detay: "Mənbə: 1927, TBMM, Ankara"
+          },
+          {
+            baslik: "Nutukun Bölmələri",
+            ozet: "Nutuk; Mondros Müqaviləsindən sonra Anadolunun işğalı, Samsuna çıxış, qurultaylar, Milli Mübarizə, Böyük Hücum və Cümhuriyyətin elanına qədərki hadisələri ətraflı izah edir. Sonda isə \"Gəncliyə Xitabə\" yer alır.",
+            detay: "Əsas bölmələr: Başlanğıc, Müharibə illəri, Cümhuriyyətin Elanı, Gəncliyə Xitabə"
+          },
+          {
+            baslik: "Gəncliyə Xitabə",
+            ozet: "Atatürkün Türk gəncliyinə müraciətidir. Milli dəyərlərin, müstəqilliyin və Cümhuriyyətin qorunmasının əhəmiyyətini vurğulayır.",
+            detay: "Son bölmə, 20 oktyabr 1927"
+          },
+          {
+            baslik: "Tarixi Əhəmiyyəti",
+            ozet: "Nutuk dövrün şahidi kimi birincil mənbədir. Milli Mübarizənin rəsmi izahıdır; Atatürkün hadisələrə baxışını və Cümhuriyyətin quruluş fəlsəfəsini ehtiva edir.",
+            detay: "Türkiyə Cümhuriyyətinin əsas sütunlarından biri hesab olunur."
+          }
+        ]
+      }
+    };
+
+    function renderNutuk(lang) {
+      const d = NUTUK[lang] || NUTUK.tr;
+      document.getElementById("nutuk-title").textContent = d.title;
+      document.getElementById("nutuk-download").textContent = d.download;
+      const grid = document.getElementById("nutuk-grid");
+      grid.innerHTML = "";
+      d.cards.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "nutuk-card";
+        card.tabIndex = 0;
+        card.innerHTML = `
+          <div class="nutuk-baslik">${item.baslik}</div>
+          <div class="nutuk-ozet">${item.ozet}</div>
+          <div class="nutuk-detay">${item.detay}</div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+    // Dil seçici
+    function getLang() {
+      return localStorage.getItem("language") || "tr";
+    }
+    function setLang(lang) {
+      localStorage.setItem("language", lang);
+      renderNutuk(lang);
+      setLangSelect(lang);
+    }
+    function setLangSelect(lang) {
+      document.getElementById("language").value = lang;
+    }
+    document.getElementById("language").addEventListener("change", function(e){
+      setLang(e.target.value);
+    });
+
     // Söz kutusu animasyonu için
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
@@ -327,75 +485,21 @@
       showQuote(quoteIndex);
     }, 5000);
 
-    // Ortak ayar scripti (tasarıma dokunmadan)
-    const LANGUAGES = {
-      tr: {
-        title: "Ayarlar",
-        theme: "Tema",
-        darkMode: "Koyu Mod",
-        notifications: "Bildirimleri Aç",
-        fontSize: "Yazı Boyutu",
-        language: "Dil",
-        save: "Kaydet",
-        saved: "Ayarlar kaydedildi!",
-        info: "Ayarlarınız tarayıcınızda saklanır.<br>Koyu Mod, Yazı Boyutu ve Dil tüm sayfalara yansır.",
-        options: { normal: "Normal", large: "Büyük", xlarge: "Çok Büyük" },
-        tr: "Türkçe",
-        en: "İngilizce"
-      },
-      en: {
-        title: "Settings",
-        theme: "Theme",
-        darkMode: "Dark Mode",
-        notifications: "Enable Notifications",
-        fontSize: "Font Size",
-        language: "Language",
-        save: "Save",
-        saved: "Settings saved!",
-        info: "Your settings are stored in your browser.<br>Dark Mode, Font Size and Language apply to all pages.",
-        options: { normal: "Normal", large: "Large", xlarge: "Extra Large" },
-        tr: "Turkish",
-        en: "English"
-      }
-    };
-    function getLang() { return localStorage.getItem("language") || "tr"; }
+    // Koyu tema ve yazı boyutu uygulaması (ayarlar sayfası ile uyumlu)
     function applySettings() {
       const isDark = localStorage.getItem("darkMode") === "true";
       const fontSize = localStorage.getItem("fontSize") || "normal";
-      document.body.style.background = isDark ? "#222" : "#fff";
-      document.body.style.color = isDark ? "#fff" : "#222";
       document.body.classList.toggle('dark', isDark);
+      document.body.style.background = isDark ? "#181818" : "#fff";
+      document.body.style.color = isDark ? "#f2f2f2" : "#222";
       switch(fontSize) {
         case 'large': document.body.style.fontSize = "1.18em"; break;
         case 'xlarge': document.body.style.fontSize = "1.32em"; break;
         default: document.body.style.fontSize = "1em";
       }
-      // Fade-in animasyonu (animasyonsuz sayfa için)
-      if (!document.querySelector(".timeline-event") && !document.body.classList.contains("has-fadein")) {
-        document.body.style.opacity = "0";
-        document.body.style.transition = "opacity 0.7s";
-        setTimeout(() => { document.body.style.opacity = "1"; }, 10);
-        document.body.classList.add("has-fadein");
-      }
-      if (document.getElementById("settingsForm")) {
-        const t = LANGUAGES[getLang()];
-        document.querySelector('.settings-title').textContent = t.title;
-        document.querySelectorAll('.section-label')[0].textContent = t.theme;
-        document.querySelector('.toggle-label[for=darkMode]').textContent = t.darkMode;
-        document.querySelectorAll('.section-label')[1].textContent = t.notifications;
-        document.querySelector('.toggle-label[for=notifications]').textContent = t.notifications;
-        document.querySelectorAll('.section-label')[2].textContent = t.fontSize;
-        document.querySelectorAll('.section-label')[3].textContent = t.language;
-        document.getElementById("fontSize").options[0].textContent = t.options.normal;
-        document.getElementById("fontSize").options[1].textContent = t.options.large;
-        document.getElementById("fontSize").options[2].textContent = t.options.xlarge;
-        document.getElementById("settings-save-label").textContent = t.save;
-        document.getElementById("savedMsg").textContent = t.saved;
-        document.querySelector('.settings-info').innerHTML = t.info;
-        document.getElementById("language").options[0].textContent = t.tr;
-        document.getElementById("language").options[1].textContent = t.en;
-      }
     }
+
+    // Footer güncellemesi
     function updateFooterLinks() {
       const footer = document.querySelector("footer");
       if (!footer) return;
@@ -417,9 +521,12 @@
         </a>
       `;
     }
+
     window.addEventListener("DOMContentLoaded", () => {
       applySettings();
       updateFooterLinks();
+      renderNutuk(getLang());
+      setLangSelect(getLang());
     });
   </script>
 </body>
