@@ -152,14 +152,11 @@
   <a href="index.html" class="logo">
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
-
   <div class="menu-background"></div>
-
   <div class="quote-container">
     <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
     <div class="quote-source" id="quote-source">TBMM, 1920</div>
   </div>
-
   <nav class="menu">
     <a href="index.html" class="active">Anasayfa</a>
     <a href="hayati.html">Hayatı</a>
@@ -171,7 +168,6 @@
     <a href="kronoloji.html">Kronoloji</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
-
   <div id="hero-content" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;animation:fadeInHero 1.2s cubic-bezier(.62,.04,.36,1.09);padding:10px;">
     <h1 style="font-size:2.3rem;font-weight:bold;color:#111;letter-spacing:1px;margin-top:40px; margin-bottom:10px;animation:titlePop 1s cubic-bezier(.77,-0.13,.22,1.12);" id="main-title">
       Mustafa Kemal Atatürk
@@ -209,11 +205,8 @@
       Türk gençleri olarak sonsuza dek izindeyiz!
     </div>
   </div>
-
   <footer></footer>
-
   <script>
-    // Söz animasyonu
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
       { text: '"Yurtta sulh, cihanda sulh."', source: "Atatürk, Söylev ve Demeçler" },
@@ -238,7 +231,6 @@
       showQuote(quoteIndex);
     }, 5000);
 
-    // Çoklu dil desteği (TR/EN/AZ)
     const LANGS = {
       tr: {
         title: "Mustafa Kemal Atatürk",
@@ -246,3 +238,7 @@
         desc: "Türkiye Cumhuriyeti'nin kurucusu, milletimizin yol göstericisi.<br><span style=\"font-weight:bold;color:#e30b17;\">\"En büyük eserim Cumhuriyet'tir.\"</span> diyerek bizlere çağdaş ve özgür bir ülke armağan etti.<br>Atatürk'ün fikirleri ve ilkeleriyle geleceğe umutla bakıyoruz.",
         searchPlaceholder: "Atatürk hakkında ara...",
         footerText: "Türk gençleri olarak sonsuza dek izindeyiz!"
+      },
+      en: {
+        title: "Mustafa Kemal Atatürk",
+        subtitle: "The
