@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
-  <title>Atatürk</title>
+  <title>Kronoloji</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     * { box-sizing: border-box; }
@@ -24,22 +24,22 @@
     }
     .menu-background {
       position: fixed;
-      top: 70px;
+      top: 0;
       left: 0;
       width: 100vw;
-      height: 50px;
+      height: 120px;
       background: #fff;
-      z-index: 999;
+      z-index: 1099;
       pointer-events: none;
     }
     nav.menu {
       position: fixed;
       top: 70px;
       left: 0;
-      width: 100%;
+      width: 100vw;
       background: #fff;
       border-bottom: 2px solid #d9d9d9;
-      z-index: 1000;
+      z-index: 1101;
       overflow-x: auto;
       white-space: nowrap;
     }
@@ -53,7 +53,7 @@
       border-bottom: 3px solid transparent;
       transition: all 0.3s ease;
     }
-    nav.menu a:hover {
+    nav.menu a:hover, nav.menu a.active {
       border-bottom: 3px solid #e30b17;
       color: #e30b17;
     }
@@ -87,6 +87,92 @@
     }
     .fade-in {
       opacity: 1 !important;
+    }
+    main {
+      margin: 140px auto 0 auto;
+      max-width: 900px;
+      padding: 0 20px 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .timeline {
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+      padding-left: 20px;
+      border-left: 3px solid #e30b17;
+    }
+    .timeline-event {
+      position: relative;
+      margin-bottom: 38px;
+      padding-left: 26px;
+    }
+    .timeline-event:last-child {
+      margin-bottom: 0;
+    }
+    .timeline-date {
+      position: absolute;
+      left: -102px;
+      top: 0;
+      width: 88px;
+      text-align: right;
+      color: #e30b17;
+      font-weight: bold;
+      font-size: 1.04em;
+      font-family: Georgia, serif;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -14px;
+      top: 7px;
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border: 3px solid #e30b17;
+      border-radius: 50%;
+      z-index: 1;
+      box-shadow: 0 1px 8px rgba(227,11,23,0.13);
+    }
+    .timeline-content {
+      background: #fafafa;
+      border-radius: 12px;
+      padding: 14px 18px 12px 20px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      font-size: 1.04em;
+      color: #222;
+      line-height: 1.5;
+      margin-left: 10px;
+      position: relative;
+    }
+    .timeline-content strong {
+      color: #e30b17;
+    }
+    @media (max-width: 900px) {
+      .timeline { max-width: 98vw;}
+    }
+    @media (max-width: 700px) {
+      main { margin-top: 110px;}
+      .timeline {
+        padding-left: 10px;
+        border-left-width: 2px;
+      }
+      .timeline-date {
+        left: -78px;
+        font-size: 0.97em;
+        width: 64px;
+      }
+      .timeline-dot {
+        left: -10px;
+        width: 12px;
+        height: 12px;
+        border-width: 2px;
+      }
+      .timeline-content {
+        font-size: 0.98em;
+        padding: 10px 10px 8px 13px;
+      }
     }
     footer {
       position: fixed;
@@ -133,10 +219,10 @@
         font-size: 9px;
       }
       .menu-background {
-        height: 50px;
+        height: 100px;
       }
       nav.menu {
-        top: 70px;
+        top: 60px;
         height: 50px;
       }
       nav.menu a {
@@ -150,16 +236,11 @@
   <a href="index.html" class="logo">
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
-
-  <!-- Menü arkasında beyaz plaka -->
   <div class="menu-background"></div>
-
-  <!-- Söz kutusu (yazı ve kaynak) -->
   <div class="quote-container">
     <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
     <div class="quote-source" id="quote-source">TBMM, 1920</div>
   </div>
-
   <nav class="menu">
     <a href="index.html">Anasayfa</a>
     <a href="hayati.html">Hayatı</a>
@@ -168,12 +249,81 @@
     <a href="eserleri.html">Eserleri</a>
     <a href="devrimler.html">Devrimleri</a>
     <a href="nutuk.html">Nutuk</a>
-    <a href="kronoloji.html">Kronoloji</a>
+    <a href="kronoloji.html" class="active">Kronoloji</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
-
-  <!-- İçerik yok, menü ve plaka eski yerinde -->
-
+  <main>
+    <h1 style="font-size:2.1em; color:#e30b17; margin-bottom:36px; margin-top:18px; font-family:Georgia,serif; text-align:center;">
+      Atatürk'ün Hayat Kronolojisi
+    </h1>
+    <div class="timeline">
+      <div class="timeline-event">
+        <span class="timeline-date">1881</span>
+        <span class="timeline-dot"></span>
+        <div class="timeline-content"><strong>Selanik'te doğum</strong>: Mustafa Kemal Atatürk, Selanik'te dünyaya geldi.</div>
+      </div>
+      <div class="timeline-event">
+        <span class="timeline-date">1893</span>
+        <span class="timeline-dot"></span>
+        <div class="timeline-content"><strong>Askeri eğitime başlama</strong>: Selanik Askeri Rüştiyesi'ne başladı ve "Kemal" adını aldı.</div>
+      </div>
+      <div class="timeline-event">
+        <span class="timeline-date">1905</span>
+        <span class="timeline-dot"></span>
+        <div class="timeline-content"><strong>Kurmay Yüzbaşı</strong>: Harp Akademisi'nden Kurmay Yüzbaşı olarak mezun oldu.</div>
+      </div>
+      <div class="timeline-event">
+        <span class="timeline-date">1911</span>
+        <span class="timeline-dot"></span>
+        <div class="timeline-content"><strong>Trablusgarp Savaşı</strong>: Trablusgarp’ta İtalyanlara karşı savaştı ve başarılar kazandı.</div>
+      </div>
+      <div class="timeline-event">
+        <span class="timeline-date">1915</span>
+        <span class="timeline-dot"></span>
+        <div class="timeline-content"><strong>Çanakkale Zaferi</strong>: Anafartalar Grup Komutanı olarak Çanakkale Savaşı’nda büyük başarı gösterdi.</div>
+      </div>
+      <div class="timeline-event">
+        <span class="timeline-date">1919</span>
+        <span class="timeline-dot"></span>
+        <div class="timeline-content"><strong>Samsun'a Çıkış</strong>: 19 Mayıs'ta Samsun'a çıkarak Kurtuluş Savaşı'nı başlattı.</div>
+      </div>
+      <div class="timeline-event">
+        <span class="timeline-date">1920</span>
+        <span class="timeline-dot"></span>
+        <div class="timeline-content"><strong>TBMM'nin Açılışı</strong>: 23 Nisan’da Türkiye Büyük Millet Meclisi açıldı.</div>
+      </div>
+      <div class="timeline-event">
+        <span class="timeline-date">1921</span>
+        <span class="timeline-dot"></span>
+        <div class="timeline-content"><strong>Sakarya Meydan Muharebesi</strong>: Sakarya Zaferi kazanıldı ve Atatürk’e Mareşal ve Gazi unvanı verildi.</div>
+      </div>
+      <div class="timeline-event">
+        <span class="timeline-date">1922</span>
+        <span class="timeline-dot"></span>
+        <div class="timeline-content"><strong>Büyük Taarruz</strong>: 30 Ağustos’ta Dumlupınar’da kesin zafer elde edildi.</div>
+      </div>
+      <div class="timeline-event">
+        <span class="timeline-date">1923</span>
+        <span class="timeline-dot"></span>
+        <div class="timeline-content"><strong>Cumhuriyetin İlanı</strong>: 29 Ekim’de Türkiye Cumhuriyeti ilan edildi ve Atatürk ilk Cumhurbaşkanı oldu.</div>
+      </div>
+      <div class="timeline-event">
+        <span class="timeline-date">1928</span>
+        <span class="timeline-dot"></span>
+        <div class="timeline-content"><strong>Harf Devrimi</strong>: Latin alfabesinin kabulüyle okuryazarlık oranı arttı.</div>
+      </div>
+      <div class="timeline-event">
+        <span class="timeline-date">1934</span>
+        <span class="timeline-dot"></span>
+        <div class="timeline-content"><strong>Soyadı Kanunu</strong>: "Atatürk" soyadı Mustafa Kemal’e verildi.</div>
+      </div>
+      <div class="timeline-event">
+        <span class="timeline-date">1938</span>
+        <span class="timeline-dot"></span>
+        <div class="timeline-content"><strong>Vefatı</strong>: 10 Kasım’da İstanbul Dolmabahçe Sarayı’nda hayata veda etti.</div>
+      </div>
+    </div>
+  </main>
   <footer>
     <a href="mailto:email@example.com" aria-label="Gmail">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -192,6 +342,7 @@
     </a>
   </footer>
   <script>
+    // Söz kutusu animasyonu için
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
       { text: '"Yurtta sulh, cihanda sulh."', source: "Atatürk, Söylev ve Demeçler" },
