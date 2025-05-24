@@ -5,6 +5,8 @@
   <title>Atatürk'ün Hayatı</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    /* ...aynı CSS, değişiklik yok... */
+    /* Kodlarının tamamı hiç değişmedi, sadece body içi değişiyor */
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -24,7 +26,6 @@
       background: #fff;
       padding: 5px;
     }
-    /* Menü arkasına sabit beyaz plaka */
     .menu-plaka {
       position: fixed;
       top: 0;
@@ -161,7 +162,6 @@
         font-size: 13px;
       }
     }
-    /* İçerik kısmı için ek konumlandırma */
     .main-content {
       width: 100%;
       max-width: 900px;
@@ -182,7 +182,7 @@
     .main-content h1 {
       font-size:2.15rem;
       font-weight:bold;
-      color:#e30b17; /* Başlık kırmızı */
+      color:#e30b17;
       letter-spacing:.8px;
       margin-bottom:24px;
       text-align:center;
@@ -190,7 +190,7 @@
     .main-content h2 {
       font-size:1.2rem;
       font-weight:bold;
-      color:#e30b17; /* Alt başlıklar da kırmızı */
+      color:#e30b17;
       margin-bottom:15px;
       letter-spacing:.4px;
     }
@@ -214,7 +214,6 @@
       .main-content h2 { font-size:.92rem; }
       .main-content p, .main-content ul { font-size: .98rem; }
     }
-    /* Koyu tema uyumu */
     body.dark {
       background: #181818 !important;
       color: #f2f2f2 !important;
@@ -267,46 +266,115 @@
     <a href="kronoloji.html">Kronoloji</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
-  <div class="main-content">
-    <h1>Atatürk'ün Hayatı</h1>
-    <section>
-      <h2>Çocukluğu ve Eğitimi</h2>
-      <p>
-        Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. İlk öğrenimine mahalle mektebinde başladı, ardından Şemsi Efendi Okulu'na geçti. Babasının ölümü üzerine kısa bir süre Rapla Çiftliği'nde kaldıktan sonra eğitimine Selanik Mülkiye Rüştiyesi'nde devam etti. Askeri eğitime olan ilgisiyle Manastır Askeri İdadisi ve daha sonra İstanbul Harp Okulu'na geçti.
-      </p>
-    </section>
-    <section>
-      <h2>Askerlik ve Trablusgarp</h2>
-      <p>
-        1905 yılında Harp Akademisi'nden kurmay yüzbaşı olarak mezun oldu. Şam, Selanik ve Manastır'da çeşitli görevlerde bulundu. 1911 yılında Trablusgarp Savaşı'nda (bugünkü Libya) İtalyanlara karşı başarılı savunmalar yaptı. Burada gösterdiği kahramanlık, onun yükselişinde önemli bir rol oynadı.
-      </p>
-    </section>
-    <section>
-      <h2>Balkan Savaşları ve I. Dünya Savaşı</h2>
-      <p>
-        Balkan Savaşları'nda Edirne'nin geri alınmasında görev aldı. I. Dünya Savaşı'nda Çanakkale Cephesi'nde gösterdiği üstün askeri deha ve liderlik, Türk milletinin kaderini değiştirdi ve "Anafartalar Kahramanı" olarak ün kazandı. Ardından Kafkas ve Suriye cephelerinde de görev yaptı.
-      </p>
-    </section>
-    <section>
-      <h2>Kurtuluş Savaşı ve Cumhuriyet</h2>
-      <p>
-        Mondros Mütarekesi sonrasında İstanbul'a dönen Mustafa Kemal, 19 Mayıs 1919'da Samsun'a çıkarak milli mücadelenin fiili liderliğini üstlendi. Erzurum ve Sivas Kongreleri'nin ardından Ankara'da Türkiye Büyük Millet Meclisi'ni açtı. Kurtuluş Savaşı'nı başarıyla yönetip 1922'de ülkeyi işgalden kurtardı. 29 Ekim 1923'te Cumhuriyet'i ilan etti ve ilk Cumhurbaşkanı oldu.
-      </p>
-    </section>
-    <section>
-      <h2>Çağdaşlaşma ve Devrimler</h2>
-      <p>
-        Atatürk, Türkiye'yi çağdaş bir ülke yapma hedefiyle çok sayıda toplumsal, hukuksal, kültürel ve ekonomik devrim gerçekleştirdi. Medeni Kanun, harf devrimi, eğitim birliği, kadınlara seçme ve seçilme hakkı, şapka ve kıyafet devrimi gibi yeniliklerle Türk toplumu modernleşti.
-      </p>
-    </section>
-    <section>
-      <h2>Vefatı</h2>
-      <p>
-        Büyük önder Mustafa Kemal Atatürk, 10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayata gözlerini yumdu. Eserleri ve ilkeleriyle Türk milletinin hafızasında ve gönlünde yaşamaya devam etmektedir.
-      </p>
-    </section>
+  <div class="main-content" id="life-content">
+    <!-- İçerik JS ile doldurulacak -->
   </div>
   <footer></footer>
+  <script>
+    // Çoklu dil içeriği (TR, EN, AZ)
+    const LIFE = {
+      tr: {
+        title: "Atatürk'ün Hayatı",
+        sections: [
+          {
+            heading: "Çocukluğu ve Eğitimi",
+            text: `Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. İlk öğrenimine mahalle mektebinde başladı, ardından Şemsi Efendi Okulu'na geçti. Babasının ölümü üzerine kısa bir süre Rapla Çiftliği'nde kaldıktan sonra eğitimine Selanik Mülkiye Rüştiyesi'nde devam etti. Askeri eğitime olan ilgisiyle Manastır Askeri İdadisi ve daha sonra İstanbul Harp Okulu'na geçti.`
+          },
+          {
+            heading: "Askerlik ve Trablusgarp",
+            text: `1905 yılında Harp Akademisi'nden kurmay yüzbaşı olarak mezun oldu. Şam, Selanik ve Manastır'da çeşitli görevlerde bulundu. 1911 yılında Trablusgarp Savaşı'nda (bugünkü Libya) İtalyanlara karşı başarılı savunmalar yaptı. Burada gösterdiği kahramanlık, onun yükselişinde önemli bir rol oynadı.`
+          },
+          {
+            heading: "Balkan Savaşları ve I. Dünya Savaşı",
+            text: `Balkan Savaşları'nda Edirne'nin geri alınmasında görev aldı. I. Dünya Savaşı'nda Çanakkale Cephesi'nde gösterdiği üstün askeri deha ve liderlik, Türk milletinin kaderini değiştirdi ve "Anafartalar Kahramanı" olarak ün kazandı. Ardından Kafkas ve Suriye cephelerinde de görev yaptı.`
+          },
+          {
+            heading: "Kurtuluş Savaşı ve Cumhuriyet",
+            text: `Mondros Mütarekesi sonrasında İstanbul'a dönen Mustafa Kemal, 19 Mayıs 1919'da Samsun'a çıkarak milli mücadelenin fiili liderliğini üstlendi. Erzurum ve Sivas Kongreleri'nin ardından Ankara'da Türkiye Büyük Millet Meclisi'ni açtı. Kurtuluş Savaşı'nı başarıyla yönetip 1922'de ülkeyi işgalden kurtardı. 29 Ekim 1923'te Cumhuriyet'i ilan etti ve ilk Cumhurbaşkanı oldu.`
+          },
+          {
+            heading: "Çağdaşlaşma ve Devrimler",
+            text: `Atatürk, Türkiye'yi çağdaş bir ülke yapma hedefiyle çok sayıda toplumsal, hukuksal, kültürel ve ekonomik devrim gerçekleştirdi. Medeni Kanun, harf devrimi, eğitim birliği, kadınlara seçme ve seçilme hakkı, şapka ve kıyafet devrimi gibi yeniliklerle Türk toplumu modernleşti.`
+          },
+          {
+            heading: "Vefatı",
+            text: `Büyük önder Mustafa Kemal Atatürk, 10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayata gözlerini yumdu. Eserleri ve ilkeleriyle Türk milletinin hafızasında ve gönlünde yaşamaya devam etmektedir.`
+          }
+        ]
+      },
+      en: {
+        title: "The Life of Atatürk",
+        sections: [
+          {
+            heading: "Childhood and Education",
+            text: `Mustafa Kemal Atatürk was born in 1881 in Thessaloniki. His father was Ali Rıza Efendi and his mother was Zübeyde Hanım. He started his education at a neighborhood school and then attended Şemsi Efendi School. After his father's death, he stayed at Rapla Farm for a short time and continued his education at Selanik Mülkiye Rüştiyesi. With his interest in military education, he moved to Manastır Military High School and later to Istanbul Military Academy.`
+          },
+          {
+            heading: "Military Career and Tripoli",
+            text: `He graduated from the Military Academy as a staff captain in 1905. He served in various positions in Damascus, Thessaloniki, and Manastır. In 1911, during the Italo-Turkish War in present-day Libya, he successfully defended against the Italians. His heroism there played an important role in his rise.`
+          },
+          {
+            heading: "Balkan Wars and World War I",
+            text: `He took part in the recapture of Edirne during the Balkan Wars. In World War I, his exceptional military genius and leadership at the Gallipoli Front changed the fate of the Turkish nation, earning him the title "Hero of Anafartalar." He also served in the Caucasus and Syrian fronts.`
+          },
+          {
+            heading: "War of Independence and Republic",
+            text: `After the Armistice of Mudros, Mustafa Kemal returned to Istanbul and on May 19, 1919, went to Samsun to lead the national struggle. After the Erzurum and Sivas Congresses, he opened the Grand National Assembly in Ankara. He successfully led the War of Independence and liberated the country from occupation in 1922. On October 29, 1923, the Republic was proclaimed and he became its first President.`
+          },
+          {
+            heading: "Modernization and Reforms",
+            text: `Aiming to make Turkey a modern country, Atatürk carried out numerous social, legal, cultural, and economic reforms. With innovations such as the Civil Code, alphabet reform, unification of education, women's suffrage, and the hat and clothing reform, Turkish society modernized.`
+          },
+          {
+            heading: "Death",
+            text: `The great leader Mustafa Kemal Atatürk passed away on November 10, 1938, at Dolmabahçe Palace in Istanbul. With his works and principles, he continues to live on in the memory and hearts of the Turkish nation.`
+          }
+        ]
+      },
+      az: {
+        title: "Atatürkün Həyatı",
+        sections: [
+          {
+            heading: "Uşaqlığı və Təhsili",
+            text: `Mustafa Kamal Atatürk 1881-ci ildə Salonikidə anadan olub. Atası Əli Rza Əfəndi, anası Zübeydə xanımdır. İlk təhsilini məhəllə məktəbində alıb, sonra Şəmsi Əfəndi məktəbinə keçib. Atası vəfat etdikdən sonra qısa müddət Rapla fermasında qalıb, sonra təhsilini Saloniki Mülki Rüşdiyəsində davam etdirib. Hərbi təhsilə marağı ilə Manastır Hərbi Liseyinə, sonra isə İstanbul Hərbi Akademiyasına daxil olub.`
+          },
+          {
+            heading: "Hərbi Xidmət və Tripoli",
+            text: `1905-ci ildə Hərbi Akademiyanı qərargah kapitanı kimi bitirib. Şam, Saloniki və Manastırda müxtəlif vəzifələrdə çalışıb. 1911-ci ildə indiki Liviyada Tripoli müharibəsində italyanlara qarşı uğurlu müdafiələr edib. Buradakı qəhrəmanlığı onun yüksəlişində mühüm rol oynayıb.`
+          },
+          {
+            heading: "Balkan Müharibələri və I Dünya Müharibəsi",
+            text: `Balkan müharibələrində Edirnenin geri alınmasında iştirak edib. I Dünya Müharibəsində Çanaqqala cəbhəsində göstərdiyi hərbi dəha və liderlik, türk millətinin taleyini dəyişib və ona "Anafartalar Qəhrəmanı" adını qazandırıb. Daha sonra Qafqaz və Suriya cəbhələrində də xidmət edib.`
+          },
+          {
+            heading: "İstiqlal Müharibəsi və Respublika",
+            text: `Mudros Müqaviləsindən sonra Mustafa Kamal İstanbula qayıdıb və 1919-cu il mayın 19-da Samsuna çıxaraq milli mübarizənin liderliyini öz üzərinə götürüb. Ərzurum və Sivas qurultaylarından sonra Ankarada Böyük Millət Məclisini açıb. İstiqlal Müharibəsini uğurla idarə edib və 1922-ci ildə ölkəni işğaldan azad edib. 29 oktyabr 1923-cü ildə Respublika elan olunub və Atatürk ilk Prezident olub.`
+          },
+          {
+            heading: "Müasirləşmə və İslahatlar",
+            text: `Atatürk Türkiyəni müasir bir ölkə etmək məqsədilə çoxlu sosial, hüquqi, mədəni və iqtisadi islahatlar həyata keçirib. Mülki Qanun, əlifba islahatı, təhsilin birləşdirilməsi, qadınlara səsvermə və seçilmə hüququ, şapka və geyim islahatı kimi yeniliklərlə türk cəmiyyəti müasirləşib.`
+          },
+          {
+            heading: "Vəfatı",
+            text: `Böyük lider Mustafa Kamal Atatürk 1938-ci il noyabrın 10-da İstanbul Dolmabahçe Sarayında vəfat edib. Onun əsərləri və prinsipləri türk millətinin yaddaşında və qəlbində yaşayır.`
+          }
+        ]
+      }
+    };
+    function getLang() {
+      return localStorage.getItem("language") || "tr";
+    }
+    function renderLifeContent() {
+      const lang = getLang();
+      const data = LIFE[lang];
+      const main = document.getElementById("life-content");
+      let html = `<h1>${data.title}</h1>`;
+      data.sections.forEach(sec => {
+        html += `<section><h2>${sec.heading}</h2><p>${sec.text}</p></section>`;
+      });
+      main.innerHTML = html;
+    }
+  </script>
   <script>
     // Söz animasyonu (tasarıma dokunulmaz)
     const quotes = [
@@ -365,7 +433,7 @@
         en: "English"
       }
     };
-    function getLang() { return localStorage.getItem("language") || "tr"; }
+    function getLangSettings() { return localStorage.getItem("language") || "tr"; }
     function applySettings() {
       const isDark = localStorage.getItem("darkMode") === "true";
       const fontSize = localStorage.getItem("fontSize") || "normal";
@@ -385,7 +453,7 @@
         document.body.classList.add("has-fadein");
       }
       if (document.getElementById("settingsForm")) {
-        const t = LANGUAGES[getLang()];
+        const t = LANGUAGES[getLangSettings()];
         document.querySelector('.settings-title').textContent = t.title;
         document.querySelectorAll('.section-label')[0].textContent = t.theme;
         document.querySelector('.toggle-label[for=darkMode]').textContent = t.darkMode;
@@ -426,7 +494,15 @@
     }
     window.addEventListener("DOMContentLoaded", () => {
       applySettings();
+      renderLifeContent();
       updateFooterLinks();
+    });
+
+    // Opsiyonel: Dil değiştiğinde sayfa yenilemeden içerik güncelle
+    window.addEventListener("storage", (e) => {
+      if (e.key === "language") {
+        renderLifeContent();
+      }
     });
   </script>
 </body>
