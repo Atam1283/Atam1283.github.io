@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
-  <title>Atatürk</title>
+  <title>Nutuk</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     * { box-sizing: border-box; }
@@ -24,22 +24,22 @@
     }
     .menu-background {
       position: fixed;
-      top: 70px;
+      top: 0;
       left: 0;
       width: 100vw;
-      height: 50px;
+      height: 120px;
       background: #fff;
-      z-index: 999;
+      z-index: 1099;
       pointer-events: none;
     }
     nav.menu {
       position: fixed;
       top: 70px;
       left: 0;
-      width: 100%;
+      width: 100vw;
       background: #fff;
       border-bottom: 2px solid #d9d9d9;
-      z-index: 1000;
+      z-index: 1101;
       overflow-x: auto;
       white-space: nowrap;
     }
@@ -53,7 +53,7 @@
       border-bottom: 3px solid transparent;
       transition: all 0.3s ease;
     }
-    nav.menu a:hover {
+    nav.menu a:hover, nav.menu a.active {
       border-bottom: 3px solid #e30b17;
       color: #e30b17;
     }
@@ -88,61 +88,93 @@
     .fade-in {
       opacity: 1 !important;
     }
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: #000;
-      height: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 30px;
-      z-index: 1000;
-    }
-    footer a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 40px;
-      height: 40px;
-      border: 1px solid #888;
-      border-radius: 50%;
+    .nutuk-indir {
+      display: block;
+      margin: 30px auto 36px auto;
+      background: #e30b17;
       color: #fff;
+      padding: 14px 30px;
+      border-radius: 40px;
+      font-weight: bold;
+      font-size: 1.15em;
+      text-align: center;
       text-decoration: none;
-      transition: all 0.3s ease;
+      box-shadow: 0 4px 18px rgba(227,11,23,0.09);
+      transition: background 0.24s, box-shadow 0.2s, color 0.2s;
+      width: max-content;
+      max-width: 90vw;
     }
-    footer a:hover {
-      border-color: #e30b17;
+    .nutuk-indir:hover {
+      background: #b4000f;
+      color: #fff;
+      box-shadow: 0 7px 32px rgba(227,11,23,0.16);
+    }
+    main {
+      margin: 140px auto 0 auto;
+      max-width: 900px;
+      padding: 0 20px 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .nutuk-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 26px;
+      width: 100%;
+      max-width: 900px;
+    }
+    .nutuk-card {
+      background: #fafafa;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      padding: 30px 22px 22px 22px;
+      position: relative;
+      transition: box-shadow 0.25s, transform 0.22s cubic-bezier(.42,0,.58,1);
+      min-height: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: cardFloat 4s ease-in-out infinite alternate;
+    }
+    .nutuk-card:hover, .nutuk-card:focus {
+      box-shadow: 0 8px 32px rgba(227,11,23,0.15), 0 2px 16px rgba(0,0,0,0.12);
+      transform: scale(1.03) rotate(-1.2deg);
+    }
+    .nutuk-card .nutuk-baslik {
+      font-size: 1.12em;
+      font-weight: bold;
       color: #e30b17;
+      margin-bottom: 10px;
+      line-height: 1.2;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      text-align: left;
     }
-    footer svg {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
+    .nutuk-card .nutuk-ozet {
+      font-size: 1em;
+      color: #222;
+      margin-bottom: 14px;
+      line-height: 1.44;
+      font-family: Arial, sans-serif;
+      text-align: left;
     }
-    @media (max-width: 600px) {
-      .quote-container {
-        max-width: 160px;
-      }
-      .quote-text {
-        font-size: 10px;
-      }
-      .quote-source {
-        font-size: 9px;
-      }
-      .menu-background {
-        height: 50px;
-      }
-      nav.menu {
-        top: 70px;
-        height: 50px;
-      }
-      nav.menu a {
-        padding: 10px 12px 9px 12px;
-        font-size: 13px;
-      }
+    .nutuk-card .nutuk-detay {
+      font-size: 0.96em;
+      color: #666;
+      text-align: left;
+      font-family: Arial, sans-serif;
+      font-style: italic;
+      margin-top: auto;
+      margin-bottom: 0;
+    }
+    @media (max-width: 700px) {
+      main { margin-top: 110px;}
+      .nutuk-grid { grid-template-columns: 1fr; gap: 14px;}
+      .nutuk-card { padding: 17px 9px 12px 14px; min-height: 90px;}
+    }
+    @keyframes cardFloat {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px);}
     }
   </style>
 </head>
@@ -150,16 +182,11 @@
   <a href="index.html" class="logo">
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
-
-  <!-- Menü arkasında beyaz plaka -->
   <div class="menu-background"></div>
-
-  <!-- Söz kutusu (yazı ve kaynak) -->
   <div class="quote-container">
     <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
     <div class="quote-source" id="quote-source">TBMM, 1920</div>
   </div>
-
   <nav class="menu">
     <a href="index.html">Anasayfa</a>
     <a href="hayati.html">Hayatı</a>
@@ -167,13 +194,54 @@
     <a href="sozleri.html">Sözleri</a>
     <a href="eserleri.html">Eserleri</a>
     <a href="devrimler.html">Devrimleri</a>
-    <a href="nutuk.html">Nutuk</a>
+    <a href="nutuk.html" class="active">Nutuk</a>
     <a href="kronoloji.html">Kronoloji</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
-
-  <!-- İçerik yok, menü ve plaka eski yerinde -->
-
+  <main>
+    <h1 style="font-size:2.1em; color:#e30b17; margin-bottom:18px; margin-top:18px; font-family:Georgia,serif; text-align:center;">
+      Nutuk (Söylev)
+    </h1>
+    <a href="https://publuu.com/flip-book/885789/1939815" class="nutuk-indir" target="_blank" rel="noopener">Nutuk PDF & Flipbook'u Görüntüle / İndir</a>
+    <div class="nutuk-grid">
+      <div class="nutuk-card" tabindex="0">
+        <div class="nutuk-baslik">Nutuk Nedir?</div>
+        <div class="nutuk-ozet">
+          Nutuk, Mustafa Kemal Atatürk’ün 15-20 Ekim 1927 tarihleri arasında CHP Kurultayı’nda altı gün boyunca okuduğu, Türk Kurtuluş Savaşı ve Cumhuriyet’in kuruluşunu anlatan, Türkiye’nin en önemli tarihsel belgelerinden biridir.
+        </div>
+        <div class="nutuk-detay">
+          Kaynak: 1927, TBMM, Ankara
+        </div>
+      </div>
+      <div class="nutuk-card" tabindex="0">
+        <div class="nutuk-baslik">Nutuk’un Bölümleri</div>
+        <div class="nutuk-ozet">
+          Nutuk; Mondros Mütarekesi sonrası Anadolu işgali, Samsun’a çıkış, kongreler, Milli Mücadele, Büyük Taarruz ve Cumhuriyet’in ilanına kadar yaşanan olayları detaylıca anlatır. Sonunda ise "Gençliğe Hitabe" yer alır.
+        </div>
+        <div class="nutuk-detay">
+          Ana bölümler: Başlangıç, Savaş Yılları, Cumhuriyet’in İlanı, Gençliğe Hitabe
+        </div>
+      </div>
+      <div class="nutuk-card" tabindex="0">
+        <div class="nutuk-baslik">Gençliğe Hitabe</div>
+        <div class="nutuk-ozet">
+          Atatürk’ün Türk gençliğine seslenişidir. Milli değerlerin, bağımsızlık ve Cumhuriyet’in korunmasının önemini vurgular.
+        </div>
+        <div class="nutuk-detay">
+          Son bölüm, 20 Ekim 1927
+        </div>
+      </div>
+      <div class="nutuk-card" tabindex="0">
+        <div class="nutuk-baslik">Tarihi Önemi</div>
+        <div class="nutuk-ozet">
+          Nutuk, dönemin tanığı olarak birincil kaynak değerindedir. Milli Mücadele’nin resmi anlatımıdır; Atatürk’ün olaylara bakışını ve Cumhuriyet’in kuruluş felsefesini içerir.
+        </div>
+        <div class="nutuk-detay">
+          Türkiye Cumhuriyeti’nin temel taşlarından biri kabul edilir.
+        </div>
+      </div>
+    </div>
+  </main>
   <footer>
     <a href="mailto:email@example.com" aria-label="Gmail">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -192,6 +260,7 @@
     </a>
   </footer>
   <script>
+    // Söz kutusu animasyonu için
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
       { text: '"Yurtta sulh, cihanda sulh."', source: "Atatürk, Söylev ve Demeçler" },
