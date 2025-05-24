@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
-  <title>Sözleri</title>
+  <title>Nutuk</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     * { box-sizing: border-box; }
@@ -90,6 +90,94 @@
     .fade-in {
       opacity: 1 !important;
     }
+    .nutuk-indir {
+      display: block;
+      margin: 30px auto 36px auto;
+      background: #e30b17;
+      color: #fff;
+      padding: 14px 30px;
+      border-radius: 40px;
+      font-weight: bold;
+      font-size: 1.15em;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 4px 18px rgba(227,11,23,0.09);
+      transition: background 0.24s, box-shadow 0.2s, color 0.2s;
+      width: max-content;
+      max-width: 90vw;
+    }
+    .nutuk-indir:hover {
+      background: #b4000f;
+      color: #fff;
+      box-shadow: 0 7px 32px rgba(227,11,23,0.16);
+    }
+    main {
+      margin: 140px auto 0 auto;
+      max-width: 900px;
+      padding: 0 20px 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .nutuk-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 26px;
+      width: 100%;
+      max-width: 900px;
+    }
+    .nutuk-card {
+      background: #fafafa;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      padding: 30px 22px 22px 22px;
+      position: relative;
+      transition: box-shadow 0.25s, transform 0.22s cubic-bezier(.42,0,.58,1);
+      min-height: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: cardFloat 4s ease-in-out infinite alternate;
+    }
+    .nutuk-card:hover, .nutuk-card:focus {
+      box-shadow: 0 8px 32px rgba(227,11,23,0.15), 0 2px 16px rgba(0,0,0,0.12);
+      transform: scale(1.03) rotate(-1.2deg);
+    }
+    .nutuk-card .nutuk-baslik {
+      font-size: 1.12em;
+      font-weight: bold;
+      color: #e30b17;
+      margin-bottom: 10px;
+      line-height: 1.2;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      text-align: left;
+    }
+    .nutuk-card .nutuk-ozet {
+      font-size: 1em;
+      color: #222;
+      margin-bottom: 14px;
+      line-height: 1.44;
+      font-family: Arial, sans-serif;
+      text-align: left;
+    }
+    .nutuk-card .nutuk-detay {
+      font-size: 0.96em;
+      color: #666;
+      text-align: left;
+      font-family: Arial, sans-serif;
+      font-style: italic;
+      margin-top: auto;
+      margin-bottom: 0;
+    }
+    @media (max-width: 700px) {
+      main { margin-top: 110px;}
+      .nutuk-grid { grid-template-columns: 1fr; gap: 14px;}
+      .nutuk-card { padding: 17px 9px 12px 14px; min-height: 90px;}
+    }
+    @keyframes cardFloat {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px);}
+    }
     footer {
       position: fixed;
       bottom: 0;
@@ -146,156 +234,69 @@
         font-size: 13px;
       }
     }
-    main {
-      margin: 140px auto 0 auto;
-      max-width: 900px;
-      padding: 0 20px 40px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .sozler-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 26px;
-      width: 100%;
-      max-width: 900px;
-    }
-    .soz-card {
-      background: #fafafa;
-      border-radius: 16px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
-      padding: 30px 22px 22px 22px;
-      position: relative;
-      transition: box-shadow 0.25s, transform 0.22s cubic-bezier(.42,0,.58,1);
-      cursor: pointer;
-      min-height: 110px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      animation: cardFloat 4s ease-in-out infinite alternate;
-    }
-    .soz-card:hover, .soz-card:focus {
-      box-shadow: 0 8px 32px rgba(227,11,23,0.15), 0 2px 16px rgba(0,0,0,0.12);
-      transform: scale(1.03) rotate(-1.2deg);
-    }
-    .soz-card .soz {
-      font-size: 1.08em;
-      font-weight: 500;
-      color: #222;
-      margin-bottom: 14px;
-      line-height: 1.44;
-      font-family: Georgia, 'Times New Roman', Times, serif;
-      text-align: left;
-    }
-    .soz-card .kaynak {
-      font-size: 0.93em;
-      color: #666;
-      text-align: right;
-      font-family: Arial, sans-serif;
-      font-style: italic;
-      margin-top: auto;
-      margin-bottom: 0;
-    }
-    .soz-card .baglam {
-      font-size: 0.95em;
-      color: #888;
-      margin-top: 9px;
-      padding-top: 6px;
-      border-top: 1px solid #f0f0f0;
-      font-style: normal;
-      font-family: Arial, sans-serif;
-      text-align: left;
-    }
-    @media (max-width: 700px) {
-      main { margin-top: 110px;}
-      .sozler-grid { grid-template-columns: 1fr; gap: 14px;}
-      .soz-card { padding: 17px 9px 12px 14px; min-height: 90px;}
-    }
-    @keyframes cardFloat {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-10px);}
-    }
   </style>
 </head>
 <body>
   <a href="index.html" class="logo">
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
-
   <div class="menu-background"></div>
-
   <div class="quote-container">
     <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
     <div class="quote-source" id="quote-source">TBMM, 1920</div>
   </div>
-
   <nav class="menu">
     <a href="index.html">Anasayfa</a>
     <a href="hayati.html">Hayatı</a>
     <a href="galeri.html">Galeri</a>
-    <a href="sozleri.html" class="active">Sözleri</a>
+    <a href="sozleri.html">Sözleri</a>
     <a href="eserleri.html">Eserleri</a>
     <a href="devrimler.html">Devrimleri</a>
-    <a href="nutuk.html">Nutuk</a>
+    <a href="nutuk.html" class="active">Nutuk</a>
     <a href="kronoloji.html">Kronoloji</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
-
   <main>
-    <h1 style="font-size:2.1em; color:#e30b17; margin-bottom:36px; margin-top:18px; font-family:Georgia,serif; text-align:center;">
-      Atatürk'ün Sözleri
+    <h1 style="font-size:2.1em; color:#e30b17; margin-bottom:18px; margin-top:18px; font-family:Georgia,serif; text-align:center;">
+      Nutuk (Söylev)
     </h1>
-    <div class="sozler-grid">
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Benim naçiz vücudum elbet bir gün toprak olacaktır, fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır."</div>
-        <div class="kaynak">Kaynak: 10. Yıl Nutku, 1933</div>
-        <div class="baglam">Bağlam: Cumhuriyetin 10. yılında yaptığı tarihî konuşmada, cumhuriyetin sonsuza kadar yaşayacağını vurgulamıştır.</div>
+    <a href="https://publuu.com/flip-book/885789/1939815" class="nutuk-indir" target="_blank" rel="noopener">Nutuk İndir</a>
+    <div class="nutuk-grid">
+      <div class="nutuk-card" tabindex="0">
+        <div class="nutuk-baslik">Nutuk Nedir?</div>
+        <div class="nutuk-ozet">
+          Nutuk, Mustafa Kemal Atatürk’ün 15-20 Ekim 1927 tarihleri arasında CHP Kurultayı’nda altı gün boyunca okuduğu, Türk Kurtuluş Savaşı ve Cumhuriyet’in kuruluşunu anlatan, Türkiye’nin en önemli tarihsel belgelerinden biridir.
+        </div>
+        <div class="nutuk-detay">
+          Kaynak: 1927, TBMM, Ankara
+        </div>
       </div>
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Yurtta sulh, cihanda sulh."</div>
-        <div class="kaynak">Kaynak: Atatürk'ün dış politikaya dair temel ilkesi (1931)</div>
-        <div class="baglam">Bağlam: Türkiye'nin barışçıl politikasını özetleyerek çeşitli konuşmalarında vurgulamıştır.</div>
+      <div class="nutuk-card" tabindex="0">
+        <div class="nutuk-baslik">Nutuk’un Bölümleri</div>
+        <div class="nutuk-ozet">
+          Nutuk; Mondros Mütarekesi sonrası Anadolu işgali, Samsun’a çıkış, kongreler, Milli Mücadele, Büyük Taarruz ve Cumhuriyet’in ilanına kadar yaşanan olayları detaylıca anlatır. Sonunda ise "Gençliğe Hitabe" yer alır.
+        </div>
+        <div class="nutuk-detay">
+          Ana bölümler: Başlangıç, Savaş Yılları, Cumhuriyet’in İlanı, Gençliğe Hitabe
+        </div>
       </div>
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Hayatta en hakiki mürşit ilimdir."</div>
-        <div class="kaynak">Kaynak: Samsun, 1924 (Öğretmenlere hitap)</div>
-        <div class="baglam">Bağlam: Bilimin yol göstericiliğine vurgu yapmış, eğitim reformlarının temelini bu sözle özetlemiştir.</div>
+      <div class="nutuk-card" tabindex="0">
+        <div class="nutuk-baslik">Gençliğe Hitabe</div>
+        <div class="nutuk-ozet">
+          Atatürk’ün Türk gençliğine seslenişidir. Milli değerlerin, bağımsızlık ve Cumhuriyet’in korunmasının önemini vurgular.
+        </div>
+        <div class="nutuk-detay">
+          Son bölüm, 20 Ekim 1927
+        </div>
       </div>
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Egemenlik kayıtsız şartsız milletindir."</div>
-        <div class="kaynak">Kaynak: 1923 ve sonrası, Cumhuriyetin ilanı ve TBMM'nin açılışında</div>
-        <div class="baglam">Bağlam: TBMM'nin açılışı ve cumhuriyetin temel felsefesini ifade eder.</div>
-      </div>
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Geldikleri gibi giderler."</div>
-        <div class="kaynak">Kaynak: İstanbul'un işgali sırasında, 1919</div>
-        <div class="baglam">Bağlam: İşgal kuvvetlerinin bir gün Türkiye'den çıkartılacağına dair inancını ifade etmiştir.</div>
-      </div>
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Türk, öğün, çalış, güven."</div>
-        <div class="kaynak">Kaynak: 1930'larda yaptığı çeşitli konuşmalar</div>
-        <div class="baglam">Bağlam: Türk milletinin çalışkanlığına ve özgüvenine vurgu yapmıştır.</div>
-      </div>
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Muhtaç olduğun kudret, damarlarındaki asil kanda mevcuttur."</div>
-        <div class="kaynak">Kaynak: Nutuk, 1927 (Gençliğe Hitabe sonu)</div>
-        <div class="baglam">Bağlam: Türk milletinin gücünün kendi tarihinden ve kimliğinden geldiğini belirtmiştir.</div>
-      </div>
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Ordular! İlk hedefiniz Akdeniz'dir, ileri!"</div>
-        <div class="kaynak">Kaynak: Dumlupınar Meydan Muharebesi, 30 Ağustos 1922</div>
-        <div class="baglam">Bağlam: Büyük Taarruz sırasında Türk ordusuna tarihî bir direktif vermiştir.</div>
-      </div>
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Sanatsız kalan bir milletin hayat damarlarından biri kopmuş demektir."</div>
-        <div class="kaynak">Kaynak: Öğretmenlere konuşma, Ankara, 1923</div>
-        <div class="baglam">Bağlam: Sanatın ve kültürün milletler için önemini vurgulamıştır.</div>
-      </div>
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Beni görmek demek mutlaka yüzümü görmek değildir. Benim fikirlerimi, benim duygularımı anlıyorsanız ve hissediyorsanız bu kafidir."</div>
-        <div class="kaynak">Kaynak: İstanbul, 1929 (Gençlerle sohbet)</div>
-        <div class="baglam">Bağlam: Kişisel tapınma yerine fikirlerinin anlaşılmasını istemiştir.</div>
+      <div class="nutuk-card" tabindex="0">
+        <div class="nutuk-baslik">Tarihi Önemi</div>
+        <div class="nutuk-ozet">
+          Nutuk, dönemin tanığı olarak birincil kaynak değerindedir. Milli Mücadele’nin resmi anlatımıdır; Atatürk’ün olaylara bakışını ve Cumhuriyet’in kuruluş felsefesini içerir.
+        </div>
+        <div class="nutuk-detay">
+          Türkiye Cumhuriyeti’nin temel taşlarından biri kabul edilir.
+        </div>
       </div>
     </div>
   </main>
