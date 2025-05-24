@@ -74,50 +74,6 @@
     nav.menu::-webkit-scrollbar {
       display: none;
     }
-    /* Dil seçici */
-    .lang-select-section {
-      position: fixed;
-      top: 15px;
-      right: 20px;
-      z-index: 1300;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255,255,255,0.95);
-      border-radius: 10px;
-      box-shadow: 0 2px 8px #0001;
-      padding: 5px 12px;
-    }
-    .lang-select-label {
-      font-weight: bold;
-      color: #222;
-      font-size: 1em;
-      font-family: Georgia, serif;
-    }
-    .lang-select {
-      padding: 4px 10px 4px 8px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      background: #fff;
-      font-size: 1em;
-      color: #222;
-      outline: none;
-      transition: border 0.2s;
-      cursor: pointer;
-    }
-    .lang-select:focus {
-      border-color: #e30b17;
-    }
-    @media (max-width: 600px) {
-      .lang-select-section {
-        right: 6px;
-        top: 6px;
-        padding: 2px 7px;
-        font-size: .95em;
-      }
-      .lang-select-label { font-size: .93em; }
-      .lang-select { font-size: .95em; }
-    }
     .quote-container {
       position: fixed;
       top: 10px;
@@ -180,6 +136,32 @@
       height: 20px;
       fill: currentColor;
     }
+    @media (max-width: 600px) {
+      .quote-container {
+        max-width: 160px;
+      }
+      .quote-text {
+        font-size: 10px;
+      }
+      .quote-source {
+        font-size: 9px;
+      }
+      .menu-plaka {
+        height: 100px;
+      }
+      .menu-background {
+        height: 50px;
+      }
+      nav.menu {
+        top: 70px;
+        height: 50px;
+      }
+      nav.menu a {
+        padding: 10px 12px 9px 12px;
+        font-size: 13px;
+      }
+    }
+    /* İçerik kısmı için ek konumlandırma */
     .main-content {
       width: 100%;
       max-width: 900px;
@@ -200,7 +182,7 @@
     .main-content h1 {
       font-size:2.15rem;
       font-weight:bold;
-      color:#e30b17;
+      color:#e30b17; /* Başlık kırmızı */
       letter-spacing:.8px;
       margin-bottom:24px;
       text-align:center;
@@ -208,7 +190,7 @@
     .main-content h2 {
       font-size:1.2rem;
       font-weight:bold;
-      color:#e30b17;
+      color:#e30b17; /* Alt başlıklar da kırmızı */
       margin-bottom:15px;
       letter-spacing:.4px;
     }
@@ -232,51 +214,6 @@
       .main-content h2 { font-size:.92rem; }
       .main-content p, .main-content ul { font-size: .98rem; }
     }
-    /* Koyu tema için detaylı uyum */
-    body.dark {
-      background: #181818 !important;
-      color: #f2f2f2 !important;
-    }
-    body.dark .main-content section {
-      background: #232326;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.21);
-    }
-    body.dark .main-content h1,
-    body.dark .main-content h2 {
-      color: #ff3d3c;
-    }
-    body.dark .main-content p,
-    body.dark .main-content ul {
-      color: #e6e6e6;
-    }
-    body.dark nav.menu {
-      background: #181818;
-      border-bottom: 2px solid #353535;
-    }
-    body.dark nav.menu a {
-      color: #f2f2f2;
-    }
-    body.dark nav.menu a.active,
-    body.dark nav.menu a:hover {
-      color: #ff3d3c;
-      border-bottom: 3px solid #ff3d3c;
-      background: transparent;
-    }
-    body.dark .lang-select-section {
-      background: #232326;
-      box-shadow: 0 2px 8px #0004;
-    }
-    body.dark .lang-select-label {
-      color: #ff3d3c;
-    }
-    body.dark .lang-select {
-      background: #232326;
-      color: #fff;
-      border: 1px solid #444;
-    }
-    body.dark .lang-select:focus {
-      border-color: #ff3d3c;
-    }
   </style>
 </head>
 <body>
@@ -285,7 +222,6 @@
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
   <div class="menu-background"></div>
-  
   <div class="quote-container">
     <div class="quote-text" id="quote-text">"Hayatta en hakiki mürşit ilimdir."</div>
     <div class="quote-source" id="quote-source">Atatürk, 1924</div>
@@ -301,129 +237,48 @@
     <a href="kronoloji.html">Kronoloji</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
-  <div class="main-content" id="life-content">
-    <!-- İçerik JS ile doldurulacak -->
+  <div class="main-content">
+    <h1>Atatürk'ün Hayatı</h1>
+    <section>
+      <h2>Çocukluğu ve Eğitimi</h2>
+      <p>
+        Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. İlk öğrenimine mahalle mektebinde başladı, ardından Şemsi Efendi Okulu'na geçti. Babasının ölümü üzerine kısa bir süre Rapla Çiftliği'nde kaldıktan sonra eğitimine Selanik Mülkiye Rüştiyesi'nde devam etti. Askeri eğitime olan ilgisiyle Manastır Askeri İdadisi ve daha sonra İstanbul Harp Okulu'na geçti.
+      </p>
+    </section>
+    <section>
+      <h2>Askerlik ve Trablusgarp</h2>
+      <p>
+        1905 yılında Harp Akademisi'nden kurmay yüzbaşı olarak mezun oldu. Şam, Selanik ve Manastır'da çeşitli görevlerde bulundu. 1911 yılında Trablusgarp Savaşı'nda (bugünkü Libya) İtalyanlara karşı başarılı savunmalar yaptı. Burada gösterdiği kahramanlık, onun yükselişinde önemli bir rol oynadı.
+      </p>
+    </section>
+    <section>
+      <h2>Balkan Savaşları ve I. Dünya Savaşı</h2>
+      <p>
+        Balkan Savaşları'nda Edirne'nin geri alınmasında görev aldı. I. Dünya Savaşı'nda Çanakkale Cephesi'nde gösterdiği üstün askeri deha ve liderlik, Türk milletinin kaderini değiştirdi ve "Anafartalar Kahramanı" olarak ün kazandı. Ardından Kafkas ve Suriye cephelerinde de görev yaptı.
+      </p>
+    </section>
+    <section>
+      <h2>Kurtuluş Savaşı ve Cumhuriyet</h2>
+      <p>
+        Mondros Mütarekesi sonrasında İstanbul'a dönen Mustafa Kemal, 19 Mayıs 1919'da Samsun'a çıkarak milli mücadelenin fiili liderliğini üstlendi. Erzurum ve Sivas Kongreleri'nin ardından Ankara'da Türkiye Büyük Millet Meclisi'ni açtı. Kurtuluş Savaşı'nı başarıyla yönetip 1922'de ülkeyi işgalden kurtardı. 29 Ekim 1923'te Cumhuriyet'i ilan etti ve ilk Cumhurbaşkanı oldu.
+      </p>
+    </section>
+    <section>
+      <h2>Çağdaşlaşma ve Devrimler</h2>
+      <p>
+        Atatürk, Türkiye'yi çağdaş bir ülke yapma hedefiyle çok sayıda toplumsal, hukuksal, kültürel ve ekonomik devrim gerçekleştirdi. Medeni Kanun, harf devrimi, eğitim birliği, kadınlara seçme ve seçilme hakkı, şapka ve kıyafet devrimi gibi yeniliklerle Türk toplumu modernleşti.
+      </p>
+    </section>
+    <section>
+      <h2>Vefatı</h2>
+      <p>
+        Büyük önder Mustafa Kemal Atatürk, 10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayata gözlerini yumdu. Eserleri ve ilkeleriyle Türk milletinin hafızasında ve gönlünde yaşamaya devam etmektedir.
+      </p>
+    </section>
   </div>
   <footer></footer>
   <script>
-    // Çoklu dil hayat içeriği
-    const HAYAT = {
-      tr: {
-        title: "Atatürk'ün Hayatı",
-        sections: [
-          {
-            h2: "Çocukluğu ve Eğitimi",
-            p: "Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. İlk öğrenimine mahalle mektebinde başladı, ardından Şemsi Efendi Okulu'na geçti. Babasının ölümü üzerine kısa bir süre Rapla Çiftliği'nde kaldıktan sonra eğitimine Selanik Mülkiye Rüştiyesi'nde devam etti. Askeri eğitime olan ilgisiyle Manastır Askeri İdadisi ve daha sonra İstanbul Harp Okulu'na geçti."
-          },
-          {
-            h2: "Askerlik ve Trablusgarp",
-            p: "1905 yılında Harp Akademisi'nden kurmay yüzbaşı olarak mezun oldu. Şam, Selanik ve Manastır'da çeşitli görevlerde bulundu. 1911 yılında Trablusgarp Savaşı'nda (bugünkü Libya) İtalyanlara karşı başarılı savunmalar yaptı. Burada gösterdiği kahramanlık, onun yükselişinde önemli bir rol oynadı."
-          },
-          {
-            h2: "Balkan Savaşları ve I. Dünya Savaşı",
-            p: "Balkan Savaşları'nda Edirne'nin geri alınmasında görev aldı. I. Dünya Savaşı'nda Çanakkale Cephesi'nde gösterdiği üstün askeri deha ve liderlik, Türk milletinin kaderini değiştirdi ve \"Anafartalar Kahramanı\" olarak ün kazandı. Ardından Kafkas ve Suriye cephelerinde de görev yaptı."
-          },
-          {
-            h2: "Kurtuluş Savaşı ve Cumhuriyet",
-            p: "Mondros Mütarekesi sonrasında İstanbul'a dönen Mustafa Kemal, 19 Mayıs 1919'da Samsun'a çıkarak milli mücadelenin fiili liderliğini üstlendi. Erzurum ve Sivas Kongreleri'nin ardından Ankara'da Türkiye Büyük Millet Meclisi'ni açtı. Kurtuluş Savaşı'nı başarıyla yönetip 1922'de ülkeyi işgalden kurtardı. 29 Ekim 1923'te Cumhuriyet'i ilan etti ve ilk Cumhurbaşkanı oldu."
-          },
-          {
-            h2: "Çağdaşlaşma ve Devrimler",
-            p: "Atatürk, Türkiye'yi çağdaş bir ülke yapma hedefiyle çok sayıda toplumsal, hukuksal, kültürel ve ekonomik devrim gerçekleştirdi. Medeni Kanun, harf devrimi, eğitim birliği, kadınlara seçme ve seçilme hakkı, şapka ve kıyafet devrimi gibi yeniliklerle Türk toplumu modernleşti."
-          },
-          {
-            h2: "Vefatı",
-            p: "Büyük önder Mustafa Kemal Atatürk, 10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayata gözlerini yumdu. Eserleri ve ilkeleriyle Türk milletinin hafızasında ve gönlünde yaşamaya devam etmektedir."
-          }
-        ]
-      },
-      en: {
-        title: "Atatürk's Life",
-        sections: [
-          {
-            h2: "Childhood and Education",
-            p: "Mustafa Kemal Atatürk was born in 1881 in Thessaloniki. His father was Ali Rıza Efendi and his mother Zübeyde Hanım. He started his primary education at the neighborhood school and then continued at Şemsi Efendi School. After his father's death, he stayed for a short time at Rapla Farm and then continued his education at Selanik Mülkiye Rüştiyesi. His interest in military education led him to Manastır Military School and later to Istanbul Military Academy."
-          },
-          {
-            h2: "Military Service and Tripoli",
-            p: "In 1905, he graduated from the Military Academy as a staff captain. He served in various posts in Damascus, Thessaloniki, and Manastır. In the 1911 Tripoli War (now Libya), he successfully defended against the Italians. His heroism there played a significant role in his rise."
-          },
-          {
-            h2: "Balkan Wars and World War I",
-            p: "He participated in the recapture of Edirne during the Balkan Wars. In World War I, his outstanding military genius and leadership at the Gallipoli Front changed the fate of the Turkish nation and earned him the title 'Hero of Anafartalar.' He also served on the Caucasian and Syrian fronts."
-          },
-          {
-            h2: "War of Independence and the Republic",
-            p: "After the Armistice of Mondros, Mustafa Kemal returned to Istanbul and on 19 May 1919 landed in Samsun to lead the national struggle. Following the Erzurum and Sivas Congresses, he opened the Turkish Grand National Assembly in Ankara. He successfully led the War of Independence and liberated the country from occupation in 1922. On 29 October 1923, he proclaimed the Republic and became its first President."
-          },
-          {
-            h2: "Modernization and Reforms",
-            p: "Aiming to make Turkey a modern country, Atatürk carried out numerous social, legal, cultural, and economic reforms. With innovations such as the Civil Code, alphabet reform, unification of education, granting women suffrage, and clothing reforms, Turkish society modernized."
-          },
-          {
-            h2: "His Death",
-            p: "The great leader Mustafa Kemal Atatürk passed away on 10 November 1938 at Dolmabahçe Palace in Istanbul. With his works and principles, he continues to live on in the memory and hearts of the Turkish people."
-          }
-        ]
-      },
-      az: {
-        title: "Atatürkün Həyatı",
-        sections: [
-          {
-            h2: "Uşaqlığı və Təhsili",
-            p: "Mustafa Kamal Atatürk 1881-ci ildə Salonikdə anadan olub. Atası Əli Rza Əfəndi, anası Zübeydə xanımdır. İlk təhsilini məhəllə məktəbində alıb, sonra Şemsi Əfəndi Məktəbinə keçib. Atasının vəfatından sonra qısa müddət Rapla Çiftliyində qalıb, təhsilini Salonik Mülkiyyə Rüşdiyəsində davam etdirib. Hərbi təhsilə marağı onu Manastır Hərbi Məktəbinə və daha sonra İstanbul Hərb Məktəbinə gətirib."
-          },
-          {
-            h2: "Hərbi Xidmət və Tripoli",
-            p: "1905-ci ildə Hərb Akademiyasını qərargah kapitanı kimi bitirib. Şam, Salonik və Manastırda müxtəlif vəzifələrdə çalışıb. 1911-ci ildə Tripoli müharibəsində (indiki Liviya) italyanlara qarşı uğurla müdafiə edib. Buradakı qəhrəmanlığı onun yüksəlməsində mühüm rol oynadı."
-          },
-          {
-            h2: "Balkan Müharibələri və I Dünya Müharibəsi",
-            p: "Balkan müharibələrində Edirnenin geri alınmasında iştirak edib. I Dünya Müharibəsində Çanaqqala Cəbhəsində göstərdiyi üstün hərbi dahilik və liderlik türk xalqının taleyini dəyişdi və ona 'Anafartalar Qəhrəmanı' adını qazandırdı. Sonra Qafqaz və Suriya cəbhələrində də xidmət edib."
-          },
-          {
-            h2: "Qurtuluş Müharibəsi və Cümhuriyyət",
-            p: "Mondros Müqaviləsindən sonra Mustafa Kamal İstanbula qayıdıb, 1919-cu il mayın 19-da Samsuna çıxaraq milli mübarizənin liderliyini öz üzərinə götürüb. Erzurum və Sivas konqreslərindən sonra Ankarada Türkiyə Böyük Millət Məclisini açıb. Qurtuluş Müharibəsinə uğurla rəhbərlik edib və 1922-ci ildə ölkəni işğaldan azad edib. 29 oktyabr 1923-cü ildə Cümhuriyyəti elan edib və ilk prezident olub."
-          },
-          {
-            h2: "Müasirləşmə və İslahatlar",
-            p: "Atatürk Türkiyəni müasir ölkəyə çevirmək məqsədi ilə çoxsaylı ictimai, hüquqi, mədəni və iqtisadi islahatlar həyata keçirdi. Mülki Qanun, əlifba islahatı, təhsildə birlik, qadınlara səsvermə və seçilmə hüququ, şapka və geyim islahatı kimi yeniliklərlə Türk cəmiyyəti müasirləşdi."
-          },
-          {
-            h2: "Vəfatı",
-            p: "Böyük lider Mustafa Kamal Atatürk 10 noyabr 1938-ci ildə İstanbul Dolmabahçe Sarayında vəfat edib. Əsərləri və prinsipləri ilə Türk xalqının yaddaşında və qəlbində yaşamğa davam edir."
-          }
-        ]
-      }
-    };
-
-    function renderHayat(lang) {
-      const content = document.getElementById("life-content");
-      content.innerHTML = "";
-      const d = HAYAT[lang] || HAYAT.tr;
-      let html = `<h1>${d.title}</h1>`;
-      d.sections.forEach(sec => {
-        html += `<section><h2>${sec.h2}</h2><p>${sec.p}</p></section>`;
-      });
-      content.innerHTML = html;
-    }
-    // Dil seçici
-    function getLang() {
-      return localStorage.getItem("language") || "tr";
-    }
-    function setLang(lang) {
-      localStorage.setItem("language", lang);
-      renderHayat(lang);
-      setLangSelect(lang);
-    }
-    function setLangSelect(lang) {
-      document.getElementById("language").value = lang;
-    }
-    document.getElementById("language").addEventListener("change", function(e){
-      setLang(e.target.value);
-    });
-
-    // Söz animasyonu
+    // Söz animasyonu (tasarıma dokunulmaz)
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
       { text: '"Yurtta sulh, cihanda sulh."', source: "Atatürk, Söylev ve Demeçler" },
@@ -447,22 +302,77 @@
       quoteIndex = (quoteIndex + 1) % quotes.length;
       showQuote(quoteIndex);
     }, 5000);
-
-    // Koyu tema ve yazı boyutu uygulaması (ayarlar sayfası ile uyumlu)
+  </script>
+  <script>
+    // Ortak ayar scripti (tasarıma dokunmadan)
+    const LANGUAGES = {
+      tr: {
+        title: "Ayarlar",
+        theme: "Tema",
+        darkMode: "Koyu Mod",
+        notifications: "Bildirimleri Aç",
+        fontSize: "Yazı Boyutu",
+        language: "Dil",
+        save: "Kaydet",
+        saved: "Ayarlar kaydedildi!",
+        info: "Ayarlarınız tarayıcınızda saklanır.<br>Koyu Mod, Yazı Boyutu ve Dil tüm sayfalara yansır.",
+        options: { normal: "Normal", large: "Büyük", xlarge: "Çok Büyük" },
+        tr: "Türkçe",
+        en: "İngilizce"
+      },
+      en: {
+        title: "Settings",
+        theme: "Theme",
+        darkMode: "Dark Mode",
+        notifications: "Enable Notifications",
+        fontSize: "Font Size",
+        language: "Language",
+        save: "Save",
+        saved: "Settings saved!",
+        info: "Your settings are stored in your browser.<br>Dark Mode, Font Size and Language apply to all pages.",
+        options: { normal: "Normal", large: "Large", xlarge: "Extra Large" },
+        tr: "Turkish",
+        en: "English"
+      }
+    };
+    function getLang() { return localStorage.getItem("language") || "tr"; }
     function applySettings() {
       const isDark = localStorage.getItem("darkMode") === "true";
       const fontSize = localStorage.getItem("fontSize") || "normal";
+      document.body.style.background = isDark ? "#222" : "#fff";
+      document.body.style.color = isDark ? "#fff" : "#222";
       document.body.classList.toggle('dark', isDark);
-      document.body.style.background = isDark ? "#181818" : "#fff";
-      document.body.style.color = isDark ? "#f2f2f2" : "#222";
       switch(fontSize) {
         case 'large': document.body.style.fontSize = "1.18em"; break;
         case 'xlarge': document.body.style.fontSize = "1.32em"; break;
         default: document.body.style.fontSize = "1em";
       }
+      // Fade-in animasyonu (animasyonsuz sayfa için)
+      if (!document.querySelector(".timeline-event") && !document.body.classList.contains("has-fadein")) {
+        document.body.style.opacity = "0";
+        document.body.style.transition = "opacity 0.7s";
+        setTimeout(() => { document.body.style.opacity = "1"; }, 10);
+        document.body.classList.add("has-fadein");
+      }
+      if (document.getElementById("settingsForm")) {
+        const t = LANGUAGES[getLang()];
+        document.querySelector('.settings-title').textContent = t.title;
+        document.querySelectorAll('.section-label')[0].textContent = t.theme;
+        document.querySelector('.toggle-label[for=darkMode]').textContent = t.darkMode;
+        document.querySelectorAll('.section-label')[1].textContent = t.notifications;
+        document.querySelector('.toggle-label[for=notifications]').textContent = t.notifications;
+        document.querySelectorAll('.section-label')[2].textContent = t.fontSize;
+        document.querySelectorAll('.section-label')[3].textContent = t.language;
+        document.getElementById("fontSize").options[0].textContent = t.options.normal;
+        document.getElementById("fontSize").options[1].textContent = t.options.large;
+        document.getElementById("fontSize").options[2].textContent = t.options.xlarge;
+        document.getElementById("settings-save-label").textContent = t.save;
+        document.getElementById("savedMsg").textContent = t.saved;
+        document.querySelector('.settings-info').innerHTML = t.info;
+        document.getElementById("language").options[0].textContent = t.tr;
+        document.getElementById("language").options[1].textContent = t.en;
+      }
     }
-
-    // Footer güncellemesi
     function updateFooterLinks() {
       const footer = document.querySelector("footer");
       if (!footer) return;
@@ -484,12 +394,9 @@
         </a>
       `;
     }
-
     window.addEventListener("DOMContentLoaded", () => {
       applySettings();
       updateFooterLinks();
-      renderHayat(getLang());
-      setLangSelect(getLang());
     });
   </script>
 </body>
