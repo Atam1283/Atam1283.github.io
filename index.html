@@ -16,11 +16,12 @@
       position: fixed;
       top: 10px;
       left: 10px;
-      width: 120px;
+      width: 110px;
       z-index: 1100;
       border-radius: 10px;
       background: #fff;
       padding: 5px;
+      transition: width 0.2s;
     }
     .menu-background {
       position: fixed;
@@ -42,6 +43,11 @@
       z-index: 1000;
       overflow-x: auto;
       white-space: nowrap;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    nav.menu::-webkit-scrollbar {
+      display: none;
     }
     nav.menu a {
       display: inline-block;
@@ -53,12 +59,10 @@
       border-bottom: 3px solid transparent;
       transition: all 0.3s ease;
     }
-    nav.menu a:hover {
+    nav.menu a:hover,
+    nav.menu a.active {
       border-bottom: 3px solid #e30b17;
       color: #e30b17;
-    }
-    nav.menu::-webkit-scrollbar {
-      display: none;
     }
     .quote-container {
       position: fixed;
@@ -122,28 +126,34 @@
       height: 20px;
       fill: currentColor;
     }
-    @media (max-width: 600px) {
-      .quote-container {
-        max-width: 160px;
-      }
-      .quote-text {
-        font-size: 10px;
-      }
-      .quote-source {
-        font-size: 9px;
-      }
-      .menu-background {
-        height: 50px;
-      }
-      nav.menu {
-        top: 70px;
-        height: 50px;
-      }
-      nav.menu a {
-        padding: 10px 12px 9px 12px;
-        font-size: 13px;
-      }
+
+    /* Responsive Design */
+    @media (max-width: 800px) {
+      .logo { width: 70px; }
+      .quote-container { max-width: 120px; top: 8px; right: 4px; }
+      nav.menu a { font-size: 13px; padding: 11px 12px; }
+      .menu-background { top: 60px; height: 46px; }
+      nav.menu { top: 60px; height: 46px; }
     }
+    @media (max-width: 600px) {
+      .logo { width: 54px; top: 5px; left: 5px; padding: 2px; }
+      .quote-container { max-width: 82px; top: 2px; right: 2px; }
+      .quote-text { font-size: 9px; }
+      .quote-source { font-size: 7px; }
+      .menu-background { top: 48px; height: 37px; }
+      nav.menu { top: 48px; height: 37px; }
+      nav.menu a { font-size: 10px; padding: 7px 7px; }
+      #hero-content h1 { font-size: 1.2rem !important; }
+      #hero-content h2 { font-size: .9rem !important; }
+      #hero-content p { font-size: .97rem !important; }
+      #hero-content form input, #hero-content form button { font-size: .98rem !important; }
+    }
+    @media (max-width: 420px) {
+      .main-content, #hero-content { padding-left: 3vw; padding-right: 3vw; }
+      .logo { width: 40px; }
+      .quote-container { max-width: 54px; }
+    }
+
     /* Animasyonlar */
     @keyframes fadeInHero { from { opacity: 0; transform: scale(.98); } to { opacity: 1; transform: scale(1); } }
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
@@ -166,7 +176,7 @@
   </div>
 
   <nav class="menu">
-    <a href="index.html">Anasayfa</a>
+    <a href="index.html" class="active">Anasayfa</a>
     <a href="hayati.html">Hayatı</a>
     <a href="galeri.html">Galeri</a>
     <a href="sozleri.html">Sözleri</a>
@@ -177,9 +187,9 @@
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
 
-  <!-- ANA İÇERİK ALANI (sadece kırmızı işaretli alan) -->
-  <div id="hero-content" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;animation:fadeInHero 1.2s cubic-bezier(.62,.04,.36,1.09);">
-    <h1 style="font-size:2.3rem;font-weight:bold;color:#111;letter-spacing:1px;margin-top:40px; margin-bottom:10px;animation:titlePop 1s cubic-bezier(.77,-0.13,.22,1.12);">
+  <!-- ANA İÇERİK ALANI -->
+  <div id="hero-content" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;animation:fadeInHero 1.2s cubic-bezier(.62,.04,.36,1.09);padding:10px;">
+    <h1 style="font-size:2.3rem;font-weight:bold;color:#111;letter-spacing:1px;margin-top:40px; margin-bottom:10px;animation:titlePop 1s cubic-bezier(.77,-0.13,.22,1.12);" id="main-title">
       Mustafa Kemal Atatürk
     </h1>
     <h2 style="font-size:1.1rem;font-weight:bold;color:#191919;margin-bottom:20px;letter-spacing:.5px;animation:fadeInUp 1s .3s both;">
