@@ -22,13 +22,12 @@
       background: #fff;
       padding: 5px;
     }
-    /* Menü arkasına beyaz plaka */
     .menu-background {
       position: fixed;
       top: 70px;
       left: 0;
       width: 100vw;
-      height: 50px; /* Menü yüksekliği ile aynı olmalı */
+      height: 50px;
       background: #fff;
       z-index: 999;
       pointer-events: none;
@@ -61,31 +60,34 @@
     nav.menu::-webkit-scrollbar {
       display: none;
     }
-    .quote-box {
+    .quote-container {
       position: fixed;
       top: 10px;
       right: 10px;
-      color: #222;
-      font-size: 10px;
-      max-width: 250px;
       text-align: right;
-      font-family: Arial, sans-serif;
       z-index: 1200;
+      max-width: 250px;
+    }
+    .quote-text {
+      color: #222;
+      font-size: 13px;
+      font-family: Arial, sans-serif;
+      line-height: 1.2;
+      margin-bottom: 2px;
+      transition: opacity 0.5s;
     }
     .quote-source {
-      font-size: 9px;
       color: #666;
-      margin-top: 3px;
-    }
-
-    .fade {
-      opacity: 1;
-      transition: opacity 0.5s ease;
+      font-size: 11px;
+      font-family: Arial, sans-serif;
+      transition: opacity 0.5s;
     }
     .fade-out {
-      opacity: 0;
+      opacity: 0 !important;
     }
-
+    .fade-in {
+      opacity: 1 !important;
+    }
     footer {
       position: fixed;
       bottom: 0;
@@ -121,17 +123,25 @@
       fill: currentColor;
     }
     @media (max-width: 600px) {
-      .quote-box {
-        font-size: 9px;
+      .quote-container {
         max-width: 160px;
       }
+      .quote-text {
+        font-size: 10px;
+      }
+      .quote-source {
+        font-size: 9px;
+      }
       .menu-background {
-        height: 42px;
-        top: 62px;
+        height: 50px;
       }
       nav.menu {
-        height: 42px;
-        top: 62px;
+        top: 70px;
+        height: 50px;
+      }
+      nav.menu a {
+        padding: 10px 12px 9px 12px;
+        font-size: 13px;
       }
     }
   </style>
@@ -144,10 +154,10 @@
   <!-- Menü arkasında beyaz plaka -->
   <div class="menu-background"></div>
 
-  <!-- Söz kutusu -->
-  <div class="quote-box fade" id="quote-box">
-    <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
-    <div class="quote-source" id="quote-source">— TBMM, 1920</div>
+  <!-- Söz kutusu (yazı ve kaynak) -->
+  <div class="quote-container">
+    <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
+    <div class="quote-source" id="quote-source">TBMM, 1920</div>
   </div>
 
   <nav class="menu">
@@ -161,6 +171,8 @@
     <a href="kronoloji.html">Kronoloji</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
+
+  <!-- İçerik yok, menü ve plaka eski yerinde -->
 
   <footer>
     <a href="mailto:email@example.com" aria-label="Gmail">
@@ -179,36 +191,30 @@
       </svg>
     </a>
   </footer>
-
   <script>
     const quotes = [
-      { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "— TBMM, 1920" },
-      { text: '"Yurtta sulh, cihanda sulh."', source: "— Atatürk" },
-      { text: '"Hayatta en hakiki mürşit ilimdir."', source: "— Atatürk" },
-      { text: '"Türk milleti çalışkandır, zekidir."', source: "— Atatürk" }
+      { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
+      { text: '"Yurtta sulh, cihanda sulh."', source: "Atatürk, Söylev ve Demeçler" },
+      { text: '"Hayatta en hakiki mürşit ilimdir."', source: "Atatürk, 1924" },
+      { text: '"Türk milleti çalışkandır, zekidir."', source: "Atatürk, 1933" }
     ];
-
     let quoteIndex = 0;
-    const quoteBox = document.getElementById("quote-box");
     const quoteText = document.getElementById("quote-text");
     const quoteSource = document.getElementById("quote-source");
-
-    function updateQuote() {
-      // Fade out
-      quoteBox.classList.add("fade-out");
-
+    function showQuote(index) {
+      quoteText.classList.add('fade-out');
+      quoteSource.classList.add('fade-out');
       setTimeout(() => {
-        // Yeni sözü ayarla
-        quoteIndex = (quoteIndex + 1) % quotes.length;
-        quoteText.textContent = quotes[quoteIndex].text;
-        quoteSource.textContent = quotes[quoteIndex].source;
-
-        // Fade in
-        quoteBox.classList.remove("fade-out");
-      }, 500);
+        quoteText.textContent = quotes[index].text;
+        quoteSource.textContent = quotes[index].source;
+        quoteText.classList.remove('fade-out');
+        quoteSource.classList.remove('fade-out');
+      }, 450);
     }
-
-    setInterval(updateQuote, 5000);
+    setInterval(() => {
+      quoteIndex = (quoteIndex + 1) % quotes.length;
+      showQuote(quoteIndex);
+    }, 5000);
   </script>
 </body>
 </html>
