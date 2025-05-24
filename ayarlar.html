@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
-  <title>Atatürk</title>
+  <title>Ayarlar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     * { box-sizing: border-box; }
@@ -24,22 +24,22 @@
     }
     .menu-background {
       position: fixed;
-      top: 70px;
+      top: 0;
       left: 0;
       width: 100vw;
-      height: 50px;
+      height: 120px;
       background: #fff;
-      z-index: 999;
+      z-index: 1099;
       pointer-events: none;
     }
     nav.menu {
       position: fixed;
       top: 70px;
       left: 0;
-      width: 100%;
+      width: 100vw;
       background: #fff;
       border-bottom: 2px solid #d9d9d9;
-      z-index: 1000;
+      z-index: 1101;
       overflow-x: auto;
       white-space: nowrap;
     }
@@ -53,7 +53,7 @@
       border-bottom: 3px solid transparent;
       transition: all 0.3s ease;
     }
-    nav.menu a:hover {
+    nav.menu a:hover, nav.menu a.active {
       border-bottom: 3px solid #e30b17;
       color: #e30b17;
     }
@@ -87,6 +87,136 @@
     }
     .fade-in {
       opacity: 1 !important;
+    }
+    main {
+      margin: 140px auto 0 auto;
+      max-width: 500px;
+      padding: 0 20px 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .settings-card {
+      width: 100%;
+      background: #fafafa;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      padding: 38px 28px 32px 28px;
+      margin-top: 32px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 32px;
+    }
+    .settings-title {
+      font-size: 1.6em;
+      font-weight: bold;
+      color: #e30b17;
+      text-align: center;
+      margin-bottom: 12px;
+      font-family: Georgia, serif;
+    }
+    .settings-section {
+      margin-bottom: 18px;
+    }
+    .settings-section:last-child { margin-bottom: 0;}
+    .section-label {
+      font-weight: bold;
+      color: #222;
+      font-size: 1.09em;
+      margin-bottom: 7px;
+      display: block;
+      font-family: Georgia, serif;
+    }
+    .toggle-switch {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .toggle-switch input[type="checkbox"] {
+      width: 46px;
+      height: 24px;
+      appearance: none;
+      background: #e0e0e0;
+      border-radius: 16px;
+      position: relative;
+      outline: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .toggle-switch input[type="checkbox"]:checked {
+      background: #e30b17;
+    }
+    .toggle-switch input[type="checkbox"]::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border-radius: 50%;
+      transition: left 0.3s;
+      box-shadow: 0 0 3px #bbb;
+    }
+    .toggle-switch input[type="checkbox"]:checked::before {
+      left: 26px;
+    }
+    .toggle-label {
+      font-size: 1em;
+      color: #444;
+      font-family: Arial, sans-serif;
+    }
+    .settings-info {
+      font-size: 0.95em;
+      color: #888;
+      text-align: center;
+      margin-top: 30px;
+      margin-bottom: 0;
+    }
+    .save-btn {
+      background: #e30b17;
+      color: #fff;
+      border: none;
+      border-radius: 28px;
+      padding: 13px 0;
+      font-size: 1.12em;
+      font-weight: bold;
+      margin-top: 16px;
+      width: 100%;
+      cursor: pointer;
+      transition: background 0.23s;
+      box-shadow: 0 2px 10px rgba(227,11,23,0.13);
+    }
+    .save-btn:hover {
+      background: #b4000f;
+    }
+    .saved-message {
+      display: none;
+      text-align: center;
+      color: #14a33c;
+      font-weight: bold;
+      margin-top: 10px;
+      font-size: 1.1em;
+      letter-spacing: 0.03em;
+      transition: opacity 0.3s;
+    }
+    .saved-message.show {
+      display: block;
+      opacity: 1;
+      animation: fadeOutMsg 2.5s forwards;
+    }
+    @keyframes fadeOutMsg {
+      0% { opacity: 1;}
+      80% { opacity: 1;}
+      100% { opacity: 0;}
+    }
+    @media (max-width: 700px) {
+      main { margin-top: 110px;}
+      .settings-card { padding: 20px 8px;}
+      .settings-title { font-size: 1.18em;}
     }
     footer {
       position: fixed;
@@ -133,10 +263,10 @@
         font-size: 9px;
       }
       .menu-background {
-        height: 50px;
+        height: 100px;
       }
       nav.menu {
-        top: 70px;
+        top: 60px;
         height: 50px;
       }
       nav.menu a {
@@ -150,16 +280,11 @@
   <a href="index.html" class="logo">
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
-
-  <!-- Menü arkasında beyaz plaka -->
   <div class="menu-background"></div>
-
-  <!-- Söz kutusu (yazı ve kaynak) -->
   <div class="quote-container">
     <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
     <div class="quote-source" id="quote-source">TBMM, 1920</div>
   </div>
-
   <nav class="menu">
     <a href="index.html">Anasayfa</a>
     <a href="hayati.html">Hayatı</a>
@@ -169,11 +294,43 @@
     <a href="devrimler.html">Devrimleri</a>
     <a href="nutuk.html">Nutuk</a>
     <a href="kronoloji.html">Kronoloji</a>
-    <a href="ayarlar.html">Ayarlar</a>
+    <a href="ayarlar.html" class="active">Ayarlar</a>
   </nav>
-
-  <!-- İçerik yok, menü ve plaka eski yerinde -->
-
+  <main>
+    <div class="settings-card">
+      <div class="settings-title">Ayarlar</div>
+      <form id="settingsForm" autocomplete="off">
+        <div class="settings-section">
+          <span class="section-label">Tema</span>
+          <div class="toggle-switch">
+            <input type="checkbox" id="darkMode" />
+            <label class="toggle-label" for="darkMode">Koyu Mod</label>
+          </div>
+        </div>
+        <div class="settings-section">
+          <span class="section-label">Bildirimler</span>
+          <div class="toggle-switch">
+            <input type="checkbox" id="notifications" />
+            <label class="toggle-label" for="notifications">Bildirimleri Aç</label>
+          </div>
+        </div>
+        <div class="settings-section">
+          <span class="section-label">Yazı Boyutu</span>
+          <select id="fontSize" style="padding:6px 12px;border-radius:8px;border:1px solid #ccc;font-size:1em;">
+            <option value="normal">Normal</option>
+            <option value="large">Büyük</option>
+            <option value="xlarge">Çok Büyük</option>
+          </select>
+        </div>
+        <button type="submit" class="save-btn">Kaydet</button>
+        <div id="savedMsg" class="saved-message">Ayarlar kaydedildi!</div>
+      </form>
+      <p class="settings-info">
+        Ayarlarınız tarayıcınızda saklanır.<br>
+        Koyu Mod ve Yazı Boyutu tüm sayfalara yansır.
+      </p>
+    </div>
+  </main>
   <footer>
     <a href="mailto:email@example.com" aria-label="Gmail">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -192,6 +349,7 @@
     </a>
   </footer>
   <script>
+    // Söz kutusu animasyonu için
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
       { text: '"Yurtta sulh, cihanda sulh."', source: "Atatürk, Söylev ve Demeçler" },
@@ -215,6 +373,48 @@
       quoteIndex = (quoteIndex + 1) % quotes.length;
       showQuote(quoteIndex);
     }, 5000);
+
+    // Ayarlar kaydetme ve uygulama
+    function applySettings() {
+      const isDark = localStorage.getItem("darkMode") === "true";
+      const fontSize = localStorage.getItem("fontSize") || "normal";
+      document.body.style.background = isDark ? "#222" : "#fff";
+      document.body.style.color = isDark ? "#fff" : "#222";
+      if (isDark) {
+        document.body.classList.add('dark');
+      } else {
+        document.body.classList.remove('dark');
+      }
+      switch(fontSize) {
+        case 'large':
+          document.body.style.fontSize = "1.18em";
+          break;
+        case 'xlarge':
+          document.body.style.fontSize = "1.32em";
+          break;
+        default:
+          document.body.style.fontSize = "1em";
+      }
+    }
+    function loadSettings() {
+      document.getElementById("darkMode").checked = localStorage.getItem("darkMode") === "true";
+      document.getElementById("notifications").checked = localStorage.getItem("notifications") === "true";
+      document.getElementById("fontSize").value = localStorage.getItem("fontSize") || "normal";
+      applySettings();
+    }
+    document.getElementById("settingsForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      localStorage.setItem("darkMode", document.getElementById("darkMode").checked);
+      localStorage.setItem("notifications", document.getElementById("notifications").checked);
+      localStorage.setItem("fontSize", document.getElementById("fontSize").value);
+      applySettings();
+      const msg = document.getElementById("savedMsg");
+      msg.classList.add("show");
+      setTimeout(() => { msg.classList.remove("show"); }, 2500);
+    });
+
+    // Hemen ayarları uygula
+    loadSettings();
   </script>
 </body>
 </html>
