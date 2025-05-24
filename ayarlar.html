@@ -215,6 +215,34 @@
       80% { opacity: 1;}
       100% { opacity: 0;}
     }
+    /* Koyu tema için detaylı uyum */
+    body.dark {
+      background: #181818 !important;
+      color: #f2f2f2 !important;
+    }
+    body.dark .settings-card {
+      background: #232326;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.21);
+    }
+    body.dark .settings-title {
+      color: #ff3d3c;
+    }
+    body.dark .section-label {
+      color: #ff3d3c;
+    }
+    body.dark .toggle-label {
+      color: #e6e6e6;
+    }
+    body.dark .settings-info {
+      color: #bcbcbc;
+    }
+    body.dark .save-btn {
+      background: #ff3d3c;
+      color: #fff;
+    }
+    body.dark .save-btn:hover {
+      background: #b4000f;
+    }
     @media (max-width: 700px) {
       main { margin-top: 110px;}
       .settings-card { padding: 20px 8px;}
@@ -276,6 +304,49 @@
         font-size: 13px;
       }
     }
+    /* Dil seçici stilleri */
+    .lang-select-section {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 22px;
+      margin-top: -14px;
+      justify-content: center;
+    }
+    .lang-select-label {
+      font-weight: bold;
+      color: #222;
+      font-size: 1em;
+      font-family: Georgia, serif;
+    }
+    .lang-select {
+      padding: 4px 10px 4px 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background: #fff;
+      font-size: 1em;
+      color: #222;
+      outline: none;
+      transition: border 0.2s;
+      cursor: pointer;
+    }
+    .lang-select:focus {
+      border-color: #e30b17;
+    }
+    body.dark .lang-select-section {
+      background: transparent;
+    }
+    body.dark .lang-select-label {
+      color: #ff3d3c;
+    }
+    body.dark .lang-select {
+      background: #232326;
+      color: #fff;
+      border: 1px solid #444;
+    }
+    body.dark .lang-select:focus {
+      border-color: #ff3d3c;
+    }
   </style>
 </head>
 <body>
@@ -300,6 +371,14 @@
   </nav>
   <main>
     <div class="settings-card">
+      <div class="lang-select-section">
+        <label class="lang-select-label" for="language">Dil:</label>
+        <select id="language" class="lang-select">
+          <option value="tr">Türkçe</option>
+          <option value="en">English</option>
+          <option value="az">Azərbaycan dili</option>
+        </select>
+      </div>
       <div class="settings-title">Ayarlar</div>
       <form id="settingsForm" autocomplete="off">
         <div class="settings-section">
@@ -329,7 +408,7 @@
       </form>
       <p class="settings-info">
         Ayarlarınız tarayıcınızda saklanır.<br>
-        Koyu Mod ve Yazı Boyutu tüm sayfalara yansır.
+        Koyu Mod, Yazı Boyutu ve Dil tüm sayfalara yansır.
       </p>
     </div>
   </main>
@@ -364,8 +443,9 @@
     function applySettings() {
       const isDark = localStorage.getItem("darkMode") === "true";
       const fontSize = localStorage.getItem("fontSize") || "normal";
-      document.body.style.background = isDark ? "#222" : "#fff";
-      document.body.style.color = isDark ? "#fff" : "#222";
+      const language = localStorage.getItem("language") || "tr";
+      document.body.style.background = isDark ? "#181818" : "#fff";
+      document.body.style.color = isDark ? "#f2f2f2" : "#222";
       if (isDark) {
         document.body.classList.add('dark');
       } else {
@@ -381,11 +461,13 @@
         default:
           document.body.style.fontSize = "1em";
       }
+      document.getElementById("language").value = language;
     }
     function loadSettings() {
       document.getElementById("darkMode").checked = localStorage.getItem("darkMode") === "true";
       document.getElementById("notifications").checked = localStorage.getItem("notifications") === "true";
       document.getElementById("fontSize").value = localStorage.getItem("fontSize") || "normal";
+      document.getElementById("language").value = localStorage.getItem("language") || "tr";
       applySettings();
     }
     document.getElementById("settingsForm").addEventListener("submit", function(e){
@@ -393,46 +475,23 @@
       localStorage.setItem("darkMode", document.getElementById("darkMode").checked);
       localStorage.setItem("notifications", document.getElementById("notifications").checked);
       localStorage.setItem("fontSize", document.getElementById("fontSize").value);
+      localStorage.setItem("language", document.getElementById("language").value);
       applySettings();
       const msg = document.getElementById("savedMsg");
       msg.classList.add("show");
       setTimeout(() => { msg.classList.remove("show"); }, 2500);
     });
 
+    // Dil seçici değişikliği
+    document.getElementById("language").addEventListener("change", function(){
+      localStorage.setItem("language", this.value);
+      applySettings();
+    });
+
     // Hemen ayarları uygula
     loadSettings();
 
     // Ortak ayar scripti (footer otomatik güncellenir)
-    const LANGUAGES = {
-      tr: {
-        title: "Ayarlar",
-        theme: "Tema",
-        darkMode: "Koyu Mod",
-        notifications: "Bildirimleri Aç",
-        fontSize: "Yazı Boyutu",
-        language: "Dil",
-        save: "Kaydet",
-        saved: "Ayarlar kaydedildi!",
-        info: "Ayarlarınız tarayıcınızda saklanır.<br>Koyu Mod, Yazı Boyutu ve Dil tüm sayfalara yansır.",
-        options: { normal: "Normal", large: "Büyük", xlarge: "Çok Büyük" },
-        tr: "Türkçe",
-        en: "İngilizce"
-      },
-      en: {
-        title: "Settings",
-        theme: "Theme",
-        darkMode: "Dark Mode",
-        notifications: "Enable Notifications",
-        fontSize: "Font Size",
-        language: "Language",
-        save: "Save",
-        saved: "Settings saved!",
-        info: "Your settings are stored in your browser.<br>Dark Mode, Font Size and Language apply to all pages.",
-        options: { normal: "Normal", large: "Large", xlarge: "Extra Large" },
-        tr: "Turkish",
-        en: "English"
-      }
-    };
     function updateFooterLinks() {
       const footer = document.querySelector("footer");
       if (!footer) return;
