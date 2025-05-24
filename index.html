@@ -190,19 +190,33 @@
       <span style="font-weight:bold;color:#e30b17;">"En büyük eserim Cumhuriyet'tir."</span> diyerek bizlere çağdaş ve özgür bir ülke armağan etti.<br>
       Atatürk'ün fikirleri ve ilkeleriyle geleceğe umutla bakıyoruz.
     </p>
-    <div style="display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin-bottom:15px;">
-      <a href="hayati.html" style="background:#fff;border:2px solid #e30b17;border-radius:14px;padding:18px 34px;font-weight:bold;color:#e30b17;font-size:1.1rem;box-shadow:0 2px 14px #e30b1720;text-decoration:none;transition:.2s;display:flex;align-items:center;gap:10px;animation:fadeInCard 1s .7s both;">
-        <span style="font-size:1.4rem;">📖</span> Hayatı
-      </a>
-      <a href="devrimler.html" style="background:#fff;border:2px solid #222;border-radius:14px;padding:18px 34px;font-weight:bold;color:#222;font-size:1.1rem;box-shadow:0 2px 14px #19191910;text-decoration:none;transition:.2s;display:flex;align-items:center;gap:10px;animation:fadeInCard 1s .85s both;">
-        <span style="font-size:1.4rem;">⚡</span> Devrimleri
-      </a>
-      <a href="sozleri.html" style="background:#fff;border:2px solid #aaa;border-radius:14px;padding:18px 34px;font-weight:bold;color:#555;font-size:1.1rem;box-shadow:0 2px 14px #5552;text-decoration:none;transition:.2s;display:flex;align-items:center;gap:10px;animation:fadeInCard 1s 1s both;">
-        <span style="font-size:1.4rem;">💬</span> Sözleri
-      </a>
-    </div>
-    <div style="color:#e30b17;font-weight:bold;font-size:1.05rem;margin-top:16px;letter-spacing:.3px;animation:fadeInUp 1.1s 1.1s both;">
-      <span style="font-size:1.25rem;">🇹🇷</span> Sonsuza dek izindeyiz!
+
+    <!-- Arama Motoru Başlangıç -->
+    <form id="aramaForm" style="width:100%;max-width:370px;margin:25px auto 10px auto;display:flex;align-items:center;gap:0;animation:fadeInUp 1s .7s both;"
+          action="https://www.google.com/search" method="get" target="_blank" autocomplete="off">
+      <input 
+        type="text"
+        name="q"
+        placeholder="Atatürk hakkında ara..."
+        style="flex:1;padding:14px 16px;font-size:1.08rem;border-radius:24px 0 0 24px;border:2px solid #e30b17;border-right:0;outline:none;transition:box-shadow .2s;"
+        required
+        onfocus="this.style.boxShadow='0 0 0 2px #e30b17a8'"
+        onblur="this.style.boxShadow='none'"
+      />
+      <button 
+        type="submit"
+        style="padding:0 18px;height:46px;border:none;background:#e30b17;color:#fff;font-size:1.1rem;font-weight:bold;border-radius:0 24px 24px 0;cursor:pointer;transition:background .2s;"
+        onmouseover="this.style.background='#c10812'"
+        onmouseout="this.style.background='#e30b17'"
+        aria-label="Ara"
+      >
+        <span style="font-size:1.3rem;">🔍</span>
+      </button>
+    </form>
+    <!-- Arama Motoru Son -->
+
+    <div style="color:#e30b17;font-weight:bold;font-size:1.08rem;margin-top:32px;letter-spacing:.3px;animation:fadeInUp 1.1s 1.1s both;display:flex;align-items:center;gap:8px;">
+      <span style="font-size:1.25rem;">🇹🇷</span> Türk gençleri olarak sonsuza dek izindeyiz!
     </div>
   </div>
   <!-- ANA İÇERİK ALANI SONU -->
