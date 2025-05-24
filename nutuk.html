@@ -22,6 +22,17 @@
       background: #fff;
       padding: 5px;
     }
+    /* Menü arkasına beyaz plaka */
+    .menu-background {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 100vw;
+      height: 50px; /* Menü yüksekliği ile aynı olmalı */
+      background: #fff;
+      z-index: 999;
+      pointer-events: none;
+    }
     nav.menu {
       position: fixed;
       top: 70px;
@@ -114,6 +125,14 @@
         font-size: 9px;
         max-width: 160px;
       }
+      .menu-background {
+        height: 42px;
+        top: 62px;
+      }
+      nav.menu {
+        height: 42px;
+        top: 62px;
+      }
     }
   </style>
 </head>
@@ -121,6 +140,9 @@
   <a href="index.html" class="logo">
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
+
+  <!-- Menü arkasında beyaz plaka -->
+  <div class="menu-background"></div>
 
   <!-- Söz kutusu -->
   <div class="quote-box fade" id="quote-box">
