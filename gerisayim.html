@@ -1,138 +1,214 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mustafa Kemal Atatürk - Geri Sayım</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Geri Sayım sayfasına özel stil */
-        #countdown-container {
-            background-color: #1c1c1c; /* İçerik arka planı */
-            padding: 50px; /* Daha fazla boşluk */
-            border-radius: 10px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.5);
-            margin-top: 50px;
-            text-align: center;
-            border: 1px solid #3a3a3a;
-        }
-        #countdown {
-            display: flex;
-            justify-content: center;
-            gap: 40px; /* Boşluk artırıldı */
-            margin-top: 40px;
-            flex-wrap: wrap; /* Küçük ekranlarda alt alta geçsin */
-        }
-        .countdown-item {
-            background-color: #e74c3c; /* Kırmızı kutular */
-            color: #fff;
-            padding: 25px 35px; /* Daha büyük */
-            border-radius: 8px;
-            font-size: 3em; /* Daha büyük sayı */
-            font-weight: bold;
-            min-width: 120px; /* Minimum genişlik */
-            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-            border: 2px solid #f0f0f0; /* Beyaz kenarlık */
-            transition: transform 0.2s ease;
-        }
-        .countdown-item:hover {
-            transform: scale(1.05); /* Üzerine gelindiğinde büyüme efekti */
-        }
-        .countdown-item span {
-            display: block;
-            font-size: 0.4em;
-            font-weight: normal;
-            margin-top: 8px; /* Boşluk artırıldı */
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: rgba(255, 255, 255, 0.9); /* Hafif şeffaf beyaz */
-        }
+  <meta charset="utf-8" />
+  <title>Atatürk</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      padding-bottom: 80px;
+    }
+    .logo {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      width: 120px;
+      z-index: 1100;
+      border-radius: 10px;
+      background: #fff;
+      padding: 5px;
+    }
+    /* Menü arkasına beyaz plaka */
+    .menu-background {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 100vw;
+      height: 50px; /* Menü yüksekliği ile aynı olmalı */
+      background: #fff;
+      z-index: 999;
+      pointer-events: none;
+    }
+    nav.menu {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-bottom: 2px solid #d9d9d9;
+      z-index: 1000;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    nav.menu a {
+      display: inline-block;
+      padding: 14px 20px;
+      color: #000;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s ease;
+    }
+    nav.menu a:hover {
+      border-bottom: 3px solid #e30b17;
+      color: #e30b17;
+    }
+    nav.menu::-webkit-scrollbar {
+      display: none;
+    }
+    .quote-box {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      color: #222;
+      font-size: 10px;
+      max-width: 250px;
+      text-align: right;
+      font-family: Arial, sans-serif;
+      z-index: 1200;
+    }
+    .quote-source {
+      font-size: 9px;
+      color: #666;
+      margin-top: 3px;
+    }
 
-        #countdown-message {
-            margin-top: 40px;
-            font-size: 1.4em; /* Daha büyük mesaj */
-            color: #f0f0f0;
-            font-weight: bold;
-        }
+    .fade {
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+    .fade-out {
+      opacity: 0;
+    }
 
-        @media (max-width: 600px) {
-            #countdown {
-                gap: 20px;
-            }
-            .countdown-item {
-                font-size: 2.5em;
-                padding: 20px 25px;
-                min-width: 100px;
-            }
-        }
-    </style>
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      z-index: 1000;
+    }
+    footer a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #888;
+      border-radius: 50%;
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    footer a:hover {
+      border-color: #e30b17;
+      color: #e30b17;
+    }
+    footer svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+    @media (max-width: 600px) {
+      .quote-box {
+        font-size: 9px;
+        max-width: 160px;
+      }
+      .menu-background {
+        height: 42px;
+        top: 62px;
+      }
+      nav.menu {
+        height: 42px;
+        top: 62px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="index.html">Ana Sayfa</a>
-            <a href="galeri.html">Galeri</a>
-            <a href="hayati.html">Hayatı</a>
-            <a href="gerisayim.html" class="active">Geri Sayım</a>
-            <a href="ayarlar.html">Ayarlar</a>
-        </nav>
-    </header>
+  <a href="index.html" class="logo">
+    <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
+  </a>
 
-    <main>
-        <section id="countdown-container">
-            <h2>Geri Sayım</h2>
-            <p>Ulu Önder Gazi Mustafa Kemal Atatürk'ü saygı ve minnetle anma gününe kalan süre:</p>
+  <!-- Menü arkasında beyaz plaka -->
+  <div class="menu-background"></div>
 
-            <div id="countdown">
-                <div class="countdown-item">
-                    <span id="days">00</span>
-                    <span>Gün</span>
-                </div>
-                <div class="countdown-item">
-                    <span id="hours">00</span>
-                    <span>Saat</span>
-                </div>
-                <div class="countdown-item">
-                    <span id="minutes">00</span>
-                    <span>Dakika</span>
-                </div>
-                <div class="countdown-item">
-                    <span id="seconds">00</span>
-                    <span>Saniye</span>
-                </div>
-            </div>
-            <p id="countdown-message" style="margin-top: 30px; font-size: 1.2em; color: #f0f0f0;"></p>
-        </section>
-    </main>
+  <!-- Söz kutusu -->
+  <div class="quote-box fade" id="quote-box">
+    <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
+    <div class="quote-source" id="quote-source">— TBMM, 1920</div>
+  </div>
 
-    <footer>
-        <p>&copy; 2025 Mustafa Kemal Atatürk Sayfası. Tüm hakları saklıdır.</p>
-    </footer>
+  <nav class="menu">
+    <a href="index.html">Anasayfa</a>
+    <a href="hayati.html">Hayatı</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="sozleri.html">Sözleri</a>
+    <a href="eserleri.html">Eserleri</a>
+    <a href="devrimler.html">Devrimleri</a>
+    <a href="nutuk.html">Nutuk</a>
+    <a href="kronoloji.html">Kronoloji</a>
+    <a href="ayarlar.html">Ayarlar</a>
+  </nav>
 
-    <script>
-        // JavaScript ile geri sayım işlevi
-        const countdownDate = new Date("November 10, 2025 09:05:00").getTime(); // 10 Kasım 09:05
+  <footer>
+    <a href="mailto:email@example.com" aria-label="Gmail">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/>
+      </svg>
+    </a>
+    <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+      </svg>
+    </a>
+    <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M22 12A10 10 0 1 0 10 22v-7h-2v-3h2v-2c0-2.2 1.3-3.5 3.3-3.5.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.7h2.6L15 15h-2v7a10 10 0 0 0 9-10z"/>
+      </svg>
+    </a>
+  </footer>
 
-        const x = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = countdownDate - now;
+  <script>
+    const quotes = [
+      { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "— TBMM, 1920" },
+      { text: '"Yurtta sulh, cihanda sulh."', source: "— Atatürk" },
+      { text: '"Hayatta en hakiki mürşit ilimdir."', source: "— Atatürk" },
+      { text: '"Türk milleti çalışkandır, zekidir."', source: "— Atatürk" }
+    ];
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    let quoteIndex = 0;
+    const quoteBox = document.getElementById("quote-box");
+    const quoteText = document.getElementById("quote-text");
+    const quoteSource = document.getElementById("quote-source");
 
-            document.getElementById("days").innerHTML = String(days).padStart(2, '0');
-            document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
-            document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
-            document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
+    function updateQuote() {
+      // Fade out
+      quoteBox.classList.add("fade-out");
 
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("countdown").innerHTML = "<p>Ulu Önder Mustafa Kemal Atatürk'ü saygı ve minnetle anıyoruz.</p>";
-                document.getElementById("countdown-message").innerHTML = ""; // Mesajı boşalt
-            }
-        }, 1000);
-    </script>
+      setTimeout(() => {
+        // Yeni sözü ayarla
+        quoteIndex = (quoteIndex + 1) % quotes.length;
+        quoteText.textContent = quotes[quoteIndex].text;
+        quoteSource.textContent = quotes[quoteIndex].source;
+
+        // Fade in
+        quoteBox.classList.remove("fade-out");
+      }, 500);
+    }
+
+    setInterval(updateQuote, 5000);
+  </script>
 </body>
 </html>
