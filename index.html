@@ -207,6 +207,7 @@
   </div>
   <footer></footer>
   <script>
+    // Söz animasyonu
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
       { text: '"Yurtta sulh, cihanda sulh."', source: "Atatürk, Söylev ve Demeçler" },
@@ -230,7 +231,9 @@
       quoteIndex = (quoteIndex + 1) % quotes.length;
       showQuote(quoteIndex);
     }, 5000);
-
+  </script>
+  <script>
+    // Çoklu dil desteği (TR/EN/AZ)
     const LANGS = {
       tr: {
         title: "Mustafa Kemal Atatürk",
@@ -241,4 +244,67 @@
       },
       en: {
         title: "Mustafa Kemal Atatürk",
-        subtitle: "The
+        subtitle: "The Founder of Independence and a Bright Future",
+        desc: "Founder of the Republic of Turkey, a guiding light for our nation.<br><span style=\"font-weight:bold;color:#e30b17;\">\"My greatest work is the Republic.\"</span> With these words, he gifted us a modern and free country.<br>We look to the future with hope, inspired by Atatürk's principles.",
+        searchPlaceholder: "Search about Atatürk...",
+        footerText: "As Turkish youth, we will always follow your path!"
+      },
+      az: {
+        title: "Mustafa Kamal Atatürk",
+        subtitle: "Müstəqilliyin və İşıqlı Gələcəyin Memarı",
+        desc: "Türkiyə Cümhuriyyətinin qurucusu, millətimizin yol göstəricisi.<br><span style=\"font-weight:bold;color:#e30b17;\">\"Ən böyük əsərim Cümhuriyyətdir.\"</span> deyərək bizlərə müasir və azad bir ölkə bəxş etdi.<br>Atatürkün fikirləri və prinsipləri ilə gələcəyə ümidlə baxırıq.",
+        searchPlaceholder: "Atatürk haqqında axtar...",
+        footerText: "Türk gəncləri olaraq sonsuza qədər izindəyik!"
+      }
+    };
+    function getLanguage() {
+      return localStorage.getItem("language") || "tr";
+    }
+    function applySettings() {
+      const isDark = localStorage.getItem("darkMode") === "true";
+      const fontSize = localStorage.getItem("fontSize") || "normal";
+      const lang = getLanguage();
+      // Tema ve font
+      document.body.style.background = isDark ? "#222" : "#fff";
+      document.body.style.color = isDark ? "#fff" : "#222";
+      document.body.classList.toggle('dark', isDark);
+      switch(fontSize) {
+        case 'large': document.body.style.fontSize = "1.18em"; break;
+        case 'xlarge': document.body.style.fontSize = "1.32em"; break;
+        default: document.body.style.fontSize = "1em";
+      }
+      // Dinamik metinler
+      document.getElementById('main-title').innerHTML = LANGS[lang].title;
+      document.getElementById('main-subtitle').textContent = LANGS[lang].subtitle;
+      document.getElementById('main-desc').innerHTML = LANGS[lang].desc;
+      document.querySelector('#aramaForm input[name="q"]').setAttribute('placeholder', LANGS[lang].searchPlaceholder);
+      document.getElementById('main-footer-text').textContent = LANGS[lang].footerText;
+    }
+    function updateFooterLinks() {
+      const footer = document.querySelector("footer");
+      if (!footer) return;
+      footer.innerHTML = `
+        <a href="mailto:atam01283@gmail.com" aria-label="Gmail">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/>
+          </svg>
+        </a>
+        <a href="https://instagram.com/atamm1283" target="_blank" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+          </svg>
+        </a>
+        <a href="https://twitter.com/atam01283" target="_blank" aria-label="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M19.633 7.997c.013.18.013.362.013.544 0 5.522-4.206 11.894-11.894 11.894-2.363 0-4.563-.69-6.413-1.872.329.038.658.051.998.051 1.961 0 3.766-.659 5.203-1.772-1.833-.035-3.385-1.242-3.918-2.903.257.038.519.064.792.064.38 0 .75-.051 1.1-.145-1.915-.385-3.36-2.077-3.36-4.102v-.052c.564.313 1.214.502 1.905.519-1.127-.752-1.872-2.037-1.872-3.496 0-.77.208-1.49.57-2.108 2.08 2.556 5.197 4.237 8.704 4.419-.072-.308-.108-.629-.108-.96 0-2.312 1.872-4.184 4.184-4.184 1.205 0 2.297.508 3.063 1.322.954-.187 1.85-.535 2.658-1.013-.313.98-.98 1.803-1.85 2.323.848-.099 1.658-.327 2.409-.663-.564.836-1.274 1.574-2.096 2.164z"/>
+          </svg>
+        </a>
+      `;
+    }
+    window.addEventListener("DOMContentLoaded", () => {
+      applySettings();
+      updateFooterLinks();
+    });
+  </script>
+</body>
+</html>
