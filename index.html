@@ -13,17 +13,18 @@
       color: #222;
       padding-bottom: 80px;
     }
-    /* Üst beyaz plaka */
-    .header-background {
+    /* Menü arkasında sabit beyaz plaka */
+    .menu-background {
       position: fixed;
-      top: 0;
+      top: 40px;
       left: 0;
       width: 100vw;
-      height: 90px;
+      height: 50px;
       background: #fff;
-      z-index: 900;
+      z-index: 999;
       box-shadow: 0 2px 8px 0 #0000000a;
-      pointer-events: none;
+      pointer-events: none; /* Altındaki linkler tıklanabilir */
+      transition: box-shadow 0.3s;
     }
     nav.menu {
       position: fixed;
@@ -80,8 +81,9 @@
       margin-top: 3px;
     }
     @media (max-width: 900px) {
-      .header-background {
-        height: 75px;
+      .menu-background {
+        height: 35px;
+        top: 35px;
       }
       nav.menu {
         height: 35px;
@@ -91,8 +93,9 @@
       .quote-source { font-size: 10px; }
     }
     @media (max-width: 600px) {
-      .header-background {
-        height: 65px;
+      .menu-background {
+        height: 30px;
+        top: 30px;
       }
       nav.menu { top: 30px; height: 30px; }
       nav.menu a { padding: 10px 8px; font-size: 12px; }
@@ -102,8 +105,8 @@
   </style>
 </head>
 <body>
-  <!-- Üst beyaz plaka -->
-  <div class="header-background"></div>
+  <!-- Menü arkasında sabit beyaz plaka -->
+  <div class="menu-background"></div>
 
   <nav class="menu" id="mainMenu">
     <a href="index.html" id="anasayfaLink">Anasayfa</a>
@@ -129,9 +132,7 @@
       var path = window.location.pathname.split('/').pop() || "index.html";
       var links = document.querySelectorAll('nav.menu a');
       links.forEach(function(link) {
-        // Tüm linklerden active'i kaldır
         link.classList.remove('active');
-        // Şu anki sayfa ile eşleşeni işaretle
         if(link.getAttribute('href') === path) {
           link.classList.add('active');
         }
@@ -147,7 +148,7 @@
       }
     });
 
-    // Alttaki kod sağ üstteki sözü döndürür
+    // Sağ üstteki sözü döndürür
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "— TBMM, 1920" },
       { text: '"Yurtta sulh, cihanda sulh."', source: "— Atatürk" },
