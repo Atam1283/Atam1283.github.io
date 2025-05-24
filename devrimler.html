@@ -5,6 +5,7 @@
   <title>Devrimleri</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    /* ... CSS'lerinizde değişiklik yok ... */
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -249,120 +250,275 @@
   </nav>
 
   <main>
-    <h1 style="font-size:2.1em; color:#e30b17; margin-bottom:36px; margin-top:18px; font-family:Georgia,serif; text-align:center;">
+    <h1 id="devrimler-title" style="font-size:2.1em; color:#e30b17; margin-bottom:36px; margin-top:18px; font-family:Georgia,serif; text-align:center;">
       Atatürk Devrimleri
     </h1>
-    <div class="devrimler-grid">
-      <!-- Kartlar burada -->
-      <div class="devrim-card" tabindex="0">
-        <div class="devrim-baslik">Saltanatın Kaldırılması</div>
-        <div class="devrim-ozet">
-          Osmanlı saltanatının kaldırılarak egemenliğin millete devredilmesiyle Türkiye Cumhuriyeti'nin temelleri atıldı.
-        </div>
-        <div class="devrim-tarih">1 Kasım 1922</div>
-      </div>
-      <div class="devrim-card" tabindex="0">
-        <div class="devrim-baslik">Cumhuriyetin İlanı</div>
-        <div class="devrim-ozet">
-          Türkiye devletinin yönetim şekli olarak cumhuriyetin kabulü ve yeni devletin kuruluşu ilan edildi.
-        </div>
-        <div class="devrim-tarih">29 Ekim 1923</div>
-      </div>
-      <div class="devrim-card" tabindex="0">
-        <div class="devrim-baslik">Halifeliğin Kaldırılması</div>
-        <div class="devrim-ozet">
-          Osmanlı halifeliği kaldırılarak laik devlet yapısına geçişin en önemli adımlarından biri atıldı.
-        </div>
-        <div class="devrim-tarih">3 Mart 1924</div>
-      </div>
-      <div class="devrim-card" tabindex="0">
-        <div class="devrim-baslik">Tevhid-i Tedrisat Kanunu</div>
-        <div class="devrim-ozet">
-          Eğitimde birlik sağlanarak modern, çağdaş ve laik eğitim sisteminin temeli atıldı.
-        </div>
-        <div class="devrim-tarih">3 Mart 1924</div>
-      </div>
-      <div class="devrim-card" tabindex="0">
-        <div class="devrim-baslik">Şeriye ve Evkaf Vekâletinin Kaldırılması</div>
-        <div class="devrim-ozet">
-          Din işlerinin devletten ayrılması ve laikliğin güçlendirilmesi sağlandı.
-        </div>
-        <div class="devrim-tarih">3 Mart 1924</div>
-      </div>
-      <div class="devrim-card" tabindex="0">
-        <div class="devrim-baslik">Medeni Kanun'un Kabulü</div>
-        <div class="devrim-ozet">
-          İsviçre Medeni Kanunu’ndan uyarlanarak kadın-erkek eşitliğini ve çağdaş hukuku esas alan medeni kanun yürürlüğe girdi.
-        </div>
-        <div class="devrim-tarih">17 Şubat 1926</div>
-      </div>
-      <div class="devrim-card" tabindex="0">
-        <div class="devrim-baslik">Soyadı Kanunu</div>
-        <div class="devrim-ozet">
-          Her Türk vatandaşının bir soyadı alması zorunlu hale getirilerek toplumsal düzen ve modern kimlik anlayışı geliştirildi.
-        </div>
-        <div class="devrim-tarih">21 Haziran 1934</div>
-      </div>
-      <div class="devrim-card" tabindex="0">
-        <div class="devrim-baslik">Şapka ve Kıyafet Devrimi</div>
-        <div class="devrim-ozet">
-          Çağdaşlaşmayı simgeleyen şapka ve Batı tarzı kıyafetlerin yaygınlaştırılmasıyla toplumsal modernleşme hızlandı.
-        </div>
-        <div class="devrim-tarih">25 Kasım 1925</div>
-      </div>
-      <div class="devrim-card" tabindex="0">
-        <div class="devrim-baslik">Tekke, Zaviye ve Türbelerin Kapatılması</div>
-        <div class="devrim-ozet">
-          Dinî kurumların kapatılmasıyla laikliğin ve modern toplumun temelleri güçlendirildi.
-        </div>
-        <div class="devrim-tarih">30 Kasım 1925</div>
-      </div>
-      <div class="devrim-card" tabindex="0">
-        <div class="devrim-baslik">Harf Devrimi</div>
-        <div class="devrim-ozet">
-          Arap alfabesi yerine Latin alfabesinin kabulüyle okuryazarlık oranı arttı ve çağdaşlaşma hızlandı.
-        </div>
-        <div class="devrim-tarih">1 Kasım 1928</div>
-      </div>
-      <div class="devrim-card" tabindex="0">
-        <div class="devrim-baslik">Takvim, Saat ve Ölçü Birimlerinde Değişiklik</div>
-        <div class="devrim-ozet">
-          Miladi takvim, uluslararası saat ve metre-kilogram sistemi kabul edilerek çağdaşlaşma sağlandı.
-        </div>
-        <div class="devrim-tarih">1925-1931</div>
-      </div>
-      <div class="devrim-card" tabindex="0">
-        <div class="devrim-baslik">Kadınlara Seçme ve Seçilme Hakkı</div>
-        <div class="devrim-ozet">
-          Kadınlara önce belediye seçimlerinde sonra milletvekili seçimlerinde seçme ve seçilme hakkı tanındı.
-        </div>
-        <div class="devrim-tarih">1930 (belediye), 1934 (milletvekili)</div>
-      </div>
-      <div class="devrim-card" tabindex="0">
-        <div class="devrim-baslik">Türk Medeni Kanunu ve Hukuk Alanındaki Diğer Devrimler</div>
-        <div class="devrim-ozet">
-          Ceza, ticaret, icra-iflas gibi modern hukuk düzenlemeleri ile çağdaş bir hukuk sistemi oluşturuldu.
-        </div>
-        <div class="devrim-tarih">1926 ve sonrası</div>
-      </div>
-      <div class="devrim-card" tabindex="0">
-        <div class="devrim-baslik">Üniversite Reformu</div>
-        <div class="devrim-ozet">
-          İstanbul Darülfünunu kapatılarak modern üniversite anlayışına uygun İstanbul Üniversitesi kuruldu.
-        </div>
-        <div class="devrim-tarih">31 Temmuz 1933</div>
-      </div>
-      <div class="devrim-card" tabindex="0">
-        <div class="devrim-baslik">Tarım, Sanayi ve Ekonomi Alanındaki Devrimler</div>
-        <div class="devrim-ozet">
-          Sanayi ve tarımda devlet teşvikleri, yeni fabrikalar, kooperatifler ve kalkınma projeleriyle ekonomik bağımsızlık sağlandı.
-        </div>
-        <div class="devrim-tarih">1923-1938</div>
-      </div>
+    <div class="devrimler-grid" id="devrimlerGrid">
+      <!-- Kartlar JS ile doldurulacak -->
     </div>
   </main>
   <footer></footer>
   <script>
+    // Çoklu dil devrimler
+    const DEVRIMLER = {
+      tr: {
+        title: "Atatürk Devrimleri",
+        devrimler: [
+          {
+            baslik: "Saltanatın Kaldırılması",
+            ozet: "Osmanlı saltanatının kaldırılarak egemenliğin millete devredilmesiyle Türkiye Cumhuriyeti'nin temelleri atıldı.",
+            tarih: "1 Kasım 1922"
+          },
+          {
+            baslik: "Cumhuriyetin İlanı",
+            ozet: "Türkiye devletinin yönetim şekli olarak cumhuriyetin kabulü ve yeni devletin kuruluşu ilan edildi.",
+            tarih: "29 Ekim 1923"
+          },
+          {
+            baslik: "Halifeliğin Kaldırılması",
+            ozet: "Osmanlı halifeliği kaldırılarak laik devlet yapısına geçişin en önemli adımlarından biri atıldı.",
+            tarih: "3 Mart 1924"
+          },
+          {
+            baslik: "Tevhid-i Tedrisat Kanunu",
+            ozet: "Eğitimde birlik sağlanarak modern, çağdaş ve laik eğitim sisteminin temeli atıldı.",
+            tarih: "3 Mart 1924"
+          },
+          {
+            baslik: "Şeriye ve Evkaf Vekâletinin Kaldırılması",
+            ozet: "Din işlerinin devletten ayrılması ve laikliğin güçlendirilmesi sağlandı.",
+            tarih: "3 Mart 1924"
+          },
+          {
+            baslik: "Medeni Kanun'un Kabulü",
+            ozet: "İsviçre Medeni Kanunu’ndan uyarlanarak kadın-erkek eşitliğini ve çağdaş hukuku esas alan medeni kanun yürürlüğe girdi.",
+            tarih: "17 Şubat 1926"
+          },
+          {
+            baslik: "Soyadı Kanunu",
+            ozet: "Her Türk vatandaşının bir soyadı alması zorunlu hale getirilerek toplumsal düzen ve modern kimlik anlayışı geliştirildi.",
+            tarih: "21 Haziran 1934"
+          },
+          {
+            baslik: "Şapka ve Kıyafet Devrimi",
+            ozet: "Çağdaşlaşmayı simgeleyen şapka ve Batı tarzı kıyafetlerin yaygınlaştırılmasıyla toplumsal modernleşme hızlandı.",
+            tarih: "25 Kasım 1925"
+          },
+          {
+            baslik: "Tekke, Zaviye ve Türbelerin Kapatılması",
+            ozet: "Dinî kurumların kapatılmasıyla laikliğin ve modern toplumun temelleri güçlendirildi.",
+            tarih: "30 Kasım 1925"
+          },
+          {
+            baslik: "Harf Devrimi",
+            ozet: "Arap alfabesi yerine Latin alfabesinin kabulüyle okuryazarlık oranı arttı ve çağdaşlaşma hızlandı.",
+            tarih: "1 Kasım 1928"
+          },
+          {
+            baslik: "Takvim, Saat ve Ölçü Birimlerinde Değişiklik",
+            ozet: "Miladi takvim, uluslararası saat ve metre-kilogram sistemi kabul edilerek çağdaşlaşma sağlandı.",
+            tarih: "1925-1931"
+          },
+          {
+            baslik: "Kadınlara Seçme ve Seçilme Hakkı",
+            ozet: "Kadınlara önce belediye seçimlerinde sonra milletvekili seçimlerinde seçme ve seçilme hakkı tanındı.",
+            tarih: "1930 (belediye), 1934 (milletvekili)"
+          },
+          {
+            baslik: "Türk Medeni Kanunu ve Hukuk Alanındaki Diğer Devrimler",
+            ozet: "Ceza, ticaret, icra-iflas gibi modern hukuk düzenlemeleri ile çağdaş bir hukuk sistemi oluşturuldu.",
+            tarih: "1926 ve sonrası"
+          },
+          {
+            baslik: "Üniversite Reformu",
+            ozet: "İstanbul Darülfünunu kapatılarak modern üniversite anlayışına uygun İstanbul Üniversitesi kuruldu.",
+            tarih: "31 Temmuz 1933"
+          },
+          {
+            baslik: "Tarım, Sanayi ve Ekonomi Alanındaki Devrimler",
+            ozet: "Sanayi ve tarımda devlet teşvikleri, yeni fabrikalar, kooperatifler ve kalkınma projeleriyle ekonomik bağımsızlık sağlandı.",
+            tarih: "1923-1938"
+          }
+        ]
+      },
+      en: {
+        title: "Atatürk's Reforms",
+        devrimler: [
+          {
+            baslik: "Abolition of the Sultanate",
+            ozet: "With the abolition of the Ottoman sultanate and sovereignty transferred to the people, the foundations of the Turkish Republic were laid.",
+            tarih: "November 1, 1922"
+          },
+          {
+            baslik: "Proclamation of the Republic",
+            ozet: "The acceptance of the republic as the form of government and the establishment of the new state was announced.",
+            tarih: "October 29, 1923"
+          },
+          {
+            baslik: "Abolition of the Caliphate",
+            ozet: "The abolition of the Ottoman caliphate was a key step toward a secular state structure.",
+            tarih: "March 3, 1924"
+          },
+          {
+            baslik: "Law on Unification of Education",
+            ozet: "Unity in education was achieved, laying the foundation for a modern, contemporary, and secular education system.",
+            tarih: "March 3, 1924"
+          },
+          {
+            baslik: "Abolition of the Ministry of Sharia and Foundations",
+            ozet: "Religious affairs were separated from the state, strengthening secularism.",
+            tarih: "March 3, 1924"
+          },
+          {
+            baslik: "Adoption of the Civil Code",
+            ozet: "Modeled after the Swiss Civil Code, it introduced gender equality and a modern legal system.",
+            tarih: "February 17, 1926"
+          },
+          {
+            baslik: "Surname Law",
+            ozet: "It became compulsory for every Turkish citizen to take a surname, fostering social order and modern identity.",
+            tarih: "June 21, 1934"
+          },
+          {
+            baslik: "Hat and Clothing Reform",
+            ozet: "With the popularization of the hat and Western-style clothing symbolizing modernization, social modernization accelerated.",
+            tarih: "November 25, 1925"
+          },
+          {
+            baslik: "Closure of Dervish Lodges, Zawiyas, and Tombs",
+            ozet: "With the closure of religious institutions, the foundations of secularism and modern society were strengthened.",
+            tarih: "November 30, 1925"
+          },
+          {
+            baslik: "Alphabet Reform",
+            ozet: "With the adoption of the Latin alphabet instead of the Arabic script, literacy rates increased and modernization accelerated.",
+            tarih: "November 1, 1928"
+          },
+          {
+            baslik: "Change in Calendar, Time, and Measurement Units",
+            ozet: "The Gregorian calendar, international time, and the metric system were adopted, achieving modernization.",
+            tarih: "1925-1931"
+          },
+          {
+            baslik: "Women's Suffrage and Right to be Elected",
+            ozet: "Women were granted the right to vote and be elected, first in municipal, then parliamentary elections.",
+            tarih: "1930 (municipal), 1934 (parliamentary)"
+          },
+          {
+            baslik: "Turkish Civil Code and Other Legal Reforms",
+            ozet: "With modern legal arrangements in criminal, commercial, and bankruptcy law, a contemporary legal system was established.",
+            tarih: "1926 and after"
+          },
+          {
+            baslik: "University Reform",
+            ozet: "Istanbul Darülfünun was closed and Istanbul University was established, in line with the modern university concept.",
+            tarih: "July 31, 1933"
+          },
+          {
+            baslik: "Agricultural, Industrial, and Economic Reforms",
+            ozet: "Economic independence was achieved through state incentives in industry and agriculture, new factories, cooperatives, and development projects.",
+            tarih: "1923-1938"
+          }
+        ]
+      },
+      az: {
+        title: "Atatürkün İslahatları",
+        devrimler: [
+          {
+            baslik: "Sultanlığın Ləğvi",
+            ozet: "Osmanlı sultanlığı ləğv edilərək hakimiyyət xalqa verildi, Türkiyə Respublikasının əsası qoyuldu.",
+            tarih: "1 noyabr 1922"
+          },
+          {
+            baslik: "Respublikanın Elan Edilməsi",
+            ozet: "Dövlət idarəetmə forması kimi respublika qəbul edildi və yeni dövlətin quruluşu elan olundu.",
+            tarih: "29 oktyabr 1923"
+          },
+          {
+            baslik: "Xəlifəliyin Ləğvi",
+            ozet: "Osmanlı xəlifəliyi ləğv edilərək dünyəvi dövlət quruluşuna keçidin əsas addımlarından biri atıldı.",
+            tarih: "3 mart 1924"
+          },
+          {
+            baslik: "Təhsil Birliyi Qanunu",
+            ozet: "Təhsildə birlik təmin edildi, müasir və dünyəvi təhsil sisteminin təməli qoyuldu.",
+            tarih: "3 mart 1924"
+          },
+          {
+            baslik: "Şəriyyə və Vəqflər Nazirliyinin Ləğvi",
+            ozet: "Dini işlər dövlətdən ayrıldı və dünyəvilik gücləndirildi.",
+            tarih: "3 mart 1924"
+          },
+          {
+            baslik: "Mülki Qanunun Qəbulu",
+            ozet: "İsveçrə Mülki Qanunundan uyğunlaşdırılaraq qadın və kişi bərabərliyini, müasir hüququ əsas alan qanun qüvvəyə mindi.",
+            tarih: "17 fevral 1926"
+          },
+          {
+            baslik: "Soyad Qanunu",
+            ozet: "Hər bir türk vətəndaşının soyad alması məcburi oldu, ictimai nizam və müasir kimlik anlayışı inkişaf etdi.",
+            tarih: "21 iyun 1934"
+          },
+          {
+            baslik: "Papaq və Geyim İslahatı",
+            ozet: "Müasirləşməni simvolizə edən papaq və Qərb tərzli geyimlərin yayılması ilə ictimai modernləşmə sürətləndi.",
+            tarih: "25 noyabr 1925"
+          },
+          {
+            baslik: "Təkkə, Zəviə və Türbələrin Bağlanması",
+            ozet: "Dini qurumların bağlanması ilə dünyəvilik və müasir cəmiyyətin əsası gücləndirildi.",
+            tarih: "30 noyabr 1925"
+          },
+          {
+            baslik: "Əlifba İslahatı",
+            ozet: "Ərəb əlifbası əvəzinə latın əlifbasının qəbulu ilə savadlılıq artdı və müasirləşmə sürətləndi.",
+            tarih: "1 noyabr 1928"
+          },
+          {
+            baslik: "Təqvim, Saat və Ölçü Vahidlərində Dəyişiklik",
+            ozet: "Miladi təqvim, beynəlxalq saat və metr-kilogram sistemi qəbul edildi, müasirləşmə təmin olundu.",
+            tarih: "1925-1931"
+          },
+          {
+            baslik: "Qadınlara Səs Vermə və Seçilmə Hüququ",
+            ozet: "Qadınlara əvvəl bələdiyyə, sonra deputat seçkilərində səs vermək və seçilmək hüququ verildi.",
+            tarih: "1930 (bələdiyyə), 1934 (deputat)"
+          },
+          {
+            baslik: "Türk Mülki Qanunu və Digər Hüquqi İslahatlar",
+            ozet: "Cinayət, ticarət, icra-iflas kimi müasir hüquqi tənzimləmələrlə müasir hüquq sistemi quruldu.",
+            tarih: "1926 və sonrası"
+          },
+          {
+            baslik: "Universitet İslahatı",
+            ozet: "İstanbul Darülfünunu bağlanaraq müasir universitet konsepsiyasına uyğun İstanbul Universiteti quruldu.",
+            tarih: "31 iyul 1933"
+          },
+          {
+            baslik: "Kənd Təsərrüfatı, Sənaye və İqtisadiyyat İslahatları",
+            ozet: "Sənaye və kənd təsərrüfatında dövlət təşviqləri, yeni fabriklər, kooperativlər və inkişaf layihələri ilə iqtisadi müstəqillik təmin olundu.",
+            tarih: "1923-1938"
+          }
+        ]
+      }
+    };
+
+    function getLang() { return localStorage.getItem("language") || "tr"; }
+
+    function renderDevrimler() {
+      const lang = getLang();
+      const data = DEVRIMLER[lang];
+      document.getElementById('devrimler-title').textContent = data.title;
+      const grid = document.getElementById('devrimlerGrid');
+      grid.innerHTML = data.devrimler.map(item => `
+        <div class="devrim-card" tabindex="0">
+          <div class="devrim-baslik">${item.baslik}</div>
+          <div class="devrim-ozet">${item.ozet}</div>
+          <div class="devrim-tarih">${item.tarih}</div>
+        </div>
+      `).join('');
+    }
+
     // Söz kutusu animasyonu için
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
@@ -427,7 +583,15 @@
 
     window.addEventListener("DOMContentLoaded", () => {
       applySettings();
+      renderDevrimler();
       updateFooterLinks();
+    });
+
+    // Dil değişirse (başka sekmeden), devrimler anında güncellensin
+    window.addEventListener("storage", (e) => {
+      if (e.key === "language") {
+        renderDevrimler();
+      }
     });
   </script>
 </body>
