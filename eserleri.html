@@ -62,6 +62,50 @@
     nav.menu::-webkit-scrollbar {
       display: none;
     }
+    /* Dil seçici */
+    .lang-select-section {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      z-index: 1300;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px #0001;
+      padding: 5px 12px;
+    }
+    .lang-select-label {
+      font-weight: bold;
+      color: #222;
+      font-size: 1em;
+      font-family: Georgia, serif;
+    }
+    .lang-select {
+      padding: 4px 10px 4px 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background: #fff;
+      font-size: 1em;
+      color: #222;
+      outline: none;
+      transition: border 0.2s;
+      cursor: pointer;
+    }
+    .lang-select:focus {
+      border-color: #e30b17;
+    }
+    @media (max-width: 600px) {
+      .lang-select-section {
+        right: 6px;
+        top: 6px;
+        padding: 2px 7px;
+        font-size: .95em;
+      }
+      .lang-select-label { font-size: .93em; }
+      .lang-select { font-size: .95em; }
+    }
     .quote-container {
       position: fixed;
       top: 10px;
@@ -124,28 +168,6 @@
       height: 20px;
       fill: currentColor;
     }
-    @media (max-width: 600px) {
-      .quote-container {
-        max-width: 160px;
-      }
-      .quote-text {
-        font-size: 10px;
-      }
-      .quote-source {
-        font-size: 9px;
-      }
-      .menu-background {
-        height: 100px;
-      }
-      nav.menu {
-        top: 60px;
-        height: 50px;
-      }
-      nav.menu a {
-        padding: 10px 12px 9px 12px;
-        font-size: 13px;
-      }
-    }
     main {
       margin: 140px auto 0 auto;
       max-width: 900px;
@@ -204,14 +226,68 @@
       margin-top: auto;
       margin-bottom: 0;
     }
+    @media (max-width: 900px) {
+      main { max-width: 100vw; }
+      .eserler-grid { max-width: 100vw; }
+    }
     @media (max-width: 700px) {
       main { margin-top: 110px;}
       .eserler-grid { grid-template-columns: 1fr; gap: 14px;}
       .eser-card { padding: 17px 9px 12px 14px; min-height: 90px;}
     }
+    @media (max-width: 480px) {
+      main { padding: 0 4px 38px 4px; }
+      .eser-card { padding: 13px 4vw 12px 4vw; }
+    }
     @keyframes cardFloat {
       0% { transform: translateY(0); }
       100% { transform: translateY(-10px);}
+    }
+    /* Koyu tema için detaylı uyum */
+    body.dark {
+      background: #181818 !important;
+      color: #f2f2f2 !important;
+    }
+    body.dark .eser-card {
+      background: #232326;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.21);
+    }
+    body.dark .eser-card .eser-baslik {
+      color: #ff3d3c;
+    }
+    body.dark .eser-card .eser-ozet {
+      color: #e6e6e6;
+    }
+    body.dark .eser-card .eser-detay {
+      color: #bababa;
+    }
+    body.dark nav.menu {
+      background: #181818;
+      border-bottom: 2px solid #353535;
+    }
+    body.dark nav.menu a {
+      color: #f2f2f2;
+    }
+    body.dark nav.menu a.active,
+    body.dark nav.menu a:hover {
+      color: #ff3d3c;
+      border-bottom: 3px solid #ff3d3c;
+      background: transparent;
+    }
+    body.dark .lang-select-section {
+      background: #232326;
+      box-shadow: 0 2px 8px #0004;
+    }
+    body.dark .lang-select-label {
+      color: #ff3d3c;
+    }
+    body.dark .lang-select {
+      background: #232326;
+      color: #fff;
+      border: 1px solid #444;
+    }
+    body.dark .lang-select:focus {
+      border-color: #ff3d3c;
     }
   </style>
 </head>
@@ -219,14 +295,20 @@
   <a href="index.html" class="logo">
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
-
   <div class="menu-background"></div>
-
+  <!-- Dil seçici -->
+  <div class="lang-select-section">
+    <label class="lang-select-label" for="language">Dil</label>
+    <select id="language" class="lang-select">
+      <option value="tr">Türkçe</option>
+      <option value="en">English</option>
+      <option value="az">Azərbaycan dili</option>
+    </select>
+  </div>
   <div class="quote-container">
     <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
     <div class="quote-source" id="quote-source">TBMM, 1920</div>
   </div>
-
   <nav class="menu">
     <a href="index.html">Anasayfa</a>
     <a href="hayati.html">Hayatı</a>
@@ -238,106 +320,201 @@
     <a href="kronoloji.html">Kronoloji</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
-
   <main>
-    <h1 style="font-size:2.1em; color:#e30b17; margin-bottom:36px; margin-top:18px; font-family:Georgia,serif; text-align:center;">
+    <h1 id="eserler-title" style="font-size:2.1em; color:#e30b17; margin-bottom:36px; margin-top:18px; font-family:Georgia,serif; text-align:center;">
       Atatürk'ün Eserleri
     </h1>
-    <div class="eserler-grid">
-      <div class="eser-card" tabindex="0">
-        <div class="eser-baslik">Nutuk (Söylev)</div>
-        <div class="eser-ozet">
-          Atatürk’ün 1927 yılında Türkiye Büyük Millet Meclisinde altı gün boyunca okuduğu ve Milli Mücadele’nin ayrıntılı bir şekilde anlatıldığı temel başyapıtıdır.
-        </div>
-        <div class="eser-detay">
-          Yayın yılı: 1927<br>
-          Açıklama: Milli Mücadele'nin başlangıcından Cumhuriyet'in ilanına kadar olan dönemi, belgelerle ve Atatürk'ün kendi anlatımıyla aktaran eserdir.
-        </div>
-      </div>
-      <div class="eser-card" tabindex="0">
-        <div class="eser-baslik">Geometri</div>
-        <div class="eser-ozet">
-          Atatürk’ün Türkçeye kazandırdığı ve bizzat yazdığı, Türkçe matematik terimlerinin yer aldığı geometri kitabı.
-        </div>
-        <div class="eser-detay">
-          Yayın yılı: 1937<br>
-          Açıklama: Üçgen, açı, dikdörtgen gibi pek çok kavramın Türkçe karşılıkları ilk kez bu kitapta önerilmiştir.
-        </div>
-      </div>
-      <div class="eser-card" tabindex="0">
-        <div class="eser-baslik">Vatandaş için Medeni Bilgiler</div>
-        <div class="eser-ozet">
-          Atatürk’ün direktifleriyle Afet İnan tarafından kaleme alınan ve Atatürk'ün kendi el yazısı notlarının da yer aldığı vatandaşlık bilgisi kitabı.
-        </div>
-        <div class="eser-detay">
-          Yayın yılı: 1930<br>
-          Açıklama: Cumhuriyet, devlet, vatandaşlık hakları ve modern toplum kavramlarını halka anlatmayı amaçlar.
-        </div>
-      </div>
-      <div class="eser-card" tabindex="0">
-        <div class="eser-baslik">Cumalı Ordugâhı</div>
-        <div class="eser-ozet">
-          Atatürk’ün Sofya’da askeri ataşeyken yazdığı, 1911’de yayımlanan anı ve gözlem kitabı.
-        </div>
-        <div class="eser-detay">
-          Yayın yılı: 1911<br>
-          Açıklama: Balkan Savaşı sırasında Bulgaristan’daki askeri durumları, gözlemlerini ve deneyimlerini içerir.
-        </div>
-      </div>
-      <div class="eser-card" tabindex="0">
-        <div class="eser-baslik">Bölüğün Muharebe Eğitimi</div>
-        <div class="eser-ozet">
-          Atatürk’ün askeri eğitimle ilgili yazdığı, piyade bölüğünün savaş eğitimi ve uygulamaları üzerine bir kılavuzdur.
-        </div>
-        <div class="eser-detay">
-          Yayın yılı: 1908<br>
-          Açıklama: Askerî birliklerin eğitimi ve savaş sırasında uygulanacak taktikler üzerinde durur.
-        </div>
-      </div>
-      <div class="eser-card" tabindex="0">
-        <div class="eser-baslik">Takımın Muharebe Eğitimi</div>
-        <div class="eser-ozet">
-          Atatürk’ün askeri eğitim kitaplarından biri olup, takım birliğinin muharebe eğitimi ve savaş tekniklerini anlatır.
-        </div>
-        <div class="eser-detay">
-          Yayın yılı: 1912<br>
-          Açıklama: Askerî takım birliğinin savaş esnasında uygulayacağı eğitim yöntemlerini içerir.
-        </div>
-      </div>
-      <div class="eser-card" tabindex="0">
-        <div class="eser-baslik">Taktik ve Tatbikat Seyahati</div>
-        <div class="eser-ozet">
-          Askeri taktik ve saha uygulamaları konusunda Atatürk’ün yazdığı rehber niteliğinde bir eserdir.
-        </div>
-        <div class="eser-detay">
-          Yayın yılı: 1911<br>
-          Açıklama: Subaylara yönelik askeri tatbikatların nasıl yapılacağını ve taktiklerin nasıl uygulanacağını açıklar.
-        </div>
-      </div>
-      <div class="eser-card" tabindex="0">
-        <div class="eser-baslik">Zabit ve Kumandan ile Hasbihal</div>
-        <div class="eser-ozet">
-          Atatürk’ün Osmanlı ordusunun subaylarına yönelik yazdığı, liderlik ve komutanlık ilkelerini ele alan eseri.
-        </div>
-        <div class="eser-detay">
-          Yayın yılı: 1918<br>
-          Açıklama: Komutanlarla sohbetler üzerinden askerî değerler, emir-komuta ilişkileri ve liderlik kavramlarını işler.
-        </div>
-      </div>
-      <div class="eser-card" tabindex="0">
-        <div class="eser-baslik">Büyük Nutuk (Çocuklar İçin)</div>
-        <div class="eser-ozet">
-          Atatürk’ün hayatı ve mücadelesi, çocuklara uygun bir dille anlatılmıştır.
-        </div>
-        <div class="eser-detay">
-          Yayın yılı: Çeşitli (özellikle günümüz yayınları)<br>
-          Açıklama: Nutuk’un çocuklara anlaşılır biçimde uyarlanmış halidir.
-        </div>
-      </div>
+    <div class="eserler-grid" id="eserler-grid">
+      <!-- Kartlar JS ile doldurulacak -->
     </div>
   </main>
   <footer></footer>
   <script>
+    // Çoklu dil eserler içeriği
+    const ESERLER = {
+      tr: [
+        {
+          baslik: "Nutuk (Söylev)",
+          ozet: "Atatürk’ün 1927 yılında Türkiye Büyük Millet Meclisinde altı gün boyunca okuduğu ve Milli Mücadele’nin ayrıntılı bir şekilde anlatıldığı temel başyapıtıdır.",
+          detay: "Yayın yılı: 1927<br>Açıklama: Milli Mücadele'nin başlangıcından Cumhuriyet'in ilanına kadar olan dönemi, belgelerle ve Atatürk'ün kendi anlatımıyla aktaran eserdir."
+        },
+        {
+          baslik: "Geometri",
+          ozet: "Atatürk’ün Türkçeye kazandırdığı ve bizzat yazdığı, Türkçe matematik terimlerinin yer aldığı geometri kitabı.",
+          detay: "Yayın yılı: 1937<br>Açıklama: Üçgen, açı, dikdörtgen gibi pek çok kavramın Türkçe karşılıkları ilk kez bu kitapta önerilmiştir."
+        },
+        {
+          baslik: "Vatandaş için Medeni Bilgiler",
+          ozet: "Atatürk’ün direktifleriyle Afet İnan tarafından kaleme alınan ve Atatürk'ün kendi el yazısı notlarının da yer aldığı vatandaşlık bilgisi kitabı.",
+          detay: "Yayın yılı: 1930<br>Açıklama: Cumhuriyet, devlet, vatandaşlık hakları ve modern toplum kavramlarını halka anlatmayı amaçlar."
+        },
+        {
+          baslik: "Cumalı Ordugâhı",
+          ozet: "Atatürk’ün Sofya’da askeri ataşeyken yazdığı, 1911’de yayımlanan anı ve gözlem kitabı.",
+          detay: "Yayın yılı: 1911<br>Açıklama: Balkan Savaşı sırasında Bulgaristan’daki askeri durumları, gözlemlerini ve deneyimlerini içerir."
+        },
+        {
+          baslik: "Bölüğün Muharebe Eğitimi",
+          ozet: "Atatürk’ün askeri eğitimle ilgili yazdığı, piyade bölüğünün savaş eğitimi ve uygulamaları üzerine bir kılavuzdur.",
+          detay: "Yayın yılı: 1908<br>Açıklama: Askerî birliklerin eğitimi ve savaş sırasında uygulanacak taktikler üzerinde durur."
+        },
+        {
+          baslik: "Takımın Muharebe Eğitimi",
+          ozet: "Atatürk’ün askeri eğitim kitaplarından biri olup, takım birliğinin muharebe eğitimi ve savaş tekniklerini anlatır.",
+          detay: "Yayın yılı: 1912<br>Açıklama: Askerî takım birliğinin savaş esnasında uygulayacağı eğitim yöntemlerini içerir."
+        },
+        {
+          baslik: "Taktik ve Tatbikat Seyahati",
+          ozet: "Askeri taktik ve saha uygulamaları konusunda Atatürk’ün yazdığı rehber niteliğinde bir eserdir.",
+          detay: "Yayın yılı: 1911<br>Açıklama: Subaylara yönelik askeri tatbikatların nasıl yapılacağını ve taktiklerin nasıl uygulanacağını açıklar."
+        },
+        {
+          baslik: "Zabit ve Kumandan ile Hasbihal",
+          ozet: "Atatürk’ün Osmanlı ordusunun subaylarına yönelik yazdığı, liderlik ve komutanlık ilkelerini ele alan eseri.",
+          detay: "Yayın yılı: 1918<br>Açıklama: Komutanlarla sohbetler üzerinden askerî değerler, emir-komuta ilişkileri ve liderlik kavramlarını işler."
+        },
+        {
+          baslik: "Büyük Nutuk (Çocuklar İçin)",
+          ozet: "Atatürk’ün hayatı ve mücadelesi, çocuklara uygun bir dille anlatılmıştır.",
+          detay: "Yayın yılı: Çeşitli (özellikle günümüz yayınları)<br>Açıklama: Nutuk’un çocuklara anlaşılır biçimde uyarlanmış halidir."
+        }
+      ],
+      en: [
+        {
+          baslik: "The Speech (Nutuk)",
+          ozet: "Atatürk's essential masterpiece, delivered at the Grand National Assembly in 1927, details the Turkish War of Independence.",
+          detay: "Year: 1927<br>Description: It recounts the period from the start of the National Struggle to the proclamation of the Republic, supported by documents and Atatürk's own narration."
+        },
+        {
+          baslik: "Geometry",
+          ozet: "A geometry book authored by Atatürk, introducing Turkish mathematical terms.",
+          detay: "Year: 1937<br>Description: Many Turkish equivalents for mathematical terms such as triangle, angle, rectangle were first proposed in this book."
+        },
+        {
+          baslik: "Civic Information for the Citizen",
+          ozet: "A citizenship book written under Atatürk's directives, containing his handwritten notes.",
+          detay: "Year: 1930<br>Description: Aims to explain the concepts of republic, state, citizenship rights, and modern society to the public."
+        },
+        {
+          baslik: "Cumalı Ordugâhı",
+          ozet: "A memoir and observation book written while Atatürk was a military attaché in Sofia, published in 1911.",
+          detay: "Year: 1911<br>Description: Covers military situations, observations, and experiences during the Balkan Wars in Bulgaria."
+        },
+        {
+          baslik: "Platoon’s Combat Training",
+          ozet: "A guide written by Atatürk on the combat training and practices of infantry platoons.",
+          detay: "Year: 1908<br>Description: Focuses on the training of military units and tactics to be applied during war."
+        },
+        {
+          baslik: "Squad’s Combat Training",
+          ozet: "One of Atatürk's military training books, explaining the combat training and techniques for squads.",
+          detay: "Year: 1912<br>Description: Covers training methods for military squads to be applied during wartime."
+        },
+        {
+          baslik: "Tactics and Training Journey",
+          ozet: "A guide written by Atatürk on military tactics and field exercises.",
+          detay: "Year: 1911<br>Description: Explains how officers should conduct military exercises and apply tactics."
+        },
+        {
+          baslik: "Conversation with the Officer and Commander",
+          ozet: "A book by Atatürk for Ottoman army officers, focusing on principles of leadership and command.",
+          detay: "Year: 1918<br>Description: Discusses military values, chain of command, and leadership through conversations with commanders."
+        },
+        {
+          baslik: "The Great Speech (For Children)",
+          ozet: "Atatürk’s life and struggle, told in a manner suitable for children.",
+          detay: "Year: Various (especially modern editions)<br>Description: An adaptation of The Speech for children in an understandable language."
+        }
+      ],
+      az: [
+        {
+          baslik: "Nutuk (Söyləv)",
+          ozet: "Atatürkün 1927-ci ildə Türkiyə Böyük Millət Məclisində altı gün ərzində oxuduğu və Milli Mübarizənin geniş izah edildiyi əsas əsəridir.",
+          detay: "Nəşr ili: 1927<br>Açıqlama: Milli Mübarizənin başlanğıcından Cümhuriyyətin elanına qədər olan dövrü sənədlərlə və Atatürkün öz dilindən izah edir."
+        },
+        {
+          baslik: "Həndəsə",
+          ozet: "Atatürkün Türk dilinə qazandırdığı və şəxsən yazdığı, türk dilində riyazi terminlərin yer aldığı həndəsə kitabı.",
+          detay: "Nəşr ili: 1937<br>Açıqlama: Üçbucaq, bucaq, düzbucaqlı kimi bir çox anlayışın türk dilində qarşılığı ilk dəfə bu kitabda təklif edilmişdir."
+        },
+        {
+          baslik: "Vətəndaş üçün Mülki Bilgilər",
+          ozet: "Atatürkün göstərişi ilə Afət İnan tərəfindən yazılmış və Atatürkün əl yazısı qeydlərinin də yer aldığı vətəndaşlıq bilikləri kitabı.",
+          detay: "Nəşr ili: 1930<br>Açıqlama: Cümhuriyyət, dövlət, vətəndaşlıq hüquqları və müasir cəmiyyət anlayışlarını xalqa izah etməyi məqsəd qoyur."
+        },
+        {
+          baslik: "Cumalı Ordugahı",
+          ozet: "Atatürkün Sofiyada hərbi attaşe olarkən yazdığı, 1911-ci ildə nəşr olunan xatirə və müşahidə kitabı.",
+          detay: "Nəşr ili: 1911<br>Açıqlama: Balkan müharibəsi zamanı Bolqarıstandakı hərbi vəziyyətləri, müşahidə və təcrübələrini əhatə edir."
+        },
+        {
+          baslik: "Bölüyün Döyüş Təlimi",
+          ozet: "Atatürkün hərbi təlimlə bağlı yazdığı, piyada bölüyünün döyüş təlimi və tətbiqləri ilə bağlı bələdçi.",
+          detay: "Nəşr ili: 1908<br>Açıqlama: Hərbi birliklərin təlimi və döyüş zamanı tətbiq ediləcək taktikalardan bəhs edir."
+        },
+        {
+          baslik: "Komandanın Döyüş Təlimi",
+          ozet: "Atatürkün hərbi təlim kitablarından biri olub, komanda birliyinin döyüş təlimi və texnikalarını izah edir.",
+          detay: "Nəşr ili: 1912<br>Açıqlama: Hərbi komanda birliyinin döyüş zamanı tətbiq edəcəyi təlim metodlarını əhatə edir."
+        },
+        {
+          baslik: "Taktika və Təlim Səyahəti",
+          ozet: "Atatürkün hərbi taktika və sahə tətbiqləri mövzusunda yazdığı bələdçi əsərdir.",
+          detay: "Nəşr ili: 1911<br>Açıqlama: Zabitlər üçün hərbi təlimlərin necə aparılacağını və taktikanın necə tətbiq olunacağını izah edir."
+        },
+        {
+          baslik: "Zabit və Komandan ilə Söhbət",
+          ozet: "Atatürkün Osmanlı ordusunun zabitlərinə yazdığı, liderlik və komandanlıq prinsiplərini izah edən əsər.",
+          detay: "Nəşr ili: 1918<br>Açıqlama: Komandanlarla söhbətlər vasitəsilə hərbi dəyərləri, əmri-komanda münasibətini və liderliyi izah edir."
+        },
+        {
+          baslik: "Böyük Nutuk (Uşaqlar üçün)",
+          ozet: "Atatürkün həyatı və mübarizəsi uşaqlara uyğun şəkildə izah edilmişdir.",
+          detay: "Nəşr ili: Müxtəlif (xüsusilə müasir nəşrlər)<br>Açıqlama: Nutukun uşaqlar üçün başa düşülən şəkildə uyğunlaşdırılmış formasıdır."
+        }
+      ]
+    };
+
+    function renderEserler(lang) {
+      const grid = document.getElementById("eserler-grid");
+      grid.innerHTML = "";
+      const data = ESERLER[lang] || ESERLER.tr;
+      data.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "eser-card";
+        card.tabIndex = 0;
+        card.innerHTML = `
+          <div class="eser-baslik">${item.baslik}</div>
+          <div class="eser-ozet">${item.ozet}</div>
+          <div class="eser-detay">${item.detay}</div>
+        `;
+        grid.appendChild(card);
+      });
+      // Başlığı da güncelle
+      const titles = {
+        tr: "Atatürk'ün Eserleri",
+        en: "Atatürk's Works",
+        az: "Atatürkün Əsərləri"
+      };
+      document.getElementById("eserler-title").textContent = titles[lang] || titles.tr;
+    }
+
+    // Dil seçici
+    function getLang() {
+      return localStorage.getItem("language") || "tr";
+    }
+    function setLang(lang) {
+      localStorage.setItem("language", lang);
+      renderEserler(lang);
+      setLangSelect(lang);
+    }
+    function setLangSelect(lang) {
+      document.getElementById("language").value = lang;
+    }
+    document.getElementById("language").addEventListener("change", function(e){
+      setLang(e.target.value);
+    });
+
     // Söz kutusu animasyonu için
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
@@ -363,75 +540,21 @@
       showQuote(quoteIndex);
     }, 5000);
 
-    // Ortak ayar scripti (tasarıma dokunmadan)
-    const LANGUAGES = {
-      tr: {
-        title: "Ayarlar",
-        theme: "Tema",
-        darkMode: "Koyu Mod",
-        notifications: "Bildirimleri Aç",
-        fontSize: "Yazı Boyutu",
-        language: "Dil",
-        save: "Kaydet",
-        saved: "Ayarlar kaydedildi!",
-        info: "Ayarlarınız tarayıcınızda saklanır.<br>Koyu Mod, Yazı Boyutu ve Dil tüm sayfalara yansır.",
-        options: { normal: "Normal", large: "Büyük", xlarge: "Çok Büyük" },
-        tr: "Türkçe",
-        en: "İngilizce"
-      },
-      en: {
-        title: "Settings",
-        theme: "Theme",
-        darkMode: "Dark Mode",
-        notifications: "Enable Notifications",
-        fontSize: "Font Size",
-        language: "Language",
-        save: "Save",
-        saved: "Settings saved!",
-        info: "Your settings are stored in your browser.<br>Dark Mode, Font Size and Language apply to all pages.",
-        options: { normal: "Normal", large: "Large", xlarge: "Extra Large" },
-        tr: "Turkish",
-        en: "English"
-      }
-    };
-    function getLang() { return localStorage.getItem("language") || "tr"; }
+    // Koyu tema ve yazı boyutu uygulaması (ayarlar sayfası ile uyumlu)
     function applySettings() {
       const isDark = localStorage.getItem("darkMode") === "true";
       const fontSize = localStorage.getItem("fontSize") || "normal";
-      document.body.style.background = isDark ? "#222" : "#fff";
-      document.body.style.color = isDark ? "#fff" : "#222";
       document.body.classList.toggle('dark', isDark);
+      document.body.style.background = isDark ? "#181818" : "#fff";
+      document.body.style.color = isDark ? "#f2f2f2" : "#222";
       switch(fontSize) {
         case 'large': document.body.style.fontSize = "1.18em"; break;
         case 'xlarge': document.body.style.fontSize = "1.32em"; break;
         default: document.body.style.fontSize = "1em";
       }
-      // Fade-in animasyonu (animasyonsuz sayfa için)
-      if (!document.querySelector(".timeline-event") && !document.body.classList.contains("has-fadein")) {
-        document.body.style.opacity = "0";
-        document.body.style.transition = "opacity 0.7s";
-        setTimeout(() => { document.body.style.opacity = "1"; }, 10);
-        document.body.classList.add("has-fadein");
-      }
-      if (document.getElementById("settingsForm")) {
-        const t = LANGUAGES[getLang()];
-        document.querySelector('.settings-title').textContent = t.title;
-        document.querySelectorAll('.section-label')[0].textContent = t.theme;
-        document.querySelector('.toggle-label[for=darkMode]').textContent = t.darkMode;
-        document.querySelectorAll('.section-label')[1].textContent = t.notifications;
-        document.querySelector('.toggle-label[for=notifications]').textContent = t.notifications;
-        document.querySelectorAll('.section-label')[2].textContent = t.fontSize;
-        document.querySelectorAll('.section-label')[3].textContent = t.language;
-        document.getElementById("fontSize").options[0].textContent = t.options.normal;
-        document.getElementById("fontSize").options[1].textContent = t.options.large;
-        document.getElementById("fontSize").options[2].textContent = t.options.xlarge;
-        document.getElementById("settings-save-label").textContent = t.save;
-        document.getElementById("savedMsg").textContent = t.saved;
-        document.querySelector('.settings-info').innerHTML = t.info;
-        document.getElementById("language").options[0].textContent = t.tr;
-        document.getElementById("language").options[1].textContent = t.en;
-      }
     }
+
+    // Footer güncellemesi
     function updateFooterLinks() {
       const footer = document.querySelector("footer");
       if (!footer) return;
@@ -453,9 +576,13 @@
         </a>
       `;
     }
+
+    // Sayfa açılışında ayarları uygula ve eserler kartlarını doldur
     window.addEventListener("DOMContentLoaded", () => {
       applySettings();
       updateFooterLinks();
+      renderEserler(getLang());
+      setLangSelect(getLang());
     });
   </script>
 </body>
