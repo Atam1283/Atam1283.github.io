@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
-  <title>Atatürk</title>
+  <title>Devrimleri</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     * { box-sizing: border-box; }
@@ -24,22 +24,22 @@
     }
     .menu-background {
       position: fixed;
-      top: 70px;
+      top: 0;
       left: 0;
       width: 100vw;
-      height: 50px;
+      height: 120px;
       background: #fff;
-      z-index: 999;
+      z-index: 1099;
       pointer-events: none;
     }
     nav.menu {
       position: fixed;
       top: 70px;
       left: 0;
-      width: 100%;
+      width: 100vw;
       background: #fff;
       border-bottom: 2px solid #d9d9d9;
-      z-index: 1000;
+      z-index: 1101;
       overflow-x: auto;
       white-space: nowrap;
     }
@@ -53,7 +53,7 @@
       border-bottom: 3px solid transparent;
       transition: all 0.3s ease;
     }
-    nav.menu a:hover {
+    nav.menu a:hover, nav.menu a.active {
       border-bottom: 3px solid #e30b17;
       color: #e30b17;
     }
@@ -133,16 +133,83 @@
         font-size: 9px;
       }
       .menu-background {
-        height: 50px;
+        height: 100px;
       }
       nav.menu {
-        top: 70px;
+        top: 60px;
         height: 50px;
       }
       nav.menu a {
         padding: 10px 12px 9px 12px;
         font-size: 13px;
       }
+    }
+    main {
+      margin: 140px auto 0 auto;
+      max-width: 900px;
+      padding: 0 20px 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .devrimler-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 26px;
+      width: 100%;
+      max-width: 900px;
+    }
+    .devrim-card {
+      background: #fafafa;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      padding: 30px 22px 22px 22px;
+      position: relative;
+      transition: box-shadow 0.25s, transform 0.22s cubic-bezier(.42,0,.58,1);
+      min-height: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: cardFloat 4s ease-in-out infinite alternate;
+    }
+    .devrim-card:hover, .devrim-card:focus {
+      box-shadow: 0 8px 32px rgba(227,11,23,0.15), 0 2px 16px rgba(0,0,0,0.12);
+      transform: scale(1.03) rotate(-1.2deg);
+    }
+    .devrim-card .devrim-baslik {
+      font-size: 1.12em;
+      font-weight: bold;
+      color: #e30b17;
+      margin-bottom: 10px;
+      line-height: 1.2;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      text-align: left;
+    }
+    .devrim-card .devrim-ozet {
+      font-size: 1em;
+      color: #222;
+      margin-bottom: 14px;
+      line-height: 1.44;
+      font-family: Arial, sans-serif;
+      text-align: left;
+    }
+    .devrim-card .devrim-tarih {
+      font-size: 0.96em;
+      color: #666;
+      text-align: right;
+      font-family: Arial, sans-serif;
+      font-style: italic;
+      margin-top: auto;
+      margin-bottom: 0;
+    }
+    @media (max-width: 700px) {
+      main { margin-top: 110px;}
+      .devrimler-grid { grid-template-columns: 1fr; gap: 14px;}
+      .devrim-card { padding: 17px 9px 12px 14px; min-height: 90px;}
+    }
+    @keyframes cardFloat {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px);}
     }
   </style>
 </head>
@@ -151,10 +218,8 @@
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
 
-  <!-- Menü arkasında beyaz plaka -->
   <div class="menu-background"></div>
 
-  <!-- Söz kutusu (yazı ve kaynak) -->
   <div class="quote-container">
     <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
     <div class="quote-source" id="quote-source">TBMM, 1920</div>
@@ -166,13 +231,124 @@
     <a href="galeri.html">Galeri</a>
     <a href="sozleri.html">Sözleri</a>
     <a href="eserleri.html">Eserleri</a>
-    <a href="devrimler.html">Devrimleri</a>
+    <a href="devrimler.html" class="active">Devrimleri</a>
     <a href="nutuk.html">Nutuk</a>
     <a href="kronoloji.html">Kronoloji</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
 
-  <!-- İçerik yok, menü ve plaka eski yerinde -->
+  <main>
+    <h1 style="font-size:2.1em; color:#e30b17; margin-bottom:36px; margin-top:18px; font-family:Georgia,serif; text-align:center;">
+      Atatürk Devrimleri
+    </h1>
+    <div class="devrimler-grid">
+      <div class="devrim-card" tabindex="0">
+        <div class="devrim-baslik">Saltanatın Kaldırılması</div>
+        <div class="devrim-ozet">
+          Osmanlı saltanatının kaldırılarak egemenliğin millete devredilmesiyle Türkiye Cumhuriyeti'nin temelleri atıldı.
+        </div>
+        <div class="devrim-tarih">1 Kasım 1922</div>
+      </div>
+      <div class="devrim-card" tabindex="0">
+        <div class="devrim-baslik">Cumhuriyetin İlanı</div>
+        <div class="devrim-ozet">
+          Türkiye devletinin yönetim şekli olarak cumhuriyetin kabulü ve yeni devletin kuruluşu ilan edildi.
+        </div>
+        <div class="devrim-tarih">29 Ekim 1923</div>
+      </div>
+      <div class="devrim-card" tabindex="0">
+        <div class="devrim-baslik">Halifeliğin Kaldırılması</div>
+        <div class="devrim-ozet">
+          Osmanlı halifeliği kaldırılarak laik devlet yapısına geçişin en önemli adımlarından biri atıldı.
+        </div>
+        <div class="devrim-tarih">3 Mart 1924</div>
+      </div>
+      <div class="devrim-card" tabindex="0">
+        <div class="devrim-baslik">Tevhid-i Tedrisat Kanunu</div>
+        <div class="devrim-ozet">
+          Eğitimde birlik sağlanarak modern, çağdaş ve laik eğitim sisteminin temeli atıldı.
+        </div>
+        <div class="devrim-tarih">3 Mart 1924</div>
+      </div>
+      <div class="devrim-card" tabindex="0">
+        <div class="devrim-baslik">Şeriye ve Evkaf Vekâletinin Kaldırılması</div>
+        <div class="devrim-ozet">
+          Din işlerinin devletten ayrılması ve laikliğin güçlendirilmesi sağlandı.
+        </div>
+        <div class="devrim-tarih">3 Mart 1924</div>
+      </div>
+      <div class="devrim-card" tabindex="0">
+        <div class="devrim-baslik">Medeni Kanun'un Kabulü</div>
+        <div class="devrim-ozet">
+          İsviçre Medeni Kanunu’ndan uyarlanarak kadın-erkek eşitliğini ve çağdaş hukuku esas alan medeni kanun yürürlüğe girdi.
+        </div>
+        <div class="devrim-tarih">17 Şubat 1926</div>
+      </div>
+      <div class="devrim-card" tabindex="0">
+        <div class="devrim-baslik">Soyadı Kanunu</div>
+        <div class="devrim-ozet">
+          Her Türk vatandaşının bir soyadı alması zorunlu hale getirilerek toplumsal düzen ve modern kimlik anlayışı geliştirildi.
+        </div>
+        <div class="devrim-tarih">21 Haziran 1934</div>
+      </div>
+      <div class="devrim-card" tabindex="0">
+        <div class="devrim-baslik">Şapka ve Kıyafet Devrimi</div>
+        <div class="devrim-ozet">
+          Çağdaşlaşmayı simgeleyen şapka ve Batı tarzı kıyafetlerin yaygınlaştırılmasıyla toplumsal modernleşme hızlandı.
+        </div>
+        <div class="devrim-tarih">25 Kasım 1925</div>
+      </div>
+      <div class="devrim-card" tabindex="0">
+        <div class="devrim-baslik">Tekke, Zaviye ve Türbelerin Kapatılması</div>
+        <div class="devrim-ozet">
+          Dinî kurumların kapatılmasıyla laikliğin ve modern toplumun temelleri güçlendirildi.
+        </div>
+        <div class="devrim-tarih">30 Kasım 1925</div>
+      </div>
+      <div class="devrim-card" tabindex="0">
+        <div class="devrim-baslik">Harf Devrimi</div>
+        <div class="devrim-ozet">
+          Arap alfabesi yerine Latin alfabesinin kabulüyle okuryazarlık oranı arttı ve çağdaşlaşma hızlandı.
+        </div>
+        <div class="devrim-tarih">1 Kasım 1928</div>
+      </div>
+      <div class="devrim-card" tabindex="0">
+        <div class="devrim-baslik">Takvim, Saat ve Ölçü Birimlerinde Değişiklik</div>
+        <div class="devrim-ozet">
+          Miladi takvim, uluslararası saat ve metre-kilogram sistemi kabul edilerek çağdaşlaşma sağlandı.
+        </div>
+        <div class="devrim-tarih">1925-1931</div>
+      </div>
+      <div class="devrim-card" tabindex="0">
+        <div class="devrim-baslik">Kadınlara Seçme ve Seçilme Hakkı</div>
+        <div class="devrim-ozet">
+          Kadınlara önce belediye seçimlerinde sonra milletvekili seçimlerinde seçme ve seçilme hakkı tanındı.
+        </div>
+        <div class="devrim-tarih">1930 (belediye), 1934 (milletvekili)</div>
+      </div>
+      <div class="devrim-card" tabindex="0">
+        <div class="devrim-baslik">Türk Medeni Kanunu ve Hukuk Alanındaki Diğer Devrimler</div>
+        <div class="devrim-ozet">
+          Ceza, ticaret, icra-iflas gibi modern hukuk düzenlemeleri ile çağdaş bir hukuk sistemi oluşturuldu.
+        </div>
+        <div class="devrim-tarih">1926 ve sonrası</div>
+      </div>
+      <div class="devrim-card" tabindex="0">
+        <div class="devrim-baslik">Üniversite Reformu</div>
+        <div class="devrim-ozet">
+          İstanbul Darülfünunu kapatılarak modern üniversite anlayışına uygun İstanbul Üniversitesi kuruldu.
+        </div>
+        <div class="devrim-tarih">31 Temmuz 1933</div>
+      </div>
+      <div class="devrim-card" tabindex="0">
+        <div class="devrim-baslik">Tarım, Sanayi ve Ekonomi Alanındaki Devrimler</div>
+        <div class="devrim-ozet">
+          Sanayi ve tarımda devlet teşvikleri, yeni fabrikalar, kooperatifler ve kalkınma projeleriyle ekonomik bağımsızlık sağlandı.
+        </div>
+        <div class="devrim-tarih">1923-1938</div>
+      </div>
+    </div>
+  </main>
 
   <footer>
     <a href="mailto:email@example.com" aria-label="Gmail">
@@ -192,6 +368,7 @@
     </a>
   </footer>
   <script>
+    // Söz kutusu animasyonu için
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
       { text: '"Yurtta sulh, cihanda sulh."', source: "Atatürk, Söylev ve Demeçler" },
