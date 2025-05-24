@@ -56,6 +56,23 @@
     nav.menu::-webkit-scrollbar {
       display: none;
     }
+    /* Sağ üst yazı */
+    .quote-box {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      color: #222;
+      font-size: 20px; /* BÜYÜTÜLDÜ */
+      max-width: 250px;
+      text-align: right;
+      font-family: Arial, sans-serif;
+      z-index: 1200;
+    }
+    .quote-source {
+      font-size: 13px; /* BÜYÜTÜLDÜ */
+      color: #666;
+      margin-top: 3px;
+    }
     @media (max-width: 900px) {
       .header-background {
         height: 75px;
@@ -64,6 +81,8 @@
         height: 35px;
         top: 35px;
       }
+      .quote-box { font-size: 15px; max-width: 180px; }
+      .quote-source { font-size: 10px; }
     }
     @media (max-width: 600px) {
       .header-background {
@@ -71,6 +90,8 @@
       }
       nav.menu { top: 30px; height: 30px; }
       nav.menu a { padding: 10px 8px; font-size: 12px; }
+      .quote-box { font-size: 13px; max-width: 130px; }
+      .quote-source { font-size: 9px; }
     }
   </style>
 </head>
@@ -89,5 +110,12 @@
     <a href="kronoloji.html">Kronoloji</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
+
+  <!-- Sağ üstteki yazı -->
+  <div class="quote-box fade" id="quote-box">
+    <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
+    <div class="quote-source" id="quote-source">— TBMM, 1920</div>
+  </div>
+
 </body>
 </html>
