@@ -13,6 +13,18 @@
       padding-bottom: 80px;
       color: #222;
     }
+    /* Üst beyaz plaka */
+    .header-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 120px;
+      background: #fff;
+      z-index: 900;
+      box-shadow: 0 2px 8px 0 #0000000a;
+      pointer-events: none;
+    }
     .logo {
       position: fixed;
       top: 10px;
@@ -23,19 +35,6 @@
       background: #fff;
       padding: 5px;
     }
-    /* Menü arkasına sabit beyaz plaka */
-    .menu-background {
-      position: fixed;
-      top: 70px;
-      left: 0;
-      width: 100%;
-      height: 50px;
-      background: #fff;
-      z-index: 999;
-      border-bottom: 2px solid #d9d9d9;
-      pointer-events: none; /* plakayı tıklanamaz yapar, menüye engel olmaz */
-      transition: box-shadow 0.3s;
-    }
     nav.menu {
       position: fixed;
       top: 70px;
@@ -44,7 +43,7 @@
       height: 50px;
       line-height: 50px;
       background: transparent;
-      border-bottom: 2px solid transparent;
+      border-bottom: 2px solid #d9d9d9;
       z-index: 1000;
       overflow-x: auto;
       white-space: nowrap;
@@ -240,7 +239,9 @@
       main {
         margin-top: 125px;
       }
-      .menu-background,
+      .header-background {
+        height: 100px;
+      }
       nav.menu {
         height: 40px;
         top: 60px;
@@ -255,8 +256,10 @@
       .quote-source {
         font-size: 9px;
       }
-      .menu-background,
-      nav.menu { top: 60px; height: 40px; }
+      .header-background {
+        height: 95px;
+      }
+      nav.menu { top: 60px; height: 35px; }
       nav.menu a { padding: 10px 8px; font-size: 12px; }
       main { margin-top: 110px; }
       .homepage-content { padding: 10px 2vw 10px 2vw; font-size: 0.98em; }
@@ -303,6 +306,9 @@
   </style>
 </head>
 <body>
+  <!-- Üst beyaz plaka -->
+  <div class="header-background"></div>
+
   <a href="index.html" class="logo">
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
@@ -313,8 +319,6 @@
     <div class="quote-source" id="quote-source">— TBMM, 1920</div>
   </div>
 
-  <!-- Menü arkası plaka -->
-  <div class="menu-background"></div>
   <nav class="menu">
     <a href="index.html">Anasayfa</a>
     <a href="hayati.html">Hayatı</a>
