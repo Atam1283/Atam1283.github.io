@@ -163,11 +163,11 @@
       background: #fafafa;
       border-radius: 16px;
       box-shadow: 0 2px 16px rgba(0,0,0,0.07);
-      padding: 30px 22px 20px 22px;
+      padding: 30px 22px 22px 22px;
       position: relative;
       transition: box-shadow 0.25s, transform 0.22s cubic-bezier(.42,0,.58,1);
       cursor: pointer;
-      min-height: 95px;
+      min-height: 110px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -195,10 +195,20 @@
       margin-top: auto;
       margin-bottom: 0;
     }
+    .soz-card .baglam {
+      font-size: 0.95em;
+      color: #888;
+      margin-top: 9px;
+      padding-top: 6px;
+      border-top: 1px solid #f0f0f0;
+      font-style: normal;
+      font-family: Arial, sans-serif;
+      text-align: left;
+    }
     @media (max-width: 700px) {
       main { margin-top: 110px;}
       .sozler-grid { grid-template-columns: 1fr; gap: 14px;}
-      .soz-card { padding: 17px 9px 13px 14px; min-height: 74px;}
+      .soz-card { padding: 17px 9px 12px 14px; min-height: 90px;}
     }
     @keyframes cardFloat {
       0% { transform: translateY(0); }
@@ -235,54 +245,67 @@
       Atatürk'ün Sözleri
     </h1>
     <div class="sozler-grid">
+
       <div class="soz-card" tabindex="0">
-        <div class="soz">"Egemenlik, kayıtsız şartsız milletindir."</div>
-        <div class="kaynak">TBMM, 1920</div>
+        <div class="soz">"Benim naçiz vücudum elbet bir gün toprak olacaktır, fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır."</div>
+        <div class="kaynak">Kaynak: 10. Yıl Nutku, 1933</div>
+        <div class="baglam">Bağlam: Cumhuriyetin 10. yılında yaptığı tarihî konuşmada, cumhuriyetin sonsuza kadar yaşayacağını vurgulamıştır.</div>
       </div>
+
       <div class="soz-card" tabindex="0">
         <div class="soz">"Yurtta sulh, cihanda sulh."</div>
-        <div class="kaynak">Atatürk, Söylev ve Demeçler</div>
+        <div class="kaynak">Kaynak: Atatürk'ün dış politikaya dair temel ilkesi (1931)</div>
+        <div class="baglam">Bağlam: Türkiye'nin barışçıl politikasını özetleyerek çeşitli konuşmalarında vurgulamıştır.</div>
       </div>
+
       <div class="soz-card" tabindex="0">
         <div class="soz">"Hayatta en hakiki mürşit ilimdir."</div>
-        <div class="kaynak">Atatürk, 1924</div>
+        <div class="kaynak">Kaynak: Samsun, 1924 (Öğretmenlere hitap)</div>
+        <div class="baglam">Bağlam: Bilimin yol göstericiliğine vurgu yapmış, eğitim reformlarının temelini bu sözle özetlemiştir.</div>
       </div>
+
       <div class="soz-card" tabindex="0">
-        <div class="soz">"Beni görmek demek mutlaka yüzümü görmek değildir. Benim fikirlerimi, benim duygularımı anlıyorsanız ve hissediyorsanız bu yeterlidir."</div>
-        <div class="kaynak">Atatürk, 1930</div>
+        <div class="soz">"Egemenlik kayıtsız şartsız milletindir."</div>
+        <div class="kaynak">Kaynak: 1923 ve sonrası, Cumhuriyetin ilanı ve TBMM'nin açılışında</div>
+        <div class="baglam">Bağlam: TBMM'nin açılışı ve cumhuriyetin temel felsefesini ifade eder.</div>
       </div>
+
       <div class="soz-card" tabindex="0">
-        <div class="soz">"Türk milletinin karakteri yüksektir, Türk milleti çalışkandır, Türk milleti zekidir."</div>
-        <div class="kaynak">Atatürk, 1933</div>
+        <div class="soz">"Geldikleri gibi giderler."</div>
+        <div class="kaynak">Kaynak: İstanbul'un işgali sırasında, 1919</div>
+        <div class="baglam">Bağlam: İşgal kuvvetlerinin bir gün Türkiye'den çıkartılacağına dair inancını ifade etmiştir.</div>
       </div>
+
       <div class="soz-card" tabindex="0">
-        <div class="soz">"Ne mutlu Türküm diyene!"</div>
-        <div class="kaynak">Atatürk</div>
+        <div class="soz">"Türk, öğün, çalış, güven."</div>
+        <div class="kaynak">Kaynak: 1930'larda yaptığı çeşitli konuşmalar</div>
+        <div class="baglam">Bağlam: Türk milletinin çalışkanlığına ve özgüvenine vurgu yapmıştır.</div>
       </div>
+
       <div class="soz-card" tabindex="0">
-        <div class="soz">"Milletin bağımsızlığı yine milletin azim ve kararıyla kurtarılacaktır."</div>
-        <div class="kaynak">Atatürk, 1919</div>
+        <div class="soz">"Muhtaç olduğun kudret, damarlarındaki asil kanda mevcuttur."</div>
+        <div class="kaynak">Kaynak: Nutuk, 1927 (Gençliğe Hitabe sonu)</div>
+        <div class="baglam">Bağlam: Türk milletinin gücünün kendi tarihinden ve kimliğinden geldiğini belirtmiştir.</div>
       </div>
+
       <div class="soz-card" tabindex="0">
-        <div class="soz">"Benim naçiz vücudum elbet bir gün toprak olacaktır; fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır."</div>
-        <div class="kaynak">Atatürk</div>
+        <div class="soz">"Ordular! İlk hedefiniz Akdeniz'dir, ileri!"</div>
+        <div class="kaynak">Kaynak: Dumlupınar Meydan Muharebesi, 30 Ağustos 1922</div>
+        <div class="baglam">Bağlam: Büyük Taarruz sırasında Türk ordusuna tarihî bir direktif vermiştir.</div>
       </div>
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Öğretmenler! Yeni nesil sizin eseriniz olacaktır."</div>
-        <div class="kaynak">Atatürk, 1924</div>
-      </div>
+
       <div class="soz-card" tabindex="0">
         <div class="soz">"Sanatsız kalan bir milletin hayat damarlarından biri kopmuş demektir."</div>
-        <div class="kaynak">Atatürk, 1923</div>
+        <div class="kaynak">Kaynak: Öğretmenlere konuşma, Ankara, 1923</div>
+        <div class="baglam">Bağlam: Sanatın ve kültürün milletler için önemini vurgulamıştır.</div>
       </div>
+
       <div class="soz-card" tabindex="0">
-        <div class="soz">"İstikbal göklerdedir."</div>
-        <div class="kaynak">Atatürk, 1936</div>
+        <div class="soz">"Beni görmek demek mutlaka yüzümü görmek değildir. Benim fikirlerimi, benim duygularımı anlıyorsanız ve hissediyorsanız bu kafidir."</div>
+        <div class="kaynak">Kaynak: İstanbul, 1929 (Gençlerle sohbet)</div>
+        <div class="baglam">Bağlam: Kişisel tapınma yerine fikirlerinin anlaşılmasını istemiştir.</div>
       </div>
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Dünyada her şey için, medeniyet için, hayat için, başarı için en hakiki mürşit ilimdir, fendir."</div>
-        <div class="kaynak">Atatürk</div>
-      </div>
+
     </div>
   </main>
 
