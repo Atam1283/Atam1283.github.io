@@ -49,6 +49,12 @@
       border-bottom: 3px solid transparent;
       transition: all 0.3s ease;
     }
+    nav.menu a.active,
+    nav.menu a:active {
+      color: #e30b17;
+      border-bottom: 3px solid #e30b17;
+      background: #fff0f0;
+    }
     nav.menu a:hover {
       border-bottom: 3px solid #e30b17;
       color: #e30b17;
@@ -62,14 +68,14 @@
       top: 10px;
       right: 10px;
       color: #222;
-      font-size: 20px; /* BÜYÜTÜLDÜ */
+      font-size: 20px;
       max-width: 250px;
       text-align: right;
       font-family: Arial, sans-serif;
       z-index: 1200;
     }
     .quote-source {
-      font-size: 13px; /* BÜYÜTÜLDÜ */
+      font-size: 13px;
       color: #666;
       margin-top: 3px;
     }
@@ -99,8 +105,8 @@
   <!-- Üst beyaz plaka -->
   <div class="header-background"></div>
 
-  <nav class="menu">
-    <a href="index.html">Anasayfa</a>
+  <nav class="menu" id="mainMenu">
+    <a href="index.html" id="anasayfaLink">Anasayfa</a>
     <a href="hayati.html">Hayatı</a>
     <a href="galeri.html">Galeri</a>
     <a href="sozleri.html">Sözleri</a>
@@ -117,5 +123,53 @@
     <div class="quote-source" id="quote-source">— TBMM, 1920</div>
   </div>
 
+  <script>
+    // Menünün aktif linkini belirle
+    function setActiveMenu() {
+      var path = window.location.pathname.split('/').pop() || "index.html";
+      var links = document.querySelectorAll('nav.menu a');
+      links.forEach(function(link) {
+        // Tüm linklerden active'i kaldır
+        link.classList.remove('active');
+        // Şu anki sayfa ile eşleşeni işaretle
+        if(link.getAttribute('href') === path) {
+          link.classList.add('active');
+        }
+      });
+    }
+    setActiveMenu();
+
+    // "Anasayfa"ya tıklanınca sayfayı yenile (SPA değilse!)
+    document.getElementById("anasayfaLink").addEventListener("click", function(e) {
+      var path = window.location.pathname.split('/').pop() || "index.html";
+      if(path === "index.html") {
+        window.location.reload();
+      }
+    });
+
+    // Alttaki kod sağ üstteki sözü döndürür
+    const quotes = [
+      { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "— TBMM, 1920" },
+      { text: '"Yurtta sulh, cihanda sulh."', source: "— Atatürk" },
+      { text: '"Hayatta en hakiki mürşit ilimdir."', source: "— Atatürk" },
+      { text: '"Türk milleti çalışkandır, zekidir."', source: "— Atatürk" }
+    ];
+
+    let quoteIndex = 0;
+    const quoteBox = document.getElementById("quote-box");
+    const quoteText = document.getElementById("quote-text");
+    const quoteSource = document.getElementById("quote-source");
+
+    function updateQuote() {
+      quoteBox.classList.add("fade-out");
+      setTimeout(() => {
+        quoteIndex = (quoteIndex + 1) % quotes.length;
+        quoteText.textContent = quotes[quoteIndex].text;
+        quoteSource.textContent = quotes[quoteIndex].source;
+        quoteBox.classList.remove("fade-out");
+      }, 500);
+    }
+    setInterval(updateQuote, 5000);
+  </script>
 </body>
 </html>
