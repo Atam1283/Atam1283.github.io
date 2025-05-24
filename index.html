@@ -62,50 +62,6 @@
     nav.menu::-webkit-scrollbar {
       display: none;
     }
-    /* Dil seçici */
-    .lang-select-section {
-      position: fixed;
-      top: 15px;
-      right: 20px;
-      z-index: 1300;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255,255,255,0.95);
-      border-radius: 10px;
-      box-shadow: 0 2px 8px #0001;
-      padding: 5px 12px;
-    }
-    .lang-select-label {
-      font-weight: bold;
-      color: #222;
-      font-size: 1em;
-      font-family: Georgia, serif;
-    }
-    .lang-select {
-      padding: 4px 10px 4px 8px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      background: #fff;
-      font-size: 1em;
-      color: #222;
-      outline: none;
-      transition: border 0.2s;
-      cursor: pointer;
-    }
-    .lang-select:focus {
-      border-color: #e30b17;
-    }
-    @media (max-width: 600px) {
-      .lang-select-section {
-        right: 6px;
-        top: 6px;
-        padding: 2px 7px;
-        font-size: .95em;
-      }
-      .lang-select-label { font-size: .93em; }
-      .lang-select { font-size: .95em; }
-    }
     .quote-container {
       position: fixed;
       top: 10px;
@@ -168,89 +124,42 @@
       height: 20px;
       fill: currentColor;
     }
-    #hero-content {
-      width:100%;
-      height:100%;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      min-height:70vh;
-      animation:fadeInHero 1.2s cubic-bezier(.62,.04,.36,1.09);
-      padding:10px;
-    }
     @media (max-width: 600px) {
-      #hero-content h1 { font-size:1.3rem !important; }
-      #hero-content h2 { font-size:.98rem !important; }
-      #hero-content p { font-size:.98rem !important; }
-    }
-    /* Koyu tema için detaylı uyum */
-    body.dark {
-      background: #181818 !important;
-      color: #f2f2f2 !important;
-    }
-    body.dark nav.menu {
-      background: #181818;
-      border-bottom: 2px solid #353535;
-    }
-    body.dark nav.menu a {
-      color: #f2f2f2;
-    }
-    body.dark nav.menu a.active,
-    body.dark nav.menu a:hover {
-      color: #ff3d3c;
-      border-bottom: 3px solid #ff3d3c;
-      background: transparent;
-    }
-    body.dark .lang-select-section {
-      background: #232326;
-      box-shadow: 0 2px 8px #0004;
-    }
-    body.dark .lang-select-label {
-      color: #ff3d3c;
-    }
-    body.dark .lang-select {
-      background: #232326;
-      color: #fff;
-      border: 1px solid #444;
-    }
-    body.dark .lang-select:focus {
-      border-color: #ff3d3c;
-    }
-    body.dark #hero-content h1,
-    body.dark #hero-content h2 {
-      color: #ff3d3c !important;
-    }
-    body.dark #hero-content p,
-    body.dark #hero-content div {
-      color: #e6e6e6 !important;
-    }
-    /* Animasyonlar */
-    @keyframes fadeInHero {
-      from { opacity:0; transform: scale(0.97);}
-      to { opacity:1; transform: scale(1);}
-    }
-    @keyframes titlePop {
-      from { opacity:0; transform: scale(0.88);}
-      80% { opacity:1; transform: scale(1.09);}
-      to { opacity:1; transform: scale(1);}
-    }
-    @keyframes fadeInUp {
-      from { opacity:0; transform: translateY(18px);}
-      to { opacity:1; transform: translateY(0);}
+      .quote-container {
+        max-width: 160px;
+      }
+      .quote-text {
+        font-size: 10px;
+      }
+      .quote-source {
+        font-size: 9px;
+      }
+      .menu-background {
+        height: 50px;
+      }
+      nav.menu {
+        top: 70px;
+        height: 50px;
+      }
+      nav.menu a {
+        padding: 10px 12px 9px 12px;
+        font-size: 13px;
+      }
     }
   </style>
 </head>
 <body>
- 
   <a href="index.html" class="logo">
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
+
   <div class="menu-background"></div>
+
   <div class="quote-container">
     <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
     <div class="quote-source" id="quote-source">TBMM, 1920</div>
   </div>
+
   <nav class="menu">
     <a href="index.html" class="active">Anasayfa</a>
     <a href="hayati.html">Hayatı</a>
@@ -262,14 +171,15 @@
     <a href="kronoloji.html">Kronoloji</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
-  <div id="hero-content">
-    <h1 id="main-title" style="font-size:2.3rem;font-weight:bold;color:#111;letter-spacing:1px;margin-top:40px; margin-bottom:10px;animation:titlePop 1s cubic-bezier(.77,-0.13,.22,1.12);">
+
+  <div id="hero-content" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;animation:fadeInHero 1.2s cubic-bezier(.62,.04,.36,1.09);padding:10px;">
+    <h1 style="font-size:2.3rem;font-weight:bold;color:#111;letter-spacing:1px;margin-top:40px; margin-bottom:10px;animation:titlePop 1s cubic-bezier(.77,-0.13,.22,1.12);" id="main-title">
       Mustafa Kemal Atatürk
     </h1>
-    <h2 id="main-subtitle" style="font-size:1.1rem;font-weight:bold;color:#191919;margin-bottom:20px;letter-spacing:.5px;animation:fadeInUp 1s .3s both;">
+    <h2 style="font-size:1.1rem;font-weight:bold;color:#191919;margin-bottom:20px;letter-spacing:.5px;animation:fadeInUp 1s .3s both;">
       Bağımsızlık ve Aydınlık Geleceğin Mimarı
     </h2>
-    <p id="main-desc" style="max-width:540px;text-align:center;font-size:1.08rem;color:#333;font-weight:500;margin-bottom:28px;line-height:1.7;animation:fadeInUp 1.1s .5s both;">
+    <p style="max-width:540px;text-align:center;font-size:1.08rem;color:#333;font-weight:500;margin-bottom:28px;line-height:1.7;animation:fadeInUp 1.1s .5s both;">
       Türkiye Cumhuriyeti'nin kurucusu, milletimizin yol göstericisi.<br>
       <span style="font-weight:bold;color:#e30b17;">"En büyük eserim Cumhuriyet'tir."</span> diyerek bizlere çağdaş ve özgür bir ülke armağan etti.<br>
       Atatürk'ün fikirleri ve ilkeleriyle geleceğe umutla bakıyoruz.
@@ -295,65 +205,13 @@
         <span style="font-size:1.3rem;">🔍</span>
       </button>
     </form>
-    <div id="main-tagline" style="color:#e30b17;font-weight:bold;font-size:1.08rem;margin-top:32px;letter-spacing:.3px;animation:fadeInUp 1.1s 1.1s both;display:flex;align-items:center;gap:8px;">
+    <div style="color:#e30b17;font-weight:bold;font-size:1.08rem;margin-top:32px;letter-spacing:.3px;animation:fadeInUp 1.1s 1.1s both;display:flex;align-items:center;gap:8px;">
       Türk gençleri olarak sonsuza dek izindeyiz!
     </div>
   </div>
+
   <footer></footer>
   <script>
-    // Çoklu dil içerik
-    const MAIN_LANGS = {
-      tr: {
-        title: "Mustafa Kemal Atatürk",
-        subtitle: "Bağımsızlık ve Aydınlık Geleceğin Mimarı",
-        desc: `Türkiye Cumhuriyeti'nin kurucusu, milletimizin yol göstericisi.<br>
-        <span style="font-weight:bold;color:#e30b17;">"En büyük eserim Cumhuriyet'tir."</span> diyerek bizlere çağdaş ve özgür bir ülke armağan etti.<br>
-        Atatürk'ün fikirleri ve ilkeleriyle geleceğe umutla bakıyoruz.`,
-        tagline: "Türk gençleri olarak sonsuza dek izindeyiz!",
-        search: "Atatürk hakkında ara..."
-      },
-      en: {
-        title: "Mustafa Kemal Atatürk",
-        subtitle: "The Architect of Independence and a Bright Future",
-        desc: `Founder of the Republic of Turkey, the guiding light of our nation.<br>
-        <span style="font-weight:bold;color:#e30b17;">"My greatest work is the Republic."</span> With these words, he entrusted us a modern and free country.<br>
-        We look to the future with hope, inspired by Atatürk's ideas and principles.`,
-        tagline: "As Turkish youth, we will forever follow your path!",
-        search: "Search about Atatürk..."
-      },
-      az: {
-        title: "Mustafa Kamal Atatürk",
-        subtitle: "Müstəqilliyin və İşıqlı Gələcəyin Memarı",
-        desc: `Türkiyə Cümhuriyyətinin qurucusu, millətimizin yol göstəricisi.<br>
-        <span style="font-weight:bold;color:#e30b17;">"Ən böyük əsərim Cümhuriyyətdir."</span> deyərək bizə müasir və azad bir ölkə bəxş etmişdir.<br>
-        Atatürkün ideyaları və prinsipləri ilə gələcəyə ümidlə baxırıq.`,
-        tagline: "Türk gəncləri olaraq əbədi izindəyik!",
-        search: "Atatürk haqqında axtar..."
-      }
-    };
-    function getLang() {
-      return localStorage.getItem("language") || "tr";
-    }
-    function setLang(lang) {
-      localStorage.setItem("language", lang);
-      renderMain(lang);
-      setLangSelect(lang);
-    }
-    function setLangSelect(lang) {
-      document.getElementById("language").value = lang;
-    }
-    function renderMain(lang) {
-      const t = MAIN_LANGS[lang] || MAIN_LANGS.tr;
-      document.getElementById("main-title").textContent = t.title;
-      document.getElementById("main-subtitle").textContent = t.subtitle;
-      document.getElementById("main-desc").innerHTML = t.desc;
-      document.getElementById("main-tagline").textContent = t.tagline;
-      document.querySelector("#aramaForm input[name='q']").placeholder = t.search;
-    }
-    document.getElementById("language").addEventListener("change", function(e){
-      setLang(e.target.value);
-    });
-
     // Söz animasyonu
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
@@ -378,22 +236,77 @@
       quoteIndex = (quoteIndex + 1) % quotes.length;
       showQuote(quoteIndex);
     }, 5000);
-
-    // Koyu tema ve yazı boyutu uygulaması (ayarlar sayfası ile uyumlu)
+  </script>
+  <script>
+    // Ortak ayar scripti (koyu mod, yazı boyutu, dil, footer, fade-in)
+    const LANGUAGES = {
+      tr: {
+        title: "Ayarlar",
+        theme: "Tema",
+        darkMode: "Koyu Mod",
+        notifications: "Bildirimleri Aç",
+        fontSize: "Yazı Boyutu",
+        language: "Dil",
+        save: "Kaydet",
+        saved: "Ayarlar kaydedildi!",
+        info: "Ayarlarınız tarayıcınızda saklanır.<br>Koyu Mod, Yazı Boyutu ve Dil tüm sayfalara yansır.",
+        options: { normal: "Normal", large: "Büyük", xlarge: "Çok Büyük" },
+        tr: "Türkçe",
+        en: "İngilizce"
+      },
+      en: {
+        title: "Settings",
+        theme: "Theme",
+        darkMode: "Dark Mode",
+        notifications: "Enable Notifications",
+        fontSize: "Font Size",
+        language: "Language",
+        save: "Save",
+        saved: "Settings saved!",
+        info: "Your settings are stored in your browser.<br>Dark Mode, Font Size and Language apply to all pages.",
+        options: { normal: "Normal", large: "Large", xlarge: "Extra Large" },
+        tr: "Turkish",
+        en: "English"
+      }
+    };
+    function getLang() { return localStorage.getItem("language") || "tr"; }
     function applySettings() {
       const isDark = localStorage.getItem("darkMode") === "true";
       const fontSize = localStorage.getItem("fontSize") || "normal";
+      document.body.style.background = isDark ? "#222" : "#fff";
+      document.body.style.color = isDark ? "#fff" : "#222";
       document.body.classList.toggle('dark', isDark);
-      document.body.style.background = isDark ? "#181818" : "#fff";
-      document.body.style.color = isDark ? "#f2f2f2" : "#222";
       switch(fontSize) {
         case 'large': document.body.style.fontSize = "1.18em"; break;
         case 'xlarge': document.body.style.fontSize = "1.32em"; break;
         default: document.body.style.fontSize = "1em";
       }
+      // Fade-in animasyonu (animasyonsuz sayfa için)
+      if (!document.querySelector(".timeline-event") && !document.body.classList.contains("has-fadein")) {
+        document.body.style.opacity = "0";
+        document.body.style.transition = "opacity 0.7s";
+        setTimeout(() => { document.body.style.opacity = "1"; }, 10);
+        document.body.classList.add("has-fadein");
+      }
+      if (document.getElementById("settingsForm")) {
+        const t = LANGUAGES[getLang()];
+        document.querySelector('.settings-title').textContent = t.title;
+        document.querySelectorAll('.section-label')[0].textContent = t.theme;
+        document.querySelector('.toggle-label[for=darkMode]').textContent = t.darkMode;
+        document.querySelectorAll('.section-label')[1].textContent = t.notifications;
+        document.querySelector('.toggle-label[for=notifications]').textContent = t.notifications;
+        document.querySelectorAll('.section-label')[2].textContent = t.fontSize;
+        document.querySelectorAll('.section-label')[3].textContent = t.language;
+        document.getElementById("fontSize").options[0].textContent = t.options.normal;
+        document.getElementById("fontSize").options[1].textContent = t.options.large;
+        document.getElementById("fontSize").options[2].textContent = t.options.xlarge;
+        document.getElementById("settings-save-label").textContent = t.save;
+        document.getElementById("savedMsg").textContent = t.saved;
+        document.querySelector('.settings-info').innerHTML = t.info;
+        document.getElementById("language").options[0].textContent = t.tr;
+        document.getElementById("language").options[1].textContent = t.en;
+      }
     }
-
-    // Footer güncellemesi
     function updateFooterLinks() {
       const footer = document.querySelector("footer");
       if (!footer) return;
@@ -415,12 +328,9 @@
         </a>
       `;
     }
-
     window.addEventListener("DOMContentLoaded", () => {
       applySettings();
       updateFooterLinks();
-      renderMain(getLang());
-      setLangSelect(getLang());
     });
   </script>
 </body>
