@@ -28,7 +28,7 @@
       top: 70px;
       left: 0;
       width: 100vw;
-      height: 50px; /* Menü yüksekliği ile aynı olmalı */
+      height: 50px;
       background: #fff;
       z-index: 999;
       pointer-events: none;
@@ -66,14 +66,18 @@
       top: 10px;
       right: 10px;
       color: #222;
-      font-size: 10px;
-      max-width: 250px;
+      font-size: 20px;
+      max-width: 280px;
       text-align: right;
       font-family: Arial, sans-serif;
       z-index: 1200;
+      background: rgba(255,255,255,0.9);
+      padding: 10px 16px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px 0 #0002;
     }
     .quote-source {
-      font-size: 9px;
+      font-size: 14px;
       color: #666;
       margin-top: 3px;
     }
@@ -120,18 +124,91 @@
       height: 20px;
       fill: currentColor;
     }
-    @media (max-width: 600px) {
-      .quote-box {
-        font-size: 9px;
-        max-width: 160px;
+    /* Mobil uyumluluk */
+    @media (max-width: 900px) {
+      .logo {
+        width: 90px;
+        top: 5px;
+        left: 6px;
+        padding: 3px;
       }
       .menu-background {
         height: 42px;
-        top: 62px;
+        top: 54px;
       }
       nav.menu {
         height: 42px;
-        top: 62px;
+        top: 54px;
+      }
+      nav.menu a {
+        padding: 10px 12px;
+        font-size: 13px;
+      }
+      .quote-box {
+        font-size: 15px;
+        max-width: 200px;
+        padding: 7px 10px;
+      }
+      .quote-source {
+        font-size: 11px;
+      }
+      footer {
+        height: 48px;
+        gap: 18px;
+      }
+      footer a {
+        width: 34px;
+        height: 34px;
+      }
+      footer svg {
+        width: 16px;
+        height: 16px;
+      }
+      body {
+        padding-bottom: 60px;
+      }
+    }
+    @media (max-width: 600px) {
+      .logo {
+        width: 68px;
+        top: 2px;
+        left: 3px;
+        padding: 2px;
+      }
+      .menu-background {
+        height: 36px;
+        top: 40px;
+      }
+      nav.menu {
+        height: 36px;
+        top: 40px;
+      }
+      nav.menu a {
+        padding: 7px 8px;
+        font-size: 11px;
+      }
+      .quote-box {
+        font-size: 12px;
+        max-width: 130px;
+        padding: 4px 6px;
+      }
+      .quote-source {
+        font-size: 9px;
+      }
+      footer {
+        height: 40px;
+        gap: 10px;
+      }
+      footer a {
+        width: 26px;
+        height: 26px;
+      }
+      footer svg {
+        width: 12px;
+        height: 12px;
+      }
+      body {
+        padding-bottom: 48px;
       }
     }
   </style>
@@ -196,18 +273,15 @@
     function updateQuote() {
       // Fade out
       quoteBox.classList.add("fade-out");
-
       setTimeout(() => {
         // Yeni sözü ayarla
         quoteIndex = (quoteIndex + 1) % quotes.length;
         quoteText.textContent = quotes[quoteIndex].text;
         quoteSource.textContent = quotes[quoteIndex].source;
-
         // Fade in
         quoteBox.classList.remove("fade-out");
       }, 500);
     }
-
     setInterval(updateQuote, 5000);
   </script>
 </body>
