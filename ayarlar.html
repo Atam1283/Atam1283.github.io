@@ -1,336 +1,192 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mustafa Kemal Atatürk - Ayarlar</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Ayarlar sayfasına özel stil */
-        #settings-form {
-            background-color: #1c1c1c; /* İçerik arka planı */
-            padding: 45px;
-            border-radius: 10px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.5);
-            margin-top: 50px;
-            text-align: left;
-            max-width: 650px; /* Genişlik artırıldı */
-            margin-left: auto;
-            margin-right: auto;
-            border: 1px solid #3a3a3a;
-        }
-        .form-group {
-            margin-bottom: 30px; /* Boşluk artırıldı */
-        }
-        .form-group label {
-            font-size: 1.2em; /* Daha büyük etiket */
-            margin-bottom: 12px;
-            color: #f0f0f0;
-            display: block;
-        }
-        .form-group select,
-        .form-group input[type="range"] {
-            width: calc(100% - 24px); /* Padding ve border hesaplaması */
-            padding: 14px; /* Daha büyük padding */
-            border: 1px solid #4a4a4a;
-            background-color: #2a2a2a;
-            color: #f0f0f0;
-            border-radius: 5px;
-            font-size: 1.1em;
-            box-sizing: border-box;
-            -webkit-appearance: none;
-            appearance: none;
-        }
-        /* Range slider stil (style.css'te de var, burada override için) */
-        input[type="range"]::-webkit-slider-thumb {
-            background: #e74c3c !important; /* Kırmızı başparmak */
-            border: 2px solid #f0f0f0 !important; /* Beyaz çerçeve */
-        }
-        input[type="range"]::-moz-range-thumb {
-            background: #e74c3c !important;
-            border: 2px solid #f0f0f0 !important;
-        }
-        input[type="range"]::-webkit-slider-runnable-track {
-            background: #4a4a4a !important;
-        }
-        input[type="range"]::-moz-range-track {
-            background: #4a4a4a !important;
-        }
+  <meta charset="utf-8" />
+  <title>Atatürk</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      padding-bottom: 80px;
+    }
+    .logo {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      width: 120px;
+      z-index: 1100;
+      border-radius: 10px;
+      background: #fff;
+      padding: 5px;
+    }
+    nav.menu {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-bottom: 2px solid #d9d9d9;
+      z-index: 1000;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    nav.menu a {
+      display: inline-block;
+      padding: 14px 20px;
+      color: #000;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s ease;
+    }
+    nav.menu a:hover {
+      border-bottom: 3px solid #e30b17;
+      color: #e30b17;
+    }
+    nav.menu::-webkit-scrollbar {
+      display: none;
+    }
+    .quote-box {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      color: #222;
+      font-size: 10px;
+      max-width: 250px;
+      text-align: right;
+      font-family: Arial, sans-serif;
+      z-index: 1200;
+    }
+    .quote-source {
+      font-size: 9px;
+      color: #666;
+      margin-top: 3px;
+    }
 
-        #current-font-size {
-            font-weight: bold;
-            color: #e74c3c; /* Kırmızı */
-            margin-left: 10px;
-        }
+    .fade {
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+    .fade-out {
+      opacity: 0;
+    }
 
-        /* Light Tema için Ayarlar Sayfası Özel */
-        body.light #settings-form {
-            background-color: #ffffff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            border: 1px solid #ddd;
-        }
-        body.light .form-group label {
-            color: #333;
-        }
-        body.light .form-group select,
-        body.light .form-group input[type="range"] {
-            background-color: #f5f5f5;
-            color: #333;
-            border-color: #ccc;
-        }
-        body.light input[type="range"]::-webkit-slider-thumb {
-            background: #2980b9 !important; /* Mavi başparmak */
-            border: 2px solid #ffffff !important;
-        }
-        body.light input[type="range"]::-moz-range-thumb {
-            background: #2980b9 !important;
-            border: 2px solid #ffffff !important;
-        }
-        body.light input[type="range"]::-webkit-slider-runnable-track {
-            background: #bbb !important;
-        }
-        body.light input[type="range"]::-moz-range-track {
-            background: #bbb !important;
-        }
-
-    </style>
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      z-index: 1000;
+    }
+    footer a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #888;
+      border-radius: 50%;
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    footer a:hover {
+      border-color: #e30b17;
+      color: #e30b17;
+    }
+    footer svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+    @media (max-width: 600px) {
+      .quote-box {
+        font-size: 9px;
+        max-width: 160px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="index.html">Ana Sayfa</a>
-            <a href="galeri.html">Galeri</a>
-            <a href="hayati.html">Hayatı</a>
-            <a href="gerisayim.html">Geri Sayım</a>
-            <a href="ayarlar.html" class="active">Ayarlar</a>
-        </nav>
-    </header>
+  <a href="index.html" class="logo">
+    <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
+  </a>
 
-    <main>
-        <section>
-            <h2>Site Ayarları</h2>
-            <p>Sitenin görünümünü ve okunabilirliğini tercihinize göre özelleştirin.</p>
+  <!-- Söz kutusu -->
+  <div class="quote-box fade" id="quote-box">
+    <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
+    <div class="quote-source" id="quote-source">— TBMM, 1920</div>
+  </div>
 
-            <form id="settings-form">
-                <div class="form-group">
-                    <label for="theme-select">Tema Seçimi:</label>
-                    <select id="theme-select">
-                        <option value="dark">Koyu Tema</option>
-                        <option value="light">Açık Tema</option>
-                    </select>
-                </div>
+  <nav class="menu">
+    <a href="index.html">Anasayfa</a>
+    <a href="hayati.html">Hayatı</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="sozleri.html">Sözleri</a>
+    <a href="eserleri.html">Eserleri</a>
+    <a href="devrimler.html">Devrimleri</a>
+    <a href="nutuk.html">Nutuk</a>
+    <a href="kronoloji.html">Kronoloji</a>
+    <a href="ayarlar.html">Ayarlar</a>
+  </nav>
 
-                <div class="form-group">
-                    <label for="font-size-slider">Yazı Tipi Boyutu: <span id="current-font-size">16px</span></label>
-                    <input type="range" id="font-size-slider" min="14" max="22" value="16">
-                </div>
+  <footer>
+    <a href="mailto:email@example.com" aria-label="Gmail">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/>
+      </svg>
+    </a>
+    <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+      </svg>
+    </a>
+    <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M22 12A10 10 0 1 0 10 22v-7h-2v-3h2v-2c0-2.2 1.3-3.5 3.3-3.5.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.7h2.6L15 15h-2v7a10 10 0 0 0 9-10z"/>
+      </svg>
+    </a>
+  </footer>
 
-                <button type="button" id="apply-settings">Ayarları Uygula</button>
-            </form>
-        </section>
-    </main>
+  <script>
+    const quotes = [
+      { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "— TBMM, 1920" },
+      { text: '"Yurtta sulh, cihanda sulh."', source: "— Atatürk" },
+      { text: '"Hayatta en hakiki mürşit ilimdir."', source: "— Atatürk" },
+      { text: '"Türk milleti çalışkandır, zekidir."', source: "— Atatürk" }
+    ];
 
-    <footer>
-        <p>&copy; 2025 Mustafa Kemal Atatürk Sayfası. Tüm hakları saklıdır.</p>
-    </footer>
+    let quoteIndex = 0;
+    const quoteBox = document.getElementById("quote-box");
+    const quoteText = document.getElementById("quote-text");
+    const quoteSource = document.getElementById("quote-source");
 
-    <script>
-        // Ayarların uygulanması için JavaScript
-        const themeSelect = document.getElementById('theme-select');
-        const fontSizeSlider = document.getElementById('font-size-slider');
-        const currentFontSizeSpan = document.getElementById('current-font-size');
-        const applySettingsButton = document.getElementById('apply-settings');
+    function updateQuote() {
+      // Fade out
+      quoteBox.classList.add("fade-out");
 
-        // Sayfa yüklendiğinde veya ayarlar değiştiğinde temayı ve yazı tipini uygula
-        function applyThemeAndFontSize() {
-            const selectedTheme = localStorage.getItem('theme') || 'dark';
-            const savedFontSize = localStorage.getItem('fontSize') || '16';
+      setTimeout(() => {
+        // Yeni sözü ayarla
+        quoteIndex = (quoteIndex + 1) % quotes.length;
+        quoteText.textContent = quotes[quoteIndex].text;
+        quoteSource.textContent = quotes[quoteIndex].source;
 
-            // Temayı uygula
-            if (selectedTheme === 'light') {
-                document.body.classList.add('light');
-                document.body.style.backgroundColor = '#f0f0f0';
-                document.body.style.color = '#333';
+        // Fade in
+        quoteBox.classList.remove("fade-out");
+      }, 500);
+    }
 
-                // Header ve footer
-                document.querySelector('header').style.backgroundColor = '#e0e0e0';
-                document.querySelector('header').style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
-                document.querySelector('header').style.borderBottom = '1px solid #ccc';
-
-                document.querySelector('footer').style.backgroundColor = '#e0e0e0';
-                document.querySelector('footer').style.boxShadow = '0 -2px 8px rgba(0, 0, 0, 0.1)';
-                document.querySelector('footer').style.borderTop = '1px solid #ccc';
-                document.querySelector('footer').style.color = '#666';
-
-
-                // Navigasyon linkleri
-                document.querySelectorAll('nav a').forEach(a => {
-                    a.style.color = '#333';
-                    a.style.backgroundColor = 'transparent';
-                });
-                document.querySelector('nav a.active').style.backgroundColor = '#2980b9'; // Mavi aktif sekme
-                document.querySelector('nav a.active').style.color = '#fff';
-                document.querySelector('nav a.active').style.boxShadow = '0 0 10px rgba(41, 128, 185, 0.5)';
-
-
-                // Başlıklar
-                document.querySelectorAll('h1, h2, h3').forEach(h => h.style.color = '#000');
-                document.querySelectorAll('h2').forEach(h => h.style.borderBottomColor = '#2980b9'); // Mavi alt çizgi
-                document.querySelector('h1').style.textShadow = 'none';
-
-                // Hero section
-                document.querySelector('section.hero .quote').style.color = '#2980b9'; // Mavi alıntı
-                document.querySelector('section.hero .quote').style.textShadow = 'none';
-                document.querySelector('section.hero .source').style.color = '#666';
-
-                // Bölümler
-                document.querySelectorAll('section:not(.hero), .gallery-item, .countdown-item, .timeline-content, #settings-form').forEach(el => {
-                    el.style.backgroundColor = '#ffffff';
-                    el.style.boxShadow = '0 6px 15px rgba(0, 0, 0, 0.1)';
-                    el.style.border = '1px solid #ddd';
-                });
-                // Özel öğeler (Galeri öğesi içerik, Zaman çizelgesi içeriği vb.)
-                document.querySelectorAll('.gallery-item h3, .timeline-content h3').forEach(h => h.style.color = '#000');
-                document.querySelectorAll('.gallery-item p, .timeline-content p').forEach(p => p.style.color = '#555');
-                document.querySelectorAll('.gallery-item img').forEach(img => img.style.borderBottomColor = '#2980b9');
-
-
-                // Zaman Çizelgesi
-                document.querySelector('.timeline::before').style.backgroundColor = '#2980b9';
-                document.querySelectorAll('.timeline-item::after').forEach(el => {
-                    el.style.backgroundColor = '#2980b9'; // Mavi nokta
-                    el.style.borderColor = '#ffffff';
-                    el.style.boxShadow = '0 0 8px rgba(41, 128, 185, 0.7)';
-                });
-                document.querySelectorAll('.timeline-date').forEach(el => el.style.color = '#2980b9');
-
-
-                // Butonlar
-                document.querySelectorAll('button').forEach(btn => {
-                    btn.style.backgroundColor = '#2980b9'; // Mavi buton
-                });
-                document.querySelectorAll('button:hover').forEach(btn => {
-                    btn.style.backgroundColor = '#3498db';
-                });
-
-
-                // Form Elemanları
-                document.querySelectorAll('label').forEach(label => label.style.color = '#333');
-                document.querySelectorAll('select, input[type="range"]').forEach(input => {
-                    input.style.backgroundColor = '#f5f5f5';
-                    input.style.color = '#333';
-                    input.style.borderColor = '#ccc';
-                });
-                document.getElementById('current-font-size').style.color = '#2980b9'; // Mavi yazı boyutu
-                document.querySelectorAll('a').forEach(a => {
-                    a.style.color = '#2980b9';
-                });
-
-
-            } else { // Dark theme (Varsayılan)
-                document.body.classList.remove('light');
-                document.body.style.backgroundColor = '#0a0a0a';
-                document.body.style.color = '#f0f0f0';
-
-                // Header ve footer
-                document.querySelector('header').style.backgroundColor = '#1c1c1c';
-                document.querySelector('header').style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.4)';
-                document.querySelector('header').style.borderBottom = '1px solid #3a3a3a';
-
-                document.querySelector('footer').style.backgroundColor = '#1c1c1c';
-                document.querySelector('footer').style.boxShadow = '0 -2px 8px rgba(0, 0, 0, 0.4)';
-                document.querySelector('footer').style.borderTop = '1px solid #3a3a3a';
-                document.querySelector('footer').style.color = '#a0a0a0';
-
-
-                // Navigasyon linkleri
-                document.querySelectorAll('nav a').forEach(a => {
-                    a.style.color = '#f0f0f0';
-                    a.style.backgroundColor = 'transparent';
-                });
-                document.querySelector('nav a.active').style.backgroundColor = '#e74c3c'; // Kırmızı aktif sekme
-                document.querySelector('nav a.active').style.color = '#ffffff';
-                document.querySelector('nav a.active').style.boxShadow = '0 0 10px rgba(231, 76, 60, 0.5)';
-
-
-                // Başlıklar
-                document.querySelectorAll('h1, h2, h3').forEach(h => h.style.color = '#ffffff');
-                document.querySelectorAll('h2').forEach(h => h.style.borderBottomColor = '#e74c3c'); // Kırmızı alt çizgi
-                document.querySelector('h1').style.textShadow = '2px 2px 4px rgba(0, 0, 0, 0.5)';
-
-                // Hero section
-                document.querySelector('section.hero .quote').style.color = '#e74c3c'; // Kırmızı alıntı
-                document.querySelector('section.hero .quote').style.textShadow = '1px 1px 2px rgba(0, 0, 0, 0.3)';
-                document.querySelector('section.hero .source').style.color = '#b0b0b0';
-
-                // Bölümler
-                document.querySelectorAll('section:not(.hero), .gallery-item, .countdown-item, .timeline-content, #settings-form').forEach(el => {
-                    el.style.backgroundColor = '#1c1c1c';
-                    el.style.boxShadow = '0 6px 15px rgba(0, 0, 0, 0.5)';
-                    el.style.border = '1px solid #3a3a3a';
-                });
-                // Özel öğeler (Galeri öğesi içerik, Zaman çizelgesi içeriği vb.)
-                document.querySelectorAll('.gallery-item h3, .timeline-content h3').forEach(h => h.style.color = '#ffffff');
-                document.querySelectorAll('.gallery-item p, .timeline-content p').forEach(p => p.style.color = '#e0e0e0');
-                document.querySelectorAll('.gallery-item img').forEach(img => img.style.borderBottomColor = '#e74c3c');
-
-
-                // Zaman Çizelgesi
-                document.querySelector('.timeline::before').style.backgroundColor = '#e74c3c';
-                document.querySelectorAll('.timeline-item::after').forEach(el => {
-                    el.style.backgroundColor = '#e74c3c'; // Kırmızı nokta
-                    el.style.borderColor = '#f0f0f0';
-                    el.style.boxShadow = '0 0 8px rgba(231, 76, 60, 0.7)';
-                });
-                document.querySelectorAll('.timeline-date').forEach(el => el.style.color = '#e74c3c');
-
-
-                // Butonlar
-                document.querySelectorAll('button').forEach(btn => {
-                    btn.style.backgroundColor = '#e74c3c'; // Kırmızı buton
-                });
-                document.querySelectorAll('button:hover').forEach(btn => {
-                    btn.style.backgroundColor = '#c0392b';
-                });
-
-
-                // Form Elemanları
-                document.querySelectorAll('label').forEach(label => label.style.color = '#f0f0f0');
-                document.querySelectorAll('select, input[type="range"]').forEach(input => {
-                    input.style.backgroundColor = '#2a2a2a';
-                    input.style.color = '#f0f0f0';
-                    input.style.borderColor = '#4a4a4a';
-                });
-                document.getElementById('current-font-size').style.color = '#e74c3c'; // Kırmızı yazı boyutu
-                document.querySelectorAll('a').forEach(a => {
-                    a.style.color = '#e74c3c';
-                });
-
-            }
-
-            // Yazı tipi boyutunu uygula
-            document.body.style.fontSize = `${savedFontSize}px`;
-            currentFontSizeSpan.textContent = `${savedFontSize}px`;
-
-            themeSelect.value = selectedTheme;
-            fontSizeSlider.value = savedFontSize;
-        }
-
-        // Ayarları kaydetme ve uygulama
-        applySettingsButton.addEventListener('click', function() {
-            localStorage.setItem('theme', themeSelect.value);
-            localStorage.setItem('fontSize', fontSizeSlider.value);
-            applyThemeAndFontSize();
-            alert('Ayarlar kaydedildi!');
-        });
-
-        // Sayfa yüklendiğinde ayarları uygula
-        window.addEventListener('load', applyThemeAndFontSize);
-
-        // Slider değeri değiştikçe güncel yazı tipi boyutunu göster
-        fontSizeSlider.addEventListener('input', function() {
-            currentFontSizeSpan.textContent = `${this.value}px`;
-        });
-    </script>
+    setInterval(updateQuote, 5000);
+  </script>
 </body>
 </html>
