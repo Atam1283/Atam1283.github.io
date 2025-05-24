@@ -62,50 +62,6 @@
     nav.menu::-webkit-scrollbar {
       display: none;
     }
-    /* Dil seçici */
-    .lang-select-section {
-      position: fixed;
-      top: 15px;
-      right: 20px;
-      z-index: 1300;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255,255,255,0.95);
-      border-radius: 10px;
-      box-shadow: 0 2px 8px #0001;
-      padding: 5px 12px;
-    }
-    .lang-select-label {
-      font-weight: bold;
-      color: #222;
-      font-size: 1em;
-      font-family: Georgia, serif;
-    }
-    .lang-select {
-      padding: 4px 10px 4px 8px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      background: #fff;
-      font-size: 1em;
-      color: #222;
-      outline: none;
-      transition: border 0.2s;
-      cursor: pointer;
-    }
-    .lang-select:focus {
-      border-color: #e30b17;
-    }
-    @media (max-width: 600px) {
-      .lang-select-section {
-        right: 6px;
-        top: 6px;
-        padding: 2px 7px;
-        font-size: .95em;
-      }
-      .lang-select-label { font-size: .93em; }
-      .lang-select { font-size: .95em; }
-    }
     .quote-container {
       position: fixed;
       top: 10px;
@@ -295,51 +251,6 @@
         width: 2px;
       }
     }
-    /* Koyu tema için detaylı uyum */
-    body.dark {
-      background: #181818 !important;
-      color: #f2f2f2 !important;
-    }
-    body.dark .timeline-content {
-      background: #232326;
-      color: #e6e6e6;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.21);
-    }
-    body.dark .timeline-date {
-      background: #181818;
-      color: #ff3d3c;
-    }
-    body.dark .timeline-content strong {
-      color: #ff3d3c;
-    }
-    body.dark nav.menu {
-      background: #181818;
-      border-bottom: 2px solid #353535;
-    }
-    body.dark nav.menu a {
-      color: #f2f2f2;
-    }
-    body.dark nav.menu a.active,
-    body.dark nav.menu a:hover {
-      color: #ff3d3c;
-      border-bottom: 3px solid #ff3d3c;
-      background: transparent;
-    }
-    body.dark .lang-select-section {
-      background: #232326;
-      box-shadow: 0 2px 8px #0004;
-    }
-    body.dark .lang-select-label {
-      color: #ff3d3c;
-    }
-    body.dark .lang-select {
-      background: #232326;
-      color: #fff;
-      border: 1px solid #444;
-    }
-    body.dark .lang-select:focus {
-      border-color: #ff3d3c;
-    }
     footer {
       position: fixed;
       bottom: 0;
@@ -374,6 +285,28 @@
       height: 20px;
       fill: currentColor;
     }
+    @media (max-width: 600px) {
+      .quote-container {
+        max-width: 160px;
+      }
+      .quote-text {
+        font-size: 10px;
+      }
+      .quote-source {
+        font-size: 9px;
+      }
+      .menu-background {
+        height: 100px;
+      }
+      nav.menu {
+        top: 60px;
+        height: 50px;
+      }
+      nav.menu a {
+        padding: 10px 12px 9px 12px;
+        font-size: 13px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -381,7 +314,6 @@
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
   <div class="menu-background"></div>
-  
   <div class="quote-container">
     <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
     <div class="quote-source" id="quote-source">TBMM, 1920</div>
@@ -398,117 +330,82 @@
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
   <main>
-    <h1 id="kronoloji-title" style="font-size:2.1em; color:#e30b17; margin-bottom:36px; margin-top:18px; font-family:Georgia,serif; text-align:center;">
+    <h1 style="font-size:2.1em; color:#e30b17; margin-bottom:36px; margin-top:18px; font-family:Georgia,serif; text-align:center;">
       Atatürk'ün Hayat Kronolojisi
     </h1>
     <div class="timeline-wrapper">
-      <div class="timeline" id="timeline">
+      <div class="timeline">
         <div class="timeline-line"></div>
-        <!-- Timeline events JS ile dolduruluyor -->
+        <div class="timeline-event">
+          <span class="timeline-dot"></span>
+          <span class="timeline-date">1881</span>
+          <div class="timeline-content"><strong>Selanik'te doğum</strong>: Mustafa Kemal Atatürk, Selanik'te dünyaya geldi.</div>
+        </div>
+        <div class="timeline-event">
+          <span class="timeline-dot"></span>
+          <span class="timeline-date">1893</span>
+          <div class="timeline-content"><strong>Askeri eğitime başlama</strong>: Selanik Askeri Rüştiyesi'ne başladı ve "Kemal" adını aldı.</div>
+        </div>
+        <div class="timeline-event">
+          <span class="timeline-dot"></span>
+          <span class="timeline-date">1905</span>
+          <div class="timeline-content"><strong>Kurmay Yüzbaşı</strong>: Harp Akademisi'nden Kurmay Yüzbaşı olarak mezun oldu.</div>
+        </div>
+        <div class="timeline-event">
+          <span class="timeline-dot"></span>
+          <span class="timeline-date">1911</span>
+          <div class="timeline-content"><strong>Trablusgarp Savaşı</strong>: Trablusgarp’ta İtalyanlara karşı savaştı ve başarılar kazandı.</div>
+        </div>
+        <div class="timeline-event">
+          <span class="timeline-dot"></span>
+          <span class="timeline-date">1915</span>
+          <div class="timeline-content"><strong>Çanakkale Zaferi</strong>: Anafartalar Grup Komutanı olarak Çanakkale Savaşı’nda büyük başarı gösterdi.</div>
+        </div>
+        <div class="timeline-event">
+          <span class="timeline-dot"></span>
+          <span class="timeline-date">1919</span>
+          <div class="timeline-content"><strong>Samsun'a Çıkış</strong>: 19 Mayıs'ta Samsun'a çıkarak Kurtuluş Savaşı'nı başlattı.</div>
+        </div>
+        <div class="timeline-event">
+          <span class="timeline-dot"></span>
+          <span class="timeline-date">1920</span>
+          <div class="timeline-content"><strong>TBMM'nin Açılışı</strong>: 23 Nisan’da Türkiye Büyük Millet Meclisi açıldı.</div>
+        </div>
+        <div class="timeline-event">
+          <span class="timeline-dot"></span>
+          <span class="timeline-date">1921</span>
+          <div class="timeline-content"><strong>Sakarya Meydan Muharebesi</strong>: Sakarya Zaferi kazanıldı ve Atatürk’e Mareşal ve Gazi unvanı verildi.</div>
+        </div>
+        <div class="timeline-event">
+          <span class="timeline-dot"></span>
+          <span class="timeline-date">1922</span>
+          <div class="timeline-content"><strong>Büyük Taarruz</strong>: 30 Ağustos’ta Dumlupınar’da kesin zafer elde edildi.</div>
+        </div>
+        <div class="timeline-event">
+          <span class="timeline-dot"></span>
+          <span class="timeline-date">1923</span>
+          <div class="timeline-content"><strong>Cumhuriyetin İlanı</strong>: 29 Ekim’de Türkiye Cumhuriyeti ilan edildi ve Atatürk ilk Cumhurbaşkanı oldu.</div>
+        </div>
+        <div class="timeline-event">
+          <span class="timeline-dot"></span>
+          <span class="timeline-date">1928</span>
+          <div class="timeline-content"><strong>Harf Devrimi</strong>: Latin alfabesinin kabulüyle okuryazarlık oranı arttı.</div>
+        </div>
+        <div class="timeline-event">
+          <span class="timeline-dot"></span>
+          <span class="timeline-date">1934</span>
+          <div class="timeline-content"><strong>Soyadı Kanunu</strong>: "Atatürk" soyadı Mustafa Kemal’e verildi.</div>
+        </div>
+        <div class="timeline-event">
+          <span class="timeline-dot"></span>
+          <span class="timeline-date">1938</span>
+          <div class="timeline-content"><strong>Vefatı</strong>: 10 Kasım’da İstanbul Dolmabahçe Sarayı’nda hayata veda etti.</div>
+        </div>
       </div>
     </div>
   </main>
   <footer></footer>
   <script>
-    // Çoklu dil kronoloji içeriği
-    const KRONOLOJI = {
-      tr: {
-        title: "Atatürk'ün Hayat Kronolojisi",
-        events: [
-          { date: "1881", label: "<strong>Selanik'te doğum</strong>: Mustafa Kemal Atatürk, Selanik'te dünyaya geldi." },
-          { date: "1893", label: "<strong>Askeri eğitime başlama</strong>: Selanik Askeri Rüştiyesi'ne başladı ve \"Kemal\" adını aldı." },
-          { date: "1905", label: "<strong>Kurmay Yüzbaşı</strong>: Harp Akademisi'nden Kurmay Yüzbaşı olarak mezun oldu." },
-          { date: "1911", label: "<strong>Trablusgarp Savaşı</strong>: Trablusgarp’ta İtalyanlara karşı savaştı ve başarılar kazandı." },
-          { date: "1915", label: "<strong>Çanakkale Zaferi</strong>: Anafartalar Grup Komutanı olarak Çanakkale Savaşı’nda büyük başarı gösterdi." },
-          { date: "1919", label: "<strong>Samsun'a Çıkış</strong>: 19 Mayıs'ta Samsun'a çıkarak Kurtuluş Savaşı'nı başlattı." },
-          { date: "1920", label: "<strong>TBMM'nin Açılışı</strong>: 23 Nisan’da Türkiye Büyük Millet Meclisi açıldı." },
-          { date: "1921", label: "<strong>Sakarya Meydan Muharebesi</strong>: Sakarya Zaferi kazanıldı ve Atatürk’e Mareşal ve Gazi unvanı verildi." },
-          { date: "1922", label: "<strong>Büyük Taarruz</strong>: 30 Ağustos’ta Dumlupınar’da kesin zafer elde edildi." },
-          { date: "1923", label: "<strong>Cumhuriyetin İlanı</strong>: 29 Ekim’de Türkiye Cumhuriyeti ilan edildi ve Atatürk ilk Cumhurbaşkanı oldu." },
-          { date: "1928", label: "<strong>Harf Devrimi</strong>: Latin alfabesinin kabulüyle okuryazarlık oranı arttı." },
-          { date: "1934", label: "<strong>Soyadı Kanunu</strong>: \"Atatürk\" soyadı Mustafa Kemal’e verildi." },
-          { date: "1938", label: "<strong>Vefatı</strong>: 10 Kasım’da İstanbul Dolmabahçe Sarayı’nda hayata veda etti." }
-        ]
-      },
-      en: {
-        title: "Chronology of Atatürk's Life",
-        events: [
-          { date: "1881", label: "<strong>Birth in Thessaloniki</strong>: Mustafa Kemal Atatürk was born in Thessaloniki." },
-          { date: "1893", label: "<strong>Military Education Begins</strong>: Started at the Thessaloniki Military School and was given the name \"Kemal\"." },
-          { date: "1905", label: "<strong>Staff Captain</strong>: Graduated from the Military Academy as a Staff Captain." },
-          { date: "1911", label: "<strong>Tripoli War</strong>: Fought successfully against the Italians in Tripoli." },
-          { date: "1915", label: "<strong>Gallipoli Victory</strong>: Achieved great success as the Anafartalar Group Commander at the Gallipoli Campaign." },
-          { date: "1919", label: "<strong>Landing in Samsun</strong>: On May 19, landed in Samsun and started the War of Independence." },
-          { date: "1920", label: "<strong>Opening of the Grand National Assembly</strong>: The Turkish Grand National Assembly was opened on April 23." },
-          { date: "1921", label: "<strong>Battle of Sakarya</strong>: Won the Sakarya Victory and was given the titles of Marshal and Gazi." },
-          { date: "1922", label: "<strong>The Great Offensive</strong>: Achieved final victory at Dumlupınar on August 30." },
-          { date: "1923", label: "<strong>Proclamation of the Republic</strong>: The Republic of Turkey was proclaimed on October 29 and Atatürk became the first President." },
-          { date: "1928", label: "<strong>Alphabet Reform</strong>: Adoption of the Latin alphabet increased literacy rates." },
-          { date: "1934", label: "<strong>Surname Law</strong>: The surname \"Atatürk\" was given to Mustafa Kemal." },
-          { date: "1938", label: "<strong>Death</strong>: Passed away on November 10 at Dolmabahçe Palace in Istanbul." }
-        ]
-      },
-      az: {
-        title: "Atatürkün Həyatının Xronologiyası",
-        events: [
-          { date: "1881", label: "<strong>Selanikdə doğum</strong>: Mustafa Kamal Atatürk Selanikdə anadan olub." },
-          { date: "1893", label: "<strong>Hərbi təhsilə başlama</strong>: Selanik Hərbi Məktəbində oxumağa başlayıb və \"Kamal\" adını alıb." },
-          { date: "1905", label: "<strong>Qərargah kapitanı</strong>: Hərb Akademiyasını qərargah kapitanı kimi bitirib." },
-          { date: "1911", label: "<strong>Tripoli Müharibəsi</strong>: Tripolidə italyanlara qarşı uğurla döyüşüb." },
-          { date: "1915", label: "<strong>Çanaqqala Zəfəri</strong>: Anafartalar Qrupu Komandiri kimi Çanaqqala döyüşündə böyük uğur əldə edib." },
-          { date: "1919", label: "<strong>Samsuna çıxış</strong>: 19 mayda Samsuna çıxaraq Qurtuluş Müharibəsini başlatdı." },
-          { date: "1920", label: "<strong>TBMM-nin açılışı</strong>: 23 aprel tarixində Türkiyə Böyük Millət Məclisi açıldı." },
-          { date: "1921", label: "<strong>Sakarya Meydan Döyüşü</strong>: Sakarya zəfəri qazanıldı və Atatürkə marşal və Qazi titulları verildi." },
-          { date: "1922", label: "<strong>Böyük Hücum</strong>: 30 avqustda Dumlupınarda qəti zəfər əldə edildi." },
-          { date: "1923", label: "<strong>Cümhuriyyətin elan olunması</strong>: 29 oktyabrda Türkiyə Cümhuriyyəti elan edildi və Atatürk ilk prezident oldu." },
-          { date: "1928", label: "<strong>Əlifba islahatı</strong>: Latın əlifbasının qəbulu ilə savadlılıq səviyyəsi artdı." },
-          { date: "1934", label: "<strong>Soyad Qanunu</strong>: \"Atatürk\" soyadı Mustafa Kamala verildi." },
-          { date: "1938", label: "<strong>Vəfatı</strong>: 10 noyabrda İstanbul Dolmabahçe Sarayında vəfat etdi." }
-        ]
-      }
-    };
-
-    // İçeriği güncelle
-    function renderTimeline(lang) {
-      const data = KRONOLOJI[lang] || KRONOLOJI.tr;
-      document.getElementById("kronoloji-title").textContent = data.title;
-      const timeline = document.getElementById("timeline");
-      timeline.innerHTML = '<div class="timeline-line"></div>';
-      data.events.forEach((evt, i) => {
-        const evDiv = document.createElement('div');
-        evDiv.className = 'timeline-event';
-        evDiv.style.animationDelay = (0.07 + i * 0.07) + 's';
-        evDiv.innerHTML = `
-          <span class="timeline-dot"></span>
-          <span class="timeline-date">${evt.date}</span>
-          <div class="timeline-content">${evt.label}</div>
-        `;
-        timeline.appendChild(evDiv);
-      });
-      // Animasyonu başlat
-      setTimeout(() => {
-        const events = document.querySelectorAll('.timeline-event');
-        events.forEach((ev, i) => {
-          setTimeout(() => { ev.style.opacity = 1; ev.style.transform = "translateY(0)"; }, 80 + i * 90);
-        });
-      }, 100);
-    }
-    // Dil seçici
-    function getLang() {
-      return localStorage.getItem("language") || "tr";
-    }
-    function setLang(lang) {
-      localStorage.setItem("language", lang);
-      renderTimeline(lang);
-      setLangSelect(lang);
-    }
-    function setLangSelect(lang) {
-      document.getElementById("language").value = lang;
-    }
-    document.getElementById("language").addEventListener("change", function(e){
-      setLang(e.target.value);
-    });
-
     // Söz kutusu animasyonu için
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
@@ -534,7 +431,83 @@
       showQuote(quoteIndex);
     }, 5000);
 
-    // Footer güncellemesi
+    // Timeline animasyonunu başlatmak için
+    window.addEventListener('DOMContentLoaded', () => {
+      const events = document.querySelectorAll('.timeline-event');
+      events.forEach((ev, i) => {
+        setTimeout(() => { ev.style.opacity = 1; ev.style.transform = "translateY(0)"; }, 80 + i * 90);
+      });
+    });
+
+    // Ortak ayar scripti (tasarıma dokunmadan)
+    const LANGUAGES = {
+      tr: {
+        title: "Ayarlar",
+        theme: "Tema",
+        darkMode: "Koyu Mod",
+        notifications: "Bildirimleri Aç",
+        fontSize: "Yazı Boyutu",
+        language: "Dil",
+        save: "Kaydet",
+        saved: "Ayarlar kaydedildi!",
+        info: "Ayarlarınız tarayıcınızda saklanır.<br>Koyu Mod, Yazı Boyutu ve Dil tüm sayfalara yansır.",
+        options: { normal: "Normal", large: "Büyük", xlarge: "Çok Büyük" },
+        tr: "Türkçe",
+        en: "İngilizce"
+      },
+      en: {
+        title: "Settings",
+        theme: "Theme",
+        darkMode: "Dark Mode",
+        notifications: "Enable Notifications",
+        fontSize: "Font Size",
+        language: "Language",
+        save: "Save",
+        saved: "Settings saved!",
+        info: "Your settings are stored in your browser.<br>Dark Mode, Font Size and Language apply to all pages.",
+        options: { normal: "Normal", large: "Large", xlarge: "Extra Large" },
+        tr: "Turkish",
+        en: "English"
+      }
+    };
+    function getLang() { return localStorage.getItem("language") || "tr"; }
+    function applySettings() {
+      const isDark = localStorage.getItem("darkMode") === "true";
+      const fontSize = localStorage.getItem("fontSize") || "normal";
+      document.body.style.background = isDark ? "#222" : "#fff";
+      document.body.style.color = isDark ? "#fff" : "#222";
+      document.body.classList.toggle('dark', isDark);
+      switch(fontSize) {
+        case 'large': document.body.style.fontSize = "1.18em"; break;
+        case 'xlarge': document.body.style.fontSize = "1.32em"; break;
+        default: document.body.style.fontSize = "1em";
+      }
+      // Fade-in animasyonu (animasyonsuz sayfa için, timeline varsa atla)
+      if (!document.querySelector(".timeline-event") && !document.body.classList.contains("has-fadein")) {
+        document.body.style.opacity = "0";
+        document.body.style.transition = "opacity 0.7s";
+        setTimeout(() => { document.body.style.opacity = "1"; }, 10);
+        document.body.classList.add("has-fadein");
+      }
+      if (document.getElementById("settingsForm")) {
+        const t = LANGUAGES[getLang()];
+        document.querySelector('.settings-title').textContent = t.title;
+        document.querySelectorAll('.section-label')[0].textContent = t.theme;
+        document.querySelector('.toggle-label[for=darkMode]').textContent = t.darkMode;
+        document.querySelectorAll('.section-label')[1].textContent = t.notifications;
+        document.querySelector('.toggle-label[for=notifications]').textContent = t.notifications;
+        document.querySelectorAll('.section-label')[2].textContent = t.fontSize;
+        document.querySelectorAll('.section-label')[3].textContent = t.language;
+        document.getElementById("fontSize").options[0].textContent = t.options.normal;
+        document.getElementById("fontSize").options[1].textContent = t.options.large;
+        document.getElementById("fontSize").options[2].textContent = t.options.xlarge;
+        document.getElementById("settings-save-label").textContent = t.save;
+        document.getElementById("savedMsg").textContent = t.saved;
+        document.querySelector('.settings-info').innerHTML = t.info;
+        document.getElementById("language").options[0].textContent = t.tr;
+        document.getElementById("language").options[1].textContent = t.en;
+      }
+    }
     function updateFooterLinks() {
       const footer = document.querySelector("footer");
       if (!footer) return;
@@ -556,13 +529,9 @@
         </a>
       `;
     }
-
-    // Başlangıçta ayarları uygula ve kronolojiyi çiz
     window.addEventListener("DOMContentLoaded", () => {
       applySettings();
       updateFooterLinks();
-      renderTimeline(getLang());
-      setLangSelect(getLang());
     });
   </script>
 </body>
