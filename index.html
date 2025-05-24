@@ -61,21 +61,33 @@
       display: none;
     }
     /* SAĞ ÜSTTEKİ YAZI (Biraz büyük, sadece yazı) */
-    .quote-text-only {
+    .quote-container {
       position: fixed;
       top: 10px;
       right: 10px;
+      text-align: right;
+      z-index: 1200;
+      max-width: 250px;
+    }
+    .quote-text {
       color: #222;
       font-size: 13px;
       font-family: Arial, sans-serif;
-      z-index: 1200;
-      background: none;
-      padding: 0;
-      border-radius: 0;
-      box-shadow: none;
-      text-align: right;
-      max-width: 250px;
       line-height: 1.2;
+      margin-bottom: 2px;
+      transition: opacity 0.5s;
+    }
+    .quote-source {
+      color: #666;
+      font-size: 11px;
+      font-family: Arial, sans-serif;
+      transition: opacity 0.5s;
+    }
+    .fade-out {
+      opacity: 0 !important;
+    }
+    .fade-in {
+      opacity: 1 !important;
     }
     footer {
       position: fixed;
@@ -112,9 +124,14 @@
       fill: currentColor;
     }
     @media (max-width: 600px) {
-      .quote-text-only {
-        font-size: 10px;
+      .quote-container {
         max-width: 160px;
+      }
+      .quote-text {
+        font-size: 10px;
+      }
+      .quote-source {
+        font-size: 9px;
       }
     }
   </style>
@@ -127,9 +144,10 @@
   <!-- Menü arkasında beyaz plaka -->
   <div class="menu-background"></div>
 
-  <!-- Sadece yazı olarak sağ üstte -->
-  <div class="quote-text-only" id="quote-text-only">
-    "Egemenlik, kayıtsız şartsız milletindir."
+  <!-- Söz kutusu (yazı ve kaynak) -->
+  <div class="quote-container">
+    <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
+    <div class="quote-source" id="quote-source">TBMM, 1920</div>
   </div>
 
   <nav class="menu">
@@ -161,5 +179,34 @@
       </svg>
     </a>
   </footer>
+
+  <script>
+    const quotes = [
+      { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
+      { text: '"Yurtta sulh, cihanda sulh."', source: "Atatürk, Söylev ve Demeçler" },
+      { text: '"Hayatta en hakiki mürşit ilimdir."', source: "Atatürk, 1924" },
+      { text: '"Türk milleti çalışkandır, zekidir."', source: "Atatürk, 1933" }
+    ];
+
+    let quoteIndex = 0;
+    const quoteText = document.getElementById("quote-text");
+    const quoteSource = document.getElementById("quote-source");
+
+    function showQuote(index) {
+      quoteText.classList.add('fade-out');
+      quoteSource.classList.add('fade-out');
+      setTimeout(() => {
+        quoteText.textContent = quotes[index].text;
+        quoteSource.textContent = quotes[index].source;
+        quoteText.classList.remove('fade-out');
+        quoteSource.classList.remove('fade-out');
+      }, 450);
+    }
+
+    setInterval(() => {
+      quoteIndex = (quoteIndex + 1) % quotes.length;
+      showQuote(quoteIndex);
+    }, 5000);
+  </script>
 </body>
 </html>
