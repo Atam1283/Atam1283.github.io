@@ -178,6 +178,37 @@
       0% { transform: translateY(0); }
       100% { transform: translateY(-10px);}
     }
+    /* Koyu tema için detaylı uyum */
+    body.dark {
+      background: #181818 !important;
+      color: #f2f2f2 !important;
+    }
+    body.dark .nutuk-card {
+      background: #232326;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.21);
+    }
+    body.dark .nutuk-card .nutuk-baslik {
+      color: #ff3d3c;
+    }
+    body.dark .nutuk-card .nutuk-ozet {
+      color: #e6e6e6;
+    }
+    body.dark .nutuk-card .nutuk-detay {
+      color: #bababa;
+    }
+    body.dark nav.menu {
+      background: #181818;
+      border-bottom: 2px solid #353535;
+    }
+    body.dark nav.menu a {
+      color: #f2f2f2;
+    }
+    body.dark nav.menu a.active,
+    body.dark nav.menu a:hover {
+      color: #ff3d3c;
+      border-bottom: 3px solid #ff3d3c;
+      background: transparent;
+    }
     footer {
       position: fixed;
       bottom: 0;
@@ -327,75 +358,21 @@
       showQuote(quoteIndex);
     }, 5000);
 
-    // Ortak ayar scripti (tasarıma dokunmadan)
-    const LANGUAGES = {
-      tr: {
-        title: "Ayarlar",
-        theme: "Tema",
-        darkMode: "Koyu Mod",
-        notifications: "Bildirimleri Aç",
-        fontSize: "Yazı Boyutu",
-        language: "Dil",
-        save: "Kaydet",
-        saved: "Ayarlar kaydedildi!",
-        info: "Ayarlarınız tarayıcınızda saklanır.<br>Koyu Mod, Yazı Boyutu ve Dil tüm sayfalara yansır.",
-        options: { normal: "Normal", large: "Büyük", xlarge: "Çok Büyük" },
-        tr: "Türkçe",
-        en: "İngilizce"
-      },
-      en: {
-        title: "Settings",
-        theme: "Theme",
-        darkMode: "Dark Mode",
-        notifications: "Enable Notifications",
-        fontSize: "Font Size",
-        language: "Language",
-        save: "Save",
-        saved: "Settings saved!",
-        info: "Your settings are stored in your browser.<br>Dark Mode, Font Size and Language apply to all pages.",
-        options: { normal: "Normal", large: "Large", xlarge: "Extra Large" },
-        tr: "Turkish",
-        en: "English"
-      }
-    };
-    function getLang() { return localStorage.getItem("language") || "tr"; }
+    // Koyu tema ve yazı boyutu uygulaması (ayarlar sayfası ile uyumlu)
     function applySettings() {
       const isDark = localStorage.getItem("darkMode") === "true";
       const fontSize = localStorage.getItem("fontSize") || "normal";
-      document.body.style.background = isDark ? "#222" : "#fff";
-      document.body.style.color = isDark ? "#fff" : "#222";
       document.body.classList.toggle('dark', isDark);
+      document.body.style.background = isDark ? "#181818" : "#fff";
+      document.body.style.color = isDark ? "#f2f2f2" : "#222";
       switch(fontSize) {
         case 'large': document.body.style.fontSize = "1.18em"; break;
         case 'xlarge': document.body.style.fontSize = "1.32em"; break;
         default: document.body.style.fontSize = "1em";
       }
-      // Fade-in animasyonu (animasyonsuz sayfa için)
-      if (!document.querySelector(".timeline-event") && !document.body.classList.contains("has-fadein")) {
-        document.body.style.opacity = "0";
-        document.body.style.transition = "opacity 0.7s";
-        setTimeout(() => { document.body.style.opacity = "1"; }, 10);
-        document.body.classList.add("has-fadein");
-      }
-      if (document.getElementById("settingsForm")) {
-        const t = LANGUAGES[getLang()];
-        document.querySelector('.settings-title').textContent = t.title;
-        document.querySelectorAll('.section-label')[0].textContent = t.theme;
-        document.querySelector('.toggle-label[for=darkMode]').textContent = t.darkMode;
-        document.querySelectorAll('.section-label')[1].textContent = t.notifications;
-        document.querySelector('.toggle-label[for=notifications]').textContent = t.notifications;
-        document.querySelectorAll('.section-label')[2].textContent = t.fontSize;
-        document.querySelectorAll('.section-label')[3].textContent = t.language;
-        document.getElementById("fontSize").options[0].textContent = t.options.normal;
-        document.getElementById("fontSize").options[1].textContent = t.options.large;
-        document.getElementById("fontSize").options[2].textContent = t.options.xlarge;
-        document.getElementById("settings-save-label").textContent = t.save;
-        document.getElementById("savedMsg").textContent = t.saved;
-        document.querySelector('.settings-info').innerHTML = t.info;
-        document.getElementById("language").options[0].textContent = t.tr;
-        document.getElementById("language").options[1].textContent = t.en;
-      }
     }
+
+    // Footer güncellemesi
     function updateFooterLinks() {
       const footer = document.querySelector("footer");
       if (!footer) return;
@@ -417,6 +394,7 @@
         </a>
       `;
     }
+
     window.addEventListener("DOMContentLoaded", () => {
       applySettings();
       updateFooterLinks();
