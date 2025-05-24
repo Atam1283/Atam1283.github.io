@@ -107,12 +107,12 @@
       max-width: 700px;
       margin: 0 auto;
       position: relative;
-      padding-left: 84px;
+      padding-left: 40px;
       z-index: 1;
     }
     .timeline-line {
       position: absolute;
-      left: 46px;
+      left: 20px;
       top: 0;
       bottom: 0;
       width: 4px;
@@ -121,12 +121,14 @@
       border-radius: 2px;
     }
     .timeline-event {
+      display: flex;
+      align-items: flex-start;
       position: relative;
       margin-bottom: 44px;
       min-height: 55px;
-      animation: timelineFadeIn 0.85s cubic-bezier(.42,0,.58,1) forwards;
       opacity: 0;
       transform: translateY(60px);
+      animation: timelineFadeIn 0.85s cubic-bezier(.42,0,.58,1) forwards;
     }
     .timeline-event:nth-child(1) { animation-delay: 0.03s; }
     .timeline-event:nth-child(2) { animation-delay: 0.10s; }
@@ -145,30 +147,13 @@
     @keyframes timelineFadeIn {
       to { opacity: 1; transform: translateY(0);}
     }
-    .timeline-date {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 44px;
-      text-align: right;
-      color: #e30b17;
-      font-weight: bold;
-      font-size: 1.04em;
-      font-family: Georgia, serif;
-      letter-spacing: 1px;
-      background: #fff;
-      z-index: 2;
-      pointer-events: none;
-      user-select: none;
-      line-height: 36px;
-      height: 36px;
-    }
     .timeline-dot {
-      position: absolute;
-      left: 38px;
-      top: 9px;
-      width: 20px;
-      height: 20px;
+      flex: none;
+      margin-right: 10px;
+      margin-left: -2px;
+      margin-top: 7px;
+      width: 18px;
+      height: 18px;
       background: #fff;
       border: 4px solid #e30b17;
       border-radius: 50%;
@@ -195,6 +180,22 @@
       80% { transform: scale(1.15);}
       100% { transform: scale(1);}
     }
+    .timeline-date {
+      flex: none;
+      margin-top: 3px;
+      width: 60px;
+      color: #e30b17;
+      font-weight: bold;
+      font-size: 1.04em;
+      font-family: Georgia, serif;
+      letter-spacing: 1px;
+      background: #fff;
+      z-index: 2;
+      text-align: left;
+      pointer-events: none;
+      user-select: none;
+      line-height: 1.2;
+    }
     .timeline-content {
       background: #fafafa;
       border-radius: 12px;
@@ -203,10 +204,12 @@
       font-size: 1.04em;
       color: #222;
       line-height: 1.5;
-      margin-left: 32px;
+      margin-left: 16px;
       position: relative;
       transition: box-shadow 0.25s;
       animation: cardFloat 4s ease-in-out infinite alternate;
+      min-width: 0;
+      flex: 1;
     }
     .timeline-content strong {
       color: #e30b17;
@@ -224,28 +227,25 @@
     }
     @media (max-width: 700px) {
       main { margin-top: 110px;}
-      .timeline { padding-left: 18vw; }
+      .timeline { padding-left: 9vw; }
       .timeline-date {
-        left: 0;
         font-size: 0.97em;
-        width: 28px;
-        height: 26px;
-        line-height: 26px;
+        width: 36px;
       }
       .timeline-dot {
-        left: 20px;
         width: 12px;
         height: 12px;
         border-width: 2px;
-        top: 7px;
+        margin-top: 8px;
+        margin-right: 6px;
       }
       .timeline-content {
         font-size: 0.98em;
         padding: 10px 10px 8px 13px;
-        margin-left: 16px;
+        margin-left: 10px;
       }
       .timeline-line {
-        left: 26px;
+        left: 11px;
         width: 2px;
       }
     }
@@ -335,68 +335,68 @@
       <div class="timeline">
         <div class="timeline-line"></div>
         <div class="timeline-event">
-          <span class="timeline-date">1881</span>
           <span class="timeline-dot"></span>
+          <span class="timeline-date">1881</span>
           <div class="timeline-content"><strong>Selanik'te doğum</strong>: Mustafa Kemal Atatürk, Selanik'te dünyaya geldi.</div>
         </div>
         <div class="timeline-event">
-          <span class="timeline-date">1893</span>
           <span class="timeline-dot"></span>
+          <span class="timeline-date">1893</span>
           <div class="timeline-content"><strong>Askeri eğitime başlama</strong>: Selanik Askeri Rüştiyesi'ne başladı ve "Kemal" adını aldı.</div>
         </div>
         <div class="timeline-event">
-          <span class="timeline-date">1905</span>
           <span class="timeline-dot"></span>
+          <span class="timeline-date">1905</span>
           <div class="timeline-content"><strong>Kurmay Yüzbaşı</strong>: Harp Akademisi'nden Kurmay Yüzbaşı olarak mezun oldu.</div>
         </div>
         <div class="timeline-event">
-          <span class="timeline-date">1911</span>
           <span class="timeline-dot"></span>
+          <span class="timeline-date">1911</span>
           <div class="timeline-content"><strong>Trablusgarp Savaşı</strong>: Trablusgarp’ta İtalyanlara karşı savaştı ve başarılar kazandı.</div>
         </div>
         <div class="timeline-event">
-          <span class="timeline-date">1915</span>
           <span class="timeline-dot"></span>
+          <span class="timeline-date">1915</span>
           <div class="timeline-content"><strong>Çanakkale Zaferi</strong>: Anafartalar Grup Komutanı olarak Çanakkale Savaşı’nda büyük başarı gösterdi.</div>
         </div>
         <div class="timeline-event">
-          <span class="timeline-date">1919</span>
           <span class="timeline-dot"></span>
+          <span class="timeline-date">1919</span>
           <div class="timeline-content"><strong>Samsun'a Çıkış</strong>: 19 Mayıs'ta Samsun'a çıkarak Kurtuluş Savaşı'nı başlattı.</div>
         </div>
         <div class="timeline-event">
-          <span class="timeline-date">1920</span>
           <span class="timeline-dot"></span>
+          <span class="timeline-date">1920</span>
           <div class="timeline-content"><strong>TBMM'nin Açılışı</strong>: 23 Nisan’da Türkiye Büyük Millet Meclisi açıldı.</div>
         </div>
         <div class="timeline-event">
-          <span class="timeline-date">1921</span>
           <span class="timeline-dot"></span>
+          <span class="timeline-date">1921</span>
           <div class="timeline-content"><strong>Sakarya Meydan Muharebesi</strong>: Sakarya Zaferi kazanıldı ve Atatürk’e Mareşal ve Gazi unvanı verildi.</div>
         </div>
         <div class="timeline-event">
-          <span class="timeline-date">1922</span>
           <span class="timeline-dot"></span>
+          <span class="timeline-date">1922</span>
           <div class="timeline-content"><strong>Büyük Taarruz</strong>: 30 Ağustos’ta Dumlupınar’da kesin zafer elde edildi.</div>
         </div>
         <div class="timeline-event">
-          <span class="timeline-date">1923</span>
           <span class="timeline-dot"></span>
+          <span class="timeline-date">1923</span>
           <div class="timeline-content"><strong>Cumhuriyetin İlanı</strong>: 29 Ekim’de Türkiye Cumhuriyeti ilan edildi ve Atatürk ilk Cumhurbaşkanı oldu.</div>
         </div>
         <div class="timeline-event">
-          <span class="timeline-date">1928</span>
           <span class="timeline-dot"></span>
+          <span class="timeline-date">1928</span>
           <div class="timeline-content"><strong>Harf Devrimi</strong>: Latin alfabesinin kabulüyle okuryazarlık oranı arttı.</div>
         </div>
         <div class="timeline-event">
-          <span class="timeline-date">1934</span>
           <span class="timeline-dot"></span>
+          <span class="timeline-date">1934</span>
           <div class="timeline-content"><strong>Soyadı Kanunu</strong>: "Atatürk" soyadı Mustafa Kemal’e verildi.</div>
         </div>
         <div class="timeline-event">
-          <span class="timeline-date">1938</span>
           <span class="timeline-dot"></span>
+          <span class="timeline-date">1938</span>
           <div class="timeline-content"><strong>Vefatı</strong>: 10 Kasım’da İstanbul Dolmabahçe Sarayı’nda hayata veda etti.</div>
         </div>
       </div>
