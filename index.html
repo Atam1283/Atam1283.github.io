@@ -14,27 +14,23 @@
     }
     .logo {
       position: fixed;
-      top: 13px;
-      left: 16px;
-      width: 122px;
+      top: 10px;
+      left: 10px;
+      width: 120px;
       z-index: 1100;
-      border-radius: 12px;
+      border-radius: 10px;
       background: #fff;
-      padding: 7px 8px 4px 8px;
-      box-shadow: 0 2px 10px #0001;
-      transition: width 0.2s, left 0.2s, top 0.2s, padding 0.2s;
+      padding: 5px;
     }
-    /* Menü arkasındaki plaka */
     .menu-background {
       position: fixed;
       top: 70px;
       left: 0;
       width: 100vw;
-      height: 54px;
+      height: 50px;
       background: #fff;
       z-index: 999;
       pointer-events: none;
-      box-shadow: 0 3px 10px #0001;
     }
     nav.menu {
       position: fixed;
@@ -46,70 +42,52 @@
       z-index: 1000;
       overflow-x: auto;
       white-space: nowrap;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      box-shadow: 0 3px 10px #0001;
     }
-    nav.menu::-webkit-scrollbar { display: none; }
     nav.menu a {
       display: inline-block;
-      padding: 15px 22px 13px 22px;
-      color: #232323;
+      padding: 14px 20px;
+      color: #000;
       text-decoration: none;
-      font-size: 1.08rem;
+      font-size: 15px;
       font-weight: bold;
       border-bottom: 3px solid transparent;
-      transition: all 0.3s;
-      letter-spacing: .2px;
-      border-radius: 0;
-      background: none;
-      margin: 0 1px;
+      transition: all 0.3s ease;
     }
-    nav.menu a:hover, nav.menu a.active {
+    nav.menu a:hover {
       border-bottom: 3px solid #e30b17;
       color: #e30b17;
-      background: #f9f9f9;
     }
-    /* 5 sn'de bir değişen yazı/kutu */
+    nav.menu::-webkit-scrollbar {
+      display: none;
+    }
     .quote-container {
       position: fixed;
-      top: 18px;
-      right: 18px;
+      top: 10px;
+      right: 10px;
       text-align: right;
       z-index: 1200;
-      max-width: 310px;
-      background: #fff;
-      border-radius: 13px;
-      padding: 8px 15px 8px 18px;
-      box-shadow: 0 2px 12px #0001;
-      border: 1px solid #ededed;
-      transition: background 0.3s;
-      min-height: 34px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      justify-content: center;
+      max-width: 250px;
     }
     .quote-text {
-      color: #e30b17;
-      font-size: 1.09rem;
+      color: #222;
+      font-size: 13px;
       font-family: Arial, sans-serif;
-      font-weight: bold;
-      line-height: 1.22;
+      line-height: 1.2;
       margin-bottom: 2px;
-      transition: opacity 0.5s, color 0.4s;
-      text-shadow: 0 2px 8px #0001;
+      transition: opacity 0.5s;
     }
     .quote-source {
-      color: #888;
-      font-size: 0.92rem;
+      color: #666;
+      font-size: 11px;
       font-family: Arial, sans-serif;
-      transition: opacity 0.5s, color 0.4s;
-      font-weight: 500;
-      text-shadow: 0 2px 8px #0001;
+      transition: opacity 0.5s;
     }
-    .fade-out { opacity: 0 !important; }
-    .fade-in { opacity: 1 !important; }
+    .fade-out {
+      opacity: 0 !important;
+    }
+    .fade-in {
+      opacity: 1 !important;
+    }
     footer {
       position: fixed;
       bottom: 0;
@@ -134,59 +112,56 @@
       color: #fff;
       text-decoration: none;
       transition: all 0.3s ease;
-      background: #121212;
     }
     footer a:hover {
       border-color: #e30b17;
       color: #e30b17;
-      background: #fff;
     }
     footer svg {
       width: 20px;
       height: 20px;
       fill: currentColor;
     }
-
-    @media (max-width: 900px) {
-      .logo { width: 80px; left: 7px; top: 10px; padding: 3px; }
-      .menu-background { top: 65px; height: 48px; }
-      nav.menu { top: 65px; height: 48px; }
-      nav.menu a { font-size: .98rem; padding: 13px 10px 10px 10px; }
-      .quote-container { max-width: 155px; top: 7px; right: 7px; padding: 5px 8px 5px 10px; min-height: 27px;}
-      .quote-text { font-size: 0.92rem; }
-      .quote-source { font-size: 0.78rem; }
-    }
     @media (max-width: 600px) {
-      .logo { width: 51px; top: 3px; left: 3px; padding: 1px; }
-      .menu-background { top: 41px; height: 38px; }
-      nav.menu { top: 41px; height: 38px; }
-      nav.menu a { font-size: 0.81rem; padding: 7px 4px 7px 4px; }
-      .quote-container { max-width: 91px; top: 2px; right: 2px; padding: 3px 5px 2px 6px; min-height: 16px;}
-      .quote-text { font-size: 0.66rem; }
-      .quote-source { font-size: 0.58rem; }
+      .quote-container {
+        max-width: 160px;
+      }
+      .quote-text {
+        font-size: 10px;
+      }
+      .quote-source {
+        font-size: 9px;
+      }
+      .menu-background {
+        height: 50px;
+      }
+      nav.menu {
+        top: 70px;
+        height: 50px;
+      }
+      nav.menu a {
+        padding: 10px 12px 9px 12px;
+        font-size: 13px;
+      }
     }
-    @media (max-width: 420px) {
-      .logo { width: 39px; }
-      .quote-container { max-width: 62px; }
-    }
-    @keyframes fadeInHero { from { opacity: 0; transform: scale(.98); } to { opacity: 1; transform: scale(1); } }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeInCard { from { opacity: 0; transform: scale(.93); } to { opacity: 1; transform: scale(1); } }
-    @keyframes titlePop { 0%{opacity:0;transform:scale(.8);}70%{opacity:1;transform:scale(1.05);}100%{opacity:1;transform:scale(1);} }
   </style>
 </head>
 <body>
   <a href="index.html" class="logo">
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
+
   <!-- Menü arkasında beyaz plaka -->
   <div class="menu-background"></div>
+
+  <!-- Söz kutusu (yazı ve kaynak) -->
   <div class="quote-container">
     <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
     <div class="quote-source" id="quote-source">TBMM, 1920</div>
   </div>
+
   <nav class="menu">
-    <a href="index.html" class="active">Anasayfa</a>
+    <a href="index.html">Anasayfa</a>
     <a href="hayati.html">Hayatı</a>
     <a href="galeri.html">Galeri</a>
     <a href="sozleri.html">Sözleri</a>
@@ -196,47 +171,9 @@
     <a href="kronoloji.html">Kronoloji</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
-  <!-- ANA İÇERİK ALANI -->
-  <div id="hero-content" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;animation:fadeInHero 1.2s cubic-bezier(.62,.04,.36,1.09);padding:10px;">
-    <h1 style="font-size:2.3rem;font-weight:bold;color:#111;letter-spacing:1px;margin-top:40px; margin-bottom:10px;animation:titlePop 1s cubic-bezier(.77,-0.13,.22,1.12);" id="main-title">
-      Mustafa Kemal Atatürk
-    </h1>
-    <h2 style="font-size:1.1rem;font-weight:bold;color:#191919;margin-bottom:20px;letter-spacing:.5px;animation:fadeInUp 1s .3s both;">
-      Bağımsızlık ve Aydınlık Geleceğin Mimarı
-    </h2>
-    <p style="max-width:540px;text-align:center;font-size:1.08rem;color:#333;font-weight:500;margin-bottom:28px;line-height:1.7;animation:fadeInUp 1.1s .5s both;">
-      Türkiye Cumhuriyeti'nin kurucusu, milletimizin yol göstericisi.<br>
-      <span style="font-weight:bold;color:#e30b17;">"En büyük eserim Cumhuriyet'tir."</span> diyerek bizlere çağdaş ve özgür bir ülke armağan etti.<br>
-      Atatürk'ün fikirleri ve ilkeleriyle geleceğe umutla bakıyoruz.
-    </p>
-    <!-- Arama Motoru Başlangıç -->
-    <form id="aramaForm" style="width:100%;max-width:370px;margin:25px auto 10px auto;display:flex;align-items:center;gap:0;animation:fadeInUp 1s .7s both;"
-          action="https://www.google.com/search" method="get" target="_blank" autocomplete="off">
-      <input
-        type="text"
-        name="q"
-        placeholder="Atatürk hakkında ara..."
-        style="flex:1;padding:14px 16px;font-size:1.08rem;border-radius:24px 0 0 24px;border:2px solid #e30b17;border-right:0;outline:none;transition:box-shadow .2s;"
-        required
-        onfocus="this.style.boxShadow='0 0 0 2px #e30b17a8'"
-        onblur="this.style.boxShadow='none'"
-      />
-      <button
-        type="submit"
-        style="padding:0 18px;height:46px;border:none;background:#e30b17;color:#fff;font-size:1.1rem;font-weight:bold;border-radius:0 24px 24px 0;cursor:pointer;transition:background .2s;"
-        onmouseover="this.style.background='#c10812'"
-        onmouseout="this.style.background='#e30b17'"
-        aria-label="Ara"
-      >
-        <span style="font-size:1.3rem;">🔍</span>
-      </button>
-    </form>
-    <!-- Arama Motoru Son -->
-    <div style="color:#e30b17;font-weight:bold;font-size:1.08rem;margin-top:32px;letter-spacing:.3px;animation:fadeInUp 1.1s 1.1s both;display:flex;align-items:center;gap:8px;">
-      Türk gençleri olarak sonsuza dek izindeyiz!
-    </div>
-  </div>
-  <!-- ANA İÇERİK ALANI SONU -->
+
+  <!-- İçerik yok, menü ve plaka eski yerinde -->
+
   <footer>
     <a href="mailto:email@example.com" aria-label="Gmail">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
