@@ -22,6 +22,17 @@
       background: #fff;
       padding: 5px;
     }
+    /* Menü arkasına sabit beyaz plaka */
+    .menu-plaka {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 120px;
+      background: #fff;
+      z-index: 998;
+      pointer-events: none;
+    }
     .menu-background {
       position: fixed;
       top: 70px;
@@ -133,6 +144,9 @@
       .quote-source {
         font-size: 9px;
       }
+      .menu-plaka {
+        height: 100px;
+      }
       .menu-background {
         height: 50px;
       }
@@ -201,6 +215,7 @@
   </style>
 </head>
 <body>
+  <div class="menu-plaka"></div>
   <a href="index.html" class="logo">
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
