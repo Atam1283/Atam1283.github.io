@@ -176,10 +176,10 @@
     <h1 style="font-size:2.3rem;font-weight:bold;color:#111;letter-spacing:1px;margin-top:40px; margin-bottom:10px;animation:titlePop 1s cubic-bezier(.77,-0.13,.22,1.12);" id="main-title">
       Mustafa Kemal Atatürk
     </h1>
-    <h2 style="font-size:1.1rem;font-weight:bold;color:#191919;margin-bottom:20px;letter-spacing:.5px;animation:fadeInUp 1s .3s both;">
+    <h2 id="main-subtitle" style="font-size:1.1rem;font-weight:bold;color:#191919;margin-bottom:20px;letter-spacing:.5px;animation:fadeInUp 1s .3s both;">
       Bağımsızlık ve Aydınlık Geleceğin Mimarı
     </h2>
-    <p style="max-width:540px;text-align:center;font-size:1.08rem;color:#333;font-weight:500;margin-bottom:28px;line-height:1.7;animation:fadeInUp 1.1s .5s both;">
+    <p id="main-desc" style="max-width:540px;text-align:center;font-size:1.08rem;color:#333;font-weight:500;margin-bottom:28px;line-height:1.7;animation:fadeInUp 1.1s .5s both;">
       Türkiye Cumhuriyeti'nin kurucusu, milletimizin yol göstericisi.<br>
       <span style="font-weight:bold;color:#e30b17;">"En büyük eserim Cumhuriyet'tir."</span> diyerek bizlere çağdaş ve özgür bir ülke armağan etti.<br>
       Atatürk'ün fikirleri ve ilkeleriyle geleceğe umutla bakıyoruz.
@@ -205,7 +205,7 @@
         <span style="font-size:1.3rem;">🔍</span>
       </button>
     </form>
-    <div style="color:#e30b17;font-weight:bold;font-size:1.08rem;margin-top:32px;letter-spacing:.3px;animation:fadeInUp 1.1s 1.1s both;display:flex;align-items:center;gap:8px;">
+    <div id="main-footer-text" style="color:#e30b17;font-weight:bold;font-size:1.08rem;margin-top:32px;letter-spacing:.3px;animation:fadeInUp 1.1s 1.1s both;display:flex;align-items:center;gap:8px;">
       Türk gençleri olarak sonsuza dek izindeyiz!
     </div>
   </div>
@@ -238,41 +238,38 @@
     }, 5000);
   </script>
   <script>
-    // Ortak ayar scripti (koyu mod, yazı boyutu, dil, footer, fade-in)
-    const LANGUAGES = {
+    // Çoklu dil desteği (TR/EN/AZ)
+    const LANGS = {
       tr: {
-        title: "Ayarlar",
-        theme: "Tema",
-        darkMode: "Koyu Mod",
-        notifications: "Bildirimleri Aç",
-        fontSize: "Yazı Boyutu",
-        language: "Dil",
-        save: "Kaydet",
-        saved: "Ayarlar kaydedildi!",
-        info: "Ayarlarınız tarayıcınızda saklanır.<br>Koyu Mod, Yazı Boyutu ve Dil tüm sayfalara yansır.",
-        options: { normal: "Normal", large: "Büyük", xlarge: "Çok Büyük" },
-        tr: "Türkçe",
-        en: "İngilizce"
+        title: "Mustafa Kemal Atatürk",
+        subtitle: "Bağımsızlık ve Aydınlık Geleceğin Mimarı",
+        desc: "Türkiye Cumhuriyeti'nin kurucusu, milletimizin yol göstericisi.<br><span style=\"font-weight:bold;color:#e30b17;\">\"En büyük eserim Cumhuriyet'tir.\"</span> diyerek bizlere çağdaş ve özgür bir ülke armağan etti.<br>Atatürk'ün fikirleri ve ilkeleriyle geleceğe umutla bakıyoruz.",
+        searchPlaceholder: "Atatürk hakkında ara...",
+        footerText: "Türk gençleri olarak sonsuza dek izindeyiz!"
       },
       en: {
-        title: "Settings",
-        theme: "Theme",
-        darkMode: "Dark Mode",
-        notifications: "Enable Notifications",
-        fontSize: "Font Size",
-        language: "Language",
-        save: "Save",
-        saved: "Settings saved!",
-        info: "Your settings are stored in your browser.<br>Dark Mode, Font Size and Language apply to all pages.",
-        options: { normal: "Normal", large: "Large", xlarge: "Extra Large" },
-        tr: "Turkish",
-        en: "English"
+        title: "Mustafa Kemal Atatürk",
+        subtitle: "The Founder of Independence and a Bright Future",
+        desc: "Founder of the Republic of Turkey, a guiding light for our nation.<br><span style=\"font-weight:bold;color:#e30b17;\">\"My greatest work is the Republic.\"</span> With these words, he gifted us a modern and free country.<br>We look to the future with hope, inspired by Atatürk's principles.",
+        searchPlaceholder: "Search about Atatürk...",
+        footerText: "As Turkish youth, we will always follow your path!"
+      },
+      az: {
+        title: "Mustafa Kamal Atatürk",
+        subtitle: "Müstəqilliyin və İşıqlı Gələcəyin Memarı",
+        desc: "Türkiyə Cümhuriyyətinin qurucusu, millətimizin yol göstəricisi.<br><span style=\"font-weight:bold;color:#e30b17;\">\"Ən böyük əsərim Cümhuriyyətdir.\"</span> deyərək bizlərə müasir və azad bir ölkə bəxş etdi.<br>Atatürkün fikirləri və prinsipləri ilə gələcəyə ümidlə baxırıq.",
+        searchPlaceholder: "Atatürk haqqında axtar...",
+        footerText: "Türk gəncləri olaraq sonsuza qədər izindəyik!"
       }
     };
-    function getLang() { return localStorage.getItem("language") || "tr"; }
+    function getLanguage() {
+      return localStorage.getItem("language") || "tr";
+    }
     function applySettings() {
       const isDark = localStorage.getItem("darkMode") === "true";
       const fontSize = localStorage.getItem("fontSize") || "normal";
+      const lang = getLanguage();
+      // Tema ve font
       document.body.style.background = isDark ? "#222" : "#fff";
       document.body.style.color = isDark ? "#fff" : "#222";
       document.body.classList.toggle('dark', isDark);
@@ -281,31 +278,12 @@
         case 'xlarge': document.body.style.fontSize = "1.32em"; break;
         default: document.body.style.fontSize = "1em";
       }
-      // Fade-in animasyonu (animasyonsuz sayfa için)
-      if (!document.querySelector(".timeline-event") && !document.body.classList.contains("has-fadein")) {
-        document.body.style.opacity = "0";
-        document.body.style.transition = "opacity 0.7s";
-        setTimeout(() => { document.body.style.opacity = "1"; }, 10);
-        document.body.classList.add("has-fadein");
-      }
-      if (document.getElementById("settingsForm")) {
-        const t = LANGUAGES[getLang()];
-        document.querySelector('.settings-title').textContent = t.title;
-        document.querySelectorAll('.section-label')[0].textContent = t.theme;
-        document.querySelector('.toggle-label[for=darkMode]').textContent = t.darkMode;
-        document.querySelectorAll('.section-label')[1].textContent = t.notifications;
-        document.querySelector('.toggle-label[for=notifications]').textContent = t.notifications;
-        document.querySelectorAll('.section-label')[2].textContent = t.fontSize;
-        document.querySelectorAll('.section-label')[3].textContent = t.language;
-        document.getElementById("fontSize").options[0].textContent = t.options.normal;
-        document.getElementById("fontSize").options[1].textContent = t.options.large;
-        document.getElementById("fontSize").options[2].textContent = t.options.xlarge;
-        document.getElementById("settings-save-label").textContent = t.save;
-        document.getElementById("savedMsg").textContent = t.saved;
-        document.querySelector('.settings-info').innerHTML = t.info;
-        document.getElementById("language").options[0].textContent = t.tr;
-        document.getElementById("language").options[1].textContent = t.en;
-      }
+      // Dinamik metinler
+      document.getElementById('main-title').innerHTML = LANGS[lang].title;
+      document.getElementById('main-subtitle').textContent = LANGS[lang].subtitle;
+      document.getElementById('main-desc').innerHTML = LANGS[lang].desc;
+      document.querySelector('#aramaForm input[name="q"]').setAttribute('placeholder', LANGS[lang].searchPlaceholder);
+      document.getElementById('main-footer-text').textContent = LANGS[lang].footerText;
     }
     function updateFooterLinks() {
       const footer = document.querySelector("footer");
