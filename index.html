@@ -24,7 +24,7 @@
     }
     nav.menu {
       position: fixed;
-      top: 70px; /* Menüyü yukarı kaydırdık */
+      top: 70px;
       left: 0;
       width: 100%;
       background: #fff;
@@ -66,6 +66,15 @@
       color: #666;
       margin-top: 3px;
     }
+
+    .fade {
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+    .fade-out {
+      opacity: 0;
+    }
+
     footer {
       position: fixed;
       bottom: 0;
@@ -109,16 +118,16 @@
   </style>
 </head>
 <body>
-  <!-- Logo -->
   <a href="index.html" class="logo">
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
-  <!-- Sağ üstte değişen söz -->
-  <div class="quote-box" id="quote-box">
+
+  <!-- Söz kutusu -->
+  <div class="quote-box fade" id="quote-box">
     <div id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
     <div class="quote-source" id="quote-source">— TBMM, 1920</div>
   </div>
-  <!-- Menü -->
+
   <nav class="menu">
     <a href="index.html">Anasayfa</a>
     <a href="hayati.html">Hayatı</a>
@@ -130,7 +139,7 @@
     <a href="kronoloji.html">Kronoloji</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
-  <!-- Footer -->
+
   <footer>
     <a href="mailto:email@example.com" aria-label="Gmail">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -148,6 +157,7 @@
       </svg>
     </a>
   </footer>
+
   <script>
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "— TBMM, 1920" },
@@ -155,12 +165,27 @@
       { text: '"Hayatta en hakiki mürşit ilimdir."', source: "— Atatürk" },
       { text: '"Türk milleti çalışkandır, zekidir."', source: "— Atatürk" }
     ];
+
     let quoteIndex = 0;
+    const quoteBox = document.getElementById("quote-box");
+    const quoteText = document.getElementById("quote-text");
+    const quoteSource = document.getElementById("quote-source");
+
     function updateQuote() {
-      quoteIndex = (quoteIndex + 1) % quotes.length;
-      document.getElementById("quote-text").textContent = quotes[quoteIndex].text;
-      document.getElementById("quote-source").textContent = quotes[quoteIndex].source;
+      // Fade out
+      quoteBox.classList.add("fade-out");
+
+      setTimeout(() => {
+        // Yeni sözü ayarla
+        quoteIndex = (quoteIndex + 1) % quotes.length;
+        quoteText.textContent = quotes[quoteIndex].text;
+        quoteSource.textContent = quotes[quoteIndex].source;
+
+        // Fade in
+        quoteBox.classList.remove("fade-out");
+      }, 500);
     }
+
     setInterval(updateQuote, 5000);
   </script>
 </body>
