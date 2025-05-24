@@ -11,6 +11,8 @@
       font-family: Arial, sans-serif;
       background: #fff;
       padding-bottom: 80px;
+      transition: background 0.5s, color 0.5s, font-size 0.5s, opacity 0.7s;
+      min-height: 100vh;
     }
     .logo {
       position: fixed;
@@ -402,23 +404,7 @@
       </div>
     </div>
   </main>
-  <footer>
-    <a href="mailto:email@example.com" aria-label="Gmail">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/>
-      </svg>
-    </a>
-    <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-      </svg>
-    </a>
-    <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M22 12A10 10 0 1 0 10 22v-7h-2v-3h2v-2c0-2.2 1.3-3.5 3.3-3.5.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.7h2.6L15 15h-2v7a10 10 0 0 0 9-10z"/>
-      </svg>
-    </a>
-  </footer>
+  <footer></footer>
   <script>
     // Söz kutusu animasyonu için
     const quotes = [
@@ -444,12 +430,108 @@
       quoteIndex = (quoteIndex + 1) % quotes.length;
       showQuote(quoteIndex);
     }, 5000);
+
     // Timeline animasyonunu başlatmak için
     window.addEventListener('DOMContentLoaded', () => {
       const events = document.querySelectorAll('.timeline-event');
       events.forEach((ev, i) => {
         setTimeout(() => { ev.style.opacity = 1; ev.style.transform = "translateY(0)"; }, 80 + i * 90);
       });
+    });
+
+    // Ortak ayar scripti (tasarıma dokunmadan)
+    const LANGUAGES = {
+      tr: {
+        title: "Ayarlar",
+        theme: "Tema",
+        darkMode: "Koyu Mod",
+        notifications: "Bildirimleri Aç",
+        fontSize: "Yazı Boyutu",
+        language: "Dil",
+        save: "Kaydet",
+        saved: "Ayarlar kaydedildi!",
+        info: "Ayarlarınız tarayıcınızda saklanır.<br>Koyu Mod, Yazı Boyutu ve Dil tüm sayfalara yansır.",
+        options: { normal: "Normal", large: "Büyük", xlarge: "Çok Büyük" },
+        tr: "Türkçe",
+        en: "İngilizce"
+      },
+      en: {
+        title: "Settings",
+        theme: "Theme",
+        darkMode: "Dark Mode",
+        notifications: "Enable Notifications",
+        fontSize: "Font Size",
+        language: "Language",
+        save: "Save",
+        saved: "Settings saved!",
+        info: "Your settings are stored in your browser.<br>Dark Mode, Font Size and Language apply to all pages.",
+        options: { normal: "Normal", large: "Large", xlarge: "Extra Large" },
+        tr: "Turkish",
+        en: "English"
+      }
+    };
+    function getLang() { return localStorage.getItem("language") || "tr"; }
+    function applySettings() {
+      const isDark = localStorage.getItem("darkMode") === "true";
+      const fontSize = localStorage.getItem("fontSize") || "normal";
+      document.body.style.background = isDark ? "#222" : "#fff";
+      document.body.style.color = isDark ? "#fff" : "#222";
+      document.body.classList.toggle('dark', isDark);
+      switch(fontSize) {
+        case 'large': document.body.style.fontSize = "1.18em"; break;
+        case 'xlarge': document.body.style.fontSize = "1.32em"; break;
+        default: document.body.style.fontSize = "1em";
+      }
+      // Fade-in animasyonu (animasyonsuz sayfa için, timeline varsa atla)
+      if (!document.querySelector(".timeline-event") && !document.body.classList.contains("has-fadein")) {
+        document.body.style.opacity = "0";
+        document.body.style.transition = "opacity 0.7s";
+        setTimeout(() => { document.body.style.opacity = "1"; }, 10);
+        document.body.classList.add("has-fadein");
+      }
+      if (document.getElementById("settingsForm")) {
+        const t = LANGUAGES[getLang()];
+        document.querySelector('.settings-title').textContent = t.title;
+        document.querySelectorAll('.section-label')[0].textContent = t.theme;
+        document.querySelector('.toggle-label[for=darkMode]').textContent = t.darkMode;
+        document.querySelectorAll('.section-label')[1].textContent = t.notifications;
+        document.querySelector('.toggle-label[for=notifications]').textContent = t.notifications;
+        document.querySelectorAll('.section-label')[2].textContent = t.fontSize;
+        document.querySelectorAll('.section-label')[3].textContent = t.language;
+        document.getElementById("fontSize").options[0].textContent = t.options.normal;
+        document.getElementById("fontSize").options[1].textContent = t.options.large;
+        document.getElementById("fontSize").options[2].textContent = t.options.xlarge;
+        document.getElementById("settings-save-label").textContent = t.save;
+        document.getElementById("savedMsg").textContent = t.saved;
+        document.querySelector('.settings-info').innerHTML = t.info;
+        document.getElementById("language").options[0].textContent = t.tr;
+        document.getElementById("language").options[1].textContent = t.en;
+      }
+    }
+    function updateFooterLinks() {
+      const footer = document.querySelector("footer");
+      if (!footer) return;
+      footer.innerHTML = `
+        <a href="mailto:atam01283@gmail.com" aria-label="Gmail">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/>
+          </svg>
+        </a>
+        <a href="https://instagram.com/atamm1283" target="_blank" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+          </svg>
+        </a>
+        <a href="https://twitter.com/atam01283" target="_blank" aria-label="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M19.633 7.997c.013.18.013.362.013.544 0 5.522-4.206 11.894-11.894 11.894-2.363 0-4.563-.69-6.413-1.872.329.038.658.051.998.051 1.961 0 3.766-.659 5.203-1.772-1.833-.035-3.385-1.242-3.918-2.903.257.038.519.064.792.064.38 0 .75-.051 1.1-.145-1.915-.385-3.36-2.077-3.36-4.102v-.052c.564.313 1.214.502 1.905.519-1.127-.752-1.872-2.037-1.872-3.496 0-.77.208-1.49.57-2.108 2.08 2.556 5.197 4.237 8.704 4.419-.072-.308-.108-.629-.108-.96 0-2.312 1.872-4.184 4.184-4.184 1.205 0 2.297.508 3.063 1.322.954-.187 1.85-.535 2.658-1.013-.313.98-.98 1.803-1.85 2.323.848-.099 1.658-.327 2.409-.663-.564.836-1.274 1.574-2.096 2.164z"/>
+          </svg>
+        </a>
+      `;
+    }
+    window.addEventListener("DOMContentLoaded", () => {
+      applySettings();
+      updateFooterLinks();
     });
   </script>
 </body>
