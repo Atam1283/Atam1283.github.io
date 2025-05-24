@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
-  <title>Atatürk</title>
+  <title>Sözleri</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     * { box-sizing: border-box; }
@@ -24,22 +24,22 @@
     }
     .menu-background {
       position: fixed;
-      top: 70px;
+      top: 0;
       left: 0;
       width: 100vw;
-      height: 50px;
+      height: 120px;
       background: #fff;
-      z-index: 999;
+      z-index: 1099;
       pointer-events: none;
     }
     nav.menu {
       position: fixed;
       top: 70px;
       left: 0;
-      width: 100%;
+      width: 100vw;
       background: #fff;
       border-bottom: 2px solid #d9d9d9;
-      z-index: 1000;
+      z-index: 1101;
       overflow-x: auto;
       white-space: nowrap;
     }
@@ -53,7 +53,7 @@
       border-bottom: 3px solid transparent;
       transition: all 0.3s ease;
     }
-    nav.menu a:hover {
+    nav.menu a:hover, nav.menu a.active {
       border-bottom: 3px solid #e30b17;
       color: #e30b17;
     }
@@ -133,16 +133,76 @@
         font-size: 9px;
       }
       .menu-background {
-        height: 50px;
+        height: 100px;
       }
       nav.menu {
-        top: 70px;
+        top: 60px;
         height: 50px;
       }
       nav.menu a {
         padding: 10px 12px 9px 12px;
         font-size: 13px;
       }
+    }
+    main {
+      margin: 140px auto 0 auto;
+      max-width: 900px;
+      padding: 0 20px 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .sozler-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 26px;
+      width: 100%;
+      max-width: 900px;
+    }
+    .soz-card {
+      background: #fafafa;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      padding: 30px 22px 20px 22px;
+      position: relative;
+      transition: box-shadow 0.25s, transform 0.22s cubic-bezier(.42,0,.58,1);
+      cursor: pointer;
+      min-height: 95px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: cardFloat 4s ease-in-out infinite alternate;
+    }
+    .soz-card:hover, .soz-card:focus {
+      box-shadow: 0 8px 32px rgba(227,11,23,0.15), 0 2px 16px rgba(0,0,0,0.12);
+      transform: scale(1.03) rotate(-1.2deg);
+    }
+    .soz-card .soz {
+      font-size: 1.08em;
+      font-weight: 500;
+      color: #222;
+      margin-bottom: 14px;
+      line-height: 1.44;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      text-align: left;
+    }
+    .soz-card .kaynak {
+      font-size: 0.93em;
+      color: #666;
+      text-align: right;
+      font-family: Arial, sans-serif;
+      font-style: italic;
+      margin-top: auto;
+      margin-bottom: 0;
+    }
+    @media (max-width: 700px) {
+      main { margin-top: 110px;}
+      .sozler-grid { grid-template-columns: 1fr; gap: 14px;}
+      .soz-card { padding: 17px 9px 13px 14px; min-height: 74px;}
+    }
+    @keyframes cardFloat {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px);}
     }
   </style>
 </head>
@@ -151,10 +211,8 @@
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
 
-  <!-- Menü arkasında beyaz plaka -->
   <div class="menu-background"></div>
 
-  <!-- Söz kutusu (yazı ve kaynak) -->
   <div class="quote-container">
     <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
     <div class="quote-source" id="quote-source">TBMM, 1920</div>
@@ -164,7 +222,7 @@
     <a href="index.html">Anasayfa</a>
     <a href="hayati.html">Hayatı</a>
     <a href="galeri.html">Galeri</a>
-    <a href="sozleri.html">Sözleri</a>
+    <a href="sozleri.html" class="active">Sözleri</a>
     <a href="eserleri.html">Eserleri</a>
     <a href="devrimler.html">Devrimleri</a>
     <a href="nutuk.html">Nutuk</a>
@@ -172,7 +230,61 @@
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
 
-  <!-- İçerik yok, menü ve plaka eski yerinde -->
+  <main>
+    <h1 style="font-size:2.1em; color:#e30b17; margin-bottom:36px; margin-top:18px; font-family:Georgia,serif; text-align:center;">
+      Atatürk'ün Sözleri
+    </h1>
+    <div class="sozler-grid">
+      <div class="soz-card" tabindex="0">
+        <div class="soz">"Egemenlik, kayıtsız şartsız milletindir."</div>
+        <div class="kaynak">TBMM, 1920</div>
+      </div>
+      <div class="soz-card" tabindex="0">
+        <div class="soz">"Yurtta sulh, cihanda sulh."</div>
+        <div class="kaynak">Atatürk, Söylev ve Demeçler</div>
+      </div>
+      <div class="soz-card" tabindex="0">
+        <div class="soz">"Hayatta en hakiki mürşit ilimdir."</div>
+        <div class="kaynak">Atatürk, 1924</div>
+      </div>
+      <div class="soz-card" tabindex="0">
+        <div class="soz">"Beni görmek demek mutlaka yüzümü görmek değildir. Benim fikirlerimi, benim duygularımı anlıyorsanız ve hissediyorsanız bu yeterlidir."</div>
+        <div class="kaynak">Atatürk, 1930</div>
+      </div>
+      <div class="soz-card" tabindex="0">
+        <div class="soz">"Türk milletinin karakteri yüksektir, Türk milleti çalışkandır, Türk milleti zekidir."</div>
+        <div class="kaynak">Atatürk, 1933</div>
+      </div>
+      <div class="soz-card" tabindex="0">
+        <div class="soz">"Ne mutlu Türküm diyene!"</div>
+        <div class="kaynak">Atatürk</div>
+      </div>
+      <div class="soz-card" tabindex="0">
+        <div class="soz">"Milletin bağımsızlığı yine milletin azim ve kararıyla kurtarılacaktır."</div>
+        <div class="kaynak">Atatürk, 1919</div>
+      </div>
+      <div class="soz-card" tabindex="0">
+        <div class="soz">"Benim naçiz vücudum elbet bir gün toprak olacaktır; fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır."</div>
+        <div class="kaynak">Atatürk</div>
+      </div>
+      <div class="soz-card" tabindex="0">
+        <div class="soz">"Öğretmenler! Yeni nesil sizin eseriniz olacaktır."</div>
+        <div class="kaynak">Atatürk, 1924</div>
+      </div>
+      <div class="soz-card" tabindex="0">
+        <div class="soz">"Sanatsız kalan bir milletin hayat damarlarından biri kopmuş demektir."</div>
+        <div class="kaynak">Atatürk, 1923</div>
+      </div>
+      <div class="soz-card" tabindex="0">
+        <div class="soz">"İstikbal göklerdedir."</div>
+        <div class="kaynak">Atatürk, 1936</div>
+      </div>
+      <div class="soz-card" tabindex="0">
+        <div class="soz">"Dünyada her şey için, medeniyet için, hayat için, başarı için en hakiki mürşit ilimdir, fendir."</div>
+        <div class="kaynak">Atatürk</div>
+      </div>
+    </div>
+  </main>
 
   <footer>
     <a href="mailto:email@example.com" aria-label="Gmail">
@@ -192,6 +304,7 @@
     </a>
   </footer>
   <script>
+    // Söz kutusu animasyonu için
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
       { text: '"Yurtta sulh, cihanda sulh."', source: "Atatürk, Söylev ve Demeçler" },
