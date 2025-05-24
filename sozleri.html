@@ -5,6 +5,7 @@
   <title>Sözleri</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    /* ... CSS'iniz aynı kalacak ... */
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -253,64 +254,200 @@
   </nav>
 
   <main>
-    <h1 style="font-size:2.1em; color:#e30b17; margin-bottom:36px; margin-top:18px; font-family:Georgia,serif; text-align:center;">
+    <h1 id="sayfa-baslik" style="font-size:2.1em; color:#e30b17; margin-bottom:36px; margin-top:18px; font-family:Georgia,serif; text-align:center;">
       Atatürk'ün Sözleri
     </h1>
-    <div class="sozler-grid">
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Benim naçiz vücudum elbet bir gün toprak olacaktır, fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır."</div>
-        <div class="kaynak">Kaynak: 10. Yıl Nutku, 1933</div>
-        <div class="baglam">Bağlam: Cumhuriyetin 10. yılında yaptığı tarihî konuşmada, cumhuriyetin sonsuza kadar yaşayacağını vurgulamıştır.</div>
-      </div>
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Yurtta sulh, cihanda sulh."</div>
-        <div class="kaynak">Kaynak: Atatürk'ün dış politikaya dair temel ilkesi (1931)</div>
-        <div class="baglam">Bağlam: Türkiye'nin barışçıl politikasını özetleyerek çeşitli konuşmalarında vurgulamıştır.</div>
-      </div>
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Hayatta en hakiki mürşit ilimdir."</div>
-        <div class="kaynak">Kaynak: Samsun, 1924 (Öğretmenlere hitap)</div>
-        <div class="baglam">Bağlam: Bilimin yol göstericiliğine vurgu yapmış, eğitim reformlarının temelini bu sözle özetlemiştir.</div>
-      </div>
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Egemenlik kayıtsız şartsız milletindir."</div>
-        <div class="kaynak">Kaynak: 1923 ve sonrası, Cumhuriyetin ilanı ve TBMM'nin açılışında</div>
-        <div class="baglam">Bağlam: TBMM'nin açılışı ve cumhuriyetin temel felsefesini ifade eder.</div>
-      </div>
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Geldikleri gibi giderler."</div>
-        <div class="kaynak">Kaynak: İstanbul'un işgali sırasında, 1919</div>
-        <div class="baglam">Bağlam: İşgal kuvvetlerinin bir gün Türkiye'den çıkartılacağına dair inancını ifade etmiştir.</div>
-      </div>
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Türk, öğün, çalış, güven."</div>
-        <div class="kaynak">Kaynak: 1930'larda yaptığı çeşitli konuşmalar</div>
-        <div class="baglam">Bağlam: Türk milletinin çalışkanlığına ve özgüvenine vurgu yapmıştır.</div>
-      </div>
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Muhtaç olduğun kudret, damarlarındaki asil kanda mevcuttur."</div>
-        <div class="kaynak">Kaynak: Nutuk, 1927 (Gençliğe Hitabe sonu)</div>
-        <div class="baglam">Bağlam: Türk milletinin gücünün kendi tarihinden ve kimliğinden geldiğini belirtmiştir.</div>
-      </div>
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Ordular! İlk hedefiniz Akdeniz'dir, ileri!"</div>
-        <div class="kaynak">Kaynak: Dumlupınar Meydan Muharebesi, 30 Ağustos 1922</div>
-        <div class="baglam">Bağlam: Büyük Taarruz sırasında Türk ordusuna tarihî bir direktif vermiştir.</div>
-      </div>
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Sanatsız kalan bir milletin hayat damarlarından biri kopmuş demektir."</div>
-        <div class="kaynak">Kaynak: Öğretmenlere konuşma, Ankara, 1923</div>
-        <div class="baglam">Bağlam: Sanatın ve kültürün milletler için önemini vurgulamıştır.</div>
-      </div>
-      <div class="soz-card" tabindex="0">
-        <div class="soz">"Beni görmek demek mutlaka yüzümü görmek değildir. Benim fikirlerimi, benim duygularımı anlıyorsanız ve hissediyorsanız bu kafidir."</div>
-        <div class="kaynak">Kaynak: İstanbul, 1929 (Gençlerle sohbet)</div>
-        <div class="baglam">Bağlam: Kişisel tapınma yerine fikirlerinin anlaşılmasını istemiştir.</div>
-      </div>
+    <div class="sozler-grid" id="sozlerGrid">
+      <!-- Kartlar JS ile doldurulacak -->
     </div>
   </main>
   <footer></footer>
   <script>
+    // Çoklu dil sözler
+    const SOZLER = {
+      tr: {
+        title: "Atatürk'ün Sözleri",
+        sozler: [
+          {
+            soz: `"Benim naçiz vücudum elbet bir gün toprak olacaktır, fakat Türkiye Cumhuriyeti ilelebet payidar kalacaktır."`,
+            kaynak: "Kaynak: 10. Yıl Nutku, 1933",
+            baglam: "Bağlam: Cumhuriyetin 10. yılında yaptığı tarihî konuşmada, cumhuriyetin sonsuza kadar yaşayacağını vurgulamıştır."
+          },
+          {
+            soz: `"Yurtta sulh, cihanda sulh."`,
+            kaynak: "Kaynak: Atatürk'ün dış politikaya dair temel ilkesi (1931)",
+            baglam: "Bağlam: Türkiye'nin barışçıl politikasını özetleyerek çeşitli konuşmalarında vurgulamıştır."
+          },
+          {
+            soz: `"Hayatta en hakiki mürşit ilimdir."`,
+            kaynak: "Kaynak: Samsun, 1924 (Öğretmenlere hitap)",
+            baglam: "Bağlam: Bilimin yol göstericiliğine vurgu yapmış, eğitim reformlarının temelini bu sözle özetlemiştir."
+          },
+          {
+            soz: `"Egemenlik kayıtsız şartsız milletindir."`,
+            kaynak: "Kaynak: 1923 ve sonrası, Cumhuriyetin ilanı ve TBMM'nin açılışında",
+            baglam: "Bağlam: TBMM'nin açılışı ve cumhuriyetin temel felsefesini ifade eder."
+          },
+          {
+            soz: `"Geldikleri gibi giderler."`,
+            kaynak: "Kaynak: İstanbul'un işgali sırasında, 1919",
+            baglam: "Bağlam: İşgal kuvvetlerinin bir gün Türkiye'den çıkartılacağına dair inancını ifade etmiştir."
+          },
+          {
+            soz: `"Türk, öğün, çalış, güven."`,
+            kaynak: "Kaynak: 1930'larda yaptığı çeşitli konuşmalar",
+            baglam: "Bağlam: Türk milletinin çalışkanlığına ve özgüvenine vurgu yapmıştır."
+          },
+          {
+            soz: `"Muhtaç olduğun kudret, damarlarındaki asil kanda mevcuttur."`,
+            kaynak: "Kaynak: Nutuk, 1927 (Gençliğe Hitabe sonu)",
+            baglam: "Bağlam: Türk milletinin gücünün kendi tarihinden ve kimliğinden geldiğini belirtmiştir."
+          },
+          {
+            soz: `"Ordular! İlk hedefiniz Akdeniz'dir, ileri!"`,
+            kaynak: "Kaynak: Dumlupınar Meydan Muharebesi, 30 Ağustos 1922",
+            baglam: "Bağlam: Büyük Taarruz sırasında Türk ordusuna tarihî bir direktif vermiştir."
+          },
+          {
+            soz: `"Sanatsız kalan bir milletin hayat damarlarından biri kopmuş demektir."`,
+            kaynak: "Kaynak: Öğretmenlere konuşma, Ankara, 1923",
+            baglam: "Bağlam: Sanatın ve kültürün milletler için önemini vurgulamıştır."
+          },
+          {
+            soz: `"Beni görmek demek mutlaka yüzümü görmek değildir. Benim fikirlerimi, benim duygularımı anlıyorsanız ve hissediyorsanız bu kafidir."`,
+            kaynak: "Kaynak: İstanbul, 1929 (Gençlerle sohbet)",
+            baglam: "Bağlam: Kişisel tapınma yerine fikirlerinin anlaşılmasını istemiştir."
+          }
+        ]
+      },
+      en: {
+        title: "Atatürk's Quotes",
+        sozler: [
+          {
+            soz: `"My humble body will surely turn to dust one day, but the Republic of Turkey will live forever."`,
+            kaynak: "Source: 10th Anniversary Speech, 1933",
+            baglam: "Context: In this historic speech on the 10th anniversary of the Republic, he emphasized that the Republic would last forever."
+          },
+          {
+            soz: `"Peace at home, peace in the world."`,
+            kaynak: "Source: Atatürk's core principle in foreign policy (1931)",
+            baglam: "Context: He emphasized Turkey's peaceful policy in various speeches."
+          },
+          {
+            soz: `"The truest guide in life is science."`,
+            kaynak: "Source: Samsun, 1924 (Address to teachers)",
+            baglam: "Context: He highlighted the guiding role of science, summarizing the basis of educational reforms."
+          },
+          {
+            soz: `"Sovereignty unconditionally belongs to the nation."`,
+            kaynak: "Source: 1923 and after, at the proclamation of the Republic and opening of the Grand National Assembly",
+            baglam: "Context: Expresses the founding philosophy of the Republic and the Assembly."
+          },
+          {
+            soz: `"They will go as they have come."`,
+            kaynak: "Source: During the occupation of Istanbul, 1919",
+            baglam: "Context: He expressed his belief that the occupying forces would one day be expelled from Turkey."
+          },
+          {
+            soz: `"Turk! Be proud, work, and trust."`,
+            kaynak: "Source: Various speeches in the 1930s",
+            baglam: "Context: Emphasized the industriousness and self-confidence of the Turkish nation."
+          },
+          {
+            soz: `"The strength you need exists in the noble blood in your veins."`,
+            kaynak: "Source: The Great Speech (Nutuk), 1927 (End of Address to Youth)",
+            baglam: "Context: Stressed that the nation's strength comes from its history and identity."
+          },
+          {
+            soz: `"Armies! Your first target is the Mediterranean. Forward!"`,
+            kaynak: "Source: Battle of Dumlupınar, August 30, 1922",
+            baglam: "Context: Gave this historic directive to the Turkish army during the Great Offensive."
+          },
+          {
+            soz: `"A nation deprived of art means one of its vital veins has been severed."`,
+            kaynak: "Source: Speech to teachers, Ankara, 1923",
+            baglam: "Context: Emphasized the importance of art and culture for nations."
+          },
+          {
+            soz: `"To see me does not necessarily mean to see my face. If you understand and feel my ideas and feelings, that is enough."`,
+            kaynak: "Source: Istanbul, 1929 (Conversation with youth)",
+            baglam: "Context: Preferred understanding of his ideas over personal adoration."
+          }
+        ]
+      },
+      az: {
+        title: "Atatürkün Sözləri",
+        sozler: [
+          {
+            soz: `"Mənim naçiz bədənim bir gün torpaq olacaq, amma Türkiyə Cümhuriyyəti əbədi yaşayacaqdır."`,
+            kaynak: "Mənbə: 10-cu il nitqi, 1933",
+            baglam: "Kontekst: Cümhuriyyətin 10 illiyində etdiyi tarixi çıxışda, cümhuriyyətin sonsuz yaşayacağını vurğulamışdır."
+          },
+          {
+            soz: `"Evdə sülh, dünyada sülh."`,
+            kaynak: "Mənbə: Atatürkün xarici siyasətdə əsas prinsipi (1931)",
+            baglam: "Kontekst: Türkiyənin sülhsevər siyasətini müxtəlif çıxışlarında vurğulamışdır."
+          },
+          {
+            soz: `"Həyatda ən haqqı bələdçi elmdir."`,
+            kaynak: "Mənbə: Samsun, 1924 (Müəllimlərə müraciət)",
+            baglam: "Kontekst: Elmin yolgöstərənliyini vurğulamış, təhsil islahatlarının əsasını bu sözlə ifadə etmişdir."
+          },
+          {
+            soz: `"Hakimiyyət qeyd-şərtsiz millətindir."`,
+            kaynak: "Mənbə: 1923 və sonrası, Respublikanın elanında və TBMM-nin açılışında",
+            baglam: "Kontekst: TBMM-nin açılışı və respublikanın əsas fəlsəfəsini ifadə edir."
+          },
+          {
+            soz: `"Gəldikləri kimi gedərlər."`,
+            kaynak: "Mənbə: İstanbulun işğalı zamanı, 1919",
+            baglam: "Kontekst: İşğalçı qüvvələrin bir gün Türkiyədən çıxarılacağına inamını ifadə etmişdir."
+          },
+          {
+            soz: `"Türk, fəxr et, çalış, inan."`,
+            kaynak: "Mənbə: 1930-cu illərdə etdiyi müxtəlif çıxışlar",
+            baglam: "Kontekst: Türk millətinin çalışqanlığına və özünə inamına vurğu etmişdir."
+          },
+          {
+            soz: `"Ehtiyac duyduğun qüvvət damarlarındakı asil qanda mövcuddur."`,
+            kaynak: "Mənbə: Nutuk, 1927 (Gəncliyə Hitabənin sonu)",
+            baglam: "Kontekst: Türk millətinin gücünün öz tarixindən və kimliyindən gəldiyini bildirmişdir."
+          },
+          {
+            soz: `"Ordular! İlk hədəfiniz Aralıq dənizidir, irəli!"`,
+            kaynak: "Mənbə: Dumlupınar döyüşü, 30 avqust 1922",
+            baglam: "Kontekst: Böyük hücum zamanı Türk ordusuna tarixi bir göstəriş vermişdir."
+          },
+          {
+            soz: `"Sənətsiz qalan bir millətin həyat damarlarından biri qopmuş deməkdir."`,
+            kaynak: "Mənbə: Müəllimlərə çıxış, Ankara, 1923",
+            baglam: "Kontekst: Sənətin və mədəniyyətin millətlər üçün əhəmiyyətini vurğulamışdır."
+          },
+          {
+            soz: `"Məni görmək demək, mütləq üzümü görmək deyil. Mənim fikirlərimi, hisslərimi anlayırsınızsa və hiss edirsinizsə, bu kifayətdir."`,
+            kaynak: "Mənbə: İstanbul, 1929 (Gənclərlə söhbət)",
+            baglam: "Kontekst: Şəxsi sitayiş əvəzinə, fikirlərinin başa düşülməsini istəmişdir."
+          }
+        ]
+      }
+    };
+
+    function getLang() { return localStorage.getItem("language") || "tr"; }
+
+    function renderSozler() {
+      const lang = getLang();
+      const data = SOZLER[lang];
+      document.getElementById('sayfa-baslik').textContent = data.title;
+      const grid = document.getElementById('sozlerGrid');
+      grid.innerHTML = data.sozler.map(item => `
+        <div class="soz-card" tabindex="0">
+          <div class="soz">${item.soz}</div>
+          <div class="kaynak">${item.kaynak}</div>
+          <div class="baglam">${item.baglam}</div>
+        </div>
+      `).join('');
+    }
+
     // Söz kutusu animasyonu için
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
@@ -375,7 +512,15 @@
 
     window.addEventListener("DOMContentLoaded", () => {
       applySettings();
+      renderSozler();
       updateFooterLinks();
+    });
+
+    // Dil değişirse (başka sekmeden), sözler anında güncellensin
+    window.addEventListener("storage", (e) => {
+      if (e.key === "language") {
+        renderSozler();
+      }
     });
   </script>
 </body>
