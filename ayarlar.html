@@ -210,15 +210,44 @@
       opacity: 1;
       animation: fadeOutMsg 2.5s forwards;
     }
-    @keyframes fadeOutMsg {
-      0% { opacity: 1;}
-      80% { opacity: 1;}
-      100% { opacity: 0;}
+    /* Dil seçici */
+    .lang-select-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+      margin-bottom: 14px;
+    }
+    .lang-select-label {
+      font-weight: bold;
+      color: #222;
+      font-size: 1.09em;
+      font-family: Georgia, serif;
+    }
+    .lang-select {
+      padding: 5px 16px 5px 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background: #fff;
+      font-size: 1em;
+      color: #222;
+      outline: none;
+      transition: border 0.2s;
+      cursor: pointer;
+    }
+    .lang-select:focus {
+      border-color: #e30b17;
     }
     @media (max-width: 700px) {
       main { margin-top: 110px;}
       .settings-card { padding: 20px 8px;}
       .settings-title { font-size: 1.18em;}
+    }
+    @media (max-width: 480px) {
+      main { margin-top: 90px; }
+      .settings-card { padding: 11vw 2vw 7vw 2vw; }
+      .settings-title { font-size: 1.05em; }
+      .lang-select { font-size: 0.98em; }
     }
     footer {
       position: fixed;
@@ -276,6 +305,42 @@
         font-size: 13px;
       }
     }
+    /* Koyu tema için detaylı uyum */
+    body.dark {
+      background: #181818 !important;
+      color: #f2f2f2 !important;
+    }
+    body.dark .settings-card {
+      background: #232326;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.4);
+    }
+    body.dark .settings-title,
+    body.dark .section-label,
+    body.dark .lang-select-label {
+      color: #e30b17 !important;
+    }
+    body.dark .toggle-label {
+      color: #eee;
+    }
+    body.dark .settings-info {
+      color: #bcbcbc;
+    }
+    body.dark .save-btn {
+      background: #e30b17;
+      color: #fff;
+    }
+    body.dark .save-btn:hover {
+      background: #b4000f;
+      color: #fff;
+    }
+    body.dark .lang-select {
+      background: #232326;
+      color: #fff;
+      border: 1px solid #444;
+    }
+    body.dark .lang-select:focus {
+      border-color: #e30b17;
+    }
   </style>
 </head>
 <body>
@@ -301,6 +366,15 @@
   <main>
     <div class="settings-card">
       <div class="settings-title">Ayarlar</div>
+      <!-- Dil seçici -->
+      <div class="lang-select-section">
+        <label class="lang-select-label" for="language">Dil</label>
+        <select id="language" class="lang-select">
+          <option value="tr">Türkçe</option>
+          <option value="en">English</option>
+          <option value="az">Azərbaycan dili</option>
+        </select>
+      </div>
       <form id="settingsForm" autocomplete="off">
         <div class="settings-section">
           <span class="section-label">Tema</span>
@@ -324,12 +398,12 @@
             <option value="xlarge">Çok Büyük</option>
           </select>
         </div>
-        <button type="submit" class="save-btn">Kaydet</button>
+        <button type="submit" class="save-btn" id="settings-save-label">Kaydet</button>
         <div id="savedMsg" class="saved-message">Ayarlar kaydedildi!</div>
       </form>
       <p class="settings-info">
         Ayarlarınız tarayıcınızda saklanır.<br>
-        Koyu Mod ve Yazı Boyutu tüm sayfalara yansır.
+        Koyu Mod, Yazı Boyutu ve Dil tüm sayfalara yansır.
       </p>
     </div>
   </main>
@@ -360,49 +434,7 @@
       showQuote(quoteIndex);
     }, 5000);
 
-    // Ayarlar kaydetme ve uygulama
-    function applySettings() {
-      const isDark = localStorage.getItem("darkMode") === "true";
-      const fontSize = localStorage.getItem("fontSize") || "normal";
-      document.body.style.background = isDark ? "#222" : "#fff";
-      document.body.style.color = isDark ? "#fff" : "#222";
-      if (isDark) {
-        document.body.classList.add('dark');
-      } else {
-        document.body.classList.remove('dark');
-      }
-      switch(fontSize) {
-        case 'large':
-          document.body.style.fontSize = "1.18em";
-          break;
-        case 'xlarge':
-          document.body.style.fontSize = "1.32em";
-          break;
-        default:
-          document.body.style.fontSize = "1em";
-      }
-    }
-    function loadSettings() {
-      document.getElementById("darkMode").checked = localStorage.getItem("darkMode") === "true";
-      document.getElementById("notifications").checked = localStorage.getItem("notifications") === "true";
-      document.getElementById("fontSize").value = localStorage.getItem("fontSize") || "normal";
-      applySettings();
-    }
-    document.getElementById("settingsForm").addEventListener("submit", function(e){
-      e.preventDefault();
-      localStorage.setItem("darkMode", document.getElementById("darkMode").checked);
-      localStorage.setItem("notifications", document.getElementById("notifications").checked);
-      localStorage.setItem("fontSize", document.getElementById("fontSize").value);
-      applySettings();
-      const msg = document.getElementById("savedMsg");
-      msg.classList.add("show");
-      setTimeout(() => { msg.classList.remove("show"); }, 2500);
-    });
-
-    // Hemen ayarları uygula
-    loadSettings();
-
-    // Ortak ayar scripti (footer otomatik güncellenir)
+    // Çoklu dil desteği
     const LANGUAGES = {
       tr: {
         title: "Ayarlar",
@@ -416,7 +448,8 @@
         info: "Ayarlarınız tarayıcınızda saklanır.<br>Koyu Mod, Yazı Boyutu ve Dil tüm sayfalara yansır.",
         options: { normal: "Normal", large: "Büyük", xlarge: "Çok Büyük" },
         tr: "Türkçe",
-        en: "İngilizce"
+        en: "İngilizce",
+        az: "Azerbaycan Türkçesi"
       },
       en: {
         title: "Settings",
@@ -430,9 +463,102 @@
         info: "Your settings are stored in your browser.<br>Dark Mode, Font Size and Language apply to all pages.",
         options: { normal: "Normal", large: "Large", xlarge: "Extra Large" },
         tr: "Turkish",
-        en: "English"
+        en: "English",
+        az: "Azerbaijani"
+      },
+      az: {
+        title: "Ayarlar",
+        theme: "Mövzu",
+        darkMode: "Qaranlıq Rejim",
+        notifications: "Bildirişləri Aktiv Et",
+        fontSize: "Şrift Ölçüsü",
+        language: "Dil",
+        save: "Yadda saxla",
+        saved: "Ayarlar yadda saxlanıldı!",
+        info: "Ayarlarınız brauzerinizdə saxlanılır.<br>Qaranlıq Rejim, Şrift Ölçüsü və Dil bütün səhifələrə tətbiq olunur.",
+        options: { normal: "Normal", large: "Böyük", xlarge: "Çox Böyük" },
+        tr: "Türkcə",
+        en: "İngiliscə",
+        az: "Azərbaycan dili"
       }
     };
+
+    function getLang() {
+      return localStorage.getItem("language") || "tr";
+    }
+    function setLang(lang) {
+      localStorage.setItem("language", lang);
+      applySettings();
+      renderLangOptions();
+    }
+    function renderLangOptions() {
+      const lang = getLang();
+      const t = LANGUAGES[lang];
+      const langSel = document.getElementById("language");
+      if (!langSel) return;
+      // Option labels güncelle
+      langSel.options[0].textContent = t.tr;
+      langSel.options[1].textContent = t.en;
+      langSel.options[2].textContent = t.az;
+    }
+    // Ayarlar kaydetme ve uygulama
+    function applySettings() {
+      const isDark = localStorage.getItem("darkMode") === "true";
+      const fontSize = localStorage.getItem("fontSize") || "normal";
+      const lang = getLang();
+      const t = LANGUAGES[lang];
+      document.body.style.background = isDark ? "#181818" : "#fff";
+      document.body.style.color = isDark ? "#f2f2f2" : "#222";
+      document.body.classList.toggle('dark', isDark);
+      switch(fontSize) {
+        case 'large': document.body.style.fontSize = "1.18em"; break;
+        case 'xlarge': document.body.style.fontSize = "1.32em"; break;
+        default: document.body.style.fontSize = "1em";
+      }
+      // Çoklu dil metinleri
+      document.querySelector('.settings-title').textContent = t.title;
+      document.querySelectorAll('.section-label')[0].textContent = t.theme;
+      document.querySelector('.toggle-label[for=darkMode]').textContent = t.darkMode;
+      document.querySelectorAll('.section-label')[1].textContent = t.notifications;
+      document.querySelector('.toggle-label[for=notifications]').textContent = t.notifications;
+      document.querySelectorAll('.section-label')[2].textContent = t.fontSize;
+      document.querySelector('.lang-select-label').textContent = t.language;
+      document.getElementById("settings-save-label").textContent = t.save;
+      document.getElementById("savedMsg").textContent = t.saved;
+      document.querySelector('.settings-info').innerHTML = t.info;
+      // Yazı boyutu seçenekleri
+      document.getElementById("fontSize").options[0].textContent = t.options.normal;
+      document.getElementById("fontSize").options[1].textContent = t.options.large;
+      document.getElementById("fontSize").options[2].textContent = t.options.xlarge;
+      renderLangOptions();
+      // Seçili dili seç
+      document.getElementById("language").value = lang;
+    }
+    function loadSettings() {
+      document.getElementById("darkMode").checked = localStorage.getItem("darkMode") === "true";
+      document.getElementById("notifications").checked = localStorage.getItem("notifications") === "true";
+      document.getElementById("fontSize").value = localStorage.getItem("fontSize") || "normal";
+      document.getElementById("language").value = getLang();
+      applySettings();
+    }
+    document.getElementById("settingsForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      localStorage.setItem("darkMode", document.getElementById("darkMode").checked);
+      localStorage.setItem("notifications", document.getElementById("notifications").checked);
+      localStorage.setItem("fontSize", document.getElementById("fontSize").value);
+      applySettings();
+      const msg = document.getElementById("savedMsg");
+      msg.classList.add("show");
+      setTimeout(() => { msg.classList.remove("show"); }, 2500);
+    });
+    // Dil değiştirildiğinde
+    document.getElementById("language").addEventListener("change", function(e){
+      setLang(e.target.value);
+    });
+    // Hemen ayarları uygula
+    loadSettings();
+
+    // Ortak ayar scripti (footer otomatik güncellenir)
     function updateFooterLinks() {
       const footer = document.querySelector("footer");
       if (!footer) return;
