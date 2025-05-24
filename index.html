@@ -1,239 +1,436 @@
-<div class="homepage-hero">
-  <div class="homepage-bg-anim"></div>
-  <div class="homepage-content">
-    <h1 class="homepage-title">Mustafa Kemal Atatürk</h1>
-    <h2 class="homepage-subtitle">Bağımsızlık, Çağdaşlık ve Aydınlık Türkiye'nin Mimarı</h2>
-    <p class="homepage-desc">
-      Atatürk’ün önderliğinde kurulan Türkiye Cumhuriyeti, bilim, kültür ve çağdaş uygarlık yolunda durmadan ilerlemektedir. Onun fikirleriyle büyüyen bir millet, geçmişini unutmadan geleceğe umutla bakar.
-    </p>
-    <div class="homepage-cards">
-      <div class="homepage-card anim-fade-in">
-        <img src="images/atatürk1.jpg" alt="Atatürk" class="homepage-card-img" loading="lazy">
-        <div class="homepage-card-title">Hayatı</div>
-        <div class="homepage-card-desc">Mustafa Kemal Atatürk’ün çocukluğundan cumhuriyetin ilanına kadar geçen zorlu ve onurlu yaşam öyküsü.</div>
-      </div>
-      <div class="homepage-card anim-fade-in" style="animation-delay:.18s">
-        <img src="images/atatürk2.jpg" alt="Atatürk" class="homepage-card-img" loading="lazy">
-        <div class="homepage-card-title">Devrimleri</div>
-        <div class="homepage-card-desc">Türkiye’yi çağdaş uygarlık seviyesine çıkaran, eğitimden hukuka çok sayıda devrim ve yenilik.</div>
-      </div>
-      <div class="homepage-card anim-fade-in" style="animation-delay:.32s">
-        <img src="images/atatürk3.jpg" alt="Atatürk" class="homepage-card-img" loading="lazy">
-        <div class="homepage-card-title">Sözleri</div>
-        <div class="homepage-card-desc">Atatürk’ün milletine ışık tutan, ilham verici ve yol gösterici özlü sözleri.</div>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <title>Atatürk</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      padding-bottom: 80px;
+    }
+    .logo {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      width: 120px;
+      z-index: 1100;
+      border-radius: 10px;
+      background: #fff;
+      padding: 5px;
+    }
+    .menu-background {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 100vw;
+      height: 50px;
+      background: #fff;
+      z-index: 999;
+      pointer-events: none;
+    }
+    nav.menu {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-bottom: 2px solid #d9d9d9;
+      z-index: 1000;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    nav.menu a {
+      display: inline-block;
+      padding: 14px 20px;
+      color: #000;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s ease;
+    }
+    nav.menu a:hover {
+      border-bottom: 3px solid #e30b17;
+      color: #e30b17;
+    }
+    nav.menu::-webkit-scrollbar {
+      display: none;
+    }
+    /* SAĞ ÜSTTEKİ YAZI */
+    .quote-container {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      text-align: right;
+      z-index: 1200;
+      max-width: 250px;
+    }
+    .quote-text {
+      color: #222;
+      font-size: 13px;
+      font-family: Arial, sans-serif;
+      line-height: 1.2;
+      margin-bottom: 2px;
+      transition: opacity 0.5s;
+    }
+    .quote-source {
+      color: #666;
+      font-size: 11px;
+      font-family: Arial, sans-serif;
+      transition: opacity 0.5s;
+    }
+    .fade-out {
+      opacity: 0 !important;
+    }
+    .fade-in {
+      opacity: 1 !important;
+    }
+    /* ANASAYFA İÇERİĞİ */
+    .homepage-hero {
+      width: 100vw;
+      min-height: 100vh;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 140px;
+      padding-bottom: 100px;
+    }
+    .homepage-bg-anim {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: linear-gradient(120deg, #e30b17 0%, #fff 55%, #191919 100%);
+      opacity: 0.13;
+      z-index: 1;
+      animation: bgfade 8s ease-in-out infinite alternate;
+    }
+    @keyframes bgfade {
+      0%   { opacity: 0.13; filter: blur(0px);}
+      100% { opacity: 0.24; filter: blur(4px);}
+    }
+    .homepage-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      width: 94vw;
+      max-width: 680px;
+      background: rgba(255,255,255,0.89);
+      border-radius: 16px;
+      box-shadow: 0 6px 32px 0 #0001;
+      padding: 44px 20px 40px 20px;
+      animation: fadeInUp 1.5s cubic-bezier(.67,.14,.36,1.07);
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0);}
+    }
+    .homepage-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #111;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      text-shadow: 0 1px 0 #e0e0e0;
+      animation: titlePop 1.2s cubic-bezier(.77,-0.13,.22,1.12) 0.3s both;
+    }
+    @keyframes titlePop {
+      0%   { opacity: 0; transform: scale(0.8);}
+      70%  { opacity: 1; transform: scale(1.07);}
+      100% { opacity: 1; transform: scale(1);}
+    }
+    .homepage-subtitle {
+      font-size: 1.25rem;
+      color: #222;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      margin-bottom: 22px;
+      animation: fadeIn 2s cubic-bezier(.33,.66,.77,1.01) 1s both;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0;}
+      to   { opacity: 1;}
+    }
+    .homepage-desc {
+      font-size: 1.04rem;
+      color: #444;
+      font-weight: 500;
+      margin: 0 auto 24px auto;
+      line-height: 1.7;
+      animation: fadeIn 2.2s cubic-bezier(.33,.66,.77,1.01) 1.4s both;
+    }
+    .homepage-cards {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+    .homepage-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px #0001;
+      width: 170px;
+      min-width: 130px;
+      max-width: 210px;
+      padding: 16px 10px 12px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform .28s cubic-bezier(.4,0,.2,1), box-shadow .38s;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeCardIn 0.8s cubic-bezier(.62,.04,.36,1.09) forwards;
+    }
+    @keyframes fadeCardIn {
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .homepage-card-img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 12px;
+      border: 2px solid #e30b17;
+      background: #eee;
+    }
+    .homepage-card-title {
+      font-weight: bold;
+      color: #111;
+      font-size: 1.08rem;
+      margin-bottom: 8px;
+      letter-spacing: .2px;
+    }
+    .homepage-card-desc {
+      font-size: 0.98rem;
+      color: #444;
+      line-height: 1.35;
+      font-weight: 500;
+    }
+    .homepage-card:hover {
+      transform: scale(1.05) translateY(-4px);
+      box-shadow: 0 6px 24px #e30b171a;
+    }
+    .anim-fade-in { opacity: 1; }
+    @media (max-width: 900px) {
+      .homepage-content {
+        padding: 18px 5vw 22px 5vw;
+        max-width: 98vw;
+      }
+      .homepage-title {
+        font-size: 1.4rem;
+      }
+      .homepage-subtitle {
+        font-size: 1rem;
+      }
+      .homepage-desc {
+        font-size: 0.95rem;
+      }
+      .homepage-hero {
+        padding-top: 85px;
+        padding-bottom: 54px;
+        min-height: 55vh;
+      }
+      .homepage-cards {
+        gap: 12px;
+      }
+      .homepage-card {
+        width: 40vw;
+        min-width: 110px;
+        max-width: 180px;
+        padding: 12px 6px 10px 6px;
+      }
+      .homepage-card-img {
+        width: 54px;
+        height: 54px;
+      }
+      .homepage-card-title {
+        font-size: 1rem;
+      }
+      .homepage-card-desc {
+        font-size: 0.91rem;
+      }
+    }
+    @media (max-width: 600px) {
+      .homepage-content {
+        padding: 10px 2vw 12px 2vw;
+        max-width: 99vw;
+      }
+      .homepage-title {
+        font-size: 1.08rem;
+      }
+      .homepage-subtitle {
+        font-size: 0.87rem;
+      }
+      .homepage-desc {
+        font-size: 0.80rem;
+      }
+      .homepage-hero {
+        padding-top: 75px;
+        padding-bottom: 20px;
+        min-height: 50vh;
+      }
+      .homepage-cards {
+        flex-direction: column;
+        align-items: center;
+        gap: 7px;
+      }
+      .homepage-card {
+        width: 85vw;
+        min-width: 90px;
+        max-width: 98vw;
+        margin-bottom: 4px;
+        padding: 8px 2vw 7px 2vw;
+      }
+      .homepage-card-img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      z-index: 1000;
+    }
+    footer a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #888;
+      border-radius: 50%;
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    footer a:hover {
+      border-color: #e30b17;
+      color: #e30b17;
+    }
+    footer svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="logo">
+    <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
+  </a>
+
+  <!-- Menü arkasında beyaz plaka -->
+  <div class="menu-background"></div>
+
+  <!-- Söz kutusu (yazı ve kaynak) -->
+  <div class="quote-container">
+    <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
+    <div class="quote-source" id="quote-source">TBMM, 1920</div>
+  </div>
+
+  <nav class="menu">
+    <a href="index.html">Anasayfa</a>
+    <a href="hayati.html">Hayatı</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="sozleri.html">Sözleri</a>
+    <a href="eserleri.html">Eserleri</a>
+    <a href="devrimler.html">Devrimleri</a>
+    <a href="nutuk.html">Nutuk</a>
+    <a href="kronoloji.html">Kronoloji</a>
+    <a href="ayarlar.html">Ayarlar</a>
+  </nav>
+
+  <!-- ANASAYFA İÇERİĞİ -->
+  <div class="homepage-hero">
+    <div class="homepage-bg-anim"></div>
+    <div class="homepage-content">
+      <h1 class="homepage-title">Mustafa Kemal Atatürk</h1>
+      <h2 class="homepage-subtitle">Bağımsızlık, Çağdaşlık ve Aydınlık Türkiye'nin Mimarı</h2>
+      <p class="homepage-desc">
+        Atatürk’ün önderliğinde kurulan Türkiye Cumhuriyeti, bilim, kültür ve çağdaş uygarlık yolunda durmadan ilerlemektedir. Onun fikirleriyle büyüyen bir millet, geçmişini unutmadan geleceğe umutla bakar.
+      </p>
+      <div class="homepage-cards">
+        <div class="homepage-card anim-fade-in">
+          <img src="images/atatürk1.jpg" alt="Atatürk" class="homepage-card-img" loading="lazy">
+          <div class="homepage-card-title">Hayatı</div>
+          <div class="homepage-card-desc">Mustafa Kemal Atatürk’ün çocukluğundan cumhuriyetin ilanına kadar geçen zorlu ve onurlu yaşam öyküsü.</div>
+        </div>
+        <div class="homepage-card anim-fade-in" style="animation-delay:.18s">
+          <img src="images/atatürk2.jpg" alt="Atatürk" class="homepage-card-img" loading="lazy">
+          <div class="homepage-card-title">Devrimleri</div>
+          <div class="homepage-card-desc">Türkiye’yi çağdaş uygarlık seviyesine çıkaran, eğitimden hukuka çok sayıda devrim ve yenilik.</div>
+        </div>
+        <div class="homepage-card anim-fade-in" style="animation-delay:.32s">
+          <img src="images/atatürk3.jpg" alt="Atatürk" class="homepage-card-img" loading="lazy">
+          <div class="homepage-card-title">Sözleri</div>
+          <div class="homepage-card-desc">Atatürk’ün milletine ışık tutan, ilham verici ve yol gösterici özlü sözleri.</div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<style>
-.homepage-hero {
-  width: 100vw;
-  min-height: 100vh;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  padding-top: 140px;
-  padding-bottom: 100px;
-}
 
-.homepage-bg-anim {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: linear-gradient(120deg, #e30b17 0%, #fff 55%, #191919 100%);
-  opacity: 0.13;
-  z-index: 1;
-  animation: bgfade 8s ease-in-out infinite alternate;
-}
-@keyframes bgfade {
-  0%   { opacity: 0.13; filter: blur(0px);}
-  100% { opacity: 0.24; filter: blur(4px);}
-}
-.homepage-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  width: 94vw;
-  max-width: 680px;
-  background: rgba(255,255,255,0.89);
-  border-radius: 16px;
-  box-shadow: 0 6px 32px 0 #0001;
-  padding: 44px 20px 40px 20px;
-  animation: fadeInUp 1.5s cubic-bezier(.67,.14,.36,1.07);
-}
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to   { opacity: 1; transform: translateY(0);}
-}
-.homepage-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #111;
-  letter-spacing: 1px;
-  margin-bottom: 16px;
-  text-shadow: 0 1px 0 #e0e0e0;
-  animation: titlePop 1.2s cubic-bezier(.77,-0.13,.22,1.12) 0.3s both;
-}
-@keyframes titlePop {
-  0%   { opacity: 0; transform: scale(0.8);}
-  70%  { opacity: 1; transform: scale(1.07);}
-  100% { opacity: 1; transform: scale(1);}
-}
-.homepage-subtitle {
-  font-size: 1.25rem;
-  color: #222;
-  font-weight: bold;
-  letter-spacing: 0.5px;
-  margin-bottom: 22px;
-  animation: fadeIn 2s cubic-bezier(.33,.66,.77,1.01) 1s both;
-}
-@keyframes fadeIn {
-  from { opacity: 0;}
-  to   { opacity: 1;}
-}
-.homepage-desc {
-  font-size: 1.04rem;
-  color: #444;
-  font-weight: 500;
-  margin: 0 auto 24px auto;
-  line-height: 1.7;
-  animation: fadeIn 2.2s cubic-bezier(.33,.66,.77,1.01) 1.4s both;
-}
+  <footer>
+    <a href="mailto:email@example.com" aria-label="Gmail">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/>
+      </svg>
+    </a>
+    <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+      </svg>
+    </a>
+    <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M22 12A10 10 0 1 0 10 22v-7h-2v-3h2v-2c0-2.2 1.3-3.5 3.3-3.5.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.7h2.6L15 15h-2v7a10 10 0 0 0 9-10z"/>
+      </svg>
+    </a>
+  </footer>
 
-.homepage-cards {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 18px;
-  flex-wrap: wrap;
-}
-.homepage-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px #0001;
-  width: 170px;
-  min-width: 130px;
-  max-width: 210px;
-  padding: 16px 10px 12px 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform .28s cubic-bezier(.4,0,.2,1), box-shadow .38s;
-  cursor: pointer;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeCardIn 0.8s cubic-bezier(.62,.04,.36,1.09) forwards;
-}
-@keyframes fadeCardIn {
-  to { opacity: 1; transform: translateY(0);}
-}
-.homepage-card-img {
-  width: 70px;
-  height: 70px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 12px;
-  border: 2px solid #e30b17;
-  background: #eee;
-}
-.homepage-card-title {
-  font-weight: bold;
-  color: #111;
-  font-size: 1.08rem;
-  margin-bottom: 8px;
-  letter-spacing: .2px;
-}
-.homepage-card-desc {
-  font-size: 0.98rem;
-  color: #444;
-  line-height: 1.35;
-  font-weight: 500;
-}
+  <script>
+    const quotes = [
+      { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
+      { text: '"Yurtta sulh, cihanda sulh."', source: "Atatürk, Söylev ve Demeçler" },
+      { text: '"Hayatta en hakiki mürşit ilimdir."', source: "Atatürk, 1924" },
+      { text: '"Türk milleti çalışkandır, zekidir."', source: "Atatürk, 1933" }
+    ];
 
-.homepage-card:hover {
-  transform: scale(1.05) translateY(-4px);
-  box-shadow: 0 6px 24px #e30b171a;
-}
+    let quoteIndex = 0;
+    const quoteText = document.getElementById("quote-text");
+    const quoteSource = document.getElementById("quote-source");
 
-.anim-fade-in { opacity: 1; }
+    function showQuote(index) {
+      quoteText.classList.add('fade-out');
+      quoteSource.classList.add('fade-out');
+      setTimeout(() => {
+        quoteText.textContent = quotes[index].text;
+        quoteSource.textContent = quotes[index].source;
+        quoteText.classList.remove('fade-out');
+        quoteSource.classList.remove('fade-out');
+      }, 450);
+    }
 
-@media (max-width: 900px) {
-  .homepage-content {
-    padding: 18px 5vw 22px 5vw;
-    max-width: 98vw;
-  }
-  .homepage-title {
-    font-size: 1.4rem;
-  }
-  .homepage-subtitle {
-    font-size: 1rem;
-  }
-  .homepage-desc {
-    font-size: 0.95rem;
-  }
-  .homepage-hero {
-    padding-top: 85px;
-    padding-bottom: 54px;
-    min-height: 55vh;
-  }
-  .homepage-cards {
-    gap: 12px;
-  }
-  .homepage-card {
-    width: 40vw;
-    min-width: 110px;
-    max-width: 180px;
-    padding: 12px 6px 10px 6px;
-  }
-  .homepage-card-img {
-    width: 54px;
-    height: 54px;
-  }
-  .homepage-card-title {
-    font-size: 1rem;
-  }
-  .homepage-card-desc {
-    font-size: 0.91rem;
-  }
-}
-@media (max-width: 600px) {
-  .homepage-content {
-    padding: 10px 2vw 12px 2vw;
-    max-width: 99vw;
-  }
-  .homepage-title {
-    font-size: 1.08rem;
-  }
-  .homepage-subtitle {
-    font-size: 0.87rem;
-  }
-  .homepage-desc {
-    font-size: 0.80rem;
-  }
-  .homepage-hero {
-    padding-top: 75px;
-    padding-bottom: 20px;
-    min-height: 50vh;
-  }
-  .homepage-cards {
-    flex-direction: column;
-    align-items: center;
-    gap: 7px;
-  }
-  .homepage-card {
-    width: 85vw;
-    min-width: 90px;
-    max-width: 98vw;
-    margin-bottom: 4px;
-    padding: 8px 2vw 7px 2vw;
-  }
-  .homepage-card-img {
-    width: 40px;
-    height: 40px;
-  }
-}
-</style>
+    setInterval(() => {
+      quoteIndex = (quoteIndex + 1) % quotes.length;
+      showQuote(quoteIndex);
+    }, 5000);
+  </script>
+</body>
+</html>
