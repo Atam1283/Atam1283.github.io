@@ -5,6 +5,7 @@
   <title>Kronoloji</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    /* ... CSS'iniz birebir aynı ... */
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -360,82 +361,101 @@
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
   <main>
-    <h1 style="font-size:2.1em; color:#e30b17; margin-bottom:36px; margin-top:18px; font-family:Georgia,serif; text-align:center;">
+    <h1 id="kronoloji-title" style="font-size:2.1em; color:#e30b17; margin-bottom:36px; margin-top:18px; font-family:Georgia,serif; text-align:center;">
       Atatürk'ün Hayat Kronolojisi
     </h1>
     <div class="timeline-wrapper">
-      <div class="timeline">
+      <div class="timeline" id="timeline">
         <div class="timeline-line"></div>
-        <div class="timeline-event">
-          <span class="timeline-dot"></span>
-          <span class="timeline-date">1881</span>
-          <div class="timeline-content"><strong>Selanik'te doğum</strong>: Mustafa Kemal Atatürk, Selanik'te dünyaya geldi.</div>
-        </div>
-        <div class="timeline-event">
-          <span class="timeline-dot"></span>
-          <span class="timeline-date">1893</span>
-          <div class="timeline-content"><strong>Askeri eğitime başlama</strong>: Selanik Askeri Rüştiyesi'ne başladı ve "Kemal" adını aldı.</div>
-        </div>
-        <div class="timeline-event">
-          <span class="timeline-dot"></span>
-          <span class="timeline-date">1905</span>
-          <div class="timeline-content"><strong>Kurmay Yüzbaşı</strong>: Harp Akademisi'nden Kurmay Yüzbaşı olarak mezun oldu.</div>
-        </div>
-        <div class="timeline-event">
-          <span class="timeline-dot"></span>
-          <span class="timeline-date">1911</span>
-          <div class="timeline-content"><strong>Trablusgarp Savaşı</strong>: Trablusgarp’ta İtalyanlara karşı savaştı ve başarılar kazandı.</div>
-        </div>
-        <div class="timeline-event">
-          <span class="timeline-dot"></span>
-          <span class="timeline-date">1915</span>
-          <div class="timeline-content"><strong>Çanakkale Zaferi</strong>: Anafartalar Grup Komutanı olarak Çanakkale Savaşı’nda büyük başarı gösterdi.</div>
-        </div>
-        <div class="timeline-event">
-          <span class="timeline-dot"></span>
-          <span class="timeline-date">1919</span>
-          <div class="timeline-content"><strong>Samsun'a Çıkış</strong>: 19 Mayıs'ta Samsun'a çıkarak Kurtuluş Savaşı'nı başlattı.</div>
-        </div>
-        <div class="timeline-event">
-          <span class="timeline-dot"></span>
-          <span class="timeline-date">1920</span>
-          <div class="timeline-content"><strong>TBMM'nin Açılışı</strong>: 23 Nisan’da Türkiye Büyük Millet Meclisi açıldı.</div>
-        </div>
-        <div class="timeline-event">
-          <span class="timeline-dot"></span>
-          <span class="timeline-date">1921</span>
-          <div class="timeline-content"><strong>Sakarya Meydan Muharebesi</strong>: Sakarya Zaferi kazanıldı ve Atatürk’e Mareşal ve Gazi unvanı verildi.</div>
-        </div>
-        <div class="timeline-event">
-          <span class="timeline-dot"></span>
-          <span class="timeline-date">1922</span>
-          <div class="timeline-content"><strong>Büyük Taarruz</strong>: 30 Ağustos’ta Dumlupınar’da kesin zafer elde edildi.</div>
-        </div>
-        <div class="timeline-event">
-          <span class="timeline-dot"></span>
-          <span class="timeline-date">1923</span>
-          <div class="timeline-content"><strong>Cumhuriyetin İlanı</strong>: 29 Ekim’de Türkiye Cumhuriyeti ilan edildi ve Atatürk ilk Cumhurbaşkanı oldu.</div>
-        </div>
-        <div class="timeline-event">
-          <span class="timeline-dot"></span>
-          <span class="timeline-date">1928</span>
-          <div class="timeline-content"><strong>Harf Devrimi</strong>: Latin alfabesinin kabulüyle okuryazarlık oranı arttı.</div>
-        </div>
-        <div class="timeline-event">
-          <span class="timeline-dot"></span>
-          <span class="timeline-date">1934</span>
-          <div class="timeline-content"><strong>Soyadı Kanunu</strong>: "Atatürk" soyadı Mustafa Kemal’e verildi.</div>
-        </div>
-        <div class="timeline-event">
-          <span class="timeline-dot"></span>
-          <span class="timeline-date">1938</span>
-          <div class="timeline-content"><strong>Vefatı</strong>: 10 Kasım’da İstanbul Dolmabahçe Sarayı’nda hayata veda etti.</div>
-        </div>
+        <!-- Timeline events JS ile doldurulacak -->
       </div>
     </div>
   </main>
   <footer></footer>
   <script>
+    // Çoklu dil kronoloji
+    const KRONOLOJI = {
+      tr: {
+        title: "Atatürk'ün Hayat Kronolojisi",
+        events: [
+          { date: "1881", title: "Selanik'te doğum", desc: "Mustafa Kemal Atatürk, Selanik'te dünyaya geldi." },
+          { date: "1893", title: "Askeri eğitime başlama", desc: "Selanik Askeri Rüştiyesi'ne başladı ve \"Kemal\" adını aldı." },
+          { date: "1905", title: "Kurmay Yüzbaşı", desc: "Harp Akademisi'nden Kurmay Yüzbaşı olarak mezun oldu." },
+          { date: "1911", title: "Trablusgarp Savaşı", desc: "Trablusgarp’ta İtalyanlara karşı savaştı ve başarılar kazandı." },
+          { date: "1915", title: "Çanakkale Zaferi", desc: "Anafartalar Grup Komutanı olarak Çanakkale Savaşı’nda büyük başarı gösterdi." },
+          { date: "1919", title: "Samsun'a Çıkış", desc: "19 Mayıs'ta Samsun'a çıkarak Kurtuluş Savaşı'nı başlattı." },
+          { date: "1920", title: "TBMM'nin Açılışı", desc: "23 Nisan’da Türkiye Büyük Millet Meclisi açıldı." },
+          { date: "1921", title: "Sakarya Meydan Muharebesi", desc: "Sakarya Zaferi kazanıldı ve Atatürk’e Mareşal ve Gazi unvanı verildi." },
+          { date: "1922", title: "Büyük Taarruz", desc: "30 Ağustos’ta Dumlupınar’da kesin zafer elde edildi." },
+          { date: "1923", title: "Cumhuriyetin İlanı", desc: "29 Ekim’de Türkiye Cumhuriyeti ilan edildi ve Atatürk ilk Cumhurbaşkanı oldu." },
+          { date: "1928", title: "Harf Devrimi", desc: "Latin alfabesinin kabulüyle okuryazarlık oranı arttı." },
+          { date: "1934", title: "Soyadı Kanunu", desc: "\"Atatürk\" soyadı Mustafa Kemal’e verildi." },
+          { date: "1938", title: "Vefatı", desc: "10 Kasım’da İstanbul Dolmabahçe Sarayı’nda hayata veda etti." }
+        ]
+      },
+      en: {
+        title: "Atatürk's Life Chronology",
+        events: [
+          { date: "1881", title: "Birth in Thessaloniki", desc: "Mustafa Kemal Atatürk was born in Thessaloniki." },
+          { date: "1893", title: "Start of military education", desc: "He started at the Military Junior High School in Thessaloniki and received the name “Kemal”." },
+          { date: "1905", title: "Staff Captain", desc: "Graduated from the Military Academy as a Staff Captain." },
+          { date: "1911", title: "Tripoli War", desc: "Fought against Italians in Tripoli and achieved successes." },
+          { date: "1915", title: "Gallipoli Victory", desc: "Achieved great success as Commander of the Anafartalar Group at the Gallipoli Campaign." },
+          { date: "1919", title: "Landing in Samsun", desc: "On May 19, landed in Samsun and started the War of Independence." },
+          { date: "1920", title: "Opening of Turkish Grand National Assembly", desc: "On April 23, the Turkish Grand National Assembly was opened." },
+          { date: "1921", title: "Battle of Sakarya", desc: "Sakarya Victory was won and Atatürk was given the rank of Marshal and the title of Gazi." },
+          { date: "1922", title: "Great Offensive", desc: "On August 30, a decisive victory was achieved in Dumlupınar." },
+          { date: "1923", title: "Proclamation of the Republic", desc: "On October 29, the Republic of Turkey was proclaimed and Atatürk became the first President." },
+          { date: "1928", title: "Alphabet Reform", desc: "Adoption of the Latin alphabet increased literacy rates." },
+          { date: "1934", title: "Surname Law", desc: "The surname \"Atatürk\" was given to Mustafa Kemal." },
+          { date: "1938", title: "Death", desc: "On November 10, he passed away at Dolmabahçe Palace in Istanbul." }
+        ]
+      },
+      az: {
+        title: "Atatürkün Həyat Kronologiyası",
+        events: [
+          { date: "1881", title: "Selanikdə doğum", desc: "Mustafa Kamal Atatürk Selanikdə anadan olub." },
+          { date: "1893", title: "Hərbi təhsilə başlama", desc: "Selanik Hərbi Rüşdiyəsində oxumağa başlayıb və \"Kamal\" adını alıb." },
+          { date: "1905", title: "Qərargah kapitanı", desc: "Hərbi Akademiyanı qərargah kapitanı kimi bitirib." },
+          { date: "1911", title: "Tripoli Müharibəsi", desc: "Tripolidə italyanlara qarşı döyüşüb və uğurlar qazanıb." },
+          { date: "1915", title: "Çanaqqala Qələbəsi", desc: "Anafartalar Qrupu Komandiri kimi Çanaqqala Savaşında böyük uğur göstərib." },
+          { date: "1919", title: "Samsuna çıxış", desc: "19 mayda Samsuna çıxaraq Qurtuluş Müharibəsini başlayıb." },
+          { date: "1920", title: "TBMM-nin açılışı", desc: "23 aprel tarixində Türkiyə Böyük Millət Məclisi açılıb." },
+          { date: "1921", title: "Sakarya Meydan Döyüşü", desc: "Sakarya Qələbəsi əldə olunub və Atatürkə Marşal və Qazi ünvanı verilib." },
+          { date: "1922", title: "Böyük Hücum", desc: "30 avqustda Dumlupınarda qəti qələbə qazanılıb." },
+          { date: "1923", title: "Respublikanın Elanı", desc: "29 oktyabrda Türkiyə Respublikası elan olunub və Atatürk ilk prezident olub." },
+          { date: "1928", title: "Əlifba İslahatı", desc: "Latın əlifbasının qəbulu ilə savadlılıq artıb." },
+          { date: "1934", title: "Soyad Qanunu", desc: "\"Atatürk\" soyadı Mustafa Kamala verilib." },
+          { date: "1938", title: "Vəfatı", desc: "10 noyabrda İstanbul Dolmabahçe Sarayında vəfat edib." }
+        ]
+      }
+    };
+
+    function getLang() { return localStorage.getItem("language") || "tr"; }
+
+    function renderKronoloji() {
+      const lang = getLang();
+      const data = KRONOLOJI[lang];
+      document.getElementById('kronoloji-title').textContent = data.title;
+      const timeline = document.getElementById('timeline');
+      let html = `<div class="timeline-line"></div>`;
+      html += data.events.map(ev => `
+        <div class="timeline-event">
+          <span class="timeline-dot"></span>
+          <span class="timeline-date">${ev.date}</span>
+          <div class="timeline-content"><strong>${ev.title}</strong>: ${ev.desc}</div>
+        </div>
+      `).join('');
+      timeline.innerHTML = html;
+      // Animasyon başlat
+      setTimeout(() => {
+        const events = timeline.querySelectorAll('.timeline-event');
+        events.forEach((ev, i) => {
+          setTimeout(() => { ev.style.opacity = 1; ev.style.transform = "translateY(0)"; }, 80 + i * 90);
+        });
+      }, 50);
+    }
+
     // Söz kutusu animasyonu için
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
@@ -461,12 +481,18 @@
       showQuote(quoteIndex);
     }, 5000);
 
-    // Timeline animasyonunu başlatmak için
+    // Timeline animasyonunu başlatmak için (ilk açılışta)
     window.addEventListener('DOMContentLoaded', () => {
-      const events = document.querySelectorAll('.timeline-event');
-      events.forEach((ev, i) => {
-        setTimeout(() => { ev.style.opacity = 1; ev.style.transform = "translateY(0)"; }, 80 + i * 90);
-      });
+      applySettings();
+      renderKronoloji();
+      updateFooterLinks();
+    });
+
+    // Dil değişirse (başka sekmeden), kronoloji otomatik güncellensin
+    window.addEventListener("storage", (e) => {
+      if (e.key === "language") {
+        renderKronoloji();
+      }
     });
 
     // Ortak ayar scripti (tasarıma dokunmadan)
@@ -500,7 +526,6 @@
         en: "English"
       }
     };
-    function getLang() { return localStorage.getItem("language") || "tr"; }
     function applySettings() {
       const isDark = localStorage.getItem("darkMode") === "true";
       const fontSize = localStorage.getItem("fontSize") || "normal";
@@ -559,10 +584,6 @@
         </a>
       `;
     }
-    window.addEventListener("DOMContentLoaded", () => {
-      applySettings();
-      updateFooterLinks();
-    });
   </script>
 </body>
 </html>
