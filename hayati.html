@@ -2,167 +2,57 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
-  <title>Atatürk</title>
+  <title>Atatürk'ün Hayatı</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff;
-      padding-bottom: 80px;
-    }
-    .logo {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      width: 120px;
-      z-index: 1100;
-      border-radius: 10px;
-      background: #fff;
-      padding: 5px;
-    }
-    .menu-background {
-      position: fixed;
-      top: 70px;
-      left: 0;
-      width: 100vw;
-      height: 50px;
-      background: #fff;
-      z-index: 999;
-      pointer-events: none;
-    }
-    nav.menu {
-      position: fixed;
-      top: 70px;
-      left: 0;
-      width: 100%;
-      background: #fff;
-      border-bottom: 2px solid #d9d9d9;
-      z-index: 1000;
-      overflow-x: auto;
-      white-space: nowrap;
-    }
-    nav.menu a {
-      display: inline-block;
-      padding: 14px 20px;
-      color: #000;
-      text-decoration: none;
-      font-size: 15px;
-      font-weight: bold;
-      border-bottom: 3px solid transparent;
-      transition: all 0.3s ease;
-    }
-    nav.menu a:hover {
-      border-bottom: 3px solid #e30b17;
-      color: #e30b17;
-    }
-    nav.menu::-webkit-scrollbar {
-      display: none;
-    }
-    .quote-container {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      text-align: right;
-      z-index: 1200;
-      max-width: 250px;
-    }
-    .quote-text {
-      color: #222;
-      font-size: 13px;
-      font-family: Arial, sans-serif;
-      line-height: 1.2;
-      margin-bottom: 2px;
-      transition: opacity 0.5s;
-    }
-    .quote-source {
-      color: #666;
-      font-size: 11px;
-      font-family: Arial, sans-serif;
-      transition: opacity 0.5s;
-    }
-    .fade-out {
-      opacity: 0 !important;
-    }
-    .fade-in {
-      opacity: 1 !important;
-    }
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: #000;
-      height: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 30px;
-      z-index: 1000;
-    }
-    footer a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 40px;
-      height: 40px;
-      border: 1px solid #888;
-      border-radius: 50%;
-      color: #fff;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    footer a:hover {
-      border-color: #e30b17;
-      color: #e30b17;
-    }
-    footer svg {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
-    }
+    body { margin: 0; font-family: Arial, sans-serif; background: #fff; padding-bottom: 80px; }
+    .logo { position: fixed; top: 10px; left: 10px; width: 120px; z-index: 1100; border-radius: 10px; background: #fff; padding: 5px; }
+    .menu-background { position: fixed; top: 70px; left: 0; width: 100vw; height: 50px; background: #fff; z-index: 999; pointer-events: none; }
+    nav.menu { position: fixed; top: 70px; left: 0; width: 100%; background: #fff; border-bottom: 2px solid #d9d9d9; z-index: 1000; overflow-x: auto; white-space: nowrap; }
+    nav.menu a { display: inline-block; padding: 14px 20px; color: #000; text-decoration: none; font-size: 15px; font-weight: bold; border-bottom: 3px solid transparent; transition: all 0.3s ease; }
+    nav.menu a:hover, nav.menu a.active { border-bottom: 3px solid #e30b17; color: #e30b17; }
+    nav.menu::-webkit-scrollbar { display: none; }
+    .quote-container { position: fixed; top: 10px; right: 10px; text-align: right; z-index: 1200; max-width: 250px; }
+    .quote-text { color: #222; font-size: 13px; font-family: Arial, sans-serif; line-height: 1.2; margin-bottom: 2px; transition: opacity 0.5s; }
+    .quote-source { color: #666; font-size: 11px; font-family: Arial, sans-serif; transition: opacity 0.5s; }
+    .fade-out { opacity: 0 !important; }
+    .fade-in { opacity: 1 !important; }
+    footer { position: fixed; bottom: 0; left: 0; width: 100%; background-color: #000; height: 60px; display: flex; justify-content: center; align-items: center; gap: 30px; z-index: 1000; }
+    footer a { display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; border: 1px solid #888; border-radius: 50%; color: #fff; text-decoration: none; transition: all 0.3s ease; }
+    footer a:hover { border-color: #e30b17; color: #e30b17; }
+    footer svg { width: 20px; height: 20px; fill: currentColor; }
     @media (max-width: 600px) {
-      .quote-container {
-        max-width: 160px;
-      }
-      .quote-text {
-        font-size: 10px;
-      }
-      .quote-source {
-        font-size: 9px;
-      }
-      .menu-background {
-        height: 50px;
-      }
-      nav.menu {
-        top: 70px;
-        height: 50px;
-      }
-      nav.menu a {
-        padding: 10px 12px 9px 12px;
-        font-size: 13px;
-      }
+      .quote-container { max-width: 160px; }
+      .quote-text { font-size: 10px; }
+      .quote-source { font-size: 9px; }
+      .menu-background { height: 50px; }
+      nav.menu { top: 70px; height: 50px; }
+      nav.menu a { padding: 10px 12px 9px 12px; font-size: 13px; }
     }
+    @keyframes fadeInHero { from { opacity: 0; transform: scale(.98); } to { opacity: 1; transform: scale(1); } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes titlePop { 0%{opacity:0;transform:scale(.8);}70%{opacity:1;transform:scale(1.05);}100%{opacity:1;transform:scale(1);} }
+    .main-content { width:100%; min-height:70vh; display:flex; flex-direction:column; align-items:center; justify-content:center; animation:fadeInHero 1s; margin-top:140px; margin-bottom:80px; }
+    .main-content h1 { font-size:2.15rem; font-weight:bold; color:#111; letter-spacing:.8px; margin-bottom:24px; animation:titlePop 1s; }
+    .main-content section { max-width:700px; width:90%; background:#fafafa; border-radius:18px; box-shadow:0 2px 16px #0001; padding:38px 28px 30px 28px; margin-bottom:28px; animation:fadeInUp 1s .2s both;}
+    .main-content h2 { font-size:1.2rem; font-weight:bold; color:#191919; margin-bottom:15px; letter-spacing:.4px; }
+    .main-content p { color:#222; font-size:1.06rem; line-height:1.75; margin-bottom:14px; }
+    .main-content ul { color:#222; font-size:1.02rem; line-height:1.7; margin-bottom:0px; padding-left: 22px;}
   </style>
 </head>
 <body>
   <a href="index.html" class="logo">
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
-
-  <!-- Menü arkasında beyaz plaka -->
   <div class="menu-background"></div>
-
-  <!-- Söz kutusu (yazı ve kaynak) -->
   <div class="quote-container">
-    <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
-    <div class="quote-source" id="quote-source">TBMM, 1920</div>
+    <div class="quote-text" id="quote-text">"Hayatta en hakiki mürşit ilimdir."</div>
+    <div class="quote-source" id="quote-source">Atatürk, 1924</div>
   </div>
-
   <nav class="menu">
     <a href="index.html">Anasayfa</a>
-    <a href="hayati.html">Hayatı</a>
+    <a href="hayati.html" class="active">Hayatı</a>
     <a href="galeri.html">Galeri</a>
     <a href="sozleri.html">Sözleri</a>
     <a href="eserleri.html">Eserleri</a>
@@ -171,9 +61,46 @@
     <a href="kronoloji.html">Kronoloji</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
-
-  <!-- İçerik yok, menü ve plaka eski yerinde -->
-
+  <!-- ANA İÇERİK -->
+  <div class="main-content">
+    <h1>Atatürk'ün Hayatı</h1>
+    <section>
+      <h2>Çocukluğu ve Eğitimi</h2>
+      <p>
+        Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. İlk öğrenimine mahalle mektebinde başladı, ardından Şemsi Efendi Okulu'na geçti. Babasının ölümü üzerine kısa bir süre Rapla Çiftliği'nde kaldıktan sonra eğitimine Selanik Mülkiye Rüştiyesi'nde devam etti. Askeri eğitime olan ilgisiyle Manastır Askeri İdadisi ve daha sonra İstanbul Harp Okulu'na geçti.
+      </p>
+    </section>
+    <section>
+      <h2>Askerlik ve Trablusgarp</h2>
+      <p>
+        1905 yılında Harp Akademisi'nden kurmay yüzbaşı olarak mezun oldu. Şam, Selanik ve Manastır'da çeşitli görevlerde bulundu. 1911 yılında Trablusgarp Savaşı'nda (bugünkü Libya) İtalyanlara karşı başarılı savunmalar yaptı. Burada gösterdiği kahramanlık, onun yükselişinde önemli bir rol oynadı.
+      </p>
+    </section>
+    <section>
+      <h2>Balkan Savaşları ve I. Dünya Savaşı</h2>
+      <p>
+        Balkan Savaşları'nda Edirne'nin geri alınmasında görev aldı. I. Dünya Savaşı'nda Çanakkale Cephesi'nde gösterdiği üstün askeri deha ve liderlik, Türk milletinin kaderini değiştirdi ve "Anafartalar Kahramanı" olarak ün kazandı. Ardından Kafkas ve Suriye cephelerinde de görev yaptı.
+      </p>
+    </section>
+    <section>
+      <h2>Kurtuluş Savaşı ve Cumhuriyet</h2>
+      <p>
+        Mondros Mütarekesi sonrasında İstanbul'a dönen Mustafa Kemal, 19 Mayıs 1919'da Samsun'a çıkarak milli mücadelenin fiili liderliğini üstlendi. Erzurum ve Sivas Kongreleri'nin ardından Ankara'da Türkiye Büyük Millet Meclisi'ni açtı. Kurtuluş Savaşı'nı başarıyla yönetip 1922'de ülkeyi işgalden kurtardı. 29 Ekim 1923'te Cumhuriyet'i ilan etti ve ilk Cumhurbaşkanı oldu.
+      </p>
+    </section>
+    <section>
+      <h2>Çağdaşlaşma ve Devrimler</h2>
+      <p>
+        Atatürk, Türkiye'yi çağdaş bir ülke yapma hedefiyle çok sayıda toplumsal, hukuksal, kültürel ve ekonomik devrim gerçekleştirdi. Medeni Kanun, harf devrimi, eğitim birliği, kadınlara seçme ve seçilme hakkı, şapka ve kıyafet devrimi gibi yeniliklerle Türk toplumu modernleşti.
+      </p>
+    </section>
+    <section>
+      <h2>Vefatı</h2>
+      <p>
+        Büyük önder Mustafa Kemal Atatürk, 10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayata gözlerini yumdu. Eserleri ve ilkeleriyle Türk milletinin hafızasında ve gönlünde yaşamaya devam etmektedir.
+      </p>
+    </section>
+  </div>
   <footer>
     <a href="mailto:email@example.com" aria-label="Gmail">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
