@@ -5,6 +5,7 @@
   <title>Ayarlar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    /* ... Tüm CSS'iniz aynı kalacak ... */
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -372,41 +373,41 @@
   <main>
     <div class="settings-card">
       <div class="lang-select-section">
-        <label class="lang-select-label" for="language">Dil:</label>
+        <label class="lang-select-label" for="language" id="langLabel">Dil:</label>
         <select id="language" class="lang-select">
           <option value="tr">Türkçe</option>
           <option value="en">English</option>
           <option value="az">Azərbaycan dili</option>
         </select>
       </div>
-      <div class="settings-title">Ayarlar</div>
+      <div class="settings-title" id="settingsTitle">Ayarlar</div>
       <form id="settingsForm" autocomplete="off">
         <div class="settings-section">
-          <span class="section-label">Tema</span>
+          <span class="section-label" id="themeLabel">Tema</span>
           <div class="toggle-switch">
             <input type="checkbox" id="darkMode" />
-            <label class="toggle-label" for="darkMode">Koyu Mod</label>
+            <label class="toggle-label" for="darkMode" id="darkModeLabel">Koyu Mod</label>
           </div>
         </div>
         <div class="settings-section">
-          <span class="section-label">Bildirimler</span>
+          <span class="section-label" id="notifLabel">Bildirimler</span>
           <div class="toggle-switch">
             <input type="checkbox" id="notifications" />
-            <label class="toggle-label" for="notifications">Bildirimleri Aç</label>
+            <label class="toggle-label" for="notifications" id="notifToggleLabel">Bildirimleri Aç</label>
           </div>
         </div>
         <div class="settings-section">
-          <span class="section-label">Yazı Boyutu</span>
+          <span class="section-label" id="fontSizeLabel">Yazı Boyutu</span>
           <select id="fontSize" style="padding:6px 12px;border-radius:8px;border:1px solid #ccc;font-size:1em;">
             <option value="normal">Normal</option>
             <option value="large">Büyük</option>
             <option value="xlarge">Çok Büyük</option>
           </select>
         </div>
-        <button type="submit" class="save-btn">Kaydet</button>
+        <button type="submit" class="save-btn" id="settings-save-label">Kaydet</button>
         <div id="savedMsg" class="saved-message">Ayarlar kaydedildi!</div>
       </form>
-      <p class="settings-info">
+      <p class="settings-info" id="settingsInfo">
         Ayarlarınız tarayıcınızda saklanır.<br>
         Koyu Mod, Yazı Boyutu ve Dil tüm sayfalara yansır.
       </p>
@@ -414,6 +415,86 @@
   </main>
   <footer></footer>
   <script>
+    // Çoklu dil içeriği
+    const LANGUAGES = {
+      tr: {
+        title: "Ayarlar",
+        theme: "Tema",
+        darkMode: "Koyu Mod",
+        notifications: "Bildirimler",
+        notificationsToggle: "Bildirimleri Aç",
+        fontSize: "Yazı Boyutu",
+        language: "Dil:",
+        save: "Kaydet",
+        saved: "Ayarlar kaydedildi!",
+        info: "Ayarlarınız tarayıcınızda saklanır.<br>Koyu Mod, Yazı Boyutu ve Dil tüm sayfalara yansır.",
+        options: { normal: "Normal", large: "Büyük", xlarge: "Çok Büyük" },
+        tr: "Türkçe",
+        en: "İngilizce",
+        az: "Azerbaycan dili"
+      },
+      en: {
+        title: "Settings",
+        theme: "Theme",
+        darkMode: "Dark Mode",
+        notifications: "Notifications",
+        notificationsToggle: "Enable Notifications",
+        fontSize: "Font Size",
+        language: "Language:",
+        save: "Save",
+        saved: "Settings saved!",
+        info: "Your settings are stored in your browser.<br>Dark Mode, Font Size and Language apply to all pages.",
+        options: { normal: "Normal", large: "Large", xlarge: "Extra Large" },
+        tr: "Turkish",
+        en: "English",
+        az: "Azerbaijani"
+      },
+      az: {
+        title: "Parametrlər",
+        theme: "Mövzu",
+        darkMode: "Qaranlıq rejim",
+        notifications: "Bildirişlər",
+        notificationsToggle: "Bildirişləri aktiv et",
+        fontSize: "Şrift Ölçüsü",
+        language: "Dil:",
+        save: "Yadda saxla",
+        saved: "Parametrlər yadda saxlanıldı!",
+        info: "Parametrləriniz brauzerinizdə saxlanılır.<br>Qaranlıq Rejim, Şrift Ölçüsü və Dil bütün səhifələrə tətbiq edilir.",
+        options: { normal: "Normal", large: "Böyük", xlarge: "Çox böyük" },
+        tr: "Türkcə",
+        en: "İngiliscə",
+        az: "Azərbaycanca"
+      }
+    };
+
+    function getLang() {
+      return localStorage.getItem("language") || "tr";
+    }
+
+    function updateLanguageUI() {
+      const lang = getLang();
+      const t = LANGUAGES[lang];
+      document.getElementById("settingsTitle").textContent = t.title;
+      document.getElementById("langLabel").textContent = t.language;
+      document.getElementById("themeLabel").textContent = t.theme;
+      document.getElementById("darkModeLabel").textContent = t.darkMode;
+      document.getElementById("notifLabel").textContent = t.notifications;
+      document.getElementById("notifToggleLabel").textContent = t.notificationsToggle;
+      document.getElementById("fontSizeLabel").textContent = t.fontSize;
+      document.getElementById("settings-save-label").textContent = t.save;
+      document.getElementById("savedMsg").textContent = t.saved;
+      document.getElementById("settingsInfo").innerHTML = t.info;
+      // Dil seçeneklerini de güncelle
+      const languageSelect = document.getElementById("language");
+      languageSelect.options[0].textContent = t.tr;
+      languageSelect.options[1].textContent = t.en;
+      languageSelect.options[2].textContent = t.az;
+      // Yazı boyutu seçenekleri
+      document.getElementById("fontSize").options[0].textContent = t.options.normal;
+      document.getElementById("fontSize").options[1].textContent = t.options.large;
+      document.getElementById("fontSize").options[2].textContent = t.options.xlarge;
+    }
+
     // Söz kutusu animasyonu için
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
@@ -439,7 +520,6 @@
       showQuote(quoteIndex);
     }, 5000);
 
-    // Ayarlar kaydetme ve uygulama
     function applySettings() {
       const isDark = localStorage.getItem("darkMode") === "true";
       const fontSize = localStorage.getItem("fontSize") || "normal";
@@ -462,6 +542,7 @@
           document.body.style.fontSize = "1em";
       }
       document.getElementById("language").value = language;
+      updateLanguageUI();
     }
     function loadSettings() {
       document.getElementById("darkMode").checked = localStorage.getItem("darkMode") === "true";
