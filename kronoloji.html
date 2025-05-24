@@ -101,39 +101,83 @@
       max-width: 700px;
       margin: 0 auto;
       position: relative;
-      padding-left: 20px;
+      padding-left: 60px;
       border-left: 3px solid #e30b17;
+      min-height: 600px;
+      overflow: visible;
     }
     .timeline-event {
       position: relative;
-      margin-bottom: 38px;
-      padding-left: 26px;
+      margin-bottom: 44px;
+      padding-left: 24px;
+      opacity: 0;
+      transform: translateY(60px);
+      animation: timelineFadeIn 0.85s cubic-bezier(.42,0,.58,1) forwards;
     }
-    .timeline-event:last-child {
-      margin-bottom: 0;
+    .timeline-event:nth-child(1) { animation-delay: 0.03s; }
+    .timeline-event:nth-child(2) { animation-delay: 0.10s; }
+    .timeline-event:nth-child(3) { animation-delay: 0.17s; }
+    .timeline-event:nth-child(4) { animation-delay: 0.24s; }
+    .timeline-event:nth-child(5) { animation-delay: 0.31s; }
+    .timeline-event:nth-child(6) { animation-delay: 0.38s; }
+    .timeline-event:nth-child(7) { animation-delay: 0.45s; }
+    .timeline-event:nth-child(8) { animation-delay: 0.52s; }
+    .timeline-event:nth-child(9) { animation-delay: 0.59s; }
+    .timeline-event:nth-child(10) { animation-delay: 0.66s; }
+    .timeline-event:nth-child(11) { animation-delay: 0.73s; }
+    .timeline-event:nth-child(12) { animation-delay: 0.80s; }
+    .timeline-event:nth-child(13) { animation-delay: 0.87s; }
+    .timeline-event:nth-child(14) { animation-delay: 0.94s; }
+    @keyframes timelineFadeIn {
+      to { opacity: 1; transform: translateY(0);}
     }
     .timeline-date {
       position: absolute;
-      left: -102px;
-      top: 0;
-      width: 88px;
+      left: -66px;
+      top: 11px;
+      width: 60px;
       text-align: right;
       color: #e30b17;
       font-weight: bold;
       font-size: 1.04em;
       font-family: Georgia, serif;
+      letter-spacing: 1px;
+      background: #fff;
+      z-index: 2;
+      pointer-events: none;
+      user-select: none;
     }
     .timeline-dot {
       position: absolute;
-      left: -14px;
-      top: 7px;
-      width: 16px;
-      height: 16px;
+      left: -24px;
+      top: 15px;
+      width: 18px;
+      height: 18px;
       background: #fff;
-      border: 3px solid #e30b17;
+      border: 4px solid #e30b17;
       border-radius: 50%;
       z-index: 1;
-      box-shadow: 0 1px 8px rgba(227,11,23,0.13);
+      box-shadow: 0 2px 8px rgba(227,11,23,0.12);
+      animation: dotPop 1.2s cubic-bezier(.42,0,.58,1) both;
+    }
+    .timeline-event:nth-child(1) .timeline-dot { animation-delay: 0.15s;}
+    .timeline-event:nth-child(2) .timeline-dot { animation-delay: 0.22s;}
+    .timeline-event:nth-child(3) .timeline-dot { animation-delay: 0.29s;}
+    .timeline-event:nth-child(4) .timeline-dot { animation-delay: 0.36s;}
+    .timeline-event:nth-child(5) .timeline-dot { animation-delay: 0.43s;}
+    .timeline-event:nth-child(6) .timeline-dot { animation-delay: 0.50s;}
+    .timeline-event:nth-child(7) .timeline-dot { animation-delay: 0.57s;}
+    .timeline-event:nth-child(8) .timeline-dot { animation-delay: 0.64s;}
+    .timeline-event:nth-child(9) .timeline-dot { animation-delay: 0.71s;}
+    .timeline-event:nth-child(10) .timeline-dot { animation-delay: 0.78s;}
+    .timeline-event:nth-child(11) .timeline-dot { animation-delay: 0.85s;}
+    .timeline-event:nth-child(12) .timeline-dot { animation-delay: 0.92s;}
+    .timeline-event:nth-child(13) .timeline-dot { animation-delay: 0.99s;}
+    .timeline-event:nth-child(14) .timeline-dot { animation-delay: 1.06s;}
+    @keyframes dotPop {
+      0% { transform: scale(0.6);}
+      80% { transform: scale(1.15);}
+      100% { transform: scale(1);}
     }
     .timeline-content {
       background: #fafafa;
@@ -145,9 +189,19 @@
       line-height: 1.5;
       margin-left: 10px;
       position: relative;
+      transition: box-shadow 0.25s;
+      animation: cardFloat 4s ease-in-out infinite alternate;
     }
     .timeline-content strong {
       color: #e30b17;
+    }
+    .timeline-content:hover {
+      box-shadow: 0 8px 32px rgba(227,11,23,0.12), 0 2px 16px rgba(0,0,0,0.14);
+      transform: scale(1.02) rotate(-0.6deg);
+    }
+    @keyframes cardFloat {
+      0% { transform: translateY(0);}
+      100% { transform: translateY(-8px);}
     }
     @media (max-width: 900px) {
       .timeline { max-width: 98vw;}
@@ -155,16 +209,16 @@
     @media (max-width: 700px) {
       main { margin-top: 110px;}
       .timeline {
-        padding-left: 10px;
+        padding-left: 25px;
         border-left-width: 2px;
       }
       .timeline-date {
-        left: -78px;
+        left: -54px;
         font-size: 0.97em;
-        width: 64px;
+        width: 40px;
       }
       .timeline-dot {
-        left: -10px;
+        left: -15px;
         width: 12px;
         height: 12px;
         border-width: 2px;
@@ -366,6 +420,13 @@
       quoteIndex = (quoteIndex + 1) % quotes.length;
       showQuote(quoteIndex);
     }, 5000);
+    // Timeline animasyonunu başlatmak için
+    window.addEventListener('DOMContentLoaded', () => {
+      const events = document.querySelectorAll('.timeline-event');
+      events.forEach((ev, i) => {
+        setTimeout(() => { ev.style.opacity = 1; ev.style.transform = "translateY(0)"; }, 80 + i * 90);
+      });
+    });
   </script>
 </body>
 </html>
