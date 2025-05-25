@@ -13,7 +13,6 @@
       padding-bottom: 0;
       min-height: 100vh;
       transition: background 0.5s, color 0.5s, font-size 0.5s, opacity 0.7s;
-      /* Kayan galeriye zemin için */
     }
     .logo {
       position: fixed;
@@ -85,12 +84,8 @@
       font-family: Arial, sans-serif;
       transition: opacity 0.5s;
     }
-    .fade-out {
-      opacity: 0 !important;
-    }
-    .fade-in {
-      opacity: 1 !important;
-    }
+    .fade-out { opacity: 0 !important; }
+    .fade-in { opacity: 1 !important; }
     footer {
       position: fixed;
       bottom: 0;
@@ -147,47 +142,57 @@
         font-size: 13px;
       }
     }
-    /* TAM SAYFA KAPLAYAN Galeri */
-    .gallery-carousel-outer {
+    /* --- 1 sütunda 3 fotoğraf, tam ekran kaplayan, dikey kayan galeri --- */
+    main {
+      padding: 0;
+      margin: 0;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
       position: fixed;
-      z-index: 10;
       left: 0;
       top: 0;
+      z-index: 10;
+      background: #101015;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .gallery-vertical-outer {
       width: 100vw;
       height: 100vh;
-      margin: 0;
-      padding: 0;
       overflow: hidden;
-      background: #101015;
-    }
-    .gallery-carousel-inner {
       display: flex;
-      align-items: flex-start;
-      gap: 24px;
-      height: 100vh;
-      min-height: 100vh;
-      will-change: transform;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .gallery-vertical-inner {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: minmax(32vh, 1fr);
+      gap: 32px;
+      width: 92vw;
+      height: 120vh;
       transition: transform 0.2s linear;
-      user-select: none;
-      /* Responsive için aşağıda medya sorgusu var */
+      will-change: transform;
+      align-items: start;
+      justify-items: center;
     }
     .gallery-item {
-      position: relative;
-      overflow: hidden;
+      background: #f6f6f6;
       border-radius: 18px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.09);
-      background: #f6f6f6;
       cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      height: 32vh;
+      min-height: 200px;
       transition: transform 0.3s cubic-bezier(.42,0,.58,1), box-shadow 0.3s;
-      min-width: 300px;
-      max-width: 520px;
-      flex: 0 0 420px;
-      height: 85vh;
-      margin: auto 0;
       display: flex;
-      flex-direction: column;
       align-items: stretch;
-      justify-content: flex-end;
+      justify-content: center;
     }
     .gallery-item:hover {
       transform: scale(1.055) rotate(-1.2deg);
@@ -198,11 +203,11 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
       border-radius: 18px;
       transition: filter 0.4s, opacity 0.7s;
       filter: grayscale(0.1) contrast(1.1) brightness(0.98);
       opacity: 0;
+      display: block;
     }
     .gallery-item img.loaded {
       opacity: 1;
@@ -213,70 +218,40 @@
     .gallery-caption {
       position: absolute;
       left: 0; right: 0; bottom: 0;
-      padding: 18px 18px 18px 18px;
+      padding: 16px 10px 10px 10px;
       background: linear-gradient(0deg,rgba(0,0,0,0.85) 85%,rgba(0,0,0,0.02) 100%);
       color: #fff;
-      font-size: 1.15em;
+      font-size: 1em;
       opacity: 0;
       pointer-events: none;
       border-radius: 0 0 18px 18px;
       transition: opacity 0.35s cubic-bezier(.4,0,.2,1);
       font-weight: 500;
-      text-shadow: 0 1px 6px #000;
+      text-shadow: 0 1px 5px #000;
       text-align: center;
       letter-spacing: .04em;
     }
     .gallery-item:hover .gallery-caption {
       opacity: 1;
     }
-    @media (max-width: 1400px) {
-      .gallery-item {
-        min-width: 260px;
-        max-width: 340px;
-        flex: 0 0 260px;
-      }
-    }
-    @media (max-width: 900px) {
-      .gallery-item {
-        min-width: 140px;
-        max-width: 210px;
-        flex: 0 0 130px;
-        height: 55vh;
-      }
-      .gallery-caption { font-size: .92em; padding: 9px 8px 10px 8px;}
+    @media (max-width: 1100px) {
+      .gallery-vertical-inner { gap: 18px; }
+      .gallery-item { min-height: 120px; }
     }
     @media (max-width: 700px) {
-      .gallery-carousel-outer { height: 100vh; }
-      .gallery-carousel-inner { height: 100vh; gap: 8px;}
-      .gallery-item { min-width: 80px; max-width: 120px; height: 40vh;}
-      .gallery-item img { height: 100%; }
-      .gallery-caption { font-size: .92em; padding: 6px 3px 7px 3px;}
-    }
-    @keyframes collageFadeIn {
-      from { opacity: 0; transform: scale(0.95);}
-      to { opacity: 1; transform: scale(1);}
+      .gallery-vertical-inner { grid-template-columns: 1fr; gap: 10px; width: 98vw; }
+      .gallery-item { height: 36vw; min-height: 70px; }
     }
     /* Koyu tema desteği */
-    body.dark {
-      background: #181818 !important;
-      color: #f2f2f2 !important;
-    }
+    body.dark { background: #181818 !important; color: #f2f2f2 !important; }
     body.dark nav.menu {
-      background: #181818;
-      border-bottom: 2px solid #353535;
+      background: #181818; border-bottom: 2px solid #353535;
     }
-    body.dark nav.menu a {
-      color: #f2f2f2;
+    body.dark nav.menu a { color: #f2f2f2; }
+    body.dark nav.menu a.active, body.dark nav.menu a:hover {
+      color: #ff3d3c; border-bottom: 3px solid #ff3d3c; background: transparent;
     }
-    body.dark nav.menu a.active,
-    body.dark nav.menu a:hover {
-      color: #ff3d3c;
-      border-bottom: 3px solid #ff3d3c;
-      background: transparent;
-    }
-    body.dark .gallery-item {
-      background: #232326;
-    }
+    body.dark .gallery-item { background: #232326; }
     body.dark .gallery-caption {
       background: linear-gradient(0deg,rgba(0,0,0,0.96) 85%,rgba(0,0,0,0.08) 100%);
     }
@@ -354,15 +329,12 @@
     <a href="kronoloji.html">Kronoloji</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
-
   <main>
-    <!-- TAM SAYFA KAPLAYAN Galeri -->
-    <div class="gallery-carousel-outer">
-      <div class="gallery-carousel-inner" id="gallery-carousel">
-        <!-- Galeri item'ları JS ile doldurulacak -->
+    <div class="gallery-vertical-outer">
+      <div class="gallery-vertical-inner" id="gallery-vertical">
+        <!-- Fotoğraflar JS ile yüklenir -->
       </div>
     </div>
-    <!-- Modal görünümü -->
     <div class="modal" id="modal">
       <span class="modal-close" id="modal-close">&times;</span>
       <img class="modal-content" id="modal-img" />
@@ -370,7 +342,6 @@
       <a class="modal-next" id="modal-next">&#10095;</a>
     </div>
   </main>
-
   <footer></footer>
   <script>
     // Çoklu dil galeri başlıkları
@@ -382,7 +353,6 @@
 
     // Galeri img dizisini oluştur
     const galleryImages = [
-      // 1-21, 23-62 (22 yok)
       ...Array.from({length: 21}, (_, i) => i+1),
       ...Array.from({length: 62-23+1}, (_, i) => i+23)
     ].map(num => ({
@@ -394,7 +364,7 @@
 
     function renderGallery() {
       const lang = getLang();
-      const container = document.getElementById("gallery-carousel");
+      const container = document.getElementById("gallery-vertical");
       container.innerHTML = galleryImages.map((img, idx) =>
         `<div class="gallery-item" data-index="${idx}">
           <img data-src="${img.src}" alt="${img.alt}">
@@ -428,27 +398,24 @@
       showQuote(quoteIndex);
     }, 5000);
 
-    // Otomatik kayan galeri
-    let scrollX = 0;
+    // Dikey otomatik kayan galeri
+    let scrollY = 0;
     let autoScroll;
     function startAutoScroll() {
-      const container = document.getElementById("gallery-carousel");
+      const container = document.getElementById("gallery-vertical");
       autoScroll = setInterval(() => {
-        scrollX += 1.25;
-        // Sonsuz scroll için: başa sar
-        if (scrollX > container.scrollWidth / 2) scrollX = 0;
-        container.style.transform = `translateX(${-scrollX}px)`;
+        scrollY += 0.9;
+        if (scrollY > container.scrollHeight / 2) scrollY = 0;
+        container.style.transform = `translateY(${-scrollY}px)`;
       }, 16); // ~60fps
     }
     function stopAutoScroll() {
       clearInterval(autoScroll);
     }
     function duplicateItemsForLoop() {
-      // Sonsuz scroll için içeriği iki kez ekle
-      const container = document.getElementById("gallery-carousel");
+      const container = document.getElementById("gallery-vertical");
       container.innerHTML += container.innerHTML;
     }
-    // Mouse gelince dursun
     document.addEventListener("DOMContentLoaded", function() {
       renderGallery();
       duplicateItemsForLoop();
@@ -457,9 +424,9 @@
       lazyLoadGalleryImgs();
       startAutoScroll();
 
-      const carouselOuter = document.querySelector('.gallery-carousel-outer');
-      carouselOuter.addEventListener('mouseenter', stopAutoScroll);
-      carouselOuter.addEventListener('mouseleave', startAutoScroll);
+      const galleryOuter = document.querySelector('.gallery-vertical-outer');
+      galleryOuter.addEventListener('mouseenter', stopAutoScroll);
+      galleryOuter.addEventListener('mouseleave', startAutoScroll);
 
       // Modal büyütme fonksiyonu
       const modal = document.getElementById('modal');
@@ -485,7 +452,7 @@
         currentIndex = (currentIndex + 1) % galleryImages.length;
         modalImg.src = galleryImages[currentIndex].src;
       }
-      document.getElementById("gallery-carousel").addEventListener("click", function(e){
+      document.getElementById("gallery-vertical").addEventListener("click", function(e){
         const item = e.target.closest('.gallery-item');
         if(item) {
           const idx = parseInt(item.dataset.index,10) % galleryImages.length;
