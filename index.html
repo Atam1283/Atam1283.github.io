@@ -15,8 +15,8 @@
       min-height: 100vh;
     }
     body.dark {
-      background: #181818 !important; /* ÜST KISIM KOYU TEMADA SİYAH */
-      color: #fff;
+      background: #181818 !important;
+      color: #f2f2f2 !important;
     }
     .logo {
       position: fixed;
@@ -30,29 +30,32 @@
     }
     .menu-background {
       position: fixed;
-      top: 70px;
+      top: 0;
       left: 0;
       width: 100vw;
-      height: 50px;
-      background: #fff !important; /* MENÜ ARKASI HER ZAMAN BEYAZ */
+      height: 120px;
+      background: #fff;
       z-index: 1099;
       pointer-events: none;
+    }
+    body.dark .menu-background {
+      background: #fff !important;
     }
     nav.menu {
       position: fixed;
       top: 70px;
       left: 0;
       width: 100vw;
-      background: #fff !important;  /* MENÜN KENDİSİ DE DAİMA BEYAZ */
+      background: #fff !important;
       border-bottom: 2px solid #d9d9d9;
-      z-index: 1100;
+      z-index: 1101;
       overflow-x: auto;
       white-space: nowrap;
       transition: background 0.3s, color 0.3s;
-      scrollbar-width: none;
     }
-    nav.menu::-webkit-scrollbar {
-      display: none;
+    body.dark nav.menu {
+      background: #fff !important;
+      border-bottom: 2px solid #353535;
     }
     nav.menu a {
       display: inline-block;
@@ -69,11 +72,6 @@
       border-bottom: 3px solid #e30b17;
       color: #e30b17;
       background: none;
-    }
-    /* Koyu temada menü yine beyaz, yazılar siyah */
-    body.dark nav.menu {
-      background: #fff !important;
-      border-bottom: 2px solid #222;
     }
     body.dark nav.menu a {
       color: #181818;
@@ -146,26 +144,26 @@
       height: 20px;
       fill: currentColor;
     }
-    /* Mobil uyum */
-    @media (max-width: 700px) {
+    @media (max-width: 600px) {
+      .quote-container {
+        max-width: 160px;
+      }
+      .quote-text {
+        font-size: 10px;
+      }
+      .quote-source {
+        font-size: 9px;
+      }
       .menu-background {
-        height: 50px;
-        top: 70px;
+        height: 100px;
       }
       nav.menu {
-        top: 70px;
+        top: 60px;
         height: 50px;
-        font-size: 14px;
       }
       nav.menu a {
         padding: 10px 12px 9px 12px;
         font-size: 13px;
-      }
-    }
-    @media (max-width: 450px) {
-      nav.menu a {
-        padding: 8px 8px 8px 8px;
-        font-size: 12px;
       }
     }
   </style>
@@ -175,6 +173,10 @@
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
   <div class="menu-background"></div>
+  <div class="quote-container">
+    <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
+    <div class="quote-source" id="quote-source">TBMM, 1920</div>
+  </div>
   <nav class="menu">
     <a href="index.html" class="active">Anasayfa</a>
     <a href="hayati.html">Hayatı</a>
@@ -186,10 +188,6 @@
     <a href="kronoloji.html">Kronoloji</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
-  <div class="quote-container">
-    <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
-    <div class="quote-source" id="quote-source">TBMM, 1920</div>
-  </div>
   <div id="hero-content" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;animation:fadeInHero 1.2s cubic-bezier(.62,.04,.36,1.09);padding:10px;">
     <h1 style="font-size:2.3rem;font-weight:bold;color:#111;letter-spacing:1px;margin-top:40px; margin-bottom:10px;animation:titlePop 1s cubic-bezier(.77,-0.13,.22,1.12);" id="main-title">
       Mustafa Kemal Atatürk
@@ -287,7 +285,7 @@
       const fontSize = localStorage.getItem("fontSize") || "normal";
       const lang = getLanguage();
       // Tema ve font
-      document.body.style.background = isDark ? "#181818" : "#fff"; // SİYAH KOYU
+      document.body.style.background = isDark ? "#181818" : "#fff";
       document.body.style.color = isDark ? "#fff" : "#222";
       document.body.classList.toggle('dark', isDark);
       switch(fontSize) {
