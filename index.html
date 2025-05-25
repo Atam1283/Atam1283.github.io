@@ -207,17 +207,19 @@
       <span style="font-weight:bold;color:#e30b17;">"En büyük eserim Cumhuriyet'tir."</span> diyerek bizlere çağdaş ve özgür bir ülke armağan etti.<br>
       Atatürk'ün fikirleri ve ilkeleriyle geleceğe umutla bakıyoruz.
     </p>
+    <!-- Arama motoru: kullanıcı sadece sade sorgu görür, arama Google'da filtreli yapılır -->
     <form id="aramaForm" style="width:100%;max-width:370px;margin:25px auto 10px auto;display:flex;align-items:center;gap:0;animation:fadeInUp 1s .7s both;"
           action="https://www.google.com/search" method="get" target="_blank" autocomplete="off">
       <input
         type="text"
-        name="q"
+        id="kullaniciArama"
         placeholder="Atatürk hakkında ara..."
         style="flex:1;padding:14px 16px;font-size:1.08rem;border-radius:24px 0 0 24px;border:2px solid #e30b17;border-right:0;outline:none;transition:box-shadow .2s;"
         required
         onfocus="this.style.boxShadow='0 0 0 2px #e30b17a8'"
         onblur="this.style.boxShadow='none'"
       />
+      <input type="hidden" name="q" id="gizliArama" />
       <button
         type="submit"
         style="padding:0 18px;height:46px;border:none;background:#e30b17;color:#fff;font-size:1.1rem;font-weight:bold;border-radius:0 24px 24px 0;cursor:pointer;transition:background .2s;"
@@ -307,7 +309,7 @@
       document.getElementById('main-title').innerHTML = LANGS[lang].title;
       document.getElementById('main-subtitle').textContent = LANGS[lang].subtitle;
       document.getElementById('main-desc').innerHTML = LANGS[lang].desc;
-      document.querySelector('#aramaForm input[name="q"]').setAttribute('placeholder', LANGS[lang].searchPlaceholder);
+      document.getElementById('kullaniciArama').setAttribute('placeholder', LANGS[lang].searchPlaceholder);
       document.getElementById('main-footer-text').textContent = LANGS[lang].footerText;
     }
     function updateFooterLinks() {
@@ -331,17 +333,18 @@
         </a>
       `;
     }
-    // Arama formunu Atatürk, Türkiye ve tarih ile ilgili güvenilir kütüphanelere yönlendir
+    // Arama formunu Atatürk, Türkiye ve tarih ile ilgili güvenilir kütüphanelere yönlendir (kullanıcı kutusunda filtreler GÖZÜKMEZ!)
     document.addEventListener("DOMContentLoaded", () => {
       applySettings();
       updateFooterLinks();
-      // Arama motoru filtreleme
       document.getElementById("aramaForm").addEventListener("submit", function(e){
-        var input = this.querySelector("input[name='q']");
-        // Sadece Atatürk, Türkiye ve tarih için güvenilir kütüphanelerde arama yap
-        input.value =
+        var kullaniciArama = document.getElementById("kullaniciArama");
+        var gizliArama = document.getElementById("gizliArama");
+        // Asıl input'un name'ini kaldır ve gizliye yaz
+        kullaniciArama.removeAttribute("name");
+        gizliArama.value =
           "site:kutuphane.atam.gov.tr OR site:acikerisim.tbmm.gov.tr OR site:dergipark.org.tr OR site:tez.yok.gov.tr OR site:mkutup.gov.tr "
-          + input.value.trim() + " kısa bilgi";
+          + kullaniciArama.value.trim() + " kısa bilgi";
       });
     });
   </script>
