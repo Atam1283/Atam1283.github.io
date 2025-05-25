@@ -18,6 +18,22 @@
       background: #181818 !important;
       color: #f2f2f2 !important;
     }
+    /* --- MENÜ VE ÜST PLAKA HAYATI.HTML İLE BİREBİR --- */
+    .menu-plaka {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 120px;
+      background: #fff;
+      box-shadow: 0 1px 10px 0 #0001;
+      z-index: 1099;
+      transition: background 0.3s;
+    }
+    body.dark .menu-plaka {
+      background: #222;
+      box-shadow: 0 1px 10px 0 #0008;
+    }
     .logo {
       position: fixed;
       top: 10px;
@@ -27,61 +43,73 @@
       border-radius: 10px;
       background: #fff;
       padding: 5px;
+      transition: background 0.3s;
     }
-    .menu-background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 120px;
-      background: #fff;
-      z-index: 1099;
-      pointer-events: none;
-    }
-    body.dark .menu-background {
-      background: #181818 !important;
+    body.dark .logo {
+      background: #222;
     }
     nav.menu {
       position: fixed;
-      top: 70px;
       left: 0;
+      top: 70px;
       width: 100vw;
-      background: #fff;
-      border-bottom: 2px solid #d9d9d9;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      background: transparent;
       z-index: 1101;
       overflow-x: auto;
+      border-bottom: 2px solid #e6e6e6;
       white-space: nowrap;
       transition: background 0.3s, color 0.3s;
+      animation: menuFadeIn 0.7s cubic-bezier(.42, 0, .58, 1) both;
     }
-    body.dark nav.menu {
-      background: #222 !important;
-      border-bottom: 2px solid #353535;
+    @keyframes menuFadeIn {
+      from { opacity: 0; transform: translateY(-32px);}
+      to   { opacity: 1; transform: translateY(0);}
     }
     nav.menu a {
       display: inline-block;
-      padding: 14px 20px;
-      color: #000;
-      text-decoration: none;
+      color: #1a1a1a;
       font-size: 15px;
       font-weight: bold;
+      padding: 13px 18px 12px 18px;
       border-bottom: 3px solid transparent;
-      transition: all 0.3s ease;
+      text-decoration: none;
+      transition: all .22s cubic-bezier(.42,0,.58,1);
       background: none;
+      letter-spacing: .1px;
     }
     nav.menu a:hover, nav.menu a.active {
-      border-bottom: 3px solid #e30b17;
       color: #e30b17;
+      border-bottom: 3px solid #e30b17;
       background: none;
     }
+    body.dark nav.menu {
+      border-bottom: 2px solid #303030;
+      background: transparent;
+    }
     body.dark nav.menu a {
-      color: #fff;
-      text-shadow: none;
+      color: #faf9f7;
     }
-    body.dark nav.menu a.active,
-    body.dark nav.menu a:hover {
-      color: #e30b17 !important;
-      border-bottom: 3px solid #ff3d3c;
+    body.dark nav.menu a:hover, body.dark nav.menu a.active {
+      color: #ff4444;
+      border-bottom: 3px solid #ff4444;
     }
+    nav.menu::-webkit-scrollbar { display: none; }
+    @media (max-width: 700px) {
+      .menu-plaka { height: 100px; }
+      nav.menu { top: 60px; height: 40px; }
+      nav.menu a { font-size: 13px; padding: 8px 10px 8px 10px; }
+      .logo { width: 90px; top: 7px; }
+    }
+    @media (max-width: 450px) {
+      nav.menu a { font-size: 12px; padding: 7px 7px 7px 7px; }
+      .logo { width: 68px; top: 5px; left: 5px;}
+      .menu-plaka { height: 80px; }
+      nav.menu { top: 45px; height: 35px; }
+    }
+    /* ------------------------------------------------ */
     .quote-container {
       position: fixed;
       top: 10px;
@@ -104,12 +132,8 @@
       font-family: Arial, sans-serif;
       transition: opacity 0.5s;
     }
-    .fade-out {
-      opacity: 0 !important;
-    }
-    .fade-in {
-      opacity: 1 !important;
-    }
+    .fade-out { opacity: 0 !important; }
+    .fade-in { opacity: 1 !important; }
     footer {
       position: fixed;
       bottom: 0;
@@ -144,39 +168,13 @@
       height: 20px;
       fill: currentColor;
     }
-    @media (max-width: 600px) {
-      .quote-container {
-        max-width: 160px;
-      }
-      .quote-text {
-        font-size: 10px;
-      }
-      .quote-source {
-        font-size: 9px;
-      }
-      .menu-background {
-        height: 100px;
-      }
-      nav.menu {
-        top: 60px;
-        height: 50px;
-      }
-      nav.menu a {
-        padding: 10px 12px 9px 12px;
-        font-size: 13px;
-      }
-    }
   </style>
 </head>
 <body>
+  <div class="menu-plaka"></div>
   <a href="index.html" class="logo">
     <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
   </a>
-  <div class="menu-background"></div>
-  <div class="quote-container">
-    <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
-    <div class="quote-source" id="quote-source">TBMM, 1920</div>
-  </div>
   <nav class="menu">
     <a href="index.html" class="active">Anasayfa</a>
     <a href="hayati.html">Hayatı</a>
@@ -188,6 +186,10 @@
     <a href="kronoloji.html">Kronoloji</a>
     <a href="ayarlar.html">Ayarlar</a>
   </nav>
+  <div class="quote-container">
+    <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
+    <div class="quote-source" id="quote-source">TBMM, 1920</div>
+  </div>
   <div id="hero-content" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;animation:fadeInHero 1.2s cubic-bezier(.62,.04,.36,1.09);padding:10px;">
     <h1 style="font-size:2.3rem;font-weight:bold;color:#111;letter-spacing:1px;margin-top:40px; margin-bottom:10px;animation:titlePop 1s cubic-bezier(.77,-0.13,.22,1.12);" id="main-title">
       Mustafa Kemal Atatürk
