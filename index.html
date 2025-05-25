@@ -14,6 +14,10 @@
       transition: background 0.5s, color 0.5s, font-size 0.5s, opacity 0.7s;
       min-height: 100vh;
     }
+    body.dark {
+      background: #181818 !important; /* ÜST KISIM KOYU TEMADA SİYAH */
+      color: #fff;
+    }
     .logo {
       position: fixed;
       top: 10px;
@@ -30,17 +34,16 @@
       left: 0;
       width: 100vw;
       height: 50px;
-      background: #fff !important;
+      background: #fff !important; /* MENÜ ARKASI HER ZAMAN BEYAZ */
       z-index: 1099;
       pointer-events: none;
-      /* Her temada beyaz ve sabit */
     }
     nav.menu {
       position: fixed;
       top: 70px;
       left: 0;
       width: 100vw;
-      background: transparent;
+      background: #fff !important;  /* MENÜN KENDİSİ DE DAİMA BEYAZ */
       border-bottom: 2px solid #d9d9d9;
       z-index: 1100;
       overflow-x: auto;
@@ -67,46 +70,19 @@
       color: #e30b17;
       background: none;
     }
-    /* Koyu tema menü: Menü üstü koyu, linkler net */
-    body.dark .menu-background {
-      background: #fff !important;
-    }
+    /* Koyu temada menü yine beyaz, yazılar siyah */
     body.dark nav.menu {
-      background: transparent !important;
+      background: #fff !important;
       border-bottom: 2px solid #222;
     }
     body.dark nav.menu a {
-      color: #191a1c;
-      text-shadow: 0 1px 12px #fff, 0 0 2px #fff;
-      /* Koyu tema için koyu link, etrafı hafif beyaz gölge */
+      color: #181818;
+      text-shadow: none;
     }
     body.dark nav.menu a.active,
     body.dark nav.menu a:hover {
       color: #e30b17 !important;
       border-bottom: 3px solid #ff3d3c;
-      text-shadow: none;
-    }
-    /* Mobil uyum */
-    @media (max-width: 700px) {
-      .menu-background {
-        height: 50px;
-        top: 70px;
-      }
-      nav.menu {
-        top: 70px;
-        height: 50px;
-        font-size: 14px;
-      }
-      nav.menu a {
-        padding: 10px 12px 9px 12px;
-        font-size: 13px;
-      }
-    }
-    @media (max-width: 450px) {
-      nav.menu a {
-        padding: 8px 8px 8px 8px;
-        font-size: 12px;
-      }
     }
     .quote-container {
       position: fixed;
@@ -169,6 +145,28 @@
       width: 20px;
       height: 20px;
       fill: currentColor;
+    }
+    /* Mobil uyum */
+    @media (max-width: 700px) {
+      .menu-background {
+        height: 50px;
+        top: 70px;
+      }
+      nav.menu {
+        top: 70px;
+        height: 50px;
+        font-size: 14px;
+      }
+      nav.menu a {
+        padding: 10px 12px 9px 12px;
+        font-size: 13px;
+      }
+    }
+    @media (max-width: 450px) {
+      nav.menu a {
+        padding: 8px 8px 8px 8px;
+        font-size: 12px;
+      }
     }
   </style>
 </head>
@@ -289,7 +287,7 @@
       const fontSize = localStorage.getItem("fontSize") || "normal";
       const lang = getLanguage();
       // Tema ve font
-      document.body.style.background = isDark ? "#222" : "#fff";
+      document.body.style.background = isDark ? "#181818" : "#fff"; // SİYAH KOYU
       document.body.style.color = isDark ? "#fff" : "#222";
       document.body.classList.toggle('dark', isDark);
       switch(fontSize) {
