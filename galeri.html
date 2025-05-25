@@ -142,10 +142,13 @@
       left: 0;
       top: 0;
       z-index: 10;
-      background: #101015;
+      background: #fff; /* Açık modda beyaz arkaplan */
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+    .dark main {
+      background: #101015 !important; /* Koyu modda koyu arkaplan */
     }
     .gallery-vertical-outer {
       width: 100vw;
@@ -607,7 +610,7 @@
       `;
     }
 
-    // TEMA/BOYUT güncellenince de dinle!
+    // Tema/Font değişimini diğer sekmelerden de dinle
     window.addEventListener("storage", (e) => {
       if (["language", "darkMode", "fontSize"].includes(e.key)) {
         applySettings();
