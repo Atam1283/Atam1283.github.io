@@ -520,6 +520,7 @@
       showQuote(quoteIndex);
     }, 5000);
 
+    // TEMA UYGULAMA
     function applySettings() {
       const isDark = localStorage.getItem("darkMode") === "true";
       const fontSize = localStorage.getItem("fontSize") || "normal";
@@ -558,6 +559,8 @@
       localStorage.setItem("fontSize", document.getElementById("fontSize").value);
       localStorage.setItem("language", document.getElementById("language").value);
       applySettings();
+      // Diğer sekmelerde de güncellenmesi için storage event'i tetiklenir
+      localStorage.setItem("themeUpdatedAt", Date.now()); // Trick: storage event için
       const msg = document.getElementById("savedMsg");
       msg.classList.add("show");
       setTimeout(() => { msg.classList.remove("show"); }, 2500);
@@ -567,6 +570,14 @@
     document.getElementById("language").addEventListener("change", function(){
       localStorage.setItem("language", this.value);
       applySettings();
+      localStorage.setItem("themeUpdatedAt", Date.now());
+    });
+
+    // Diğer sekmelerde tema/dil/font değişirse bu sekmede de anında güncelle
+    window.addEventListener("storage", (e) => {
+      if (["language", "darkMode", "fontSize", "themeUpdatedAt"].includes(e.key)) {
+        loadSettings();
+      }
     });
 
     // Hemen ayarları uygula
