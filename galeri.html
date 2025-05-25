@@ -291,6 +291,7 @@
     .logo, .menu-background, nav.menu, .quote-container, footer {
       z-index: 20000 !important;
     }
+    /* LOGO EN ÜSTTE, GÖLGESİZ VE BÜTÜNLEŞİK */
     .logo {
       position: fixed;
       top: 10px;
@@ -300,9 +301,10 @@
       border-radius: 10px;
       background: #fff;
       padding: 5px;
-      box-shadow: 0 2px 10px #0002;
       display: block;
       pointer-events: auto !important;
+      box-shadow: none !important; /* GÖLGEYİ KALDIR */
+      border: none !important;
     }
     .logo img {
       width: 100%;
