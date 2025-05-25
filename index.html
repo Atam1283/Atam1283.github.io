@@ -24,7 +24,7 @@
       top: 0;
       width: 100vw;
       height: 120px;
-      background: #fff !important;      /* ÜST PLAKA HER ZAMAN BEYAZ */
+      background: #fff !important;
       box-shadow: 0 1px 10px 0 #0001;
       z-index: 1099;
       transition: background 0.3s;
@@ -36,7 +36,7 @@
       width: 120px;
       z-index: 1100;
       border-radius: 10px;
-      background: #fff !important; /* LOGO HER ZAMAN BEYAZ */
+      background: #fff !important;
       padding: 5px;
       transition: background 0.3s;
     }
@@ -61,7 +61,7 @@
       to   { opacity: 1; transform: translateY(0);}
     }
     body.dark nav.menu {
-      background: #222 !important;   /* KOYU TEMA: MENÜ KOYU OLUR */
+      background: #222 !important;
       border-bottom: 2px solid #303030;
     }
     nav.menu a {
@@ -125,7 +125,6 @@
     }
     .fade-out { opacity: 0 !important; }
     .fade-in { opacity: 1 !important; }
-    /* Koyu temada ana metinler için okunabilirlik artırımı */
     body.dark #main-title,
     body.dark #main-subtitle,
     body.dark #main-desc,
@@ -229,6 +228,9 @@
         <span style="font-size:1.3rem;">🔍</span>
       </button>
     </form>
+    <div style="font-size:0.95em; color:#666; margin:0 0 12px 0; max-width:370px; text-align:center;">
+      <b>Not:</b> Aramalar <span style="color:#e30b17;font-weight:bold;">Atatürk, Türkiye ve tarih</span> konulu güvenilir dijital kütüphanelerde yapılır.
+    </div>
     <div id="main-footer-text" style="color:#e30b17;font-weight:bold;font-size:1.08rem;margin-top:32px;letter-spacing:.3px;animation:fadeInUp 1.1s 1.1s both;display:flex;align-items:center;gap:8px;">
       Türk gençleri olarak sonsuza dek izindeyiz!
     </div>
@@ -329,9 +331,18 @@
         </a>
       `;
     }
-    window.addEventListener("DOMContentLoaded", () => {
+    // Arama formunu Atatürk, Türkiye ve tarih ile ilgili güvenilir kütüphanelere yönlendir
+    document.addEventListener("DOMContentLoaded", () => {
       applySettings();
       updateFooterLinks();
+      // Arama motoru filtreleme
+      document.getElementById("aramaForm").addEventListener("submit", function(e){
+        var input = this.querySelector("input[name='q']");
+        // Sadece Atatürk, Türkiye ve tarih için güvenilir kütüphanelerde arama yap
+        input.value =
+          "site:kutuphane.atam.gov.tr OR site:acikerisim.tbmm.gov.tr OR site:dergipark.org.tr OR site:tez.yok.gov.tr OR site:mkutup.gov.tr "
+          + input.value.trim() + " kısa bilgi";
+      });
     });
   </script>
 </body>
