@@ -424,9 +424,10 @@
       lazyLoadGalleryImgs();
       startAutoScroll();
 
-      const galleryOuter = document.querySelector('.gallery-vertical-outer');
-      galleryOuter.addEventListener('mouseenter', stopAutoScroll);
-      galleryOuter.addEventListener('mouseleave', startAutoScroll);
+      // Sadece bir fotoğrafın üstüne gelince duracak, yan boşluklarda durmaz
+      const galleryVertical = document.getElementById('gallery-vertical');
+      galleryVertical.addEventListener('mouseenter', stopAutoScroll, true);
+      galleryVertical.addEventListener('mouseleave', startAutoScroll, true);
 
       // Modal büyütme fonksiyonu
       const modal = document.getElementById('modal');
