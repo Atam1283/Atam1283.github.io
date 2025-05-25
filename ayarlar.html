@@ -5,7 +5,6 @@
   <title>Ayarlar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    /* ... Tüm CSS'iniz aynı kalacak ... */
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -45,6 +44,12 @@
       z-index: 1101;
       overflow-x: auto;
       white-space: nowrap;
+      transition: background 0.5s;
+    }
+    /* SADECE KOYU MODDA MENÜ SİYAH OLSUN */
+    body.dark nav.menu {
+      background: #101015 !important;
+      border-bottom: 2px solid #353535;
     }
     nav.menu a {
       display: inline-block;
@@ -59,6 +64,14 @@
     nav.menu a:hover, nav.menu a.active {
       border-bottom: 3px solid #e30b17;
       color: #e30b17;
+    }
+    body.dark nav.menu a {
+      color: #f2f2f2;
+    }
+    body.dark nav.menu a.active, body.dark nav.menu a:hover {
+      color: #ff3d3c;
+      border-bottom: 3px solid #ff3d3c;
+      background: transparent;
     }
     nav.menu::-webkit-scrollbar {
       display: none;
@@ -216,7 +229,6 @@
       80% { opacity: 1;}
       100% { opacity: 0;}
     }
-    /* Koyu tema için detaylı uyum */
     body.dark {
       background: #181818 !important;
       color: #f2f2f2 !important;
@@ -305,7 +317,6 @@
         font-size: 13px;
       }
     }
-    /* Dil seçici stilleri */
     .lang-select-section {
       display: flex;
       align-items: center;
