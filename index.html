@@ -44,6 +44,7 @@
       z-index: 1000;
       overflow-x: auto;
       white-space: nowrap;
+      transition: background 0.3s, color 0.3s;
     }
     nav.menu a {
       display: inline-block;
@@ -124,6 +125,35 @@
       height: 20px;
       fill: currentColor;
     }
+    /* Koyu tema menü arka planı ve menü görünümü */
+    body.dark .menu-background {
+      background: #fff !important;
+    }
+    body.dark nav.menu {
+      background: #181818 !important;
+      border-bottom: 2px solid #444;
+    }
+    body.dark nav.menu a {
+      color: #f2f2f2 !important;
+      text-shadow: 0 1px 6px #000c, 0 0 2px #222a;
+    }
+    body.dark nav.menu a.active,
+    body.dark nav.menu a:hover {
+      color: #ff3d3c !important;
+      border-bottom: 3px solid #ff3d3c;
+      background: transparent;
+      text-shadow: 0 1px 6px #000a, 0 0 2px #222a;
+    }
+    /* Menü arkasına beyaz sabit plaka mobilde de */
+    .menu-background {
+      background: #fff;
+      z-index: 999;
+      pointer-events: none;
+      width: 100vw;
+      left: 0; top: 70px;
+      height: 50px;
+      position: fixed;
+    }
     @media (max-width: 600px) {
       .quote-container {
         max-width: 160px;
@@ -136,6 +166,7 @@
       }
       .menu-background {
         height: 50px;
+        top: 70px;
       }
       nav.menu {
         top: 70px;
