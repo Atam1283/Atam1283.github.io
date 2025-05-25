@@ -349,16 +349,8 @@
     <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
     <div class="quote-source" id="quote-source">TBMM, 1920</div>
   </div>
-  <nav class="menu">
-    <a href="index.html">Anasayfa</a>
-    <a href="hayati.html">Hayatı</a>
-    <a href="galeri.html">Galeri</a>
-    <a href="sozleri.html">Sözleri</a>
-    <a href="eserleri.html">Eserleri</a>
-    <a href="devrimler.html">Devrimleri</a>
-    <a href="nutuk.html">Nutuk</a>
-    <a href="kronoloji.html" class="active">Kronoloji</a>
-    <a href="ayarlar.html">Ayarlar</a>
+  <nav class="menu" id="topMenu">
+    <!-- Menü JS ile doldurulacak -->
   </nav>
   <main>
     <h1 id="kronoloji-title" style="font-size:2.1em; color:#e30b17; margin-bottom:36px; margin-top:18px; font-family:Georgia,serif; text-align:center;">
@@ -372,6 +364,40 @@
     </div>
   </main>
   <footer></footer>
+  <script>
+    // Menü çoklu dil için
+    const MENU_LABELS = {
+      tr: ["Anasayfa","Hayatı","Galeri","Sözleri","Eserleri","Devrimleri","Nutuk","Kronoloji","Ayarlar"],
+      en: ["Home","Life","Gallery","Quotes","Works","Reforms","The Speech","Chronology","Settings"],
+      az: ["Ana səhifə","Həyatı","Qalereya","Sitatlar","Əsərləri","İslahatlar","Nutuq","Kronologiya","Tənzimləmələr"]
+    };
+    const MENU_HREFS = [
+      "index.html",
+      "hayati.html",
+      "galeri.html",
+      "sozleri.html",
+      "eserleri.html",
+      "devrimler.html",
+      "nutuk.html",
+      "kronoloji.html",
+      "ayarlar.html"
+    ];
+    function getMenuLang() {
+      return localStorage.getItem("language") || "tr";
+    }
+    function renderMenu() {
+      const lang = getMenuLang();
+      const menu = document.getElementById("topMenu");
+      const current = window.location.pathname.split("/").pop() || "kronoloji.html";
+      menu.innerHTML = MENU_LABELS[lang].map((label, i) =>
+        `<a href="${MENU_HREFS[i]}"${MENU_HREFS[i] === current ? ' class="active"' : ''}>${label}</a>`
+      ).join('');
+    }
+    window.addEventListener("DOMContentLoaded", renderMenu);
+    window.addEventListener("storage", (e) => {
+      if (e.key === "language") renderMenu();
+    });
+  </script>
   <script>
     // Çoklu dil kronoloji
     const KRONOLOJI = {
@@ -485,6 +511,7 @@
     window.addEventListener('DOMContentLoaded', () => {
       applySettings();
       renderKronoloji();
+      renderMenu();
       updateFooterLinks();
     });
 
@@ -492,6 +519,10 @@
     window.addEventListener("storage", (e) => {
       if (e.key === "language") {
         renderKronoloji();
+        renderMenu();
+      }
+      if (e.key === "darkMode" || e.key === "fontSize") {
+        applySettings();
       }
     });
 
