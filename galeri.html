@@ -291,7 +291,6 @@
     .logo, .menu-background, nav.menu, .quote-container, footer {
       z-index: 20000 !important;
     }
-    /* LOGO EN ÜSTTE, GÖLGESİZ VE BÜTÜNLEŞİK */
     .logo {
       position: fixed;
       top: 10px;
@@ -303,7 +302,7 @@
       padding: 5px;
       display: block;
       pointer-events: auto !important;
-      box-shadow: none !important; /* GÖLGEYİ KALDIR */
+      box-shadow: none !important;
       border: none !important;
     }
     .logo img {
@@ -607,10 +606,15 @@
         </a>
       `;
     }
+
+    // TEMA/BOYUT güncellenince de dinle!
     window.addEventListener("storage", (e) => {
-      if (e.key === "language") {
-        renderGallery();
-        lazyLoadGalleryImgs();
+      if (["language", "darkMode", "fontSize"].includes(e.key)) {
+        applySettings();
+        if (e.key === "language") {
+          renderGallery();
+          lazyLoadGalleryImgs();
+        }
       }
     });
   </script>
