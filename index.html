@@ -125,6 +125,21 @@
     }
     .fade-out { opacity: 0 !important; }
     .fade-in { opacity: 1 !important; }
+    /* Koyu temada ana metinler için okunabilirlik artırımı */
+    body.dark #main-title,
+    body.dark #main-subtitle,
+    body.dark #main-desc,
+    body.dark #main-footer-text {
+      color: #fff !important;
+      text-shadow: 0 2px 8px #0006;
+    }
+    body.dark #main-desc span {
+      color: #ff6a6a !important;
+      text-shadow: 0 2px 8px #0006;
+    }
+    body.dark input[type="text"]::placeholder {
+      color: #ddd !important;
+    }
     footer {
       position: fixed;
       bottom: 0;
