@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     /* ...aynı CSS, değişiklik yok... */
-    /* Kodlarının tamamı hiç değişmedi, sadece body içi değişiyor */
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -255,21 +254,47 @@
     <div class="quote-text" id="quote-text">"Hayatta en hakiki mürşit ilimdir."</div>
     <div class="quote-source" id="quote-source">Atatürk, 1924</div>
   </div>
-  <nav class="menu">
-    <a href="index.html">Anasayfa</a>
-    <a href="hayati.html" class="active">Hayatı</a>
-    <a href="galeri.html">Galeri</a>
-    <a href="sozleri.html">Sözleri</a>
-    <a href="eserleri.html">Eserleri</a>
-    <a href="devrimler.html">Devrimleri</a>
-    <a href="nutuk.html">Nutuk</a>
-    <a href="kronoloji.html">Kronoloji</a>
-    <a href="ayarlar.html">Ayarlar</a>
+  <nav class="menu" id="topMenu">
+    <!-- Menü JS ile doldurulacak -->
   </nav>
   <div class="main-content" id="life-content">
     <!-- İçerik JS ile doldurulacak -->
   </div>
   <footer></footer>
+  <script>
+    // Menü çoklu dil için
+    const MENU_LABELS = {
+      tr: ["Anasayfa","Hayatı","Galeri","Sözleri","Eserleri","Devrimleri","Nutuk","Kronoloji","Ayarlar"],
+      en: ["Home","Life","Gallery","Quotes","Works","Reforms","The Speech","Chronology","Settings"],
+      az: ["Ana səhifə","Həyatı","Qalereya","Sitatlar","Əsərləri","İslahatlar","Nutuq","Kronologiya","Tənzimləmələr"]
+    };
+    const MENU_HREFS = [
+      "index.html",
+      "hayati.html",
+      "galeri.html",
+      "sozleri.html",
+      "eserleri.html",
+      "devrimler.html",
+      "nutuk.html",
+      "kronoloji.html",
+      "ayarlar.html"
+    ];
+    function getMenuLang() {
+      return localStorage.getItem("language") || "tr";
+    }
+    function renderMenu() {
+      const lang = getMenuLang();
+      const menu = document.getElementById("topMenu");
+      const current = window.location.pathname.split("/").pop() || "index.html";
+      menu.innerHTML = MENU_LABELS[lang].map((label, i) =>
+        `<a href="${MENU_HREFS[i]}"${MENU_HREFS[i] === current ? ' class="active"' : ''}>${label}</a>`
+      ).join('');
+    }
+    window.addEventListener("DOMContentLoaded", renderMenu);
+    window.addEventListener("storage", (e) => {
+      if (e.key === "language") renderMenu();
+    });
+  </script>
   <script>
     // Çoklu dil içeriği (TR, EN, AZ)
     const LIFE = {
@@ -374,6 +399,10 @@
       });
       main.innerHTML = html;
     }
+    window.addEventListener("DOMContentLoaded", renderLifeContent);
+    window.addEventListener("storage", (e) => {
+      if (e.key === "language") renderLifeContent();
+    });
   </script>
   <script>
     // Söz animasyonu (tasarıma dokunulmaz)
@@ -497,11 +526,13 @@
       renderLifeContent();
       updateFooterLinks();
     });
-
-    // Opsiyonel: Dil değiştiğinde sayfa yenilemeden içerik güncelle
     window.addEventListener("storage", (e) => {
       if (e.key === "language") {
         renderLifeContent();
+        renderMenu();
+      }
+      if (e.key === "darkMode" || e.key === "fontSize") {
+        applySettings();
       }
     });
   </script>
