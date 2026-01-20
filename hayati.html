@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
-  <title>Atatürk'ün Hayatı</title>
+  <title>Galeri</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     * { box-sizing: border-box; }
@@ -10,21 +10,20 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background: #fff;
-      padding-bottom: 80px;
-      transition: background 0.5s, color 0.5s, font-size 0.5s, opacity 0.7s;
+      padding-bottom: 0;
       min-height: 100vh;
-      overflow-x: hidden;
+      transition: background 0.5s, color 0.5s;
     }
 
-    /* ÜST ALAN KORUYUCU: Yazıların logonun arkasından geçmesini engeller */
+    /* ÜST ALAN KORUYUCU: Galeri resimlerinin menü altında görünmesini engeller */
     .header-fixed-area {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 122px;
+      height: 122px; /* Logo + Menü toplam yükseklik */
       background: #fff;
-      z-index: 998;
+      z-index: 1099;
     }
 
     .logo {
@@ -32,7 +31,7 @@
       top: 10px;
       left: 10px;
       width: 120px;
-      z-index: 1100;
+      z-index: 2000;
       border-radius: 10px;
       background: #fff;
       padding: 5px;
@@ -45,12 +44,10 @@
       width: 100%;
       background: #fff;
       border-bottom: 2px solid #d9d9d9;
-      z-index: 1000;
+      z-index: 1101;
       overflow-x: auto;
       white-space: nowrap;
-      -webkit-overflow-scrolling: touch;
     }
-
     nav.menu a {
       display: inline-block;
       padding: 14px 20px;
@@ -59,12 +56,8 @@
       font-size: 15px;
       font-weight: bold;
       border-bottom: 3px solid transparent;
-      transition: all 0.3s ease;
     }
-    nav.menu a:hover, nav.menu a.active {
-      border-bottom: 3px solid #e30b17;
-      color: #e30b17;
-    }
+    nav.menu a.active { border-bottom: 3px solid #e30b17; color: #e30b17; }
     nav.menu::-webkit-scrollbar { display: none; }
 
     .quote-container {
@@ -75,31 +68,73 @@
       z-index: 1200;
       max-width: 250px;
     }
-    .quote-text { color: #222; font-size: 13px; font-style: italic; line-height: 1.3; margin-bottom: 2px; }
-    .quote-source { color: #666; font-size: 11px; font-weight: bold; }
+    .quote-text { color: #222; font-size: 13px; font-style: italic; line-height: 1.2; margin-bottom: 2px; }
+    .quote-source { color: #666; font-size: 11px; }
 
-    /* İÇERİK ALANI */
-    .main-content {
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 150px 20px 40px 20px;
+    /* GALERİ ALANI DÜZENLEME */
+    main {
+      padding-top: 130px; /* Menünün altından başlaması için */
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .gallery-vertical-outer {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* Üstten başlasın */
       position: relative;
-      z-index: 1;
+      padding-top: 130px;
     }
-    
-    .main-content section {
-      width: 100%;
-      background: #fafafa;
+
+    .gallery-vertical-inner {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      width: 90vw;
+      transition: transform 0.2s linear;
+      will-change: transform;
+    }
+
+    .gallery-item {
+      background: #f0f0f0;
       border-radius: 18px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
-      padding: 38px 28px;
-      margin-bottom: 28px;
+      overflow: hidden;
+      position: relative;
+      height: 32vh;
+      transition: transform 0.3s;
     }
-    
-    .main-content h1 { font-size: 2.15rem; font-weight: bold; color: #e30b17; text-align: center; margin-bottom: 24px; }
-    .main-content h2 { font-size: 1.2rem; font-weight: bold; color: #e30b17; margin-bottom: 15px; }
-    .main-content p { color: #222; font-size: 1.06rem; line-height: 1.75; margin-bottom: 14px; }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    .gallery-item img.loaded { opacity: 1; }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      font-size: 12px;
+      padding: 8px;
+      text-align: center;
+      opacity: 0;
+      transition: 0.3s;
+    }
+    .gallery-item:hover .gallery-caption { opacity: 1; }
 
     /* Karanlık Mod */
     body.dark, body.dark .header-fixed-area, body.dark nav.menu, body.dark .logo { background: #181818 !important; }
@@ -107,17 +142,13 @@
     body.dark nav.menu { border-bottom-color: #353535; }
     body.dark nav.menu a { color: #fff; }
     body.dark .quote-text { color: #eee; }
-    body.dark .main-content section { background: #232326; box-shadow: 0 2px 16px rgba(0,0,0,0.2); }
-    body.dark .main-content h1, body.dark .main-content h2 { color: #ff3d3c; }
-    body.dark .main-content p { color: #e6e6e6; }
+    body.dark .gallery-item { background: #232326; }
 
-    /* FOOTER (Sosyal Medya İkonları) */
+    /* Footer */
     footer {
       position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: #000;
+      bottom: 0; left: 0; width: 100%;
+      background: #000;
       height: 60px;
       display: flex;
       justify-content: center;
@@ -125,104 +156,127 @@
       gap: 30px;
       z-index: 1000;
     }
-    footer a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 40px;
-      height: 40px;
-      border: 1px solid #888;
-      border-radius: 50%;
-      color: #fff;
-      transition: all 0.3s ease;
-      text-decoration: none;
-    }
-    footer a:hover { border-color: #e30b17; color: #e30b17; }
+    footer a { color: #fff; border: 1px solid #888; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
     footer svg { width: 20px; height: 20px; fill: currentColor; }
 
-    @media (max-width: 600px) {
-      .logo { width: 90px; top: 15px; }
-      .quote-container { max-width: 170px; top: 15px; }
-      .header-fixed-area { height: 120px; }
-      .main-content { padding-top: 140px; padding-left: 10px; padding-right: 10px; }
-      .main-content section { padding: 25px 15px; }
-      .main-content h1 { font-size: 1.5rem; }
-      nav.menu { top: 70px; height: 50px; }
-      nav.menu a { padding: 15px 12px; font-size: 13px; }
+    @media (max-width: 700px) {
+      .gallery-vertical-inner { grid-template-columns: 1fr; width: 95vw; }
+      .header-fixed-area { height: 110px; }
+      .gallery-vertical-outer { padding-top: 115px; }
     }
+
+    /* Modal */
+    .modal {
+      display: none; position: fixed; z-index: 9999;
+      left: 0; top: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      align-items: center; justify-content: center;
+    }
+    .modal.open { display: flex; }
+    .modal-content { max-width: 90%; max-height: 80%; border-radius: 10px; }
+    .modal-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; cursor: pointer; }
   </style>
 </head>
-<body>
+<body class="has-fadein">
   <div class="header-fixed-area"></div>
   <a href="index.html" class="logo">
-    <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 5px;" />
+    <img src="images/logo.png" alt="Logo" style="width:100%; border-radius: 5px;">
   </a>
+
   <div class="quote-container">
-    <div class="quote-text" id="quote-text">"Hayatta en hakiki mürşit ilimdir."</div>
-    <div class="quote-source" id="quote-source">Atatürk, 1924</div>
+    <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
+    <div class="quote-source" id="quote-source">TBMM, 1920</div>
   </div>
+
   <nav class="menu" id="topMenu"></nav>
-  <div class="main-content" id="life-content"></div>
-  
+
+  <main>
+    <div class="gallery-vertical-outer">
+      <div class="gallery-vertical-inner" id="gallery-vertical"></div>
+    </div>
+  </main>
+
+  <div class="modal" id="modal">
+    <span class="modal-close" id="modal-close">&times;</span>
+    <img class="modal-content" id="modal-img">
+  </div>
+
   <footer>
-    <a href="mailto:atam01283@gmail.com">
-      <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/></svg>
-    </a>
-    <a href="https://instagram.com/atamm1283" target="_blank">
-      <svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>
-    </a>
-    <a href="https://twitter.com/atam01283" target="_blank">
-      <svg viewBox="0 0 24 24"><path d="M19.633 7.997c.013.18.013.362.013.544 0 5.522-4.206 11.894-11.894 11.894-2.363 0-4.563-.69-6.413-1.872.329.038.658.051.998.051 1.961 0 3.766-.659 5.203-1.772-1.833-.035-3.385-1.242-3.918-2.903.257.038.519.064.792.064.38 0 .75-.051 1.1-.145-1.915-.385-3.36-2.077-3.36-4.102v-.052c.564.313 1.214.502 1.905.519-1.127-.752-1.872-2.037-1.872-3.496 0-.77.208-1.49.57-2.108 2.08 2.556 5.197 4.237 8.704 4.419-.072-.308-.108-.629-.108-.96 0-2.312 1.872-4.184 4.184-4.184 1.205 0 2.297.508 3.063 1.322.954-.187 1.85-.535 2.658-1.013-.313.98-.98 1.803-1.85 2.323.848-.099 1.658-.327 2.409-.663-.564.836-1.274 1.574-2.096 2.164z"/></svg>
-    </a>
+    <a href="mailto:atam01283@gmail.com"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/></svg></a>
+    <a href="https://instagram.com/atamm1283"><svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg></a>
+    <a href="https://twitter.com/atam01283"><svg viewBox="0 0 24 24"><path d="M19.633 7.997c.013.18.013.362.013.544 0 5.522-4.206 11.894-11.894 11.894-2.363 0-4.563-.69-6.413-1.872.329.038.658.051.998.051 1.961 0 3.766-.659 5.203-1.772-1.833-.035-3.385-1.242-3.918-2.903.257.038.519.064.792.064.38 0 .75-.051 1.1-.145-1.915-.385-3.36-2.077-3.36-4.102v-.052c.564.313 1.214.502 1.905.519-1.127-.752-1.872-2.037-1.872-3.496 0-.77.208-1.49.57-2.108 2.08 2.556 5.197 4.237 8.704 4.419-.072-.308-.108-.629-.108-.96 0-2.312 1.872-4.184 4.184-4.184 1.205 0 2.297.508 3.063 1.322.954-.187 1.85-.535 2.658-1.013-.313.98-.98 1.803-1.85 2.323.848-.099 1.658-.327 2.409-.663-.564.836-1.274 1.574-2.096 2.164z"/></svg></a>
   </footer>
 
   <script>
-    const LIFE = {
-      tr: {
-        title: "Atatürk'ün Hayatı",
-        sections: [
-          { heading: "Çocukluğu ve Eğitimi", text: "Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. İlk öğrenimine mahalle mektebinde başladı, ardından Şemsi Efendi Okulu'na geçti. Babasının ölümü üzerine kısa bir süre Rapla Çiftliği'nde kaldıktan sonra eğitimine Selanik Mülkiye Rüştiyesi'nde devam etti. Askeri eğitime olan ilgisiyle Manastır Askeri İdadisi ve daha sonra İstanbul Harp Okulu'na geçti." },
-          { heading: "Askerlik ve Trablusgarp", text: "1905 yılında Harp Akademisi'nden kurmay yüzbaşı olarak mezun oldu. Şam, Selanik ve Manastır'da çeşitli görevlerde bulundu. 1911 yılında Trablusgarp Savaşı'nda (bugünkü Libya) İtalyanlara karşı başarılı savunmalar yaptı. Burada gösterdiği kahramanlık, onun yükselişinde önemli bir rol oynadı." },
-          { heading: "Balkan Savaşları ve I. Dünya Savaşı", text: "Balkan Savaşları'nda Edirne'nin geri alınmasında görev aldı. I. Dünya Savaşı'nda Çanakkale Cephesi'nde gösterdiği üstün askeri deha ve liderlik, Türk milletinin kaderini değiştirdi ve \"Anafartalar Kahramanı\" olarak ün kazandı. Ardından Kafkas ve Suriye cephelerinde de görev yaptı." },
-          { heading: "Kurtuluş Savaşı ve Cumhuriyet", text: "Mondros Mütarekesi sonrasında İstanbul'a dönen Mustafa Kemal, 19 Mayıs 1919'da Samsun'a çıkarak milli mücadelenin fiili liderliğini üstlendi. Erzurum ve Sivas Kongreleri'nin ardından Ankara'da Türkiye Büyük Millet Meclisi'ni açtı. Kurtuluş Savaşı'nı başarıyla yönetip 1922'de ülkeyi işgalden kurtardı. 29 Ekim 1923'te Cumhuriyet'i ilan etti ve ilk Cumhurbaşkanı oldu." },
-          { heading: "Çağdaşlaşma ve Devrimler", text: "Atatürk, Türkiye'yi çağdaş bir ülke yapma hedefiyle çok sayıda toplumsal, hukuksal, kültürel ve ekonomik devrim gerçekleştirdi. Medeni Kanun, harf devrimi, eğitim birliği, kadınlara seçme ve seçilme hakkı, şapka ve kıyafet devrimi gibi yeniliklerle Türk toplumu modernleşti." },
-          { heading: "Vefatı", text: "Büyük önder Mustafa Kemal Atatürk, 10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayata gözlerini yumdu. Eserleri ve ilkeleriyle Türk milletinin hafızasında ve gönlünde yaşamaya devam etmektedir." }
-        ]
-      }
-    };
+    // Resim listesi
+    const galleryImages = [
+      ...Array.from({length: 21}, (_, i) => i+1),
+      ...Array.from({length: 40}, (_, i) => i+23)
+    ].map(num => ({ src: `images/ (${num}).jpg` }));
 
-    function renderLifeContent() {
-      const lang = localStorage.getItem("language") || "tr";
-      const data = LIFE[lang] || LIFE['tr'];
-      const main = document.getElementById("life-content");
-      let html = `<h1>${data.title}</h1>`;
-      data.sections.forEach(sec => {
-        html += `<section><h2>${sec.heading}</h2><p>${sec.text}</p></section>`;
-      });
-      main.innerHTML = html;
+    function renderGallery() {
+      const container = document.getElementById("gallery-vertical");
+      container.innerHTML = galleryImages.map((img, idx) =>
+        `<div class="gallery-item" data-index="${idx}">
+          <img data-src="${img.src}" class="lazy">
+          <div class="gallery-caption">Atatürk</div>
+        </div>`
+      ).join('');
     }
 
     function renderMenu() {
-      const lang = localStorage.getItem("language") || "tr";
-      const labels = { 
-        tr: ["Anasayfa","Hayatı","Galeri","Sözleri","Eserleri","Devrimleri","Nutuk","Kronoloji","Ayarlar"],
-        en: ["Home","Life","Gallery","Quotes","Works","Reforms","The Speech","Chronology","Settings"] 
-      };
+      const labels = ["Anasayfa","Hayatı","Galeri","Sözleri","Eserleri","Devrimleri","Nutuk","Kronoloji","Ayarlar"];
       const hrefs = ["index.html","hayati.html","galeri.html","sozleri.html","eserleri.html","devrimler.html","nutuk.html","kronoloji.html","ayarlar.html"];
-      const menu = document.getElementById("topMenu");
-      menu.innerHTML = (labels[lang] || labels.tr).map((l, i) => 
-        `<a href="${hrefs[i]}"${hrefs[i]==="hayati.html"?' class="active"':''}>${l}</a>`).join('');
+      document.getElementById("topMenu").innerHTML = labels.map((l, i) => 
+        `<a href="${hrefs[i]}"${hrefs[i]==="galeri.html"?' class="active"':''}>${l}</a>`).join('');
     }
 
-    function applySettings() {
-      const isDark = localStorage.getItem("darkMode") === "true";
-      document.body.classList.toggle('dark', isDark);
+    // Otomatik Kaydırma
+    let scrollY = 0;
+    let autoScroll;
+    function startAutoScroll() {
+      const container = document.getElementById("gallery-vertical");
+      autoScroll = setInterval(() => {
+        scrollY += 0.8;
+        if (scrollY > container.scrollHeight / 2) scrollY = 0;
+        container.style.transform = `translateY(${-scrollY}px)`;
+      }, 16);
+    }
+
+    function lazyLoad() {
+      const imgs = document.querySelectorAll('img.lazy');
+      imgs.forEach(img => {
+        img.src = img.dataset.src;
+        img.onload = () => img.classList.add('loaded');
+      });
     }
 
     window.addEventListener("DOMContentLoaded", () => {
-      applySettings();
+      renderGallery();
       renderMenu();
-      renderLifeContent();
+      const container = document.getElementById("gallery-vertical");
+      container.innerHTML += container.innerHTML; // Döngü için kopyala
+      lazyLoad();
+      startAutoScroll();
+
+      // Modal İşlemleri
+      const modal = document.getElementById('modal');
+      const modalImg = document.getElementById('modal-img');
+      document.getElementById('gallery-vertical').onclick = (e) => {
+        const item = e.target.closest('.gallery-item');
+        if(item) {
+          modal.classList.add('open');
+          modalImg.src = item.querySelector('img').src;
+          clearInterval(autoScroll);
+        }
+      };
+      document.getElementById('modal-close').onclick = () => {
+        modal.classList.remove('open');
+        startAutoScroll();
+      };
+
+      // Tema
+      if(localStorage.getItem("darkMode") === "true") document.body.classList.add("dark");
     });
   </script>
 </body>
