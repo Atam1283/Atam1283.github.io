@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
-  <title>Galeri</title>
+  <title>Atatürk Galerisi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     * { box-sizing: border-box; }
@@ -10,20 +10,21 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background: #fff;
-      padding-bottom: 0;
-      min-height: 100vh;
+      padding-bottom: 80px;
       transition: background 0.5s, color 0.5s;
+      min-height: 100vh;
     }
 
-    /* ÜST ALAN KORUYUCU: Galeri resimlerinin menü altında görünmesini engeller */
+    /* ÜST ALAN KORUYUCU: Ana sayfa ile tam uyumlu hiza */
     .header-fixed-area {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 122px; /* Logo + Menü toplam yükseklik */
+      height: 122px;
       background: #fff;
-      z-index: 1099;
+      z-index: 998;
+      border-bottom: 1px solid #eee;
     }
 
     .logo {
@@ -31,10 +32,10 @@
       top: 10px;
       left: 10px;
       width: 120px;
-      z-index: 2000;
-      border-radius: 10px;
+      z-index: 1100;
       background: #fff;
       padding: 5px;
+      border-radius: 10px;
     }
 
     nav.menu {
@@ -44,10 +45,11 @@
       width: 100%;
       background: #fff;
       border-bottom: 2px solid #d9d9d9;
-      z-index: 1101;
+      z-index: 1000;
       overflow-x: auto;
       white-space: nowrap;
     }
+
     nav.menu a {
       display: inline-block;
       padding: 14px 20px;
@@ -57,8 +59,10 @@
       font-weight: bold;
       border-bottom: 3px solid transparent;
     }
-    nav.menu a.active { border-bottom: 3px solid #e30b17; color: #e30b17; }
-    nav.menu::-webkit-scrollbar { display: none; }
+    nav.menu a:hover, nav.menu a.active {
+      border-bottom: 3px solid #e30b17;
+      color: #e30b17;
+    }
 
     .quote-container {
       position: fixed;
@@ -66,218 +70,127 @@
       right: 15px;
       text-align: right;
       z-index: 1200;
-      max-width: 250px;
-    }
-    .quote-text { color: #222; font-size: 13px; font-style: italic; line-height: 1.2; margin-bottom: 2px; }
-    .quote-source { color: #666; font-size: 11px; }
-
-    /* GALERİ ALANI DÜZENLEME */
-    main {
-      padding-top: 130px; /* Menünün altından başlaması için */
-      height: 100vh;
-      width: 100vw;
-      overflow: hidden;
-      position: fixed;
-      left: 0;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
-    .gallery-vertical-outer {
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start; /* Üstten başlasın */
-      position: relative;
-      padding-top: 130px;
+    /* GALERİ İÇERİK ALANI: Ana sayfaya tam hizalı */
+    .main-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 150px 20px 40px 20px; /* Üst boşluk ana sayfa ile aynı */
     }
 
-    .gallery-vertical-inner {
+    .main-content h1 {
+      text-align: center;
+      color: #e30b17;
+      margin-bottom: 40px;
+      font-size: 2.2rem;
+    }
+
+    .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      width: 90vw;
-      transition: transform 0.2s linear;
-      will-change: transform;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
     }
 
     .gallery-item {
-      background: #f0f0f0;
-      border-radius: 18px;
-      overflow: hidden;
-      position: relative;
-      height: 32vh;
-      transition: transform 0.3s;
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 15px;
+      padding: 12px;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
+    
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      border-color: #e30b17;
+      box-shadow: 0 8px 20px rgba(227,11,23,0.15);
+    }
+
     .gallery-item img {
       width: 100%;
-      height: 100%;
+      height: 220px;
       object-fit: cover;
-      opacity: 0;
-      transition: opacity 0.5s;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      background: #eee;
     }
-    .gallery-item img.loaded { opacity: 1; }
 
-    .gallery-caption {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      background: rgba(0,0,0,0.7);
-      color: #fff;
-      font-size: 12px;
-      padding: 8px;
-      text-align: center;
-      opacity: 0;
-      transition: 0.3s;
+    .gallery-item p {
+      margin: 5px 0;
+      font-weight: bold;
+      color: #333;
     }
-    .gallery-item:hover .gallery-caption { opacity: 1; }
 
     /* Karanlık Mod */
     body.dark, body.dark .header-fixed-area, body.dark nav.menu, body.dark .logo { background: #181818 !important; }
-    body.dark .header-fixed-area { border-bottom: 1px solid #353535; }
-    body.dark nav.menu { border-bottom-color: #353535; }
+    body.dark .header-fixed-area { border-bottom: 1px solid #333; }
     body.dark nav.menu a { color: #fff; }
-    body.dark .quote-text { color: #eee; }
-    body.dark .gallery-item { background: #232326; }
+    body.dark .gallery-item { background: #232326; border-color: #444; }
+    body.dark .gallery-item p { color: #eee; }
 
     /* Footer */
     footer {
       position: fixed;
       bottom: 0; left: 0; width: 100%;
-      background: #000;
-      height: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 30px;
+      background: #000; height: 60px;
+      display: flex; justify-content: center; align-items: center; gap: 20px;
       z-index: 1000;
     }
-    footer a { color: #fff; border: 1px solid #888; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
-    footer svg { width: 20px; height: 20px; fill: currentColor; }
+    footer a { color: #fff; border: 1px solid #888; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; }
+    footer svg { width: 18px; height: 18px; fill: currentColor; }
 
-    @media (max-width: 700px) {
-      .gallery-vertical-inner { grid-template-columns: 1fr; width: 95vw; }
-      .header-fixed-area { height: 110px; }
-      .gallery-vertical-outer { padding-top: 115px; }
+    /* Mobil Uyumluluk */
+    @media (max-width: 600px) {
+      .header-fixed-area { height: 115px; }
+      .main-content { padding-top: 130px; }
+      .logo { width: 90px; }
+      nav.menu { top: 65px; }
+      .main-content h1 { font-size: 1.8rem; }
     }
-
-    /* Modal */
-    .modal {
-      display: none; position: fixed; z-index: 9999;
-      left: 0; top: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9);
-      align-items: center; justify-content: center;
-    }
-    .modal.open { display: flex; }
-    .modal-content { max-width: 90%; max-height: 80%; border-radius: 10px; }
-    .modal-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; cursor: pointer; }
   </style>
 </head>
-<body class="has-fadein">
+<body>
+
   <div class="header-fixed-area"></div>
+  
   <a href="index.html" class="logo">
     <img src="images/logo.png" alt="Logo" style="width:100%; border-radius: 5px;">
   </a>
 
   <div class="quote-container">
-    <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
-    <div class="quote-source" id="quote-source">TBMM, 1920</div>
+    <div id="quote-text" style="font-size: 12px; font-style: italic;">"Sanatsız kalan bir milletin hayat damarlarından biri kopmuş demektir."</div>
   </div>
 
   <nav class="menu" id="topMenu"></nav>
 
-  <main>
-    <div class="gallery-vertical-outer">
-      <div class="gallery-vertical-inner" id="gallery-vertical"></div>
-    </div>
-  </main>
-
-  <div class="modal" id="modal">
-    <span class="modal-close" id="modal-close">&times;</span>
-    <img class="modal-content" id="modal-img">
+  <div class="main-content">
+    <h1>Atatürk Galerisi</h1>
+    <div class="gallery-grid" id="gallery-container">
+      <div class="gallery-item">
+        <img src="images/ (1).jpg" alt="Atatürk">
+        <p>Gazi Mustafa Kemal</p>
+      </div>
+      </div>
   </div>
 
   <footer>
     <a href="mailto:atam01283@gmail.com"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/></svg></a>
     <a href="https://instagram.com/atamm1283"><svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg></a>
-    <a href="https://twitter.com/atam01283"><svg viewBox="0 0 24 24"><path d="M19.633 7.997c.013.18.013.362.013.544 0 5.522-4.206 11.894-11.894 11.894-2.363 0-4.563-.69-6.413-1.872.329.038.658.051.998.051 1.961 0 3.766-.659 5.203-1.772-1.833-.035-3.385-1.242-3.918-2.903.257.038.519.064.792.064.38 0 .75-.051 1.1-.145-1.915-.385-3.36-2.077-3.36-4.102v-.052c.564.313 1.214.502 1.905.519-1.127-.752-1.872-2.037-1.872-3.496 0-.77.208-1.49.57-2.108 2.08 2.556 5.197 4.237 8.704 4.419-.072-.308-.108-.629-.108-.96 0-2.312 1.872-4.184 4.184-4.184 1.205 0 2.297.508 3.063 1.322.954-.187 1.85-.535 2.658-1.013-.313.98-.98 1.803-1.85 2.323.848-.099 1.658-.327 2.409-.663-.564.836-1.274 1.574-2.096 2.164z"/></svg></a>
   </footer>
 
   <script>
-    // Resim listesi
-    const galleryImages = [
-      ...Array.from({length: 21}, (_, i) => i+1),
-      ...Array.from({length: 40}, (_, i) => i+23)
-    ].map(num => ({ src: `images/ (${num}).jpg` }));
+    // Menü Render
+    const labels = ["Anasayfa","Hayatı","Galeri","Sözleri","Eserleri","Devrimleri","Nutuk","Kronoloji","Ayarlar"];
+    const hrefs = ["index.html","hayati.html","galeri.html","sozleri.html","eserleri.html","devrimler.html","nutuk.html","kronoloji.html","ayarlar.html"];
+    document.getElementById("topMenu").innerHTML = labels.map((l, i) => 
+      `<a href="${hrefs[i]}"${hrefs[i]==="galeri.html"?' class="active"':''}>${l}</a>`).join('');
 
-    function renderGallery() {
-      const container = document.getElementById("gallery-vertical");
-      container.innerHTML = galleryImages.map((img, idx) =>
-        `<div class="gallery-item" data-index="${idx}">
-          <img data-src="${img.src}" class="lazy">
-          <div class="gallery-caption">Atatürk</div>
-        </div>`
-      ).join('');
-    }
-
-    function renderMenu() {
-      const labels = ["Anasayfa","Hayatı","Galeri","Sözleri","Eserleri","Devrimleri","Nutuk","Kronoloji","Ayarlar"];
-      const hrefs = ["index.html","hayati.html","galeri.html","sozleri.html","eserleri.html","devrimler.html","nutuk.html","kronoloji.html","ayarlar.html"];
-      document.getElementById("topMenu").innerHTML = labels.map((l, i) => 
-        `<a href="${hrefs[i]}"${hrefs[i]==="galeri.html"?' class="active"':''}>${l}</a>`).join('');
-    }
-
-    // Otomatik Kaydırma
-    let scrollY = 0;
-    let autoScroll;
-    function startAutoScroll() {
-      const container = document.getElementById("gallery-vertical");
-      autoScroll = setInterval(() => {
-        scrollY += 0.8;
-        if (scrollY > container.scrollHeight / 2) scrollY = 0;
-        container.style.transform = `translateY(${-scrollY}px)`;
-      }, 16);
-    }
-
-    function lazyLoad() {
-      const imgs = document.querySelectorAll('img.lazy');
-      imgs.forEach(img => {
-        img.src = img.dataset.src;
-        img.onload = () => img.classList.add('loaded');
-      });
-    }
-
-    window.addEventListener("DOMContentLoaded", () => {
-      renderGallery();
-      renderMenu();
-      const container = document.getElementById("gallery-vertical");
-      container.innerHTML += container.innerHTML; // Döngü için kopyala
-      lazyLoad();
-      startAutoScroll();
-
-      // Modal İşlemleri
-      const modal = document.getElementById('modal');
-      const modalImg = document.getElementById('modal-img');
-      document.getElementById('gallery-vertical').onclick = (e) => {
-        const item = e.target.closest('.gallery-item');
-        if(item) {
-          modal.classList.add('open');
-          modalImg.src = item.querySelector('img').src;
-          clearInterval(autoScroll);
-        }
-      };
-      document.getElementById('modal-close').onclick = () => {
-        modal.classList.remove('open');
-        startAutoScroll();
-      };
-
-      // Tema
-      if(localStorage.getItem("darkMode") === "true") document.body.classList.add("dark");
-    });
+    // Tema Ayarı
+    if(localStorage.getItem("darkMode") === "true") document.body.classList.add("dark");
   </script>
+
 </body>
 </html>
