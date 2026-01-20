@@ -13,6 +13,7 @@
       padding-bottom: 80px;
       transition: background 0.5s, color 0.5s, font-size 0.5s, opacity 0.7s;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     /* ÜST ALAN KORUYUCU: Yazıların logonun arkasından geçmesini engeller */
@@ -77,12 +78,12 @@
     .quote-text { color: #222; font-size: 13px; font-style: italic; line-height: 1.3; margin-bottom: 2px; }
     .quote-source { color: #666; font-size: 11px; font-weight: bold; }
 
-    /* İÇERİK ALANI DÜZENLEME */
+    /* İÇERİK ALANI */
     .main-content {
       width: 100%;
       max-width: 900px;
       margin: 0 auto;
-      padding: 150px 20px 40px 20px; /* Üst boşluk sabitlendi */
+      padding: 150px 20px 40px 20px;
       position: relative;
       z-index: 1;
     }
@@ -110,6 +111,7 @@
     body.dark .main-content h1, body.dark .main-content h2 { color: #ff3d3c; }
     body.dark .main-content p { color: #e6e6e6; }
 
+    /* FOOTER (Sosyal Medya İkonları) */
     footer {
       position: fixed;
       bottom: 0;
@@ -123,7 +125,19 @@
       gap: 30px;
       z-index: 1000;
     }
-    footer a { color: #fff; border: 1px solid #888; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; transition: 0.3s; }
+    footer a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #888;
+      border-radius: 50%;
+      color: #fff;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    footer a:hover { border-color: #e30b17; color: #e30b17; }
     footer svg { width: 20px; height: 20px; fill: currentColor; }
 
     @media (max-width: 600px) {
@@ -149,7 +163,18 @@
   </div>
   <nav class="menu" id="topMenu"></nav>
   <div class="main-content" id="life-content"></div>
-  <footer></footer>
+  
+  <footer>
+    <a href="mailto:atam01283@gmail.com">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/></svg>
+    </a>
+    <a href="https://instagram.com/atamm1283" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>
+    </a>
+    <a href="https://twitter.com/atam01283" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M19.633 7.997c.013.18.013.362.013.544 0 5.522-4.206 11.894-11.894 11.894-2.363 0-4.563-.69-6.413-1.872.329.038.658.051.998.051 1.961 0 3.766-.659 5.203-1.772-1.833-.035-3.385-1.242-3.918-2.903.257.038.519.064.792.064.38 0 .75-.051 1.1-.145-1.915-.385-3.36-2.077-3.36-4.102v-.052c.564.313 1.214.502 1.905.519-1.127-.752-1.872-2.037-1.872-3.496 0-.77.208-1.49.57-2.108 2.08 2.556 5.197 4.237 8.704 4.419-.072-.308-.108-.629-.108-.96 0-2.312 1.872-4.184 4.184-4.184 1.205 0 2.297.508 3.063 1.322.954-.187 1.85-.535 2.658-1.013-.313.98-.98 1.803-1.85 2.323.848-.099 1.658-.327 2.409-.663-.564.836-1.274 1.574-2.096 2.164z"/></svg>
+    </a>
+  </footer>
 
   <script>
     const LIFE = {
@@ -163,8 +188,7 @@
           { heading: "Çağdaşlaşma ve Devrimler", text: "Atatürk, Türkiye'yi çağdaş bir ülke yapma hedefiyle çok sayıda toplumsal, hukuksal, kültürel ve ekonomik devrim gerçekleştirdi. Medeni Kanun, harf devrimi, eğitim birliği, kadınlara seçme ve seçilme hakkı, şapka ve kıyafet devrimi gibi yeniliklerle Türk toplumu modernleşti." },
           { heading: "Vefatı", text: "Büyük önder Mustafa Kemal Atatürk, 10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayata gözlerini yumdu. Eserleri ve ilkeleriyle Türk milletinin hafızasında ve gönlünde yaşamaya devam etmektedir." }
         ]
-      },
-      en: { /* İngilizce metinler buraya eklenebilir */ }
+      }
     };
 
     function renderLifeContent() {
@@ -180,9 +204,13 @@
 
     function renderMenu() {
       const lang = localStorage.getItem("language") || "tr";
-      const labels = { tr: ["Anasayfa","Hayatı","Galeri","Sözleri","Eserleri","Devrimleri","Nutuk","Kronoloji","Ayarlar"] };
+      const labels = { 
+        tr: ["Anasayfa","Hayatı","Galeri","Sözleri","Eserleri","Devrimleri","Nutuk","Kronoloji","Ayarlar"],
+        en: ["Home","Life","Gallery","Quotes","Works","Reforms","The Speech","Chronology","Settings"] 
+      };
       const hrefs = ["index.html","hayati.html","galeri.html","sozleri.html","eserleri.html","devrimler.html","nutuk.html","kronoloji.html","ayarlar.html"];
-      document.getElementById("topMenu").innerHTML = labels.tr.map((l, i) => 
+      const menu = document.getElementById("topMenu");
+      menu.innerHTML = (labels[lang] || labels.tr).map((l, i) => 
         `<a href="${hrefs[i]}"${hrefs[i]==="hayati.html"?' class="active"':''}>${l}</a>`).join('');
     }
 
