@@ -5,7 +5,6 @@
   <title>Atatürk'ün Hayatı</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    /* ...aynı CSS, değişiklik yok... */
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -14,6 +13,7 @@
       padding-bottom: 80px;
       transition: background 0.5s, color 0.5s, font-size 0.5s, opacity 0.7s;
       min-height: 100vh;
+      overflow-x: hidden;
     }
     .logo {
       position: fixed;
@@ -25,23 +25,13 @@
       background: #fff;
       padding: 5px;
     }
-    .menu-plaka {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 120px;
-      background: #fff;
-      z-index: 998;
-      pointer-events: none;
-    }
     .menu-background {
       position: fixed;
       top: 70px;
       left: 0;
       width: 100vw;
       height: 50px;
-      background: #fff;
+      background: inherit;
       z-index: 999;
       pointer-events: none;
     }
@@ -55,6 +45,7 @@
       z-index: 1000;
       overflow-x: auto;
       white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
     }
     nav.menu a {
       display: inline-block;
@@ -66,18 +57,16 @@
       border-bottom: 3px solid transparent;
       transition: all 0.3s ease;
     }
-    nav.menu a:hover,
-    nav.menu a.active {
+    nav.menu a:hover, nav.menu a.active {
       border-bottom: 3px solid #e30b17;
       color: #e30b17;
     }
-    nav.menu::-webkit-scrollbar {
-      display: none;
-    }
+    nav.menu::-webkit-scrollbar { display: none; }
+
     .quote-container {
       position: fixed;
       top: 10px;
-      right: 10px;
+      right: 15px;
       text-align: right;
       z-index: 1200;
       max-width: 250px;
@@ -85,23 +74,63 @@
     .quote-text {
       color: #222;
       font-size: 13px;
-      font-family: Arial, sans-serif;
-      line-height: 1.2;
+      font-style: italic;
+      line-height: 1.3;
       margin-bottom: 2px;
       transition: opacity 0.5s;
     }
     .quote-source {
       color: #666;
       font-size: 11px;
-      font-family: Arial, sans-serif;
+      font-weight: bold;
       transition: opacity 0.5s;
     }
-    .fade-out {
-      opacity: 0 !important;
+    .fade-out { opacity: 0 !important; }
+
+    /* İçerik Alanı */
+    .main-content {
+      width: 100%;
+      max-width: 900px;
+      margin: 140px auto 40px auto;
+      padding: 0 20px;
     }
-    .fade-in {
-      opacity: 1 !important;
+    .main-content section {
+      width: 100%;
+      background: #fafafa;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+      padding: 30px;
+      margin-bottom: 25px;
+      transition: background 0.5s;
     }
+    .main-content h1 {
+      font-size: 2.2rem;
+      color: #e30b17;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .main-content h2 {
+      font-size: 1.4rem;
+      color: #e30b17;
+      margin-bottom: 15px;
+    }
+    .main-content p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #333;
+    }
+
+    /* Karanlık Mod */
+    body.dark nav.menu, body.dark .logo, body.dark .menu-background {
+      background: #222 !important;
+      border-bottom-color: #444;
+    }
+    body.dark nav.menu a { color: #fff; }
+    body.dark .quote-text { color: #eee; }
+    body.dark .quote-source { color: #bbb; }
+    body.dark .main-content section { background: #2c2c2c; box-shadow: 0 2px 16px rgba(0,0,0,0.2); }
+    body.dark .main-content p { color: #ddd; }
+
     footer {
       position: fixed;
       bottom: 0;
@@ -115,283 +144,75 @@
       gap: 30px;
       z-index: 1000;
     }
-    footer a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 40px;
-      height: 40px;
-      border: 1px solid #888;
-      border-radius: 50%;
-      color: #fff;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    footer a:hover {
-      border-color: #e30b17;
-      color: #e30b17;
-    }
-    footer svg {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
-    }
+    footer a { color: #fff; border: 1px solid #888; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; transition: 0.3s; }
+    footer a:hover { border-color: #e30b17; color: #e30b17; }
+    footer svg { width: 20px; height: 20px; fill: currentColor; }
+
+    /* --- MOBİL UYUMLULUK --- */
     @media (max-width: 600px) {
-      .quote-container {
-        max-width: 160px;
-      }
-      .quote-text {
-        font-size: 10px;
-      }
-      .quote-source {
-        font-size: 9px;
-      }
-      .menu-plaka {
-        height: 100px;
-      }
-      .menu-background {
-        height: 50px;
-      }
-      nav.menu {
-        top: 70px;
-        height: 50px;
-      }
-      nav.menu a {
-        padding: 10px 12px 9px 12px;
-        font-size: 13px;
-      }
-    }
-    .main-content {
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-      margin-top: 140px;
-      margin-bottom: 80px;
-      padding: 0 12px;
-    }
-    .main-content section {
-      max-width:700px;
-      width:100%;
-      background:#fafafa;
-      border-radius:18px;
-      box-shadow:0 2px 16px #0001;
-      padding:38px 28px 30px 28px;
-      margin-bottom:28px;
-    }
-    .main-content h1 {
-      font-size:2.15rem;
-      font-weight:bold;
-      color:#e30b17;
-      letter-spacing:.8px;
-      margin-bottom:24px;
-      text-align:center;
-    }
-    .main-content h2 {
-      font-size:1.2rem;
-      font-weight:bold;
-      color:#e30b17;
-      margin-bottom:15px;
-      letter-spacing:.4px;
-    }
-    .main-content p {
-      color:#222;
-      font-size:1.06rem;
-      line-height:1.75;
-      margin-bottom:14px;
-    }
-    .main-content ul {
-      color:#222;
-      font-size:1.02rem;
-      line-height:1.7;
-      margin-bottom:0px;
-      padding-left: 22px;
-    }
-    @media (max-width: 600px) {
-      .main-content { margin-top: 120px; padding: 0 4px; }
-      .main-content section { padding:18px 7px 14px 7px; }
-      .main-content h1 { font-size:1.1rem; }
-      .main-content h2 { font-size:.92rem; }
-      .main-content p, .main-content ul { font-size: .98rem; }
-    }
-    body.dark {
-      background: #181818 !important;
-      color: #f2f2f2 !important;
-    }
-    body.dark .main-content section {
-      background: #232326;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.21);
-    }
-    body.dark .main-content h1,
-    body.dark .main-content h2 {
-      color: #ff3d3c;
-    }
-    body.dark .main-content p,
-    body.dark .main-content ul {
-      color: #e6e6e6;
-    }
-    body.dark nav.menu {
-      background: #181818;
-      border-bottom: 2px solid #353535;
-    }
-    body.dark nav.menu a {
-      color: #f2f2f2;
-    }
-    body.dark nav.menu a.active,
-    body.dark nav.menu a:hover {
-      color: #ff3d3c;
-      border-bottom: 3px solid #ff3d3c;
-      background: transparent;
+      .logo { width: 90px; top: 15px; }
+      .quote-container { max-width: 180px; top: 15px; }
+      .quote-text { font-size: 11px; }
+      .quote-source { font-size: 9px; }
+      
+      .main-content { margin-top: 150px; padding: 0 15px; }
+      .main-content section { padding: 20px; }
+      .main-content h1 { font-size: 1.6rem; }
+      .main-content h2 { font-size: 1.2rem; }
+      .main-content p { font-size: 1rem; }
+      
+      nav.menu { top: 70px; height: 50px; }
+      nav.menu a { padding: 15px 15px; font-size: 13px; }
     }
   </style>
 </head>
-<body>
-  <div class="menu-plaka"></div>
+<body class="has-fadein">
   <a href="index.html" class="logo">
-    <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
+    <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 5px;" />
   </a>
   <div class="menu-background"></div>
   <div class="quote-container">
     <div class="quote-text" id="quote-text">"Hayatta en hakiki mürşit ilimdir."</div>
     <div class="quote-source" id="quote-source">Atatürk, 1924</div>
   </div>
-  <nav class="menu" id="topMenu">
-    <!-- Menü JS ile doldurulacak -->
-  </nav>
-  <div class="main-content" id="life-content">
-    <!-- İçerik JS ile doldurulacak -->
-  </div>
+  <nav class="menu" id="topMenu"></nav>
+  
+  <div class="main-content" id="life-content"></div>
+
   <footer></footer>
+
   <script>
-    // Menü çoklu dil için
     const MENU_LABELS = {
       tr: ["Anasayfa","Hayatı","Galeri","Sözleri","Eserleri","Devrimleri","Nutuk","Kronoloji","Ayarlar"],
       en: ["Home","Life","Gallery","Quotes","Works","Reforms","The Speech","Chronology","Settings"],
       az: ["Ana səhifə","Həyatı","Qalereya","Sitatlar","Əsərləri","İslahatlar","Nutuq","Kronologiya","Tənzimləmələr"]
     };
-    const MENU_HREFS = [
-      "index.html",
-      "hayati.html",
-      "galeri.html",
-      "sozleri.html",
-      "eserleri.html",
-      "devrimler.html",
-      "nutuk.html",
-      "kronoloji.html",
-      "ayarlar.html"
-    ];
-    function getMenuLang() {
-      return localStorage.getItem("language") || "tr";
-    }
+    const MENU_HREFS = ["index.html","hayati.html","galeri.html","sozleri.html","eserleri.html","devrimler.html","nutuk.html","kronoloji.html","ayarlar.html"];
+    
     function renderMenu() {
-      const lang = getMenuLang();
+      const lang = localStorage.getItem("language") || "tr";
       const menu = document.getElementById("topMenu");
-      const current = window.location.pathname.split("/").pop() || "index.html";
+      const current = "hayati.html";
       menu.innerHTML = MENU_LABELS[lang].map((label, i) =>
         `<a href="${MENU_HREFS[i]}"${MENU_HREFS[i] === current ? ' class="active"' : ''}>${label}</a>`
       ).join('');
     }
-    window.addEventListener("DOMContentLoaded", renderMenu);
-    window.addEventListener("storage", (e) => {
-      if (e.key === "language") renderMenu();
-    });
-  </script>
-  <script>
-    // Çoklu dil içeriği (TR, EN, AZ)
+
     const LIFE = {
-      tr: {
-        title: "Atatürk'ün Hayatı",
-        sections: [
-          {
-            heading: "Çocukluğu ve Eğitimi",
-            text: `Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. İlk öğrenimine mahalle mektebinde başladı, ardından Şemsi Efendi Okulu'na geçti. Babasının ölümü üzerine kısa bir süre Rapla Çiftliği'nde kaldıktan sonra eğitimine Selanik Mülkiye Rüştiyesi'nde devam etti. Askeri eğitime olan ilgisiyle Manastır Askeri İdadisi ve daha sonra İstanbul Harp Okulu'na geçti.`
-          },
-          {
-            heading: "Askerlik ve Trablusgarp",
-            text: `1905 yılında Harp Akademisi'nden kurmay yüzbaşı olarak mezun oldu. Şam, Selanik ve Manastır'da çeşitli görevlerde bulundu. 1911 yılında Trablusgarp Savaşı'nda (bugünkü Libya) İtalyanlara karşı başarılı savunmalar yaptı. Burada gösterdiği kahramanlık, onun yükselişinde önemli bir rol oynadı.`
-          },
-          {
-            heading: "Balkan Savaşları ve I. Dünya Savaşı",
-            text: `Balkan Savaşları'nda Edirne'nin geri alınmasında görev aldı. I. Dünya Savaşı'nda Çanakkale Cephesi'nde gösterdiği üstün askeri deha ve liderlik, Türk milletinin kaderini değiştirdi ve "Anafartalar Kahramanı" olarak ün kazandı. Ardından Kafkas ve Suriye cephelerinde de görev yaptı.`
-          },
-          {
-            heading: "Kurtuluş Savaşı ve Cumhuriyet",
-            text: `Mondros Mütarekesi sonrasında İstanbul'a dönen Mustafa Kemal, 19 Mayıs 1919'da Samsun'a çıkarak milli mücadelenin fiili liderliğini üstlendi. Erzurum ve Sivas Kongreleri'nin ardından Ankara'da Türkiye Büyük Millet Meclisi'ni açtı. Kurtuluş Savaşı'nı başarıyla yönetip 1922'de ülkeyi işgalden kurtardı. 29 Ekim 1923'te Cumhuriyet'i ilan etti ve ilk Cumhurbaşkanı oldu.`
-          },
-          {
-            heading: "Çağdaşlaşma ve Devrimler",
-            text: `Atatürk, Türkiye'yi çağdaş bir ülke yapma hedefiyle çok sayıda toplumsal, hukuksal, kültürel ve ekonomik devrim gerçekleştirdi. Medeni Kanun, harf devrimi, eğitim birliği, kadınlara seçme ve seçilme hakkı, şapka ve kıyafet devrimi gibi yeniliklerle Türk toplumu modernleşti.`
-          },
-          {
-            heading: "Vefatı",
-            text: `Büyük önder Mustafa Kemal Atatürk, 10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayata gözlerini yumdu. Eserleri ve ilkeleriyle Türk milletinin hafızasında ve gönlünde yaşamaya devam etmektedir.`
-          }
-        ]
-      },
-      en: {
-        title: "The Life of Atatürk",
-        sections: [
-          {
-            heading: "Childhood and Education",
-            text: `Mustafa Kemal Atatürk was born in 1881 in Thessaloniki. His father was Ali Rıza Efendi and his mother was Zübeyde Hanım. He started his education at a neighborhood school and then attended Şemsi Efendi School. After his father's death, he stayed at Rapla Farm for a short time and continued his education at Selanik Mülkiye Rüştiyesi. With his interest in military education, he moved to Manastır Military High School and later to Istanbul Military Academy.`
-          },
-          {
-            heading: "Military Career and Tripoli",
-            text: `He graduated from the Military Academy as a staff captain in 1905. He served in various positions in Damascus, Thessaloniki, and Manastır. In 1911, during the Italo-Turkish War in present-day Libya, he successfully defended against the Italians. His heroism there played an important role in his rise.`
-          },
-          {
-            heading: "Balkan Wars and World War I",
-            text: `He took part in the recapture of Edirne during the Balkan Wars. In World War I, his exceptional military genius and leadership at the Gallipoli Front changed the fate of the Turkish nation, earning him the title "Hero of Anafartalar." He also served in the Caucasus and Syrian fronts.`
-          },
-          {
-            heading: "War of Independence and Republic",
-            text: `After the Armistice of Mudros, Mustafa Kemal returned to Istanbul and on May 19, 1919, went to Samsun to lead the national struggle. After the Erzurum and Sivas Congresses, he opened the Grand National Assembly in Ankara. He successfully led the War of Independence and liberated the country from occupation in 1922. On October 29, 1923, the Republic was proclaimed and he became its first President.`
-          },
-          {
-            heading: "Modernization and Reforms",
-            text: `Aiming to make Turkey a modern country, Atatürk carried out numerous social, legal, cultural, and economic reforms. With innovations such as the Civil Code, alphabet reform, unification of education, women's suffrage, and the hat and clothing reform, Turkish society modernized.`
-          },
-          {
-            heading: "Death",
-            text: `The great leader Mustafa Kemal Atatürk passed away on November 10, 1938, at Dolmabahçe Palace in Istanbul. With his works and principles, he continues to live on in the memory and hearts of the Turkish nation.`
-          }
-        ]
-      },
-      az: {
-        title: "Atatürkün Həyatı",
-        sections: [
-          {
-            heading: "Uşaqlığı və Təhsili",
-            text: `Mustafa Kamal Atatürk 1881-ci ildə Salonikidə anadan olub. Atası Əli Rza Əfəndi, anası Zübeydə xanımdır. İlk təhsilini məhəllə məktəbində alıb, sonra Şəmsi Əfəndi məktəbinə keçib. Atası vəfat etdikdən sonra qısa müddət Rapla fermasında qalıb, sonra təhsilini Saloniki Mülki Rüşdiyəsində davam etdirib. Hərbi təhsilə marağı ilə Manastır Hərbi Liseyinə, sonra isə İstanbul Hərbi Akademiyasına daxil olub.`
-          },
-          {
-            heading: "Hərbi Xidmət və Tripoli",
-            text: `1905-ci ildə Hərbi Akademiyanı qərargah kapitanı kimi bitirib. Şam, Saloniki və Manastırda müxtəlif vəzifələrdə çalışıb. 1911-ci ildə indiki Liviyada Tripoli müharibəsində italyanlara qarşı uğurlu müdafiələr edib. Buradakı qəhrəmanlığı onun yüksəlişində mühüm rol oynayıb.`
-          },
-          {
-            heading: "Balkan Müharibələri və I Dünya Müharibəsi",
-            text: `Balkan müharibələrində Edirnenin geri alınmasında iştirak edib. I Dünya Müharibəsində Çanaqqala cəbhəsində göstərdiyi hərbi dəha və liderlik, türk millətinin taleyini dəyişib və ona "Anafartalar Qəhrəmanı" adını qazandırıb. Daha sonra Qafqaz və Suriya cəbhələrində də xidmət edib.`
-          },
-          {
-            heading: "İstiqlal Müharibəsi və Respublika",
-            text: `Mudros Müqaviləsindən sonra Mustafa Kamal İstanbula qayıdıb və 1919-cu il mayın 19-da Samsuna çıxaraq milli mübarizənin liderliyini öz üzərinə götürüb. Ərzurum və Sivas qurultaylarından sonra Ankarada Böyük Millət Məclisini açıb. İstiqlal Müharibəsini uğurla idarə edib və 1922-ci ildə ölkəni işğaldan azad edib. 29 oktyabr 1923-cü ildə Respublika elan olunub və Atatürk ilk Prezident olub.`
-          },
-          {
-            heading: "Müasirləşmə və İslahatlar",
-            text: `Atatürk Türkiyəni müasir bir ölkə etmək məqsədilə çoxlu sosial, hüquqi, mədəni və iqtisadi islahatlar həyata keçirib. Mülki Qanun, əlifba islahatı, təhsilin birləşdirilməsi, qadınlara səsvermə və seçilmə hüququ, şapka və geyim islahatı kimi yeniliklərlə türk cəmiyyəti müasirləşib.`
-          },
-          {
-            heading: "Vəfatı",
-            text: `Böyük lider Mustafa Kamal Atatürk 1938-ci il noyabrın 10-da İstanbul Dolmabahçe Sarayında vəfat edib. Onun əsərləri və prinsipləri türk millətinin yaddaşında və qəlbində yaşayır.`
-          }
-        ]
-      }
+      tr: { title: "Atatürk'ün Hayatı", sections: [
+          { heading: "Çocukluğu ve Eğitimi", text: "Mustafa Kemal Atatürk, 1881 yılında Selanik'te doğdu. Babası Ali Rıza Efendi, annesi Zübeyde Hanım'dır. İlk öğrenimine mahalle mektebinde başladı..." },
+          { heading: "Askerlik ve Trablusgarp", text: "1905 yılında Harp Akademisi'nden kurmay yüzbaşı olarak mezun oldu. Şam, Selanik ve Manastır'da çeşitli görevlerde bulundu..." },
+          { heading: "Vefatı", text: "Büyük önder Mustafa Kemal Atatürk, 10 Kasım 1938'de İstanbul Dolmabahçe Sarayı'nda hayata gözlerini yumdu." }
+      ]},
+      en: { title: "The Life of Atatürk", sections: [
+          { heading: "Childhood and Education", text: "Mustafa Kemal Atatürk was born in 1881 in Thessaloniki. His father was Ali Rıza Efendi and his mother was Zübeyde Hanım..." },
+          { heading: "Death", text: "The great leader Mustafa Kemal Atatürk passed away on November 10, 1938, at Dolmabahçe Palace." }
+      ]}
     };
-    function getLang() {
-      return localStorage.getItem("language") || "tr";
-    }
+
     function renderLifeContent() {
-      const lang = getLang();
-      const data = LIFE[lang];
+      const lang = localStorage.getItem("language") || "tr";
+      const data = LIFE[lang] || LIFE['tr'];
       const main = document.getElementById("life-content");
       let html = `<h1>${data.title}</h1>`;
       data.sections.forEach(sec => {
@@ -399,141 +220,29 @@
       });
       main.innerHTML = html;
     }
-    window.addEventListener("DOMContentLoaded", renderLifeContent);
-    window.addEventListener("storage", (e) => {
-      if (e.key === "language") renderLifeContent();
-    });
-  </script>
-  <script>
-    // Söz animasyonu (tasarıma dokunulmaz)
-    const quotes = [
-      { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
-      { text: '"Yurtta sulh, cihanda sulh."', source: "Atatürk, Söylev ve Demeçler" },
-      { text: '"Hayatta en hakiki mürşit ilimdir."', source: "Atatürk, 1924" },
-      { text: '"Türk milleti çalışkandır, zekidir."', source: "Atatürk, 1933" }
-    ];
-    let quoteIndex = 0;
-    const quoteText = document.getElementById("quote-text");
-    const quoteSource = document.getElementById("quote-source");
-    function showQuote(index) {
-      quoteText.classList.add('fade-out');
-      quoteSource.classList.add('fade-out');
-      setTimeout(() => {
-        quoteText.textContent = quotes[index].text;
-        quoteSource.textContent = quotes[index].source;
-        quoteText.classList.remove('fade-out');
-        quoteSource.classList.remove('fade-out');
-      }, 450);
-    }
-    setInterval(() => {
-      quoteIndex = (quoteIndex + 1) % quotes.length;
-      showQuote(quoteIndex);
-    }, 5000);
-  </script>
-  <script>
-    // Ortak ayar scripti (tasarıma dokunmadan)
-    const LANGUAGES = {
-      tr: {
-        title: "Ayarlar",
-        theme: "Tema",
-        darkMode: "Koyu Mod",
-        notifications: "Bildirimleri Aç",
-        fontSize: "Yazı Boyutu",
-        language: "Dil",
-        save: "Kaydet",
-        saved: "Ayarlar kaydedildi!",
-        info: "Ayarlarınız tarayıcınızda saklanır.<br>Koyu Mod, Yazı Boyutu ve Dil tüm sayfalara yansır.",
-        options: { normal: "Normal", large: "Büyük", xlarge: "Çok Büyük" },
-        tr: "Türkçe",
-        en: "İngilizce"
-      },
-      en: {
-        title: "Settings",
-        theme: "Theme",
-        darkMode: "Dark Mode",
-        notifications: "Enable Notifications",
-        fontSize: "Font Size",
-        language: "Language",
-        save: "Save",
-        saved: "Settings saved!",
-        info: "Your settings are stored in your browser.<br>Dark Mode, Font Size and Language apply to all pages.",
-        options: { normal: "Normal", large: "Large", xlarge: "Extra Large" },
-        tr: "Turkish",
-        en: "English"
-      }
-    };
-    function getLangSettings() { return localStorage.getItem("language") || "tr"; }
+
     function applySettings() {
       const isDark = localStorage.getItem("darkMode") === "true";
       const fontSize = localStorage.getItem("fontSize") || "normal";
+      document.body.classList.toggle('dark', isDark);
       document.body.style.background = isDark ? "#222" : "#fff";
       document.body.style.color = isDark ? "#fff" : "#222";
-      document.body.classList.toggle('dark', isDark);
-      switch(fontSize) {
-        case 'large': document.body.style.fontSize = "1.18em"; break;
-        case 'xlarge': document.body.style.fontSize = "1.32em"; break;
-        default: document.body.style.fontSize = "1em";
-      }
-      // Fade-in animasyonu (animasyonsuz sayfa için)
-      if (!document.querySelector(".timeline-event") && !document.body.classList.contains("has-fadein")) {
-        document.body.style.opacity = "0";
-        document.body.style.transition = "opacity 0.7s";
-        setTimeout(() => { document.body.style.opacity = "1"; }, 10);
-        document.body.classList.add("has-fadein");
-      }
-      if (document.getElementById("settingsForm")) {
-        const t = LANGUAGES[getLangSettings()];
-        document.querySelector('.settings-title').textContent = t.title;
-        document.querySelectorAll('.section-label')[0].textContent = t.theme;
-        document.querySelector('.toggle-label[for=darkMode]').textContent = t.darkMode;
-        document.querySelectorAll('.section-label')[1].textContent = t.notifications;
-        document.querySelector('.toggle-label[for=notifications]').textContent = t.notifications;
-        document.querySelectorAll('.section-label')[2].textContent = t.fontSize;
-        document.querySelectorAll('.section-label')[3].textContent = t.language;
-        document.getElementById("fontSize").options[0].textContent = t.options.normal;
-        document.getElementById("fontSize").options[1].textContent = t.options.large;
-        document.getElementById("fontSize").options[2].textContent = t.options.xlarge;
-        document.getElementById("settings-save-label").textContent = t.save;
-        document.getElementById("savedMsg").textContent = t.saved;
-        document.querySelector('.settings-info').innerHTML = t.info;
-        document.getElementById("language").options[0].textContent = t.tr;
-        document.getElementById("language").options[1].textContent = t.en;
-      }
+      if(fontSize === 'large') document.body.style.fontSize = "1.15em";
+      else if(fontSize === 'xlarge') document.body.style.fontSize = "1.25em";
     }
+
     function updateFooterLinks() {
-      const footer = document.querySelector("footer");
-      if (!footer) return;
-      footer.innerHTML = `
-        <a href="mailto:atam01283@gmail.com" aria-label="Gmail">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/>
-          </svg>
-        </a>
-        <a href="https://instagram.com/atamm1283" target="_blank" aria-label="Instagram">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-          </svg>
-        </a>
-        <a href="https://twitter.com/atam01283" target="_blank" aria-label="Twitter">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M19.633 7.997c.013.18.013.362.013.544 0 5.522-4.206 11.894-11.894 11.894-2.363 0-4.563-.69-6.413-1.872.329.038.658.051.998.051 1.961 0 3.766-.659 5.203-1.772-1.833-.035-3.385-1.242-3.918-2.903.257.038.519.064.792.064.38 0 .75-.051 1.1-.145-1.915-.385-3.36-2.077-3.36-4.102v-.052c.564.313 1.214.502 1.905.519-1.127-.752-1.872-2.037-1.872-3.496 0-.77.208-1.49.57-2.108 2.08 2.556 5.197 4.237 8.704 4.419-.072-.308-.108-.629-.108-.96 0-2.312 1.872-4.184 4.184-4.184 1.205 0 2.297.508 3.063 1.322.954-.187 1.85-.535 2.658-1.013-.313.98-.98 1.803-1.85 2.323.848-.099 1.658-.327 2.409-.663-.564.836-1.274 1.574-2.096 2.164z"/>
-          </svg>
-        </a>
-      `;
+      document.querySelector("footer").innerHTML = `
+        <a href="mailto:atam01283@gmail.com"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/></svg></a>
+        <a href="https://instagram.com/atamm1283" target="_blank"><svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg></a>
+        <a href="https://twitter.com/atam01283" target="_blank"><svg viewBox="0 0 24 24"><path d="M19.633 7.997c.013.18.013.362.013.544 0 5.522-4.206 11.894-11.894 11.894-2.363 0-4.563-.69-6.413-1.872.329.038.658.051.998.051 1.961 0 3.766-.659 5.203-1.772-1.833-.035-3.385-1.242-3.918-2.903.257.038.519.064.792.064.38 0 .75-.051 1.1-.145-1.915-.385-3.36-2.077-3.36-4.102v-.052c.564.313 1.214.502 1.905.519-1.127-.752-1.872-2.037-1.872-3.496 0-.77.208-1.49.57-2.108 2.08 2.556 5.197 4.237 8.704 4.419-.072-.308-.108-.629-.108-.96 0-2.312 1.872-4.184 4.184-4.184 1.205 0 2.297.508 3.063 1.322.954-.187 1.85-.535 2.658-1.013-.313.98-.98 1.803-1.85 2.323.848-.099 1.658-.327 2.409-.663-.564.836-1.274 1.574-2.096 2.164z"/></svg></a>`;
     }
+
     window.addEventListener("DOMContentLoaded", () => {
       applySettings();
+      renderMenu();
       renderLifeContent();
       updateFooterLinks();
-    });
-    window.addEventListener("storage", (e) => {
-      if (e.key === "language") {
-        renderLifeContent();
-        renderMenu();
-      }
-      if (e.key === "darkMode" || e.key === "fontSize") {
-        applySettings();
-      }
     });
   </script>
 </body>
