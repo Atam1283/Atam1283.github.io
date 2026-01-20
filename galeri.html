@@ -3,28 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Atatürk Galerisi | Atam1283</title>
+  <title>Galeri - Atatürk</title>
   <style>
-    /* 1. DOSYADAN GELEN GENEL STİLLER (GÖNDERDİĞİN 2. KOD) */
+    /* INDEX CSS İLE BİREBİR AYNI TEMEL AYARLAR */
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #fff;
       color: #222;
-      overflow: hidden; /* Galeri kendi içinde akacak */
+      overflow: hidden; /* Sayfa kaymasın galeri aksın */
       height: 100vh;
     }
 
+    /* INDEX'TEKİ HEADER YAPISI */
     header {
       position: fixed;
-      top: 0; left: 0; width: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
       background: #fff;
       display: flex;
       align-items: center;
       padding: 10px 20px;
       box-sizing: border-box;
-      z-index: 2000; /* Daha yükseğe çektik */
-      border-bottom: 2px solid #eee;
+      z-index: 1100;
+      border-bottom: 1px solid #eee;
+    }
+
+    /* Menü altına beyaz plak (Senin CSS'indeki yapıyı koruduk) */
+    header::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 20px;
+      background: white;
+      z-index: 1000;
     }
 
     .logo {
@@ -34,19 +49,9 @@
       object-fit: contain;
     }
 
-    .master-edition-text {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 13px;
-      font-weight: bold;
-      color: #333;
-    }
-
     nav.menu {
       flex-grow: 1;
       margin-left: 20px;
-      margin-top: 50px; /* Menüyü logonun altına, hizaya aldık */
       overflow-x: auto;
       white-space: nowrap;
       -webkit-overflow-scrolling: touch;
@@ -62,157 +67,156 @@
       font-weight: 600;
       font-size: 15px;
       border-bottom: 3px solid transparent;
+      transition: border-color 0.3s ease, color 0.3s ease;
     }
-    nav.menu a.active { color: #e30b17; border-bottom-color: #e30b17; }
 
-    /* 2. GALERİ ÖZEL AYARLARI (GÖNDERDİĞİN 1. KODUN MODERN HALİ) */
-    main.gallery-content {
-      margin-top: 130px; /* Header + Beyaz plak boşluğu */
-      height: calc(100vh - 190px);
+    nav.menu a:hover,
+    nav.menu a.active {
+      color: #e30b17;
+      border-bottom-color: #e30b17;
+    }
+
+    /* GALERİ İÇERİK ALANI - INDEX MENÜSÜNE GÖRE HİZALAMA */
+    main.content {
+      margin-top: 100px; /* Menünün tam altında başlaması için */
+      height: calc(100vh - 160px); /* Ekran - (Header + Footer) */
       overflow: hidden;
       position: relative;
-      z-index: 1; /* Tıklanabilir olması için header'dan düşük ama boşta */
+      z-index: 5; /* Menünün (1100) altında ama tıklanabilir */
     }
 
-    .gallery-stream {
+    .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 20px;
       padding: 20px;
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
-    .gallery-item {
+    .gallery-card {
       background: #fff;
-      border: 2px solid #eee;
-      border-radius: 10px;
-      padding: 10px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .gallery-item:hover {
-      transform: scale(1.05);
-      border-color: #e30b17;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    .gallery-item img {
-      width: 100%;
-      height: 200px;
+      border: 1px solid #eee;
       border-radius: 8px;
-      object-fit: cover;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease;
     }
+    .gallery-card:hover { transform: translateY(-5px); border-color: #e30b17; }
+    .gallery-card img { width: 100%; height: 220px; object-fit: cover; pointer-events: none; }
 
-    /* 3. MODAL SİSTEMİ (FOTONUN İÇİNE GİRİP DEĞİŞTİRME) */
+    /* FULLSCREEN MODAL */
     .modal {
       display: none;
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.95);
-      z-index: 5000;
+      background: rgba(0,0,0,0.98);
+      z-index: 2000;
       flex-direction: column;
       justify-content: center; align-items: center;
     }
-    .modal.show { display: flex; }
-    .modal img { max-width: 85%; max-height: 75%; border: 3px solid #fff; border-radius: 10px; }
+    .modal.active { display: flex; }
+    .modal img { max-width: 90%; max-height: 80%; border: 2px solid #fff; }
     
-    .modal-nav {
-      position: absolute; width: 100%; display: flex; justify-content: space-between; padding: 0 30px;
-    }
+    .close-btn { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; cursor: pointer; }
+    
     .nav-btn {
-      background: rgba(255,255,255,0.2); color: white; border: none;
-      padding: 20px; font-size: 30px; border-radius: 50%; cursor: pointer;
+      position: absolute; top: 50%; width: 100%;
+      display: flex; justify-content: space-between; padding: 0 20px;
+      pointer-events: none;
     }
-    .nav-btn:hover { background: #e30b17; }
+    .nav-btn button {
+      background: rgba(255,255,255,0.1); color: white; border: none;
+      padding: 15px 20px; font-size: 24px; cursor: pointer; border-radius: 50%;
+      pointer-events: auto;
+    }
 
-    .close-modal { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 50px; cursor: pointer; }
-
-    /* FOOTER */
-    footer.footer-social {
+    /* FOOTER (INDEX İLE AYNI) */
+    footer {
       position: fixed;
-      bottom: 0; left: 0; width: 100%;
-      background: #000; height: 60px;
-      display: flex; justify-content: center; align-items: center; gap: 40px;
-      z-index: 2000;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 12px 0;
+      z-index: 1100;
+      height: 60px;
+      box-sizing: border-box;
     }
-    footer.footer-social svg { width: 24px; height: 24px; fill: #fff; }
+    footer svg { width: 24px; height: 24px; fill: #fff; }
   </style>
 </head>
 <body>
 
   <header>
     <a href="index.html"><img src="images/logo.png" class="logo" alt="Logo"></a>
-    <div class="master-edition-text">Atam1283 | The Master Edition</div>
-    <nav class="menu" id="mainNav"></nav>
+    <nav class="menu" id="navLinks"></nav>
   </header>
 
-  <main class="gallery-content">
-    <div id="galleryGrid" class="gallery-stream"></div>
+  <main class="content">
+    <div id="grid" class="gallery-grid"></div>
   </main>
 
-  <div class="modal" id="galleryModal">
-    <span class="close-modal" onclick="closeModal()">&times;</span>
-    <div class="modal-nav">
-      <button class="nav-btn" onclick="prevNext(-1)">&#10094;</button>
-      <button class="nav-btn" onclick="prevNext(1)">&#10095;</button>
+  <div class="modal" id="modal">
+    <span class="close-btn" onclick="closeM()">&times;</span>
+    <div class="nav-btn">
+      <button onclick="move(-1)">&#10094;</button>
+      <button onclick="move(1)">&#10095;</button>
     </div>
-    <img id="modalImg" src="">
+    <img id="mImg" src="">
   </div>
 
-  <footer class="footer-social">
+  <footer>
     <a href="mailto:atam01283@gmail.com"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/></svg></a>
     <a href="https://instagram.com/atamm1283" target="_blank"><svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg></a>
   </footer>
 
   <script>
-    const grid = document.getElementById("galleryGrid");
-    const totalImages = 62;
-    let currentIdx = 1;
+    const grid = document.getElementById("grid");
+    const total = 62;
+    let current = 1;
 
-    // Resimleri Yükleme
-    for(let i=1; i<=totalImages; i++) {
-      const item = document.createElement("div");
-      item.className = "gallery-item";
-      item.innerHTML = `<img src="images/ (${i}).jpg">`;
-      item.onclick = () => openModal(i);
-      grid.appendChild(item);
+    // Fotoğrafları Bas
+    for(let i=1; i<=total; i++) {
+      const card = document.createElement("div");
+      card.className = "gallery-card";
+      card.innerHTML = `<img src="images/ (${i}).jpg">`;
+      card.onclick = () => openM(i);
+      grid.appendChild(card);
     }
 
     // Sonsuz Akış
     grid.innerHTML += grid.innerHTML;
-    let scrollPos = 0;
-    function autoScroll() {
-      scrollPos -= 0.6;
-      if (Math.abs(scrollPos) >= grid.scrollHeight / 2) scrollPos = 0;
-      grid.style.transform = `translateY(${scrollPos}px)`;
-      requestAnimationFrame(autoScroll);
+    let pos = 0;
+    function flow() {
+      pos -= 0.6;
+      if (Math.abs(pos) >= grid.scrollHeight / 2) pos = 0;
+      grid.style.transform = `translateY(${pos}px)`;
+      requestAnimationFrame(flow);
     }
-    autoScroll();
+    flow();
 
-    // Modal Fonksiyonları
-    const modal = document.getElementById("galleryModal");
-    const mImg = document.getElementById("modalImg");
-
-    function openModal(n) {
-      currentIdx = n;
-      modal.classList.add("show");
-      mImg.src = `images/ (${currentIdx}).jpg`;
+    // Modal
+    function openM(n) {
+      current = n;
+      document.getElementById("modal").classList.add("active");
+      document.getElementById("mImg").src = `images/ (${current}).jpg`;
     }
-
-    function closeModal() { modal.classList.remove("show"); }
-
-    function prevNext(step) {
-      currentIdx += step;
-      if(currentIdx > totalImages) currentIdx = 1;
-      if(currentIdx < 1) currentIdx = totalImages;
-      mImg.src = `images/ (${currentIdx}).jpg`;
+    function move(d) {
+      current += d;
+      if(current > total) current = 1;
+      if(current < 1) current = total;
+      document.getElementById("mImg").src = `images/ (${current}).jpg`;
     }
+    function closeM() { document.getElementById("modal").classList.remove("active"); }
 
-    // Menü
+    // Menü (Index ile aynı)
     const labels = ["Anasayfa","Hayatı","Galeri","Sözleri","Eserleri","Devrimleri","Nutuk","Kronoloji","Ayarlar"];
     const links = ["index.html","hayati.html","galeri.html","sozleri.html","eserleri.html","devrimler.html","nutuk.html","kronoloji.html","ayarlar.html"];
-    document.getElementById("mainNav").innerHTML = labels.map((l, i) => 
+    document.getElementById("navLinks").innerHTML = labels.map((l, i) => 
       `<a href="${links[i]}"${links[i]==="galeri.html"?' class="active"':''}>${l}</a>`).join('');
   </script>
 </body>
