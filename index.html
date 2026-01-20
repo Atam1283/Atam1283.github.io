@@ -13,7 +13,7 @@
       padding-bottom: 80px;
       transition: background 0.5s, color 0.5s, font-size 0.5s, opacity 0.7s;
       min-height: 100vh;
-      overflow-x: hidden; /* Yatay kaymayı engeller */
+      overflow-x: hidden;
     }
     .logo {
       position: fixed;
@@ -24,7 +24,7 @@
       border-radius: 10px;
       background: #fff;
       padding: 5px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      /* Gölge kaldırıldı */
     }
     .menu-background {
       position: fixed;
@@ -32,7 +32,7 @@
       left: 0;
       width: 100vw;
       height: 50px;
-      background: inherit; /* Body rengini takip eder */
+      background: inherit;
       z-index: 999;
       pointer-events: none;
     }
@@ -46,9 +46,10 @@
       z-index: 1000;
       overflow-x: auto;
       white-space: nowrap;
-      -webkit-overflow-scrolling: touch; /* Mobilde akıcı kaydırma */
+      -webkit-overflow-scrolling: touch;
     }
-    /* Karanlık mod desteği için CSS */
+    
+    /* Karanlık mod uyumu */
     body.dark nav.menu, body.dark .logo, body.dark .menu-background {
       background: #222 !important;
       border-bottom-color: #444;
@@ -97,7 +98,6 @@
     }
     .fade-out { opacity: 0 !important; }
 
-    /* Ana İçerik Alanı */
     #hero-content {
       width: 100%;
       display: flex;
@@ -105,7 +105,7 @@
       align-items: center;
       justify-content: center;
       min-height: calc(100vh - 130px);
-      padding: 140px 20px 40px 20px; /* Üstten boşluk eklendi */
+      padding: 140px 20px 40px 20px;
       text-align: center;
     }
 
@@ -136,7 +136,7 @@
     footer a:hover { border-color: #e30b17; color: #e30b17; }
     footer svg { width: 20px; height: 20px; fill: currentColor; }
 
-    /* --- MOBİL UYUMLULUK (MEDIA QUERIES) --- */
+    /* --- MOBİL UYUMLULUK --- */
     @media (max-width: 600px) {
       .logo { width: 90px; top: 15px; }
       .quote-container { max-width: 180px; top: 15px; }
@@ -215,7 +215,6 @@
   <footer></footer>
 
   <script>
-    // Söz animasyonu ve Ayarlar Scriptleri (Olduğu gibi korundu, entegrasyon sağlandı)
     const quotes = [
       { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
       { text: '"Yurtta sulh, cihanda sulh."', source: "Atatürk, Söylev ve Demeçler" },
