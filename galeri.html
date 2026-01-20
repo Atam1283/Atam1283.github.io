@@ -5,168 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Galeri - Atatürk</title>
   <style>
-    /* 1. INDEX İLE BİREBİR AYNI HEADER & FOOTER AYARLARI */
+    /* DIŞ CSS'İ TAMAMEN DEVRE DIŞI BIRAKTIK */
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #fff;
-      overflow: hidden; /* Sayfa kaymaz, galeri akar */
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+    body { font-family: sans-serif; background: #fff; overflow: hidden; height: 100vh; }
 
+    /* INDEX İLE AYNI HEADER */
     header {
-      position: fixed;
-      top: 0; left: 0; width: 100%;
-      height: 70px;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      padding: 0 20px;
-      border-bottom: 1px solid #eee;
-      z-index: 1100;
+      position: fixed; top: 0; left: 0; width: 100%; height: 70px;
+      background: #fff; display: flex; align-items: center; padding: 0 20px;
+      border-bottom: 1px solid #eee; z-index: 9999;
     }
-
-    .logo { width: 120px; height: auto; display: block; }
-
-    nav.menu {
-      flex-grow: 1;
-      margin-left: 20px;
-      overflow-x: auto;
-      white-space: nowrap;
-      scrollbar-width: none;
-    }
+    .logo { width: 120px; height: auto; }
+    nav.menu { flex-grow: 1; margin-left: 20px; display: flex; overflow-x: auto; white-space: nowrap; }
     nav.menu::-webkit-scrollbar { display: none; }
-
-    nav.menu a {
-      display: inline-block;
-      padding: 14px 20px;
-      color: #000;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 15px;
-      border-bottom: 3px solid transparent;
-      transition: 0.3s;
-    }
+    nav.menu a { padding: 15px 20px; color: #000; text-decoration: none; font-weight: 600; font-size: 15px; border-bottom: 3px solid transparent; }
     nav.menu a.active { color: #e30b17; border-bottom-color: #e30b17; }
 
-    /* 2. GALERİ AKIŞ ALANI (TIKLAMA SORUNU ÇÖZÜLDÜ) */
-    main.gallery-container {
-      margin-top: 70px; /* Header boyutu kadar boşluk */
-      height: calc(100vh - 130px); /* Header(70) + Footer(60) çıkarıldı */
-      overflow: hidden;
-      position: relative;
-      z-index: 10; /* Menünün altında ama etkileşime açık */
+    /* GALERİ - TIKLAMA SORUNUNU ÇÖZEN KATMAN */
+    main {
+      margin-top: 70px; height: calc(100vh - 130px);
+      overflow: hidden; position: relative; z-index: 100;
     }
-
     .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 15px;
-      padding: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 15px; padding: 20px; max-width: 1200px; margin: 0 auto;
     }
+    .card { background: #fff; border: 1px solid #ddd; border-radius: 12px; overflow: hidden; cursor: pointer; aspect-ratio: 1; transition: 0.2s; }
+    .card:hover { transform: scale(1.03); border-color: #e30b17; }
+    .card img { width: 100%; height: 100%; object-fit: cover; }
 
-    .photo-card {
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      overflow: hidden;
-      cursor: pointer;
-      aspect-ratio: 1;
-      transition: transform 0.2s ease;
-    }
-    .photo-card:hover { transform: scale(1.03); border-color: #e30b17; }
-    .photo-card img { width: 100%; height: 100%; object-fit: cover; }
-
-    /* 3. MODAL (RESİM BÜYÜTME) */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.95);
-      z-index: 5000;
-      justify-content: center; align-items: center;
-    }
+    /* MODAL */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 100000; justify-content: center; align-items: center; }
     .modal.active { display: flex; }
     .modal img { max-width: 90%; max-height: 85%; border: 2px solid #fff; }
-    .close-btn { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 50px; cursor: pointer; }
 
-    /* 4. FOOTER (INDEX İLE AYNI SVG YAPISI) */
-    footer {
-      position: fixed;
-      bottom: 0; left: 0; width: 100%;
-      height: 60px;
-      background: #000;
-      display: flex;
-      justify-content: center; align-items: center;
-      gap: 40px;
-      z-index: 1100;
-    }
-    footer svg { width: 24px; height: 24px; fill: #fff; transition: 0.3s; }
-    footer a:hover svg { fill: #e30b17; }
+    /* FOOTER */
+    footer { position: fixed; bottom: 0; left: 0; width: 100%; height: 60px; background: #000; display: flex; justify-content: center; align-items: center; gap: 40px; z-index: 9999; }
+    footer svg { width: 24px; height: 24px; fill: #fff; }
   </style>
 </head>
 <body>
-
   <header>
-    <a href="index.html"><img src="images/logo.png" class="logo" alt="Logo"></a>
-    <nav class="menu" id="navLinks"></nav>
+    <a href="index.html"><img src="images/logo.png" class="logo"></a>
+    <nav class="menu" id="m"></nav>
   </header>
-
-  <main class="gallery-container">
-    <div id="galleryGrid" class="grid"></div>
-  </main>
-
-  <div class="modal" id="imgModal">
-    <span class="close-btn" onclick="closeM()">&times;</span>
-    <img id="modalImg" src="">
-  </div>
-
+  <main><div id="g" class="grid"></div></main>
+  <div class="modal" id="mod" onclick="this.classList.remove('active')"><img id="mI"></div>
   <footer>
     <a href="mailto:atam01283@gmail.com"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/></svg></a>
-    <a href="https://instagram.com/atamm1283" target="_blank"><svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg></a>
+    <a href="https://instagram.com/atamm1283"><svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg></a>
   </footer>
-
   <script>
-    // Menü oluşturma
     const labels = ["Anasayfa","Hayatı","Galeri","Sözleri","Eserleri","Devrimleri","Nutuk","Kronoloji","Ayarlar"];
     const files = ["index.html","hayati.html","galeri.html","sozleri.html","eserleri.html","devrimler.html","nutuk.html","kronoloji.html","ayarlar.html"];
-    document.getElementById("navLinks").innerHTML = labels.map((l, i) => 
-      `<a href="${files[i]}"${files[i]==="galeri.html"?' class="active"':''}>${l}</a>`).join('');
-
-    // Galeri oluşturma
-    const grid = document.getElementById("galleryGrid");
-    for(let i=1; i<=62; i++) {
-      const card = document.createElement("div");
-      card.className = "photo-card";
-      card.innerHTML = `<img src="images/ (${i}).jpg">`;
-      card.onclick = () => openM(i);
-      grid.appendChild(card);
+    document.getElementById("m").innerHTML = labels.map((l, i) => `<a href="${files[i]}" ${files[i]==='galeri.html'?'class="active"':''}>${l}</a>`).join('');
+    const g = document.getElementById("g");
+    for(let i=1; i<=62; i++){
+      const d = document.createElement("div"); d.className="card";
+      d.innerHTML = `<img src="images/ (${i}).jpg">`;
+      d.onclick = () => { document.getElementById("mI").src=`images/ (${i}).jpg`; document.getElementById("mod").classList.add("active"); };
+      g.appendChild(d);
     }
-
-    // Akış Animasyonu
-    grid.innerHTML += grid.innerHTML;
-    let pos = 0;
-    function flow() {
-      pos -= 0.6;
-      if (Math.abs(pos) >= grid.scrollHeight / 2) pos = 0;
-      grid.style.transform = `translateY(${pos}px)`;
-      requestAnimationFrame(flow);
-    }
-    flow();
-
-    // Modal Fonksiyonları
-    function openM(n) {
-      document.getElementById("modalImg").src = `images/ (${n}).jpg`;
-      document.getElementById("imgModal").classList.add("active");
-    }
-    function closeM() {
-      document.getElementById("imgModal").classList.remove("active");
-    }
+    g.innerHTML += g.innerHTML;
+    let p = 0;
+    function run() { p -= 0.6; if(Math.abs(p) >= g.scrollHeight/2) p = 0; g.style.transform = `translateY(${p}px)`; requestAnimationFrame(run); }
+    run();
   </script>
 </body>
 </html>
