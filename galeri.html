@@ -5,44 +5,41 @@
   <title>Galeri - Atatürk</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <style>
-    /* 1. ANA SAYFA İLE BİREBİR AYNI MENÜ VE LOGO CSS */
+    /* 1. ANA SAYFA İLE TAM UYUMLU SABİT ÜST ALAN */
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #fff;
-      overflow: hidden; /* Otomatik akış için body sabit */
-      transition: background 0.5s;
+      overflow: hidden; /* Dikey akış için body kaydırması kapalı */
     }
 
+    /* Beyaz Koruyucu Alan - Menü ve Logonun arkası */
     .header-fixed-area {
       position: fixed;
       top: 0; left: 0; width: 100%;
       height: 122px;
       background: #fff;
-      z-index: 1000;
+      z-index: 2000; /* Çok yüksek tutuyoruz ki görseller üstünden geçmesin */
       border-bottom: 2px solid #d9d9d9;
     }
 
     .logo {
       position: fixed;
       top: 10px; left: 10px;
-      width: 120px;
-      z-index: 1100;
-      background: #fff;
-      padding: 5px;
-      border-radius: 10px;
+      width: 110px;
+      z-index: 2100;
     }
 
+    /* Yatay Menü */
     nav.menu {
       position: fixed;
       top: 70px; left: 0; width: 100%;
       background: #fff;
-      z-index: 1050;
+      z-index: 2050;
       overflow-x: auto;
       white-space: nowrap;
       border-bottom: 2px solid #d9d9d9;
-      -webkit-overflow-scrolling: touch;
     }
     nav.menu::-webkit-scrollbar { display: none; }
     nav.menu a {
@@ -52,25 +49,27 @@
       text-decoration: none;
       font-size: 15px;
       font-weight: bold;
-      border-bottom: 3px solid transparent;
     }
     nav.menu a.active { border-bottom: 3px solid #e30b17; color: #e30b17; }
 
-    /* 2. OTOMATİK AKIŞ VE GALERİ DÜZENİ */
+    /* 2. GALERİ AKIŞ ALANI (Tıklanabilirliği düzelten kısım) */
     main {
-      margin-top: 122px;
-      height: calc(100vh - 182px);
+      margin-top: 122px; /* Menünün tam altında başlar */
+      height: calc(100vh - 182px); /* Ekran - (Menü+Footer) */
       overflow: hidden;
       position: relative;
+      z-index: 1; /* Menünün altında kalmalı */
     }
 
-    .gallery-stream {
+    #stream {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 15px;
       padding: 20px;
+      width: 100%;
       max-width: 1200px;
       margin: 0 auto;
+      pointer-events: auto; /* Tıklanabilirliği zorla aktif et */
     }
 
     .gallery-item {
@@ -80,18 +79,18 @@
       cursor: pointer;
       border: 1px solid #eee;
       aspect-ratio: 3/4;
-      transition: transform 0.3s;
+      position: relative;
+      z-index: 5;
     }
-    .gallery-item:hover { transform: scale(1.02); }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 
-    /* 3. İLERİ/GERİ YAPILABİLEN MODAL (Fotonun içine girince değiştirme) */
+    /* 3. MODAL (Gelişmiş Değiştirilebilir) */
     .modal {
       display: none;
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0,0,0,0.95);
-      z-index: 3000;
+      z-index: 9999; /* En üstte */
       flex-direction: column;
       justify-content: center; align-items: center;
     }
@@ -103,13 +102,14 @@
       top: 50%; width: 100%;
       display: flex; justify-content: space-between;
       padding: 0 20px; transform: translateY(-50%);
+      pointer-events: none;
     }
     .nav-btn {
-      background: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.3);
       color: white; border: none; padding: 15px 20px;
       font-size: 24px; cursor: pointer; border-radius: 50%;
+      pointer-events: auto;
     }
-    .nav-btn:hover { background: #e30b17; }
 
     .location-tag {
       color: #fff; background: #e30b17;
@@ -117,23 +117,22 @@
       margin-top: 20px; font-weight: bold;
     }
 
-    .close-x { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; cursor: pointer; }
+    .close-x { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; cursor: pointer; z-index: 10000; }
 
-    /* 4. TÜM İKONLARLI FOOTER */
+    /* 4. FOOTER VE İKONLAR */
     footer {
       position: fixed;
       bottom: 0; left: 0; width: 100%;
       background: #000; height: 60px;
       display: flex; justify-content: center; align-items: center; gap: 20px;
-      z-index: 1000;
+      z-index: 2000;
     }
     footer a { color: #fff; border: 1px solid #444; border-radius: 50%; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; }
     footer svg { width: 18px; height: 18px; fill: currentColor; }
 
-    @media (max-width: 600px) {
-      .gallery-stream { grid-template-columns: repeat(2, 1fr); }
-      .logo { width: 90px; }
-    }
+    /* Karanlık Mod */
+    body.dark, body.dark .header-fixed-area, body.dark nav.menu { background: #121212 !important; }
+    body.dark nav.menu a { color: #ccc; }
   </style>
 </head>
 <body>
@@ -143,7 +142,7 @@
   <nav class="menu" id="topMenu"></nav>
 
   <main>
-    <div id="stream" class="gallery-stream"></div>
+    <div id="stream"></div>
   </main>
 
   <div class="modal" id="modal">
@@ -153,7 +152,7 @@
       <button class="nav-btn" onclick="changeImg(1)">&#10095;</button>
     </div>
     <img id="modalImg" src="">
-    <div class="location-tag" id="locTag">Atatürk Arşivi</div>
+    <div class="location-tag" id="locTag"></div>
   </div>
 
   <footer>
@@ -163,63 +162,55 @@
   </footer>
 
   <script>
-    const labels = ["Anasayfa","Hayatı","Galeri","Sözleri","Eserleri","Devrimleri","Nutuk","Kronoloji","Ayarlar"];
-    const hrefs = ["index.html","hayati.html","galeri.html","sozleri.html","eserleri.html","devrimler.html","nutuk.html","kronoloji.html","ayarlar.html"];
-    
-    // 1. Menü Render (Ana sayfa ile milimetrik hiza)
-    document.getElementById("topMenu").innerHTML = labels.map((l, i) => 
-      `<a href="${hrefs[i]}"${hrefs[i]==="galeri.html"?' class="active"':''}>${l}</a>`).join('');
-
-    // 2. Galeri Akışı ve Resimler
     const stream = document.getElementById("stream");
     let currentIndex = 1;
-    const totalImages = 62;
+    const totalImg = 62;
 
-    for(let i=1; i<=totalImages; i++) {
-        const item = document.createElement("div");
-        item.className = "gallery-item";
-        item.innerHTML = `<img src="images/ (${i}).jpg" loading="lazy">`;
-        item.onclick = () => openM(i);
-        stream.appendChild(item);
+    // Resimleri ekle
+    for(let i=1; i<=totalImg; i++) {
+        const div = document.createElement("div");
+        div.className = "gallery-item";
+        div.innerHTML = `<img src="images/ (${i}).jpg">`;
+        div.onclick = (e) => { e.stopPropagation(); openM(i); };
+        stream.appendChild(div);
     }
 
     // Sonsuz Akış
     stream.innerHTML += stream.innerHTML;
-    let sY = 0;
-    function auto() {
-      sY -= 0.6;
-      if (Math.abs(sY) >= stream.scrollHeight / 2) sY = 0;
-      stream.style.transform = `translateY(${sY}px)`;
-      requestAnimationFrame(auto);
+    let py = 0;
+    function animate() {
+      py -= 0.6;
+      if (Math.abs(py) >= stream.scrollHeight / 2) py = 0;
+      stream.style.transform = `translateY(${py}px)`;
+      requestAnimationFrame(animate);
     }
-    auto();
+    animate();
 
-    // 3. Modal ve Fotoğraf Değiştirme
+    // Modal İşlemleri
     const modal = document.getElementById("modal");
-    const modalImg = document.getElementById("modalImg");
-    const locTag = document.getElementById("locTag");
-
     function openM(index) {
       currentIndex = index;
       modal.classList.add("active");
       updateModal();
     }
-
     function changeImg(dir) {
       currentIndex += dir;
-      if(currentIndex > totalImages) currentIndex = 1;
-      if(currentIndex < 1) currentIndex = totalImages;
+      if(currentIndex > totalImg) currentIndex = 1;
+      if(currentIndex < 1) currentIndex = totalImg;
       updateModal();
     }
-
     function updateModal() {
-      modalImg.src = `images/ (${currentIndex}).jpg`;
-      // Konum bilgisi (Burayı dilediğin gibi eşleştirebilirsin)
-      const locations = { 1: "Ankara", 2: "İstanbul", 3: "İzmir" };
-      locTag.innerText = locations[currentIndex] || "Mustafa Kemal Atatürk";
+      document.getElementById("modalImg").src = `images/ (${currentIndex}).jpg`;
+      const locs = {1: "Çankaya Köşkü", 2: "Dolmabahçe", 3: "Dumlupınar"};
+      document.getElementById("locTag").innerText = locs[currentIndex] || "Mustafa Kemal Atatürk";
     }
-
     function closeM() { modal.classList.remove("active"); }
+
+    // Menü
+    const labels = ["Anasayfa","Hayatı","Galeri","Sözleri","Eserleri","Devrimleri","Nutuk","Kronoloji","Ayarlar"];
+    const hrefs = ["index.html","hayati.html","galeri.html","sozleri.html","eserleri.html","devrimler.html","nutuk.html","kronoloji.html","ayarlar.html"];
+    document.getElementById("topMenu").innerHTML = labels.map((l, i) => 
+      `<a href="${hrefs[i]}"${hrefs[i]==="galeri.html"?' class="active"':''}>${l}</a>`).join('');
 
     if(localStorage.getItem("darkMode") === "true") document.body.classList.add("dark");
   </script>
