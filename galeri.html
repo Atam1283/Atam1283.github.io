@@ -10,15 +10,16 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background: #fff;
-      overflow: hidden; /* Dikey kayan galeri için body sabit olmalı */
+      padding-bottom: 80px;
       transition: background 0.5s;
+      overflow-x: hidden;
     }
 
-    /* ÜST ALAN KORUYUCU: Menü ve logonun arkası kapalı olmalı */
+    /* ÜST ALAN KORUYUCU (Hizalama Buradan Başlar) */
     .header-fixed-area {
       position: fixed;
       top: 0; left: 0; width: 100%;
-      height: 125px; /* Menü bitimine kadar olan alan */
+      height: 122px;
       background: #fff;
       z-index: 1000;
       border-bottom: 2px solid #d9d9d9;
@@ -41,7 +42,6 @@
       z-index: 1050;
       overflow-x: auto;
       white-space: nowrap;
-      -webkit-overflow-scrolling: touch;
     }
     nav.menu a {
       display: inline-block;
@@ -55,63 +55,69 @@
     nav.menu a.active { border-bottom: 3px solid #e30b17; color: #e30b17; }
     nav.menu::-webkit-scrollbar { display: none; }
 
-    /* GALERİ ANA ALANI: Tam olarak menünün bittiği yerden başlamalı */
-    main {
-      margin-top: 125px; /* Menü yüksekliği kadar boşluk */
-      height: calc(100vh - 185px); /* Ekran - (Menü + Footer) */
-      overflow: hidden;
-      position: relative;
-    }
-
-    .gallery-container {
-      width: 90%;
-      max-width: 1000px;
-      margin: 0 auto;
-      transition: transform 0.1s linear;
+    /* GALERİ GRID AYARI (Fotoğraflar burada küçültüldü) */
+    .main-content {
+      max-width: 1100px;
+      margin: 140px auto 20px; /* Üstten 140px boşluk ile tam hiza */
+      padding: 0 20px;
     }
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      padding: 20px 0;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Fotoğraflar daha küçük ve yan yana */
+      gap: 15px;
     }
 
     .gallery-item {
-      background: #f9f9f9;
-      border-radius: 15px;
+      background: #f0f0f0;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s;
+      border: 1px solid #ddd;
     }
+    .gallery-item:hover { transform: scale(1.03); border-color: #e30b17; }
     .gallery-item img {
       width: 100%;
-      height: 250px;
+      height: 150px; /* Yükseklik sabitlendi, daha derli toplu */
       object-fit: cover;
       display: block;
     }
 
-    /* FOOTER */
+    /* MODAL (Fotoğrafa tıklayınca açılan ekran) */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center; align-items: center;
+    }
+    .modal img { max-width: 90%; max-height: 85%; border-radius: 10px; border: 3px solid #fff; }
+    .modal-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; cursor: pointer; }
+
+    /* FOOTER İKONLARI GELDİ */
     footer {
       position: fixed;
       bottom: 0; left: 0; width: 100%;
       background: #000; height: 60px;
       display: flex; justify-content: center; align-items: center; gap: 30px;
-      z-index: 1100;
+      z-index: 1000;
     }
-    footer a { color: #fff; border: 1px solid #888; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+    footer a { color: #fff; border: 1px solid #888; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+    footer a:hover { border-color: #e30b17; color: #e30b17; }
     footer svg { width: 20px; height: 20px; fill: currentColor; }
 
     /* Karanlık Mod */
     body.dark, body.dark .header-fixed-area, body.dark nav.menu, body.dark .logo { background: #181818 !important; }
-    body.dark .header-fixed-area { border-bottom-color: #333; }
     body.dark nav.menu a { color: #fff; }
-    body.dark .gallery-item { background: #232326; }
+    body.dark .gallery-item { background: #232326; border-color: #444; }
 
     @media (max-width: 600px) {
-      .gallery-grid { grid-template-columns: 1fr; }
       .logo { width: 90px; }
       .header-fixed-area { height: 115px; }
-      main { margin-top: 115px; }
+      .main-content { margin-top: 130px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); } /* Mobilde yan yana 2 tane */
     }
   </style>
 </head>
@@ -119,49 +125,57 @@
 
   <div class="header-fixed-area"></div>
   <a href="index.html" class="logo"><img src="images/logo.png" alt="Logo" style="width:100%;"></a>
+  
   <nav class="menu" id="topMenu"></nav>
 
-  <main id="scrollArea">
-    <div class="gallery-container" id="galleryContainer">
-      <div class="gallery-grid" id="galleryGrid">
-        </div>
-    </div>
-  </main>
+  <div class="main-content">
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+
+  <div class="modal" id="galleryModal">
+    <span class="modal-close" onclick="closeModal()">&times;</span>
+    <img id="modalImg" src="">
+  </div>
 
   <footer>
-    <a href="mailto:atam01283@gmail.com"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/></svg></a>
-    <a href="https://instagram.com/atamm1283"><svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg></a>
+    <a href="mailto:atam01283@gmail.com">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/></svg>
+    </a>
+    <a href="https://instagram.com/atamm1283" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>
+    </a>
+    <a href="https://twitter.com/atam01283" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M19.633 7.997c.013.18.013.362.013.544 0 5.522-4.206 11.894-11.894 11.894-2.363 0-4.563-.69-6.413-1.872.329.038.658.051.998.051 1.961 0 3.766-.659 5.203-1.772-1.833-.035-3.385-1.242-3.918-2.903.257.038.519.064.792.064.38 0 .75-.051 1.1-.145-1.915-.385-3.36-2.077-3.36-4.102v-.052c.564.313 1.214.502 1.905.519-1.127-.752-1.872-2.037-1.872-3.496 0-.77.208-1.49.57-2.108 2.08 2.556 5.197 4.237 8.704 4.419-.072-.308-.108-.629-.108-.96 0-2.312 1.872-4.184 4.184-4.184 1.205 0 2.297.508 3.063 1.322.954-.187 1.85-.535 2.658-1.013-.313.98-.98 1.803-1.85 2.323.848-.099 1.658-.327 2.409-.663-.564.836-1.274 1.574-2.096 2.164z"/></svg>
+    </a>
   </footer>
 
   <script>
-    // 1. Resimleri Döngüyle Ekle (İsim formatın: " (1).jpg")
+    // 1. Resimleri Çek (62 resim varsa i<=62 yap)
     const grid = document.getElementById("galleryGrid");
-    let imagesHtml = "";
-    // İlk 20 resmi ekleyelim (Sende kaç tane varsa ona göre düzenle)
-    for(let i=1; i<=20; i++) {
-        imagesHtml += `<div class="gallery-item"><img src="images/ (${i}).jpg" alt="Atatürk"></div>`;
+    for(let i=1; i<=62; i++) {
+        const item = document.createElement("div");
+        item.className = "gallery-item";
+        item.onclick = () => openModal(`images/ (${i}).jpg`);
+        item.innerHTML = `<img src="images/ (${i}).jpg" loading="lazy">`;
+        grid.appendChild(item);
     }
-    grid.innerHTML = imagesHtml;
 
-    // 2. Menü Oluştur
+    // 2. Modal (Fotonun içine girme)
+    const modal = document.getElementById("galleryModal");
+    const modalImg = document.getElementById("modalImg");
+    function openModal(src) {
+        modal.style.display = "flex";
+        modalImg.src = src;
+    }
+    function closeModal() {
+        modal.style.display = "none";
+    }
+
+    // 3. Menü
     const labels = ["Anasayfa","Hayatı","Galeri","Sözleri","Eserleri","Devrimleri","Nutuk","Kronoloji","Ayarlar"];
     const hrefs = ["index.html","hayati.html","galeri.html","sozleri.html","eserleri.html","devrimler.html","nutuk.html","kronoloji.html","ayarlar.html"];
     document.getElementById("topMenu").innerHTML = labels.map((l, i) => 
       `<a href="${hrefs[i]}"${hrefs[i]==="galeri.html"?' class="active"':''}>${l}</a>`).join('');
-
-    // 3. Otomatik Dikey Kayma Efekti
-    const container = document.getElementById("galleryContainer");
-    let y = 0;
-    function autoScroll() {
-        y -= 0.7; // Hız ayarı
-        if (Math.abs(y) >= container.scrollHeight / 2) y = 0;
-        container.style.transform = `translateY(${y}px)`;
-        requestAnimationFrame(autoScroll);
-    }
-    
-    // Sonsuz döngü için içeriği kopyala
-    grid.innerHTML += grid.innerHTML;
-    autoScroll();
 
     // 4. Tema
     if(localStorage.getItem("darkMode") === "true") document.body.classList.add("dark");
