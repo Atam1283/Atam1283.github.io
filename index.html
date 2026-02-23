@@ -1,141 +1,350 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="utf-8" />
-    <title>Gazi Mustafa Kemal Atatürk | Anasayfa</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <style>
-        /* Sadece index'e özel estetik dokunuşlar */
-        .hero-section {
-            padding: 80px 20px;
-            text-align: center;
-            background: radial-gradient(circle at center, rgba(227, 11, 23, 0.03) 0%, transparent 70%);
-            border-radius: 30px;
-            margin-bottom: 40px;
-        }
-
-        .hero-title {
-            font-family: 'Georgia', serif;
-            font-size: clamp(2.5rem, 8vw, 4rem); /* Mobil uyumlu dinamik font */
-            color: #222;
-            margin-bottom: 15px;
-            line-height: 1.2;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto 30px;
-        }
-
-        .featured-card {
-            text-align: center;
-            padding: 40px 20px;
-            border-radius: 20px;
-            background: #fafafa;
-            border: 1px solid rgba(0,0,0,0.03);
-            transition: all 0.4s ease;
-        }
-
-        /* İkon veya görsel alanı için yer tutucu */
-        .card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        body.dark .hero-title { color: #fff; }
-        body.dark .hero-subtitle { color: #bbb; }
-        body.dark .featured-card { background: #1e1e1e; }
-    </style>
+  <meta charset="utf-8" />
+  <title>Atatürk</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      padding-bottom: 80px;
+      transition: background 0.5s, color 0.5s, font-size 0.5s, opacity 0.7s;
+      min-height: 100vh;
+    }
+    body.dark {
+      background: #181818 !important;
+      color: #f2f2f2 !important;
+    }
+    .menu-plaka {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 120px;
+      background: #fff !important;
+      box-shadow: 0 1px 10px 0 #0001;
+      z-index: 1099;
+      transition: background 0.3s;
+    }
+    .logo {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      width: 120px;
+      z-index: 1100;
+      border-radius: 10px;
+      background: #fff !important;
+      padding: 5px;
+      transition: background 0.3s;
+    }
+    nav.menu {
+      position: fixed;
+      left: 0;
+      top: 70px;
+      width: 100vw;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      background: #fff;
+      z-index: 1101;
+      overflow-x: auto;
+      border-bottom: 2px solid #e6e6e6;
+      white-space: nowrap;
+      transition: background 0.3s, color 0.3s;
+      animation: menuFadeIn 0.7s cubic-bezier(.42, 0, .58, 1) both;
+    }
+    @keyframes menuFadeIn {
+      from { opacity: 0; transform: translateY(-32px);}
+      to   { opacity: 1; transform: translateY(0);}
+    }
+    body.dark nav.menu {
+      background: #222 !important;
+      border-bottom: 2px solid #303030;
+    }
+    nav.menu a {
+      display: inline-block;
+      color: #1a1a1a;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 13px 18px 12px 18px;
+      border-bottom: 3px solid transparent;
+      text-decoration: none;
+      transition: all .22s cubic-bezier(.42,0,.58,1);
+      background: none;
+      letter-spacing: .1px;
+    }
+    nav.menu a:hover, nav.menu a.active {
+      color: #e30b17;
+      border-bottom: 3px solid #e30b17;
+      background: none;
+    }
+    body.dark nav.menu a {
+      color: #faf9f7;
+    }
+    body.dark nav.menu a:hover, body.dark nav.menu a.active {
+      color: #ff4444;
+      border-bottom: 3px solid #ff4444;
+    }
+    nav.menu::-webkit-scrollbar { display: none; }
+    @media (max-width: 700px) {
+      .menu-plaka { height: 100px; }
+      nav.menu { top: 60px; height: 40px; }
+      nav.menu a { font-size: 13px; padding: 8px 10px 8px 10px; }
+      .logo { width: 90px; top: 7px; }
+    }
+    @media (max-width: 450px) {
+      nav.menu a { font-size: 12px; padding: 7px 7px 7px 7px; }
+      .logo { width: 68px; top: 5px; left: 5px;}
+      .menu-plaka { height: 80px; }
+      nav.menu { top: 45px; height: 35px; }
+    }
+    .quote-container {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      text-align: right;
+      z-index: 1200;
+      max-width: 250px;
+    }
+    .quote-text {
+      color: #222;
+      font-size: 13px;
+      font-family: Arial, sans-serif;
+      line-height: 1.2;
+      margin-bottom: 2px;
+      transition: opacity 0.5s;
+    }
+    .quote-source {
+      color: #666;
+      font-size: 11px;
+      font-family: Arial, sans-serif;
+      transition: opacity 0.5s;
+    }
+    .fade-out { opacity: 0 !important; }
+    .fade-in { opacity: 1 !important; }
+    body.dark #main-title,
+    body.dark #main-subtitle,
+    body.dark #main-desc,
+    body.dark #main-footer-text {
+      color: #fff !important;
+      text-shadow: 0 2px 8px #0006;
+    }
+    body.dark #main-desc span {
+      color: #ff6a6a !important;
+      text-shadow: 0 2px 8px #0006;
+    }
+    body.dark input[type="text"]::placeholder {
+      color: #ddd !important;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      z-index: 1000;
+    }
+    footer a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #888;
+      border-radius: 50%;
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    footer a:hover {
+      border-color: #e30b17;
+      color: #e30b17;
+    }
+    footer svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+  </style>
 </head>
-<body class="light">
-
-    <header>
-        <a href="index.html">
-            <img src="images/logo.png" alt="Logo" class="logo" />
+<body>
+  <div class="menu-plaka"></div>
+  <a href="index.html" class="logo">
+    <img src="images/logo.png" alt="Logo" style="width: 100%; height: auto; border-radius: 10px;" />
+  </a>
+  <nav class="menu">
+    <a href="index.html" class="active">Anasayfa</a>
+    <a href="hayati.html">Hayatı</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="sozleri.html">Sözleri</a>
+    <a href="eserleri.html">Eserleri</a>
+    <a href="devrimler.html">Devrimleri</a>
+    <a href="nutuk.html">Nutuk</a>
+    <a href="kronoloji.html">Kronoloji</a>
+    <a href="ayarlar.html">Ayarlar</a>
+  </nav>
+  <div class="quote-container">
+    <div class="quote-text" id="quote-text">"Egemenlik, kayıtsız şartsız milletindir."</div>
+    <div class="quote-source" id="quote-source">TBMM, 1920</div>
+  </div>
+  <div id="hero-content" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;animation:fadeInHero 1.2s cubic-bezier(.62,.04,.36,1.09);padding:10px;">
+    <h1 style="font-size:2.3rem;font-weight:bold;color:#111;letter-spacing:1px;margin-top:40px; margin-bottom:10px;animation:titlePop 1s cubic-bezier(.77,-0.13,.22,1.12);" id="main-title">
+      Mustafa Kemal Atatürk
+    </h1>
+    <h2 id="main-subtitle" style="font-size:1.1rem;font-weight:bold;color:#191919;margin-bottom:20px;letter-spacing:.5px;animation:fadeInUp 1s .3s both;">
+      Bağımsızlık ve Aydınlık Geleceğin Mimarı
+    </h2>
+    <p id="main-desc" style="max-width:540px;text-align:center;font-size:1.08rem;color:#333;font-weight:500;margin-bottom:28px;line-height:1.7;animation:fadeInUp 1.1s .5s both;">
+      Türkiye Cumhuriyeti'nin kurucusu, milletimizin yol göstericisi.<br>
+      <span style="font-weight:bold;color:#e30b17;">"En büyük eserim Cumhuriyet'tir."</span> diyerek bizlere çağdaş ve özgür bir ülke armağan etti.<br>
+      Atatürk'ün fikirleri ve ilkeleriyle geleceğe umutla bakıyoruz.
+    </p>
+    <!-- Arama motoru: kullanıcı sadece sade sorgu görür, arama Google'da filtreli yapılır -->
+    <form id="aramaForm" style="width:100%;max-width:370px;margin:25px auto 10px auto;display:flex;align-items:center;gap:0;animation:fadeInUp 1s .7s both;"
+          action="https://www.google.com/search" method="get" target="_blank" autocomplete="off">
+      <input
+        type="text"
+        id="kullaniciArama"
+        placeholder="Atatürk hakkında ara..."
+        style="flex:1;padding:14px 16px;font-size:1.08rem;border-radius:24px 0 0 24px;border:2px solid #e30b17;border-right:0;outline:none;transition:box-shadow .2s;"
+        required
+        onfocus="this.style.boxShadow='0 0 0 2px #e30b17a8'"
+        onblur="this.style.boxShadow='none'"
+      />
+      <input type="hidden" name="q" id="gizliArama" />
+      <button
+        type="submit"
+        style="padding:0 18px;height:46px;border:none;background:#e30b17;color:#fff;font-size:1.1rem;font-weight:bold;border-radius:0 24px 24px 0;cursor:pointer;transition:background .2s;"
+        onmouseover="this.style.background='#c10812'"
+        onmouseout="this.style.background='#e30b17'"
+        aria-label="Ara"
+      >
+        <span style="font-size:1.3rem;">🔍</span>
+      </button>
+    </form>
+    <!-- Not bölümü kaldırıldı -->
+    <div id="main-footer-text" style="color:#e30b17;font-weight:bold;font-size:1.08rem;margin-top:32px;letter-spacing:.3px;animation:fadeInUp 1.1s 1.1s both;display:flex;align-items:center;gap:8px;">
+      Türk gençleri olarak sonsuza dek izindeyiz!
+    </div>
+  </div>
+  <footer></footer>
+  <script>
+    // Söz animasyonu
+    const quotes = [
+      { text: '"Egemenlik, kayıtsız şartsız milletindir."', source: "TBMM, 1920" },
+      { text: '"Yurtta sulh, cihanda sulh."', source: "Atatürk, Söylev ve Demeçler" },
+      { text: '"Hayatta en hakiki mürşit ilimdir."', source: "Atatürk, 1924" },
+      { text: '"Türk milleti çalışkandır, zekidir."', source: "Atatürk, 1933" }
+    ];
+    let quoteIndex = 0;
+    const quoteText = document.getElementById("quote-text");
+    const quoteSource = document.getElementById("quote-source");
+    function showQuote(index) {
+      quoteText.classList.add('fade-out');
+      quoteSource.classList.add('fade-out');
+      setTimeout(() => {
+        quoteText.textContent = quotes[index].text;
+        quoteSource.textContent = quotes[index].source;
+        quoteText.classList.remove('fade-out');
+        quoteSource.classList.remove('fade-out');
+      }, 450);
+    }
+    setInterval(() => {
+      quoteIndex = (quoteIndex + 1) % quotes.length;
+      showQuote(quoteIndex);
+    }, 5000);
+  </script>
+  <script>
+    // Çoklu dil desteği (TR/EN/AZ)
+    const LANGS = {
+      tr: {
+        title: "Mustafa Kemal Atatürk",
+        subtitle: "Bağımsızlık ve Aydınlık Geleceğin Mimarı",
+        desc: "Türkiye Cumhuriyeti'nin kurucusu, milletimizin yol göstericisi.<br><span style=\"font-weight:bold;color:#e30b17;\">\"En büyük eserim Cumhuriyet'tir.\"</span> diyerek bizlere çağdaş ve özgür bir ülke armağan etti.<br>Atatürk'ün fikirleri ve ilkeleriyle geleceğe umutla bakıyoruz.",
+        searchPlaceholder: "Atatürk hakkında ara...",
+        footerText: "Türk gençleri olarak sonsuza dek izindeyiz!"
+      },
+      en: {
+        title: "Mustafa Kemal Atatürk",
+        subtitle: "The Founder of Independence and a Bright Future",
+        desc: "Founder of the Republic of Turkey, a guiding light for our nation.<br><span style=\"font-weight:bold;color:#e30b17;\">\"My greatest work is the Republic.\"</span> With these words, he gifted us a modern and free country.<br>We look to the future with hope, inspired by Atatürk's principles.",
+        searchPlaceholder: "Search about Atatürk...",
+        footerText: "As Turkish youth, we will always follow your path!"
+      },
+      az: {
+        title: "Mustafa Kamal Atatürk",
+        subtitle: "Müstəqilliyin və İşıqlı Gələcəyin Memarı",
+        desc: "Türkiyə Cümhuriyyətinin qurucusu, millətimizin yol göstəricisi.<br><span style=\"font-weight:bold;color:#e30b17;\">\"Ən böyük əsərim Cümhuriyyətdir.\"</span> deyərək bizlərə müasir və azad bir ölkə bəxş etdi.<br>Atatürkün fikirləri və prinsipləri ilə gələcəyə ümidlə baxırıq.",
+        searchPlaceholder: "Atatürk haqqında axtar...",
+        footerText: "Türk gəncləri olaraq sonsuza qədər izindəyik!"
+      }
+    };
+    function getLanguage() {
+      return localStorage.getItem("language") || "tr";
+    }
+    function applySettings() {
+      const isDark = localStorage.getItem("darkMode") === "true";
+      const fontSize = localStorage.getItem("fontSize") || "normal";
+      const lang = getLanguage();
+      // Tema ve font
+      document.body.style.background = isDark ? "#181818" : "#fff";
+      document.body.style.color = isDark ? "#fff" : "#222";
+      document.body.classList.toggle('dark', isDark);
+      switch(fontSize) {
+        case 'large': document.body.style.fontSize = "1.18em"; break;
+        case 'xlarge': document.body.style.fontSize = "1.32em"; break;
+        default: document.body.style.fontSize = "1em";
+      }
+      // Dinamik metinler
+      document.getElementById('main-title').innerHTML = LANGS[lang].title;
+      document.getElementById('main-subtitle').textContent = LANGS[lang].subtitle;
+      document.getElementById('main-desc').innerHTML = LANGS[lang].desc;
+      document.getElementById('kullaniciArama').setAttribute('placeholder', LANGS[lang].searchPlaceholder);
+      document.getElementById('main-footer-text').textContent = LANGS[lang].footerText;
+    }
+    function updateFooterLinks() {
+      const footer = document.querySelector("footer");
+      if (!footer) return;
+      footer.innerHTML = `
+        <a href="mailto:atam01283@gmail.com" aria-label="Gmail">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/>
+          </svg>
         </a>
-        <nav class="menu" id="topMenu">
-            </nav>
-    </header>
-
-    <main class="content">
-        <section class="hero-section">
-            <h1 class="hero-title">Atam İzindeyiz</h1>
-            <p class="hero-subtitle">Cumhuriyetimizin kurucusu Gazi Mustafa Kemal Atatürk'ün fikirlerini, eserlerini ve mirasını keşfedin.</p>
-            <div class="cta-container">
-                <a href="hayati.html" class="soz-card" style="display:inline-block; padding: 15px 40px; text-decoration: none; font-weight: bold; background: #e30b17; color: #fff;">
-                    Yolculuğa Başla
-                </a>
-            </div>
-        </section>
-
-        <div class="sozler-grid">
-            <div class="soz-card featured-card" onclick="location.href='sozleri.html'">
-                <span class="card-icon">✍️</span>
-                <h3 style="color: #e30b17;">Sözleri</h3>
-                <p>O'nun ufkunu aydınlatan en özel vecizeler ve tarihî bağlamları.</p>
-            </div>
-
-            <div class="soz-card featured-card" onclick="location.href='nutuk.html'">
-                <span class="card-icon">📖</span>
-                <h3 style="color: #e30b17;">Nutuk</h3>
-                <p>Bağımsızlık mücadelesinin en birinci ağızdan anlatımı.</p>
-            </div>
-
-            <div class="soz-card featured-card" onclick="location.href='devrimler.html'">
-                <span class="card-icon">⚡</span>
-                <h3 style="color: #e30b17;">Devrimleri</h3>
-                <p>Çağdaş Türkiye'nin temelini atan köklü inkılaplar.</p>
-            </div>
-        </div>
-    </main>
-
-    <footer class="footer-social">
-        </footer>
-
-    <script>
-        // 1. Menü ve Dil Ayarları
-        const MENU_LABELS = {
-            tr: ["Anasayfa","Hayatı","Galeri","Sözleri","Eserleri","Devrimleri","Nutuk","Kronoloji","Ayarlar"],
-            en: ["Home","Life","Gallery","Quotes","Works","Reforms","The Speech","Chronology","Settings"],
-            az: ["Ana səhifə","Həyatı","Qalereya","Sitatlar","Əsərləri","İslahatlar","Nutuq","Kronologiya","Tənzimləmələr"]
-        };
-        const MENU_HREFS = ["index.html","hayati.html","galeri.html","sozleri.html","eserleri.html","devrimler.html","nutuk.html","kronoloji.html","ayarlar.html"];
-
-        function initApp() {
-            const lang = localStorage.getItem("language") || "tr";
-            const isDark = localStorage.getItem("darkMode") === "true";
-            
-            // Menü Render
-            const menu = document.getElementById("topMenu");
-            menu.innerHTML = MENU_LABELS[lang].map((label, i) => 
-                `<a href="${MENU_HREFS[i]}" ${MENU_HREFS[i] === 'index.html' ? 'class="active"' : ''}>${label}</a>`
-            ).join('');
-
-            // Footer Render
-            document.querySelector(".footer-social").innerHTML = `
-                <a href="mailto:atam01283@gmail.com"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v1.2l10 6.4 10-6.4V6a2 2 0 0 0-2-2zm0 4.8L12 15 4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8z"/></svg></a>
-                <a href="https://instagram.com/atamm1283" target="_blank"><svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg></a>
-            `;
-
-            if(isDark) document.body.classList.add('dark');
-
-            // --- GSAP ANIMASYONLARI (İşte o "Premium" his) ---
-            const tl = gsap.timeline();
-
-            tl.from(".logo", { duration: 0.8, x: -50, opacity: 0, ease: "power4.out" })
-              .from("nav.menu a", { duration: 0.5, y: -20, opacity: 0, stagger: 0.1, ease: "back.out(1.7)" }, "-=0.4")
-              .from(".hero-title", { duration: 1, scale: 0.8, opacity: 0, ease: "expo.out" }, "-=0.2")
-              .from(".hero-subtitle", { duration: 0.8, y: 20, opacity: 0 }, "-=0.6")
-              .from(".featured-card", { duration: 0.8, y: 40, opacity: 0, stagger: 0.2, ease: "power2.out" }, "-=0.4")
-              .from(".footer-social", { duration: 1, y: 50, opacity: 0 }, "-=0.5");
-        }
-
-        window.addEventListener("DOMContentLoaded", initApp);
-    </script>
+        <a href="https://instagram.com/atamm1283" target="_blank" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3zm5 3a4 4 0 1 0 .001 8.001A4 4 0 0 0 12 7zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+          </svg>
+        </a>
+        <a href="https://twitter.com/atam01283" target="_blank" aria-label="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M19.633 7.997c.013.18.013.362.013.544 0 5.522-4.206 11.894-11.894 11.894-2.363 0-4.563-.69-6.413-1.872.329.038.658.051.998.051 1.961 0 3.766-.659 5.203-1.772-1.833-.035-3.385-1.242-3.918-2.903.257.038.519.064.792.064.38 0 .75-.051 1.1-.145-1.915-.385-3.36-2.077-3.36-4.102v-.052c.564.313 1.214.502 1.905.519-1.127-.752-1.872-2.037-1.872-3.496 0-.77.208-1.49.57-2.108 2.08 2.556 5.197 4.237 8.704 4.419-.072-.308-.108-.629-.108-.96 0-2.312 1.872-4.184 4.184-4.184 1.205 0 2.297.508 3.063 1.322.954-.187 1.85-.535 2.658-1.013-.313.98-.98 1.803-1.85 2.323.848-.099 1.658-.327 2.409-.663-.564.836-1.274 1.574-2.096 2.164z"/>
+          </svg>
+        </a>
+      `;
+    }
+    // Arama formunu Atatürk, Türkiye ve tarih ile ilgili güvenilir kütüphanelere yönlendir (kullanıcı kutusunda filtreler GÖZÜKMEZ!)
+    document.addEventListener("DOMContentLoaded", () => {
+      applySettings();
+      updateFooterLinks();
+      document.getElementById("aramaForm").addEventListener("submit", function(e){
+        var kullaniciArama = document.getElementById("kullaniciArama");
+        var gizliArama = document.getElementById("gizliArama");
+        // Asıl input'un name'ini kaldır ve gizliye yaz
+        kullaniciArama.removeAttribute("name");
+        gizliArama.value =
+          "site:kutuphane.atam.gov.tr OR site:acikerisim.tbmm.gov.tr OR site:dergipark.org.tr OR site:tez.yok.gov.tr OR site:mkutup.gov.tr "
+          + kullaniciArama.value.trim() + " kısa bilgi";
+      });
+    });
+  </script>
 </body>
 </html>
