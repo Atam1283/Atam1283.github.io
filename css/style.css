@@ -1,149 +1,229 @@
-/* GENEL */
+/* ==========================================================================
+   GENEL AYARLAR VE MODERN DOKUNUŞLAR
+   ========================================================================== */
+:root {
+    --ana-kirmizi: #e30b17;
+    --koyu-gri: #222;
+    --acik-gri: #f9f9f9;
+    --gecis: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
 body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #fff;
-  color: #222;
-  padding-bottom: 70px; /* Footer için boşluk */
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fff;
+    color: var(--koyu-gri);
+    padding-bottom: 80px;
+    transition: background 0.5s, color 0.5s;
+    overflow-x: hidden;
 }
 
-/* ÜST MENU ve LOGO */
+/* ==========================================================================
+   HEADER & NAVIGASYON (Glassmorphism Etkisi)
+   ========================================================================== */
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  padding: 10px 20px;
-  box-sizing: border-box;
-  z-index: 1100;
-}
-
-/* Menü altına beyaz plak eklenerek yazıların görünmesi engellendi */
-header::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  height: 20px;
-  background: white;
-  z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px); /* Arka planı hafif bulanıklaştırır */
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    z-index: 1100;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .logo {
-  width: 120px;
-  height: auto;
-  display: block;
-  object-fit: contain;
+    width: 120px;
+    height: auto;
+    transition: var(--gecis);
+}
+
+.logo:hover {
+    transform: scale(1.05);
 }
 
 nav.menu {
-  flex-grow: 1;
-  margin-left: 20px;
-  overflow-x: auto;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
+    flex-grow: 1;
+    margin-left: 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none; /* Firefox için scroll gizleme */
 }
 
 nav.menu::-webkit-scrollbar {
-  display: none;
-}
-
-nav.menu {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+    display: none; /* Chrome/Safari için scroll gizleme */
 }
 
 nav.menu a {
-  display: inline-block;
-  padding: 14px 20px;
-  color: #000;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 15px;
-  border-bottom: 3px solid transparent;
-  transition: border-color 0.3s ease, color 0.3s ease;
+    display: inline-block;
+    padding: 14px 20px;
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    position: relative;
+    transition: var(--gecis);
 }
 
-nav.menu a:hover,
-nav.menu a.active {
-  color: #e30b17;
-  border-bottom-color: #e30b17;
+/* Hareketli Alt Çizgi Animasyonu */
+nav.menu a::after {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: var(--ana-kirmizi);
+    transition: var(--gecis);
+    transform: translateX(-50%);
 }
 
-/* İÇERİK ALANI */
+nav.menu a:hover, nav.menu a.active {
+    color: var(--ana-kirmizi);
+}
+
+nav.menu a:hover::after, nav.menu a.active::after {
+    width: 60%;
+}
+
+/* ==========================================================================
+   İÇERİK ALANI & SAYFA GEÇİŞLERİ
+   ========================================================================== */
 main.content {
-  max-width: 900px;
-  margin: 110px auto 100px;
-  padding: 0 20px;
+    max-width: 900px;
+    margin: 110px auto 40px;
+    padding: 0 20px;
+    animation: sayfaGiris 0.8s ease-out;
 }
 
-/* BÖLÜMLER */
-section {
-  margin-bottom: 40px;
+@keyframes sayfaGiris {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-section h2 {
-  border-bottom: 2px solid #e30b17;
-  padding-bottom: 5px;
-  color: #e30b17;
-  font-weight: 700;
+/* ==========================================================================
+   KART TASARIMLARI (Sözler, Nutuk, Eserler İçin)
+   ========================================================================== */
+.sozler-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    width: 100%;
 }
 
-/* FOOTER */
+.soz-card, .nutuk-card {
+    background: var(--acik-gri);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: var(--gecis);
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.02);
+    display: flex;
+    flex-direction: column;
+}
+
+.soz-card:hover, .nutuk-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(227, 11, 23, 0.1);
+    background: #fff;
+    border-color: rgba(227, 11, 23, 0.2);
+}
+
+/* Kart İçindeki Yazı Fontları */
+.soz { font-family: Georgia, serif; font-size: 1.1em; line-height: 1.5; margin-bottom: 10px; }
+.kaynak { color: #888; font-size: 0.9em; text-align: right; font-style: italic; }
+.baglam { margin-top: 10px; font-size: 0.9em; color: #666; border-top: 1px solid #eee; padding-top: 10px; }
+
+/* ==========================================================================
+   FOOTER (Sosyal Medya)
+   ========================================================================== */
 footer.footer-social {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: #000;
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  padding: 10px 0;
-  z-index: 1100;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    height: 60px;
+    z-index: 1100;
 }
 
 footer.footer-social a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  cursor: pointer;
-  transition: fill 0.3s ease;
+    transition: var(--gecis);
+    display: flex;
+    align-items: center;
 }
 
 footer.footer-social svg {
-  width: 24px;
-  height: 24px;
-  fill: #fff;
-  transition: fill 0.3s ease;
+    width: 22px;
+    height: 22px;
+    fill: #fff;
+    transition: var(--gecis);
+}
+
+footer.footer-social a:hover {
+    transform: translateY(-5px);
 }
 
 footer.footer-social a:hover svg {
-  fill: #e30b17;
+    fill: var(--ana-kirmizi);
 }
 
-/* RESPONSIVE */
+/* ==========================================================================
+   AYARLAR: KARANLIK MOD (Body.dark)
+   ========================================================================== */
+body.dark {
+    background: #121212;
+    color: #e0e0e0;
+}
+
+body.dark header {
+    background: rgba(18, 18, 18, 0.95);
+    border-bottom-color: #333;
+}
+
+body.dark nav.menu a { color: #fff; }
+
+body.dark .soz-card, body.dark .nutuk-card {
+    background: #1e1e1e;
+    border-color: #333;
+    color: #e0e0e0;
+}
+
+body.dark .soz-card:hover {
+    background: #252525;
+}
+
+/* ==========================================================================
+   RESPONSIVE (Mobil Uyumluluk)
+   ========================================================================== */
 @media (max-width: 600px) {
-  header {
-    flex-wrap: wrap;
-    padding: 10px 15px;
-  }
+    header {
+        flex-direction: column;
+        padding: 10px;
+    }
 
-  nav.menu {
-    margin-left: 0;
-    margin-top: 10px;
-    width: 100%;
-    overflow-x: scroll;
-  }
+    nav.menu {
+        margin-left: 0;
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+    }
 
-  footer.footer-social {
-    gap: 25px;
-    padding: 10px 0;
-  }
+    nav.menu a {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    main.content {
+        margin-top: 140px; /* Mobil menü genişlediği için */
+    }
 }
